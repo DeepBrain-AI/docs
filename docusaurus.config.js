@@ -63,7 +63,7 @@ const config = {
         logo: {
           alt: 'DeepBrain AI',
           src: 'img/db_logo.svg',
-          href: 'aistudios/getting-started',
+          href: '/',
         },
         items: [
           {
@@ -102,11 +102,20 @@ const config = {
           },
           //{to: '/blog', label: 'Blog', position: 'left'},
           {
+            href: 'https://deepbrainai.io',
+            label: 'Go to DeepBrain AI',
+            position: 'right',
+          },
+          {
             href: 'https://github.com/DeepBrain-AI',
             label: 'GitHub',
             position: 'right',
           },
         ],
+      },
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: true,
       },
       footer: {
         style: 'dark',
@@ -157,10 +166,10 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} DeepBrain AI, Inc.`,
       },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
+      // prism: {
+      //   theme: lightCodeTheme,
+      //   darkTheme: darkCodeTheme,
+      // },
     }),
 };
 
