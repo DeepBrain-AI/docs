@@ -1,0 +1,113 @@
+# Export AI Audio
+
+
+<br/>
+
+The audio export section shows you how to send an API request in JSON format to create an audio file with the AI Model's voice.
+
+## 1. API endpoint
+
+```http
+https://aistudios.com/api/odin/simple/audio
+```
+
+<br/>
+
+## 2. Request parameter
+
+|key|desc|type|required|default|
+|:---|:---|:---|:---|:---|
+|language|The language the script is written in.|String|true|-|
+|text|Text for AI to read. It must match the language of the model.|String|true|-|
+|model|The AI Model to be used.|String|true|-|
+|clothes|The clothes/emotion value for the AI Model.|String|true|-|
+|locale|The environment where the user is accessing the API. For users accessing from China, the value should be 'zh'|String|false|-|
+|[webhook](https://aistudios.com/api-doc/reference/webhook)|The address where the synthesis result should be sent.|String|false|-|
+
+<br/>
+
+## 3. Response parameters
+
+|key|desc|type|
+|:---|:---|:---|
+|success|Progress on Request Success|Boolean|
+|key|Project Id - used when fetching Chromakey/Audio export data.|String|
+
+<br/>
+
+
+## 4. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```js
+curl https://aistudios.com/api/odin/simple/audio  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{
+    "language":"ko",
+    "text":"샘플 스크립트",
+    "model": "ysy",
+    "webhook": ${webhook_delivery_address}
+    }'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios" 
+const token = ${API KEY}
+
+axios.post('https://aistudios.com/api/odin/simple/audio', 
+    {
+        "language":"ko",
+        "text":"샘플 스크립트",
+        "model": "ysy",
+        "webhook": ${webhook_delivery_address}
+    }, 
+    {
+        headers: {
+            'Authorization': ${token},
+            'Content-Type': 'application/json'
+        }
+    }
+)
+.then((res) => {
+    console.log(res.data)
+})
+.catch((error) => {
+    console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://aistudios.com/api/odin/simple/audio"
+body = {
+    "language":"ko",
+    "text":"샘플 스크립트",
+    "model": "ysy",
+    "webhook": ${webhook_delivery_address}
+}
+    
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": ${API TOKEN}
+}
+
+r = requests.post(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>

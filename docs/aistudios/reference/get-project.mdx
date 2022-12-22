@@ -1,0 +1,84 @@
+# Get Project by Key
+
+Import project deals with how to load a pre-existing project by sending api requests in JSON format.
+
+<br/>
+
+## 1. API endpoint
+
+```http
+https://aistudios.com/api/odin/editor/project/${key}
+```
+
+<br/>
+
+## 2. Response parameters
+
+|key|desc|type|
+|:---|:---|:---|
+|success|Success Rate|Boolean|
+|response|Project data|Json|
+|response.projectName|Project name|String|
+|response.scenes|scene data|Array(json)|
+|msg|Error Message|Boolean|
+
+<br/>
+
+
+## 3. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```js
+curl https://aistudios.com/api/odin/editor/project/${project key}  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X GET
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios" 
+const token = ${API KEY}
+
+axios.get('https://aistudios.com/api/odin/editor/project/${project key}', 
+    {
+        headers: {
+            'Authorization': ${token},
+            'Content-Type': 'application/json'
+        }
+    }
+)
+.then((res) => {
+    console.log(res.data)
+})
+.catch((error) => {
+    console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://aistudios.com/api/odin/editor/project/${project key}"
+
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": ${API TOKEN}
+}
+
+r = requests.get(url, headers=headers)
+```
+
+</TabItem>
+</Tabs>

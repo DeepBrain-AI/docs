@@ -63,12 +63,12 @@ const config = {
         logo: {
           alt: 'DeepBrain AI',
           src: 'img/db_logo.svg',
-          href: 'aistudios',
+          href: 'aistudios/getting-started',
         },
         items: [
           {
             type: 'doc',
-            docId: 'aistudios/intro',
+            docId: 'aistudios/getting-started',
             position: 'left',
             label: 'AI Studios',
           },
@@ -116,7 +116,7 @@ const config = {
             items: [
               {
                 label: 'AI Studios',
-                to: 'aistudios',
+                to: 'aistudios/getting-started',
               },
               {
                 label: 'AI Human',
@@ -144,10 +144,10 @@ const config = {
           {
             title: 'More',
             items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
+              // {
+              //   label: 'Blog',
+              //   to: '/blog',
+              // },
               {
                 label: 'GitHub',
                 href: 'https://github.com/DeepBrain-AI',
