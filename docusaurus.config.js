@@ -17,7 +17,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'DeepBrain-AI', // Usually your GitHub org/user name.
-  projectName: 'AIHuman-SDK-Windows', // Usually your repo name.
+  projectName: 'docs', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -38,7 +38,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/DeepBrain-AI/AIHuman-SDK-Windows/',
+            'https://github.com/DeepBrain-AI/docs/tree/main/',
         },
         blog: false,
         // blog: {
@@ -63,13 +63,42 @@ const config = {
         logo: {
           alt: 'DeepBrain AI',
           src: 'img/db_logo.svg',
+          href: 'aistudios',
         },
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'aistudios/intro',
+            position: 'left',
+            label: 'AI Studios',
+          },
+          {
+            type: 'dropdown',
+            //docId: 'aihuman/intro',
             position: 'left',
             label: 'AI Human',
+            items: [
+              {
+                label: 'JavaScript',
+                to: 'aihuman/web-sdk',
+              },
+              {
+                label: 'Android',
+                to: 'aihuman/android-sdk',
+              },
+              {
+                label: 'iOS',
+                to: 'aihuman/ios-sdk',
+              },
+              {
+                label: 'Unity',
+                to: 'aihuman/unity-sdk',
+              },
+              {
+                label: 'Windows',
+                to: 'aihuman/windows-sdk',
+              },
+            ],
           },
           //{to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -86,8 +115,12 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'AI Studios',
+                to: 'aistudios',
+              },
+              {
+                label: 'AI Human',
+                to: 'aihuman/web-sdk',
               },
             ],
           },
