@@ -121,7 +121,7 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'Products',
             items: [
               {
                 label: 'AI Studios',
@@ -134,11 +134,73 @@ const config = {
             ],
           },
           {
-            title: 'Community',
+            title: 'Solutions',
+            items: [
+              {
+                label: 'Financial Services',
+                to: '/',
+              },
+              {
+                label: 'Retail & Commerce',
+                to: '/',
+              },
+              {
+                label: 'Education',
+                to: '/',
+              },
+              {
+                label: 'Media',
+                to: '/',
+              },
+            ],
+          },
+          {
+            title: 'Pricing',
+          },
+          {
+            title: 'Resources',
+            items: [
+              {
+                label: 'Docs',
+                to: '/',
+              },
+              {
+                label: 'Blog',
+                to: '/',
+              },
+              {
+                label: 'Forum',
+                to: '/',
+              },
+              {
+                label: 'Help',
+                to: '/',
+              },
+            ],
+          },
+          {
+            title: 'Company',
             items: [
               {
                 label: 'About',
-                href: 'https://aitalk.deepbrainai.io/',
+                to: '/',
+              },
+              {
+                label: 'Careers',
+                to: '/',
+              },
+              {
+                label: 'Contact',
+                to: '/',
+              },
+            ],
+          },
+          {
+            title: 'SNS',
+            items: [
+              {
+                label: 'LinkedIn',
+                href: 'https://www.linkedin.com/company/deepbrain-global/',
               },
               {
                 label: 'YouTube',
@@ -147,19 +209,6 @@ const config = {
               {
                 label: 'Instagram',
                 href: 'https://www.instagram.com/deepbrain_ai/',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              // {
-              //   label: 'Blog',
-              //   to: '/blog',
-              // },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/DeepBrain-AI',
               },
             ],
           },
