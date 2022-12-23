@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+#source: / => 전체경로받기
+#destination : 본인 ec2 디렉토리구조
+files:
+  - source: /
+    destination: /home/ubuntu/workspace/docs
+    overwrite: yes
+
+permissions:
+  - object: /home/ubuntu
+    pattern: '**'
+    owner: ubuntu
+    group: ubuntu
+
+#BeforeInstall, AfterInstall(codeDeploy 수명주기)에 실행될 파일 지정
+hooks:
+  AfterInstall:
+    - location: deploy.sh
+      timeout: 60
+      runas: ubuntu
