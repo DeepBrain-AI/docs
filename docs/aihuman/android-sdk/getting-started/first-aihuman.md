@@ -12,7 +12,7 @@ In this chapter, we will quickly look at AIHuman(AIPlayer) setup process and mak
 Here we create AILiveQuickStart.java.
 
 ## 3. Create a layout file.
-and make a view(eg. RelativeLayout) as a wrapper for the AIPlayer and set it as the Activity's contentView.
+And make a view(eg. RelativeLayout) as a wrapper for the AIPlayer and set it as the Activity's contentView.
 
 **AI is drawn in parentView fully in vertical way.**
 

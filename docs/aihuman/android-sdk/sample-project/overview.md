@@ -10,7 +10,7 @@ The provided sample demonstrates the AIPlayer's functionalities by going through
 <img src="/img/aihuman/android/Screenshot_20220530-201302-3909315-3915724.png" style={{zoom: "25%"}} />
 </p>
 
-The main activity contains the AIHuman SDK authentication function in the **onStart() method**. This is to make sure the state is authenticated before moving on to another activity. This is why there is no problem in calling getAIList() directly without authentication in some activities. If there are no response from the getAIList() API, check the error first. Most of the time, it is a token refresh(authentication) problem.
+The main activity contains the **AIHuman SDK authentication function ( generateToken(,)) in the onStart() method**. To launch the app, you should put appId and userkey on that function as shown in [Own your first AI Human](../getting-started/first-aihuman.md). 
 
 **MainActivity's menu**
 
@@ -20,4 +20,4 @@ The main activity contains the AIHuman SDK authentication function in the **onSt
 - AIHuman + PlayChat(AILiveWithMBPlayChatWithSTTDemo.java)
 - AI Human 3d Character (UnityActivity.java)
 
-Below is an explanation of each menu.
+

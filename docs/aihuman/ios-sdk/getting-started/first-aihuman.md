@@ -4,280 +4,197 @@ sidebar_position: 3
 
 # Own your first AI Human
 
-In this chapter, we will quickly set up AIPlayer with the default AI and learn about AI speaking process. When setting up AIPlayer for the first time, it may take several minutes to load depending on the network condition.
-
-For your information, it is similar to the QuickStart part of the Sample, which can be downloaded from the SDK website.
-
-<img src="/img/aihuman/windows/QuickStart_Main.png" />
+n this chapter, we will quickly set up AIPlayer with the Default AI and learn about AI speaking process. When setting up AIPlayer for the first time, it may take several minutes to load depending on the network condition. You can monitor the loading progress by implementing the onAIPlayerResLoadingProgressed function of AIPlayerCallback.
 
 :::tip
 From the sample, you can learn more from the code in the file below.
-- QuickStartView.xaml
-- QuickStartViewModel.cs
+- AIQuickSampleViewController.swift
 :::
 
-### 1. Add View Control
-Add Layout Component(parent layout) to which AIPlayer will be added to MainWindow.xaml.
+### 1. Create a project to test and complete the project setup.
 
-The view that makes AI Human work is called AIPlayerView.
-Specify the location where you want the AI Human to appear, i.e. where you want the AIPlayerView to be placed.
+<br/>
 
-<img src="/img/aihuman/windows/NewProject_Add_Layout.png"  />
+### 2. Import it into the ViewController that AIPlayer will be included in. Add AIPlayer as a member variable.
 
-<img src="/img/aihuman/windows/NewProject_Add_AIPlayer.png" />
+```swift
+import AIPlayer
 
-### 2. Authenticate with AuthStart function
-Write a code related to authentication at the time of application initialization by referring to the code below.
+class AIQuickSampleViewController {
+	var aiPlayer: AIPlayer!
+    ...
+}
+```
 
-- App.xaml.cs
+<br/>
 
-  First, you need to authenticate. The userKey can be issued by registering the appId on the AI Human SDK Website.
+### 3. Set appId and userKey in AIPlayer.
 
-```js
-using AIHuman.Core;
-using Newtonsoft.Json;
-using System.Windows;
+You can add project for each platform here.
+**[https://aitalk.deepbrainai.io](https://aitalk.deepbrainai.io)**
 
-namespace WpfApp1
-{
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
-    {
-        public App()
-        {
-            AIAPI.Instance.AuthStart("your appId", "your userKey", "your uuid", "wnds",
-                (aiLIst, error) =>
-                {
-                    if (string.IsNullOrEmpty(error) && aiLIst != null)
-                    {
-                        string jsonStr = aiLIst.Root.ToString();
-                        AIAPI.AIList list = JsonConvert.DeserializeObject<AIAPI.AIList>(jsonStr);
-                        // $"Auth Complete, Avaliable Count: {list.ai.Length}";
-                    }
-                    else
-                    {
-                        MessageBox.Show($"AuthStart: {error}");
-                    }
-                }
-            );
+<!-- <img src="images/aisample_regist_000.png" width="1191" height="301"> -->
+
+When adding a project, registration is possible for each platform, and the AppID and UserKey of the platform registered at this time are required.
+
+<img src="/img/aihuman/ios/aisample_regist_001.png" />
+
+Set the appId and userKey of the registered project to the SDK.
+
+```swift
+AIPlayer.setAppId("your project appId")
+AIPlayer.setUserKey("your project userKey")
+```
+
+<br/>
+
+### 4. Set screen ratio of AIPlayer
+
+In order to optimize the size of AI to the view screen ratio of AIPlayer, you can set the AIPlayer's environment. Or you can use the size of AI as an absolute value. (The optimization option is the default for the view screen ratio, so this part can be omitted.)
+
+```swift
+// If the value is true, change the AI to match the view size ratio, or it is displayed on the screen as the absolute size of the AI
+let config = AIPlayerConfiguration(config: [AIPlayerConfiguration.KEY_ENABLE_VIEW_ASPECT_RATIO: true])
+AIPlayer.setConfig(config: config)
+```
+
+<br/>
+
+### 5. Request the AIPlayer object.
+
+In this step, after SDK authentication, the default registered AI object is created. If the create object is failed, a nil value is returned.
+
+```swift
+AIPlayer.create { (aiPlayer) in
+            guard error == nil else {
+                return
+            }
+            
+            self.aiPlayer = aiPlayer
+            self.aiPlayer.delegate = self
+            self.view?.addSubview(aiPlayer!)
         }
+```
+
+<br/>
+
+### 6. Register the delegate
+
+If the AIPlayer creation is successful, you can register the delegate to check the state (when preparation is complete, etc.). When the resource loading is complete, activate the button.
+
+```swift
+    ...
+    aiPlayer.delegate = self
+    ...
+
+extension AIQuickSampleViewController: AIPlayerCallback {
+    func onAIPlayerStateChanged(state: AIPlayerState, type: AIClipSetType, key: String?) {
+        if state == .didFinishLoadingResource {
+            DispatchQueue.main.async {
+                self.sendBtn.isEnabled = true       // enable speak button 
+            }
+        }
+    }
+
+    func onAIPlayerResLoadingProgressed(progress: Int) {
+    }
+    func onAIPlayerError(error: Error?, state: AIPlayerState) {
     }
 }
 ```
 
-### 3. Create AIPlayer Instance and Implement Callback
+<br/>
 
-Read the code below to create an AIPlayer Instance and try to implement a callback related to AI Human state via IAIPlayerCallback inheritance.
+### 7. Implement a function that is executed when the speak button is pressed.
 
-- MainWindowViewModel.cs
+```swift
+@IBAction func sendButtonClicked(_ sender: Any) {
+    aiPlayer.send(text: "nice to meet you")
+}
+```
 
-```js
-using AIHuman.Common;
-using AIHuman.Common.Base;
-using AIHuman.Core;
-using AIHuman.Interface;
-using AIHuman.Media;
-using System;
-using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Threading;
+<br/>
 
-namespace WpfApp1
-{
-    public class MainWindowViewModel : ViewModelBase, IAIPlayerCallback
-    {
-        private AIPlayer _aiPlayer;
-        public AIPlayerView AIPlayerObject
-        {
-            get => _aiPlayer.GetObject();
-            private set => OnPropertyChanged(nameof(AIPlayerObject));
+### 8. The full code of the quickstart sample is shown below.
+
+```swift
+// The function called when the app runs.
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+		...
+		
+        AIPlayer.setAppId("")
+        AIPlayer.setUserKey("")
+        
+        let config = AIPlayerConfiguration(config: [AIPlayerConfiguration.KEY_ENABLE_VIEW_ASPECT_RATIO: true])
+        AIPlayer.setConfig(config: config)
+        
+        ...
+}
+
+// AIQuickSampleViewController.swift
+import UIKit
+import AIPlayer
+
+class AIQuickSampleViewController: UIViewController {
+    
+    @IBOutlet var sendBtn: UIButton!
+    var aiPlayer: AIPlayer!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        self.getAI()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if aiPlayer != nil {
+            aiPlayer.releasePlayer()
+            aiPlayer.removeFromSuperview()
         }
-
-        private string _status;
-        public string AIStatusText
-        {
-            get => _status;
-            set
-            {
-                _status = value;
-                OnPropertyChanged(nameof(AIStatusText));
+    }
+    
+    @IBAction func sendButtonClicked(_ sender: Any) {
+        aiPlayer.send(text: "nice to meet you")
+    }
+    
+    func getAI() {
+        AIPlayer.create { (aiPlayer) in
+            guard aiPlayer != nil else {
+                return
             }
+            
+            self.aiPlayer = aiPlayer
+            self.aiPlayer.delegate = self
+            self.view?.addSubview(aiPlayer!)
+            
+            self.view.sendSubviewToBack(self.aiPlayer)
         }
+    }
+}
 
-        private string _inputText;
-        public string InputText
-        {
-            get => _inputText;
-            set
-            {
-                _inputText = value;
-                OnPropertyChanged(nameof(InputText));
-            }
+extension AIQuickSampleViewController: AIPlayerCallback {
+    func onAIPlayerStateChanged(state: AIPlayerState, type: AIClipSetType, key: String?) {
+        if state == .didFinishLoadingResource {
+        		print("did finish loading resource")
+        		DispatchQueue.main.async {
+                self.sendBtn.isEnabled = true       // enable speak button
+             }
+        }else if state == .startSpeaking {
+        		print("start speaking \(String(describing: key))")
+        }else if state == .didFinishSpeaking {
+        		print("did finish speaking")
         }
-
-        private ObservableCollection<string> _speechList;
-        public ObservableCollection<string> SpeechList
-        {
-            get => _speechList;
-            private set
-            {
-                _speechList = value;
-                OnPropertyChanged(nameof(SpeechList));
-            }
-        }
-
-        public RelayCommand SpeakCommand { get; private set; }
-
-        public MainWindowViewModel()
-        {
-            SpeechList = new ObservableCollection<string>();
-
-            _aiPlayer = new AIPlayer(this);
-            AIPlayerObject = _aiPlayer.GetObject();
-
-            SpeakCommand = new RelayCommand(Speak_Command);
-        }
-
-        public void onAIPlayerError(AIError error)
-        {
-            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
-            {
-                SpeechList.Add(error.getMessage());
-                AIStatusText = nameof(AIError);
-            }));
-        }
-
-        public void onAIPlayerResLoadingProgressed(int current, int total)
-        {
-            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
-            {
-                float progress = ((float)current / (float)total) * 100;
-                AIStatusText = string.Format("AI Resource Loading... {0}%", (int)progress);
-            }));
-        }
-
-        public void onAIStateChanged(AIState state)
-        {
-            switch (state.state)
-            {
-                case AIState.RES_LOAD_COMPLETED:
-                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
-                    {
-                        AIStatusText = "AI Resource loading completed.";
-                    }));
-                    break;
-            }
-        }
-
-        private void Speak_Command(object args)
-        {
-            if (string.IsNullOrEmpty(InputText) == false)
-            {
-                _aiPlayer.Send(new[] { InputText });
-                SpeechList.Add(InputText);
-                InputText = string.Empty;
-            }
-        }
+    }
+    func onAIPlayerResLoadingProgressed(progress: Int) {
+    }
+    func onAIPlayerError(error: Error?, state: AIPlayerState) {
     }
 }
 ```
 
-- MainWindow.xaml
-
-```js
-<Window x:Class="WpfApp1.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1"
-        d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
-        <ContentControl Margin="0" Grid.Column="0" Content="{Binding Path=AIPlayerObject}" Focusable="False" />
-
-        <Grid Margin="0" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0">
-                <Grid.Background>
-                    <SolidColorBrush Color="#00D3D3"/>
-                </Grid.Background>
-                <Viewbox>
-                    <TextBlock FontWeight="Bold">
-                        <Label Content="{Binding AIStatusText}" />
-                    </TextBlock>
-                </Viewbox>
-            </Grid>
-            <Grid Grid.Row="1">
-                <DockPanel>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                        <ItemsControl BorderThickness="0" ItemsSource="{Binding SpeechList}" Focusable="False" />
-                    </ScrollViewer>
-                </DockPanel>
-            </Grid>
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" MaxLines="1" FontStretch="UltraExpanded" Text="{Binding InputText}">
-                </TextBox>
-                <Button Grid.Column="1" HorizontalAlignment="Stretch" Command="{Binding SpeakCommand}">
-                    <TextBlock Padding="10, 5" Text="Send" />
-                </Button>
-            </Grid>
-        </Grid>
-    </Grid>
-</Window>
-```
-
-- MainWindow.xaml.cs
-
-```js
-using System.Windows;
-
-namespace WpfApp1
-{
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-
-            DataContext = new MainWindowViewModel();
-        }
-    }
-}
-```
-
-:::info
-There are many omitted parts in the above explanation. Please refer to App.xaml, QuickStartView.xaml, and QuickStartViewModel.cs files by opening the Solution file of the given Sample. 
-:::
-
-### 4. Command the AI to speak 
-
-- Build Solution > Run > (Loading Resources) > Enter a sentence in the text box at the bottom right > Click the Send button
-
-:::note
-The actual AI Human may differ from the screenshot.
-:::
-
-  <img src="/img/aihuman/windows/Tutorial_danny_demo.png"  />
+<br/>
 
 

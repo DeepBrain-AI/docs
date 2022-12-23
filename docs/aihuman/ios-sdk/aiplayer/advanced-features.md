@@ -4,180 +4,92 @@ sidebar_position: 5
 
 # AIPlayer Advanced Speaking Features
 
-All functions other than speaking(mostly related to AI settings) of AIPlayer are described below.
+### AI Speech Rate: between 0.5~1.5
 
-After the resource load required for AI operation is completed, some settings of AIPlayer can be adjusted. When the resource loading is completed (`RES_LOAD_COMPLETED`), the state changes such that actual operations can be performed(Idle). On right side of the panel, **Voice, Gesture, Speed**, etc. can be adjusted as shown below.
-
-### Change AI Speech Rate
-
-: You can set the speech rate of AI. The possible value range is from 0.5 to 1.5.
-```js
-// set Property
-_aiPlayer.Speed = value;
+```Swift
+aiPlayer.speechSpeed = speechSpeed
 ```
 
-### Gestures
-As briefly mentioned above, speech can also be performed using [ClipSet](#main-class-apis). The ClipSet here refers to one action unit in a series of AI actions. There are three types of ClipSet: general speech that performs only speaking, speech with gesture, and gesture only. The Gesture can be used depending on whether the AI model supports [Gestures](#main-class-apis), and the list of available gestures can be checked using the [GetGestures](#main-class-apis) function of AIPlayer. Even a model that does not support gestures can be operated using ClipSet.
+### Gesture
 
-AIClipSet types are as follows.
+As briefly mentioned above, the speech may be performed using the AIClipSet. Here, the term AIClipSet refers to one speech unit in a series of AI operations. At this time, the types of speech include general speech that only speaks speech, gesture speech that includes gestures, and gestures that perform only gesture. Depending on whether the AI model provides the AIGesture feature, the feature can be used, and a list of available gestures can be obtained using the AIPlayer's guestures array. Even in the case of a model that does not support a gesture, it may be operated using a clipset.
 
-:::info types
-  - CLIP_SPEECH: Clip only for speech without gestures
-  - CLIP_GESTURE: Gesture only Clip
-  - CLIP_SPEECH_GESTURE: Clip for speech with gestures
-:::
+The following types of clipsets exist.
 
-In the sample screenshot below, an AI model named Jonathan is speaking while waving his hand with a "hi" gesture.
+- AIClipSet.ClipType
+  - CLIP_SPEECH: Clipset with no gestures and only plain speaking
+  - CLIP_GESTURE: Gesture-only clipset
+  - CLIP_SPEECH_GESTURE: Speechable clipset with gesture
 
-<img src="/img/aihuman/windows/Jonathan_Gesture_Demo.png" />
+In the sample screenshot below, an AI model named Jonathan is waving and speaking with a gesture of "hi."
 
-```js
-using AIHuman.Common.Model;
-using AIHuman.Core;
-using AIHuman.Media;
-...
-private ObservableCollection<AIGesture> _gestures;
-...
-_gestures = _aiPlayer.GetGestures();
-...
-AIGesture gesture = _gestures[index];
+<p align="center">
+<img src="/img/aihuman/ios/aisample_ss_gesture.PNG" style={{zoom: "35%"}} />
+</p>
 
-AIClipSet clip = AIAPI.CreateClipSet("nice to meet you.", gesture.Name);
+It can be generated using the AIClipSet.clipset function.
 
-_aiPlayer.Send(new[] {clip});
+```swift
+let clipset = AIClipSet.cipset(text: "an speech sentence", gesture: "gesture")
+aiPlayer.send(clipset: clipset)
 ```
 
-#### Monitoring callbacks of gesture actions
+### Change the voice or language
 
-IAIPlayerCallback.OnAIStateChanged(AIState) is called in the same way as the speech actions. The state value of AIState is called as follows to know the state. However, since AIState.GetAIMsg().Clip.Type, GestureName, and SpeechText are known here, it is possible to know whether it is a gesture action or just a speech action.
+Some AIs can speak with other voices besides basic voices. At this time, it is also possible to speak when the language of the supported voice is different from the basic language of AI. To use multiple languages and voices, you can use AIPlayer's generateToken or loadCustomVoices function after calling it.
 
-- `SPEAKING_PREPARE_STARTED`
-- `SPEAKING_PREPARE_COMPLETED`
-- `SPEAKING_STARTED`
-- `SPEAKING_COMPLETED`
-
-<br/>
-
-### Change the Voice or Language
-Some AIs can speak with other voices besides basic voices. It is also possible to speak other language than the basic voice's language if the supported voice's language is different from the basic language of AI. You can check the sample for a list of voices that are currently available to a AI. The custom voices is AIAPI.AuthStart or AIAPI.It can be checked after the GenerateToken function is called. More explicitly, AIAPI.LoadCustomVoices may be used, but it will function normally after a successful authentication procedure.
-
-<img src="/img/aihuman/windows/CustomVoice_GCE.png" />
-
-<br/>
+<p align="center">
+<img src="/img/aihuman/ios/aisample_ss_customvoice.PNG" style={{zoom: "50%"}} />
+</p>
 
 #### Set the custom voice using AIPlayer's method
-First, the list of languages that AI can currently speak can be checked through the following method.
 
-```js
-ObservableCollection<string> languages = AIAPI.GetSpeakableLanguages(_aiPlayer.AIGender);
-``` 
+A list of available languages can be found by the following methods. If you enter a gender as a value, you can only get a list of languages available for that gender.
 
-
-Next, the voice list suitable for the corresponding language and gender can be checked by the following method. CustomVoice has properties of ID, Name, LanguageCode and Gender.
-
-```js
-ObservableCollection<CustomVoice> customVoices = AIAPI.GetCustomVoices();
-``` 
-
-If you know the id of the desired voice, you can find the desired voice using the following method. If there is none, return null. Here, voiceId is the ID of CustomVoice object. (The voiceId can be get by customVoice.ID property.)
-
-```js
-CustomVoice myVoice = AIAPI.FindCustomVoice(voiceId);
-``` 
-
-Direct change to the desired voice on the aplayer is set as follows, and is set to the default voice when null is entered. Returns true when success.
-
-```js
-ObservableCollection<CustomVoice> customVoices = AIAPI.GetCustomVoices();
-CustomVoice myVoice = customVoices[0]; 
-bool succeeded = _aiPlayer.SetCustomVoice(myVoice);
+```Swift
+let languageList: [String] = AIPlayer.getSpeakableLanguages() // Full list of available
+let languageList: [String] = AIPlayer.getSpeakableLanguages(gender: ) // Full list available for that gender - male, female
 ```
 
+It is possible to check which voice AI can use by the following method. CustomVoice has properties of id, name, language, and tag.
 
-Instead of using CustomVoice object directly, you can set CustomVoice with language and gender. In this case, the first customVoice of the filtered list is set. If it not available, the voice is set to the default voice.
-
-```js
-bool succeeded = _aiPlayer.SetCustomVoiceForLanguage("en-US", "MALE");
+```Swift
+let customVoices: [CustomVoice] = AIPlayer.getCustomVoicesWith(language: , gender:)
 ```
 
+If you know the id of the desired voice, you can find the desired voice using the following method. If not, return nil. <br/>
+Here, the customVoiceId value is the same as the value obtained by obtaining the id of the customVoice as a string.
 
-Check current CustomVoice with following method. It returns null if CustomVoice is not set or default voice.
+```Swift
+let customVoice = AIPlayer.findCustomVoice(customVoiceId: customVoiceId)
+```
 
-```js
-CustomVoice customVoice = _aiPlayer.GetCustomVoice();
+Direct change to the desired voice on the AIPlayer is set as follows, and is set to the default voice when entering nil. Returns true on success. 
+
+```Swift
+aiPlayer.setCustomVoice(customVoice: customVoice)
+```
+
+If you change to a language that corresponds to the list of available languages, it will be changed to the first voice in the list of voices that can be changed in that language.
+If the gender value is nil, use the gender of ai.
+
+```Swift
+aiPlayer.setCustomVoiceForLanguage(language:, gender)
 ```
 
 #### Set the custom voice using AIClipSet
-In addition to the method of using the SetCustomVoice method to set a voice other than the default voice, AIClipSet can be used to speak the desired voice as follows.
 
-```js
-CustomVoice myVoice = AIAPI.GetCustomVoices("en-US", "MALE")[0];
-AIClipSet aiClipSet = AIAPI.CreateClipSet("this is sample sentence.", null, myVoice);
-_aiPlayer.Send(new[] {aiClipSet});
-``` 
+In addition to using the setCustomVoice method to set up a voice other than the basic voice, AIClipSet can be used to change the voice by sentence.
 
-<br/>
+```Swift
+let customVoice = AIPlayer.getCustomVoicesWith()[0]
+let clipSet = AIClipSet.clipSet(text: speechText, customVoice: customVoice)
+```
 
 ### Preload
 
-Preload is used when you want to make the AI speak the next sentence without delay by loading sentences in advance. You could think of it as a caching process. Select a sentence and press the **Preload** button in the sample below to perform the corresponding action.
+Preload is used when you want to make the AI speak the next sentence without delay by loading sentences in advance. You could think of it as a caching process. AI's speech requires large amount of video/audio data. Therefore preloading too many sentences could kill the app. 
 
-<img src="/img/aihuman/windows/Haylyn_Preload.png" />
-
-```js
-// using pure-text
-_aiPlayer.Preload(new[] {"sentence"});
-// using AIClipSet
-_aiPlayer.Preload(new[] {clip});
+```Swift
+aiPlayer.preload(texts: [])
 ```
-
-#### Preload related Monitoring 
-
-AIPlayerCallback.onAIStateChanged(AIState) is called during the preload operation just like the speaking operation. The value of AIState is shown below.
-
-- `SPEAKING_PREPARE_PRELOAD_STARTED`
-- `SPEAKING_PREPARE_PRELOAD_COMPLETED`
-
-<br/>
-
-When the AI has several sentences to speak, it first processes the very first sentence. Once the returned state from onAIStateChanged is SPEAKING_STARTED, which is when the AI starts to speak the first sentence, the next sentence can be preloaded. If you play the next sentence after the state update to SPEAKING_PREPARE_PRELOAD_COMPLETED, there will be minimum delays between sentences. 
-
-```js
-// AI Preload related CallBack
-public void onAIStateChanged(AIState aiState)
-{
-    if (aiState.state == AIState.SPEAKING_PREPARE_PRELOAD_STARTED)
-    {
-        _txtStatus.text = "AI started preparation to preload.";
-    }
-    else if (aiState.state == AIState.SPEAKING_PREPARE_PRELOAD_COMPLETED)
-    {
-        _txtStatus.text = "AI finished preparation to preload.";
-    }
-    	...
-}
-```
-
-<br/>
-
-### Speak Multiple Sentences Consecutively
-
-You can give AIPlayer several sentences at once and make them speak sequentially. In the sample, multi-speaking is performed by selecting random sentences from sentences in the ComboBox. It can be one sentence or it can be several sentences. Press the **Multi Speak** button in the app below to perform the operation.
-
-<img src="/img/aihuman/windows/Haylyn_MultiSpeak.png" />
-
-```js
-// using pure-text
-_aiPlayer.Send(new[] {"This is sample sentence1", "This is sample sentence2"});
-// using AIClipSet
-_aiPlayer.Send(new[] {clip1, clip2});
-```
-
-#### Multi Speak related Monitoring
-
-IAIPlayerCallback.onAIStateChanged(AIState) is called for each sentence. The possible AIState values are shown below. 
-
-- `SPEAKING_PREPARE_STARTED`
-- `SPEAKING_PREPARE_COMPLETED`
-
-If you send several sentences, it automatically preloads if possible. In this case, you can see that the delay between utterances when the AI speaks is reduced.

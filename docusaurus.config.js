@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'DeepBrain AI DOCS',
-  tagline: 'Get up to AI Human with AI Human SDK',
+  tagline: 'Welcome! Here you can read the complete documentation for the AI Human.',
   url: 'https://aitalk.deepbrainai.io/',
   baseUrl: '/',
   onBrokenLinks: 'throw',

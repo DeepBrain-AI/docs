@@ -15,7 +15,7 @@ Below is the project's setting.(It is sample, not mandatory)
 **Download the SDK and Android sample from the [SDK Website](https://aitalk.deepbrainai.io).** The sample project's configurations are shown below.
 
 - Project level build gradle (File > Project structure)
-  -  Gradle : 7.1.2
+  -  Android Gradle plugin version : 7.1.1, Gradle Version : 7.2
 
 **[Project level build.gradle setup]**
 
@@ -29,7 +29,7 @@ Below is the project's setting.(It is sample, not mandatory)
 
 ## 2. Add SDK (aar) to project
 
-Add the 2 aar files(AIHumanSDK, AIHuman3DSDK) to your project. And update dependency in app level build.gradle file.(implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])). 
+Add the 2 aar files(AIHumanSDK, AIHuman3DSDK) to your project's libs. The libs folder should be make under app dir. And update dependency in app level build.gradle file.(implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])). Check below **App level build.gradle** section. 
 
 <img src="/img/aihuman/android/screenshot_projectsetup_4.png"/>
 

@@ -14,13 +14,13 @@ After the resource is loaded, some settings of aiPlayer can be changed while the
 ## Change AI Size(Scale)
 : value between 0.5 and 1.5
 
-```js
+```java
 aiPlayer.setScale(scale);
 ```
 
 ## Change AI Top Margin
 The larger the value, the lower it is drawn.
 
-```js
+```java
 aiPlayer.setTopMargin(topMargin); //3d not support 
 ```

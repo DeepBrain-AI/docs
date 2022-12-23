@@ -4,72 +4,45 @@ sidebar_position: 3
 
 # AIPlayer Resources and States
 
-### Start loading resources 
+Check if resource is fully loaded in AIPlayer
 
-When AIPlayer is created after authentication is completed, resource loading starts according to the input **AIName**, and the resource loading status is reported to the listener (IAIPlayerCallback) registered in the constructor. (Initially, it may take a few minutes for the resource to complete loading.)
+On class creation, AIPlayer automatically starts loading resources. You can check the loading status in registered delegate property. 
 
-<br/>
+### Monitor resource loading through AIPlayerCallback
 
-### Monitoring player state through IAIPlayerCallback implementation
+You can check if the resource loading started and completed through the onAIPlayerStateChanged method.
 
-The values for the parameter AIState.state in the listener method onAIStateChanged(AIStatePublisher.AIState state) are shown below. You can also implement loading progress with onAIPlayerResLoadingProgressed(int current, int total).
+- AIPlayerState.loadingResource : On loading start
+- AIPlayerState.didFinishLoadingResource : On loading complete
 
-- AIState.RES_LOAD_STARTED : resource loading is started.
-- AIState.RES_LOAD_COMPLETED : resource loading is completed.
+While the resource is loading you can use onAIPlayerResLoadingProgressed method to check loading progress. 
 
-If there is any problem during this process, the onAIPlayerError() method is called. Typically, a response from the onAIPlayerError() may be notifying the expiration of the authentication token. An appropriate response is required depending on the situation.
+If an error occurs during resource load, an error is reported through onAIPlayerError method. 
 
-- AIError.SDK_API_ERR : Notifies error in authentication process API.
+```Swift
+extension AISampleViewController: AIPlayerCallback {
+	func onAIPlayerStateChanged(state: AIPlayerState, type: AIClipSetType, key: String?) {
+	    switch state {
+	    	...
+	    	case .loadingResource:
+	    		print("AI Resource loading started.")
+	    	break
+	    	case .didFinishLoadingResource:
+	    		print("AI Resource loading completed.")
+	    	break
+	    	...
+	    }
+	}
 
-:::info  
-e.g.) 1402 error (value token expired): Token refresh required -> Call AuthStart() method again
-:::
-
-```c#
-string message;
-// AI resource related status CallBack
-public void onAIStateChanged(AIState state)
-{
-    if (state.state == AIState.RES_LOAD_STARTED)
-    {
-        message = "AI Resource loading started.";
+	func onAIPlayerResLoadingProgressed(progress: Int) {
+        print("progress : \(progress)")
     }
-    else if (state.state == AIState.RES_LOAD_COMPLETED)
-    {
-        message = "AI Resource loading completed.";
+
+    func onAIPlayerError(error: Error?, state: AIPlayerState) {
+    	print("AI Player error : \(state)")
+    	if let error = error {
+			print(error.localizedDescription)
+		}
     }
-}
-
-// AI resource loading progress CallBack
-public void onAIPlayerResLoadingProgressed(int current, int total)
-{
-    float progress = ((float) current / (float) total) * 100;
-    message = string.Format("AI Resource Loading... {0}%", (int)progress);
-}
-
-// AI error CallBack
-public void onAIPlayerError(AIError error)
-{
-  if (error.SDK_API_ERR == error.errorType) 
-  {
-    string errorDesc = error.exInfo;
-    if (string.IsNullOrEmpty(errorDesc))
-    {
-        JSONObject json = null;
-        try
-        {
-            json = new JSONObject(errorDesc);
-        }
-        catch (JsonException ex)
-        {
-        }
-
-        if (json != null && json.optInt(Constants.KEY_ERRORCODE, -1) ==
-            Constants.API_ERRORCODE_TOKEN_EXPIRED)
-        {
-            // refresh token
-        }
-    }
-  }
 }
 ```

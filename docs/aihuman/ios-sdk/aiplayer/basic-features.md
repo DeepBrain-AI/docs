@@ -4,96 +4,72 @@ sidebar_position: 4
 
 # AIPlayer Basic Speaking Features
 
-### Basic Speaking using AIClipSet and Monitor AI Speaking
+### Basic speaking using AIClipSet and Monitor AI Speaking
 
-After AIPlayer resource is loaded, call **Send method**. To activate the function, in the sample below, select the sentence to speak through the drop-down menu and click the **Play** button on the right.
+You can make the AI speak what you want by inputting desired sentence as a text parameter of __send__ method. 
 
-In general, speech can be performed using pure text, but speech can also be performed using [AIHuman.Common.Model.AIClipSet](#main-class-apis). Also, speech can be performed along with a specific gesture. For example, you could instruct the AI to say hello by waving his hand. This is called gesture speech. Details are explained in [Gesture speech related parts](#main-class-apis).
+  ```Swift
+  //using text
+  aiPlayer.send(text: "Hello World")	// speak one sentence
+  aiPlayer.send(texts: [..., ...])		// speak multiple sentences
+  
+  //using AIClipSet
+   let clipSet = AIClipSet.clipSet(text: "Hello World")
+   aiPlayer.send(clipset: clipSet)
+  ```
 
-If the text to speak is too long, it may not be possible to synthesize the resources required for the utterance. There are some models that can synthesize long sentences. Although it varies from ai to ai, it is generally recommended that sentences be cut to an appropriate length in Korean, usually within 30 to 40 characters, and at a similar level in English. In addition, if special characters, lists of incomplete characters, numbers, formulas, symbols, characters or abbreviations in other languages are included, they may or may not be uttered differently than expected.
+If the sentence is too long, there may be errors. <br/>
+In general, speech may be made in pure text, but speech may be performed using AIClipSet. <br/>
+It is also possible to perform an utterance with a specific gesture. For example, you can order AI to wave and say "hello!" This is called gesture speech. Details will be described in [4. AIPlayer advanced speaking features] (#Gestures) (Gestures). <br/> <br/>
 
-<img src="/img/aihuman/windows/Speak_Haylyn.png" />
+If the text to be spoken is too long, it may not be possible to synthesize the text. There are other models that can synthesize long sentences. Although it varies from ai to ai, it is generally recommended that sentences be cut to an appropriate length in Korean, usually within 30 to 40 characters, and at a similar level in English. <br/>
+In addition, if special characters, lists of incomplete characters, numbers, formulas, symbols, characters or abbreviations in other languages are included, they may or may not be uttered differently than expected.
 
-```c#
-// using pure-text
-_aiPlayer.Send(new[] {"this is sample sentence."});
-// using AIClipSet
-AIClipSet clip = AIAPI.CreateClipSet("this is sample sentence.");
-_aiPlayer.Send(new[] {clip});
+### Montoring speech state through AIPlayerCallback
+
+You can check AIPlayer's state through onAIPlayerStateChanged method in the __delegate__ property. 
+
+- AIPlayerState.prepareSpeaking : Ready to start speaking
+- AIPlayerState.startSpeaking : Speaking started
+- AIPlayerState.speakNext : Whether to speak the next sentence in queue
+- AIPlayerState.didFinishSpeaking : Speaking finished
+
+```Swift
+extension AISampleViewController: AIPlayerCallback {
+	func onAIPlayerStateChanged(state: AIPlayerState, type: AIClipSetType, key: String?) {
+	    switch state {
+	    	...
+	    	case .prepareSpeaking:
+	    		print("AI finished preparation to speak.")
+	    	break
+	    	case .startSpeaking:
+	    		print("AI started speaking.")
+	    	break
+	    	case .speakNext:
+	    		print("AI started preparation to next speak.")
+	    	break
+	    	case .didFinishSpeaking:
+	    		print("AI finished speaking.")
+	    	break
+	    	...
+	    }
+	}
 ```
 
-### Speaking related Monitoring
+#### Pause speaking
 
-After the Send method is called, you can listen to the operation status feedback in the registered listener. This feedback is returned by calling the method (onAIStateChanged) of the listener(IAIPlayerCallback). onAIStateChanged sequentially returns the following AIState values. 
-
-- SPEAKING_PREPARE_STARTED 
-- SPEAKING_PREPARE_COMPLETED
-- SPEAKING_STARTED
-- SPEAKING_COMPLETED
-
-```c#
-// Speaking related CallBack example
-public void onAIStateChanged(AIState state)
-{
-    if (state.state == AIState.SPEAKING_PREPARE_STARTED)
-    {
-        _txtStatus.text = "AI started preparation to speak.";
-    } 
-    else if (state.state == AIState.SPEAKING_PREPARE_COMPLETED)
-    {
-        _txtStatus.text = "AI finished preparation to speak.";
-    }
-    else if (state.state == AIState.SPEAKING_STARTED)
-    {
-        _txtStatus.text = "AI started speaking.";
-    }
-    else if (state.state == AIState.SPEAKING_COMPLETED)
-    {
-        _txtStatus.text = "AI finished speaking.";
-    }
-}
-
-// AI error CallBack example
-public void onAIPlayerError(AIError error)
-{
-    if (error.errorType == AIError.SOCKET_ERR)
-    {
-		_txtStatus.text = "Socket Error: " + error.exInfo;
-    }
-    else if (error.errorType == AIError.RES_LOAD_ERR)
-    {
-        _txtStatus.text = "Resource Error: " + error.exInfo);
-    }
-	else if (error.errorType == AIError.SPEAK_SEND_ERR)
-    {
-		_txtStatus.text = "Speak Error: " + error.exInfo);
-    }
-}
-```
-<br/>
-
-The following are actions that can be performed while the AIPlayer is Speaking.
-
-### Pause Speaking
-
-: Pause speaking.
-```c#
-// pause method
-_aiPlayer.Pause()
+```Swift
+aiPlayer.pause()
 ```
 
-### Resume Speaking
+#### Resume speaking
 
-: Resume speaking. (resume from pause)
-```c#
-// resume method
-_aiPlayer.Resume()
+```Swift
+aiPlayer.resume()
 ```
 
-### Stop Speaking
+#### Stop speaking (can not resume)
 
-: Stop speaking and reset all data. (cannot resume)
-```c#
-// stop method
-_aiPlayer.StopSpeaking()
+```Swift
+aiPlayer.stopSpeaking()
 ```

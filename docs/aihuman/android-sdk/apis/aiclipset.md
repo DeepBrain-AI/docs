@@ -2,12 +2,17 @@
 sidebar_position: 4
 ---
 
-# AIHuman.Common.Model.AIClipSet
+# AIClipSet
 
 | Modifier and Type | Method and Description                                       |
 | ----------------- | ------------------------------------------------------------ |
-| `enum`            | `ClipType` Clipset types are as follows.<br />- CLIP_SPEECH: Clip only for speech without gestures <br />- CLIP_GESTURE: Gesture only Clip<br />- CLIP_SPEECH_GESTURE: Clip for speech with gestures |
-| `ClipType`           | `Type { get; }` Get the clip type set in the AIClipSet.               |
-| `string`             | `SpeechText { get; }` Get the sentence set in the AIClipSet.               |
-| `string`             | `GestureName { get; }` Get the gesture name set in the AIClipSet.               |
-| `string`             | `ClipId { get; }` Get the ID set in the AIClipSet.               |
+| `enum`            | `ClipType` <br />- CLIP_SPEECH <br />- CLIP_GESTURE<br />- CLIP_SPEECH_GESTURE |
+| `String`          | `getSpeechText()` speech to speak                            |
+| `ClipType`        | `getClipType()` get ClipType of AIClipSet                    |
+| `String`          | `getGesture()` get the name of gesture                       |
+| `String`          | `getKey()`  get Clip's key                                   |
+| `static String`   | `createKey(String gesture, String speechText)` create Clips' key |
+| `CustomVoice`     | `getCustomVoice()` get current custom voice. |
+| `void`            | `setCustomVoice(CustomVoice cv)` set a custom voice. |
+| `static String`   | `createKey(String gesture, String speechText)` create key with gesture and speechText. |
+

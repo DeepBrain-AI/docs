@@ -72,7 +72,7 @@ private void setUpUIWithAIPlayer() {
 }
 ```
 
-**Examples of speak, pause, resume, and stopSpeaking are shown below**
+**Example of speak**
 
 ```java
 // UI and AIPlayer's setup 

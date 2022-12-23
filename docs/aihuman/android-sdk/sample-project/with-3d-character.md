@@ -72,7 +72,7 @@ After receiving the usable AI list, we set up the UI. (Only 3D characters for th
 
 ```java
 private void initThis() {
-        AIModelInfoManager.generateToken(this, "yourUserKey", new AIModelInfoManager.IAuthListener() {
+        AIModelInfoManager.generateToken(this, "appId", "yourUserKey", new AIModelInfoManager.IAuthListener() {
             @Override
             public void onFinished(JSONObject resp) {
                 if (resp != null && resp.optBoolean("succeed")) {
@@ -179,23 +179,23 @@ private void setUpUIWithAIPlayer() {
 
 ```java
 private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
-				//...
-        @Override
-        public void onAIStateChanged(AIState state) {
-            switch (state.state) {
-								//...
-                case AIState.SPEAKING_STARTED:
-                    binding.aiStateTxt.setText(getString(R.string.ai_started_speaking));
-                		//...
-                    break;
-                case AIState.SPEAKING_COMPLETED:
-                    binding.aiStateTxt.setText(getString(R.string.ai_finished_speaking));
+    //...
+    @Override
+    public void onAIStateChanged(AIState state) {
+        switch (state.state) {
+                            //...
+            case AIState.SPEAKING_STARTED:
+                binding.aiStateTxt.setText(getString(R.string.ai_started_speaking));
                     //...
-                    break;
-            }
-        }   
+                break;
+            case AIState.SPEAKING_COMPLETED:
+                binding.aiStateTxt.setText(getString(R.string.ai_finished_speaking));
+                //...
+                break;
+        }
+    }   
   
-		@Override
+	@Override
     public void onAIPlayerError(AIError error) {
 					//...
         switch (error.errorType) {

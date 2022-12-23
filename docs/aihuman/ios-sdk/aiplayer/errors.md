@@ -4,10 +4,11 @@ sidebar_position: 7
 
 # Error Index 
 
-You can receive the error code and its details as a callback(OnAIPlayerError) and take appropriate action.
+Error codes and contents that occur while using AIPlayer can be received as callback (on AIPlayerError), and appropriate processing can be performed.
 
-When an error occurs, the `OnAIPlayerError(AIError)` callback function is called. `AIError`, the argument of this function, contains information about the error. `AIError.errorType` tells what kind of error has occurred, and you can find out the details of the error as JSON String through the `GetMessage()` function.
+If an error occurs, the onAIPlayerError callback function is called. The 'error' object of this function contains information about the error.
+You can check the contents of the error through error.localizedDescription.
 
-By using this message, you can take action when a specific error occurs. For example, `code 1402` may mean Token expired, and in this case, call `AuthStart()` to refresh the token.
+In order to check the detailed error, if the error object is converted into NSError, it has a code as a member variable, and it can be used to cope with a specific error. For example, 1402 code can mean Token expired, which calls AIPlayer.generateToken to refresh the token.
 
-**Check the full error types [here](https://ai-platform-prd.s3.ap-northeast-2.amazonaws.com/aihuman/docs/Deepbrain-AIHuman-Error-Code-V1.1.pdf)**.
+The full error reading can be found [here](https://ai-platform-prd.s3.ap-northeast-2.amazonaws.com/aihuman/docs/Deepbrain-AIHuman-Error-Code-V1.1.pdf).

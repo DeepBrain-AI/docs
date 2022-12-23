@@ -6,7 +6,7 @@ sidebar_position: 2
 
 :::info AIPlayer(AI3DPlayer) Full setup process (4 steps)
 
-- Step 1: Authenticate SDK user. (Callback returns failure if userKey is not valid.)
+- Step 1: Authenticate SDK user. (Callback returns failure if appId and userKey are not valid.)
 - Step 2: Get a list of available AIs. (Failure is returned if authentication is not performed.)
 - Step 3: Create and return the AIPlayer.
 - Step 4: Initialize the AIPlayer with one of the AI models.
@@ -25,7 +25,7 @@ It is recommended to call this method as soon as possible (onCreate of Launcher 
 
 ```java
 	//SDK user authentication 
-	AIModelInfoManager.generateToken(this, "yourUserKey", resp -> {
+	AIModelInfoManager.generateToken(this, "appId", "yourUserKey", resp -> {
 	  /* resp 
 		{"succeed":true,
 		"token":"eyJhbGciO...","expire":1608032460152,

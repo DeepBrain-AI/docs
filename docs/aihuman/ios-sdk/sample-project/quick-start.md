@@ -6,15 +6,14 @@ sidebar_position: 2
 
 :::note related files
 
-- QuickStartView.xaml
-- QuickStartViewModel.cs
+- AIQuickSampleViewController.swift
 
 :::
 
-In Quick Start, the following screen appears when the default AI creation and pre-preparation step is completed through AIPlayer. It may take several minutes until it starts speaking depending on the network conditions, as there is a default loading time on the first run. After the first utterance, you can press the input box at the bottom of the screen to type in a sentence that you want to make the AI say.  The default AI is Jonathan. (Basically speaking a language that corresponds to the language value set in AI. However, you can implement multilingual services using the following [Change the Voice or Language](#change-the-voice-or-language) functionality.)
+In the AI Quick sample, AIPlayer's AI is set to the default AI.<br/>
+When setting up AIPlayer for the first time, it may take several minutes to load depending on the network condition.<br/>
+When loading is complete, press the button at the bottom of the screen to command the AI to speak. For details, refer to AIQuickSampleViewController.swift.
 
-<img src="/img/aihuman/windows/Jonathan_demo.png" />
-
-- Speak or Enter: Jonathan speaks the sentence entered in the TextBox at the bottom right.
-- Home: Go to HomeView.xaml
-- Exit: Close the app.
+<p align="center">
+<img src="/img/aihuman/ios/aisample_ss_quick.PNG" style={{zoom: "50%"}} />
+</p>

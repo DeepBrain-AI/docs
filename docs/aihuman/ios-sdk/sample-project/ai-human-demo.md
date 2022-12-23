@@ -5,144 +5,107 @@ sidebar_position: 3
 # AI Human Demo
 :::note related files
 
-- DemoView.xaml
-- DemoViewModel.cs
+- AISampleViewController.swift
 
 :::
 
-AI Human Demo is a page where you can try out various functionalities of AIPlayer. You can try changing to another approved AI model through [AI Select]. For other details, please refer to [AIPlayer Description](#aiplayer-description).
+The AI Player sample is a ViewController where you can try various functionalities of AIPlayer.<br/>
+You can change the AI model, AI scale, speech rate, and try out multi speak feature (described in more detail below). 
 
-<img src="/img/aihuman/windows/WPF_Sample_DemoPage.png" />
+<p align="center">
+<img src="/img/aihuman/ios/aisample_ss_001.PNG" style={{zoom: "35%"}} />
+</p>
 
-**First, get a list of available AIs and set up the UI. The Constants.appid, userKey, uuid, and targetPlatform below are parameters entered when calling AuthStart in HomeView.**
+**First, get a list of available AIs and set up the UI.**
 
-```js
-AIAPI.Instance.AuthStart(Constants.AppId, Constants.UserKey, Constants.Uuid, Constants.TargetPlatform, (aiList, error) =>
-{
-    // You can get a list of available AIs via CallBack.
-	AIAPI.AIList apiAIlist = JsonConvert.DeserializeObject<AIAPI.AIList>(aiList.Root.ToString());
-	if (aiList == null)
-	{
-		AIStatusText = Resource.ApiAiListEmptyError;
-	}
-
-	AIs = new ObservableCollection<AIAPI.AI>();
-	foreach (AIAPI.AI item in apiAIlist.ai)
-	{
-		AIs.Add(item);
-	}
-	SelectedAI = AIs[0];
-});
-```
-
-**The part that changes AI.** In addition to creating and adding AIPlayer, sample text is obtained and the utterance sentence ComboBox is filled. It is updated by getting the rest of the default settings.
-
-```js
-private void UpdateSelectedAI()
-{
-    if (_aiPlayer != null)
-    {
-        _aiPlayer.Dispose();
-        _aiPlayer = null;
-    }
-
-    if (_speechList != null)
-    {
-        _speechList.Clear();
-        _speechList = null;
-    }
-
-    _aiPlayer = new(SelectedAI.AIName, this);
-    AIPlayerObject = _aiPlayer.GetObject();
-
-    SpeechList = new ObservableCollection<string>(AIAPI.Instance.GetSampleTexts(SelectedAI.AIName));
-    SpeechList.Insert(0, Resource.DefaultSpeech);
-
-    SpeechIndex = 0;
-    
-    ...
-}
-```
-
-**Examples of Speak, Preload, Pause, Multi Speak(Randomly), Resume, and Pause.** 
-
-AIHuman.Core.RelayCommand is used for View and Command Binding. This implementation is only an example and it is not necessary to use AIHuman.Core.RelayCommand.
-
-Please refer to the [AIPlayer description](#aiplayer-description) that follows below.
-
-```js
-private void Speak_Command(object args)
-{
-    _sendingMessage.Clear();
-
-    _sendingMessage.Add(_speechText);
-    
-    _aiPlayer.Send(_sendingMessage.ToArray());
-}
-
-private void Preload_Command(object args)
-{
-    _sendingMessage.Clear();
-
-    _sendingMessage.Add(_speechText);
-
-    _isPreload = true;
-    _aiPlayer.Preload(_sendingMessage.ToArray());
-}
-
-private void Stop_Command(object args)
-{
-    _aiPlayer.StopSpeaking();
-    AIStatusText = Resource.StopStatus;
-}
-
-private void Multi_Command(object args)
-{
-    Random rand = new();
-    _sendingMessage.Clear();
-
-    for (int i = 1; i < SpeechList.Count; ++i)
-    {
-        if (rand.Next(0, 100) % 6 % 2 == 0)
-        {
-            _sendingMessage.Add(SpeechList[i]);
+```swift
+func getAIList() {
+    AIPlayer.getAiList { [weak self] (code, res, error) in
+        guard code == 0 else {
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            return
+        }
+        
+        if let list = res?["ai"] as? Array<[String: Any]> {
+            var temp: [String] = []
+            for dic in list {
+                temp.append(dic["aiName"] as! String)
+            }
+            self?.chooseAiDropDown.dataSource = temp
+            DispatchQueue.main.async {
+                self?.chooseAiDropDown.reloadAllComponents()
+            }
+            self?.aiItems.append(contentsOf: list)
         }
     }
-
-    _aiPlayer.Send(_sendingMessage.ToArray());
-}
-
-private void Resume_Command(object args)
-{
-    _aiPlayer.Resume();
-    AIStatusText = Resource.ResumeStatus;
-}
-
-private void Pause_Command(object args)
-{
-    _aiPlayer.Pause();
-    AIStatusText = Resource.PauseStatus;
 }
 ```
 
-**By implementing IAIPlayerCallback, it is possible to receive callback from AI operations.**
+**You can change the current AI as shown below.**
 
-```js
-public interface IAIPlayerCallback
-{
-    void onAIPlayerError(AIError error);
-    void onAIPlayerResLoadingProgressed(int current, int total);
-    void onAIStateChanged(AIState state);
+Use **[DropDown](https://github.com/AssistoLab/DropDown)** open source for dropdown UI.
+
+```swift
+func setupChooseAiDropDown() {
+    chooseAiDropDown.anchorView = chooseAiBtn
+    chooseAiDropDown.bottomOffset = CGPoint(x: 0, y: chooseAiBtn.bounds.height)
+    chooseAiDropDown.dataSource = [
+    ]
+    
+    // Action triggered on selection
+    chooseAiDropDown.selectionAction = { [weak self] (index, item) in
+        self?.chooseAiBtn.setTitle(item, for: .normal)
+        if let count = self?.aiItems.count, count > 0 {
+            self?.getAI(self?.aiItems[index]["aiName"] as! String)
+        }
+    }
 }
 ```
 
-Through onAIStateChanged implementation, you can receive CallBack of AI states shown below.
+**Examples of speak, pause, resume, and stop features.** 
 
-```js
-SPEAKING_STARTED: AI started speaking.
-SPEAKING_COMPLETED: AI finished speaking.
-SPEAKING_PREPARE_STARTED: AI started preparation to speak.
-RES_LOAD_COMPLETED: AI Resource loading completed.
-RES_LOAD_STARTED: AI Resource loading started.
-SPEAKING_PREPARE_COMPLETED: AI finished preparation to speak.
+```swift
+@IBAction func sendButtonClicked(_ sender: Any) {
+    if let text = chooseTextDropDown.selectedItem {
+        aiPlayer.send(text: text)
+    }
+    return
+}
+@IBAction func pauseButtonClicked(_ sender: Any) {
+    if aiPlayer.isPaused {
+        aiPlayer.resume()
+        pauseBtn.setTitle("PAUSE", for: .normal)
+        pauseBtn.tag = 0
+    }else {
+        aiPlayer.pause()
+        pauseBtn.setTitle("RESUME", for: .normal)
+        pauseBtn.tag = 1
+    }
+}
+@IBAction func stopButtonClicked(_ sender: Any) {
+    aiPlayer.stopSpeaking()
+}
 ```
+
+**Receiving callback of AI action is as follows.** 
+
+```swift
+func onAIPlayerStateChanged(state: AIPlayerState, type: AIClipSetType, key: String?) {
+    switch state {
+    ...
+    case .startSpeaking:
+        print("AI start speaking.")
+        break
+    case .didFinishSpeaking:
+        print("AI finish speaking")
+        break
+    ...
+    }
+}
+func onAIPlayerError(error: Error?, state: AIPlayerState) {
+    print(error.localizedDescription)
+}
+```
+<br/>

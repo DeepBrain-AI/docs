@@ -7,7 +7,7 @@ sidebar_position: 5
 ## Change AI Speech Rate
 Change AI Speech Rate between 0.5 and 1.5
 
-```js
+```java
 aiPlayer.setSpeed(speed);
 ```
 
@@ -30,7 +30,7 @@ The AI jonathan is speaking with gesture called "hi"(waving hand).
 
 AIClipSetFactory.CreateClip can create AIClipset like below. Only gesture will play if the gesture set witout speech text.
 
-```js
+```java
 if (selectedSpeech != null) {
     // aiPlayer.send(new String[]{selectedSpeech});
     if (selectedAIGesture != null) {
@@ -63,26 +63,26 @@ Some AIs can speak with other voices besides basic voices. To use other voices, 
 ### Set the custom voice using AIPlayer's method
 First, the list of languages that AI can currently speak can be checked through the following method.
 
-```js
+```java
 String[] languages = AIModelInfoManager.getSpeakableLanguages(aiPlayer.getGender());
 ``` 
 
 Next, the voice list suitable for the corresponding language and gender can be checked by the following method. CustomVoice has properties of id, name, language, and tag.
 
-```js
+```java
 CustomVoice[] customVoices = AIModelInfoManager.getCustomVoicesWith(String language, String gender);
 ``` 
 
 If you know the id of the desired voice, you can find the desired voice using the following method. If there is none, return null.
 
-```js
+```java
 CustomVoice myVoice = AIModelInfoManager.findCustomVoice(voiceId);
 ``` 
 
 Direct change to the desired voice on the aplayer is set as follows, and is set to the default voice when null is entered. Returns true when success.
 
 
-```js
+```java
 CustomVoice[] customVoices = AIModelInfoManager.getCustomVoicesWith(String language, String gender);
 CustomVoice myVoice = customVoices[2]; 
 boolean isSuccess = aiPlayer.setCustomVoice(myVoice);
@@ -90,13 +90,13 @@ boolean isSuccess = aiPlayer.setCustomVoice(myVoice);
 
 Instead of using CustomVoice instance directly, you can set CustomVoice with language and gender. In this case, the first customVoice of the filtered list is set. 
 
-```js
+```java
 boolean isSuccess = aiPlayer.setCustomVoiceForLanguage(language, gender);
 ```
 
 Check current CustomVoice with following method. It returns null if customVoice is not set.
 
-```js
+```java
 CustomVoice customVoice = aiPlayer.getCustomVoice();
 ```
 
@@ -120,7 +120,7 @@ Preload is used when you want to make the AI speak the next sentence without del
 <img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
 </p>
 
-```js
+```java
 aiPlayer.preload([text]);
 ```
 
@@ -133,7 +133,7 @@ Like the send function, IAIPlayerCallback.onAIStateChanged(AIState) is called du
 
 The preload function can be utilized as show below. When AI has several sentences to speak, it speaks the first sentence. When the SPEAKING_STARTED state is reported in onAIStateChanged(), the next speech can be preloaded and then SPEAKING_COMPLETED is reported. At this time, the next sentence(preloaded) is usually ready to play so that it can be spoken almost with no delay.
 
-```js
+```java
 @Override
 public void onAIStateChanged(AIState state) {
     switch (state.state) {
@@ -161,7 +161,7 @@ You can send several sentences at once and the AI will speak sequentially. In th
 <img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
 </p>
 
-```js
+```java
 aiPlayer.send([texts]); //array of lenght >= 2 
 ```
 <br/>

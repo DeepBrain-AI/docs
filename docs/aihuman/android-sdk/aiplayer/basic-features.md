@@ -13,7 +13,7 @@ You can input just string to make AI speak but AIClipSet is also able to do it. 
 
 If the text to speak is too long, it may not be possible to synthesize the resources required for the utterance. There are some models that can synthesize long sentences. Although it varies from ai to ai, it is generally recommended that sentences be cut to an appropriate length in Korean, usually within 30 to 40 characters, and at a similar level in English.
 
-```js
+```java
 
 //using AIClipSet
 AIClipSet clip = AIClipSetFactory.CreateClip(null, "Nice to meet you", null)
@@ -33,7 +33,7 @@ After calling the send method, you can check the feedback on the operation statu
 - SPEAKING_STARTED
 - SPEAKING_COMPLETED
 
-```js
+```java
 private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
     @Override
@@ -75,7 +75,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
 ## Pause Speaking
 
-```js
+```java
 aiPlayer.pause()
 // mAI3DPlayer.pausePlay() for 3d 
 ```
@@ -83,7 +83,7 @@ aiPlayer.pause()
 ## Resume Speaking
 Resume from pause
 
-```js
+```java
 aiPlayer.resume()
 // mAI3DPlayer.resumePlay() for 3d 
 ```
@@ -91,6 +91,6 @@ aiPlayer.resume()
 ## Stop Speaking
 Stop the speaking and also clear all data in the queue. (Resume is not possible)
 
-```js
+```java
 aiPlayer.stopSpeaking();
 ```

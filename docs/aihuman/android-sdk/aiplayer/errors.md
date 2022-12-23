@@ -10,4 +10,4 @@ If an error occurs, the onAIPlayerError(AIError) callback function is called. AI
 
 If you change the string to JSON to check the error description, you will see an errorCode in JSON, and you can deal with a specific error using this code. For example, code 1402 may mean Token expired. In this case, the token is refreshed by calling AuthManager.init().
 
-Check the full error view [here](https://ai-platform-prd.s3.ap-northeast-2.amazonaws.com/aihuman/docs/Moneybrain-AIHuman-Error-Code-V1.1.pdf).
+Check the full error view [here](https://ai-platform-prd.s3.ap-northeast-2.amazonaws.com/aihuman/docs/Deepbrain-AIHuman-Error-Code-V1.1.pdf).
