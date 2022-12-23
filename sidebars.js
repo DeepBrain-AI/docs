@@ -359,6 +359,7 @@ const sidebars = {
         'aihuman/unity-sdk/sample-project/ai-human-demo',
         'aihuman/unity-sdk/sample-project/with-playchat-azure-stt',
         'aihuman/unity-sdk/sample-project/with-google-dialogflow',
+        'aihuman/unity-sdk/sample-project/with-3d-character',
       ],
     },
     {

@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# AIHuman.Common.Model.AIClipSet
+# AIHuman.Model.AIClipSet
 
 | Modifier and Type | Method and Description                                       |
 | ----------------- | ------------------------------------------------------------ |
@@ -11,3 +11,4 @@ sidebar_position: 4
 | `string`             | `SpeechText { get; }` Get the sentence set in the AIClipSet.               |
 | `string`             | `GestureName { get; }` Get the gesture name set in the AIClipSet.               |
 | `string`             | `ClipId { get; }` Get the ID set in the AIClipSet.               |
+| `CustomVoice`        | `CustomVoice { get; }` Get the customvoice set in the AIClipSet.               |

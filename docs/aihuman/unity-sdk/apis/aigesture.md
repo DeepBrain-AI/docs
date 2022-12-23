@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# AIHuman.Common.Model.AIGesture
+# AIHuman.Model.AIGesture
 
 | Modifier and Type    | Method and Description                                       |
 | -------------------- | ------------------------------------------------------------ |

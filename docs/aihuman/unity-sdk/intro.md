@@ -12,7 +12,10 @@ AI Human Unity SDK
 
 AI Human(previously called AILive) SDK can display a trained AI model that resembles real human on the screen in realtime. However, it goes beyond just realtime displaying the AI model. It even **allows the AI to speak naturally as if in a video call**. The most critical component of the SDK is AIPlayer.
 
-<img src="/img/aihuman/windows/WPF_Sample_DemoPage.png" />
+
+<p align="center">
+<img src="/img/aihuman/unity/summary.png" style={{zoom: "50%"}} />
+</p>
 
 AIPlayer is a View(UserControl) component where the AI model is displayed in real time and can be freely positioned. The AI within the AIPlayer was created by **training the voice and facial expression of a real person**. Therefore, it does not have any artificial sounds and is more natural than the previously existing TTS.
 

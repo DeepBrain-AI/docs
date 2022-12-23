@@ -8,276 +8,233 @@ In this chapter, we will quickly set up AIPlayer with the default AI and learn a
 
 For your information, it is similar to the QuickStart part of the Sample, which can be downloaded from the SDK website.
 
-<img src="/img/aihuman/windows/QuickStart_Main.png" />
-
 :::tip
-From the sample, you can learn more from the code in the file below.
-- QuickStartView.xaml
-- QuickStartViewModel.cs
+From the demo, you can learn more from the scene and code in the file below.
+- 1.QuickStart.scene
+- DemoQuickStart.cs
+- DemoPlayerCallback.cs
+- DemoFrameImageProvider.cs
 :::
 
-### 1. Add View Control
-Add Layout Component(parent layout) to which AIPlayer will be added to MainWindow.xaml.
+### 1. Configures a scene for implementing AIPlayer functions.
 
-The view that makes AI Human work is called AIPlayerView.
-Specify the location where you want the AI Human to appear, i.e. where you want the AIPlayerView to be placed.
+#### 1-1. Select Assets > Create > Scene from the Unity Editor menu to create a new scene.
+#### 1-2. Delete the Main Camera and Directional Light game objects that are created by default.
+#### 1-3. Select AI Human SDK, AIPlayer, AIPlayer, and AIPlayerUI prefabs in the Assets/DeepBrainAI/SDK/Prefabs path of the Project window and place them in the Hierarchy window with drag and drop.
+#### 1-4. After selecting the AIHumanSDK game object in the Hierarchy window, enter or set the authentication information issued by **[AI Human SDK Website](https://aitalk.deepbrainai.io)** in the AppId, UserKey, Uuid, and Platform items of the Inspector > AIHumanSDKManager component. (If Uuid is not entered, it is automatically Call Guid.NewGuid() to create a Uuid.)
+#### 1-5. In the Unity Editor menu, create a new game object through GameObject > Create Empty and set the name to QuickStart.
 
-<img src="/img/aihuman/windows/NewProject_Add_Layout.png"  />
+<img src="/img/aihuman/unity/quickstart_hierarchy.png" />
 
-<img src="/img/aihuman/windows/NewProject_Add_AIPlayer.png" />
+### 2. Write a script for implementing the AIPlayer function.
+Select Assets > Create > C# Script from the Unity Editor menu to create a script and write it as follows.
 
-### 2. Authenticate with AuthStart function
-Write a code related to authentication at the time of application initialization by referring to the code below.
+- MyAIPlayerCallback.cs
 
-- App.xaml.cs
-
-  First, you need to authenticate. The userKey can be issued by registering the appId on the AI Human SDK Website.
-
-```js
-using AIHuman.Core;
-using Newtonsoft.Json;
-using System.Windows;
-
-namespace WpfApp1
-{
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
-    {
-        public App()
-        {
-            AIAPI.Instance.AuthStart("your appId", "your userKey", "your uuid", "wnds",
-                (aiLIst, error) =>
-                {
-                    if (string.IsNullOrEmpty(error) && aiLIst != null)
-                    {
-                        string jsonStr = aiLIst.Root.ToString();
-                        AIAPI.AIList list = JsonConvert.DeserializeObject<AIAPI.AIList>(jsonStr);
-                        // $"Auth Complete, Avaliable Count: {list.ai.Length}";
-                    }
-                    else
-                    {
-                        MessageBox.Show($"AuthStart: {error}");
-                    }
-                }
-            );
-        }
-    }
-}
-```
-
-### 3. Create AIPlayer Instance and Implement Callback
-
-Read the code below to create an AIPlayer Instance and try to implement a callback related to AI Human state via IAIPlayerCallback inheritance.
-
-- MainWindowViewModel.cs
+Inherit and implement AIPlayerCallback for monitoring AIPlayer behavior.
 
 ```js
+using UnityEngine;
+using UnityEngine.UI;
 using AIHuman.Common;
-using AIHuman.Common.Base;
-using AIHuman.Core;
-using AIHuman.Interface;
-using AIHuman.Media;
-using System;
-using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Threading;
+using AIHuman.SDK;
 
-namespace WpfApp1
+public class MyAIPlayerCallback : AIPlayerCallback
 {
-    public class MainWindowViewModel : ViewModelBase, IAIPlayerCallback
+    public Text _statusText;
+   
+    public override void OnAIPlayerError(AIError error)
     {
-        private AIPlayer _aiPlayer;
-        public AIPlayerView AIPlayerObject
+        Debug.LogError(string.Format("{0} {1}", nameof(MyAIPlayerCallback), error.GetMessage()));
+
+        _statusText.text = error.GetMessage();
+    }
+
+    public override void OnAIPlayerResLoadingProgressed(int current, int total)
+    {       
+        float progress = ((float)current / (float)total) * 100f;
+        _statusText.text = string.Format("AI Resource Loading... {0}%", (int)progress);
+    }
+
+    public override void OnAIStateChanged(AIState state)
+    {
+        Debug.Log(string.Format("{0} {1}", nameof(MyAIPlayerCallback), state._state));
+
+        switch (state._state)
         {
-            get => _aiPlayer.GetObject();
-            private set => OnPropertyChanged(nameof(AIPlayerObject));
-        }
-
-        private string _status;
-        public string AIStatusText
-        {
-            get => _status;
-            set
-            {
-                _status = value;
-                OnPropertyChanged(nameof(AIStatusText));
-            }
-        }
-
-        private string _inputText;
-        public string InputText
-        {
-            get => _inputText;
-            set
-            {
-                _inputText = value;
-                OnPropertyChanged(nameof(InputText));
-            }
-        }
-
-        private ObservableCollection<string> _speechList;
-        public ObservableCollection<string> SpeechList
-        {
-            get => _speechList;
-            private set
-            {
-                _speechList = value;
-                OnPropertyChanged(nameof(SpeechList));
-            }
-        }
-
-        public RelayCommand SpeakCommand { get; private set; }
-
-        public MainWindowViewModel()
-        {
-            SpeechList = new ObservableCollection<string>();
-
-            _aiPlayer = new AIPlayer(this);
-            AIPlayerObject = _aiPlayer.GetObject();
-
-            SpeakCommand = new RelayCommand(Speak_Command);
-        }
-
-        public void onAIPlayerError(AIError error)
-        {
-            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
-            {
-                SpeechList.Add(error.getMessage());
-                AIStatusText = nameof(AIError);
-            }));
-        }
-
-        public void onAIPlayerResLoadingProgressed(int current, int total)
-        {
-            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
-            {
-                float progress = ((float)current / (float)total) * 100;
-                AIStatusText = string.Format("AI Resource Loading... {0}%", (int)progress);
-            }));
-        }
-
-        public void onAIStateChanged(AIState state)
-        {
-            switch (state.state)
-            {
-                case AIState.RES_LOAD_COMPLETED:
-                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
-                    {
-                        AIStatusText = "AI Resource loading completed.";
-                    }));
+            case AIState.Type.RES_LOAD_STARTED:
+                {
+                    _statusText.text = "AI Resource loading started.";
                     break;
-            }
-        }
-
-        private void Speak_Command(object args)
-        {
-            if (string.IsNullOrEmpty(InputText) == false)
-            {
-                _aiPlayer.Send(new[] { InputText });
-                SpeechList.Add(InputText);
-                InputText = string.Empty;
-            }
+                }
+            case AIState.Type.RES_LOAD_COMPLETED:
+                {
+                    _statusText.text = "AI Resource loading completed.";                                    
+                    break;
+                }
+            case AIState.Type.SPEAKING_PREPARE_STARTED:
+                {
+                    _statusText.text = "AI started preparation to speak.";
+                    break;
+                }
+            case AIState.Type.SPEAKING_PREPARE_COMPLETED:
+                {
+                    _statusText.text = "AI finished preparation to speak.";
+                    break;
+                }
+            case AIState.Type.SPEAKING_STARTED:
+                {
+                    _statusText.text = "AI started speaking.";                  
+                    break;
+                }
+            case AIState.Type.SPEAKING_COMPLETED:
+                {
+                    _statusText.text = "AI finished speaking.";                  
+                    break;
+                }          
         }
     }
 }
 ```
 
-- MainWindow.xaml
+- MyAIFrameImageProvider.cs
+
+Implement ImageProvider by inheriting AIFrameImageProvider to receive AI resources (UnityEngine.Texture2D).
 
 ```js
-<Window x:Class="WpfApp1.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1"
-        d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+using UnityEngine;
+using UnityEngine.UI;
+using AIHuman.SDK;
+using AIHuman.Common;
 
-        <ContentControl Margin="0" Grid.Column="0" Content="{Binding Path=AIPlayerObject}" Focusable="False" />
-
-        <Grid Margin="0" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="10*"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <Grid Grid.Row="0">
-                <Grid.Background>
-                    <SolidColorBrush Color="#00D3D3"/>
-                </Grid.Background>
-                <Viewbox>
-                    <TextBlock FontWeight="Bold">
-                        <Label Content="{Binding AIStatusText}" />
-                    </TextBlock>
-                </Viewbox>
-            </Grid>
-            <Grid Grid.Row="1">
-                <DockPanel>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                        <ItemsControl BorderThickness="0" ItemsSource="{Binding SpeechList}" Focusable="False" />
-                    </ScrollViewer>
-                </DockPanel>
-            </Grid>
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" MaxLines="1" FontStretch="UltraExpanded" Text="{Binding InputText}">
-                </TextBox>
-                <Button Grid.Column="1" HorizontalAlignment="Stretch" Command="{Binding SpeakCommand}">
-                    <TextBlock Padding="10, 5" Text="Send" />
-                </Button>
-            </Grid>
-        </Grid>
-    </Grid>
-</Window>
-```
-
-- MainWindow.xaml.cs
-
-```js
-using System.Windows;
-
-namespace WpfApp1
+public class MyAIFrameImageProvider : AIFrameImageProvider
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
+    public RawImage _backgroundRawImage = null;
+    public RawImage _faceRawImage = null;
 
-            DataContext = new MainWindowViewModel();
-        }
+    public override void OnChangeBackgroundTexture(Vector3 scale, Texture2D bgTexture)
+    {     
+        _backgroundRawImage.gameObject.SetActive(true);
+
+        _backgroundRawImage.GetComponent<RectTransform>().sizeDelta = new Vector2(bgTexture.width, bgTexture.height);
+
+        _backgroundRawImage.texture = bgTexture;
+        _backgroundRawImage.transform.localScale = scale;
+    }
+
+    public override void OnChangeFaceTexture(Vector3 scale, int idleWidth, int idleHeight, FaceRect faceRect, Texture2D faceTexture)
+    {
+        _faceRawImage.gameObject.SetActive(true);
+
+        _faceRawImage.GetComponent<RectTransform>().sizeDelta = new Vector2(faceTexture.width, faceTexture.height);
+
+        float faceX = ((faceRect.width - idleWidth) * 0.5f) + faceRect.x;
+        float faceY = -faceRect.y;
+        
+        _faceRawImage.GetComponent<RectTransform>().anchoredPosition = new Vector2(faceX, faceY);
+
+        _faceRawImage.texture = faceTexture;
+        _faceRawImage.transform.localScale = scale;
+    }
+
+    public override void OnDisabledBackgroundTexture()
+    {
+        _backgroundRawImage.gameObject.SetActive(false);
+    }
+
+    public override void OnDisabledFaceTexture()
+    {
+        _faceRawImage.gameObject.SetActive(false);
+    }
+
+    public override void OnChromakeyFaceTexture(Color minHueColor, Color maxHueColor)
+    {
+        _faceRawImage.material.SetColor("HueMin", minHueColor);
+        _faceRawImage.material.SetColor("HueMax", maxHueColor);
     }
 }
 ```
 
-:::info
-There are many omitted parts in the above explanation. Please refer to App.xaml, QuickStartView.xaml, and QuickStartViewModel.cs files by opening the Solution file of the given Sample. 
-:::
+- QuickStart.cs
+
+Write the SDK authentication process and AIPlayer initialization code. It also implements AI speaking through Button clicks.
+
+```js
+using UnityEngine;
+using UnityEngine.UI;
+using System.Text;
+using AIHuman.SDK;
+using AIHuman.View;
+using AIHuman.Core;
+using Newtonsoft.Json.Linq;
+
+public class QuickStart : MonoBehaviour
+{
+    public AIPlayer _aiPlayer;
+    public AIPlayerCallback _aiPlayerCallback;
+    public AIFrameImageProvider _aiFrameImageProvider;   
+    public InputField _inputChat;
+    public Text _chatHistory;
+    public Button _btnSend;
+
+    private StringBuilder _sb = new StringBuilder();
+
+    private void Awake()
+    {      
+        AIHumanSDKManager.Instance.AuthStart(OnCompleteAuth);
+
+        _btnSend.onClick.AddListener(OnClickSend);
+    }
+ 
+    private void OnCompleteAuth(JToken aiList, string error)
+    {
+        if (string.IsNullOrEmpty(error))
+        {          
+            _aiPlayer.Init(AIAPI.Instance.DefaultAIName, _aiPlayerCallback, _aiFrameImageProvider);
+        }
+        else
+        {
+            Debug.LogError(string.Format("{0} {1}", nameof(AIHumanSDKManager), error));
+        }
+    }
+  
+    public void OnClickSend()
+    {
+        string[] requests = new string[] { _inputChat.text };
+        _aiPlayer.Send(requests);
+        
+        for (int i = 0; i < requests.Length; i++)
+        {
+            if (!string.IsNullOrEmpty(_sb.ToString()))
+            {
+                _sb.Append("\n");
+            }
+            _sb.Append(requests[i]);
+        }
+        _chatHistory.text = _sb.ToString();
+        _inputChat.text = string.Empty;       
+    }
+}
+```
+
+
+### 3. Apply the script you created.
+
+#### 3-1. After selecting the QuickStart game object in the hierarchy window, register the scripts written in item 3 through the Add Component button in the Inspector window.
+#### 3-2. Each item in the Inspector window is registered through drag and drop after selecting the game object in the Hierarchy window as shown in the image below.
+
+<img src="/img/aihuman/unity/quickstart_inspector.png" />
 
 ### 4. Command the AI to speak 
 
-- Build Solution > Run > (Loading Resources) > Enter a sentence in the text box at the bottom right > Click the Send button
+- Editor Play > Loading Resources > Input Text at the bottom > Click the Send button
 
 :::note
 The actual AI Human may differ from the screenshot.
 :::
 
-  <img src="/img/aihuman/windows/Tutorial_danny_demo.png"  />
+<p align="center">
+<img src="/img/aihuman/unity/quickstart_speech.png" style={{zoom: "50%"}} />
+</p>
 
 
