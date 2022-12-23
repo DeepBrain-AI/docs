@@ -5,7 +5,7 @@ os: linux
 files:
   - source: /
     destination: /home/ubuntu/workspace/docs
-    overwrite: yes
+    flie_exists_behavior: OVERWRITE
 
 permissions:
   - object: /home/ubuntu
