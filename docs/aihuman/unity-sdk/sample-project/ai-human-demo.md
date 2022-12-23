@@ -12,7 +12,7 @@ sidebar_position: 3
 AI Human Demo is a page where you can try out various functionalities of AIPlayer. You can try changing to another approved AI model through [AI Model]. For other details, please refer to [AIPlayer Description](/aihuman/unity-sdk/aiplayer/overview).
 
 <p align="center">
-<img src="/img/aihuman/unity/introduction.png" style={{zoom: "50%"}} />
+<img src="/img/aihuman/unity/summary.png" style={{zoom: "50%"}} />
 </p>
 
 **First, get a list of available AIs and set up the UI.**
