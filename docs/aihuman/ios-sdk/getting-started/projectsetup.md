@@ -81,9 +81,7 @@ pod install
 
 #### 3-3. Change project setting
 
-<!-- <img src="/img/aihuman/windows/NewProject_Add_Sdk.png" /> -->
-<!-- <img src="/img/aihuman/ios/aisample_disable_bitcode.PNG" width="508" height="105" /> <br/> -->
-<img src="/img/aihuman/ios/aisample_disable_bitcode.PNG" /> <br/>
+<img src="/img/aihuman/ios/aisample_disable_bitcode.png" /> <br/>
  
  After running the .xcworkspace file, disable **Enble Bitcode** in the build settings of the project.
 
