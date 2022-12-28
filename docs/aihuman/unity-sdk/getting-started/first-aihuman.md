@@ -33,7 +33,7 @@ Select Assets > Create > C# Script from the Unity Editor menu to create a script
 
 Inherit and implement AIPlayerCallback for monitoring AIPlayer behavior.
 
-```js
+```csharp
 using UnityEngine;
 using UnityEngine.UI;
 using AIHuman.Common;
@@ -101,7 +101,7 @@ public class MyAIPlayerCallback : AIPlayerCallback
 
 Implement ImageProvider by inheriting AIFrameImageProvider to receive AI resources (UnityEngine.Texture2D).
 
-```js
+```csharp
 using UnityEngine;
 using UnityEngine.UI;
 using AIHuman.SDK;
@@ -159,7 +159,7 @@ public class MyAIFrameImageProvider : AIFrameImageProvider
 
 Write the SDK authentication process and AIPlayer initialization code. It also implements AI speaking through Button clicks.
 
-```js
+```csharp
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text;

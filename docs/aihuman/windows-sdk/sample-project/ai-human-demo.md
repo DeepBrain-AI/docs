@@ -16,7 +16,7 @@ AI Human Demo is a page where you can try out various functionalities of AIPlaye
 
 **First, get a list of available AIs and set up the UI. The Constants.appid, userKey, uuid, and targetPlatform below are parameters entered when calling AuthStart in HomeView.**
 
-```js
+```csharp
 AIAPI.Instance.AuthStart(Constants.AppId, Constants.UserKey, Constants.Uuid, Constants.TargetPlatform, (aiList, error) =>
 {
     // You can get a list of available AIs via CallBack.
@@ -37,7 +37,7 @@ AIAPI.Instance.AuthStart(Constants.AppId, Constants.UserKey, Constants.Uuid, Con
 
 **The part that changes AI.** In addition to creating and adding AIPlayer, sample text is obtained and the utterance sentence ComboBox is filled. It is updated by getting the rest of the default settings.
 
-```js
+```csharp
 private void UpdateSelectedAI()
 {
     if (_aiPlayer != null)
@@ -70,7 +70,7 @@ AIHuman.Core.RelayCommand is used for View and Command Binding. This implementat
 
 Please refer to the [AIPlayer description](#aiplayer-description) that follows below.
 
-```js
+```csharp
 private void Speak_Command(object args)
 {
     _sendingMessage.Clear();
@@ -127,7 +127,7 @@ private void Pause_Command(object args)
 
 **By implementing IAIPlayerCallback, it is possible to receive callback from AI operations.**
 
-```js
+```csharp
 public interface IAIPlayerCallback
 {
     void onAIPlayerError(AIError error);
@@ -138,11 +138,14 @@ public interface IAIPlayerCallback
 
 Through onAIStateChanged implementation, you can receive CallBack of AI states shown below.
 
-```js
-SPEAKING_STARTED: AI started speaking.
-SPEAKING_COMPLETED: AI finished speaking.
-SPEAKING_PREPARE_STARTED: AI started preparation to speak.
-RES_LOAD_COMPLETED: AI Resource loading completed.
-RES_LOAD_STARTED: AI Resource loading started.
-SPEAKING_PREPARE_COMPLETED: AI finished preparation to speak.
-```
+:::info AIState.Type
+
+- SPEAKING_STARTED: AI started speaking.
+- SPEAKING_COMPLETED: AI finished speaking.
+- SPEAKING_PREPARE_STARTED: AI started preparation to speak.
+- RES_LOAD_COMPLETED: AI Resource loading completed.
+- RES_LOAD_STARTED: AI Resource loading started.
+- SPEAKING_PREPARE_COMPLETED: AI finished preparation to speak.
+- ...
+
+:::

@@ -11,7 +11,7 @@ After the resource is loaded, some settings of aiPlayer can be changed while the
 <img src="/img/aihuman/windows/YSB_Scale.png" />
 : You can change the size(scale) of AI. The possible value range is from 0.5 to 1.5.
 
-```js
+```csharp
 // set Property
 _aiPlayer.Scale = value;
 ```
@@ -20,7 +20,7 @@ _aiPlayer.Scale = value;
 <img src="/img/aihuman/windows/YSB_Margin.png" />
 : You can change the position(margins) of AI. It can be adjusted based on the X-axis(Horizontal) and the Y-axis(Vertical).
 
-```js
+```csharp
 AIHuman.Common.Margin _aiMargin;
 _aiMargin.X = 64;
 _aiMargin.Y = 8;

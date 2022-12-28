@@ -6,8 +6,6 @@ slug: /aihuman/windows-sdk
 
 # Introduction
 
-AI Human Windows SDK
-
 ### Basic Concepts of AI Human (Video Conversation or AILive)
 
 AI Human(previously called AILive) SDK can display a trained AI model that resembles real human on the screen in realtime. However, it goes beyond just realtime displaying the AI model. It even **allows the AI to speak naturally as if in a video call**. The most critical component of the SDK is AIPlayer.

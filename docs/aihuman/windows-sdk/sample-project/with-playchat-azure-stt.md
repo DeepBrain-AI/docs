@@ -30,7 +30,7 @@ The main thing is to continue the conversation with AI and voice. For this, AIPl
 
 First, after the chatbot is loaded, it sends a **"start"(Constants.KEY_START)** signal to the chatbot, and when the chatbot recognizes it, it sends a **greeting message**. The greeting is delivered via IChatbotCallback's OnChatbotMessage function. PlaychatViewModel extracts the sentences to be delivered to AI from this message and delivers them to AIPlayer, allowing AI to speak.
 
-```js
+```csharp
 public void OnChattingReady()
 {
     SendMsgToChatbotAndUpdateChatUI(Constants.KEY_START, null);
@@ -56,13 +56,13 @@ public void OnChatbotMessage(JObject response)
 
 When speech is recognized through Azure STT, the content is delivered directly to the Playchat server. However, there are situations where you need to manually send a message or special signal to the chatbot. (This includes the "start" signal mentioned above.) To send the user's message, use the chatbot's Send function.
 
-```js
+```csharp
 bool Send(string command, JObject detail)
 ```
 
 Write the server function name you want in the command, and put the necessary arguments as key:value in detail. The currently set command (or func_name, the same) is as follows.
 
-```js
+```csharp
 namespace AIHuman.Common.Constants
 {
 // send
@@ -83,7 +83,7 @@ public const string VALUE_USERINPUT_NEXT = ":next";
 
 - OnMessage basically comes with the following values. In particular, if the next value is true for 'extra' here, it means that there are additional messages. 
 
-```js
+```csharp
   /* example
   {"func_name":"onMessage",
   	"args":
@@ -97,7 +97,7 @@ public const string VALUE_USERINPUT_NEXT = ":next";
 
 - If there is an additional message, you can receive the additional message by sending it by adding **":next" (VALUE_USERINPUT_NEXT)**, which is a special argument indication, as the argument text in userInput.
 
-```js
+```csharp
   private void RequestNextMessageIfNeeded(JObject args)
   {
       if (args != null)

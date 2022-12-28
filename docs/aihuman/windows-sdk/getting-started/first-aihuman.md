@@ -33,7 +33,7 @@ Write a code related to authentication at the time of application initialization
 
   First, you need to authenticate. The userKey can be issued by registering the appId on the AI Human SDK Website.
 
-```js
+```csharp
 using AIHuman.Core;
 using Newtonsoft.Json;
 using System.Windows;
@@ -73,7 +73,7 @@ Read the code below to create an AIPlayer Instance and try to implement a callba
 
 - MainWindowViewModel.cs
 
-```js
+```csharp
 using AIHuman.Common;
 using AIHuman.Common.Base;
 using AIHuman.Core;
@@ -186,7 +186,7 @@ namespace WpfApp1
 
 - MainWindow.xaml
 
-```js
+```xml
 <Window x:Class="WpfApp1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -246,7 +246,7 @@ namespace WpfApp1
 
 - MainWindow.xaml.cs
 
-```js
+```csharp
 using System.Windows;
 
 namespace WpfApp1

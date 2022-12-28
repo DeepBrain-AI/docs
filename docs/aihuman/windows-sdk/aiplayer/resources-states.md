@@ -14,8 +14,8 @@ When AIPlayer is created after authentication is completed, resource loading sta
 
 The values for the parameter AIState.state in the listener method onAIStateChanged(AIStatePublisher.AIState state) are shown below. You can also implement loading progress with onAIPlayerResLoadingProgressed(int current, int total).
 
-- AIState.RES_LOAD_STARTED : resource loading is started.
-- AIState.RES_LOAD_COMPLETED : resource loading is completed.
+- AIState.Type.RES_LOAD_STARTED : resource loading is started.
+- AIState.Type.RES_LOAD_COMPLETED : resource loading is completed.
 
 If there is any problem during this process, the onAIPlayerError() method is called. Typically, a response from the onAIPlayerError() may be notifying the expiration of the authentication token. An appropriate response is required depending on the situation.
 
@@ -25,16 +25,16 @@ If there is any problem during this process, the onAIPlayerError() method is cal
 e.g.) 1402 error (value token expired): Token refresh required -> Call AuthStart() method again
 :::
 
-```c#
+```csharp
 string message;
 // AI resource related status CallBack
 public void onAIStateChanged(AIState state)
 {
-    if (state.state == AIState.RES_LOAD_STARTED)
+    if (state.state == AIState.Type.RES_LOAD_STARTED)
     {
         message = "AI Resource loading started.";
     }
-    else if (state.state == AIState.RES_LOAD_COMPLETED)
+    else if (state.state == AIState.Type.RES_LOAD_COMPLETED)
     {
         message = "AI Resource loading completed.";
     }
@@ -50,7 +50,7 @@ public void onAIPlayerResLoadingProgressed(int current, int total)
 // AI error CallBack
 public void onAIPlayerError(AIError error)
 {
-  if (error.SDK_API_ERR == error.errorType) 
+  if (error.Type.SDK_API_ERR == error.errorType) 
   {
     string errorDesc = error.exInfo;
     if (string.IsNullOrEmpty(errorDesc))

@@ -25,7 +25,7 @@ If there is any problem during this process, the OnAIPlayerError() method is cal
 e.g.) 1402 error (value token expired): Token refresh required -> Call AuthStart() method again
 :::
 
-```js
+```csharp
 // AI resource related status CallBack
 public void OnAIStateChanged(AIState state)
 {

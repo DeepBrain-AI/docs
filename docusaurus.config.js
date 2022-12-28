@@ -215,10 +215,11 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} DeepBrain AI, Inc.`,
       },
-      // prism: {
-      //   theme: lightCodeTheme,
-      //   darkTheme: darkCodeTheme,
-      // },
+      prism: {
+        theme: lightCodeTheme,
+        darkTheme: darkCodeTheme,
+        additionalLanguages: ['csharp', 'java', 'swift'],
+      },
     }),
 };
 

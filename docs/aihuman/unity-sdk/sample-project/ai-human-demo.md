@@ -19,7 +19,7 @@ AI Human Demo is a page where you can try out various functionalities of AIPlaye
 
 - DemoAIHuman.cs
 
-```js
+```csharp
 private void Awake()
     {             
         // Start SDK authentication.
@@ -57,7 +57,7 @@ private void Awake()
 
 - DemoAIHuman.cs
 
-```js
+```csharp
     public void OnClickSpeak()
     {
         _sendingMessage.Clear();
@@ -134,7 +134,7 @@ private void Awake()
 
 - DemoPlayerCallback.cs
 
-```js
+```csharp
 public class DemoPlayerCallback : AIPlayerCallback
 {
     public override void OnAIPlayerError(AIError error)
@@ -174,7 +174,7 @@ public class DemoPlayerCallback : AIPlayerCallback
 
 - DemoFrameImageProvider.cs
 
-```js
+```csharp
 public class DemoFrameImageProvider : AIFrameImageProvider
 { 
     public override void OnChangeBackgroundTexture(Vector3 scale, Texture2D bgTexture)
@@ -204,7 +204,7 @@ public class DemoFrameImageProvider : AIFrameImageProvider
 
 Through onAIStateChanged implementation, you can receive CallBack of AI states shown below.
 
-```js
+```csharp
 SPEAKING_STARTED: AI started speaking.
 SPEAKING_COMPLETED: AI finished speaking.
 SPEAKING_PREPARE_STARTED: AI started preparation to speak.

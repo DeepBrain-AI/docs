@@ -14,7 +14,7 @@ If the text to speak is too long, it may not be possible to synthesize the resou
 
 <img src="/img/aihuman/windows/Speak_Haylyn.png" />
 
-```c#
+```csharp
 // using pure-text
 _aiPlayer.Send(new[] {"this is sample sentence."});
 // using AIClipSet
@@ -31,23 +31,23 @@ After the Send method is called, you can listen to the operation status feedback
 - SPEAKING_STARTED
 - SPEAKING_COMPLETED
 
-```c#
+```csharp
 // Speaking related CallBack example
 public void onAIStateChanged(AIState state)
 {
-    if (state.state == AIState.SPEAKING_PREPARE_STARTED)
+    if (state.state == AIState.Type.SPEAKING_PREPARE_STARTED)
     {
         _txtStatus.text = "AI started preparation to speak.";
     } 
-    else if (state.state == AIState.SPEAKING_PREPARE_COMPLETED)
+    else if (state.state == AIState.Type.SPEAKING_PREPARE_COMPLETED)
     {
         _txtStatus.text = "AI finished preparation to speak.";
     }
-    else if (state.state == AIState.SPEAKING_STARTED)
+    else if (state.state == AIState.Type.SPEAKING_STARTED)
     {
         _txtStatus.text = "AI started speaking.";
     }
-    else if (state.state == AIState.SPEAKING_COMPLETED)
+    else if (state.state == AIState.Type.SPEAKING_COMPLETED)
     {
         _txtStatus.text = "AI finished speaking.";
     }
@@ -56,15 +56,15 @@ public void onAIStateChanged(AIState state)
 // AI error CallBack example
 public void onAIPlayerError(AIError error)
 {
-    if (error.errorType == AIError.SOCKET_ERR)
+    if (error.errorType == AIError.Type.SOCKET_ERR)
     {
 		_txtStatus.text = "Socket Error: " + error.exInfo;
     }
-    else if (error.errorType == AIError.RES_LOAD_ERR)
+    else if (error.errorType == AIError.Type.RES_LOAD_ERR)
     {
         _txtStatus.text = "Resource Error: " + error.exInfo);
     }
-	else if (error.errorType == AIError.SPEAK_SEND_ERR)
+	else if (error.errorType == AIError.Type.SPEAK_SEND_ERR)
     {
 		_txtStatus.text = "Speak Error: " + error.exInfo);
     }
@@ -77,7 +77,7 @@ The following are actions that can be performed while the AIPlayer is Speaking.
 ### Pause Speaking
 
 : Pause speaking.
-```c#
+```csharp
 // pause method
 _aiPlayer.Pause()
 ```
@@ -85,7 +85,7 @@ _aiPlayer.Pause()
 ### Resume Speaking
 
 : Resume speaking. (resume from pause)
-```c#
+```csharp
 // resume method
 _aiPlayer.Resume()
 ```
@@ -93,7 +93,7 @@ _aiPlayer.Resume()
 ### Stop Speaking
 
 : Stop speaking and reset all data. (cannot resume)
-```c#
+```csharp
 // stop method
 _aiPlayer.StopSpeaking()
 ```

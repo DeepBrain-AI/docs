@@ -12,7 +12,7 @@ After the resource load required for AI operation is completed, some settings of
 ### Change AI Speech Rate
 
 : You can set the speech rate of AI. The possible value range is from 0.5 to 1.5.
-```js
+```csharp
 // set Property
 _aiPlayer.Speed = value;
 ```
@@ -34,7 +34,7 @@ In the sample screenshot below, an AI model is speaking while waving his hand wi
 <img src="/img/aihuman/unity/aiplayer_gesture.png" style={{zoom: "100%"}} />
 </p>
 
-```js
+```csharp
 using System.Collections.Generic;
 using AIHuman.Model;
 using AIHuman.Core;
@@ -74,26 +74,26 @@ Some AIs can be filmed with live footage. It is possible even if the language of
 #### Set the custom voice using AIPlayer's method
 First, the list of languages that AI can currently speak can be checked through the following method.
 
-```js
+```csharp
 List<string> languages = AIHumanSDKManager.Instance.GetSpeakableLanguages(_aiPlayer.AIGender);
 ``` 
 
 
 Next, the voice list suitable for the corresponding language and gender can be checked by the following method. CustomVoice has properties of ID, Name, LanguageCode and Gender.
 
-```js
+```csharp
 List<CustomVoice> customVoices = AIHumanSDKManager.Instance.GetCustomVoices();
 ``` 
 
 If you know the id of the desired voice, you can find the desired voice using the following method. If there is none, return null. Here, voiceId is the ID of CustomVoice object. (The voiceId can be get by customVoice.ID property.)
 
-```js
+```csharp
 CustomVoice myVoice = AIHumanSDKManager.Instance.FindCustomVoice(voiceId);
 ``` 
 
 Direct change to the desired voice on the aplayer is set as follows, and is set to the default voice when null is entered. Returns true when success.
 
-```js
+```csharp
 List<CustomVoice> customVoices = AIHumanSDKManager.Instance.GetCustomVoices();
 CustomVoice myVoice = customVoices[0]; 
 bool succeeded = _aiPlayer.SetCustomVoice(myVoice);
@@ -102,21 +102,21 @@ bool succeeded = _aiPlayer.SetCustomVoice(myVoice);
 
 Instead of using CustomVoice object directly, you can set CustomVoice with language and gender. In this case, the first customVoice of the filtered list is set. If it not available, the voice is set to the default voice. 
 
-```js
+```csharp
 bool succeeded = _aiPlayer.SetCustomVoiceForLanguage("en-US", "MALE");
 ```
 
 
 Check current CustomVoice with following method. It returns null if CustomVoice is not set or default voice.
 
-```js
+```csharp
 CustomVoice customVoice = _aiPlayer.GetCustomVoice();
 ```
 
 #### Set the custom voice using AIClipSet
 In addition to the method of using the SetCustomVoice method to set a voice other than the default voice, AIClipSet can be used to speak the desired voice as follows.
 
-```js
+```csharp
 CustomVoice myVoice = AIAPI.GetCustomVoices("en-US", "MALE")[0];
 AIClipSet aiClipSet = AIAPI.CreateClipSet("this is sample sentence.", null, myVoice);
 _aiPlayer.Send(new[] {aiClipSet});
@@ -132,7 +132,7 @@ Preload is used when you want to make the AI speak the next sentence without del
 <img src="/img/aihuman/unity/aiplayer_preload.png" style={{zoom: "50%"}} />
 </p>
 
-```js
+```csharp
 // using pure-text
 _aiPlayer.Preload(new[] {"sentence"});
 // using AIClipSet
@@ -150,7 +150,7 @@ AIPlayerCallback.OnAIStateChanged(AIState) is called during the preload operatio
 
 When the AI has several sentences to speak, it first processes the very first sentence. Once the returned state from OnAIStateChanged is SPEAKING_STARTED, which is when the AI starts to speak the first sentence, the next sentence can be preloaded. If you play the next sentence after the state update to SPEAKING_PREPARE_PRELOAD_COMPLETED, there will be minimum delays between sentences. 
 
-```js
+```csharp
 // AI Preload related CallBack
 public void onAIStateChanged(AIState aiState)
 {
@@ -172,7 +172,7 @@ public void onAIStateChanged(AIState aiState)
 
 You can give AIPlayer several sentences at once and make them speak sequentially. In the sample, multi-speaking is performed by selecting random sentences from sentences in the Dropdown. It can be one sentence or it can be several sentences. Press the **MULTI SPEAK** button in the app below to perform the operation.
 
-```js
+```csharp
 // using pure-text
 _aiPlayer.Send(new[] {"sentence1", "sentence2"});
 // using AIClipSet
