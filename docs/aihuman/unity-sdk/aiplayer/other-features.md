@@ -11,7 +11,7 @@ The following are actions other than the utterance of the AIPlayer (mainly relat
 
 : You can change the size(scale) of AI. The possible value range is from 0.5 to 1.5.
 
-```csharp
+```js
 // set Property
 _aiPlayer.Scale = value;
 ```

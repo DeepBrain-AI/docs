@@ -26,6 +26,8 @@ From the demo, you can learn more from the scene and code in the file below.
 
 <img src="/img/aihuman/unity/quickstart_hierarchy.png" />
 
+#### 1-6. If you have created a Unity project in a URP or HDRP environment, select "Canvas/AIHumanView/RawImage - face" gameobject in the AIPlayerUI that you placed in the Hierarchy window, and replace the Material item in the Inspector window with "Chromakey - Built-in" to "Chromakey - URP" Material.
+
 ### 2. Write a script for implementing the AIPlayer function.
 Select Assets > Create > C# Script from the Unity Editor menu to create a script and write it as follows.
 
@@ -33,7 +35,7 @@ Select Assets > Create > C# Script from the Unity Editor menu to create a script
 
 Inherit and implement AIPlayerCallback for monitoring AIPlayer behavior.
 
-```csharp
+```js
 using UnityEngine;
 using UnityEngine.UI;
 using AIHuman.Common;
@@ -101,7 +103,7 @@ public class MyAIPlayerCallback : AIPlayerCallback
 
 Implement ImageProvider by inheriting AIFrameImageProvider to receive AI resources (UnityEngine.Texture2D).
 
-```csharp
+```js
 using UnityEngine;
 using UnityEngine.UI;
 using AIHuman.SDK;
@@ -159,7 +161,7 @@ public class MyAIFrameImageProvider : AIFrameImageProvider
 
 Write the SDK authentication process and AIPlayer initialization code. It also implements AI speaking through Button clicks.
 
-```csharp
+```js
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
@@ -234,7 +236,7 @@ The actual AI Human may differ from the screenshot.
 :::
 
 <p align="center">
-<img src="/img/aihuman/unity/quickstart_speech.png" style={{zoom: "50%"}} />
+<img src="/img/aihuman/unity/quickstart_speech.png" style={{zoom: "40%"}} />
 </p>
 
 
