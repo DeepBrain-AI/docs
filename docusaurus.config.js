@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'DeepBrain AI DOCS',
   tagline: 'Welcome! Here you can read the documentation for the AI Human.',
-  url: 'https://aitalk.deepbrainai.io/',
+  url: 'https://deepbrainai.io/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -100,7 +100,6 @@ const config = {
               },
             ],
           },
-          //{to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://deepbrainai.io',
             label: 'Go to DeepBrain AI',
@@ -125,11 +124,11 @@ const config = {
             items: [
               {
                 label: 'AI Studios',
-                to: 'aistudios/getting-started',
+                to: 'https://www.deepbrainai.io/aistudios',
               },
               {
                 label: 'AI Human',
-                to: 'aihuman/web-sdk',
+                to: 'https://www.deepbrainai.io/aihuman',
               },
             ],
           },
@@ -138,24 +137,30 @@ const config = {
             items: [
               {
                 label: 'Financial Services',
-                to: '/',
+                to: 'https://www.deepbrainai.io/solutions/finance',
               },
               {
                 label: 'Retail & Commerce',
-                to: '/',
+                to: 'https://www.deepbrainai.io/solutions/retail',
               },
               {
                 label: 'Education',
-                to: '/',
+                to: 'https://www.deepbrainai.io/solutions/education',
               },
               {
                 label: 'Media',
-                to: '/',
+                to: 'https://www.deepbrainai.io/solutions/news',
               },
             ],
           },
           {
             title: 'Pricing',
+            items: [
+              {
+                label: 'Pricing',
+                to: 'https://www.deepbrainai.io/pricing',
+              },
+            ],
           },
           {
             title: 'Resources',
@@ -166,15 +171,15 @@ const config = {
               },
               {
                 label: 'Blog',
-                to: '/',
+                to: 'https://www.deepbrainai.io/blog',
               },
               {
                 label: 'Forum',
-                to: '/',
+                to: 'https://forum.deepbrainai.io/',
               },
               {
                 label: 'Help',
-                to: '/',
+                to: 'https://help.deepbrainai.io/',
               },
             ],
           },
@@ -183,15 +188,15 @@ const config = {
             items: [
               {
                 label: 'About',
-                to: '/',
+                to: 'https://www.deepbrainai.io/company/about',
               },
               {
                 label: 'Careers',
-                to: '/',
+                to: 'https://www.deepbrainai.io/company/careers',
               },
               {
                 label: 'Contact',
-                to: '/',
+                to: 'https://www.deepbrainai.io/company/contact',
               },
             ],
           },
@@ -200,20 +205,24 @@ const config = {
             items: [
               {
                 label: 'LinkedIn',
-                href: 'https://www.linkedin.com/company/deepbrain-global/',
+                to: 'https://www.linkedin.com/company/deepbrain-global/',
               },
               {
                 label: 'YouTube',
-                href: 'https://www.youtube.com/@deepbrainai/aihuman',
+                to: 'https://www.youtube.com/@deepbrainai/aihuman',
               },
               {
                 label: 'Instagram',
-                href: 'https://www.instagram.com/deepbrain_ai/',
+                to: 'https://www.instagram.com/deepbrain_ai/',
+              },
+              {
+                label: 'Facebook',
+                to: 'https://www.facebook.com/DeepbrainAIGlobal',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} DeepBrain AI, Inc.`,
+        copyright: `© 2022 DeepBrain AI. All Rights Reserved`,
       },
       prism: {
         theme: lightCodeTheme,

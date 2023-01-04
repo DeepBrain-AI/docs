@@ -10,7 +10,7 @@ AI Human (previously called AILive) SDK can display a trained AI model that rese
 
 
 <p align="center">
-<img src="/img/aihuman/ios/aisample_ss_001.png" style={{zoom: "25%"}} />
+<img src="/img/aihuman/ios/aisample_intro_2d.png" style={{zoom: "25%"}} />
 </p>
 
 AIPlayer is a View component where the AI model is displayed in real time and can be freely positioned as a View. The AI within the AIPlayer View component  was created by **training the voice and facial expression of a real person**. Therefore, it does not have any artificial sounds and is more natural than the previously existing TTS.
@@ -34,5 +34,5 @@ The same function is implemented for the 3D character.
 
 
 <p align="center">
-<img src="/img/aihuman/ios/aisample_sample_3d.png" style={{zoom: "25%"}} />
+<img src="/img/aihuman/ios/aisample_intro_3d.png" style={{zoom: "25%"}} />
 </p>
