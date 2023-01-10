@@ -412,6 +412,11 @@ const sidebars = {
     "aifront/ui-customization/kiosk",
     "aifront/ui-customization/tutorial",
   ],
+  aifrontThirdPartySidebar: [
+    "aifront/third-party-solutions/intro",
+    "aifront/third-party-solutions/chatbot",
+    "aifront/third-party-solutions/stt",
+  ],
 };
 
 module.exports = sidebars;
