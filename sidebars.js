@@ -417,6 +417,9 @@ const sidebars = {
     "aifront/third-party-solutions/chatbot",
     "aifront/third-party-solutions/stt",
   ],
+  aifrontWebhookSidebar: [
+    "aifront/webhook-server"
+  ],
   aichatSidebar: [
     "aichat/getting-started",
     "aichat/dialog-scenarios",
