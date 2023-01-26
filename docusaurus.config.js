@@ -112,6 +112,10 @@ const config = {
                 label: "Third Party Solutions",
                 to: "aifront/third-party-solutions",
               },
+              {
+                label: "Webhook Server",
+                to: "aifront/webhook-server",
+              },
             ],
           },
           {
