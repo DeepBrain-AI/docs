@@ -119,6 +119,12 @@ const config = {
             ],
           },
           {
+            type: "doc",
+            docId: "aichat/getting-started",
+            position: "left",
+            label: "AI Chat",
+          },
+          {
             href: "https://deepbrainai.io",
             label: "Go to DeepBrain AI",
             position: "right",

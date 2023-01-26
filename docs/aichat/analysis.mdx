@@ -1,0 +1,171 @@
+---
+sidebar_position: 5
+---
+
+# Analysis
+
+PlayChat provides basic analysis about bots, and can be easily checked out on the web. Analysis is largely divided into analysis of users and analysis of dialogs.
+
+<iframe width="804" height="400" src="https://www.youtube.com/embed/nMCj-q1xjUk" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+- Analysis of users hold info on daily users, channel users, and also provide data analysis on user units by session.
+
+- Analysis of users also provide information on the chatbot users inputs on the basis of dialog sets, dialog scenarios, and intents.
+
+- Analysis of dialogs provide the amount of dialog and the specific contents depending on dialog sets and dialog scenarios.
+
+- Analysis of dialogs summarizes the flow of a dialog through statistics, and provides statistics regarding failed dialogs.
+
+- Both the analysis of users and dialogs can be downloaded in the excel format once the time period is set up.
+
+## Summary
+
+The “Summary” summarizes the core data regarding the statistics of the entire chatbot usage.
+
+- Real-time Users shows the number of users who have interacted with the relevant chatbots in the last five minutes.
+
+- Users (30days) indicate the complete number of users who have interacted with the relevant chatbots in the last thirty days.
+
+- Amount of Dialog (30days) indicate the relevant chatbot's entire dialog count in the last thirty days.
+
+- Cumulative users indicate the entire number of users who have interacted with the relevant chatbot.
+
+- Cumulative amount of dialog indicate the relevant chatbot's entire dialog count. Both the user input and the chatbot response together is counted as one dialog count.
+
+<img src="/img/aichat/analysis-summary.png" />
+
+<br/>
+
+- Daily Dialog Count shows the daily dialog count of the last thirty days. Both the user input and the chatbot response together is counted as one dialog count.
+
+<img src="/img/aichat/analysis-summary2.png" />
+
+<br/>
+
+- User Distribution by Channel indicates the user distribution by channel in the last thirty days.
+
+- Dialog Success Rate provides the ratio of a sucessful dialog to an unsucessful dialog in the last thirty days.
+
+<img src="/img/aichat/analysis-summary3.png" />
+
+<br/>
+
+- Top 10 User Input shows the chatbot user's inputs of the last thirty days by frequency. You can find out what input is preferred by chatbot users.
+
+- Top 10 Dialog Fails shows the failed dialogs of the last thirty days by frequency. You can find out the biggest reasons behind failed chatbot dialogs.
+
+- Top 10 Scenario Usage shows the usage of scenarios in the last thirty days. You can find out which dialog scenarios chatbot users prefer.
+
+<img src="/img/aichat/analysis-summary4.png" />
+
+<br/>
+
+## User
+
+The user menu provides daily statistics of chatbot users and the distribution of users by channel.
+
+- Daily User Statistics indicate the daily user statistics by each channel. Click on the channel name on the bar graph to exclude the relevant channel from the graph.
+
+<img src="/img/aichat/analysis-user.png" />
+
+<br/>
+
+- Distribution of Users by Channel shows the user distribution depending on the channel. Click on the channel name on the donut graph to exclude the relevant channel from the graph.
+
+<img src="/img/aichat/analysis-user2.png" />
+
+<br/>
+
+## Session
+
+A session provides daily statistics of the chatbot users by session units.
+
+- A session is set as 5 minutes. If there is no interaction between a chatbot and a user for 5 minutes, the relevant user will be analyzed as a new session.
+
+- Daily sessions indicate daily session statistics by channel. Click on the channel name on the bar graph to exclude the relevant channel from the graph.
+
+<img src="/img/aichat/analysis-session.png" />
+
+<br/>
+
+- An average dialog amount per session means the amount of dialog between a user and the chatbot in one session. It provides the information on the average dialog amount per session.
+
+<img src="/img/aichat/analysis-session2.png" />
+
+<br/>
+
+## User Input - Dialog Set
+
+If a response of a dialog set has been output, the program shows the frequency of the chatbot users input. You can find out which inquiries and answers have been used heavily, and which input from the users caused the relative output to be printed.
+
+<img src="/img/aichat/analysis-userInput-dialogset.png" />
+
+<br/>
+
+## User Input - Dialog Scenario
+
+If a card from a dialog scenario has been executed, the program shows the frequency of the chatbot users input. You can find out which cards have been used heavily, and which input from the users caused the relative cards to be executed.
+
+<img src="/img/aichat/analysis-userInput-dialogset2.png" />
+
+<br/>
+
+## Amount of Dialog
+
+“The amount of dialog” showcases the amount of dialog with the chatbot along with the successes and failures by periods. It also shows the channel distribution of the dialogs.
+
+- Daily Amount of Dialog statistics provide the dialog statistics by channel. Click on the channel name on the bar graph to exclude the relevant channel from the graph.
+
+<img src="/img/aichat/analysis-dialog.png" />
+
+<br/>
+
+- Daily Dialog Success/Failure statistics indicate the success and the failure statistics by channel. Click on the channel name on the bar graph to exclude the relevant channel from the graph.
+
+<img src="/img/aichat/analysis-dialog2.png" />
+
+<br/>
+
+- Dialog by Channel statistics provide the channel distribution of the dialogs. Click on the channel name on the donut graph to exclude the relevant channel from the graph.
+
+<img src="/img/aichat/analysis-dialog3.png" />
+
+<br/>
+
+## Amount of Dialog - Dialog Set
+
+If a response of a dialog set has been output, the program shows the frequency of the chatbot's response. You can find out which responses have been used heavily.
+
+<img src="/img/aichat/analysis-dialog-dialogset.png" />
+
+<br/>
+
+## Amount of Dialog - Dialog Scenario
+
+If a card from a dialog scenario has been executed, the program shows the frequency of the card usage. You can find out which card's responses have been heavily output to users.
+
+<p align="center">
+<img src="/img/aichat/analysis-dialog-scenario.png" />
+</p>
+
+<br/>
+
+## Dialog Route
+
+Shows which flow of dialog(cursor movement) in a dialog scenario has been heavily used.
+
+<p align="center">
+<img src="/img/aichat/analysis-dialog-dialogpath.png" />
+</p>
+
+<br/>
+
+## Failed Dialog
+
+Showcases the chatbot users input of a failed dialog by frequency.
+
+<p align="center">
+<img src="/img/aichat/analysis-fail.png" />
+</p>
+
+<br/>

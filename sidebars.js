@@ -417,7 +417,17 @@ const sidebars = {
     "aifront/third-party-solutions/chatbot",
     "aifront/third-party-solutions/stt",
   ],
-  aifrontWebhookSidebar: ["aifront/webhook-server"],
+  aifrontWebhookSidebar: [
+    "aifront/webhook-server"
+  ],
+  aichatSidebar: [
+    "aichat/getting-started",
+    "aichat/dialog-scenarios",
+    "aichat/channel",
+    "aichat/operation",
+    "aichat/analysis",
+    "aichat/test",
+  ]
 };
 
 module.exports = sidebars;
