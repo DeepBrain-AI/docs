@@ -10,7 +10,7 @@ JSON template-based export is available if you want to create a single completed
 
 ## 1. API key settings
 
-Authentication is required for all API communications within AISTUDIOS. The API key is used for this purpose. Sets the API key issued to the token variable. If you don't have the issued key yet, you can issue it through [Generate API key](https://aistudios.com/pricing).
+Authentication is required for all API communications within AISTUDIOS. The API key is used for this purpose. Sets the API key issued to the token variable. If you don't have the issued key yet, you can issue it through [Generate API key](https://www.deepbrainai.io/pricing).
 ```js
 const token = '##JWT##'; // API KEY
 ```
@@ -91,7 +91,7 @@ const sceneInfo = `{
 <br/>
 
 ## 3. Request Project Export API
-Request the set JSON data to the project export API. By 'export' we mean a legal request to create a video, and you can read more about the full kind of data you can send when making a Project Support API request [here](https://aistudios.com/api-doc/reference/export-project). At this time, the method delivers the JSON data (sceneInfo) set above to POST, body. And set API key as Authorization value in header and Content-Type as 'application/json'. The project key value generated during subsequent successful communication is stored in the projectKey variable.
+Request the set JSON data to the project export API. By 'export' we mean a legal request to create a video, and you can read more about the full kind of data you can send when making a Project Support API request [here](https://docs.deepbrainai.io/aistudios/reference/export-project). At this time, the method delivers the JSON data (sceneInfo) set above to POST, body. And set API key as Authorization value in header and Content-Type as 'application/json'. The project key value generated during subsequent successful communication is stored in the projectKey variable.
 
 ```js
 let projectKey = await fetch('https://aistudios.com/api/odin/editor/project',
