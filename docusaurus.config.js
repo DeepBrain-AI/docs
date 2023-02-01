@@ -25,20 +25,19 @@ const config = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'ko'],
+    path: 'localization/i18n',
     localeConfigs: {
       en: {
         label: 'English',
         direction: 'ltr',
         htmlLang: 'en-US',
         calendar: 'gregory',
-        //path: 'en/docusaurus-plugin-content-docs/current/',
       },
       ko: {
         label: '한국어',
         direction: 'ltr',
         htmlLang: 'ko-KR',
         calendar: 'gregory',
-        //path: 'ko/docusaurus-plugin-content-docs/current/',
       },
     },
   },
