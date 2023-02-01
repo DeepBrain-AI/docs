@@ -24,7 +24,23 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'ko'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+        direction: 'ltr',
+        htmlLang: 'en-US',
+        calendar: 'gregory',
+        //path: 'en/docusaurus-plugin-content-docs/current/',
+      },
+      ko: {
+        label: '한국어',
+        direction: 'ltr',
+        htmlLang: 'ko-KR',
+        calendar: 'gregory',
+        //path: 'ko/docusaurus-plugin-content-docs/current/',
+      },
+    },
   },
 
   presets: [
@@ -99,6 +115,10 @@ const config = {
                 to: 'aihuman/windows-sdk',
               },
             ],
+          },
+          {
+            type: 'localeDropdown',
+            position: 'right',
           },
           {
             href: 'https://deepbrainai.io',

@@ -1,0 +1,42 @@
+{
+  "title": {
+    "message": "DOCS",
+    "description": "The title in the navbar"
+  },
+  "item.label.AI Studios": {
+    "message": "AI Studios",
+    "description": "Navbar item with label AI Studios"
+  },
+  "item.label.AI Human": {
+    "message": "AI Human",
+    "description": "Navbar item with label AI Human"
+  },
+  "item.label.Go to DeepBrain AI": {
+    "message": "Go to DeepBrain AI",
+    "description": "Navbar item with label Go to DeepBrain AI"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.JavaScript": {
+    "message": "JavaScript",
+    "description": "Navbar item with label JavaScript"
+  },
+  "item.label.Android": {
+    "message": "Android",
+    "description": "Navbar item with label Android"
+  },
+  "item.label.iOS": {
+    "message": "iOS",
+    "description": "Navbar item with label iOS"
+  },
+  "item.label.Unity": {
+    "message": "Unity",
+    "description": "Navbar item with label Unity"
+  },
+  "item.label..NET": {
+    "message": ".NET",
+    "description": "Navbar item with label .NET"
+  }
+}
