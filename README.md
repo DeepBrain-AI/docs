@@ -1,15 +1,20 @@
 <h1 align="center">
-  <p align="center">DeepBrain AI</p>
   <a href="https://deepbrainai.io"><img src="https://docs.deepbrain.io/img/db_logo.svg" alt="DeepBrain AI"></a>
 </h1>
 
-# DOCS
+<br/>
+
+# DeepBrain AI DOCS
 
 Welcome! Here you can read the documentation for the AI Human.
 - AI Studios
 - AI Human SDK
 
+<br/>
+
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+
+<br/>
 
 ### Installation
 
