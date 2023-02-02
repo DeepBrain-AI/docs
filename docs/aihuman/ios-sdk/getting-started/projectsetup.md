@@ -7,7 +7,7 @@ sidebar_position: 2
 In this chapter, you will learn how to create and register UserKey and AppId, etc. required for authentication for using AI Human SDK.
 
 ## 1. Download SDK
-You can download SDKs for each platform here. **[AI Human SDK Website](https://aitalk.deepbrainai.io)**.
+You can download SDKs for each platform here. **[AI Human SDK Website](https://aihuman.deepbrain.io)**.
 
 ## 2. Create an Xcode project and cocoapods
 

@@ -16,7 +16,7 @@ AI STUDIOS discloses APIs for external developers, producers, and editors for qu
 
 If your account is subscribed to the API plan, you will need to get an API key. When selecting the account name at the top right of the screen after logging in, go to the "Profile" item of the account from the exposure menu and generate the API key by executing the "Issuing API Key" at the bottom of the screen. Once activated, the created 'API Secret Key' can no longer be checked, so please copy it separately and manage it safely.
 
-[Generate API key](https://aistudios.com/pricing)
+[Generate API key](https://www.deepbrain.io/pricing)
 
 
 
@@ -61,4 +61,4 @@ curl https://aistudios.com/api/odin/editor/progress/${key}
 
 ## 4. Other API documents
 
-[Detailed API reference document](https://aistudios.com/api-doc/reference/auth)
+[Detailed API reference document](https://docs.deepbrain.io/aistudios/reference/auth)

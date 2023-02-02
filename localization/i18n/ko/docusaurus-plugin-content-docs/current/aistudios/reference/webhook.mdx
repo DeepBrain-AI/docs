@@ -1,0 +1,90 @@
+# Webhook
+
+The webhook section shows you how an exported chromakey video or audio file gets delivered.
+
+## 1. Query String in the Response
+
+|key|desc|type|
+|:---|:---|:---|
+|ai_progress_update_loc|Location where the created project is saved.|String|
+|videoUrl|The download link for the exported file.|String|
+|duration|The duration of the exported file.|String|
+
+<br/>
+
+
+## 2. Webhook delivery address example
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```js
+curl https://aistudios.com/api/odin/simple/audio  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{
+    "language":"ko",
+    "text":"샘플 스크립트",
+    "model": "ysy",
+    "webhook": "https://webhook.site/85ff2681-e008-4479-8782-41cdcc281de2"
+    }'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios" 
+const token = ${API KEY}
+
+axios.post('https://aistudios.com/api/odin/simple/audio', 
+    {
+        "language":"ko",
+        "text":"샘플 스크립트",
+        "model": "ysy",
+        "webhook": "https://webhook.site/85ff2681-e008-4479-8782-41cdcc281de2"
+    }, 
+    {
+        headers: {
+            'Authorization': ${token},
+            'Content-Type': 'application/json'
+        }
+    }
+)
+.then((res) => {
+    console.log(res.data)
+})
+.catch((error) => {
+    console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://aistudios.com/api/odin/simple/find/${key}"
+body = {}
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": ${API TOKEN}
+}
+
+r = requests.post(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>
+
+If you include a webhook delivery address in the request body as shown in the example above, the export data will be delivered to that address once the export is complete.
+
+```http
+https://webhook.site/85ff2681-e008-4479-8782-41cdcc281de2?ai_progress_update_loc=ai-video%2F-N4qJq7DwnRjBQ7iozRc%2F&videoUrl=https%3A%2F%2Fai-platform-public.s3.ap-northeast-2.amazonaws.com%2Fysy_audio_eba83449f73b8db76cf87e1f42c32e02.wav&duration=3.274014
+```

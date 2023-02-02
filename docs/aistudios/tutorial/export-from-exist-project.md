@@ -10,7 +10,7 @@ If you want to create an image by importing information from an existing project
 
 ## 1. API key settings
 
-Authentication is required for all API communications within AISTUDIOS. The API key is used for this purpose. Sets the API key issued to the token variable. If you don't have the issued key yet, you can issue it through [Generate API key](https://aistudios.com/pricing).
+Authentication is required for all API communications within AISTUDIOS. The API key is used for this purpose. Sets the API key issued to the token variable. If you don't have the issued key yet, you can issue it through [Generate API key](https://www.deepbrain.io/pricing).
 ```js
 const token = '##JWT##'; // API KEY
 ```
@@ -57,7 +57,7 @@ sceneInfo[0].clips[1].detail.url = "##NEW_IMAGE_URL##";
 <br/>
 
 ## 5. Request Project Export API
-Request modified scene data to the project export API. By 'export' we mean a legal request to create a video, and you can read more about the full kind of data you can send when making a Project Support API request [here](https://aistudios.com/api-doc/reference/export-project). At this time, the method sets the key of the API request data to the POST, body, to scenes and forwards it in the form of a json string. And set API key as Authorization value in header and Content-Type as 'application/json'. The project key value generated during subsequent successful communication is stored in the projectKey variable.
+Request modified scene data to the project export API. By 'export' we mean a legal request to create a video, and you can read more about the full kind of data you can send when making a Project Support API request [here](https://docs.deepbrain.io/aistudios/reference/export-project). At this time, the method sets the key of the API request data to the POST, body, to scenes and forwards it in the form of a json string. And set API key as Authorization value in header and Content-Type as 'application/json'. The project key value generated during subsequent successful communication is stored in the projectKey variable.
 
 ```js
 let projectKey = await fetch('https://aistudios.com/api/odin/editor/project',

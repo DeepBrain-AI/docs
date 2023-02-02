@@ -23,8 +23,23 @@ const config = {
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: "en",
-    locales: ["en"],
+    defaultLocale: 'en',
+    locales: ['en', 'ko'],
+    path: 'localization/i18n',
+    localeConfigs: {
+      en: {
+        label: 'English',
+        direction: 'ltr',
+        htmlLang: 'en-US',
+        calendar: 'gregory',
+      },
+      ko: {
+        label: '한국어',
+        direction: 'ltr',
+        htmlLang: 'ko-KR',
+        calendar: 'gregory',
+      },
+    },
   },
 
   presets: [
@@ -125,6 +140,10 @@ const config = {
             label: "AI Chat",
           },
           {
+            type: 'localeDropdown',
+            position: 'right',
+          },
+          {
             href: "https://deepbrainai.io",
             label: "Go to DeepBrain AI",
             position: "right",
@@ -147,12 +166,12 @@ const config = {
             title: "Products",
             items: [
               {
-                label: "AI Studios",
-                to: "https://www.deepbrainai.io/aistudios",
+                label: 'AI Studios',
+                to: 'https://www.deepbrain.io/aistudios',
               },
               {
-                label: "AI Human",
-                to: "https://www.deepbrainai.io/aihuman",
+                label: 'AI Human',
+                to: 'https://www.deepbrain.io/aihuman',
               },
             ],
           },
@@ -160,20 +179,20 @@ const config = {
             title: "Solutions",
             items: [
               {
-                label: "Financial Services",
-                to: "https://www.deepbrainai.io/solutions/finance",
+                label: 'Financial Services',
+                to: 'https://www.deepbrain.io/solutions/finance',
               },
               {
-                label: "Retail & Commerce",
-                to: "https://www.deepbrainai.io/solutions/retail",
+                label: 'Retail & Commerce',
+                to: 'https://www.deepbrain.io/solutions/retail',
               },
               {
-                label: "Education",
-                to: "https://www.deepbrainai.io/solutions/education",
+                label: 'Education',
+                to: 'https://www.deepbrain.io/solutions/education',
               },
               {
-                label: "Media",
-                to: "https://www.deepbrainai.io/solutions/news",
+                label: 'Media',
+                to: 'https://www.deepbrain.io/solutions/news',
               },
             ],
           },
@@ -181,8 +200,8 @@ const config = {
             title: "Pricing",
             items: [
               {
-                label: "Pricing",
-                to: "https://www.deepbrainai.io/pricing",
+                label: 'Pricing',
+                to: 'https://www.deepbrain.io/pricing',
               },
             ],
           },
@@ -194,16 +213,16 @@ const config = {
                 to: "/",
               },
               {
-                label: "Blog",
-                to: "https://www.deepbrainai.io/blog",
+                label: 'Blog',
+                to: 'https://www.deepbrain.io/blog',
               },
               {
-                label: "Forum",
-                to: "https://forum.deepbrainai.io/",
+                label: 'Forum',
+                to: 'https://forum.deepbrain.io/',
               },
               {
-                label: "Help",
-                to: "https://help.deepbrainai.io/",
+                label: 'Help',
+                to: 'https://help.deepbrain.io/',
               },
             ],
           },
@@ -211,16 +230,16 @@ const config = {
             title: "Company",
             items: [
               {
-                label: "About",
-                to: "https://www.deepbrainai.io/company/about",
+                label: 'About',
+                to: 'https://www.deepbrain.io/company/about',
               },
               {
-                label: "Careers",
-                to: "https://www.deepbrainai.io/company/careers",
+                label: 'Careers',
+                to: 'https://www.deepbrain.io/company/careers',
               },
               {
-                label: "Contact",
-                to: "https://www.deepbrainai.io/company/contact",
+                label: 'Contact',
+                to: 'https://www.deepbrain.io/company/contact',
               },
             ],
           },
