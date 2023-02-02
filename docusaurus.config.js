@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "DeepBrain AI DOCS",
   tagline: "Welcome! Here you can read the documentation for the AI Human.",
-  url: "https://deepbrainai.io/",
+  url: "https://deepbrain.io/",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -144,7 +144,7 @@ const config = {
             position: 'right',
           },
           {
-            href: "https://deepbrainai.io",
+            href: "https://deepbrain.io",
             label: "Go to DeepBrain AI",
             position: "right",
           },
