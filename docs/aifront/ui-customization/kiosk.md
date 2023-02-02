@@ -6,7 +6,7 @@ slug: /aifront/ui-customization/kiosk
 
 # Kiosk
 
-![kiosk-guide](//img/aifront/kiosk-guide.png)
+![kiosk-guide](/img/aifront/kiosk-guide.png)
 
 ```javascript
   useEffect(() => {

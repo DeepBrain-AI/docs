@@ -140,8 +140,14 @@ const config = {
             label: "AI Chat",
           },
           {
-            type: 'localeDropdown',
-            position: 'right',
+            type: "doc",
+            docId: "aitalk/intro",
+            position: "left",
+            label: "AI Talk",
+          },
+          {
+            type: "localeDropdown",
+            position: "right",
           },
           {
             href: "https://deepbrainai.io",

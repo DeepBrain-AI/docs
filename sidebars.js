@@ -427,7 +427,8 @@ const sidebars = {
     "aichat/operation",
     "aichat/analysis",
     "aichat/test",
-  ]
+  ],
+  aitalkSidebar: ["aitalk/intro", "aitalk/chatbot", "aitalk/stt"],
 };
 
 module.exports = sidebars;
