@@ -12,7 +12,7 @@ Below is the project's setting.(It is sample, not mandatory)
 
 <img src="/img/aihuman/android/screenshot_projectsetup_1.png"/>
 
-**Download the SDK and Android sample from the [SDK Website](https://aitalk.deepbrain.io).** The sample project's configurations are shown below.
+**Download the SDK and Android sample from the [SDK Website](https://aihuman.deepbrain.io).** The sample project's configurations are shown below.
 
 - Project level build gradle (File > Project structure)
   -  Android Gradle plugin version : 7.1.1, Gradle Version : 7.2
