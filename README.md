@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://deepbrainai.io"><img src="https://docs.deepbrain.io/img/db_logo.svg" alt="DeepBrain AI"></a>
+  <a href="https://deepbrain.io"><img src="https://docs.deepbrain.io/img/db_logo.svg" alt="DeepBrain AI"></a>
 </h1>
 
 <br/>

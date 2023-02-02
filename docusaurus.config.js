@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'DeepBrain AI DOCS',
   tagline: 'Welcome! Here you can read the documentation for the AI Human.',
-  url: 'https://docs.deepbrainai.io/',
+  url: 'https://docs.deepbrain.io/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -120,7 +120,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://deepbrainai.io',
+            href: 'https://deepbrain.io',
             label: 'Go to DeepBrain AI',
             position: 'right',
           },
@@ -143,11 +143,11 @@ const config = {
             items: [
               {
                 label: 'AI Studios',
-                to: 'https://www.deepbrainai.io/aistudios',
+                to: 'https://www.deepbrain.io/aistudios',
               },
               {
                 label: 'AI Human',
-                to: 'https://www.deepbrainai.io/aihuman',
+                to: 'https://www.deepbrain.io/aihuman',
               },
             ],
           },
@@ -156,19 +156,19 @@ const config = {
             items: [
               {
                 label: 'Financial Services',
-                to: 'https://www.deepbrainai.io/solutions/finance',
+                to: 'https://www.deepbrain.io/solutions/finance',
               },
               {
                 label: 'Retail & Commerce',
-                to: 'https://www.deepbrainai.io/solutions/retail',
+                to: 'https://www.deepbrain.io/solutions/retail',
               },
               {
                 label: 'Education',
-                to: 'https://www.deepbrainai.io/solutions/education',
+                to: 'https://www.deepbrain.io/solutions/education',
               },
               {
                 label: 'Media',
-                to: 'https://www.deepbrainai.io/solutions/news',
+                to: 'https://www.deepbrain.io/solutions/news',
               },
             ],
           },
@@ -177,7 +177,7 @@ const config = {
             items: [
               {
                 label: 'Pricing',
-                to: 'https://www.deepbrainai.io/pricing',
+                to: 'https://www.deepbrain.io/pricing',
               },
             ],
           },
@@ -190,15 +190,15 @@ const config = {
               },
               {
                 label: 'Blog',
-                to: 'https://www.deepbrainai.io/blog',
+                to: 'https://www.deepbrain.io/blog',
               },
               {
                 label: 'Forum',
-                to: 'https://forum.deepbrainai.io/',
+                to: 'https://forum.deepbrain.io/',
               },
               {
                 label: 'Help',
-                to: 'https://help.deepbrainai.io/',
+                to: 'https://help.deepbrain.io/',
               },
             ],
           },
@@ -207,15 +207,15 @@ const config = {
             items: [
               {
                 label: 'About',
-                to: 'https://www.deepbrainai.io/company/about',
+                to: 'https://www.deepbrain.io/company/about',
               },
               {
                 label: 'Careers',
-                to: 'https://www.deepbrainai.io/company/careers',
+                to: 'https://www.deepbrain.io/company/careers',
               },
               {
                 label: 'Contact',
-                to: 'https://www.deepbrainai.io/company/contact',
+                to: 'https://www.deepbrain.io/company/contact',
               },
             ],
           },
