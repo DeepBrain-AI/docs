@@ -1,23 +1,23 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require("prism-react-renderer/themes/github");
+const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'DeepBrain AI DOCS',
-  tagline: 'Welcome! Here you can read the documentation for the AI Human.',
-  url: 'https://docs.deepbrain.io/',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/db_favicon.ico',
+  title: "DeepBrain AI DOCS",
+  tagline: "Welcome! Here you can read the documentation for the AI Human.",
+  url: "https://deepbrainai.io/",
+  baseUrl: "/",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "img/db_favicon.ico",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'DeepBrain-AI', // Usually your GitHub org/user name.
-  projectName: 'docs', // Usually your repo name.
+  organizationName: "DeepBrain-AI", // Usually your GitHub org/user name.
+  projectName: "docs", // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -44,16 +44,15 @@ const config = {
 
   presets: [
     [
-      'classic',
+      "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          routeBasePath: '/',
-          sidebarPath: require.resolve('./sidebars.js'),
+          routeBasePath: "/",
+          sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/DeepBrain-AI/docs/tree/main/',
+          editUrl: "https://github.com/DeepBrain-AI/docs/tree/main/",
         },
         blog: false,
         // blog: {
@@ -64,7 +63,7 @@ const config = {
         //     'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         // },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       }),
     ],
@@ -74,72 +73,97 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'DOCS',
+        title: "DOCS",
         logo: {
-          alt: 'DeepBrain AI',
-          src: 'img/db_logo.svg',
-          href: '/',
+          alt: "DeepBrain AI",
+          src: "img/db_logo.svg",
+          href: "/",
         },
         items: [
           {
-            type: 'doc',
-            docId: 'aistudios/getting-started',
-            position: 'left',
-            label: 'AI Studios',
+            type: "doc",
+            docId: "aistudios/getting-started",
+            position: "left",
+            label: "AI Studios",
           },
           {
-            type: 'dropdown',
+            type: "dropdown",
             //docId: 'aihuman/intro',
-            position: 'left',
-            label: 'AI Human',
+            position: "left",
+            label: "AI Human",
             items: [
               {
-                label: 'JavaScript',
-                to: 'aihuman/web-sdk',
+                label: "JavaScript",
+                to: "aihuman/web-sdk",
               },
               {
-                label: 'Android',
-                to: 'aihuman/android-sdk',
+                label: "Android",
+                to: "aihuman/android-sdk",
               },
               {
-                label: 'iOS',
-                to: 'aihuman/ios-sdk',
+                label: "iOS",
+                to: "aihuman/ios-sdk",
               },
               {
-                label: 'Unity',
-                to: 'aihuman/unity-sdk',
+                label: "Unity",
+                to: "aihuman/unity-sdk",
               },
               {
-                label: '.NET',
-                to: 'aihuman/windows-sdk',
+                label: ".NET",
+                to: "aihuman/windows-sdk",
               },
             ],
+          },
+          {
+            type: "dropdown",
+            label: "AI Front",
+            position: "left",
+            items: [
+              {
+                label: "UI Customization",
+                to: "aifront/ui-customization",
+              },
+              {
+                label: "Third Party Solutions",
+                to: "aifront/third-party-solutions",
+              },
+              {
+                label: "Webhook Server",
+                to: "aifront/webhook-server",
+              },
+            ],
+          },
+          {
+            type: "doc",
+            docId: "aichat/getting-started",
+            position: "left",
+            label: "AI Chat",
           },
           {
             type: 'localeDropdown',
             position: 'right',
           },
           {
-            href: 'https://deepbrain.io',
-            label: 'Go to DeepBrain AI',
-            position: 'right',
+            href: "https://deepbrainai.io",
+            label: "Go to DeepBrain AI",
+            position: "right",
           },
           {
-            href: 'https://github.com/DeepBrain-AI',
-            label: 'GitHub',
-            position: 'right',
+            href: "https://github.com/DeepBrain-AI",
+            label: "GitHub",
+            position: "right",
           },
         ],
       },
       colorMode: {
-        defaultMode: 'light',
+        defaultMode: "light",
         disableSwitch: true,
       },
       footer: {
-        style: 'dark',
+        style: "dark",
         links: [
           {
-            title: 'Products',
+            title: "Products",
             items: [
               {
                 label: 'AI Studios',
@@ -152,7 +176,7 @@ const config = {
             ],
           },
           {
-            title: 'Solutions',
+            title: "Solutions",
             items: [
               {
                 label: 'Financial Services',
@@ -173,7 +197,7 @@ const config = {
             ],
           },
           {
-            title: 'Pricing',
+            title: "Pricing",
             items: [
               {
                 label: 'Pricing',
@@ -182,11 +206,11 @@ const config = {
             ],
           },
           {
-            title: 'Resources',
+            title: "Resources",
             items: [
               {
-                label: 'Docs',
-                to: '/',
+                label: "Docs",
+                to: "/",
               },
               {
                 label: 'Blog',
@@ -203,7 +227,7 @@ const config = {
             ],
           },
           {
-            title: 'Company',
+            title: "Company",
             items: [
               {
                 label: 'About',
@@ -220,23 +244,23 @@ const config = {
             ],
           },
           {
-            title: 'SNS',
+            title: "SNS",
             items: [
               {
-                label: 'LinkedIn',
-                to: 'https://www.linkedin.com/company/deepbrain-global/',
+                label: "LinkedIn",
+                to: "https://www.linkedin.com/company/deepbrain-global/",
               },
               {
-                label: 'YouTube',
-                to: 'https://www.youtube.com/@deepbrainai/aihuman',
+                label: "YouTube",
+                to: "https://www.youtube.com/@deepbrainai/aihuman",
               },
               {
-                label: 'Instagram',
-                to: 'https://www.instagram.com/deepbrain_ai/',
+                label: "Instagram",
+                to: "https://www.instagram.com/deepbrain_ai/",
               },
               {
-                label: 'Facebook',
-                to: 'https://www.facebook.com/DeepbrainAIGlobal',
+                label: "Facebook",
+                to: "https://www.facebook.com/DeepbrainAIGlobal",
               },
             ],
           },
@@ -246,7 +270,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        additionalLanguages: ['csharp', 'java', 'swift'],
+        additionalLanguages: ["csharp", "java", "swift"],
       },
     }),
 };

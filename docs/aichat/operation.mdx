@@ -1,0 +1,80 @@
+---
+sidebar_position: 4
+---
+
+# Operation
+
+PlayChat checks on failed dialogs, and learns through them in order to provide operation management functions that enable chatbots smarter communications. In "Operation" -> "User menu", we provide the function of showcasing the information about the users that have interacted with the chatbot. In "Operation" -> "Failed dialogs", it is possible to read failed dialogs and provides the developers functions that teach the chatbot using the failed dialogs.
+
+## Users
+
+<iframe width="804" height="400" src="https://www.youtube.com/embed/Bu3HR7tFdt4" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<br/><br/>
+
+Shows information about the users in a list of channels, identifiers, last dialog, first dialog, number of dialogs, and etc.
+<p align="center">
+<img src="/img/aichat/operation-user.png" />
+</p>
+
+Use the advanced search in the upper right hand to search for certain users by channels, identifiers, last dialog, first dialog, or number of dialogs.
+<p align="center">
+<img src="/img/aichat/operation-user2.png" />
+</p>
+
+Click on "View details" in the list to see the dialog between the user and the chatbot on the righthand dialog window.
+<p align="center">
+<img src="/img/aichat/operation-user3.png" />
+</p>
+
+It is possible to enter memos on the relevant user.
+<p align="center">
+<img src="/img/aichat/operation-user4.png" />
+</p>
+
+## Learning from failed dialog
+
+There are three ways for the chatbot to learn from a failed dialog. Dialog sets, dialog scenarios, and intents.
+
+<iframe width="804" height="400" src="https://www.youtube.com/embed/umS179ped0o" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+### 1. Dialog Sets
+Shows the failed dialog based on frequency.
+<p align="center">
+<img src="/img/aichat/operation-dialogsets.png" />
+</p>
+
+Recommends the questions that are part of the failed dialogs and some other similar questions that are already learned among previous dialog sets.
+<p align="center">
+<img src="/img/aichat/operation-dialogsets2.png" />
+</p>
+
+Once the response of the failed dialog is entered, the program will recommend a similar response.
+<p align="center">
+<img src="/img/aichat/operation-dialogsets3.png" />
+</p>
+
+Click on "ignore" to delete the relevant failed dialog from the failed dialog list.
+<br/>
+
+### 2. Dialog Scenarios
+Shows the failed dialog based on frequency.
+
+In a list, shows the card of the position when the dialog failed, user inputs that were never matched, and frequencies.
+<p align="center">
+<img src="/img/aichat/operation-dialog.png" />
+</p>
+
+Click on the "Go to dialog scenario" button to create a descendant card of the card in position when the dialog failed.
+<p align="center">
+<img src="/img/aichat/operation-dialog2.png" />
+</p>
+
+Click on "ignore" to delete the relevant failed dialog from the failed dialog list.
+<br/>
+
+### 3. Intents
+In an intensive analysis dialog study, the program gathers the intents whenever a dialog had failed.
+
+Some failed intents appear as the "recommended". Click on the edit dialog button on the right for the failed intents to show up. Check and add some of the failed and recommended intents for them to be updated.
+
+Dialog scenarios are scenario graphs in the form of trees, and are tools that assist the user to create and edit a chatbot. It is divided into a scenario tab, and a function workspace tab. To use a dialog scenario, click on "Develop" -> "Dialog Scenarios" on the navigation bar.
