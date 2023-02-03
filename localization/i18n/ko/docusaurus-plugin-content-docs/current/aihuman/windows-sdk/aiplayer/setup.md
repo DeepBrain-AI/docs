@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# AIPlayer Set up
+# 인증 및 생성하기
 
 :::info Full setup process (4 steps)
 

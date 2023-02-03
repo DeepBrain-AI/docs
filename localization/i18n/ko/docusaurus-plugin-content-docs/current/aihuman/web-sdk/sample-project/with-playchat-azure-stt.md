@@ -2,13 +2,15 @@
 sidebar_position: 4
 ---
 
-# with Playchat & Google STT
+# Google STT와 PlayChat 연동
 
 :::note related files
 
 - demo2.html
 
 :::
+
+[PlayChat](https://aichat.deepbrainai.io/)은 DeepBrain AI의 ChatBot 솔루션입니다.
 
 AIPlayer + PlayChat(Webview based Chatbot) is a Conversational AI service provided by Deepbrain AI. In this menu, you will be able to have conversation with the AI on screen.
 Playchat is a chatbot service in which users can have conversation with a bot through text messages.

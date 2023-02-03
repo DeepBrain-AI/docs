@@ -11,7 +11,7 @@ sidebar_position: 1
 ## 1. API 키 설정
 
 AI STUDIOS 내 모든 API 통신 시에는 인증이 필요합니다. 이를 위해 사용되는 것이 API 키입니다. token 변수에 발급받은 API 키를 설정합니다. 아직 발급받은 키가 없다면 [API 키 발급하기](../generate-api-key)에서 발급하실 수 있습니다.
-Authentication is required for all API communications within AISTUDIOS. The API key is used for this purpose. Sets the API key issued to the token variable. If you don't have the issued key yet, you can issue it through .
+
 ```js
 const token = '##JWT##'; // API KEY
 ```
@@ -79,6 +79,7 @@ for (const i in jobs) {
 ## 4. 프로젝트 진행률 확인 및 다운로드
 
 앞서 작성한 반복문 안에서 저장한 projectKey를 프로젝트 진행률 확인 API에 전달하여 진행률을 확인합니다. 프로젝트 진행률이란, 합성 요청 후 영상이 완성되기까지 다소 시간이 소요될 수 있으므로 해당 영상 합성이 완성된 정도를 의미하며 이를 API로 확인할 수 있습니다. 이 때 method는 GET, 별도 body 데이터 없이 URL에 projectKey 값을 전달하면 됩니다. 그리고 header에 Authorization 값으로 API 키, Content-Type은 'application/json' 으로 설정해줍니다.
+
 이후 통신 성공 시 영상 합성이 완료된 경우 progress는 100이 되며 완성된 영상의 URL 값을 리턴합니다. 아래는 해당 URL 값이 존재하는 경우 지정한 로컬 경로(./videos/)에 다운로드 받고, 아닌 경우 3초 대기 후 다시 진행률을 반복 확인하는 예시입니다.
 
 ```js

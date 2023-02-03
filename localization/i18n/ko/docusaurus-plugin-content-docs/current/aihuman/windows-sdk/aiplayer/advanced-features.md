@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# AIPlayer Advanced Speaking Features
+# 발화 관련 추가 기능
 
 All functions other than speaking(mostly related to AI settings) of AIPlayer are described below.
 

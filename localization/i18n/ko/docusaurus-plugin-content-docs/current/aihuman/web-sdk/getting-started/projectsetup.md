@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Project Setup
+# 프로젝트 셋업하기
 
 (Working)
 

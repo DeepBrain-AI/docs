@@ -2,13 +2,15 @@
 sidebar_position: 4
 ---
 
-# with Playchat & Azure STT
+# MS Azure STT와 PlayChat 연동
 
 :::note related files
 
 - 3.Playchat & AzureSTT.scene
 
 :::
+
+[PlayChat](https://aichat.deepbrainai.io/)은 DeepBrain AI의 ChatBot 솔루션입니다.
 
 This menu is an example of a Conversational AI service that integrates AI Human, PlayChat and Microsoft Azure STT. Use Azure STT to **speak like a real person**. When the AI load is complete, the AI greets you. ("Hello, long time no see.") 
 

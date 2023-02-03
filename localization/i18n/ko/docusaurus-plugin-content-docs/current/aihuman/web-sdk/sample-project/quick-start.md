@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# AI Human QuickStart
+# AI Human 퀵스타트
 
 :::note related files
 

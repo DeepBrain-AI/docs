@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# AIPlayer Advanced Speaking Features
+# 발화 관련 추가 기능
 
 The following describes features unrelated to AI Speech.
 Even after the resource is loaded(playerLoadComplete) and the AI is ready to speak, some settings can be adjusted. On the demo screen shown below, you can adjust the AI's **padding, size, speed**.

@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Own your first AI Human
+# 나의 AI Human 만들기
 
 In this chapter, we will quickly set up AIPlayer with the default AI and learn about AI speaking process. When setting up AIPlayer for the first time, it may take several minutes to load depending on the network condition.
 

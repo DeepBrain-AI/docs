@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Project Set up
+# 프로젝트 셋업하기
 
 In this chapter, you will learn how to create and register UserKey and AppId, etc. required for authentication for using AI Human SDK.
 

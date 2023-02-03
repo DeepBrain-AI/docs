@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Overview
+# 개요
 
 The demonstrations provided by AI Human SDK allow you to take a closer look at how you can actually use and utilize the SDK.
 

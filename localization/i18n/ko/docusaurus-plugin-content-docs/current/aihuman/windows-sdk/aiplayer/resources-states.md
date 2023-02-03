@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# AIPlayer Resources and States
+# 이벤트 확인하기
 
 ### Start loading resources 
 

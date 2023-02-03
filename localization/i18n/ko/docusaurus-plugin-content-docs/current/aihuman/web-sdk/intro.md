@@ -6,19 +6,23 @@ slug: /aihuman/web-sdk
 
 # 소개
 
-**Basic Concepts of AI Human (Video Conversation or AILive)**
+AI Human의 기본 개념과 함께 AI Human SDK를 소개합니다.
 
-AI Human (previously called AILive) SDK can display a trained AI model that resembles real human on the screen in realtime. However, it goes beyond just realtime displaying the AI model. It even **allows the AI to speak naturally as if in a video call**. The most critical component of the SDK is AIPlayer.
+AI Human SDK(이하 SDK)를 이용하면 딥러닝(학습)을 통해 만들어진 AI를 원하는 위치에 실제 사람처럼 라이브(Live)로 표현할 수 있습니다. 화면만 라이브로 표시하는 것을 뛰어 넘어, **마치 영상 통화를 하듯이 자연스러운 대화가 가능한 AI Human 서비스를 구현할 수 있게 합니다**.
 
 <img src="/img/aihuman/web/quick_start.png" />
 
-AIPlayer is a View component where the AI model is displayed in real time and can be freely positioned as a View. The AI within the AIPlayer View component was created by **training the voice and facial expression of a real person**. Therefore, it does not have any artificial sounds and is more natural than the previously existing TTS.
+<br/>
 
-In addition, it is possible to select a variety of different models through AIPlayer. When an AI model is selected, the selected AI model in an Idle state is displayed on the screen after the loading process (user authentication and resource loading).
+SDK를 이용해 AI Human 서비스를 구현할 때는 핵심 요소인 AIPlayer를 사용하게 됩니다.
+AIPlayer는 AI 모델이 실시간으로 나오는 View이며, 애플리케이션 내에 View로써 자유롭게 배치할 수 있습니다. AI 모델은 **실제 사람의 목소리와 얼굴을 학습하여 만들어져서** 기존의 TTS(Text to Speech)가 가진 기계적인 느낌이 없으며, 말만하는 것이 아닌 실제 모델이 나옴으로써 더욱 친숙하고 자연스러운 애플리케이션을 구현할 수 있습니다. 
 
-AI's **Idle state** is the state in which the AI is listening rather than speaking. In this state, the AI model is not static like the picture above, but is designed to resemble natural human motion as closely as possible by showing movements like blinking or nodding. AIPlayer has a simple structure where all these processes are automatically performed with simple settings.
+AIPlayer는 위의 모델뿐만 아니라 다른 여러 AI 모델들 중 하나를 선택할 수 있으며, 일련의 과정(사용자 인증과 리소스 로딩)이후에 선택한 AI 모델이 나타나고 대기 상태(Idle)로 초기화됩니다.
 
-The user can command the client (AIPlayer) in the Idle state to **start speaking** like 'Hi', 'How are you', etc. Upon receiving this command, the AI will naturally begin to speak, and when finished, it will **naturally** go back to the Idles state.
+AI의 **대기 상태**란 AI가 말을 하기 전 상대방의 말을 듣고 있는 상태라고 할 수 있습니다. 이 대기 상태는 사진처럼 정지된 상태가 아니라 실제 사람처럼 눈을 깜빡인다든가 고개를 살짝 끄덕인다든지 등의 행동을 하며 실제 사람처럼 자연스럽게 대기하도록 구현되어 있습니다. 이러한 모든 과정이 간단한 설정만으로 자동으로 이루어지는 심플한 구조를 가지고 있습니다.
 
-Users can also **adjust the size, position, and speech rate of the AI**. In addition, pause, resume, and stop functionalities are provided, which can be used to support variety of manipulations on the screen. AI models are available for **Korean, English, Japanese, and Chinese**, enabling multi-lingual support.
+또한 서비스 사용자는 클라이언트(AIPlayer)에게 **어떤 말(발화)과 행동(제스처)을 수행하도록 명령**할 수 있습니다. (예: 손을 흔들며 "Hello, world!"라고 말하기). 이 명령을 받아 AI는 자연스럽게 말을 하기 시작하고 발화를 마치면 **자연스럽게** 다시 대기 상태로 돌아가게 됩니다.
 
+발화나 제스처 기능 이외에도 AI의 **크기 및 위치를 조정한다든가 말하기 속도 등도 바꿀수 있으며** 일시중지, 재시작, 중지 기능 등이 제공되어 이를 활용해서 다양한 화면과 시나리오를 구성할 수 있습니다. 또한 **한국어 뿐 아니라 영어, 일본어, 중국어 등**의 외국어를 구사하는 AI 모델들도 있으며, 다국어 기능을 이용하면 다른 여러 다국어 서비스도 구현이 가능합니다. 
+
+보다 자세한 내용은 SDK를 기반으로 제작된 [샘플 프로젝트](../category/sample-project-description)와 [AIPlayer](../category/aiplayer-description) 설명 챕터를 참고해 주세요.

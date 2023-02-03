@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# with Google Dialogflow
+# Google Dialogflow 연동
 
 :::note related files
 

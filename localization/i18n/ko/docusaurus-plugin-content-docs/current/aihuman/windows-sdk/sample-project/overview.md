@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Overview
+# 개요
 
 The WPF-based sample covered in this document is an example of using the AI Human SDK. Following this guide, you will be able to try out every functionalities in the AI Human SDK one-by-one through implementing the features in AI Human Sample Application. 
 

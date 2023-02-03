@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# AIPlayer Basic Speaking Features
+# 발화 관련 기본 기능
 
 ### 1. Send Speaking
 

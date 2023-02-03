@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# AIPlayer Set up
+# 인증 및 생성하기
 
 The entire setup process consists of four stages.
 

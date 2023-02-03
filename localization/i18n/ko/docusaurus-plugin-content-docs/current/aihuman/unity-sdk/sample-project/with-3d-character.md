@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# with Unity 3D Character
+# Unity 3D 캐릭터
 
 :::caution
 

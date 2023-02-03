@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# Functionalities other than AI Speaking
+# 발화 이외 기능들
 (mainly related to AI settings)
 
 The following are actions other than the utterance of the AIPlayer (mainly related to AI settings).

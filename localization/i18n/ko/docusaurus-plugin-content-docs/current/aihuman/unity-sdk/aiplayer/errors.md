@@ -2,7 +2,7 @@
 sidebar_position: 7
 ---
 
-# Error Index 
+# 에러 인덱스
 
 You can receive the error code and its details as a callback(OnAIPlayerError) and take appropriate action.
 

@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# AI Human Demo
+# AI Human 데모
 :::note related files
 
 - demo1.html

@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# Functionalities other than AI Speaking
+# 발화 이외 기능들
 (mainly related to AI settings)
 
 After the resource is loaded, some settings of aiPlayer can be changed while the actual operation is on. In the sample project screen below, you can see that **Scale, Margins**, etc. can be adjusted.
