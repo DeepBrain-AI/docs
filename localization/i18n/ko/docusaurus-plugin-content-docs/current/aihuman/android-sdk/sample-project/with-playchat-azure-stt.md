@@ -2,24 +2,25 @@
 sidebar_position: 5
 ---
 
-# with Playchat & MS Azure STT
+# MS Azure STT와 PlayChat 연동
 
-:::note related files
+:::note 관련 파일
 
 - AIPlayerWithPlayChatDemo.java
 
 :::
 
-AI Human + PlayChat + STT is a demo of an interactive AI service. Basically, it is similar to AIHuman + DialogFlow, but instead of typing in the keyboard, users can have a voice conversation with the AI. AI greets you when you enter the screen. ('Hello long time no see.')
+[PlayChat](https://aichat.deepbrainai.io/)은 DeepBrain AI의 ChatBot 솔루션이다.
 
-After the greeting, if a voice input signal ''**Speak Now**" appears below , say '**where are you**'. The AI understands the sentence and responds with an appropriate answer. Currently, the chatbot has limited speech sets, so it can only answer a few questions. If the chatbot is more advanced, it can be applied to  a variety of situations such as ordering at a restaurant or making a reservation. In addition, the chatbot can also display images with information on the side in addition to text.(Chatbot server should be implemented for this.)
+AIHuman + PlayChat + STT는 DeepBrain AI에서 제공하는 대화형 AI 서비스라고 볼수 있다. 기본적으로 AIHuman + DialogFlow와 비슷하지만 사용자가 키보드로 입력을 하는 것이 아니라 **실제 사람처럼 음성으로 대화한다**. 화면에 진입하면 AI가 인사를 한다.(Hello long time no see.) 
+
+인사말 이후 **지금 말하세요**라고 아래에 음성 입력 신호가 나오면 **where are you**라고 말해보자.**(실제로 동작하는 것은 구글 STT 또는 MS STT의 설정이 완료된 이후에 가능하다. 이 단락의 아래에 설명이 되어있다.)** AI는 음성을 알아듣고 AI가 적절한 대답을 한다. 현재는 테스트 챗봇이라 몇가지 제한된 물음에만 응답 할수 있지만 챗봇을 고도화시키면 상황에 따라 식당에서 주문이라든가 공연 예약 등 다양하게 응용할수 있다. 또한 챗봇이 텍스트 외에 **추가 정보를 보내 이미지도 표시**할수 있도록 하였다. 
 
 <p align="center">
 <img src="/img/aihuman/android/Screenshot_20211207-010111.png" style={{zoom: "25%"}} />
 </p>
 
-## 1. Set the AI and UI.
-First, get a list of available AIs and then set up the UI.
+## 1. 먼저 사용 가능한 AI 리스트 가져온 후 UI를 셋업한다.
 
 ```java
 @Override
@@ -29,56 +30,56 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
     setContentView(binding.getRoot());
 
   	//...
-    AIModelInfoManager.getAIList(resp -> {
-        /* resp
-        {"succeed":true,
-          "ai":[{"aiName":"vida","aiDisplayName":"Vida","language":"en"},			
-          {"aiName":"bret","aiDisplayName":"Bret","language":"en"},
-          ... }
-         */
-        if (resp != null) {
-            if (resp.optBoolean("succeed")) {
+    AIModelInfoManager.getAIList((aiError, resp) -> {
+            /* resp{
+                "succeed":true,
+                "ai":[{"aiName":"vida","aiDisplayName":"Vida","language":"en"},
+                {"aiName":"bret","aiDisplayName":"Bret","language":"en"},
+                {"aiName":"danny","aiDisplayName":"Danny","language":"en"},
+                {"aiName":"samh","aiDisplayName":"Samh","language":"en"},
+                {"aiName":"kang","aiDisplayName":"Kang","language":"ko"}]}
+             */
+
+            if (aiError == null) {
                 initAIChatbotController();
             } else {
-                Log.d(TAG, "onFinishedWithList: resp error" + resp.toString());
+                Log.d(TAG, "onFinishedWithList: getAIList error" + aiError);
             }
-        } else {
-            Log.d(TAG, "onFinishedWithList: resp null");
-        }
-    });
+        });
 }
 ```
 
-## 2. Initialize Chatbot with Speech Recongnition.
-Initialize PlayChat with a voice recognition function (STT). (AI is set as the default AI)
+## 2. 챗봇과 음성 인식 초기화 
+음성인식기능(STT)과 PlayChat을 초기화합니다. (AI는 기본 AI로 설정되어 있습니다.)
 
-First, create a chatbot with the ChatbotFactory's static method (**createMBPlayChatbotWithSTT**(,)) and then call the init( , ) method. This class implements IChatbot interface and **IChatbotWithSTT**, which also inherits ISpeechToTextController for STT operation. Therefore, you can call STT-related startRecognize() and stopRecognize() methods along with the existing chatbot methods (send(,), etc.).
+먼저 MBPlayChatbot의 스태틱 메소드(**newMBChatbot**(,))로 챗봇을 생성한 후 init( , ) 메소드를 호출한다. 이 클래스는 IChatbot 인터페이스를 구현하였다. 따라서 기존의 챗봇 메소드들(send(,)을 사용할수 있다. 
 
-**Set GoogleSTT for STT**
+**GoogleSTT로 STT 설정하기**
 
-Create stt instance with GoogleSTT class. This class which implements ISTT can start and stop speech recognition using  'startRecognize(), stopRecognize()' methods. GoogleSTT class use 'Service' inside so that AndroidManifest.xml needs to be set like below.
+GoogleSTT 클래스로 생성하여 사용한다. ISTT 인터페이스를 구현하여 startRecognize(), stopRecognize()등의 메소드로 음성인식을 시작하고 마침 동작을 할수 있다. GoogleSTT클래스는 내부적으로 서비스를 사용하므로 AndroidManifest.xml 파일에 아래와 같이 설정이 필요하다.
+
 ```xml
-<service android:name="ai.moneybrain.aiplatform.ai.chatbot.playchat.SpeechService"/>
+<service android:name=".stt.google.SpeechService"
+            android:exported="false" />
 ```
 
-Also, it uses google API which needs google credential file that is explained below. 
+또한 구글 API를 사용하므로 아래와 같이 인증 파일을 준비 및 설정한다. 
 
-**Get the google Speech To Text authentication(credential) file**
+**구글 Speech To Text 인증 (크리덴셜) 파일 준비**
 
-The Google Speech to Text authentication file (credential) can be obtained from the Google Cloud API site (https://console.cloud.google.com/apis/dashboard). First, you need to create a project in order to use Speech to Text. After creating the project, you can get a credential file (json file) by creating user authentication information after setting up STT in Cloud API. After downloading the file, put the file in the assets directory of the app project. (If the assets directory does not exist, right-click in the app directory of the project > New > Folder > Assets Folder to create it.)
+구글 Speech to Text(음성 인식) 인증 파일(크리덴셜)은 구글 클라우드 API 사이트(https://console.cloud.google.com/apis/dashboard) 에서 얻을 수있다. 먼저 Speech to Text를 쓸 프로젝트를 만들어야 한다. 프로젝트를 생성한 후에는 Cloud API 중에서 STT 사용 설정을 한후, 사용자 인증 정보 만들기를 하면 크리덴셜 파일(json 파일)을 얻을수 있는데, 그 파일을 다운로드한 후 파일을 앱 프로젝트의 assets  디렉토리에 넣는다. (assets 디렉토리가 없으면 프로젝트의 app 디렉토리에서 오른쪽 클릭 > New > Folder > Assets Folder로 생성한다.)  
 
-**Use the credential file to authenticate STT**
+**크리덴셜 파일을 STT에 설정값으로 넣기**
 
-If you place the received file in the assets directory, now enter the name of the file as a JSON value in the "speechgrpc_google_credential.json" part as shown below. Then use this JSON to create ChatbotSettings. The language code for recognizing English is en-US. If you use Korean, set it to ko-KR and use the Korean AI. After that, put ChatbotSettings as the first argument of the init(,) method.
+받은 파일은 assets 디렉토리에 넣었으면, 이제 그 파일의 이름을 아래처럼 "speechgrpc_google_credential.json"라고 된 부분에 JSON 값으로 입력한다.  이제 이 JSON을 이용해 ChatbotSettings을 만든다. 또한 languagecode는 영어를 인식하기 위해 en-US를 쓴다. 만약 한국어를 사용한다면 ko-KR로 설정하고 AI도 한국어 AI를 사용해야한다. 이후 ChatbotSettings를 init(,) 메소드의 첫번째 인자로 넣는다.
 
-**Set MS Azure for STT**
+**MS Azure로 STT 설정하기**
 
-You can use 'MS azure Speech to Text' beside google STT. To use azure, go to the MS's website(https://portal.azure.com/), create STT resource and get subscription key and region like sample below.
+구글 STT 외에 MS azure Speech to Text를 사용할수 있다. 이를 위해서는 MS가 제공하는 사이트에(https://portal.azure.com/) 에서 해당 STT 리소스(음성 서비스)를 생성하고 구독키와 위치/지역 값을 받아 아래의 샘플과 같이 설정해야한다.
 
-## 3. Create Callback.
-Create chatbot callback and call the init(,) method.
+## 3. 챗봇 콜백을 생성하고 init(,) 메소드를 호출하기
 
-The chatbot callback (iChatbotCallback) is a callback that notifies the status change of the chatbot, reports error and messages, etc. Create an instance with the new operator and call it by putting it in the chatbot.init(,) method together with the ChatbotSettings instance as shown below. When ChatbotState.SESSION_INITIALIZED is returned in the onChatbotStateChanged method, it is ready and you can send and receive messages to the Chatbot service. The voice recognition service is now ready.
+챗봇 콜백(iChatbotCallback)은 챗봇의 상태 변화나 에러, 메세지 수신 등을 알수 있는 콜백이다. 인스턴스를 생성하여 ChatbotSettings 인스턴스와 함께 chatbot.init(,) 메소드에 아래와 같이 넣어 호출하면 끝이다. onChatbotStateChanged 메소드에 ChatbotState.SESSION_INITIALIZED가 오면 준비가 완료되어 Chatbot 서비스에 메세지를 보내고 받을 수 있다. 음성인식 서비스도 준비가 된 것이다.
 
 ```java
 private void resetChatbotWithSTT(String sttType) {
@@ -132,57 +133,67 @@ private void resetChatbotWithSTT(String sttType) {
 };
 ```
 
-**Get started with speech recognition**
+<br/>
 
-You can turn on the voice recognition by calling **startRecognize()** method directly as shown below. To turn off voice recognition, call **stopRecognize()**, and each call will receive a response to callback.
+**음성 인식 시작해보기**
 
-In the callback signal of speech recognition, **ChatbotState.START_RECOGNIZING** will be returned from onChatbotStateChanged when startRecognize() is called, and **ChatbotState.STOP_RECOGNIZING** when **stopRecognize()** is called. In addition, there are two more callback values:
+아래와 같이 직접 **startRecognize()** 메소드를 이용해 음성 인식 서비스를 켤수 있다. 음성 인식을 끄는 것은 **stopRecognize()**를 호출하면 되는데 각각 호출시 콜백으로 응답이 온다.
 
-- **ChatbotState.NEW_SPEECH_POSTED** : Called when the recognized word is delivered to the chatbot. For example, it comes after when the user says "Hello. Good morning."
-- **ChatbotState.NEW_SPEECH_RECOGNIZED** : This comes in when the recognized word is updated in the middle of recognition. For example, if the user said "Hello. Good morning", it would show all recognitions like "hello", "hello good morning" or any combination of those. This can be used to show the user that STT is responding.
+음성 인식의 콜백 신호는 startRecognize()를 호출하면 **STTState.START_RECOGNIZING**이, **stopRecognize()**를 호출하면 **STTState.STOP_RECOGNIZING**이 값이 오는 것을 확인할 수 있다. 그 외에도 몇가지가 더 있는데 이는 다음과 같다. 
+
+- **STTState.NEW_FINAL_SPEECH** : 최종적으로 STT에서 인식이 된 말이 전달된다. 예를 들면  "안녕하세요. 좋은 아침입니다."라고 사용자가 말하고 난후 온다. 
+- **STTState.NEW_SPEECH_RECOGNIZED** : 인식 중간 중간에 인식된 말이 업데이트 되었을 때 들어온다. 예를 들면 사용자가 "안녕하세요. 좋은 아침입니다."라고 말하였다면 중간중간에 STTState.NEW_SPEECH_RECOGNIZED로 "안녕하세요." , "안녕하세요. 좋은", "안녕하세요. 좋은 아침입니다." 라고 3번 호출될 수 있다. 이를 이용해 사용자에게 STT가 반응하고 있다는 것을 보여줄 수 있다.
 
 ```java
 //turn on  
-chatbot.startRecognize(0);
+stt.startRecognize(0);
 
 //turn off
-//chatbot.stopRecognize();
+stt.stopRecognize();
 
 /**
-  * Chatbot(Playchat) callback
+  * ISTT callback
   */
-	private IChatbotCallback iChatbotCallback = new IChatbotCallback() {
+	private final ISTTCallback iSTTListener = new ISTTCallback() {
+
         @Override
-        public void onChatbotStateChanged(ChatbotState state) {
+        public void onSTTStateChanged(STTState state) {
+            Log.d(TAG, "onSTTStateChanged: " + state.state + " " + state.data);
             switch (state.state) {
-								// ... 
-                case ChatbotState.START_RECOGNIZING:
-                    binding.chatState.setText("Speak now.");
+                case STTState.START_RECOGNIZING:
+                    binding.chatState.setText(getString(R.string.speak_now));
                     binding.chatState.setVisibility(View.VISIBLE);
+                    binding.sttRestartBtn.setVisibility(View.GONE);
                     break;
-                case ChatbotState.STOP_RECOGNIZING:
+                case STTState.STOP_RECOGNIZING:
                     binding.chatState.setStaticText("");
                     binding.chatState.setVisibility(View.INVISIBLE);
                     break;
-                case ChatbotState.NEW_SPEECH_RECOGNIZED:
+                case STTState.NEW_SPEECH_RECOGNIZED:
                     binding.chatState.setStaticText(state.data.optString(Constants.KEY_SPEECH));
-                    //binding.chatState.setVisibility(View.VISIBLE);
                     break;
-                case ChatbotState.NEW_SPEECH_POSTED:
-                    //binding.textInput.setText(null);
-                    aiChatbotCtlr.onRecognizedSpeechPosted(state.data.optString(Constants.KEY_SPEECH));
+                case STTState.NEW_FINAL_SPEECH:
+                    aiChatbotCtlr.sendUserInputToChatbot(state.data.optString(Constants.KEY_SPEECH));
+                    break;
             }
         }
 
- 			//...
-};
+        @Override
+        public void onSTTError(STTError error) {
+            Log.d(TAG, "onSTTError:" + error);
+            Toast.makeText(AILiveWithMBPlayChatWithSTTDemo.this, error.toString(), Toast.LENGTH_SHORT).show();
+
+            binding.chatState.setVisibility(View.GONE);
+            binding.sttRestartBtn.setVisibility(View.VISIBLE);
+        }
+    };
 ```
 
-## 4. Using AI + chatbot + voice recognition together.
+## 4. AI + 챗봇 + 음성 인식 함께 사용하기 
 
-Simply put, the main purpose of this sample is for conversations with AI using voice. For this, AIPlayer, chatbot, and voice recognition must work harmoniously. Therefore, we created the **AIChatbotController** class (aiChatbotCtlr member variable) that manages everything.
+간단히 생각해보면 이 샘플은 AI와 음성으로 대화를 이어나가는 것이 주목적이다. 이를 위해서는 AIPlayer와 챗봇, 음성 인식이 조화롭게 돌아가야한다. 따라서 이를 용이하게 하기 위해 전체를 관리하는 **AIChatbotController** 클래스(aiChatbotCtlr 멤버 변수)를 작성하였다.
 
-First, it is assumed that when AI and chatbot is loaded, it sends a **"start"(VALUE_FUNC_NAME_START)** signal to the chatbot. When the "start" signal is sent, the chatbot recognizes it and sends back a **greeting message**. The greeting goes into the onChatbotMessage() method of iChatbotCallback. The aiChatbotCtrl basically sends these words to the AI to speak.
+먼저 AI는 로드되었다고 가정하고, 챗봇이 로드되면 챗봇에 **"start"(VALUE_FUNC_NAME_START)** 신호를 보내는데, 이렇게 "start" 신호를 호출하면 챗봇이 인식하고 **인사 메세지**를 보낸다. 그 인사말이 iChatbotCallback의 onChatbotMessage() 메소드에 들어온다. aiChatbotCtrl은 기본적으로 이 말을 AI에게 보내 말하게 한다. 
 
 ```java
 @Override
@@ -205,9 +216,9 @@ public void onChatbotMessage(JSONObject response) {
 
 
 
-**AIChatbotController processes the messages received from the chatbot.**
+**AIChatbotController가 챗봇에서 받은 메세지를 처리한다.**
 
-When you receive a message from the chatbot (**onChatbotMessage**), first check its content (JSON). JSON is divided into two parts, **func_name**, the type of command, and **args**, the actual content. Command type **onMessage** is set as a default for **func_name** and it shows chatbot's response.
+챗봇에서 메세지를 받으면(**onChatbotMessage**) 일단 어떤 내용(JSON)인지 확인한다. JSON은 크게 두가지 파트로 나뉘는데 어떤 커맨드인지를 의미하는  **func_name**과 내용을 의미하는 **args** 부분이다. 기본적으로 func_name에 **onMessage**는 챗봇이 하는 말을 나타내는 함수로 정해져 있다.  
 
 ```java
 /**
@@ -258,15 +269,15 @@ private void processChatbotMsgFunc(String fName, JSONObject args) {
 
 
 
-**Data transfer format for Chatbot (PlayChat)**
+**Chatbot(PlayChat)의 데이터 전송 포맷**
 
-Mostly, the chatbot automatically transmits the content to the PlayChat server when it recognizes voice. However, there are situations when you need to manually send some message or special signal to the chatbot (this includes the "start" signal mentioned above). To send the user's message, call the chatbot's send(,) method.
+기본적으로 STT가 포함된 이 챗봇은 음성인식이 되면 그 내용을 바로 PlayChat 서버에 전달한다. 그러나 수동으로 챗봇에 어떤 메세지나 특별한 신호를 보내야할 상황도 있다(위에서 말한 "start" 신호도 이에 포함된다). 사용자의 메세지를 보내려면 chatbot의 send(,) 메소드를 호출하면 된다. 
 
 ```java
 boolean send(String command, JSONObject detail);
 ```
 
-Write a server function name you want in the command, and put necessary arguments in a form of key:value. The currently set command (or func_name) is shown below.
+command에 원하는 서버 함수 이름을 쓰고, 필요한 인자들을 detail에 key:value로 넣으면 된다. 현재 정해진 command (또는 func_name, 같은 말이다.)는 다음과 같다. 
 
 ```java
 //send
@@ -280,11 +291,11 @@ public static final String VALUE_FUNC_NAME_ONMESSAGE = "onMessage";
 public static final String VALUE_USERINPUT_NEXT = ":next";
 ```
 
-- The userInput function can accept an argument with key=text.
+- userInput 함수는 text로 키로 인자값을 넣으면 된다. 
 
-- The start function doesn't need any arguments.
+- start 함수는 인자가 필요없다. 
 
-- OnMessage comes with the following values.  If the next value is true for the field 'extra', it means that there is a sequential message in queue.
+- onMessage에는 기본적으로 아래와 같이 값이 오며, 특히 여기에서 'extra'에 next값이 true이면 다음에 연속으로 할말이 있다는 뜻이다.  
 
   ```java
   /* example
@@ -298,7 +309,7 @@ public static final String VALUE_USERINPUT_NEXT = ":next";
   */ 
   ```
 
-- If there is a message in queue, you can receive the following message when you send  **":next" (VALUE_USERINPUT_NEXT)** as an argument to userInput function.
+- 다음 메세지가 있을 경우 userInput에 인자 text로 특수 인자 표시인 **":next" (VALUE_USERINPUT_NEXT)**를 넣어서 보내면 다음 메세지를 받을수 있다. 
 
   ```java
   /**

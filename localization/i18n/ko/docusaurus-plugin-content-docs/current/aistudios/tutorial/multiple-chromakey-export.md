@@ -2,40 +2,43 @@
 sidebar_position: 1
 ---
 
-# Export multiple chromakey
+# 크로마키 여러개 내보내기
 
-Let's create several chroma key images. Chroma Key refers to a form in which only people except all elements are stored for separate use of AI models. In this example, a total of three chroma key images are generated, and you can specify different AI models, costumes, and lines for each image.
+여러 개의 크로마키 영상을 생성해보도록 하겠습니다. 크로마키는 AI 모델 별도 사용을 위해 전체 요소를 제외한 인물만 저장하는 형태를 말합니다. 해당 예제에서는 총 3개의 크로마키 영상을 생성하며, 각 영상마다 AI 모델, 의상, 대사 등을 다르게 지정할 수 있습니다.
 
 <br/>
 
-## 1. API key settings
+## 1. API 키 설정
 
-Authentication is required for all API communications within AISTUDIOS. The API key is used for this purpose. Sets the API key issued to the token variable. If you don't have the issued key yet, you can issue it through [Generate API key](https://docs.deepbrainai.io/aistudios/generate-api-key).
+AI STUDIOS 내 모든 API 통신 시에는 인증이 필요합니다. 이를 위해 사용되는 것이 API 키입니다. token 변수에 발급받은 API 키를 설정합니다. 아직 발급받은 키가 없다면 [API 키 발급하기](../generate-api-key)에서 발급하실 수 있습니다.
+Authentication is required for all API communications within AISTUDIOS. The API key is used for this purpose. Sets the API key issued to the token variable. If you don't have the issued key yet, you can issue it through .
 ```js
 const token = '##JWT##'; // API KEY
 ```
 
 <br/>
 
-## 2. Set API request data
-Refer to the example below to set the Chroma Key Export API request data by the number of images to be generated. 'Export' means a composite request to generate an image, and the data required to request a chroma key export API include language (language), text (metabolism), model (model ID), and clothes (clothes ID) values. You can find more information about AI models in the [AI Model List](https://docs.deepbrainai.io/aistudios/reference/model-list).
+## 2. API 요청 데이터 설정
+
+아래 예시를 참고하여 생성할 영상의 갯수만큼 크로마키 내보내기 API 요청 데이터를 설정합니다. '내보내기'란 영상을 생성하기 위한 합성 요청을 의미하며, 크로마키 내보내기 API 요청 시 필요한 데이터로는 language(언어), text(대사), model(모델ID), clothes(의상ID) 값이 있습니다. AI 모델에 관한 정보는 [AI 모델 리스트](../reference/model-list) 에서 자세히 확인하실 수 있습니다.
+
 ```js
 const jobs = [
     {
       language: 'ko',
-      text: 'Hello, this is my first work.',
+      text: '안녕하세요, 저는 첫번째 작업입니다.',
       model: 'M000004017',
       clothes: 'BG00006160'
     },
     {
       language: 'ko',
-      text: 'Hello, this is my second work.',
+      text: '안녕하세요, 저는 두번째 작업입니다.',
       model: 'M000004017',
       clothes: 'BG00001004'
     },
     {
       language: 'ko',
-      text: 'Hello, this is my third work.',
+      text: '안녕하세요, 저는 세번째 작업입니다.',
       model: 'M000004017',
       clothes: 'BG00006160'
     }
@@ -44,8 +47,10 @@ const jobs = [
 
 <br/>
 
-## 3. Chromakey Export API Request
-Now let us loop through the data that we set up in Step 2 above, and send chromakey export requests to our API endpoint. As you can see in the code snippet below, the POST request must have our request data in the form of a stringified JSON object. The request header must contain 'Content-Type': 'application/json' and your unique API Key as the value for the 'Authorization' key. Once the request is successful, we can save the project id value in our projectKey variable.
+## 3. 크로마키 내보내기 API 요청
+
+반복문을 통해 2번 과정에서 설정한 데이터를 순차적으로 크로마키 내보내기 API에 요청합니다. 이 때 method는 POST, body에 API 요청 데이터를 json 문자열 형태로 전달해야 합니다. 그리고 header에 Authorization 값으로 API 키, Content-Type은 'application/json' 으로 설정해줍니다. 이후 통신 성공 시 생성되는 프로젝트 키값을 projectKey 변수에 저장합니다.
+
 ```js
 for (const i in jobs) {
     // #1. Request export
@@ -71,9 +76,10 @@ for (const i in jobs) {
 
 <br/>
 
-## 4. Check and download project progress
-Deliver the saved project key to the project progress check API in the previously written repetition statement to check the progress. Project progress means the degree to which the image synthesis is completed, as it may take some time to complete the image after the synthesis request, and this can be confirmed by API. At this time, the method is GET, and you can pass the project key value to the URL without any body data. And set API key as Authorization value in header and Content-Type as 'application/json'.
-If the image synthesis is completed after successful communication, progress will be 100, and the URL value of the completed image will be returned. Below is an example of downloading to the specified local path (./video/) if the URL value exists, or waiting 3 seconds to check the progress again.
+## 4. 프로젝트 진행률 확인 및 다운로드
+
+앞서 작성한 반복문 안에서 저장한 projectKey를 프로젝트 진행률 확인 API에 전달하여 진행률을 확인합니다. 프로젝트 진행률이란, 합성 요청 후 영상이 완성되기까지 다소 시간이 소요될 수 있으므로 해당 영상 합성이 완성된 정도를 의미하며 이를 API로 확인할 수 있습니다. 이 때 method는 GET, 별도 body 데이터 없이 URL에 projectKey 값을 전달하면 됩니다. 그리고 header에 Authorization 값으로 API 키, Content-Type은 'application/json' 으로 설정해줍니다.
+이후 통신 성공 시 영상 합성이 완료된 경우 progress는 100이 되며 완성된 영상의 URL 값을 리턴합니다. 아래는 해당 URL 값이 존재하는 경우 지정한 로컬 경로(./videos/)에 다운로드 받고, 아닌 경우 3초 대기 후 다시 진행률을 반복 확인하는 예시입니다.
 
 ```js
 for (const i in jobs) {
@@ -125,7 +131,7 @@ for (const i in jobs) {
 
 <br/>
 
-## Full code
+## 전체 코드
 ```js
 import fetch from "node-fetch";
 import https from "https"
@@ -137,19 +143,19 @@ const token = '##JWT##'; // API KEY
 const jobs = [
     {
     language: 'ko',
-    text: 'Hello, this is my first work.',
+    text: '안녕하세요, 저는 첫번째 작업입니다.',
     model: 'M000004017',
     clothes: 'BG00006160'
     },
     {
     language: 'ko',
-    text: 'Hello, this is my second work.',
+    text: '안녕하세요, 저는 두번째 작업입니다.',
     model: 'M000004017',
     clothes: 'BG00001004'
     },
     {
     language: 'ko',
-    text: 'Hello, this is my third work.',
+    text: '안녕하세요, 저는 세번째 작업입니다.',
     model: 'M000004017',
     clothes: 'BG00006160'
     }

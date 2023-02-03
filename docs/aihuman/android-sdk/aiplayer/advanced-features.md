@@ -4,12 +4,6 @@ sidebar_position: 5
 
 # AIPlayer Advanced Speaking Features
 
-## Change AI Speech Rate
-Change AI Speech Rate between 0.5 and 1.5
-
-```java
-aiPlayer.setSpeed(speed);
-```
 
 ## Gestures
 As briefly mentioned above, speech may be performed using AIClipSet. AIClipSet refers to one utterance unit. The types of speech are basic speech, gesture speech including gesture and speech, and gestures that perform only certain actions. The available gestures differs according to AI model, and the list of available gestures can be obtained using the getGestures() function of AIPlayer.
@@ -28,11 +22,11 @@ The AI jonathan is speaking with gesture called "hi"(waving hand).
 <img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
 </p>
 
-AIClipSetFactory.CreateClip can create AIClipset like below. Only gesture will play if the gesture set witout speech text.
+AIClipSetFactory.CreateClip can create AIClipset with gesture like below. Only gesture will play if the gesture set witout speech text.
 
 ```java
 if (selectedSpeech != null) {
-    // aiPlayer.send(new String[]{selectedSpeech});
+    
     if (selectedAIGesture != null) {
         aiPlayer.send(AIClipSetFactory.CreateClip(
                 selectedAIGesture.getName(), selectedSpeech, null));
@@ -44,14 +38,17 @@ if (selectedSpeech != null) {
 }
 ```
 
-### Monitor the gesture's State
-IAIPlayerCallback.onAIStateChanged(AIState) will be called like normal 'send' method. AIState'state valued will be like below so that we can check out. Also we can access the aistate.clipset.getClipType(), getGesture(), getSpeechText(). That means we can distinguish that it is a gesture or  just speaking.
+### Monitor the gesture's event
+IAIPlayerCallback.onAIPlayerEvent(AIEvent) will be called like normal 'send' method. AIEvent'type valued will be like below so that we can check out. Also we can access the AIEvent.clipset.getClipType(), getGesture(), getSpeechText(). That means we can distinguish that it is a gesture or just speaking.
 
-- SPEAKING_PREPARE_STARTED //3d not supprot 
-- SPEAKING_PREPARE_COMPLETED //3d not supprot 
-- SPEAKING_STARTED
-- SPEAKING_COMPLETED
+- AIEvent.AICLIPSET_PLAY_PREPARE_STARTED 
+- AIEvent.AICLIPSET_PLAY_PREPARE_COMPLETED 
+- AIEvent.AICLIPSET_PLAY_STARTED
+- AIEvent.AICLIPSET_PLAY_COMPLETED
+- AIEvent.AICLIPSET_PLAY_BUFFERING
+- AIEvent.AICLIPSET_RESTART_FROM_BUFFERING
 
+<br/>
 
 ## Change the voice or language
 Some AIs can speak with other voices besides basic voices. To use other voices, you should call AIModelInfoManager.generateToken(...) or AIModelInfoManager.loadCustomVoices(...) method before using them. 
@@ -110,9 +107,27 @@ AIClipSet aiClipset = AIClipSetFactory.CreateClip(null, speech, null, myVoice);
 aiPlayer.send(aiClipSet);
 ``` 
 
+
+<br/>
+
+## Speak Multiple Sentences Consecutively
+You can send several sentences at once and the AI will speak sequentially. In the sample below, the corresponding action is performed when the Multi Speak button is pressed.
+
+<p align="center">
+<img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
+</p>
+
+```java
+aiPlayer.send([texts]); //array
+
+//or 
+aiPlayer.send([aiClipSets]); //array
+```
+<br/>
+
 ## Preload
 
-Preload is used when you want to make the AI speak the next sentence without delay by loading sentences in advance. You could think of it as a caching process. Select a sentence and press the **Preload** button in the sample below to perform the corresponding action.
+Preload is used when you want to make the AI speak the next sentence without delay by loading sentences in advance. You could think of it as a caching process. Select a sentence and press the **PRELOAD SPEAK** button in the sample below to perform the corresponding action.
 
 **3D character does not support this.** 
 
@@ -124,53 +139,127 @@ Preload is used when you want to make the AI speak the next sentence without del
 aiPlayer.preload([text]);
 ```
 
-### Monitor the preload function
+### Monitor the preload function and utilize
 
-Like the send function, IAIPlayerCallback.onAIStateChanged(AIState) is called during the preload. The value of AIState can be called as follows.
+Like the send function, IAIPlayerCallback.onAIPlayerEvent(AIEvent) is called during the preload. The value of AIEvent can be called as follows.
 
-- SPEAKING_PREPARE_PRELOAD_STARTED
-- SPEAKING_PREPARE_PRELOAD_COMPLETED
+- AICLIPSET_PRELOAD_STARTED
+- AICLIPSET_PRELOAD_COMPLETED
+- AICLIPSET_PRELOAD_FAILED
 
-The preload function can be utilized as show below. When AI has several sentences to speak, it speaks the first sentence. When the SPEAKING_STARTED state is reported in onAIStateChanged(), the next speech can be preloaded and then SPEAKING_COMPLETED is reported. At this time, the next sentence(preloaded) is usually ready to play so that it can be spoken almost with no delay.
+The preload function can be utilized when there is a need to cache. When AI has several sentences to speak, send the first sentence. When the AICLIPSET_PLAY_STARTED event is reported in onAIPlayerEvent(), you can call preload for the next speech. And the first sentence's AICLIPSET_PLAY_COMPLETED event will be called. At this event, the next sentence(preloaded) is usually ready to play so that it can be spoken almost with no delay.
 
 ```java
-@Override
-public void onAIStateChanged(AIState state) {
-    switch (state.state) {
-        case AIState.SPEAKING_PREPARE_PRELOAD_STARTED:
-            Log.i(TAG, "preload started :" + state.request.getSpeech());
-            break;
-        case AIState.SPEAKING_PREPARE_PRELOAD_COMPLETED:
-            Log.i(TAG, "preload completed:" + state.request.getSpeech());
-            break;
-        case AIState.SPEAKING_STARTED:
-            aiPlayer.preload(getNextSpeech());
-            break;
-        case AIState.SPEAKING_COMPLETED:
-            aiPlayer.send(getNextSpeech());
-            break;
+private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
+
+    @Override
+    public void onAIPlayerEvent(AIEvent event) {
+        Log.d(TAG, "onAIPlayerEvent: " + event);
+
+        switch (event.type) {
+            case AICLIPSET_PLAY_STARTED:
+                binding.aiStateTxt.setText(getString(R.string.ai_started_speaking));
+                //String nextSpeech = getNextSentence()
+                //aiplayer.preload(nextSpeech)
+                break;
+            case AICLIPSET_PRELOAD_STARTED:
+                binding.aiStateTxt.setText(getString(R.string.ai_started_preparation_to_preload));
+                //preload process started 
+                break;
+            case AICLIPSET_PRELOAD_COMPLETED:
+                binding.aiStateTxt.setText(getString(R.string.ai_finished_preparation_to_preload));
+                //preload process finished 
+                break;
+            case AICLIPSET_PLAY_COMPLETED:
+                binding.aiStateTxt.setText(getString(R.string.ai_finished_speaking));
+                //String nextSpeech = getNextSentence()
+                //aiplayer.send(nextSpeech) //no delay
+                break;
+            case AICLIPSET_PLAY_FAILED:
+                binding.aiStateTxt.setText(getString(R.string.ai_failed_to_play));
+                break;
+        }
     }
-}
+
+    @Override
+    public void onAIPlayerError(AIError error) {
+        Log.d(TAG, "onAIPlayerError: " + error);
+
+        if (error.code >= AIError.RESERVED_ERR) {
+            binding.aiStateTxt.setText("RESERVED_ERR :" + error.message);
+        } else if (error.code >= AIError.AICLIPSET_PRELOAD_ERR) {
+            binding.aiStateTxt.setText("AICLIPSET_PLAY_ERR :" + error.message);
+        } else if (error.code >= AIError.INVALID_AICLIPSET_ERR) {
+            binding.aiStateTxt.setText("INVALID_AICLIPSET_ERR :" + error.message);
+        } else if (error.code >= AIError.AI_SERVER_ERR) {
+            binding.aiStateTxt.setText("AI_SERVER_ERR :" + error.message);
+        } else if (error.code > AIError.UNKNOWN_ERR) { //0 ~ 9999
+            binding.aiStateTxt.setText("BACKEND_ERR :" + error.message);
+
+            if (error.code == 1402) { //refresh token
+                AIModelInfoManager.generateToken(AIPlayerDemo.this,
+                        getString(R.string.appid),
+                        getString(R.string.userkey),
+                        (aiError, resp) -> binding.aiStateTxt.setText("Token ref finished " + resp));
+            }
+        } else {
+            binding.aiStateTxt.setText("UNKNOWN_ERR :" + error.message);
+        }
+    }
+};
 ```
 
+<br/> 
 
-## Speak Multiple Sentences Consecutively
-You can send several sentences at once and the AI will speak sequentially. In the sample below, the corresponding action is performed when the Multi Speak button is pressed.
+## Try reconnect
 
-<p align="center">
-<img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
-</p>
+**Reconnect** might be used when network is not connected. When the network is not available, the AI_DISCONNECTED event will be fired and SDK try reconnect one time internally. You can call reconnect as you need and the result will be returned the registered callback(IAIReconnectCallback).
 
 ```java
-aiPlayer.send([texts]); //array of lenght >= 2 
+private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
+
+    @Override
+    public void onAIPlayerEvent(AIEvent event) {
+        Log.d(TAG, "onAIPlayerEvent: " + event);
+
+        switch (event.type) {
+            case AI_DISCONNECTED:
+                binding.aiStateTxt.setText(getString(R.string.ai_has_a_problem_and_is_recovering));
+                //reconnect if you want
+                //aiPlayer.reconnect(isSuccess -> {
+                //        Log.d(TAG, "reconnect result: " + isSuccess);
+                //    });
+                break;
+        }
+    }
+};
 ```
+
 <br/>
 
-### Monitor sending multiple sentences
+## Check before send, 'isConnected'
+Check if AI is connected. You can send if it is true. AIError.AICLIPSET_PLAY_ERR and AIEvent.AICLIPSET_PLAY_FAILED will be sent on onAIPlayerError and onAIPlayerEvent respectively if you send when it is false.
 
-IAIPlayerCallback.onAIStateChanged(AIState) is called for each statement. The value of AIState can be called as follows.
+```java
+boolean isConnected = aiPlayer.isConnected();
+```
 
-- SPEAKING_PREPARE_STARTED
-- SPEAKING_PREPARE_COMPLETED
+<br/>
 
- If you send several sentences, it automatically preloads if possible. In this case, you will be able to see that the delay between sentences is reduced.
+## Check before preload, 'canPreload'
+Check if it is able to preload now. You can preload if it is true. AIError.AICLIPSET_PRELOAD_ERR and AIEvent.AICLIPSET_PRELOAD_FAILED will be sent on onAIPlayerError and onAIPlayerEvent respectively if you preload when it is false.
+
+```java
+boolean canPreload = aiPlayer.canPreload();
+```
+
+<br/>
+
+## Change AI Speech Speed
+Change AI Speech speed between 0.5 and 1.5
+
+```java
+aiPlayer.setSpeed(speed);
+```
+
+<br/>

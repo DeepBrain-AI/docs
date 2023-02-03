@@ -7,7 +7,7 @@ sidebar_position: 2
 In this chapter, you will learn how to create and register UserKey and AppId, etc. required for authentication for using AI Human SDK.
 
 ## 1. Download SDK
-You can download SDKs for each platform here. **[AI Human SDK Website](https://aihuman.deepbrain.io)**.
+You can download SDKs for each platform here. **[AI Human SDK Website](https://aitalk.deepbrain.io)**.
 
 ## 2. Create an Xcode project and cocoapods
 
@@ -31,10 +31,11 @@ cd /project_path
 pod init
 ```
 
-#### 3-2. Add and install `pod 'AIPlayer'`
+#### 3-2. Add and install `pod 'AIPlayerSDK'`
 
-Open the generated podfile and add **AIPlayer**. <br/>
-It does not support bitcode, so it is necessary to add disabling bitcode at the bottom of podfile.
+Open the generated podfile and add **AIPlayerSDK**. <br/>
+To use 3D characters, **`pod 'AIPlayerSDK/Include3D'`** must be added.
+If there is a problem that the library cannot be found during execution, the `post_install` part should be added.
 
 ```console
 target 'your project' do
@@ -42,7 +43,8 @@ target 'your project' do
   use_frameworks!
 
   # Pods for your project
-	pod 'AIPlayer', :path => '.'  // add AIPlayer SDK Cocoapods
+	pod 'AIPlayerSDK', :path => '.'  // Add an AIPlayer SDK with 2D
+  #pod 'AIPlayerSDK/Include3D', :path => '.'  // Add an AIPlayer SDK with 2D and 3D enabled
 
   target 'your project tests' do
     inherit! :search_paths
@@ -55,11 +57,11 @@ target 'your project' do
 
 end
 
-# disable cocoapods BITCODE
+# enable cocoapods BUILD_LIBRARY_FOR_DISTRIBUTION
 post_install do |installer|
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
-            config.build_settings['ENABLE_BITCODE'] = 'NO'
+            config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
         end
     end
 end
@@ -89,13 +91,13 @@ pod install
 
 ## 4. Notes for reference
 
-- AIPlayer SDK works with **iOS 10.0** or later.
+- AIPlayer SDK works with **iOS 11.0** or later.
 
 - AIPlayer SDK works with **Swift 5** or later.
 
 - To use AIPlayer SDK, You must work with **xCode 12** or later
 
-- Note1: It is not possible to build on the simulator.
+- Note1: For SDKs with 3D, it is not possible to build on the simulator.
 
 - Note2: Currently, SDK including 3D cannot be debugged on iOS 16 and later devices.
 

@@ -15,9 +15,9 @@ The main activity contains the **AIHuman SDK authentication function ( generateT
 **MainActivity's menu**
 
 - AIHuman Quick Start (AILiveQuickStart.java)
-- AIHuman (AIPlayerDemo.java)
+- AIHuman Demo (AIPlayerDemo.java)
 - AIHuman + DialogFlow (AIPlayerWithDialogFlowDemo.java)
 - AIHuman + PlayChat(AILiveWithMBPlayChatWithSTTDemo.java)
-- AI Human 3d Character (UnityActivity.java)
+- AIHuman 3d Character (UnityActivity.java)
 
 

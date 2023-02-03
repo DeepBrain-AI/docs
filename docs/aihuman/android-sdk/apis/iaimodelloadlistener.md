@@ -2,8 +2,8 @@
 sidebar_position: 10
 ---
 
-# Interface AIModelInfo.IAIModelLoadListener
+# Interface AIModelInfoManager.IAIModelLoadListener
 
 | Modifier and Type | Method and Description                                       |
 | :---------------- | :----------------------------------------------------------- |
-| `void`            | `onModelInfoLoaded(boolean isSuccess, org.json.JSONObject info)` called when ai's info is received |
+| `void`            | `onModelInfoLoaded(AIError aiError, JSONObject resp, AIModelInfo aiModelInfo)` called when ai's info is received |

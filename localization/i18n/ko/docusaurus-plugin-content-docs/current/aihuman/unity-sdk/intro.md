@@ -4,7 +4,7 @@ sidebar_position: 1
 slug: /aihuman/unity-sdk
 ---
 
-# 개요
+# 소개
 
 AI Human Unity SDK
 

@@ -57,7 +57,7 @@ sceneInfo[0].clips[1].detail.url = "##NEW_IMAGE_URL##";
 <br/>
 
 ## 5. Request Project Export API
-Request modified scene data to the project export API. By 'export' we mean a legal request to create a video, and you can read more about the full kind of data you can send when making a Project Support API request [here](https://docs.deepbrain.io/aistudios/reference/export-project). At this time, the method sets the key of the API request data to the POST, body, to scenes and forwards it in the form of a json string. And set API key as Authorization value in header and Content-Type as 'application/json'. The project key value generated during subsequent successful communication is stored in the projectKey variable.
+Request modified scene data to the project export API. By 'export' we mean a legal request to create a video, and you can read more about the full kind of data you can send when making a Project Support API request [here](../reference/export-project). At this time, the method sets the key of the API request data to the POST, body, to scenes and forwards it in the form of a json string. And set API key as Authorization value in header and Content-Type as 'application/json'. The project key value generated during subsequent successful communication is stored in the projectKey variable.
 
 ```js
 let projectKey = await fetch('https://aistudios.com/api/odin/editor/project',

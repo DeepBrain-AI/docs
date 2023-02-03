@@ -3,7 +3,7 @@ sidebar_position: 3
 ---
 
 # AI Human Demo
-:::note related files
+:::note 관련 파일
 
 - DemoView.xaml
 - DemoViewModel.cs

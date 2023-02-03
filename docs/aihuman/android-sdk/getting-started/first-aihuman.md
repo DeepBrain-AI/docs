@@ -6,7 +6,7 @@ sidebar_position: 3
 
 In this chapter, we will quickly look at AIHuman(AIPlayer) setup process and make the default AI say a sentence. When running AIPlayer for the first time, it may take several minutes to load resources depending on the network condition. The progress of this loading process can be monitored.
 
-## 1. Create a project to test and complete the above project setup.
+## 1. Create a project and complete the previous project setup.
 
 ## 2. Create an Activity to include AIPlayer.
 Here we create AILiveQuickStart.java.
@@ -14,7 +14,7 @@ Here we create AILiveQuickStart.java.
 ## 3. Create a layout file.
 And make a view(eg. RelativeLayout) as a wrapper for the AIPlayer and set it as the Activity's contentView.
 
-**AI is drawn in parentView fully in vertical way.**
+**AI is drawn in parentView fully in vertical way.(scale 1.0)**
 
 In the sample below, the parentView is obtained with binding.aiWrapper by giving the name aiWrapper using viewBinding. But it doesn't matter if you don't use viewBinding (you can also use it with findViewById())
 
@@ -32,7 +32,7 @@ public class AILiveQuickStart extends AppCompatActivity {
   	protected void onCreate(@Nullable Bundle savedInstanceState) {
 	   	super.onCreate(savedInstanceState);
 	    binding = AILiveQuickStartBinding.inflate(getLayoutInflater());
-		  setContentView(binding.getRoot());
+		setContentView(binding.getRoot());
   }
 }
 ```
@@ -64,34 +64,32 @@ public class AILiveQuickStart extends AppCompatActivity {
 **If you insert the issued userKey and call the following method, it will respond in JSON format. If it succeeds, values such as defaultAI information will be received. If it fails, errors will be received.**
 
 ```java
-AIModelInfoManager.generateToken(this, "appId", "SDK_USER_KEY", resp -> {
-    /* resp
-    {"succeed":true,
-     "token":"eyJhbGciO...","expire":1608032460152,
-     "defaultAI":   {"fileN...} 
-    */
-}
+AIModelInfoManager.generateToken(this, appId, userkey, (aiError, resp) -> {
+      /* resp{
+          "succeed":true,
+          "defaultAI": {"ai_name":...}
+          */
+  });
 
-                                 
-AIModelInfoManager.generateToken(this, "SDK_USER_KEY", resp -> {
-    /* resp
-    {"succeed":true,
-     "token":"eyJhbGciO...","expire":1608032460152,
-     "defaultAI":   {"fileN...} 
-    */
-}
+//or                                  
+AIModelInfoManager.generateToken(this, userkey, (aiError, resp) -> {
+      /* resp{
+          "succeed":true,
+          "defaultAI": {"ai_name":...}
+          */
+  });
 ```
 
 ## 5. After authentication is successfully finished, create AIPlayer.
-AIPlayer takes the aiWrapper view created above.
+AIPlayer takes in the aiWrapper view.
 
 ```java
 //put aiWrapper in the argument and create AIPlayer.
-aiPlayer = AIPlayerFactory.create(this, binding.aiWrapper, AIHuman);
+aiPlayer = AIPlayerFactory.create(AILiveQuickStart.this, binding.aiWrapper, AILIVE, null);
 ```
 
 ## 6. After creating AIPlayer, it needs to set which AI to use.
-If authentication is successful, it can be set as the default AI.
+If authentication is successful, it can be set with the default AI.
 
 ```java
 //set default AI. If authentication fails, defaultAI will be null. 
@@ -101,7 +99,7 @@ aiPlayer.init(aiSettings, iAiPlayerCallback);
 ```
 
 ## 7. Let's make AIPlayer's callback as a member of Activity and set it in AIPlayer's init method to monitor the state of AIPlayer.
-Notice below that it sends a sentence("Nice to meet you") to AI when resource-loading(AIState.RES_LOAD_COMPLETED) is completed.
+Notice below that it sends a sentence("Nice to meet you") to AI when resource-loading(AIEvent.RES_LOAD_COMPLETED) is completed.
 
 ```java
 public class AILiveQuickStart extends AppCompatActivity {
@@ -109,10 +107,10 @@ public class AILiveQuickStart extends AppCompatActivity {
     //make AIPlayer's callback, 
     private IAIPlayerCallback iAiPlayerCallback = new IAIPlayerCallback() {
         @Override
-        public void onAIStateChanged(AIState state) {
-            switch (state.state) {
-                case AIState.RES_LOAD_COMPLETED:
-                    //utter when AIPlayer's resource ready.
+        public void onAIPlayerEvent(AIEvent event) {
+            switch (event.type) {
+                case RES_LOAD_COMPLETED:
+                    //speak when ready
                     sendSpeakToAI("Nice to meet you.");
                     break;
             }
@@ -122,16 +120,17 @@ public class AILiveQuickStart extends AppCompatActivity {
   
     @Override
   	protected void onCreate(@Nullable Bundle savedInstanceState) {
-	   	super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);
 
-     
-      //set callback in AIPlayer's init method 
-      aiPlayer.init(aiSettings, iAiPlayerCallback);  
+        //...
+        //set callback in AIPlayer's init method 
+        aiPlayer.init(aiSettings, iAiPlayerCallback);  
     }
   
     private void sendSpeakToAI(String text) {
         aiPlayer.send(new String[]{text});
-    } 
+        binding.info.setText("Sent : " + text);
+    }
  }
 ```
 
@@ -140,11 +139,14 @@ public class AILiveQuickStart extends AppCompatActivity {
 Activity code (AILiveQuickStart.java)
 
 ```java
+package ai.moneybrain.aiplatform.sample.activity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import ai.moneybrain.aiplatform.ai.AIError;
@@ -152,7 +154,7 @@ import ai.moneybrain.aiplatform.ai.AIModelInfo;
 import ai.moneybrain.aiplatform.ai.AIModelInfoManager;
 import ai.moneybrain.aiplatform.ai.AIPlayerFactory;
 import ai.moneybrain.aiplatform.ai.AIPlayerSettings;
-import ai.moneybrain.aiplatform.ai.AIState;
+import ai.moneybrain.aiplatform.ai.AIEvent;
 import ai.moneybrain.aiplatform.ai.interfaces.IAIPlayer;
 import ai.moneybrain.aiplatform.ai.interfaces.IAIPlayerCallback;
 import ai.moneybrain.aiplatform.sample.R;
@@ -162,16 +164,20 @@ import ai.moneybrain.aiplatform.sample.utils.Utils;
 import static ai.moneybrain.aiplatform.ai.interfaces.IAIPlayer.AIPlayerType.AILIVE;
 
 public class AILiveQuickStart extends AppCompatActivity {
-    private AiliveQuickStartBinding binding; //viewBinding 사용
+    private String TAG = "AILiveQuickStart";
+
+    private AiliveQuickStartBinding binding;
     private IAIPlayer aiPlayer;
 
-    //AIPlayer callback
+    private String appId, userkey;
+
+    //make AIPlayer's callback,
     private IAIPlayerCallback iAiPlayerCallback = new IAIPlayerCallback() {
         @Override
-        public void onAIStateChanged(AIState state) {
-            switch (state.state) {
-                case AIState.RES_LOAD_COMPLETED:
-                    //speak when ready  
+        public void onAIPlayerEvent(AIEvent event) {
+            switch (event.type) {
+                case RES_LOAD_COMPLETED:
+                    //speak when ready
                     sendSpeakToAI("Nice to meet you.");
                     break;
             }
@@ -179,13 +185,15 @@ public class AILiveQuickStart extends AppCompatActivity {
 
         @Override
         public void onAIPlayerResLoadingProgressed(int current, int total) {
-            String s = getString(R.string.ai_resource_loading)  + " : " + (int)(((float)current)/total*100)+ "%";
-            Log.d("AILiveQuickStart", s);
-            binding.info.setText(s);
+            binding.info.setText(getString(R.string.ai_resource_loading) +
+                    " : " + (int) (((float) current) / total * 100) + "%");
         }
 
         @Override
         public void onAIPlayerError(AIError error) {
+            Log.d(TAG, "onAIPlayerError: " + error);
+
+            binding.info.setText(error.message);
         }
     };
 
@@ -194,26 +202,31 @@ public class AILiveQuickStart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = AiliveQuickStartBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getSupportActionBar().hide();
+        initActBar();
 
-        //SDK auth 
-        AIModelInfoManager.generateToken(this, "SDK_USER_KEY", resp -> {
-            /* resp value 
-				    {"succeed":true,
-				     "token":"eyJhbGciO...","expire":1608032460152,
-				     "defaultAI":   {"fileN...}
-				    */
+        initSDKAuthInfoVars();
 
-            //create AIPlayer using aiwrapper
-            aiPlayer = AIPlayerFactory.create(AILiveQuickStart.this, binding.aiWrapper, AILIVE, null);
+        //SDK auth
+        AIModelInfoManager.generateToken(this, appId, userkey, (aiError, resp) -> {
+            /* resp{
+                "succeed":true,
+				"defaultAI": {"ai_name":...}
+		    */
 
-            //set ai as default ai 
-            AIModelInfo defaultAI = AIModelInfoManager.getDefaultAIModelInfo();
-            AIPlayerSettings aiSettings = new AIPlayerSettings(defaultAI.getName(), AILIVE, 1.0f, 40, 1);
-            aiPlayer.init(aiSettings, iAiPlayerCallback);
+            if (aiError == null) {
+                //create aiplayer inside aiWrapper
+                aiPlayer = AIPlayerFactory.create(AILiveQuickStart.this, binding.aiWrapper, AILIVE, null);
+
+                //init with default ai
+                AIModelInfo defaultAI = AIModelInfoManager.getDefaultAIModelInfo();
+                AIPlayerSettings aiSettings = new AIPlayerSettings(defaultAI.getName(), AILIVE, 0.8f, 40, 1);
+                aiPlayer.init(aiSettings, iAiPlayerCallback);
+            } else {
+                Log.d(TAG, "onCreate: generateToken error:" + aiError);
+            }
         });
 
-        //speak typing in 
+        //enter text to send
         binding.input.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEND) {
                 onSendBtnClick();
@@ -227,7 +240,19 @@ public class AILiveQuickStart extends AppCompatActivity {
         });
     }
 
-    private void onSendBtnClick(){
+    private void initActBar() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
+    }
+
+    private void initSDKAuthInfoVars() {
+        appId = getString(R.string.appid);
+        userkey = getString(R.string.userkey);
+    }
+
+    private void onSendBtnClick() {
         String s = binding.input.getText().toString();
         if (!s.isEmpty()) {
             sendSpeakToAI(s);

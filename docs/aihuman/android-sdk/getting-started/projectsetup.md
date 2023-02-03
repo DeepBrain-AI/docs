@@ -4,11 +4,11 @@ sidebar_position: 2
 
 # Project Setup
 
-In this chapter, you will learn how to create and register UserKey and AppId, etc. required for authentication for using AI Human SDK.
+In this chapter, you will learn how to create a project and register UserKey using android project's AppId. Userkey is required for authentication to use AI Human SDK.
 
 ## 1. Create android project using Android Studio.
 
-Below is the project's setting.(It is sample, not mandatory)
+Below is the project's setting.(It is a sample, not mandatory)
 
 <img src="/img/aihuman/android/screenshot_projectsetup_1.png"/>
 

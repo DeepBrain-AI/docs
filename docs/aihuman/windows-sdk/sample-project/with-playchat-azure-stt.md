@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # with Playchat & Azure STT
 
-:::note related files
+:::note 관련 파일
 
 - PlaychatView.xaml
 - PlaychatViewModel.cs

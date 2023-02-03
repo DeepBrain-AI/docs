@@ -6,21 +6,21 @@ sidebar_position: 8
 
 ## AIPlayerVerticalAlignment
 
-Vertical alignment used when changing AIPlayer size.
+AIPlayer의 크기를 변경 할 때 수직 기준점을 정한다.
 
 | Name                   | Description                                         |
 | ----- | --------- |
-| `top`                  | top alignment |
-| `center`               | center alignment |
-| `bottom`               | bottom alignment |
+| `top`                  | 상단 기준점   |
+| `center`               | 중앙 기준점   |
+| `bottom`               | 하단 기준점   |
 
 
 ## AIPlayerHorizontalAlignment
 
-Horizontal alignment used when changing AIPlayer size.
+AIPlayer의 크기를 변경 할 때 수평 기준점을 정한다.
 
 | Name                   | Description     |
 | ----- | --------- |
-| `left`                 | left alignment |
-| `center`               | center alignment |
-| `right`                | right alignment |
+| `left`                 | 왼쪽 기준점       |
+| `center`               | 중앙 기준점       |
+| `right`                | 오른쪽 기준점      |

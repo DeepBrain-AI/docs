@@ -12,14 +12,13 @@ sidebar_position: 5
 
 AI Human + PlayChat + STT is a demo of an interactive AI service. Basically, it is similar to AIHuman + DialogFlow, but instead of typing in the keyboard, users can have a voice conversation with the AI. AI greets you when you enter the screen. ('Hello long time no see.')
 
-After the greeting, if a voice input signal ''**Speak Now**" appears below , say '**where are you**'. The AI understands the sentence and responds with an appropriate answer. Currently, the chatbot has limited speech sets, so it can only answer a few questions. If the chatbot is more advanced, it can be applied to  a variety of situations such as ordering at a restaurant or making a reservation. In addition, the chatbot can also display images with information on the side in addition to text.(Chatbot server should be implemented for this.)
+After the greeting, if a voice input signal **Speak Now** appears below , say **where are you**. The AI understands the sentence and responds with an appropriate answer. Currently, the chatbot has limited speech sets, so it can only answer a few questions. If the chatbot is more advanced, it can be applied to  a variety of situations such as ordering at a restaurant or making a reservation. In addition, the chatbot can also display images with information on the side in addition to text.(Chatbot server should be implemented for this.)
 
 <p align="center">
 <img src="/img/aihuman/android/Screenshot_20211207-010111.png" style={{zoom: "25%"}} />
 </p>
 
-## 1. Set the AI and UI.
-First, get a list of available AIs and then set up the UI.
+## 1. Set up the AI and UI.
 
 ```java
 @Override
@@ -29,36 +28,36 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
     setContentView(binding.getRoot());
 
   	//...
-    AIModelInfoManager.getAIList(resp -> {
-        /* resp
-        {"succeed":true,
-          "ai":[{"aiName":"vida","aiDisplayName":"Vida","language":"en"},			
-          {"aiName":"bret","aiDisplayName":"Bret","language":"en"},
-          ... }
-         */
-        if (resp != null) {
-            if (resp.optBoolean("succeed")) {
+    AIModelInfoManager.getAIList((aiError, resp) -> {
+            /* resp{
+                "succeed":true,
+                "ai":[{"aiName":"vida","aiDisplayName":"Vida","language":"en"},
+                {"aiName":"bret","aiDisplayName":"Bret","language":"en"},
+                {"aiName":"danny","aiDisplayName":"Danny","language":"en"},
+                {"aiName":"samh","aiDisplayName":"Samh","language":"en"},
+                {"aiName":"kang","aiDisplayName":"Kang","language":"ko"}]}
+             */
+
+            if (aiError == null) {
                 initAIChatbotController();
             } else {
-                Log.d(TAG, "onFinishedWithList: resp error" + resp.toString());
+                Log.d(TAG, "onFinishedWithList: getAIList error" + aiError);
             }
-        } else {
-            Log.d(TAG, "onFinishedWithList: resp null");
-        }
-    });
+        });
 }
 ```
 
 ## 2. Initialize Chatbot with Speech Recongnition.
 Initialize PlayChat with a voice recognition function (STT). (AI is set as the default AI)
 
-First, create a chatbot with the ChatbotFactory's static method (**createMBPlayChatbotWithSTT**(,)) and then call the init( , ) method. This class implements IChatbot interface and **IChatbotWithSTT**, which also inherits ISpeechToTextController for STT operation. Therefore, you can call STT-related startRecognize() and stopRecognize() methods along with the existing chatbot methods (send(,), etc.).
+First, create a chatbot with the ChatbotFactory's static method (**MBPlayChatbot.newMBChatbot(,)**) and then call the init( , ) method. Then you can call STT-related startRecognize() and stopRecognize() methods along with the existing chatbot methods (send(,), etc.).
 
 **Set GoogleSTT for STT**
 
-Create stt instance with GoogleSTT class. This class which implements ISTT can start and stop speech recognition using  'startRecognize(), stopRecognize()' methods. GoogleSTT class use 'Service' inside so that AndroidManifest.xml needs to be set like below.
+Create stt instance with GoogleSTT class. This class which implements ISTT can start and stop speech recognition using  'startRecognize(), stopRecognize()' methods. GoogleSTT class use 'Service' inside so that AndroidManifest.xml needs to be set like below. Be aware where the stt package sits.
 ```xml
-<service android:name="ai.moneybrain.aiplatform.ai.chatbot.playchat.SpeechService"/>
+<service android:name=".stt.google.SpeechService"
+            android:exported="false" />
 ```
 
 Also, it uses google API which needs google credential file that is explained below. 
@@ -132,50 +131,60 @@ private void resetChatbotWithSTT(String sttType) {
 };
 ```
 
+<br/>
+
 **Get started with speech recognition**
 
 You can turn on the voice recognition by calling **startRecognize()** method directly as shown below. To turn off voice recognition, call **stopRecognize()**, and each call will receive a response to callback.
 
-In the callback signal of speech recognition, **ChatbotState.START_RECOGNIZING** will be returned from onChatbotStateChanged when startRecognize() is called, and **ChatbotState.STOP_RECOGNIZING** when **stopRecognize()** is called. In addition, there are two more callback values:
+In the callback signal of speech recognition, **STTState.START_RECOGNIZING** will be returned from onChatbotStateChanged when startRecognize() is called, and **STTState.STOP_RECOGNIZING** when **stopRecognize()** is called. In addition, there are two more callback values:
 
-- **ChatbotState.NEW_SPEECH_POSTED** : Called when the recognized word is delivered to the chatbot. For example, it comes after when the user says "Hello. Good morning."
-- **ChatbotState.NEW_SPEECH_RECOGNIZED** : This comes in when the recognized word is updated in the middle of recognition. For example, if the user said "Hello. Good morning", it would show all recognitions like "hello", "hello good morning" or any combination of those. This can be used to show the user that STT is responding.
+- **STTState.NEW_SPEECH_POSTED** : Called when the recognized word is delivered to the chatbot. For example, it comes after when the user says "Hello. Good morning."
+- **STTState.NEW_SPEECH_RECOGNIZED** : This comes in when the recognized word is updated in the middle of recognition. For example, if the user said "Hello. Good morning", it would show all recognitions like "hello", "hello good morning" or any combination of those. This can be used to show the user that STT is responding.
 
 ```java
 //turn on  
-chatbot.startRecognize(0);
+stt.startRecognize(0);
 
 //turn off
-//chatbot.stopRecognize();
+stt.stopRecognize();
 
 /**
-  * Chatbot(Playchat) callback
+  * ISTT callback
   */
-	private IChatbotCallback iChatbotCallback = new IChatbotCallback() {
+	private final ISTTCallback iSTTListener = new ISTTCallback() {
+
         @Override
-        public void onChatbotStateChanged(ChatbotState state) {
+        public void onSTTStateChanged(STTState state) {
+            Log.d(TAG, "onSTTStateChanged: " + state.state + " " + state.data);
             switch (state.state) {
-								// ... 
-                case ChatbotState.START_RECOGNIZING:
-                    binding.chatState.setText("Speak now.");
+                case STTState.START_RECOGNIZING:
+                    binding.chatState.setText(getString(R.string.speak_now));
                     binding.chatState.setVisibility(View.VISIBLE);
+                    binding.sttRestartBtn.setVisibility(View.GONE);
                     break;
-                case ChatbotState.STOP_RECOGNIZING:
+                case STTState.STOP_RECOGNIZING:
                     binding.chatState.setStaticText("");
                     binding.chatState.setVisibility(View.INVISIBLE);
                     break;
-                case ChatbotState.NEW_SPEECH_RECOGNIZED:
+                case STTState.NEW_SPEECH_RECOGNIZED:
                     binding.chatState.setStaticText(state.data.optString(Constants.KEY_SPEECH));
-                    //binding.chatState.setVisibility(View.VISIBLE);
                     break;
-                case ChatbotState.NEW_SPEECH_POSTED:
-                    //binding.textInput.setText(null);
-                    aiChatbotCtlr.onRecognizedSpeechPosted(state.data.optString(Constants.KEY_SPEECH));
+                case STTState.NEW_FINAL_SPEECH:
+                    aiChatbotCtlr.sendUserInputToChatbot(state.data.optString(Constants.KEY_SPEECH));
+                    break;
             }
         }
 
- 			//...
-};
+        @Override
+        public void onSTTError(STTError error) {
+            Log.d(TAG, "onSTTError:" + error);
+            Toast.makeText(AILiveWithMBPlayChatWithSTTDemo.this, error.toString(), Toast.LENGTH_SHORT).show();
+
+            binding.chatState.setVisibility(View.GONE);
+            binding.sttRestartBtn.setVisibility(View.VISIBLE);
+        }
+    };
 ```
 
 ## 4. Using AI + chatbot + voice recognition together.

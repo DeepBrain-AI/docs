@@ -6,8 +6,8 @@ sidebar_position: 7
 
 | Name     | Description     |
 | -------- | --------------- |
-| `var id`           | `String { getter }` read only<br/> Voice ID                               |
-| `var name`          | `String { getter }` read only<br/> Voice name                                    |
-| `var language`          | `String { getter }` read only<br/> Supported language                                    |
-| `var gender`          | `[String] { getter }` read only<br/> Categorize gender                                    |
+| `var id`           | `String { getter }` 읽기 전용 <br/> 음성 ID                               |
+| `var name`          | `String { getter }` 읽기 전용 <br/> 음성 이름                                    |
+| `var language`          | `String { getter }` 읽기 전용 <br/> 지원 언어                                    |
+| `var gender`          | `[String] { getter }` 읽기 전용 <br/> 분류 성별                                    |
 

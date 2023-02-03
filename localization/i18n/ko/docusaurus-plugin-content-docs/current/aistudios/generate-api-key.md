@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Generate API Key
+# API 키 발급하기
 
 <br/>
 
@@ -10,10 +10,10 @@ sidebar_position: 2
 
 <br/><br/>
 
-**You need an API Key to use the AI Studios API.**  
+**AI Studios API를 사용하려면 API Key가 필요합니다.**  
 
-Get your API Key now and automate your video export process.
+API 키를 생성해서 비디오 내보내기 프로세스를 자동화를 경험해 보세요.
 
-The AI Studios API is available for customers on the Enterprise Plan and above.
+AI Studios API는 엔터프라이즈 이상의 고객이 이용할 수 있다.
 
-[Create API Key](https://aistudios.com)
+[API 키 생성하기](https://aistudios.com)

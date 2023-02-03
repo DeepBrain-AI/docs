@@ -4,7 +4,7 @@ sidebar_position: 1
 slug: /aihuman/web-sdk
 ---
 
-# 개요
+# 소개
 
 **Basic Concepts of AI Human (Video Conversation or AILive)**
 

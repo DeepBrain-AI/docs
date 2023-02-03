@@ -6,8 +6,8 @@ sidebar_position: 7
 
 | Modifier and Type           | Method and Description                                       |
 | --------------------------- | ------------------------------------------------------------ |
-| `static void`               | `generateToken(@NonNull Context context, String userKey, IAuthListener listener)`  try to authorize with the userkey. If it is successful, you can use the default ai and listener function will be called. |
-| `static void`               | `generateToken(@NonNull Context context, String appId, String userKey, IAuthListener listener)` try to authorize with the appId and userkey. If it is successful, you can use the default ai and listener function will be called. |
+| `static void`               | `generateToken(@NonNull Context context, @NonNull String appId, @NonNull String userKey, @NonNull IAuthListener listener)`  try to authorize with the userkey. If it is successful, you can use the default ai and listener function will be called. |
+| `static void`               | `generateToken(@NonNull Context context, @NonNull String userKey, @NonNull IAuthListener listener)` try to authorize with the appId and userkey. If it is successful, you can use the default ai and listener function will be called. |
 | `static void`               | `getAIList(AIModelInfoManager.IAPIListener listener)`  get available ai list | 
 | `static JSONArray`          | `getReceivedAIWithType(String type2Dor3D)` get the ai filtered list with type(2D or 3D). In case of 3D ai, UnityActivity should be used. |
 | `static void`               | `getSampleTextList(String language, IAPIListener listener)` The sample text for the language will be delivered with listener function.  |

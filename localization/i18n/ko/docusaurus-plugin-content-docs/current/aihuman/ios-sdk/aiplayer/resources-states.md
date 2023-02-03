@@ -2,32 +2,32 @@
 sidebar_position: 3
 ---
 
-# AIPlayer Resources and States
+# 이벤트 확인하기
 
-Check if resource is fully loaded in AIPlayer
+AIPlayer를 위한 리소스가 완전히 로드되었는지 확인하기
 
-On class creation, AIPlayer automatically starts loading resources. You can check the loading status in registered delegate property. 
+객체 생성 후 AIPlayer는 자동으로 리소스 로딩이 시작되고 등록 된 **delegate** 에 리소스 로딩 상태가 보고된다.
 
-### Monitor resource loading through AIPlayerCallback
+### AIPlayerCallback을 통한 리소스 로딩 상태 모니터링
 
-You can check if the resource loading started and completed through the onAIPlayerStateChanged method.
+먼저 **delegate**의 onAIPlayerEvent 메소드를 통해 리소스의 로딩 시작과 완료를 알 수가 있다.
 
-- AIPlayerState.loadingResource : On loading start
-- AIPlayerState.didFinishLoadingResource : On loading complete
+- AIState.RES_LOAD_STARTED : 리소스 로딩 시작
+- AIState.RES_LOAD_COMPLETED : 리소스 로딩 완료
 
-While the resource is loading you can use onAIPlayerResLoadingProgressed method to check loading progress. 
+리소스가 로딩 되는 중에는 onAIPlayerResLoadingProgressed 메소드를 통해서 로딩의 상태를 백분율로 확인 할 수가 있다.
 
-If an error occurs during resource load, an error is reported through onAIPlayerError method. 
+또한, 로딩 과정 중에서 문제가 발생 한다면 onAIPlayerError 메소드를 통해 이를 알려 준다.
 
-```Swift
+```swift
 extension AISampleViewController: AIPlayerCallback {
-	func onAIPlayerStateChanged(state: AIPlayerState, type: AIClipSetType, key: String?) {
-	    switch state {
+	func onAIPlayerEvent(event: AIEvent) {
+	    switch event.type {
 	    	...
-	    	case .loadingResource:
+	    	case .RES_LOAD_STARTED:
 	    		print("AI Resource loading started.")
 	    	break
-	    	case .didFinishLoadingResource:
+	    	case .RES_LOAD_COMPLETED:
 	    		print("AI Resource loading completed.")
 	    	break
 	    	...
@@ -38,7 +38,7 @@ extension AISampleViewController: AIPlayerCallback {
         print("progress : \(progress)")
     }
 
-    func onAIPlayerError(error: Error?, state: AIPlayerState) {
+    func onAIPlayerError(error: AIError?) {
     	print("AI Player error : \(state)")
     	if let error = error {
 			print(error.localizedDescription)

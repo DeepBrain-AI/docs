@@ -27,30 +27,29 @@ In addition, if special characters, lists of incomplete characters, numbers, for
 
 ### Montoring speech state through AIPlayerCallback
 
-You can check AIPlayer's state through onAIPlayerStateChanged method in the __delegate__ property. 
+You can check AIPlayer's state through onAIPlayerEvent method in the __delegate__ property. 
 
-- AIPlayerState.prepareSpeaking : Ready to start speaking
-- AIPlayerState.startSpeaking : Speaking started
-- AIPlayerState.speakNext : Whether to speak the next sentence in queue
-- AIPlayerState.didFinishSpeaking : Speaking finished
+- AIState.AICLIPSET_PLAY_PREPARE_STARTED : Playing prepare started
+- AIState.AICLIPSET_PLAY_PREPARE_COMPLETED : Playing prepare completed
+- AIState.AICLIPSET_PLAY_STARTED : Playing started
+- AIState.AICLIPSET_PLAY_COMPLETED : Playing completed
+- AIState.AICLIPSET_PLAY_FAILED : Playing failed
 
 ```Swift
 extension AISampleViewController: AIPlayerCallback {
-	func onAIPlayerStateChanged(state: AIPlayerState, type: AIClipSetType, key: String?) {
-	    switch state {
+	func onAIPlayerEvent(event: AIEvent) {
+	    switch event.type {
 	    	...
-	    	case .prepareSpeaking:
-	    		print("AI finished preparation to speak.")
-	    	break
-	    	case .startSpeaking:
-	    		print("AI started speaking.")
-	    	break
-	    	case .speakNext:
-	    		print("AI started preparation to next speak.")
-	    	break
-	    	case .didFinishSpeaking:
-	    		print("AI finished speaking.")
-	    	break
+	    	case .AICLIPSET_PLAY_PREPARE_STARTED:
+                print("start prepare")
+            case .AICLIPSET_PLAY_PREPARE_COMPLETED:
+                print("did finish prepare")
+            case .AICLIPSET_PLAY_STARTED:
+                print("start speaking : \(event.clipset?.getClipKey())")
+            case .AICLIPSET_PLAY_COMPLETED:
+                print("did finish speaking : \(event.clipset?.getClipKey())")
+			case .AICLIPSET_PLAY_FAILED:
+				print("failed speaking : \(event.clipset?.getClipKey())")
 	    	...
 	    }
 	}

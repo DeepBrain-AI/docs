@@ -2,11 +2,11 @@
 sidebar_position: 1
 ---
 
-# Overview
+# 개요
 
-In this chapter, we will learn how to set up and use the AIPlayer object that can perform specific actions by actually displaying AI Human.
+이번 챕터에서는 AI Human을 실제로 표시하여 특정 동작을 수행할 수 있는 AIPlayer 객체를 설정하고 사용하는 방법에 대해 알아봅니다.
 
-AIPlayer consists of UserControl type View and ViewModel that controls related routines. For more details, please refer to the contents below and the main class API manual.
+AIPlayer는 기본적으로 뷰 객체이며, 플레이어로서 동작 시킬 수 있는 메소드와 동작 시에 이벤트를 전달하는 콜백이 있습니다. 자세한 사항은 해당 챕터 내용 및 API 편람을 참조하세요.
 
 
 :::tip Dev Tips!

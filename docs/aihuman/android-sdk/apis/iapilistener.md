@@ -1,9 +1,9 @@
 ---
-sidebar_position: 13
+sidebar_position: 11
 ---
 
-# Interface AIErrorPublisher.IOnAIErrorListener
+# Interface AIModelInfoManager.IAPIListener
 
 | Modifier and Type | Method and Description                                       |
 | :---------------- | :----------------------------------------------------------- |
-| `void`            | `onError(AIError error)` called when an error occurs internally |
+| `void`            | `onFinishedWithList(AIError aiError, JSONObject resp)` called when API call has finished |

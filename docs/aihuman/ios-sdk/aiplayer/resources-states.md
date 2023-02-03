@@ -10,10 +10,10 @@ On class creation, AIPlayer automatically starts loading resources. You can chec
 
 ### Monitor resource loading through AIPlayerCallback
 
-You can check if the resource loading started and completed through the onAIPlayerStateChanged method.
+You can check if the resource loading started and completed through the onAIPlayerEvent method.
 
-- AIPlayerState.loadingResource : On loading start
-- AIPlayerState.didFinishLoadingResource : On loading complete
+- AIState.RES_LOAD_STARTED : On loading start
+- AIState.RES_LOAD_COMPLETED : On loading complete
 
 While the resource is loading you can use onAIPlayerResLoadingProgressed method to check loading progress. 
 
@@ -21,13 +21,13 @@ If an error occurs during resource load, an error is reported through onAIPlayer
 
 ```Swift
 extension AISampleViewController: AIPlayerCallback {
-	func onAIPlayerStateChanged(state: AIPlayerState, type: AIClipSetType, key: String?) {
-	    switch state {
+	func onAIPlayerEvent(event: AIEvent) {
+	    switch event.type {
 	    	...
-	    	case .loadingResource:
+	    	case .RES_LOAD_STARTED:
 	    		print("AI Resource loading started.")
 	    	break
-	    	case .didFinishLoadingResource:
+	    	case .RES_LOAD_COMPLETED:
 	    		print("AI Resource loading completed.")
 	    	break
 	    	...
@@ -38,7 +38,7 @@ extension AISampleViewController: AIPlayerCallback {
         print("progress : \(progress)")
     }
 
-    func onAIPlayerError(error: Error?, state: AIPlayerState) {
+    func onAIPlayerError(error: AIError?) {
     	print("AI Player error : \(state)")
     	if let error = error {
 			print(error.localizedDescription)

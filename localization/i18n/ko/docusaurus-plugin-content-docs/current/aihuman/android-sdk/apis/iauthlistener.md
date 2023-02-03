@@ -2,8 +2,10 @@
 sidebar_position: 12
 ---
 
-# Interface AIStatePublisher.IOnStateChangeListener
+# IAuthListener
+
+Interface AIModelInfoManager.IAuthListener
 
 | Modifier and Type | Method and Description                                       |
 | :---------------- | :----------------------------------------------------------- |
-| `void`            | `onStateChanged(AIState state)` called when ai's state changes internally |
+| `void`            | `onFinished(AIError aiError, JSONObject resp)` 인증 관련(generateToken) API 호출시 콜백 |

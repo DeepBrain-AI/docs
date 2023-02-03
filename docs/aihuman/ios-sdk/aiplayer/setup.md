@@ -40,21 +40,20 @@ Once authentication completes, AIPlayer object contains authentication result da
 AIPlayer authenticates and returns the authentication result. To check which AIs can be used after authentication, call the following method after  authentication succeeds. If there is no AI available or if this value is checked before authentication, 0 is returned.
 
 ```swift
-AIPlayer.getAiList { [weak self] (code, res, error) in
-    /* code : succeeded = 0, failed != 0
-    res : {"ai": [
+AIPlayer.getAiList { [weak self] (res, error) in
+    /* res : {"ai": [
                 {aiName: "", aiDisplayName: "", language: ""}
                 ]}
     error : succeeded = nil, failed = error
     */
-    guard code == 0 else {
+    guard let res == res else {
         if let error = error {
-            print(error.localizedDescription)
+            print(error)
         }
         return
     }
     
-    if let list = res?["ai"] as? Array<[String: Any]> {
+    if let list = res["ai"] as? Array<[String: Any]> {
         ...
     }
 }
@@ -79,7 +78,7 @@ class CustomViewController: UIViewController, AIPlayerCallback {
 
  	...
 
-  	AIPlayer.create(name: "ai_name") { [weak self] (code, aiPlayer, error) in
+  	AIPlayer.create(name: "ai_name") { [weak self] (aiPlayer, error) in
 	  	guard let aiPlayer = aiPlayer else {
 	  		...
 	  		return

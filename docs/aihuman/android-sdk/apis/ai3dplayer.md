@@ -9,7 +9,6 @@ sidebar_position: 2
 | `java.lang.String`       | `getAIName()` get the name of the currently set ai           |
 | `float`                  | `getScale()` get the scale of the currently set ai           |
 | `float`                  | `getSpeed()` get the speed of the currently set ai           |
-| `AIState`                | `getState()` last ai's state                                 |
 | `IAIPlayer.AIPlayerType` | `getType()` get the type of the currently set ai (AILIVE, UNITY) |
 | `void`                   | `init(AIPlayerSettings config, IAIPlayerCallback callback)` init after creation. |
 | `void`                   | `pausePlay()`                                                |
@@ -33,3 +32,7 @@ sidebar_position: 2
 | `CustomVoice`            | `getCustomVoice()` Get the current customVoice of set ai. It returns null if not set.  |
 | `String`                 | `getLanguageCode()` get current voice's language (en or en-US format)  |
 | `String`                 | `getGender()` get current ai's gender. MALE, FEMALE, UNI are possible and return null if the ai is not set.  |
+| `AIPlayerState`                 | `getState()` get current AIPlayer's State  |
+| `boolean`                 | `isConnected()` check if AI is connected and can send  |
+| `boolean`                 | `canPreload()` return false. (Not support)  |
+| `boolean`                 | `reconnect(IAIReconnectCallback reconnectCallback)` reconnect when AI is not connected. Return false if it is connected or can't reconnect. |

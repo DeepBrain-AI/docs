@@ -2,39 +2,40 @@
 sidebar_position: 2
 ---
 
-# Project Set up
+# 프로젝트 셋업하기
 
-In this chapter, you will learn how to create and register UserKey and AppId, etc. required for authentication for using AI Human SDK.
+이번 챕터에서는 AI Human SDK를 이용한 인증에 필요한 UserKey, AppId 등을 생성하고 등록하는 방법에 대해 알 수 있다.
 
 ## 1. Download SDK
-You can download SDKs for each platform here. **[AI Human SDK Website](https://aitalk.deepbrainai.io)**.
+**[AI Human SDK Website](https://aitalk.deepbrain.io)**에서 각 플랫폼에 대한 SDK를 다운로드할 수 있다.
 
-## 2. Create an Xcode project and cocoapods
+## 2. Xcode 프로젝트 생성
 
-Create project to use the AI Human SDK in the Xcode.
+SDK를 적용 할 Xcode 프로젝트를 생성한다.
 
-Add the **AIPlayer.podspec file and the AIPlayer folder** to the Project folder.
+프로젝트 폴더에 **AIPlayerSDK.podspec 파일과 the AIPlayerSDK 폴더**를 추가한다.
 
 
-## 3. Setup the project
+## 3. project 설정
 
-Changing the terminal path to the location of the project.
+터미널에서 경로를 프로젝트가 위치한 곳으로 변경한다.
 
-#### 3-1. Create Podfile
+#### 3-1. Podfile 생성
 
-Create a cocoapods configuration file.
-- **Cocoapods** is a library dependency management manager that allows you to use numerous Xcode project libraries.
-- You can find out how to install and use it at **[cocoapods](https://cocoapods.org)**.
+cocoapods 구성 파일을 만든다.
+- **Cocoapods**는 다양한 Xcode 프로젝트 라이브러리를 사용할 수 있는 라이브러리 종속성 관리자이다.
+- 설치 및 사용 방법은 **[cocoapods](https://cocoapods.org)**에서 확인할 수 있다.
 
 ```console
 cd /project_path
 pod init
 ```
 
-#### 3-2. Add and install `pod 'AIPlayer'`
+#### 3-2. `pod 'AIPlayerSDK'` 추가 및 설치
 
-Open the generated podfile and add **AIPlayer**. <br/>
-It does not support bitcode, so it is necessary to add disabling bitcode at the bottom of podfile.
+생성된 podfile을 열고 **AIPlayerSDK**를 추가한다. <br/>
+3D캐릭터를 사용하려면 **`pod 'AIPlayerSDK/Include3D'`**를 추가해야 한다.
+실행 시에 라이브러리를 찾지 못하는 문제가 생기는 경우에는 post_install 부분을 추가해 줘야 한다.
 
 ```console
 target 'your project' do
@@ -42,7 +43,8 @@ target 'your project' do
   use_frameworks!
 
   # Pods for your project
-	pod 'AIPlayer', :path => '.'  // add AIPlayer SDK Cocoapods
+	pod 'AIPlayerSDK', :path => '.'  // 2D만 사용 가능한 AIPlayer SDK 추가
+  #pod 'AIPlayerSDK/Include3D', :path => '.'  // 2D와 3D를 사용 가능한 AIPlayer SDK 추가
 
   target 'your project tests' do
     inherit! :search_paths
@@ -55,23 +57,23 @@ target 'your project' do
 
 end
 
-# disable cocoapods BITCODE
+# enable cocoapods BUILD_LIBRARY_FOR_DISTRIBUTION
 post_install do |installer|
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
-            config.build_settings['ENABLE_BITCODE'] = 'NO'
+            config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
         end
     end
 end
 ```
 
-For the objective c project, you must add
+Objective-C 프로젝트에서 사용할 때는 스위프트의 버젼을 podfile에 명시해 줘야 한다.
 ```
 ENV['SWIFT_VERSION'] = '5'
 ```
  to the podfile.
 
-After saving the podfile, you can add the library through the command below in the terminal.
+podfile을 저장한 후 터미널에서 아래 명령을 통해 라이브러리를 추가할 수 있다.
 
 ```
 pod install
@@ -79,24 +81,24 @@ pod install
 
 <br/>
 
-#### 3-3. Change project setting
+#### 3-3. 프로젝트 설정 변경
 
 <img src="/img/aihuman/ios/aisample_disable_bitcode.png" /> <br/>
  
- After running the .xcworkspace file, disable **Enble Bitcode** in the build settings of the project.
+ .xcworkspace 파일을 실행한 후 **build setting**에서 **Enble Bitcode**를 사용하지 않음으로 설정한다.
 
 <br/>
 
-## 4. Notes for reference
+## 4. 참고 사항
 
-- AIPlayer SDK works with **iOS 10.0** or later.
+- AIPlayer SDK는 with **iOS 11.0** 이상에서 작동합니다.
 
-- AIPlayer SDK works with **Swift 5** or later.
+- AIPlayer SDK는 with **Swift 5** 이상에서 작동합니다.
 
-- To use AIPlayer SDK, You must work with **xCode 12** or later
+- AIPlayer SDK를 사용하기 위해서는 **xCode 12** 이상에서 작업해야 합니다.
 
-- Note1: It is not possible to build on the simulator.
+- 참조1: 3D를 포함한 SDK의 경우 시뮬레이터에서는 실행이 불가능합니다.
 
-- Note2: Currently, SDK including 3D cannot be debugged on iOS 16 and later devices.
+- 참조2: 현재 iOS 16 이상 기기에서는 3D를 포함한 SDK를 디버깅할 수 없습니다.
 
 <br/>

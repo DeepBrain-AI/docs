@@ -91,7 +91,7 @@ const sceneInfo = `{
 <br/>
 
 ## 3. Request Project Export API
-Request the set JSON data to the project export API. By 'export' we mean a legal request to create a video, and you can read more about the full kind of data you can send when making a Project Support API request [here](https://docs.deepbrain.io/aistudios/reference/export-project). At this time, the method delivers the JSON data (sceneInfo) set above to POST, body. And set API key as Authorization value in header and Content-Type as 'application/json'. The project key value generated during subsequent successful communication is stored in the projectKey variable.
+Request the set JSON data to the project export API. By 'export' we mean a legal request to create a video, and you can read more about the full kind of data you can send when making a Project Support API request [here](../reference/export-project). At this time, the method delivers the JSON data (sceneInfo) set above to POST, body. And set API key as Authorization value in header and Content-Type as 'application/json'. The project key value generated during subsequent successful communication is stored in the projectKey variable.
 
 ```js
 let projectKey = await fetch('https://aistudios.com/api/odin/editor/project',

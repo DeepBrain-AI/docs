@@ -2,23 +2,25 @@
 sidebar_position: 4
 ---
 
-# with Playchat
+# Playchat 연동
 
-:::note related files
+:::note 관련 파일
 
 - ChatbotSampleViewController.swift
 
 :::
 
-AI Human + PlayChat is a conversational AI service provided by DeepBrain AI.<br/>
-When you enter the screen, the AI gives you a greeting. After that, you can communicate with the AI.<br/>
-In the sample, the chatbot can respond to only a few limited conversations, but with more advanced PlayChat chatbot settings, it can be applied in a variety of situations, such as ordering at a restaurant or making a reservation.
+[PlayChat](https://aichat.deepbrainai.io/)은 DeepBrain AI의 ChatBot 솔루션이다.
+
+AI Human + PlayChat은 딥브레인 AI가 제공하는 대화형 AI 서비스다.<br/>
+화면에 진입하면 AI가 인사말을 건넨다. 인사말 이후 텍스트를 입력하면 입력된 텍스트에 따라 AI가 답변을 한다.<br/>
+샘플에서는 챗봇에 몇가지 제한된 대화에 대해서만 응답 할 수 있지만 플레이 챗봇을 고도화 시키면 상황에 따라 식당에서 주문하기나 공연 예약 등 다양하게 응용 할 수 있다.
 
 <p align="center">
 <img src="/img/aihuman/ios/aisample_ss_playchat.PNG" style={{zoom: "50%"}} />
 </p>
 
-**Creating a PlayChat chatbot**
+**플레이챗 챗봇 생성하기**
 
 ```swift
 func makeChatbot() {
@@ -26,8 +28,8 @@ func makeChatbot() {
 }
 ```
 
-**Getting started PlayChat**
-If you are connected after PlayChat is created, you can start chatting.
+**플레이챗 시작하기**
+플레이챗이 생성된 이후 정상적으로 접속이 되었다면 채팅을 시작할 수 있다.
 
 ```swift
 func didConnect() {
@@ -35,9 +37,9 @@ func didConnect() {
 }
 ```
 
-**CallBack**
+**플레이챗 콜백**
 
-You can check the connection states and errors of PlayChat, as well as messages received from the chatbot.
+PlayChat의 연결 상태와 오류, 챗봇에서 받은 메시지 등을 확인할 수 있다.
 
 ```swift
 extension ChatbotSampleViewController: MBPlayChatDelegate {
@@ -67,7 +69,7 @@ extension ChatbotSampleViewController: MBPlayChatDelegate {
 }
 ```
 
-**Send message to PlayChat**
+**플레이챗에 메세지 보내기**
 
 ```swift
 func sendToServer(text: String) {

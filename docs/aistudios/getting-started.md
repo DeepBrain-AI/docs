@@ -61,4 +61,4 @@ curl https://aistudios.com/api/odin/editor/progress/${key}
 
 ## 4. Other API documents
 
-[Detailed API reference document](https://docs.deepbrain.io/aistudios/reference/auth)
+[Detailed API reference document](reference/auth)

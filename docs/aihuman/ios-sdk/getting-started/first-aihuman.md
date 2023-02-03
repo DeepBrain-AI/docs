@@ -18,7 +18,7 @@ From the sample, you can learn more from the code in the file below.
 ### 2. Import it into the ViewController that AIPlayer will be included in. Add AIPlayer as a member variable.
 
 ```swift
-import AIPlayer
+import AIPlayerSDK
 
 class AIQuickSampleViewController {
 	var aiPlayer: AIPlayer!
@@ -31,7 +31,7 @@ class AIQuickSampleViewController {
 ### 3. Set appId and userKey in AIPlayer.
 
 You can add project for each platform here.
-**[https://aitalk.deepbrainai.io](https://aitalk.deepbrainai.io)**
+**[https://aitalk.deepbrain.io](https://aitalk.deepbrain.io)**
 
 <!-- <img src="images/aisample_regist_000.png" width="1191" height="301"> -->
 
@@ -66,14 +66,12 @@ In this step, after SDK authentication, the default registered AI object is crea
 
 ```swift
 AIPlayer.create { (aiPlayer) in
-            guard error == nil else {
-                return
-            }
+    guard error == nil else { return }
             
-            self.aiPlayer = aiPlayer
-            self.aiPlayer.delegate = self
-            self.view?.addSubview(aiPlayer!)
-        }
+    self.aiPlayer = aiPlayer
+    self.aiPlayer.delegate = self
+    self.view?.addSubview(aiPlayer!)
+}
 ```
 
 <br/>
@@ -88,17 +86,21 @@ If the AIPlayer creation is successful, you can register the delegate to check t
     ...
 
 extension AIQuickSampleViewController: AIPlayerCallback {
-    func onAIPlayerStateChanged(state: AIPlayerState, type: AIClipSetType, key: String?) {
-        if state == .didFinishLoadingResource {
-            DispatchQueue.main.async {
-                self.sendBtn.isEnabled = true       // enable speak button 
-            }
+    func onAIPlayerEvent(event: AIEvent) {
+        switch event.type {
+            ...
+            case .AI_STATE_CHANGED:
+                if self.aiState == .initialize && self.aiPlayer.state == .idle {
+                    self.sendBtn.isEnabled = true
+                }
+                self.aiState = self.aiPlayer.state
+            ...
         }
     }
 
     func onAIPlayerResLoadingProgressed(progress: Int) {
     }
-    func onAIPlayerError(error: Error?, state: AIPlayerState) {
+    func onAIPlayerError(error: AIError?) {
     }
 }
 ```
@@ -118,12 +120,17 @@ extension AIQuickSampleViewController: AIPlayerCallback {
 ### 8. The full code of the quickstart sample is shown below.
 
 ```swift
+// AppDelegate.swift
+
+let App_ID: String = "insert_project_appId"
+let User_Key: String = "insert_your_userKey"
+
 // The function called when the app runs.
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		...
 		
-        AIPlayer.setAppId("")
-        AIPlayer.setUserKey("")
+        AIPlayer.setAppId(App_ID)
+        AIPlayer.setUserKey(User_Key)
         
         let config = AIPlayerConfiguration(config: [AIPlayerConfiguration.KEY_ENABLE_VIEW_ASPECT_RATIO: true])
         AIPlayer.setConfig(config: config)
@@ -133,17 +140,22 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
 // AIQuickSampleViewController.swift
 import UIKit
-import AIPlayer
+import AIPlayerSDK
 
 class AIQuickSampleViewController: UIViewController {
     
     @IBOutlet var sendBtn: UIButton!
+    @IBOutlet weak var progressLabel: UILabel!
     var aiPlayer: AIPlayer!
+    
+    var aiState = AIState.initialize
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        progressLabel.text = "loading 0%"
+        progressLabel.isHidden = false
         self.getAI()
     }
     
@@ -153,44 +165,71 @@ class AIQuickSampleViewController: UIViewController {
         if aiPlayer != nil {
             aiPlayer.releasePlayer()
             aiPlayer.removeFromSuperview()
+            aiPlayer = nil
         }
     }
     
     @IBAction func sendButtonClicked(_ sender: Any) {
-        aiPlayer.send(text: "nice to meet you")
+        aiPlayer.send(text: "Nice to meet you.")
+    }
+    @IBAction func closeButtonClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func getAI() {
-        AIPlayer.create { (aiPlayer) in
-            guard aiPlayer != nil else {
+        
+        AIPlayer.create { [weak self] (aiPlayer, error) in
+            guard let aiPlayer = aiPlayer else {
+                if let error = error {
+                    print("\(error)")
+                }
                 return
             }
-            
-            self.aiPlayer = aiPlayer
-            self.aiPlayer.delegate = self
-            self.view?.addSubview(aiPlayer!)
-            
-            self.view.sendSubviewToBack(self.aiPlayer)
+
+            if let strongSelf = self {
+                strongSelf.aiPlayer = aiPlayer
+                strongSelf.aiPlayer.delegate = self
+                strongSelf.view?.addSubview(aiPlayer)
+                strongSelf.view?.sendSubviewToBack(aiPlayer)
+                
+                let r = strongSelf.view.bounds
+                aiPlayer.frame = r
+            }
         }
     }
 }
 
 extension AIQuickSampleViewController: AIPlayerCallback {
-    func onAIPlayerStateChanged(state: AIPlayerState, type: AIClipSetType, key: String?) {
-        if state == .didFinishLoadingResource {
-        		print("did finish loading resource")
-        		DispatchQueue.main.async {
-                self.sendBtn.isEnabled = true       // enable speak button
-             }
-        }else if state == .startSpeaking {
-        		print("start speaking \(String(describing: key))")
-        }else if state == .didFinishSpeaking {
-        		print("did finish speaking")
+    func onAIPlayerEvent(event: AIEvent) {
+        DispatchQueue.main.async {
+            switch event.type {
+            case .RES_LOAD_STARTED:
+                self.progressLabel.isHidden = false
+            case .RES_LOAD_COMPLETED:
+                print("did finish loading resource")
+            case .AI_STATE_CHANGED:
+                if self.aiState == .initialize && self.aiPlayer.state == .idle {
+                    self.progressLabel.isHidden = true
+                    self.sendBtn.isEnabled = true
+                }
+                self.aiState = self.aiPlayer.state
+            case .AICLIPSET_PLAY_STARTED:
+                print("start speaking : \(event.clipset?.speechText)")
+            case .AICLIPSET_PLAY_COMPLETED:
+                print("did finish speaking : \(event.clipset?.speechText)")
+            default:
+                break
+            }
         }
     }
+
     func onAIPlayerResLoadingProgressed(progress: Int) {
+        print("progress \(progress)")
+        self.progressLabel.text = "loading \(progress)%"
     }
-    func onAIPlayerError(error: Error?, state: AIPlayerState) {
+    
+    func onAIPlayerError(error: AIError?) {
+        print("error \(String(describing: error))")
     }
 }
 ```

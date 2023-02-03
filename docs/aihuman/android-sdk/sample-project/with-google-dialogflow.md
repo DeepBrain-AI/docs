@@ -18,10 +18,8 @@ To set up, go to the DialogFlow service first, create a chatbot you want, and th
 <img src="/img/aihuman/android/Screenshot_20211207-005743.png" style={{zoom: "25%"}} />
 </p>
 
-## 1. Set the AI and UI.
+## 1. Set up the AI and UI.
 First, get a list of available AIs and then set up the UI.
-
-Here, Google DialogFlow is set as a chatbot.
 
 ```java
 @Override
@@ -31,19 +29,20 @@ Here, Google DialogFlow is set as a chatbot.
         setContentView(binding.getRoot());
 
       	//...
-        AIModelInfoManager.getAIList(resp -> {
+        AIModelInfoManager.getAIList((aiError, resp) -> {
             /* resp
             {"succeed":true,
-              "ai":[{"aiName":"vida","aiDisplayName":"Vida","language":"en"}, ...
+              "ai":[{"aiName":"vida","aiDisplayName":"Vida","language":"en"},
+              {"aiName":"bret","aiDisplayName":"Bret","language":"en"},
+              {"aiName":"danny","aiDisplayName":"Danny","language":"en"},
+              {"aiName":"samh","aiDisplayName":"Samh","language":"en"},
+              {"aiName":"kang","aiDisplayName":"Kang","language":"ko"}]}
              */
-            if (resp != null) {
-                if (resp.optBoolean("succeed")){
-                    initThis();
-                } else {
-                    Log.d(TAG, "onFinishedWithList: resp error" + resp.toString());
-                }
+
+            if (aiError == null) {
+                initThis();
             } else {
-                Log.d(TAG, "onFinishedWithList: resp null");
+                Log.d(TAG, "onFinishedWithList: getAIList error: " + aiError);
             }
         });
     }
@@ -55,9 +54,8 @@ Here, Google DialogFlow is set as a chatbot.
 ```
 
 ## 2. Configuration of Chatbot.
-Configuration of Chatbot (DialogFlow wrapper class) is as follows.
 
-First, create a DialogFlow chatbot with the ChatbotFactory's static method (ChatbotFactory.createEnginebased(,)).
+First, create a DialogFlow chatbot with 'new DialogFlowChatbot()'.
 
 **Get the Dialogflow credential file.**
 
@@ -94,7 +92,7 @@ private void initAIChatbotController() {
   * Chatbot(DialogFlow)s' callback 
   */
 private IChatbotCallback iChatbotCallback = new IChatbotCallback() {
-	/**
+/**
   * Called when Chatbot's state changed.
   * @param state. You can subclass the ChatbotState class when you needed.
   */
@@ -114,14 +112,14 @@ private IChatbotCallback iChatbotCallback = new IChatbotCallback() {
  You can send a message by calling the **send(Constants.CMD_QUERY, JSONObject)** method to the chatbot as shown below. The desired text and **language code** is added as a "query" key of JSON (Constants.KEY_QUERY in this case) and sent.
 
 ```java
-JSONObject json = new JSONObject();
-try {
-    json.put(Constants.KEY_QUERY, query);
-    json.put(Constants.KEY_LANGUAGECODE, languageCode);
-} catch (JSONException e) {
-    e.printStackTrace();
-}
-bSent = chatbot.send(Constants.CMD_QUERY, json);
+    JSONObject json = new JSONObject();
+    try {
+        json.put(Constants.KEY_QUERY, query);
+        json.put(Constants.KEY_LANGUAGECODE, languageCode);
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+    bSent = chatbot.send(Constants.CMD_QUERY, json);
 ```
 
 **Manage AIPlayer and Dialogflow chatbot in one class**
@@ -157,23 +155,15 @@ private void initUIs() {
 */
 private IChatbotCallback iChatbotCallback = new IChatbotCallback() {
 	//...
-  /**
-		* when recevied Chatbot's response
-		* @param response. KEY_MESSAGE is the key of JSON's content.
-		*/
 	@Override
 	public void onChatbotMessage(JSONObject response) {
-  	aiChatbotCtlr.onChatbotMessage(response);
-  }
+  	    aiChatbotCtlr.onChatbotMessage(response);
+    }
   //...
 };
 
 private class AIChatbotController implements LifecycleObserver {
-      //...
-        /**
-         * when chatbot is responding 
-         * @param resp chatbot's response
-         */
+    //...
         public void onChatbotMessage(JSONObject resp) {
             if (resp != null) {
                 sendAIMessage(resp.optString(Constants.KEY_MESSAGE));

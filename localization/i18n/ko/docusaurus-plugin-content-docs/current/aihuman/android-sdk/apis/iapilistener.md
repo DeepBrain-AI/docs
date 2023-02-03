@@ -2,8 +2,10 @@
 sidebar_position: 11
 ---
 
-# Interface AIModelInfoManager.IAuthWithAIListListener
+# IAPIListener
+
+Interface AIModelInfoManager.IAPIListener
 
 | Modifier and Type | Method and Description                                       |
 | :---------------- | :----------------------------------------------------------- |
-| `void`            | `onFinishedWithList(org.json.JSONObject resp)` called when getAIList is finished |
+| `void`            | `onFinishedWithList(AIError aiError, JSONObject resp)` 일반 API 호출시 콜백 |

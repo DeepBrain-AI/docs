@@ -10,7 +10,7 @@ Let's create several chroma key images. Chroma Key refers to a form in which onl
 
 ## 1. API key settings
 
-Authentication is required for all API communications within AISTUDIOS. The API key is used for this purpose. Sets the API key issued to the token variable. If you don't have the issued key yet, you can issue it through [Generate API key](https://docs.deepbrain.io/aistudios/generate-api-key).
+Authentication is required for all API communications within AI Studios. The API key is used for this purpose. Sets the API key issued to the token variable. If you don't have the issued key yet, you can issue it through [Generate API key](../generate-api-key).
 ```js
 const token = '##JWT##'; // API KEY
 ```
@@ -18,7 +18,7 @@ const token = '##JWT##'; // API KEY
 <br/>
 
 ## 2. Set API request data
-Refer to the example below to set the Chroma Key Export API request data by the number of images to be generated. 'Export' means a composite request to generate an image, and the data required to request a chroma key export API include language (language), text (metabolism), model (model ID), and clothes (clothes ID) values. You can find more information about AI models in the [AI Model List](https://docs.deepbrain.io/aistudios/reference/model-list).
+Refer to the example below to set the Chroma Key Export API request data by the number of images to be generated. 'Export' means a composite request to generate an image, and the data required to request a chroma key export API include language (language), text (metabolism), model (model ID), and clothes (clothes ID) values. You can find more information about AI models in the [AI Model List](../reference/model-list).
 ```js
 const jobs = [
     {
