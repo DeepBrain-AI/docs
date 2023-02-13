@@ -171,10 +171,10 @@ export default handler;
   }
 ```
 
-| 파라미터 | 설명                                      |
-|----------|-------------------------------------------|
-| botType  | `projectInfo.defaultSetting.chatbot.type` |
-| botInfo  | `projectInfo.defaultSetting.chatbot.info` |
+| 파라미터 | 설명                       |
+|----------|----------------------------|
+| botType  | `projectInfo.chatbot.type` |
+| botInfo  | `projectInfo.chatbot.info` |
 
 <br />
 
