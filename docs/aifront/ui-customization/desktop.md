@@ -63,13 +63,13 @@ slug: /aifront/desktop
   />
 ```
 
-| 속성            | 설명                  | 타입      | 디폴트                                     |
-|-----------------|-----------------------|-----------|--------------------------------------------|
-| isShowLogo      | 로고 표시 여부        | `boolean` | `true`                                     |
-| logo            | 로고 이미지 소스      | `string`  | `//img/aifront/template/deepbrainLogo.svg` |
-| isShowMenu      | 메뉴 버튼 표시 여부   | `boolean` | `true`                                     |
-| setOpenSideMenu |                       |           |                                            |
-| menuImg         | 메뉴 버튼 이미지 소스 | `string`  | `//img/aifront/template/Menu.svg`          |
+| 속성            | 설명                  | 타입      | 디폴트                                    |
+|-----------------|-----------------------|-----------|-------------------------------------------|
+| isShowLogo      | 로고 표시 여부        | `boolean` | `true`                                    |
+| logo            | 로고 이미지 소스      | `string`  | `/img/aifront/template/deepbrainLogo.svg` |
+| isShowMenu      | 메뉴 버튼 표시 여부   | `boolean` | `true`                                    |
+| setOpenSideMenu |                       |           |                                           |
+| menuImg         | 메뉴 버튼 이미지 소스 | `string`  | `/img/aifront/template/Menu.svg`          |
 
 
 <br />
