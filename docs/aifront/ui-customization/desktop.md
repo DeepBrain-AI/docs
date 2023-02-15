@@ -53,7 +53,7 @@ slug: /aifront/desktop
 ![DesktopGNB](/img/aifront/desktop-gnb.png)
 
 
-```javascript
+```html
   <DesktopGNB
     isShowLogo={projectData?.uiInfo?.components?.logo}
     logo={projectData?.uiInfo?.images?.logo}
@@ -63,13 +63,13 @@ slug: /aifront/desktop
   />
 ```
 
-| 속성            | 설명                  | 타입      | 디폴트                                     |
-|-----------------|-----------------------|-----------|--------------------------------------------|
-| isShowLogo      | 로고 표시 여부        | `boolean` | `true`                                     |
-| logo            | 로고 이미지 소스      | `string`  | `//img/aifront/template/deepbrainLogo.svg` |
-| isShowMenu      | 메뉴 버튼 표시 여부   | `boolean` | `true`                                     |
-| setOpenSideMenu |                       |           |                                            |
-| menuImg         | 메뉴 버튼 이미지 소스 | `string`  | `//img/aifront/template/Menu.svg`          |
+| 속성            | 설명                           | 타입      | 디폴트                                    |
+|-----------------|--------------------------------|-----------|-------------------------------------------|
+| isShowLogo      | 로고 표시 여부                 | `boolean` | `true`                                    |
+| logo            | 로고 이미지 소스               | `string`  | `/img/aifront/template/deepbrainLogo.svg` |
+| isShowMenu      | 메뉴 버튼 표시 여부            | `boolean` | `true`                                    |
+| setOpenSideMenu | 사이드메뉴 오픈 상태 관리 함수 |           |                                           |
+| menuImg         | 메뉴 버튼 이미지 소스          | `string`  | `/img/aifront/template/Menu.svg`          |
 
 
 <br />
@@ -82,7 +82,7 @@ AI Human의 모드와 말하기 속도를 설정할 수 있습니다.
 
 ![DesktopSideMenu](/img/aifront/desktop-sidemenu.png)
 
-```javascript
+```html
   <DesktopSideMenu
     openSideMenu={openSideMenu}
     setOpenSideMenu={setOpenSideMenu}
@@ -93,14 +93,14 @@ AI Human의 모드와 말하기 속도를 설정할 수 있습니다.
   />
 ```
 
-| 속성            | 설명                                                                          | 타입                  | 디폴트         |
-|-----------------|-------------------------------------------------------------------------------|-----------------------|----------------|
-| openSideMenu    |                                                                               |                       |                |
-| setOpenSideMenu |                                                                               |                       |                |
-| defaultSpeed    | 초기 설정될 AI Human의 말하기 속도                                            | `number`              | `1`            |
-| modeState       | AI Human 모드                                                                 | `conversation \| tts` | `conversation` |
-| setModeState    |                                                                               |                       |                |
-| ttsAvail        | TTS Mode 선택 가능 여부. `false`일 경우 TTS Mode 라디오 버튼이 표시되지 않음. | `boolean`             | `false`        |
+| 속성            | 설명                                                                          | 타입                                     | 디폴트           |
+|-----------------|-------------------------------------------------------------------------------|------------------------------------------|------------------|
+| openSideMenu    | 사이드메뉴 오픈 상태                                                          | `boolean`                                | `false`          |
+| setOpenSideMenu | 사이드메뉴 오픈 상태 관리 함수                                                |                                          |                  |
+| defaultSpeed    | 초기 설정될 AI Human의 말하기 속도                                            | `number`                                 | `1`              |
+| modeState       | AI Human 모드                                                                 | <code>'conversation' &#124; 'tts'</code> | `'conversation'` |
+| setModeState    | AI Human 모드 상태 관리 함수                                                  |                                          |                  |
+| ttsAvail        | TTS Mode 선택 가능 여부. `false`일 경우 TTS Mode 라디오 버튼이 표시되지 않음. | `boolean`                                | `false`          |
 
 
 
@@ -110,7 +110,7 @@ AI Human의 모드와 말하기 속도를 설정할 수 있습니다.
 
 AI Human이 화면에 표시되는 영역입니다.
 
-```javascript
+```html
   <DesktopAiLive
     isReady={isReady}
     setIsReady={setIsReady}
@@ -121,14 +121,14 @@ AI Human이 화면에 표시되는 영역입니다.
   />
 ```
 
-| 속성          | 설명                       | 타입      | 디폴트 |
-|---------------|----------------------------|-----------|--------|
-| isReady       | AI Human 로딩 완료 여부    | `boolean` |        |
-| setIsReady    |                            |           |        |
-| startModel    |                            |           |        |
-| setStartModel |                            |           |        |
-| isMicReady    | 마이크 사용 준비 완료 여부 | `boolean` |        |
-| setIsMicReady |                            | `boolean` |        |
+| 속성          | 설명                              | 타입      | 디폴트  |
+|---------------|-----------------------------------|-----------|---------|
+| isReady       | AI Human 로딩 완료 상태           | `boolean` | `false` |
+| setIsReady    | AI Human 로딩 완료 상태 관리 함수 |           |         |
+| startModel    | AI Human 사용 시작 상태           | `boolean` | `false` |
+| setStartModel | AI Human 사용 시작 상태 관리 함수 |           |         |
+| isMicReady    | 마이크 사용 준비 상태             | `boolean` | `false` |
+| setIsMicReady | 마이크 사용 준비 상태 관리 함수   |           |         |
 
 
 ```javascript
@@ -161,7 +161,7 @@ AI Human SDK와 관련된 코드는 `components/_common/aiResources.js`를 참�
 
   텍스트를 입력하고 엔터 키를 입력하거나 우측 버튼을 클릭할 경우 AI Human이 입력된 텍스트를 발화합니다.
 
-  ```javascript
+  ```html
     <DesktopTTSBar
       isLoading={isLoading}
       setIsLoading={setIsLoading}
@@ -169,11 +169,11 @@ AI Human SDK와 관련된 코드는 `components/_common/aiResources.js`를 참�
     />
   ```
 
-| 속성         | 설명 | 타입       | 디폴트 |
-|--------------|------|------------|--------|
-| isLoading    |      | `boolean`  |        |
-| setIsLoading |      | `function` |        |
-| language     |      | `string`   |        |
+| 속성         | 설명                            | 타입       | 디폴트  |
+|--------------|---------------------------------|------------|---------|
+| isLoading    | AI Human 로딩 중 상태           | `boolean`  | `false` |
+| setIsLoading | AI Human 로딩 중 상태 관리 함수 | `function` |         |
+| language     |                                 | `string`   |         |
 
 
 <br />
@@ -203,7 +203,7 @@ AI Human의 Interactive Mode가 `conversation`으로 설정되었을 때 표시�
 
   챗봇 답변에 포함된 이미지나 날씨 정보, 외부 동영상 등의 콘텐츠를 표시할 수 있습니다.
 
-  ```javascript
+  ```html
     <DesktopPanelBox
       recentChat={aiRecentChat}
       panel={panel}
@@ -211,11 +211,11 @@ AI Human의 Interactive Mode가 `conversation`으로 설정되었을 때 표시�
     />
   ```
 
-  | 속성       | 설명                  | 타입                    | 디폴트                                        |
-  |------------|-----------------------|-------------------------|-----------------------------------------------|
-  | recentChat |                       |                         |                                               |
-  | panel      | 패널 기본 이미지 소스 | `string`                | `/img/aifront/template/panelContentLarge.svg` |
-  | degree     |                       | `Celsius \| Fahrenheit` | `Celsius`                                     |
+  | 속성       | 설명                  | 타입                                   | 디폴트                                        |
+  |------------|-----------------------|----------------------------------------|-----------------------------------------------|
+  | recentChat |                       |                                        |                                               |
+  | panel      | 패널 기본 이미지 소스 | `string`                               | `/img/aifront/template/panelContentLarge.svg` |
+  | degree     |                       | <code>Celsius &#124; Fahrenheit</code> | `Celsius`                                     |
 
   <br />
 
@@ -223,7 +223,7 @@ AI Human의 Interactive Mode가 `conversation`으로 설정되었을 때 표시�
 
   AI Human과 연결된 챗봇에게 전달 가능한 질문 예시를 보여주는 영역입니다.
 
-  ```javascript
+  ```html
     {hasHint && isShowHintBox && (
       <div className={styles.hintBox}>
         <DesktopHintBox
@@ -237,7 +237,7 @@ AI Human의 Interactive Mode가 `conversation`으로 설정되었을 때 표시�
 
   | 속성      | 설명      | 타입       | 디폴트 |
   |-----------|-----------|------------|--------|
-  | hint      | 질문 예시 | `array`    |        |
+  | hint      | 질문 예시 | `string[]` |        |
   | language  |           | `string`   |        |
   | clickHint |           | `function` |        |
 

@@ -38,7 +38,7 @@ Create a chatbot on [Deepbrain AI Chat](https://aichat.deepbrainai.io) and conne
 
 ![playchat-04](/img/aitalk/playchat-04.png)
 
-1. Copy and paste botId into your AI Human project.
+4. Copy and paste botId into your AI Human project.
 
 <br />
 

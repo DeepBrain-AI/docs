@@ -15,17 +15,17 @@ slug: /aifront/ui-customization/mobile
 
 ![MobileGNB](/img/aifront/mobile-gnb.png)
 
-```javascript
+```html
   <GNB
     setOpenSideMenu={setOpenSideMenu}
     logo={projectData?.uiInfo?.images?.logo}
   />
 ```
 
-| 속성            | 설명             | 타입     | 디폴트                                     |
-|-----------------|------------------|----------|--------------------------------------------|
-| setOpenSideMenu |                  |          |                                            |
-| logo            | 로고 이미지 소스 | `string` | `//img/aifront/template/deepbrainLogo.svg` |
+| 속성            | 설명             | 타입     | 디폴트                                    |
+|-----------------|------------------|----------|-------------------------------------------|
+| setOpenSideMenu |                  |          |                                           |
+| logo            | 로고 이미지 소스 | `string` | `/img/aifront/template/deepbrainLogo.svg` |
 
 `DesktopGNB`와 다르게 로고와 사이드 메뉴 버튼이 항상 표시됩니다.
 
@@ -57,7 +57,7 @@ slug: /aifront/ui-customization/mobile
 
 ![MobileTTS](/img/aifront/mobile-tts.png)
 
-```javascript
+```html
   <TTSBar
     isLoading={isLoading}
     setIsLoading={setIsLoading}
@@ -77,7 +77,7 @@ slug: /aifront/ui-customization/mobile
 ![MobileInputBar](/img/aifront/mobile-inputbar-open.png)
 
 
-```javascript
+```html
   <InputBar
     isReady={isReady}
     hint={projectData?.uiInfo?.hintPanel?.contents}
