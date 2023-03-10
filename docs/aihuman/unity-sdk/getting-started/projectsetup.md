@@ -7,19 +7,18 @@ sidebar_position: 2
 In this chapter, you will learn how to create and register UserKey and AppId, etc. required for authentication for using AI Human SDK.
 
 ## 1. Create an account
-Create an account on the **[AI Human SDK Website](https://aitalk.deepbrainai.io)**.
+Create an account on the **[AI Human SDK Website](https://aihuman.deepbrain.io)**.
 
 ## 2. Add a project to My workspace
-Create a project in **[My workspace](https://aitalk.deepbrainai.io/aihuman/sdk)**, enter App Id of Platform(Android, iOS, Windows) and click confirm. Then User Key will be issued.
+Create a project in **[My workspace](https://aihuman.deepbrain.io/aihuman/sdk)**, enter App Id of Platform(Android, iOS, Windows) and click confirm. Then User Key will be issued.
 
 <img src="/img/aihuman/unity/SDK_WebPage_UserKey.png" />
 
-The appId, userKey, uuid, and platform information will be used as arguments for AuthStart(), an authentication function.
+The appId, userKey, and platform information will be used as arguments for Authenticate(), an authentication function.
 
 :::info
 - The appId is the project's unique Id, which is usually generated as "com.example.project.appname".
 - Userkey can create a project on the AI Human website and receive it while registering the appId.
-- Uuid refers to the unique ID of the device where the application is installed. Make it by calling Guide.NewGuid() and save and reuse it after initial creation so that it does not change every time you call it.
 - The platform value is set to match the App Platform. (Android, iOS, Windows)
 :::
 

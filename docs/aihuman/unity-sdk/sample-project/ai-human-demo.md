@@ -19,27 +19,33 @@ AI Human Demo is a page where you can try out various functionalities of AIPlaye
 
 - DemoAIHuman.cs
 
-```js
+```csharp
 private void Awake()
     {             
         // Start SDK authentication.
-        AIHumanSDKManager.Instance.AuthStart(OnCompleteAuth);
+        AIHumanSDKManager.Instance.Authenticate(OnCompleteAuth);
     }
-  
-    private void OnCompleteAuth(JToken aiList, string error)
+     
+    private void OnCompleteAuth(AIAPI.AIList aiList, AIError error)
     {
-        if (string.IsNullOrEmpty(error))
-        {      
-            // A list of available AIs can be obtained through CallBack.   
-            string strJson = aiList.Root.ToString();
-            _aiList = JsonConvert.DeserializeObject<AIAPI.AIList>(strJson);
+        if (error == null)
+        {                     
+            _aiList = aiList;
 
-            // Set AI of AIPlayer as the first AI on the list.                 
-            Init(_aiList.ai[0].aiName);
+            string[] aiNames = GetAINames();
+            if (aiNames != null && aiNames.Length > 0)
+            {
+                // Set AI of AIPlayer as the first AI on the list.       
+                Init(GetAINames()[0]);
+            }
+            else
+            {
+                Debug.LogError(string.Format("{0} {1}", nameof(DemoAIHuman), "There is no AI Model available."));
+            }
         }
         else
         {
-            Debug.LogError(string.Format("{0} {1}", nameof(AIHumanSDKManager), error));
+            Debug.LogError(string.Format("{0} {1} {2}", nameof(DemoAIHuman), error.ErrorCode, error.Description));
         }
     }
   
@@ -57,7 +63,7 @@ private void Awake()
 
 - DemoAIHuman.cs
 
-```js
+```csharp
     public void OnClickSpeak()
     {
         _sendingMessage.Clear();
@@ -134,7 +140,7 @@ private void Awake()
 
 - DemoPlayerCallback.cs
 
-```js
+```csharp
 public class DemoPlayerCallback : AIPlayerCallback
 {
     public override void OnAIPlayerError(AIError error)
@@ -145,26 +151,70 @@ public class DemoPlayerCallback : AIPlayerCallback
     {             
     }
 
-    public override void OnAIStateChanged(AIState state)
+    public override void OnAIPlayerEvent(AIEvent @event)
     {      
-        switch (state._state)
+        switch (@event.EventType)
         {
-            case AIState.Type.RES_LOAD_STARTED:             
-                break;             
-            case AIState.Type.RES_LOAD_COMPLETED:
-                break;
-            case AIState.Type.SPEAKING_PREPARE_STARTED:
-                break;
-            case AIState.Type.SPEAKING_PREPARE_COMPLETED:
-                break;
-            case AIState.Type.SPEAKING_STARTED:
-                break;
-            case AIState.Type.SPEAKING_COMPLETED:
-                break;
-            case AIState.Type.SPEAKING_PREPARE_PRELOAD_STARTED:
-                break;
-            case AIState.Type.SPEAKING_PREPARE_PRELOAD_COMPLETED:
-                break;
+            case AIEvent.Type.RES_LOAD_STARTED:
+                {                   
+                    break;
+                }
+            case AIEvent.Type.RES_LOAD_COMPLETED:
+                {                  
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PLAY_PREPARE_STARTED:
+                {                   
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PLAY_PREPARE_COMPLETED:
+                {                   
+                    break;
+                }            
+            case AIEvent.Type.AICLIPSET_PLAY_STARTED:
+                {                   
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PLAY_COMPLETED:
+                {                   
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PLAY_FAILED:
+                {                  
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PRELOAD_STARTED:
+                {                   
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PRELOAD_COMPLETED:
+                {                
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PRELOAD_FAILED:
+                {                   
+                    break;
+                }
+            case AIEvent.Type.AI_CONNECTED:
+                {                 
+                    break;
+                }
+            case AIEvent.Type.AI_DISCONNECTED:
+                {                    
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PLAY_BUFFERING:
+                {                  
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_RESTART_FROM_BUFFERING:
+                {                 
+                    break;
+                }
+            case AIEvent.Type.AIPLAYER_STATE_CHANGED:
+                {                  
+                    break;
+                }
         }
     }
 }
@@ -174,7 +224,7 @@ public class DemoPlayerCallback : AIPlayerCallback
 
 - DemoFrameImageProvider.cs
 
-```js
+```csharp
 public class DemoFrameImageProvider : AIFrameImageProvider
 { 
     public override void OnChangeBackgroundTexture(Vector3 scale, Texture2D bgTexture)
@@ -202,13 +252,16 @@ public class DemoFrameImageProvider : AIFrameImageProvider
 }
 ```
 
-Through onAIStateChanged implementation, you can receive CallBack of AI states shown below.
+Through OnAIPlayerEvent implementation, you can receive CallBack of AI states shown below.
 
-```js
-SPEAKING_STARTED: AI started speaking.
-SPEAKING_COMPLETED: AI finished speaking.
-SPEAKING_PREPARE_STARTED: AI started preparation to speak.
-RES_LOAD_COMPLETED: AI Resource loading completed.
+```csharp
 RES_LOAD_STARTED: AI Resource loading started.
-SPEAKING_PREPARE_COMPLETED: AI finished preparation to speak.
+RES_LOAD_COMPLETED: AI Resource loading completed.
+AICLIPSET_PLAY_PREPARE_STARTED: AI started preparation to speak.
+AICLIPSET_PLAY_PREPARE_COMPLETED: AI finished preparation to speak.
+AICLIPSET_PLAY_STARTED: AI started speaking.
+AICLIPSET_PLAY_COMPLETED: AI finished speaking.
+AICLIPSET_PLAY_FAILED: AI failed to speak.
+AI_CONNECTED: AI is connected.
+AI_DISCONNECTED: AI is disconnected.
 ```

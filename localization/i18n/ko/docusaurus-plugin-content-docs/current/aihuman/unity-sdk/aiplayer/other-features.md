@@ -3,15 +3,14 @@ sidebar_position: 6
 ---
 
 # 발화 이외 기능들
-(mainly related to AI settings)
 
-The following are actions other than the utterance of the AIPlayer (mainly related to AI settings).
+다음은 AIPlayer의 발화 이외의(주로 AI 설정 관련) 동작들이다.
 
-### Change AI Size(Scale)
+### AI 크기(스케일) 변경
 
-: You can change the size(scale) of AI. The possible value range is from 0.5 to 1.5.
+: AI의 크기(스케일)을 설정할 수 있다. 설정값 범위는 소수 0.5 ~ 1.5 이다.
 
-```js
+```csharp
 // set Property
 _aiPlayer.Scale = value;
 ```

@@ -16,4 +16,3 @@ In Quick Start, the following screen appears when the default AI creation and pr
 <img src="/img/aihuman/unity/quickstart_speech.png" style={{zoom: "40%"}} />
 </p>
 
-- Send : AI Model speaks the sentence entered in the TextBox at the bottom right.

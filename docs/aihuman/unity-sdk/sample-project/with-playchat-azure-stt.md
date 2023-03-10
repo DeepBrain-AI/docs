@@ -22,7 +22,7 @@ After the greeting, if a voice input signal **Speak now** appears below , say 'w
 
 If you want to use the conversational AI service mentioned in the demo, you need to prepare as follows.
 
-- Prepare your Playchat Bot ID: Already prepared in the demo (https://www.playchat.ai/docs/en/menual-chatbot-en.html)
+- Prepare your Playchat Bot ID: Already prepared in the demo (https://aichat.deepbrainai.io/)
 - Prepare Azure Speech Service Key and Endpoint: https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/overview
 
 Assign values to the PLAYCHAT_BOT_ID variables declared at the top of the class definition of the ChatbotManager.cs file.
@@ -32,7 +32,7 @@ The main thing is to continue the conversation with AI and voice. For this, AIPl
 
 First, after the chatbot is loaded, it sends a **"start"** signal to the chatbot, and when the chatbot recognizes it, it sends a **greeting message**. The greeting is delivered via IChatbotCallback's OnChatbotMessage function. DemoChatbot extracts the sentences to be delivered to AI from this message and delivers them to AIPlayer, allowing AI to speak.
 
-```js
+```csharp
 public void OnChatbotStateChanged(ChatbotState state)
 {
     switch (state.State)
@@ -67,20 +67,19 @@ public void OnChatbotMessage(JObject response)
 
 When speech is recognized through Azure STT, the content is delivered directly to the Playchat server. However, there are situations where you need to manually send a message or special signal to the chatbot. (This includes the "start" signal mentioned above.) To send the user's message, use the chatbot's Send function.
 
-```js
+```csharp
 bool Send(string command, JObject detail)
 ```
 
-Write the server function name you want in the command, and put the necessary arguments as key:value in detail.
+Write the server function name you want in the command, and put the necessary arguments as key:value in detail. The current command is as follows.
 
+- userInput : In the userInput function, input the argument value with text as the key.
 
-- In the userInput function, input the argument value with text as the key.
+- start : start function takes no arguments.
 
-- start function takes no arguments.
+- onMessage : onMessage basically comes with the following values. In particular, if the next value is true for 'extra' here, it means that there are additional messages. 
 
-- OnMessage basically comes with the following values. In particular, if the next value is true for 'extra' here, it means that there are additional messages. 
-
-```js
+```csharp
   /* example
   {"func_name":"onMessage",
   	"args":
@@ -94,7 +93,7 @@ Write the server function name you want in the command, and put the necessary ar
 
 - If there is an additional message, you can receive the additional message by sending it by adding **":next"**, which is a special argument indication, as the argument text in userInput.
 
-```js
+```csharp
 private void RequestNextMessageIfNeeded(JObject args)
 {
     if (args != null)

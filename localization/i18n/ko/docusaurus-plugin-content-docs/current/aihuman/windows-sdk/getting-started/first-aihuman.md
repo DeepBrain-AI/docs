@@ -4,38 +4,37 @@ sidebar_position: 3
 
 # 나의 AI Human 만들기
 
-In this chapter, we will quickly set up AIPlayer with the default AI and learn about AI speaking process. When setting up AIPlayer for the first time, it may take several minutes to load depending on the network condition.
+이번 장에서는 기본(default) AI Human 모델로 AIPlayer 객체를 셋업하고 AI 발화 절차에 대해 알아봅니다. AIPlayer가 처음 초기화될 때 네트워크 상태에 따라 모델 리소스 로딩을 하는 데 몇 분이 걸릴 수도 있습니다.
 
-For your information, it is similar to the QuickStart part of the Sample, which can be downloaded from the SDK website.
+참고로 아래 내용은 AI Human 웹사이트에서 다운로드 받을 수 있는 Sample Project의 Quick Start 부분과 유사합니다.
 
 <img src="/img/aihuman/windows/QuickStart_Main.png" />
 
-:::tip
-From the sample, you can learn more from the code in the file below.
+:::tip 정보
+Sample Project에서 아래 파일들을 참고하세요.
 - QuickStartView.xaml
 - QuickStartViewModel.cs
 :::
 
-### 1. Add View Control
-Add Layout Component(parent layout) to which AIPlayer will be added to MainWindow.xaml.
+### 1. View Control 추가하기
+AIPlayer의 View 컨트롤을 바인딩할 Control을 MainWindow.xaml에 추가합니다.
 
-The view that makes AI Human work is called AIPlayerView.
-Specify the location where you want the AI Human to appear, i.e. where you want the AIPlayerView to be placed.
+AI Human을 동작하게 하는 View를 AIPlayerView라고 합니다.
+AI Human 모델을 표시할 위치, 즉 Application에서 AIPlayerView를 배치할 위치를 지정합니다.
 
 <img src="/img/aihuman/windows/NewProject_Add_Layout.png"  />
 
 <img src="/img/aihuman/windows/NewProject_Add_AIPlayer.png" />
 
-### 2. Authenticate with AuthStart function
-Write a code related to authentication at the time of application initialization by referring to the code below.
+### 2. Authenticate 함수를 이용하여 인증하기
+아래 코드를 참고하여 Application 초기화 시 AI Human SDK 인증 관련 코드를 작성하세요.
 
 - App.xaml.cs
 
-  First, you need to authenticate. The userKey can be issued by registering the appId on the AI Human SDK Website.
+  SDK 구동을 위해 가장 먼저 인증 과정이 필요합니다. USERKEY는 AI Human 웹사이트에서 APPID를 등록하면 발급받을 수 있습니다.
 
 ```csharp
 using AIHuman.Core;
-using Newtonsoft.Json;
 using System.Windows;
 
 namespace WpfApp1
@@ -43,42 +42,48 @@ namespace WpfApp1
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+
+    /// <summary>
+    /// TODO: You must assign APPID and USERKEY.
+    /// <see cref="APPID"/> is a unique ID of the project(application ID).
+    /// <see cref="USERKEY"/> can be obtained by creating a project on the AIHuman Website and registering the App ID.
+    /// </summary>
+    private string APPID = "";
+    private string USERKEY ="";
+
     public partial class App : Application
     {
         public App()
         {
-            AIAPI.Instance.AuthStart("your appId", "your userKey", "your uuid", "wnds",
-                (aiLIst, error) =>
+            AIAPI.Instance.Authenticate(APPID, USERKEY, (aiLIst, error) => {
+                if (error == null && aiLIst != null)
                 {
-                    if (string.IsNullOrEmpty(error) && aiLIst != null)
-                    {
-                        string jsonStr = aiLIst.Root.ToString();
-                        AIAPI.AIList list = JsonConvert.DeserializeObject<AIAPI.AIList>(jsonStr);
-                        // $"Auth Complete, Avaliable Count: {list.ai.Length}";
-                    }
-                    else
-                    {
-                        MessageBox.Show($"AuthStart: {error}");
-                    }
+                    Log.Write($"Authenticate Completed, Avaliable Count: {aiLIst.ai.Length}", Log.Level.Info);
                 }
-            );
+                else
+                {
+                    Log.Write($"Authenticate Failed: {error}", Log.Level.Error);
+                }
+            });
         }
     }
 }
 ```
 
-### 3. Create AIPlayer Instance and Implement Callback
+### 3. AIPlayer 객체 생성 및 콜백 구현하기
 
-Read the code below to create an AIPlayer Instance and try to implement a callback related to AI Human state via IAIPlayerCallback inheritance.
+아래 코드를 참조하여 AIPlayer 객체를 생성하고 IAIPlayerCallback 인터페이스 상속을 통해 AI Human 이벤트 콜백 등의 함수들을 구현해 보세요.
 
 - MainWindowViewModel.cs
 
 ```csharp
 using AIHuman.Common;
 using AIHuman.Common.Base;
+using AIHuman.Common.Model;
 using AIHuman.Core;
 using AIHuman.Interface;
 using AIHuman.Media;
+using AIHuman.WPF;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -140,16 +145,14 @@ namespace WpfApp1
             SpeakCommand = new RelayCommand(Speak_Command);
         }
 
-        public void onAIPlayerError(AIError error)
+        public void OnAIPlayerError(AIError error)
         {
-            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
-            {
-                SpeechList.Add(error.getMessage());
-                AIStatusText = nameof(AIError);
-            }));
+            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, () => {
+                AIStatusText = error.ToString();
+            });
         }
 
-        public void onAIPlayerResLoadingProgressed(int current, int total)
+        public void OnAIPlayerResLoadingProgressed(int current, int total)
         {
             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
@@ -158,14 +161,32 @@ namespace WpfApp1
             }));
         }
 
-        public void onAIStateChanged(AIState state)
+        public void OnAIPlayerEvent(AIEvent aiEvent)
         {
-            switch (state.state)
+            switch (aiEvent.EventType)
             {
-                case AIState.RES_LOAD_COMPLETED:
+                case AIEvent.Type.RES_LOAD_STARTED:
+                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+                    {
+                        AIStatusText = "AI Resource loading started.";
+                    }));
+                    break;
+                case AIEvent.Type.RES_LOAD_COMPLETED:
                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
                     {
                         AIStatusText = "AI Resource loading completed.";
+                    }));
+                    break;
+                case AIEvent.Type.AICLIPSET_PLAY_STARTED:
+                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+                    {
+                        AIStatusText = "AI started speaking.";
+                    }));
+                    break;
+                case AIEvent.Type.AICLIPSET_PLAY_COMPLETED:
+                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+                    {
+                        AIStatusText = "AI finished speaking.";
                     }));
                     break;
             }
@@ -267,17 +288,15 @@ namespace WpfApp1
 ```
 
 :::info
-There are many omitted parts in the above explanation. Please refer to App.xaml, QuickStartView.xaml, and QuickStartViewModel.cs files by opening the Solution file of the given Sample. 
+위의 설명에는 생략된 부분이 많습니다. Sample Project를 다운로드 받아서 솔루션 파일 실행 및 App.xaml와 QuickStartView.xaml, QuickStartViewModel.cs들을 참고하세요.
 :::
 
-### 4. Command the AI to speak 
+### 4. AI 발화 시키기
 
-- Build Solution > Run > (Loading Resources) > Enter a sentence in the text box at the bottom right > Click the Send button
+- 솔루션 빌드 > 디버깅 없이 실행 > (AI Human 모델 리소스 로딩) > 우측 하단 텍스트 박스에 발화 시킬 문장 입력 > Send 버튼 클릭
 
 :::note
-The actual AI Human may differ from the screenshot.
+실제 기본(default) AI Human 모델은 스크린샷과 다를 수 있습니다.
 :::
 
   <img src="/img/aihuman/windows/Tutorial_danny_demo.png"  />
-
-

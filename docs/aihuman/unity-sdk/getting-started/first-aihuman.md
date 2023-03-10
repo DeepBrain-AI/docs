@@ -20,8 +20,8 @@ From the demo, you can learn more from the scene and code in the file below.
 
 #### 1-1. Select Assets > Create > Scene from the Unity Editor menu to create a new scene.
 #### 1-2. Delete the Main Camera and Directional Light game objects that are created by default.
-#### 1-3. Select AI Human SDK, AIPlayer, AIPlayer, and AIPlayerUI prefabs in the Assets/DeepBrainAI/SDK/Prefabs path of the Project window and place them in the Hierarchy window with drag and drop.
-#### 1-4. After selecting the AIHumanSDK game object in the Hierarchy window, enter or set the authentication information issued by **[AI Human SDK Website](https://aitalk.deepbrainai.io)** in the AppId, UserKey, Uuid, and Platform items of the Inspector > AIHumanSDKManager component. (If Uuid is not entered, it is automatically Call Guid.NewGuid() to create a Uuid.)
+#### 1-3. Select AIHumanSDK, AIPlayer, and AIPlayerUI prefabs in the Assets/DeepBrainAI/SDK/Prefabs path of the Project window and place them in the Hierarchy window with drag and drop.
+#### 1-4. After selecting the AIHumanSDK game object in the Hierarchy window, enter or set the authentication information issued by **[AI Human SDK Website](https://aihuman.deepbrain.io)** in the AppId, UserKey, and Platform items of the Inspector > AIHumanSDKManager component. 
 #### 1-5. In the Unity Editor menu, create a new game object through GameObject > Create Empty and set the name to QuickStart.
 
 <img src="/img/aihuman/unity/quickstart_hierarchy.png" />
@@ -35,7 +35,7 @@ Select Assets > Create > C# Script from the Unity Editor menu to create a script
 
 Inherit and implement AIPlayerCallback for monitoring AIPlayer behavior.
 
-```js
+```csharp
 using UnityEngine;
 using UnityEngine.UI;
 using AIHuman.Common;
@@ -44,56 +44,71 @@ using AIHuman.SDK;
 public class MyAIPlayerCallback : AIPlayerCallback
 {
     public Text _statusText;
-   
-    public override void OnAIPlayerError(AIError error)
-    {
-        Debug.LogError(string.Format("{0} {1}", nameof(MyAIPlayerCallback), error.GetMessage()));
 
-        _statusText.text = error.GetMessage();
+    public override void OnAIPlayerError(AIError error)
+    {              
+        Debug.LogError(string.Format("{0} {1}", nameof(MyAIPlayerCallback), error.ToString()));
+
+        _statusText.text = error.ToString();
     }
 
     public override void OnAIPlayerResLoadingProgressed(int current, int total)
-    {       
+    {
         float progress = ((float)current / (float)total) * 100f;
         _statusText.text = string.Format("AI Resource Loading... {0}%", (int)progress);
     }
 
-    public override void OnAIStateChanged(AIState state)
-    {
-        Debug.Log(string.Format("{0} {1}", nameof(MyAIPlayerCallback), state._state));
-
-        switch (state._state)
+    public override void OnAIPlayerEvent(AIEvent @event)
+    {       
+        Debug.Log(string.Format("{0} {1}", nameof(MyAIPlayerCallback), @event.EventType));
+        
+        switch (@event.EventType)
         {
-            case AIState.Type.RES_LOAD_STARTED:
+            case AIEvent.Type.RES_LOAD_STARTED:
                 {
                     _statusText.text = "AI Resource loading started.";
                     break;
                 }
-            case AIState.Type.RES_LOAD_COMPLETED:
+            case AIEvent.Type.RES_LOAD_COMPLETED:
                 {
-                    _statusText.text = "AI Resource loading completed.";                                    
+                    _statusText.text = "AI Resource loading completed.";
                     break;
                 }
-            case AIState.Type.SPEAKING_PREPARE_STARTED:
+            case AIEvent.Type.AICLIPSET_PLAY_PREPARE_STARTED:
                 {
                     _statusText.text = "AI started preparation to speak.";
                     break;
                 }
-            case AIState.Type.SPEAKING_PREPARE_COMPLETED:
+            case AIEvent.Type.AICLIPSET_PLAY_PREPARE_COMPLETED:
                 {
                     _statusText.text = "AI finished preparation to speak.";
                     break;
                 }
-            case AIState.Type.SPEAKING_STARTED:
+            case AIEvent.Type.AICLIPSET_PLAY_STARTED:
                 {
                     _statusText.text = "AI started speaking.";                  
                     break;
                 }
-            case AIState.Type.SPEAKING_COMPLETED:
+            case AIEvent.Type.AICLIPSET_PLAY_COMPLETED:
                 {
-                    _statusText.text = "AI finished speaking.";                  
+                    _statusText.text = "AI finished speaking.";                    
                     break;
-                }          
+                }
+            case AIEvent.Type.AICLIPSET_PLAY_FAILED:
+                {
+                    _statusText.text = "AI failed to speak.";
+                    break;
+                }           
+            case AIEvent.Type.AI_CONNECTED:
+                {
+                    _statusText.text = "AI is connected.";
+                    break;
+                }
+            case AIEvent.Type.AI_DISCONNECTED:
+                {
+                    _statusText.text = "AI is disconnected.";
+                    break;
+                }                      
         }
     }
 }
@@ -103,7 +118,7 @@ public class MyAIPlayerCallback : AIPlayerCallback
 
 Implement ImageProvider by inheriting AIFrameImageProvider to receive AI resources (UnityEngine.Texture2D).
 
-```js
+```csharp
 using UnityEngine;
 using UnityEngine.UI;
 using AIHuman.SDK;
@@ -161,14 +176,14 @@ public class MyAIFrameImageProvider : AIFrameImageProvider
 
 Write the SDK authentication process and AIPlayer initialization code. It also implements AI speaking through Button clicks.
 
-```js
+```csharp
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
 using AIHuman.SDK;
+using AIHuman.Common;
 using AIHuman.View;
 using AIHuman.Core;
-using Newtonsoft.Json.Linq;
 
 public class QuickStart : MonoBehaviour
 {
@@ -182,29 +197,29 @@ public class QuickStart : MonoBehaviour
     private StringBuilder _sb = new StringBuilder();
 
     private void Awake()
-    {      
-        AIHumanSDKManager.Instance.AuthStart(OnCompleteAuth);
+    {               
+        AIHumanSDKManager.Instance.Authenticate(OnCompleteAuth);
 
         _btnSend.onClick.AddListener(OnClickSend);
     }
- 
-    private void OnCompleteAuth(JToken aiList, string error)
+
+    private void OnCompleteAuth(AIAPI.AIList aiList, AIError error)
     {
-        if (string.IsNullOrEmpty(error))
-        {          
+        if (error == null)
+        {
             _aiPlayer.Init(AIAPI.Instance.DefaultAIName, _aiPlayerCallback, _aiFrameImageProvider);
         }
         else
         {
-            Debug.LogError(string.Format("{0} {1}", nameof(AIHumanSDKManager), error));
+            Debug.LogError(string.Format("{0} {1} {2}", nameof(AIHumanSDKManager), error.ErrorCode, error.Description));
         }
     }
-  
+
     public void OnClickSend()
     {
         string[] requests = new string[] { _inputChat.text };
         _aiPlayer.Send(requests);
-        
+
         for (int i = 0; i < requests.Length; i++)
         {
             if (!string.IsNullOrEmpty(_sb.ToString()))
@@ -214,15 +229,15 @@ public class QuickStart : MonoBehaviour
             _sb.Append(requests[i]);
         }
         _chatHistory.text = _sb.ToString();
-        _inputChat.text = string.Empty;       
-    }
+        _inputChat.text = string.Empty;
+    }   
 }
 ```
 
 
 ### 3. Apply the script you created.
 
-#### 3-1. After selecting the QuickStart game object in the hierarchy window, register the scripts written in item 3 through the Add Component button in the Inspector window.
+#### 3-1. After selecting the QuickStart gameobject in the hierarchy window, register the scripts written in item 2 through the Add Component button in the Inspector window.
 #### 3-2. Each item in the Inspector window is registered through drag and drop after selecting the game object in the Hierarchy window as shown in the image below.
 
 <img src="/img/aihuman/unity/quickstart_inspector.png" />

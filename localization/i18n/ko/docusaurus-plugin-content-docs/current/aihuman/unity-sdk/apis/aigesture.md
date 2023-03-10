@@ -6,6 +6,6 @@ sidebar_position: 5
 
 | Modifier and Type    | Method and Description                                       |
 | -------------------- | ------------------------------------------------------------ |
-| `string`             | `Name { get; }` Get the name of the gesture.               |
-| `bool`               | `EnableSpeech { get; }` Get whether the gesture is speech-enabled. Returns true if gesture with speech is possible. |
-| `AIClipSet.ClipType` | `GetClipType()` Get the recommended clip type when using the gesture.               |
+| `string`             | `Name { get; }` 해당 제스처의 이름을 가져온다.               |
+| `bool`               | `EnableSpeech { get; }` 해당 제스처의 발화 가능 유무를 가져온다. 발화가 가능하면 true, 불가하면 false를 return 한다. |
+| `AIClipSet.ClipType` | `GetClipType()` 해당 제스처를 사용할 때 권장되는 클립셋 타입을 가져온다.               |

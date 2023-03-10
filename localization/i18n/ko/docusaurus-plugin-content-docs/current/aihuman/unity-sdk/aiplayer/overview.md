@@ -4,14 +4,14 @@ sidebar_position: 1
 
 # 개요
 
-In this chapter, we will learn how to set up and use the AIPlayer object that can perform specific actions by actually displaying AI Human.
+본 장에서는 AI Human을 실제 등장시켜 특정 동작을 수행할 수 있는 AIPlayer 객체를 셋업하고 사용하는 방법에 대해 알아본다.
 
 
 :::tip Dev Tips!
 
-- Basically, AIPlayer inherits UnityEngine.MonoBehavior, so it can be used as an 'Add Component' to the gameobject.
-- In order to know the operating state of the AIPlayer, it is necessary to implement it through AIPlayerCallback inheritance. Like AIPlayer, AIPlayer Callback also inherits UnityEngine.MonoBehavior, so it can be used as an 'Add Component' to the gameobject.
-- In order to receive AI images from AIPlayer, implementation through AIFrameImageProvider inheritance is necessary. Like AIPlayer, AIFrameImageProvider also inherits UnityEngine.MonoBehavior, so it can be used as an 'Add component' to the gameobject.
-- The rendering of AI images supplied by AIPlayer (UI object configuration, position, scale) can be implemented by referring to QuickStart and AI Human Demo Scene.
+- 기본적으로 AIPlayer는 UnityEngine.MonoBehaviour을 상속 받으므로 게임오브젝트에 Add Component하여 사용할 수 있다.
+- AIPlayer의 동작 상태를 모니터링 하기 위해서는 AIPlayerCallback 상속을 통한 구현이 필요하다. AIPlayerCallback 또한 AIPlayer와 마찬가지로 UnityEngine.MonoBehaviour을 상속 받으므로 게임오브젝트에 Add Component하여 사용할 수 있다.
+- AIPlayer에서 AI 이미지를 공급 받기 위해서는 AIFrameImageProvider 상속을 통한 구현이 필요하다. AIFrameImageProvider 또한 AIPlayer와 마찬가지로 UnityEngine.MonoBehaviour을 상속 받으므로 게임오브젝트에 Add Component하여 사용할 수 있다.
+- AIPlayer에서 공급 받은 AI 이미지의 랜더링(UI 오브젝트 구성, position, scale)은 QuickStart, AIHuman 데모 Scene을 참고하여 구현할 수 있다. 
 
 :::

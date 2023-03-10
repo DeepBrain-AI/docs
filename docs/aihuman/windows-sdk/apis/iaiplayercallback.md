@@ -8,4 +8,4 @@ sidebar_position: 2
 | ----------------- | ------------------------------------------------------------ |
 | `void`            | `OnAIPlayerError(AIError error)` Reporting an error occurred in AIPlayer |
 | `void`            | `OnAIPlayerResLoadingProgressed(int current, int total)` Reporting the resource loading progress of AIPlayer |
-| `void`            | `OnAIStateChanged(AIState state)` Reporting the changed state of AI |
+| `void`            | `OnAIPlayerEvent(AIEvent aiEvent)` Reporting the changed state of AI |

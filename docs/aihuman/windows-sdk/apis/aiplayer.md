@@ -28,3 +28,5 @@ sidebar_position: 1
 | `string`                             | `AIName { get; }` Get the AI name.                           |
 | `string`                             | `AIGender { get; }` Get the AI gender.                        |
 | `string`                             | `AILanguage { get; }` Get the AI language.                        |
+| `AIHuman.Interface.AIPlayerState`    | `State { get; }` Get the current state of the AIPlayer.                 |
+| `string`                             | `Reconncet(Action<bool> callback)` Attempt to reconnect with AI. Callback lets you know the result of the reconnection.         |

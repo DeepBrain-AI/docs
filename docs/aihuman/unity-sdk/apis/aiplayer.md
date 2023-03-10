@@ -1,15 +1,15 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # AIHuman.View.AIPlayer
 
 | Modifier and Type                    | Method / Property Description                                |
 | :----------------------------------- | ------------------------------------------------------------ |
-| `void`                               | `Init(string aiName, IAIPlayerCallback callback, IFrameImageProvider imageProvider)`  Initialize AIPlayer with Default AI and register callback for health monitoring and image provider for AI rendering. (valid only when authenticated) |
+| `void`                               | `Init(string aiName, IAIPlayerCallback callback, IFrameImageProvider imageProvider)`  Initialize AIPlayer with the aiName received as a factor and register callback for health monitoring and image provider for AI rendering. (valid only when authenticated) |
 | `void`                               | `Send(string[] sentences)` Let the AI speak. (using pure-text string) |
-| `void`                               | `Send(AIClipSet[] clips)` Let the AI play. (using AIHuman.Common.Model.AIClipSet) |
-| `void`                               | `StopSpeaking()` Stop the current conversation. It also deletes the content in the speaking queue. |
+| `void`                               | `Send(AIClipSet[] clips)` Let the AI play. (using AIHuman.Model.AIClipSet) |
+| `void`                               | `Stop()` Stop the current conversation. It also deletes the content in the speaking queue. |
 | `void`                               | `Pause()` Pauses speaking.                                    |
 | `void`                               | `Resume()` Continue speaking again from when it was paused.   |
 | `void`                               | `Preload(string[] sentences)` Prepare the sentences to be spoken in advance. |
@@ -21,7 +21,10 @@ sidebar_position: 1
 | `void`                               | `Release()` Called when release AIPlayer.                |
 | `float`                              | `Speed { get; set; }` Get or Set the AI's speech rate.       |
 | `float`                              | `Scale { get; set; }` Get or Set the AI's scale.             |
-| `ePlayerState`                       | `PlayerState { get; }` Get the state of AIPlayer             |
+| `AIPlayerState`                       | `State { get; }` Get the state of AIPlayer             |
 | `string`                             | `AIName { get; }` Get the AI name.                           |
 | `string`                             | `AIGender { get; }` Get the AI gender.                        |
 | `string`                             | `AILanguage { get; }` Get the AI language.                        |
+| `bool`                             | `CanPreload { get; }` It brings whether AI is in a preloadable state.                      |
+| `bool`                             | `IsConnected { get; }` It brings whether AI is connected.                    |
+| `void`                        | `Reconncet(Action<bool> callback)` Attempt to reconnect AI. Return the reconnection result via callback. | 

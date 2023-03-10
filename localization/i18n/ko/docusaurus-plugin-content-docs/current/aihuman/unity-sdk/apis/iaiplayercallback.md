@@ -6,6 +6,6 @@ sidebar_position: 2
 
 | Modifier and Type | Method and Description                                       |
 | ----------------- | ------------------------------------------------------------ |
-| `void`            | `OnAIPlayerError(AIError error)` Reporting an error occurred in AIPlayer |
-| `void`            | `OnAIPlayerResLoadingProgressed(int current, int total)` Reporting the resource loading progress of AIPlayer |
-| `void`            | `OnAIStateChanged(AIState state)` Reporting the changed state of AI |
+| `void`            | `OnAIPlayerError(AIError error)` AIPlayer에서 발생한 에러 보고 |
+| `void`            | `OnAIPlayerResLoadingProgressed(int current, int total)` AI 리소스 로딩 상태 보고 |
+| `void`            | `OnAIPlayerEvent(AIEvent @event)` AI의 상태 변화 보고 |

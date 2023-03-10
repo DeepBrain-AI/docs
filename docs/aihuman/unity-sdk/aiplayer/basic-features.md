@@ -12,7 +12,7 @@ In general, speech can be performed using pure text, but speech can also be perf
 
 If the text to speak is too long, it may not be possible to synthesize the resources required for the utterance. There are some models that can synthesize long sentences. Although it varies from ai to ai, it is generally recommended that sentences be cut to an appropriate length in Korean, usually within 30 to 40 characters, and at a similar level in English. In addition, if special characters, lists of incomplete characters, numbers, formulas, symbols, characters or abbreviations in other languages are included, they may or may not be uttered differently than expected.
 
-```js
+```csharp
 // using pure-text
 _aiPlayer.Send(new[] {"this is sample sentence."});
 // using AIClipSet
@@ -22,30 +22,30 @@ _aiPlayer.Send(new[] {clip});
 
 ### Speaking related Monitoring
 
-After the Send method is called, you can listen to the operation status feedback in the registered listener. This feedback is returned by calling the method (onAIStateChanged) of the listener(AIPlayerCallback). onAIStateChanged sequentially returns the following AIState values.
+After the Send method is called, you can listen to the operation event feedback in the registered listener. This feedback is returned by calling the method (OnAIPlayerEvent) of the listener(AIPlayerCallback). OnAIPlayerEvent sequentially returns the following AIEvent values.
 
-- SPEAKING_PREPARE_STARTED 
-- SPEAKING_PREPARE_COMPLETED
-- SPEAKING_STARTED
-- SPEAKING_COMPLETED
+- AICLIPSET_PLAY_PREPARE_STARTED 
+- AICLIPSET_PLAY_PREPARE_COMPLETED
+- AICLIPSET_PLAY_STARTED
+- AICLIPSET_PLAY_COMPLETED
 
-```js
+```csharp
 // Speaking related CallBack example
-public void OnAIStateChanged(AIState state)
+public void OnAIPlayerEvent(AIEvent @event)
 {
-    if (state._state == AIState.Type.SPEAKING_PREPARE_STARTED)
+    if (@event.EventType == AIEvent.Type.AICLIPSET_PLAY_PREPARE_STARTED)
     {
         _statusText.text = "AI started preparation to speak.";
     } 
-    else if (state._state == AIState.Type.SPEAKING_PREPARE_COMPLETED)
+    else if (@event.EventType == AIEvent.Type.AICLIPSET_PLAY_PREPARE_COMPLETED)
     {
         _statusText.text = "AI finished preparation to speak.";
     }
-    else if (state._state == AIState.Type.SPEAKING_STARTED)
+    else if (@event.EventType == AIEvent.Type.AICLIPSET_PLAY_STARTED)
     {
         _statusText.text = "AI started speaking.";
     }
-    else if (state._state == AIState.Type.SPEAKING_COMPLETED)
+    else if (@event.EventType == AIEvent.Type.AICLIPSET_PLAY_COMPLETED)
     {
         _statusText.text = "AI finished speaking.";
     }
@@ -54,17 +54,17 @@ public void OnAIStateChanged(AIState state)
 // AI error CallBack example
 public void OnAIPlayerError(AIError error) 
 {
-    if (error.errorType == AIError.Type.SOCKET_ERR)
+    if (error.ErrorCode == (int)AIError.Code.AI_API_ERR)
     {
-		_statusText.text = "Socket Error: " + error.GetMessage();
+		_statusText.text = "API Error: " + error.ToString();
     }
-    else if (error.errorType == AIError.Type.RES_LOAD_ERR)
+    else if (error.ErrorCode == (int)AIError.Code.AI_SERVER_ERR)
     {
-        _statusText.text = "Resource Error: " + error.GetMessage());
+        _statusText.text = "Server Error: " + error.ToString();
     }
-	else if (error.errorType == AIError.Type.SPEAK_SEND_ERR)
+	else if (error.ErrorCode == (int)AIError.Code.AI_RES_ERR)
     {
-		_statusText.text = "Speak Error: " + error.GetMessage());
+		_statusText.text = "Resource Error: " + error.ToString();
     }
 }
 ```
@@ -75,7 +75,7 @@ The following are actions that can be performed while the AIPlayer is Speaking.
 ### Pause Speaking
 
 : Pause speaking.
-```c#
+```csharp
 // pause method
 _aiPlayer.Pause()
 ```
@@ -83,7 +83,7 @@ _aiPlayer.Pause()
 ### Resume Speaking
 
 : Resume speaking. (resume from pause)
-```c#
+```csharp
 // resume method
 _aiPlayer.Resume()
 ```
@@ -91,7 +91,7 @@ _aiPlayer.Resume()
 ### Stop Speaking
 
 : Stop speaking and reset all data. (cannot resume)
-```c#
+```csharp
 // stop method
 _aiPlayer.StopSpeaking()
 ```

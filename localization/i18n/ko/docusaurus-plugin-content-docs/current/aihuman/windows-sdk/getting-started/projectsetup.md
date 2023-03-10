@@ -4,51 +4,54 @@ sidebar_position: 2
 
 # 프로젝트 셋업하기
 
-In this chapter, you will learn how to create and register UserKey and AppId, etc. required for authentication for using AI Human SDK.
+이번 장에서는 AI Human SDK 구동을 위한 인증 절차에 필요한 User Key, App ID 등을 생성하고 설정하는 방법에 대해 알아봅니다.
 
-## 1. Create an account
-Create an account on the **[AI Human SDK Website](https://aitalk.deepbrainai.io)**.
+## 1. 계정 생성하기
+**[AI Human 웹사이트](https://aitalk.deepbrainai.io)**에서 계정을 생성합니다.
+- 우측 상단 > Sign In > Create an account
 
-## 2. Add a project to My workspace
-Create a project in **[My workspace](https://aitalk.deepbrainai.io/aihuman/sdk)**, enter App Id of Windows and click confirm. Then User Key will be issued.
+## 2. My workspace에 Project 추가하기
+**[My workspace](https://aitalk.deepbrainai.io/aihuman/sdk)**에서 Project를 만들고, Windows App ID 부분에 SDK를 사용하는 Windows Application 명을 입력하고 확인을 클릭합니다. 해당 App ID에서 사용할 수 있는 User Key가 발급됩니다.
 
 <img src="/img/aihuman/windows/SDK_WebPage_UserKey.png" />
 
-The appId, userKey, uuid, and platform information will be used as arguments for AuthStart(), an authentication function.
+위에 서 준비한 App ID와 User Key를 각각 Authenticate 함수의 첫번째, 두번째 인자로 입력하고 인증 과정을 수행합니다. 세번째 인자에 등록한 콜백을 통해 결과를 받아 볼 수 있습니다.
 
-:::info
-- appId is a unique Id of the project, and is generally created like "com.example.project.appname".
-- userkey can be obtained by creating a project on the AIHuman website and registering the appId.
-- uuid refers to the unique ID of the device where the application is installed. It is created by calling Guid.NewGuid(), and saved and reused after initial creation so that it does not change each time it is called.
-- platform argument uses "wnds", which means windows.
+자사한 사항은 API 편람 혹은 Sample Project 내용을 참고하세요.
+
+:::info 정보
+- App ID는 해당 프로젝트에서 유일한(Unique) 값이어야 합니다. (예 "com.example.project.appname")
+- User Key는 AI Human 웹사이트에서 프로젝트를 생성하고 App ID를 입력하면 발급받을 수 있습니다.
 :::
 
-## 3. Create a new project in Visual Studio.
+## 3. Visual Studio에서 새 프로젝트 생성하기
 
-Create solutions and projects to use the AI Human SDK in the Visual Studio.
+Visual Studio에서 솔루션 및 프로젝트를 생성하고 AI Human SDK를 사용합니다.
 
-#### 	: Create New Project > WPF Application > Target Framework > .NET 5.0
-####		WpfApp1 is the default when creating a project.
+#### 	: Create New Project > WPF Application > Target Framework > .NET 5.0 (혹은 .NET Core 3.1 이상의 WPF 개발 가능 Target)
+####		여기서는 기본 프로젝트명인 WpfApp1를 사용하겠습니다.
 
 <br/>
 
-## 4. Set up the project.
+## 4. 프로젝트 셋업하기
 
-Prepare library files necessary for the use of AI Human SDK in the previously created project.
+AIHumanSDK.dll 참조 등 프로젝트의 초기 설정을 수행합니다.
 
-#### 4-1. Download the SDK for Windows from the AI Human SDK website.
+#### 4-1. AI Human 웹사이트에서 Windows용 SDK를 다운로드 받습니다.
 
-#### 4-2. Move the downloaded SDK and related files to the previously created project path.
+#### 4-2. 앞서 만든 프로젝트 경로에 다운받은 SDK 및 관련 파일들을 위치시킵니다.
 
-#### 4-3. In Solution Explorer, right-click Project > Right-click > Add > Create a new folder with a name.
+#### 4-3. 솔루션 탐색기에서 프로젝트 > 우클릭 > 추가 > 새폴더 를 생성하고 적당한 이름을 부여합니다.
 
-You can configure the libraries referenced in the solution through the created folder > right-click > Add > Existing item.
+생성한 폴더 > 우클릭 > 추가 > 기존항목을 통해 솔루션에서 참조할 라이브러리들을 구성할 수 있습니다.
 
 <img src="/img/aihuman/windows/NewProject_Add_Sdk.png" />
 
-#### 4-4. Add the downloaded AIHuman SDK library to the solution item.
+#### 4-4. 솔루션 항목에 다운로드 받은 AIHuman SDK 구동에 필요한 라이브러리들을 추가합니다.
 
- In Solution Explorer, right-click on "project" at the top > Add > Project Reference > Reference Manager > Browse > Add AIHumanSDK.dll and Newtonsoft.Json.dll. You will then be able to see that AIHuman SDK is registered in Dependencies > Assembly in the project tree.
+솔루션 탐색기에서 상단의 프로젝트를 우클릭 > 추가 > 프로젝트 참조 > 참조 관리자 > 찾아보기 > AIHumanSDK.dll과 Newtonsoft.Json.dll 등을 추가합니다. 프로젝트 트리의 종속성 > 어셈블리에 AIHumanSDK가 등록되어있는 것을 확인할 수 있습니다.
+
+(다운로드 받은 SDK와 함께 포함되어 있는 라이브러리들을 모두 추가하면 됩니다.)
 
 <img src="/img/aihuman/windows/NewProject_Add_Ref.png" />
 

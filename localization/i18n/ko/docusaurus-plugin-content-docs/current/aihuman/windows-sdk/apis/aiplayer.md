@@ -25,6 +25,8 @@ sidebar_position: 1
 | `float`                              | `Scale { get; set; }` Get or Set the AI's scale.             |
 | `AIHuman.Common.Margin`              | `Margin { get; set; }` Get or Set the AI's margin.           |
 | `System.Windows.Controls.MediaState` | `PlayerState { get; }` Get the state of AIPlayer             |
-| `string`                             | `AIName { get; }` Get the AI name.                           |
-| `string`                             | `AIGender { get; }` Get the AI gender.                        |
-| `string`                             | `AILanguage { get; }` Get the AI language.                        |
+| `string`                             | `AIName { get; }` AI의 이름을 가져옵니다.                          |
+| `string`                             | `AIGender { get; }` AI의 성별을 가져옵니다.                        |
+| `string`                             | `AILanguage { get; }` AI가 현재 구사하는 언어를 가져옵니다.         |
+| `AIHuman.Interface.AIPlayerState`    | `State { get; }` AIPlayer의 현재 상태를 가져옵니다.                 |
+| `string`                             | `Reconncet(Action<bool> callback)` AI와 재연결을 시도합니다. 콜백을 통해 재연결 결과를 알 수 있습니다.           |

@@ -9,60 +9,66 @@ sidebar_position: 3
 
 :::
 
-AI Human Demo is a page where you can try out various functionalities of AIPlayer. You can try changing to another approved AI model through [AI Model]. For other details, please refer to [AIPlayer Description](/aihuman/unity-sdk/aiplayer/overview).
+AI Human Demo는 AIPlayer의 다양한 기능들을 구현 한 데모이다. [AI 선택]을 통해 승인된 다른 AI 모델로 변경할 수 있다. 그밖에 자세한 설명은 [AIPlayer 설명](/aihuman/unity-sdk/aiplayer/overview)을 참고하기 바란다.
 
 <p align="center">
 <img src="/img/aihuman/unity/introduction.png" style={{zoom: "40%"}} />
 </p>
 
-**First, get a list of available AIs and set up the UI.**
+**먼저 사용 가능한 AI 목록을 가져온 후 UI를 셋업한다.**
 
 - DemoAIHuman.cs
 
-```js
+```csharp
 private void Awake()
     {             
-        // Start SDK authentication.
-        AIHumanSDKManager.Instance.AuthStart(OnCompleteAuth);
+        // SDK 인증을 시작한다.
+        AIHumanSDKManager.Instance.Authenticate(OnCompleteAuth);
     }
-  
-    private void OnCompleteAuth(JToken aiList, string error)
+     
+    private void OnCompleteAuth(AIAPI.AIList aiList, AIError error)
     {
-        if (string.IsNullOrEmpty(error))
-        {      
-            // A list of available AIs can be obtained through CallBack.   
-            string strJson = aiList.Root.ToString();
-            _aiList = JsonConvert.DeserializeObject<AIAPI.AIList>(strJson);
+        if (error == null)
+        {                     
+            _aiList = aiList;
 
-            // Set AI of AIPlayer as the first AI on the list.                 
-            Init(_aiList.ai[0].aiName);
+            string[] aiNames = GetAINames();
+            if (aiNames != null && aiNames.Length > 0)
+            {
+                // AIPlayer의 AI를 리스트의 첫번째 AI로 설정한다.      
+                Init(GetAINames()[0]);
+            }
+            else
+            {
+                Debug.LogError(string.Format("{0} {1}", nameof(DemoAIHuman), "There is no AI Model available."));
+            }
         }
         else
         {
-            Debug.LogError(string.Format("{0} {1}", nameof(AIHumanSDKManager), error));
+            Debug.LogError(string.Format("{0} {1} {2}", nameof(DemoAIHuman), error.ErrorCode, error.Description));
         }
     }
   
     private void Init(string aiName)
     {              
-        // Deliver AIPlayerCallback and AIFrameImageProvider to AIPlayer.
+        // AIPlayerCallback과 AIFrameImageProvider를 AIPlayer에 전달한다.
         _aiPlayer.Init(aiName, _aiPlayerCallback, _aiFrameImageProvider);
 
-        // Set and initialize AI data in Dropdown, Slider UI.
+        // Dropdown, Slider UI에 AI data를 설정하고 초기화 한다.
         InitUI();
     }
 ```
 
-**Examples of Speak, Preload, Pause, Multi Speak(Randomly), Resume, and Pause.** 
+**AI에게 발화시키기, 여러말 발화시키기, 일시정지, 재시작, 정지의 코드 예제는 아래와 같다.** 
 
 - DemoAIHuman.cs
 
-```js
+```csharp
     public void OnClickSpeak()
     {
         _sendingMessage.Clear();
 
-        // AI language, voice settings
+        // AI 언어, 음성 설정
         CustomVoice cv = null;
         if (_languageDropdown.value == 0)
         {
@@ -130,11 +136,11 @@ private void Awake()
     }
 ```
 
-**Receiving callback of AI behavior can be implemented through inheritance of AIPlayerCallback class.** 
+**AI 동작의 콜백 받기는 AIPlayerCallback 클래스 상속을 통해 구현 가능하다.** 
 
 - DemoPlayerCallback.cs
 
-```js
+```csharp
 public class DemoPlayerCallback : AIPlayerCallback
 {
     public override void OnAIPlayerError(AIError error)
@@ -145,46 +151,90 @@ public class DemoPlayerCallback : AIPlayerCallback
     {             
     }
 
-    public override void OnAIStateChanged(AIState state)
+    public override void OnAIPlayerEvent(AIEvent @event)
     {      
-        switch (state._state)
+        switch (@event.EventType)
         {
-            case AIState.Type.RES_LOAD_STARTED:             
-                break;             
-            case AIState.Type.RES_LOAD_COMPLETED:
-                break;
-            case AIState.Type.SPEAKING_PREPARE_STARTED:
-                break;
-            case AIState.Type.SPEAKING_PREPARE_COMPLETED:
-                break;
-            case AIState.Type.SPEAKING_STARTED:
-                break;
-            case AIState.Type.SPEAKING_COMPLETED:
-                break;
-            case AIState.Type.SPEAKING_PREPARE_PRELOAD_STARTED:
-                break;
-            case AIState.Type.SPEAKING_PREPARE_PRELOAD_COMPLETED:
-                break;
+            case AIEvent.Type.RES_LOAD_STARTED:
+                {                   
+                    break;
+                }
+            case AIEvent.Type.RES_LOAD_COMPLETED:
+                {                  
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PLAY_PREPARE_STARTED:
+                {                   
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PLAY_PREPARE_COMPLETED:
+                {                   
+                    break;
+                }            
+            case AIEvent.Type.AICLIPSET_PLAY_STARTED:
+                {                   
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PLAY_COMPLETED:
+                {                   
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PLAY_FAILED:
+                {                  
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PRELOAD_STARTED:
+                {                   
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PRELOAD_COMPLETED:
+                {                
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PRELOAD_FAILED:
+                {                   
+                    break;
+                }
+            case AIEvent.Type.AI_CONNECTED:
+                {                 
+                    break;
+                }
+            case AIEvent.Type.AI_DISCONNECTED:
+                {                    
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_PLAY_BUFFERING:
+                {                  
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_RESTART_FROM_BUFFERING:
+                {                 
+                    break;
+                }
+            case AIEvent.Type.AIPLAYER_STATE_CHANGED:
+                {                  
+                    break;
+                }
         }
     }
 }
 ```
 
-**AI image resource (UnityEngine.Texture2D) can be implemented and supplied through AIFrameImageProvider class inheritance.** 
+**AI의 이미지 리소스(UnityEngine.Texture2D)는 AIFrameImageProvider 클래스 상속을 통해 구현하여 공급 받을 수 있다.** 
 
 - DemoFrameImageProvider.cs
 
-```js
+```csharp
 public class DemoFrameImageProvider : AIFrameImageProvider
 { 
     public override void OnChangeBackgroundTexture(Vector3 scale, Texture2D bgTexture)
     {     
-       // callback background texture
+       // 배경 이미지 callback
     }
 
     public override void OnChangeFaceTexture(Vector3 scale, int idleWidth, int idleHeight, FaceRect faceRect, Texture2D faceTexture)
     {
-        // callback face texture
+        // 얼굴 이미지 callback
     }
 
     public override void OnDisabledBackgroundTexture()
@@ -197,18 +247,21 @@ public class DemoFrameImageProvider : AIFrameImageProvider
 
     public override void OnChromakeyFaceTexture(Color minHueColor, Color maxHueColor)
     {
-        // callback setting chromakey
+        // chromakey 설정 callback
     }
 }
 ```
 
-Through onAIStateChanged implementation, you can receive CallBack of AI states shown below.
+OnAIPlayerEvent 구현을 통해 AI의 상태를 모니터링 할 수 있으며, 상태는 아래와 같다.
 
-```js
-SPEAKING_STARTED: AI started speaking.
-SPEAKING_COMPLETED: AI finished speaking.
-SPEAKING_PREPARE_STARTED: AI started preparation to speak.
-RES_LOAD_COMPLETED: AI Resource loading completed.
-RES_LOAD_STARTED: AI Resource loading started.
-SPEAKING_PREPARE_COMPLETED: AI finished preparation to speak.
+```csharp
+RES_LOAD_STARTED: AI리소스 로드를 시작합니다.
+RES_LOAD_COMPLETED: AI리소스 로드를 완료했습니다.
+AICLIPSET_PLAY_PREPARE_STARTED: AI가 말할 준비를 시작합니다.
+AICLIPSET_PLAY_PREPARE_COMPLETED: AI가 말할 준비를 마쳤습니다.
+AICLIPSET_PLAY_STARTED: AI가 말을 시작합니다.
+AICLIPSET_PLAY_COMPLETED: AI가 말을 마쳤습니다.
+AICLIPSET_PLAY_FAILED: AI가 말하기에 실패하였습니다.
+AI_CONNECTED: AI가 연결되었습니다.
+AI_DISCONNECTED: AI 연결이 해제되었습니다.
 ```

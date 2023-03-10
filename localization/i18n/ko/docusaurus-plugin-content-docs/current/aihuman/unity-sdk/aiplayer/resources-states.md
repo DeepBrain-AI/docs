@@ -4,36 +4,32 @@ sidebar_position: 3
 
 # 이벤트 확인하기
 
-### Start loading resources 
+### 리소스 로딩 시작  
 
-When AIPlayer is created after authentication is completed, resource loading starts according to the input **AIName**, and the resource loading status is reported to the listener (AIPlayerCallback) registered in the constructor. (Initially, it may take a few minutes for the resource to complete loading.)
+인증 완료 후 AIPlayer 초기화가 완료되면 전달한 **AIName**에 따라서 리소스 로딩이 시작되고 AIPlayer를 초기화 할때 등록한 listener(AIPlayerCallback)에 리소스 로딩 상태가 보고된다. (최초에는 리소스 로드 완료까지 수분이 걸릴수도 있다.)
 
 <br/>
 
-### Monitoring player state through AIPlayerCallback implementation
+### AIPlayerCallback으로 AIPlayer의 리소스 로딩 상태 모니터링
 
-TFirst, the listener's OnAIStateChanged(AIState state) method is called, and the related state._state values are as follows. In addition, loading progress can be implemented with OnAIPlayerResLoadingProgressed(int current, int total).
+먼저 listener의 OnAIPlayerEvent(AIEvent @event) 메소드가 호출되는데 관련된 event 값은 다음과 같다. 또한 OnAIPlayerResLoadingProgressed(int current, int total) 으로 로딩 프로그레스를 구현할 수 있다.
 
-- AIState.Type.RES_LOAD_STARTED : resource loading is started.
-- AIState.Type.RES_LOAD_COMPLETED : resource loading is completed.
+- AIEvent.Type.RES_LOAD_STARTED : 리소스 로딩 시작.
+- AIEvent.Type.RES_LOAD_COMPLETED : 리소스 로딩 완료.
 
-If there is any problem during this process, the OnAIPlayerError() method is called. Typically, a response from the OnAIPlayerError() may be notifying the expiration of the authentication token. An appropriate response is required depending on the situation.
+리소스 로딩 과정에서 혹시 문제가 발생하면 OnAIPlayerError(AIError error) 함수가 호출되는데 예를 들면 인증 토큰의 만료 등의 내용이 올 수 있다. 상황에 따라 적절한 대응이 필요하다. 
 
-- AIError.Type.SDK_API_ERR : Notifies error in authentication process API.
+- AIError.Code.AI_API_ERR : 인증 과정 등 정보 받는 API 부분에서 에러
 
-:::info  
-e.g.) 1402 error (value token expired): Token refresh required -> Call AuthStart() method again
-:::
-
-```js
-// AI resource related status CallBack
-public void OnAIStateChanged(AIState state)
+```csharp
+// AI resource related event CallBack
+public void OnAIPlayerEvent(AIEvent @event)
 {
-    if (state._state == AIState.RES_LOAD_STARTED)
+    if (@event.EventType == AIEvent.Type.RES_LOAD_STARTED)
     {
         UnityEngine.Debug.Log("AI Resource loading started.");
     }
-    else if (state._state == AIState.RES_LOAD_COMPLETED)
+    else if (@event.EventType == AIEvent.Type.RES_LOAD_COMPLETED)
     {
         UnityEngine.Debug.Log("AI Resource loading completed.");
     }
@@ -49,9 +45,9 @@ public void OnAIPlayerResLoadingProgressed(int current, int total)
 // AI error CallBack
 public void OnAIPlayerError(AIError error)
 {
-    if (error.errorType == AIError.Type.SDK_API_ERR)
+    if (error.ErrorCode == (int)AIError.Code.AI_API_ERR)
     {
-        UnityEngine.Debug.LogError(string.Format("sdk_ai_Info error : {0}", error.GetMessage()));          
+        UnityEngine.Debug.LogError(string.Format("sdk_ai_api error : {0}", error.ToString()));          
     }
 }
 ```

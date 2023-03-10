@@ -4,38 +4,36 @@ sidebar_position: 3
 
 # 나의 AI Human 만들기
 
-In this chapter, we will quickly set up AIPlayer with the default AI and learn about AI speaking process. When setting up AIPlayer for the first time, it may take several minutes to load depending on the network condition.
-
-For your information, it is similar to the QuickStart part of the Sample, which can be downloaded from the SDK website.
+이 장에서는 신속하게 AIPlayer를 기본 AI로 셋업하고 AI에게 발화 시키는 과정을 알아 본다. AIPlayer 최초 셋업시에는 네트워크 상태에 따라 수분 정도의 로딩이 걸릴 수 있다.
 
 :::tip
-From the demo, you can learn more from the scene and code in the file below.
+다음과 같은 SDK 데모의 Scene, Script 파일을 통해 더 많은 것을 배울 수 있다. 
 - 1.QuickStart.scene
 - DemoQuickStart.cs
 - DemoPlayerCallback.cs
 - DemoFrameImageProvider.cs
 :::
 
-### 1. Configures a scene for implementing AIPlayer functions.
+### 1. AIPlayer 기능 구현을 위한 Scene을 구성한다.
 
-#### 1-1. Select Assets > Create > Scene from the Unity Editor menu to create a new scene.
-#### 1-2. Delete the Main Camera and Directional Light game objects that are created by default.
-#### 1-3. Select AI Human SDK, AIPlayer, AIPlayer, and AIPlayerUI prefabs in the Assets/DeepBrainAI/SDK/Prefabs path of the Project window and place them in the Hierarchy window with drag and drop.
-#### 1-4. After selecting the AIHumanSDK game object in the Hierarchy window, enter or set the authentication information issued by **[AI Human SDK Website](https://aitalk.deepbrainai.io)** in the AppId, UserKey, Uuid, and Platform items of the Inspector > AIHumanSDKManager component. (If Uuid is not entered, it is automatically Call Guid.NewGuid() to create a Uuid.)
-#### 1-5. In the Unity Editor menu, create a new game object through GameObject > Create Empty and set the name to QuickStart.
+#### 1-1. Unity Editor 메뉴에서 Assets > Create > Scene을 선택하여 새로운 Scene을 생성한다. 
+#### 1-2. 기본으로 생성되어 있는 Main Camera, Directional Light 게임오브젝트를 삭제한다.
+#### 1-3. Project창의 Assets/DeepBrainAI/SDK/Prefabs 경로의 AIHumanSDK, AIPlayer, AIPlayerUI 프리팹을 선택 후 드래그앤드랍으로 Hierarchy창에 배치한다.
+#### 1-4. Hierarchy창에서 AIHumanSDK 게임오브젝트를 선택 후 Inspector > AIHumanSDKManager 컴포넌트의 AppId, UserKey, Platform 항목에 **[AI Human SDK Website](https://aihuman.deepbrain.io)** 에서 발급 받은 인증 정보를 입력 또는 설정한다. 
+#### 1-5. Unity Editor 메뉴에서 GameObject > Create Empty 를 통해 새 게임오브젝트를 생성하고 이름은 QuickStart로 설정한다.
 
 <img src="/img/aihuman/unity/quickstart_hierarchy.png" />
 
-#### 1-6. If you have created a Unity project in a URP or HDRP environment, select "Canvas/AIHumanView/RawImage - face" gameobject in the AIPlayerUI that you placed in the Hierarchy window, and replace the Material item in the Inspector window with "Chromakey - Built-in" to "Chromakey - URP" Material.
-
-### 2. Write a script for implementing the AIPlayer function.
-Select Assets > Create > C# Script from the Unity Editor menu to create a script and write it as follows.
+#### 1-6. URP 또는 HDRP 환경으로 Unity 프로젝트를 생성 한 경우에는 Hierarchy창에서 AIPlayerUI 게임오브젝트의 "Canvas/AIHumanView/RawImage - face"를 선택 후 Inspector창의 Material 항목을 "Chromakey - Built-in" 에서 "Chromakey - URP" 재질로 변경한다.
+ 
+### 2. AIPlayer 기능 구현을 위한 Script를 작성한다.
+Unity Editor 메뉴에서 Assets > Create > C# Script을 선택하여 스크립트를 생성 후 아래와 같이 작성한다.
 
 - MyAIPlayerCallback.cs
 
-Inherit and implement AIPlayerCallback for monitoring AIPlayer behavior.
+AIPlayer 동작 모니터링을 위해 AIPlayerCallback을 상속 및 구현한다.
 
-```js
+```csharp
 using UnityEngine;
 using UnityEngine.UI;
 using AIHuman.Common;
@@ -44,56 +42,71 @@ using AIHuman.SDK;
 public class MyAIPlayerCallback : AIPlayerCallback
 {
     public Text _statusText;
-   
-    public override void OnAIPlayerError(AIError error)
-    {
-        Debug.LogError(string.Format("{0} {1}", nameof(MyAIPlayerCallback), error.GetMessage()));
 
-        _statusText.text = error.GetMessage();
+    public override void OnAIPlayerError(AIError error)
+    {              
+        Debug.LogError(string.Format("{0} {1}", nameof(MyAIPlayerCallback), error.ToString()));
+
+        _statusText.text = error.ToString();
     }
 
     public override void OnAIPlayerResLoadingProgressed(int current, int total)
-    {       
+    {
         float progress = ((float)current / (float)total) * 100f;
         _statusText.text = string.Format("AI Resource Loading... {0}%", (int)progress);
     }
 
-    public override void OnAIStateChanged(AIState state)
-    {
-        Debug.Log(string.Format("{0} {1}", nameof(MyAIPlayerCallback), state._state));
-
-        switch (state._state)
+    public override void OnAIPlayerEvent(AIEvent @event)
+    {       
+        Debug.Log(string.Format("{0} {1}", nameof(MyAIPlayerCallback), @event.EventType));
+        
+        switch (@event.EventType)
         {
-            case AIState.Type.RES_LOAD_STARTED:
+            case AIEvent.Type.RES_LOAD_STARTED:
                 {
                     _statusText.text = "AI Resource loading started.";
                     break;
                 }
-            case AIState.Type.RES_LOAD_COMPLETED:
+            case AIEvent.Type.RES_LOAD_COMPLETED:
                 {
-                    _statusText.text = "AI Resource loading completed.";                                    
+                    _statusText.text = "AI Resource loading completed.";
                     break;
                 }
-            case AIState.Type.SPEAKING_PREPARE_STARTED:
+            case AIEvent.Type.AICLIPSET_PLAY_PREPARE_STARTED:
                 {
                     _statusText.text = "AI started preparation to speak.";
                     break;
                 }
-            case AIState.Type.SPEAKING_PREPARE_COMPLETED:
+            case AIEvent.Type.AICLIPSET_PLAY_PREPARE_COMPLETED:
                 {
                     _statusText.text = "AI finished preparation to speak.";
                     break;
                 }
-            case AIState.Type.SPEAKING_STARTED:
+            case AIEvent.Type.AICLIPSET_PLAY_STARTED:
                 {
                     _statusText.text = "AI started speaking.";                  
                     break;
                 }
-            case AIState.Type.SPEAKING_COMPLETED:
+            case AIEvent.Type.AICLIPSET_PLAY_COMPLETED:
                 {
-                    _statusText.text = "AI finished speaking.";                  
+                    _statusText.text = "AI finished speaking.";                    
                     break;
-                }          
+                }
+            case AIEvent.Type.AICLIPSET_PLAY_FAILED:
+                {
+                    _statusText.text = "AI failed to speak.";
+                    break;
+                }           
+            case AIEvent.Type.AI_CONNECTED:
+                {
+                    _statusText.text = "AI is connected.";
+                    break;
+                }
+            case AIEvent.Type.AI_DISCONNECTED:
+                {
+                    _statusText.text = "AI is disconnected.";
+                    break;
+                }                      
         }
     }
 }
@@ -101,9 +114,9 @@ public class MyAIPlayerCallback : AIPlayerCallback
 
 - MyAIFrameImageProvider.cs
 
-Implement ImageProvider by inheriting AIFrameImageProvider to receive AI resources (UnityEngine.Texture2D).
+AI 이미지(UnityEngine.Texture2D)를 공급받기 위해 AIFrameImageProvider를 상속 및 구현한다.
 
-```js
+```csharp
 using UnityEngine;
 using UnityEngine.UI;
 using AIHuman.SDK;
@@ -159,16 +172,16 @@ public class MyAIFrameImageProvider : AIFrameImageProvider
 
 - QuickStart.cs
 
-Write the SDK authentication process and AIPlayer initialization code. It also implements AI speaking through Button clicks.
+SDK 인증 프로세스 및 AIPlayer 초기화 코드를 작성하고 버튼 클릭을 통한 AI 발화를 구현한다.
 
-```js
+```csharp
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
 using AIHuman.SDK;
+using AIHuman.Common;
 using AIHuman.View;
 using AIHuman.Core;
-using Newtonsoft.Json.Linq;
 
 public class QuickStart : MonoBehaviour
 {
@@ -182,29 +195,29 @@ public class QuickStart : MonoBehaviour
     private StringBuilder _sb = new StringBuilder();
 
     private void Awake()
-    {      
-        AIHumanSDKManager.Instance.AuthStart(OnCompleteAuth);
+    {               
+        AIHumanSDKManager.Instance.Authenticate(OnCompleteAuth);
 
         _btnSend.onClick.AddListener(OnClickSend);
     }
- 
-    private void OnCompleteAuth(JToken aiList, string error)
+
+    private void OnCompleteAuth(AIAPI.AIList aiList, AIError error)
     {
-        if (string.IsNullOrEmpty(error))
-        {          
+        if (error == null)
+        {
             _aiPlayer.Init(AIAPI.Instance.DefaultAIName, _aiPlayerCallback, _aiFrameImageProvider);
         }
         else
         {
-            Debug.LogError(string.Format("{0} {1}", nameof(AIHumanSDKManager), error));
+            Debug.LogError(string.Format("{0} {1} {2}", nameof(AIHumanSDKManager), error.ErrorCode, error.Description));
         }
     }
-  
+
     public void OnClickSend()
     {
         string[] requests = new string[] { _inputChat.text };
         _aiPlayer.Send(requests);
-        
+
         for (int i = 0; i < requests.Length; i++)
         {
             if (!string.IsNullOrEmpty(_sb.ToString()))
@@ -214,25 +227,25 @@ public class QuickStart : MonoBehaviour
             _sb.Append(requests[i]);
         }
         _chatHistory.text = _sb.ToString();
-        _inputChat.text = string.Empty;       
-    }
+        _inputChat.text = string.Empty;
+    }   
 }
 ```
 
 
-### 3. Apply the script you created.
+### 3. 작성한 스크립트를 적용한다.
 
-#### 3-1. After selecting the QuickStart game object in the hierarchy window, register the scripts written in item 3 through the Add Component button in the Inspector window.
-#### 3-2. Each item in the Inspector window is registered through drag and drop after selecting the game object in the Hierarchy window as shown in the image below.
+#### 3-1. Hierarchy창에서 QuickStart 게임오브젝트를 선택 후 2번 항목에서 작성한 스크립트들을 Inspector창에서 Add Component 버튼을 통해 등록한다.
+#### 3-2. Inspector창의 각 항목들을 아래 이미지와 같이 Hierarchy창에서 해당 게임오브젝트 선택 후 드래그앤드롭을 통해 등록해준다.
 
 <img src="/img/aihuman/unity/quickstart_inspector.png" />
 
-### 4. Command the AI to speak 
+### 4. 한 문장 발화 테스트
 
-- Editor Play > Loading Resources > Input Text at the bottom > Click the Send button
+- Editor Play > 리소스 로딩 > 하단 InputText에 문장 입력 > Send 버튼 클릭
 
 :::note
-The actual AI Human may differ from the screenshot.
+실제 AI Human은 스크린샷과 다를 수 있다.
 :::
 
 <p align="center">
