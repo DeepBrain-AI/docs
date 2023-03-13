@@ -49,12 +49,12 @@ _aiPlayer.Send(new[] {clip});
 
 #### Monitoring callbacks of gesture actions
 
-IAIPlayerCallback.OnAIStateChanged(AIState) is called in the same way as the speech actions. The state value of AIState is called as follows to know the state. However, since AIState.GetAIMsg().Clip.Type, GestureName, and SpeechText are known here, it is possible to know whether it is a gesture action or just a speech action.
+IAIPlayerCallback.OnAIPlayerEvent(AIEvnet aiEvent) is called in the same way as the speech actions. The state value of AIEvnet is called as follows to know the event. However, since aiEvent.EventType, aiEvent.ClipSet are known here, it is possible to know whether it is a gesture action or just a speech action.
 
-- `SPEAKING_PREPARE_STARTED`
-- `SPEAKING_PREPARE_COMPLETED`
-- `SPEAKING_STARTED`
-- `SPEAKING_COMPLETED`
+- `AICLIPSET_PLAY_PREPARE_STARTED` 
+- `AICLIPSET_PLAY_PREPARE_COMPLETED`
+- `AICLIPSET_PLAY_STARTED`
+- `AICLIPSET_PLAY_COMPLETED`
 
 <br/>
 
@@ -133,28 +133,29 @@ _aiPlayer.Preload(new[] {clip});
 
 #### Preload related Monitoring 
 
-AIPlayerCallback.onAIStateChanged(AIState) is called during the preload operation just like the speaking operation. The value of AIState is shown below.
+AIPlayerCallback.OnAIPlayerEvent(AIEvnet aiEvent) is called during the preload operation just like the speaking operation. The value of AIEvent is shown below.
 
-- `SPEAKING_PREPARE_PRELOAD_STARTED`
-- `SPEAKING_PREPARE_PRELOAD_COMPLETED`
+- `AICLIPSET_PRELOAD_STARTED`
+- `AICLIPSET_PRELOAD_COMPLETED`
 
 <br/>
 
-When the AI has several sentences to speak, it first processes the very first sentence. Once the returned state from onAIStateChanged is SPEAKING_STARTED, which is when the AI starts to speak the first sentence, the next sentence can be preloaded. If you play the next sentence after the state update to SPEAKING_PREPARE_PRELOAD_COMPLETED, there will be minimum delays between sentences. 
+When the AI has several sentences to speak, it first processes the very first sentence. Once the returned event from OnAIPlayerEvent is AICLIPSET_PLAY_STARTED, which is when the AI starts to speak the first sentence, the next sentence can be preloaded. If you play the next sentence after the event update to `AICLIPSET_PRELOAD_COMPLETED`, there will be minimum delays between sentences. 
 
 ```csharp
 // AI Preload related CallBack
-public void onAIStateChanged(AIState aiState)
+public void OnAIPlayerEvent(AIEvent aiEvent)
 {
-    if (aiState.state == AIState.Type.SPEAKING_PREPARE_PRELOAD_STARTED)
+    if (aiEvent.EventType == AIState.Type.AICLIPSET_PRELOAD_STARTED)
     {
-        _txtStatus.text = "AI started preparation to preload.";
+        message = "AI started preparation to preload.";
     }
-    else if (aiState.state == AIState.Type.SPEAKING_PREPARE_PRELOAD_COMPLETED)
+    else if (aiEvent.EventType == AIState.Type.AICLIPSET_PRELOAD_COMPLETED)
     {
-        _txtStatus.text = "AI finished preparation to preload.";
+        message = "AI finished preparation to preload.";
     }
-    	...
+    
+    ...
 }
 ```
 
@@ -175,9 +176,9 @@ _aiPlayer.Send(new[] {clip1, clip2});
 
 #### Multi Speak related Monitoring
 
-IAIPlayerCallback.onAIStateChanged(AIState) is called for each sentence. The possible AIState values are shown below. 
+IAIPlayerCallback.OnAIPlayerEvent(AIEvnet aiEvent) is called for each sentence. The possible AIEvent values are shown below. 
 
-- `SPEAKING_PREPARE_STARTED`
-- `SPEAKING_PREPARE_COMPLETED`
+- `AICLIPSET_PLAY_PREPARE_STARTED`
+- `AICLIPSET_PLAY_PREPARE_COMPLETED`
 
 If you send several sentences, it automatically preloads if possible. In this case, you can see that the delay between utterances when the AI speaks is reduced.

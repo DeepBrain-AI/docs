@@ -4,29 +4,29 @@ sidebar_position: 1
 
 # 개요
 
-The WPF-based sample covered in this document is an example of using the AI Human SDK. Following this guide, you will be able to try out every functionalities in the AI Human SDK one-by-one through implementing the features in AI Human Sample Application. 
+본 문서에서 다루는 샘플 프로젝트는 AI Human SDK 구현 가이드로 제공되며 WPF 기반의 Windows 응용 프로그램입니다. 문서와 샘플 프로젝트를 토대로 AI Human SDK의 모든 기능을 하나씩 구현해 볼 수 있습니다.
 
-You can open AIHuman_WPF_Sample.sln from the sample received from the path where you received the document and run the Sample App below after building the solution.
+앞서 언급한 AI Human 웹사이트에서 다운로드 받은 Sample의 AIHuman_WPF_Sample.sln 솔루션 파일을 열고 아래와 같이 실행해 볼 수 있습니다.
 
 :::info
-1. Open the solution with AIHuman_WPF_Sample.sln double-click or IDE (Visual Studio).
-2. Enter the appId and userKey prepared by [AIHuman Quick Start](#aihuman-quick-start) as the AIAPI.Instance.AuthStart function argument in the App.xaml.cs file.
-3. Click [Build] - [Solution Build] on the top menu bar of IDE (Visual Studio) to perform the build.
-4. Click [Debug] - [Start Without Debugging] on the top menu bar of IDE (Visual Studio) to launch the Sample App.
+1. AIHuman_WPF_Sample.sln 더블클릭 또는 IDE(Visual Studio)로 솔루션을 엽니다.
+2. [나의 AI Human 만들기](../getting-started/first-aihuman)에서 사용한 appId와 userKey를 App.xaml.cs 파일의 AIAPI.Instance.Authenticate 함수 인자로 입력합니다.
+3. IDE(Visual Studio)의 상단 메뉴바에서 [빌드] - [솔루션 빌드]를 클릭하여 빌드를 수행합니다.
+4. IDE(Visual Studio)의 상단 메뉴바에서 [디버깅] - [디버깅 없이 시작]을 클릭하여 샘플 앱을 실행합니다.
 :::
 
 <br/>
 
 <img src="/img/aihuman/windows/SampleApp_main.png" />
 
-**The SDK authentication is enabled automatically on this page**. When the screen appears, the authentication action is automatically called, so there is no need to take any other action. All you need to do is input the appId, userkey, uuid, and target platform obtained above. Once authenticated, authentication is maintained until the app is closed, so there is no need to authenticate again. If the menu still doesn't work, check if there is an error in the authentication function(AuthStart) callback. Most of the time, token refresh is the problem.
+**샘플 프로젝트에서의 SDK 인증은 해당 페이지 초기화 시 자동으로 수행하게 됩니다**. 화면이 나타나면 App.xaml.cs 파일의 AIAPI.Instance.Authenticate함수가 자동으로 호출되므로 추가 인증을 수행할 필요는 없습니다. 위에서 언급한 appId, userKey는 SDK 최초 인증 시 앱이 종료될 때까지 유지되기 때문에 다시 인증할 필요는 없습니다. 만약 메뉴가 작동하지 않으면 인증(Authenticate)함수 콜백에 오류가 있는지 확인합니다. 오류가 있다면 대부분 appId, userKey, 토큰 새로 고침이 문제입니다. 인증 갱신을 위한 방법은 API 편람 혹은 샘플 프로젝트를 참고해 주세요.
 
-#### Menu on HomeView(HomeView.xaml)
+#### HomeView(HomeView.xaml)의 메뉴
 
-Each menu is as follows.
+각 메뉴는 다음과 같습니다.
 
-- Quick Start: Quickly see AI Human in action (QuickStartView.xaml)
-- AI Human Demo: An example of using AI Human SDK (DemoView.xaml)
-- with Playchat & Azure STT: Conversational AI example using AI Human, Playchat, and Azure STT (PlaychatView.xaml)
-- with Google Dialogflow: Conversational AI example using AI Human and Google Dialogflow (DialogFlowView.xaml)
-- Exit: Exit the App (NavigationBar.xaml)
+- AI Human QuickStart: 기본 AI 모델의 동작을 빠르게 확인합니다. (QuickStartView.xaml)
+- AI Human Demo: 종합적인 AI Human SDK 사용 예제 입니다. (DemoView.xaml)
+- with Playchat & Azure STT: AI Human(SDK)과 Playchat(ChatBot) 그리고 MS Azure Speech(STT)를 연동한 대화형 AI Human 구현 예제입니다. (PlaychatView.xaml)
+- with Google Dialogflow: AI Human(SDK)과 Google Dialogflow(ChatBot)을 연동한 대화형 AI Human 구현 예제입니다. (DialogFlowView.xaml)
+- Quit: 응용 프로그램을 종료합니다. (NavigationBar.xaml)

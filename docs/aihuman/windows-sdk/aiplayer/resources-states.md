@@ -12,64 +12,59 @@ When AIPlayer is created after authentication is completed, resource loading sta
 
 ### Monitoring player state through IAIPlayerCallback implementation
 
-The values for the parameter AIState.state in the listener method onAIStateChanged(AIStatePublisher.AIState state) are shown below. You can also implement loading progress with onAIPlayerResLoadingProgressed(int current, int total).
+The values for the parameter AIState.state in the listener method OnAIPlayerEvent(AIEvent aiEvent) are shown below. You can also implement loading progress with OnAIPlayerResLoadingProgressed(int current, int total).
 
-- AIState.Type.RES_LOAD_STARTED : resource loading is started.
-- AIState.Type.RES_LOAD_COMPLETED : resource loading is completed.
+- AIEvent.Type.RES_LOAD_STARTED : resource loading is started.
+- AIEvent.Type.RES_LOAD_COMPLETED : resource loading is completed.
 
-If there is any problem during this process, the onAIPlayerError() method is called. Typically, a response from the onAIPlayerError() may be notifying the expiration of the authentication token. An appropriate response is required depending on the situation.
+If there is any problem during this process, the OnAIPlayerError() method is called. Typically, a response from the OnAIPlayerError() may be notifying the expiration of the authentication token. An appropriate response is required depending on the situation.
 
-- AIError.SDK_API_ERR : Notifies error in authentication process API.
+- AIError.Code.AI_API_ERR : Notifies error in authentication process API.
 
 :::info  
-e.g.) 1402 error (value token expired): Token refresh required -> Call AuthStart() method again
+e.g.) 1402 error (value token expired): Token refresh required -> Call Authenticate or GenerateToken method again
 :::
 
 ```csharp
 string message;
 // AI resource related status CallBack
-public void onAIStateChanged(AIState state)
+public void OnAIPlayerEvent(AIEvent aiEvent)
 {
-    if (state.state == AIState.Type.RES_LOAD_STARTED)
+    switch (aiEvent.EventType)
     {
-        message = "AI Resource loading started.";
-    }
-    else if (state.state == AIState.Type.RES_LOAD_COMPLETED)
-    {
-        message = "AI Resource loading completed.";
+        case AIEvent.Type.RES_LOAD_STARTED:
+            message = "AI Resource loading started.";
+            break;
+        case AIEvent.Type.RES_LOAD_COMPLETED:
+            message = "AI Resource loading completed.";
+            break;
+        
+        ...
+
     }
 }
 
 // AI resource loading progress CallBack
-public void onAIPlayerResLoadingProgressed(int current, int total)
+public void OnAIPlayerResLoadingProgressed(int current, int total)
 {
     float progress = ((float) current / (float) total) * 100;
     message = string.Format("AI Resource Loading... {0}%", (int)progress);
 }
 
 // AI error CallBack
-public void onAIPlayerError(AIError error)
+public void OnAIPlayerError(AIError error)
 {
-  if (error.Type.SDK_API_ERR == error.errorType) 
-  {
-    string errorDesc = error.exInfo;
-    if (string.IsNullOrEmpty(errorDesc))
+    switch (error.ErrorCode)
     {
-        JSONObject json = null;
-        try
-        {
-            json = new JSONObject(errorDesc);
-        }
-        catch (JsonException ex)
-        {
-        }
+        case AIError.Code.AI_API_ERR:
+            // TODO: impl error handling
+            break;
+        
+        ...
 
-        if (json != null && json.optInt(Constants.KEY_ERRORCODE, -1) ==
-            Constants.API_ERRORCODE_TOKEN_EXPIRED)
-        {
-            // refresh token
-        }
+        default:
+            message = error.ToString();
+            break;
     }
-  }
 }
 ```

@@ -3,8 +3,8 @@ sidebar_position: 3
 ---
 
 # AI Human Demo
-:::note 관련 파일
-
+:::note
+Please refer to the files below in Sample Project.
 - DemoView.xaml
 - DemoViewModel.cs
 

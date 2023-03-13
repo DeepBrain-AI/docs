@@ -3,39 +3,51 @@ sidebar_position: 3
 ---
 
 # AI Human 데모
-:::note related files
-
+:::note 정보
+Sample Project에서 아래 파일들을 참고하세요.
 - DemoView.xaml
 - DemoViewModel.cs
 
 :::
 
-AI Human Demo is a page where you can try out various functionalities of AIPlayer. You can try changing to another approved AI model through [AI Select]. For other details, please refer to [AIPlayer Description](#aiplayer-description).
+AI Human SDK Demo는 AIPlayer의 다양한 기능을 살펴볼 수 있는 메뉴입니다. [AI 선택]을 통해 승인된 다른 AI 모델로 변경할 수 있습니다. 기타 자세한 내용은 [AIPlayer 설명](../../../category/aiplayer-description-1)을 참고하세요.
 
 <img src="/img/aihuman/windows/WPF_Sample_DemoPage.png" />
 
-**First, get a list of available AIs and set up the UI. The Constants.appid, userKey, uuid, and targetPlatform below are parameters entered when calling AuthStart in HomeView.**
+**먼저 사용 가능한 AI 목록을 가져와 UI를 설정합니다. 아래 AIAPI.AppId, AIAPI.UserKey는 HomeView에서 Authenticate를 호출할 때 입력한 매개 변수입니다.**
+- 엄밀히 말하면 HomeView에서의 Authenticate는 App.xaml.cs의 생성자에서의 호출을 의미합니다.
+- 초기 Authenticate 호출에 사용한 첫번째, 두번째 인자는 AIAPI.AppId, AIAPI.UserKey에 내부적으로 할당됩니다.
 
 ```csharp
-AIAPI.Instance.AuthStart(Constants.AppId, Constants.UserKey, Constants.Uuid, Constants.TargetPlatform, (aiList, error) =>
+AIAPI.Instance.Authenticate(AIAPI.AppId, AIAPI.UserKey, (aiList, error) =>
 {
-    // You can get a list of available AIs via CallBack.
-	AIAPI.AIList apiAIlist = JsonConvert.DeserializeObject<AIAPI.AIList>(aiList.Root.ToString());
-	if (aiList == null)
-	{
-		AIStatusText = Resource.ApiAiListEmptyError;
-	}
+    try
+    {
+        if (error != null)
+        {
+            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, () => {
+                AIStatusText = error.ToString();
+            });
+            return;
+        }
 
-	AIs = new ObservableCollection<AIAPI.AI>();
-	foreach (AIAPI.AI item in apiAIlist.ai)
-	{
-		AIs.Add(item);
-	}
-	SelectedAI = AIs[0];
+        AIs = new ObservableCollection<AIAPI.AI>();
+        foreach (AIAPI.AI item in aiList.ai)
+        {
+            AIs.Add(item);
+        }
+
+        SelectedAI = AIs[0];
+    }
+    catch (Exception /*e*/)
+    {
+        AIStatusText = Resource.ApiAiListEmptyError;
+    }
 });
 ```
 
-**The part that changes AI.** In addition to creating and adding AIPlayer, sample text is obtained and the utterance sentence ComboBox is filled. It is updated by getting the rest of the default settings.
+**AI 모델을 변경하는 부분 입니다.** AIPlayer를 생성하고 추가하는 것 외에도 샘플 텍스트를 얻어오고 발화 문장 콤보박스를 채웁니다. 나머지 기본 설정값들도 가져와 업데이트됩니다.
+자세한 사항은 샘플 프로젝트의 코드를 참고하세요.
 
 ```csharp
 private void UpdateSelectedAI()
@@ -45,49 +57,102 @@ private void UpdateSelectedAI()
         _aiPlayer.Dispose();
         _aiPlayer = null;
     }
-
-    if (_speechList != null)
-    {
-        _speechList.Clear();
-        _speechList = null;
-    }
-
-    _aiPlayer = new(SelectedAI.AIName, this);
-    AIPlayerObject = _aiPlayer.GetObject();
-
-    SpeechList = new ObservableCollection<string>(AIAPI.Instance.GetSampleTexts(SelectedAI.AIName));
-    SpeechList.Insert(0, Resource.DefaultSpeech);
-
-    SpeechIndex = 0;
-    
     ...
+
+    _aiPlayer = new(SelectedAI.aiName, this);
+    AIPlayerObject = _aiPlayer.GetObject();           
+
+    OnPropertyChanged(nameof(AISpeed));
+    OnPropertyChanged(nameof(AIScale));
+
+    _aiMargin = AIMargin;
+    OnPropertyChanged(nameof(AIMargin_X));
+    OnPropertyChanged(nameof(AIMargin_Y));
+
+    _gestures = _aiPlayer.GetGestures();
+    ...
+
+    SpeakableLanguages = AIAPI.GetSpeakableLanguages(_aiPlayer.AIGender);
+    ...
+}
+
+private void UpdateSelectedLanguage()
+{
+    ...
+
+    AIAPI.Instance.GetSampleTextList(curLang, (texts, err) => { 
+        ...
+    });
 }
 ```
 
-**Examples of Speak, Preload, Pause, Multi Speak(Randomly), Resume, and Pause.** 
+**다음은 플레이(발화), 프리로드, 일시정지, 재개, 정지 등의 예제입니다.** 
 
-AIHuman.Core.RelayCommand is used for View and Command Binding. This implementation is only an example and it is not necessary to use AIHuman.Core.RelayCommand.
+AIHuman.Core.RelayCommand는 View에서 명령 바인딩(Command Binding)에 사용됩니다. 이 구현은 예세로써 편의를 위해 제공할 뿐 필수적으로 AIHuman.Core.RelayCommand를 사용할 필요는 없습니다.
 
-Please refer to the [AIPlayer description](#aiplayer-description) that follows below.
+기타 자세한 내용은 [AIPlayer 설명](../../../category/aiplayer-description-1)을 참고하세요.
 
 ```csharp
 private void Speak_Command(object args)
 {
     _sendingMessage.Clear();
+    CustomVoice cv;
+    if (LanguageIndex == 0)
+    {
+        cv = CVIndex == 0 ? null : _customVoices[CVIndex - 1];
+    }
+    else
+    {
+        cv = _customVoices[CVIndex];
+    }
 
-    _sendingMessage.Add(_speechText);
-    
-    _aiPlayer.Send(_sendingMessage.ToArray());
+    _aiPlayer.SetCustomVoice(cv);
+
+    AIClipSet clip;
+    if (GestureIndex > 0)
+    {
+        if (GstEnableSpeech)
+        {
+            clip = AIAPI.CreateClipSet(_speechText, _gestures[GestureIndex - 1].Name);
+        }
+        else
+        {
+            clip = AIAPI.CreateClipSet("", _gestures[GestureIndex - 1].Name);
+        }
+    }
+    else
+    {
+        clip = AIAPI.CreateClipSet(_speechText);
+    }
+    _sendingMessage.Add(clip);
+
+    _aiPlayer.Send(new[] { clip });
 }
 
 private void Preload_Command(object args)
 {
     _sendingMessage.Clear();
 
-    _sendingMessage.Add(_speechText);
+    AIClipSet clip;
+    if (GestureIndex > 0)
+    {
+        if (GstEnableSpeech)
+        {
+            clip = AIAPI.CreateClipSet(_speechText, _gestures[GestureIndex - 1].Name);
+        }
+        else
+        {
+            clip = AIAPI.CreateClipSet("", _gestures[GestureIndex - 1].Name);
+        }
+    }
+    else
+    {
+        clip = AIAPI.CreateClipSet(_speechText);
+    }
 
-    _isPreload = true;
-    _aiPlayer.Preload(_sendingMessage.ToArray());
+    _sendingMessage.Add(clip);
+
+    _aiPlayer.Preload(new[] { clip });
 }
 
 private void Stop_Command(object args)
@@ -98,14 +163,13 @@ private void Stop_Command(object args)
 
 private void Multi_Command(object args)
 {
-    Random rand = new();
     _sendingMessage.Clear();
 
     for (int i = 1; i < SpeechList.Count; ++i)
     {
-        if (rand.Next(0, 100) % 6 % 2 == 0)
+        if (i % 2 != 0)
         {
-            _sendingMessage.Add(SpeechList[i]);
+            _sendingMessage.Add(AIAPI.CreateClipSet(SpeechList[i]));
         }
     }
 
@@ -125,27 +189,28 @@ private void Pause_Command(object args)
 }
 ```
 
-**By implementing IAIPlayerCallback, it is possible to receive callback from AI operations.**
+**IAIPlayerCallback 구현을 통해, AI 모델 및 AIPlayer의 동작에 대한 콜백을 받을 수 있습니다.**
 
 ```csharp
 public interface IAIPlayerCallback
 {
-    void onAIPlayerError(AIError error);
-    void onAIPlayerResLoadingProgressed(int current, int total);
-    void onAIStateChanged(AIState state);
+    void OnAIPlayerError(AIError aiError);
+    void OnAIPlayerResLoadingProgressed(int current, int total);
+    void OnAIPlayerEvent(AIError aiEvent);
 }
 ```
 
-Through onAIStateChanged implementation, you can receive CallBack of AI states shown below.
+예를 들어 OnAIPlayerEvent 구현을 통해 아래와 같은 AI 이벤트 콜백을 받을 수 있습니다.
 
-:::info AIState.Type
+:::info AIEvent.Type
 
-- SPEAKING_STARTED: AI started speaking.
-- SPEAKING_COMPLETED: AI finished speaking.
-- SPEAKING_PREPARE_STARTED: AI started preparation to speak.
-- RES_LOAD_COMPLETED: AI Resource loading completed.
-- RES_LOAD_STARTED: AI Resource loading started.
-- SPEAKING_PREPARE_COMPLETED: AI finished preparation to speak.
+- RES_LOAD_STARTED: AI 리소스 로딩이 시작 되었을 때 발생
+- RES_LOAD_COMPLETED: AI 리소스 로딩이 완료 되었을 때 발생
+- AICLIPSET_PLAY_PREPARE_STARTED: AI가 발화 관련 준비 시작 시 발생
+- AICLIPSET_PLAY_PREPARE_COMPLETED: AI가 발화 관련 준비 완료 시 발생
+- AICLIPSET_PLAY_STARTED: AI 발화 시작 시 발생
+- AICLIPSET_PLAY_COMPLETED: AI 발화 완료 시 발생
+- AICLIPSET_PLAY_FAILED: AI 발화 실패 시 발생
 - ...
 
 :::

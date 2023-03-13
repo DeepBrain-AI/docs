@@ -24,52 +24,57 @@ _aiPlayer.Send(new[] {clip});
 
 ### Speaking related Monitoring
 
-After the Send method is called, you can listen to the operation status feedback in the registered listener. This feedback is returned by calling the method (onAIStateChanged) of the listener(IAIPlayerCallback). onAIStateChanged sequentially returns the following AIState values. 
+After the Send method is called, you can listen to the operation status feedback in the registered listener. This feedback is returned by calling the method (OnAIPlayerEvent) of the listener(IAIPlayerCallback). OnAIPlayerEvent sequentially returns the following AIState values. 
 
-- SPEAKING_PREPARE_STARTED 
-- SPEAKING_PREPARE_COMPLETED
-- SPEAKING_STARTED
-- SPEAKING_COMPLETED
+- AICLIPSET_PLAY_PREPARE_STARTED 
+- AICLIPSET_PLAY_PREPARE_COMPLETED
+- AICLIPSET_PLAY_STARTED
+- AICLIPSET_PLAY_COMPLETED
 
 ```csharp
+string message;
+
 // Speaking related CallBack example
-public void onAIStateChanged(AIState state)
+public void OnAIPlayerEvent(AIEvnet aiEvent)
 {
-    if (state.state == AIState.Type.SPEAKING_PREPARE_STARTED)
+    switch (aiEvent.EventType)
     {
-        _txtStatus.text = "AI started preparation to speak.";
-    } 
-    else if (state.state == AIState.Type.SPEAKING_PREPARE_COMPLETED)
-    {
-        _txtStatus.text = "AI finished preparation to speak.";
-    }
-    else if (state.state == AIState.Type.SPEAKING_STARTED)
-    {
-        _txtStatus.text = "AI started speaking.";
-    }
-    else if (state.state == AIState.Type.SPEAKING_COMPLETED)
-    {
-        _txtStatus.text = "AI finished speaking.";
+        case AIState.Type.AICLIPSET_PLAY_PREPARE_STARTED:
+            message = "AI started preparation to speak.";
+            break;
+        case AIEvent.Type.AICLIPSET_PLAY_PREPARE_COMPLETED:
+            message = "AI finished preparation to speak.";
+            break;
+        case AIEvent.Type.AICLIPSET_PLAY_STARTED:
+            message = "AI started speaking.";
+            break;
+        case AIEvent.Type.AICLIPSET_PLAY_COMPLETED:
+            message = "AI finished speaking.";
+            break;
+            
+        ...
+
     }
 }
 
 // AI error CallBack example
-public void onAIPlayerError(AIError error)
+public void OnAIPlayerError(AIError error)
 {
-    if (error.errorType == AIError.Type.SOCKET_ERR)
+    switch (error.ErrorCode)
     {
-		_txtStatus.text = "Socket Error: " + error.exInfo;
-    }
-    else if (error.errorType == AIError.Type.RES_LOAD_ERR)
-    {
-        _txtStatus.text = "Resource Error: " + error.exInfo);
-    }
-	else if (error.errorType == AIError.Type.SPEAK_SEND_ERR)
-    {
-		_txtStatus.text = "Speak Error: " + error.exInfo);
+        case AIError.Code.AICLIPSET_PLAY_ERR:
+            // TODO: impl error handling
+            break;
+        
+        ...
+
+        default:
+            message = error.ToString();
+            break;
     }
 }
 ```
+
 <br/>
 
 The following are actions that can be performed while the AIPlayer is Speaking.
