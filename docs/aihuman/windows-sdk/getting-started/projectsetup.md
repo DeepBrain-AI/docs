@@ -7,10 +7,10 @@ sidebar_position: 2
 In this chapter, you will learn how to create and register UserKey and AppId, etc. required for authentication for using AI Human SDK.
 
 ## 1. Create an account
-Create an account on the **[AI Human SDK Website](https://aitalk.deepbrainai.io)**.
+Create an account on the **[AI Human SDK Website](https://aihuman.deepbrain.io/)**.
 
 ## 2. Add a project to My workspace
-Create a project in **[My workspace](https://aitalk.deepbrainai.io/aihuman/sdk)**, enter App Id of Windows and click confirm. Then User Key will be issued.
+Create a project in **[My workspace](https://aihuman.deepbrain.io/aihuman/sdk)**, enter App Id of Windows and click confirm. Then User Key will be issued.
 
 <img src="/img/aihuman/windows/SDK_WebPage_UserKey.png" />
 
@@ -27,8 +27,27 @@ The appId, userKey, uuid, and platform information will be used as arguments for
 
 Create solutions and projects to use the AI Human SDK in the Visual Studio.
 
-#### 	: Create New Project > WPF Application > Target Framework > .NET 5.0
-####		WpfApp1 is the default when creating a project.
+#### 	: Create New Project > WPF Application > Target Framework > .NET 5.0 (or .NET Core 3.1 or later WPF support target)
+####		We will use the default project name, WpfApp1.
+
+### Requirements
+
+#### AIHuman.SDK.Core
+- [.NET Standard 2.0](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0)
+
+#### AIHuman.SDK.WPF
+- [.NET Core 3.1](https://dotnet.microsoft.com/en-us/download/dotnet/3.1)
+
+Use the corresponding WPF-based SDK to develop or run custom applications.NET Core 3.1 or later must be installed.
+This is not the case if you want to develop a different target framework or UI using only the core.
+
+#### Using Packages
+
+- [JWT](https://github.com/jwt-dotnet/jwt) (9.0.3)
+- [Newtonsoft.Json](https://www.newtonsoft.com/json) (13.0.2)
+- [SocketIOClient](https://github.com/doghappy/socket.io-client-csharp) (3.0.3)
+- [System.Drawing.Common](https://github.com/dotnet/runtime) (6.0.0)
+- [System.Configuration.ConfigurationManager](https://github.com/dotnet/runtime) (4.4.1)
 
 <br/>
 

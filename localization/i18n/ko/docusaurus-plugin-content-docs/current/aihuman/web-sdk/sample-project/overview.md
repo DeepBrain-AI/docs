@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## Demo web page
 
-The demo web page is a web page that allows you to experience functions using the Web(js) AI Human SDK, and when you press the DEMO button[(Link)](https://aitalk.deepbrainai.io/webdemo/demo1.html), the following menu appears at the top right of the web page.
+The demo web page is a web page that allows you to experience functions using the Web(js) AI Human SDK, and when you press the DEMO button[(Link)](https://aihuman.deepbrain.io/webdemo/demo1.html), the following menu appears at the top right of the web page.
 
 <img src="/img/aihuman/web/demo_btn.png" />
 

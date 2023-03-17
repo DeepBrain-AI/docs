@@ -7,11 +7,11 @@ sidebar_position: 2
 이번 장에서는 AI Human SDK 구동을 위한 인증 절차에 필요한 User Key, App ID 등을 생성하고 설정하는 방법에 대해 알아봅니다.
 
 ## 1. 계정 생성하기
-**[AI Human 웹사이트](https://aitalk.deepbrainai.io)**에서 계정을 생성합니다.
+**[AI Human 웹사이트](https://aihuman.deepbrain.io/)**에서 계정을 생성합니다.
 - 우측 상단 > Sign In > Create an account
 
 ## 2. My workspace에 Project 추가하기
-**[My workspace](https://aitalk.deepbrainai.io/aihuman/sdk)**에서 Project를 만들고, Windows App ID 부분에 SDK를 사용하는 Windows Application 명을 입력하고 확인을 클릭합니다. 해당 App ID에서 사용할 수 있는 User Key가 발급됩니다.
+**[My workspace](https://aihuman.deepbrain.io//aihuman/sdk)**에서 Project를 만들고, Windows App ID 부분에 SDK를 사용하는 Windows Application 명을 입력하고 확인을 클릭합니다. 해당 App ID에서 사용할 수 있는 User Key가 발급됩니다.
 
 <img src="/img/aihuman/windows/SDK_WebPage_UserKey.png" />
 
@@ -30,6 +30,25 @@ Visual Studio에서 솔루션 및 프로젝트를 생성하고 AI Human SDK를 �
 
 #### 	: Create New Project > WPF Application > Target Framework > .NET 5.0 (혹은 .NET Core 3.1 이상의 WPF 개발 가능 Target)
 ####		여기서는 기본 프로젝트명인 WpfApp1를 사용하겠습니다.
+
+### 요구사항
+
+#### AIHuman.SDK.Core
+- [.NET Standard 2.0](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0)
+
+#### AIHuman.SDK.WPF
+- [.NET Core 3.1](https://dotnet.microsoft.com/en-us/download/dotnet/3.1)
+
+해당 WPF 기반의 SDK를 사용하여 Custom Application을 개발하거나 실행시키려면 .NET Core 3.1 이상을 필수로 설치하셔야 됩니다.
+Core만 사용하여 다른 Target Framework 혹은 UI를 개발하려는 경우에는 해당 제약은 없어집니다.
+
+#### Using Packages
+
+- [JWT](https://github.com/jwt-dotnet/jwt) (9.0.3)
+- [Newtonsoft.Json](https://www.newtonsoft.com/json) (13.0.2)
+- [SocketIOClient](https://github.com/doghappy/socket.io-client-csharp) (3.0.3)
+- [System.Drawing.Common](https://github.com/dotnet/runtime) (6.0.0)
+- [System.Configuration.ConfigurationManager](https://github.com/dotnet/runtime) (4.4.1)
 
 <br/>
 
