@@ -36,25 +36,83 @@ The sample covered in this document is an example using the AI Human SDK, which 
 | `demo2.js`        | `Client` | stt demo css
 | `demo2.css`       | `Client` | stt demo css
 
-### Execution Guide
+<br />
 
-**1. Create a project to execute the sample code.**
+### How to Run
 
-**2. Download the sample code, decompress it, and add it to a location where static access is possible when the project is executed.**
+The sample project environment provides two types: node-express and nextjs. After accessing SDK-Project[(link)](https://aihuman.deepbrain.io/aihuman/sdk), you can download the sample project by clicking the 'Sample' button below.
 
-- ex) For next.js, inside the public folder by default
+<img src="/img/aihuman/web/sdk_sample1.png" />
 
-**3. Implement [4.2. Create clientToken on Server](#42-create-clienttoken-on-server) on the project.**
+<br />
+<br />
 
-In the generateClientToken function of the js internal file corresponding to the sample to be executed, enter an address that can request the clientToken generation implemented earlier.
+**Configuration**
 
-**4. If you have performed all of the above '1 ~ 3', run the project and connect it.**
+When you extract the downloaded files, you will have the following file structure. Here's how each project works.
 
-- By default, connect to the address of http://{set domain | IP address | localhost}:{set PORT}/{path to which the sample was added}/{filename}.html
+| Folder name    | Description      |
+| -------------- | ---------------- |
+| `node-express` | sample project 1 |
+| `nextjs`       | sample project 2 |
+
+<br />
+
+### Run using nextjs
+
+Use nextjs to quickly create projects (SDK DEMO versions) using the AI Human SDK.
+
+**1. Prepare appId and userKey through the [Project Setup](../getting-started/projectsetup) process.**
+
+**2. Modify the `/nextjs/pages/api/generateJWT.js` file.**
+
+- Input the appId in the 4th line.
+- Input the userKey in the 2nd line.
+
+<img src="/img/aihuman/web/sdk_sample3.png" />
+
+**3. Run the server from the `/nextjs` directory location using the command below.**
+
+```
+$ npm install
+$ npm run dev
+```
+
+**4. From a Chrome browser, access `http://localhost:3000`.**
 
 **5. Normal operation screenshot**
 
-The image below shows a screenshot of the normal operation of quickStart.html, demo1.html, and demo2.html from the left.
+The following version of `SDK DEMO` will be executed.
+
+<img src="/img/aihuman/web/sdk_demo_01.png" />
+
+<br />
+<br />
+<br />
+
+### Run using node-express
+
+**1. Prepare appId and userKey through the [Project Setup](../getting-started/projectsetup) process.**
+
+**2. Modify the `/node-express/server/generateJWT.js` file.**
+
+- Input the appId in the 5th line.
+- Input the userKey in the 3rd line.
+
+<img src="/img/aihuman/web/sdk_sample2.png" />
+
+**3. Run the server from the `/node-express/server` directory location using the command below.**
+
+```
+$ npm install
+$ npm start
+```
+
+**4. Run the `/node-express/client/quickStart.html` file from a Chrome browser.**
+
+**5. Normal operation screenshot**
+
+If quickStart.html, demo1.html, and demo2.html operate normally, it is as shown in the screen shot below.
 
 <img src="/img/aihuman/web/quick_start.png" />
 <img src="/img/aihuman/web/sdk_demo_01.png" />

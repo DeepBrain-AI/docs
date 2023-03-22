@@ -6,13 +6,13 @@ sidebar_position: 1
 
 ## Demo web page
 
-The demo web page is a web page that allows you to experience functions using the Web(js) AI Human SDK, and when you press the DEMO button[(Link)](https://aihuman.deepbrain.io/webdemo/demo1.html), the following menu appears at the top right of the web page.
+본 문서에서 다루는 샘플은 AI Human SDK를 사용한 예시로, DEMO 버튼[(Link)](https://aihuman.deepbrain.io/webdemo/demo1.html)을 누르면 웹페이지의 우측 상단에 아래와 같은 메뉴가 나타납니다.
 
 <img src="/img/aihuman/web/demo_btn.png" />
 
 ### Demo web page menu
 
-Each menu is as follows.
+각 메뉴의 구성은 아래와 같습니다.
 
 - QuickStart : AIPlayer QuickStart
 - SDK Demo : functionalities of AIPlayer
@@ -20,41 +20,99 @@ Each menu is as follows.
 
 ## Sample Project
 
-The sample covered in this document is an example using the AI Human SDK, which provides a demonstration of its functions by implementing them in the Sample Project. Through this, it is possible to examine in detail how SDK can be actually used and operated.
+본 내용은 AI Human SDK를 사용하여 간단힌 프로젝트를 만드는 방법을 제공합니다. 이는 샘플 프로젝트를 다운받아 간단히 구현이 가능합니다. 다운 받은 샘플 프로젝트의 세부 파일에 대한 설명은 아래와 같습니다.
 
-**Configuration**
+**파일 구성**
 
-| Filename          | Division  |Description                      |
-| ----------------- | -------- |----------------------------------|
-| `generateJWT.js`  | `Server` | generate client token javascript
-| `quickStart.html` | `Client` | quick start html
-| `quickStart.js`   | `Client` | quick start javascript
-| `demo1.html`      | `Client` | sdk demo html
-| `demo1.js`        | `Client` | sdk demo javascript
-| `demo1.css`       | `Client` | sdk demo css
-| `demo2.html`      | `Client` | stt demo css
-| `demo2.js`        | `Client` | stt demo css
-| `demo2.css`       | `Client` | stt demo css
+| Filename          | Division | Description                      |
+| ----------------- | -------- | -------------------------------- |
+| `generateJWT.js`  | `Server` | generate client token javascript |
+| `quickStart.html` | `Client` | quick start html                 |
+| `quickStart.js`   | `Client` | quick start javascript           |
+| `demo1.html`      | `Client` | sdk demo html                    |
+| `demo1.js`        | `Client` | sdk demo javascript              |
+| `demo1.css`       | `Client` | sdk demo css                     |
+| `demo2.html`      | `Client` | stt demo css                     |
+| `demo2.js`        | `Client` | stt demo css                     |
+| `demo2.css`       | `Client` | stt demo css                     |
 
-### Execution Guide
+<br />
 
-**1. Create a project to execute the sample code.**
+### 실행방법
 
-**2. Download the sample code, decompress it, and add it to a location where static access is possible when the project is executed.**
+샘플 프로젝트 코드 환경은 node-express와 nextjs로 두 가지를 제공한다. SDK-Project[(링크)](https://aihuman.deepbrain.io/aihuman/sdk)를 접속 후, 하단에서 아래의 `Sample` 버튼을 클릭하면 sample 프로젝트를 다운 받을 수 있습니다.
 
-- ex) For next.js, inside the public folder by default
+<img src="/img/aihuman/web/sdk_sample1.png" />
 
-**3. Implement [4.2. Create clientToken on Server](#42-create-clienttoken-on-server) on the project.**
+<br />
+<br />
 
-In the generateClientToken function of the js internal file corresponding to the sample to be executed, enter an address that can request the clientToken generation implemented earlier.
+**파일 구성**
 
-**4. If you have performed all of the above '1 ~ 3', run the project and connect it.**
+다운 받은 파일의 압축을 풀면 아래의 파일 구조를 가집니다. 각 프로젝트의 실행 방법은 다음과 같습니다.
 
-- By default, connect to the address of http://{set domain | IP address | localhost}:{set PORT}/{path to which the sample was added}/{filename}.html
+| Folder name    | Description      |
+| -------------- | ---------------- |
+| `node-express` | sample project 1 |
+| `nextjs`       | sample project 2 |
 
-**5. Normal operation screenshot**
+<br />
 
-The image below shows a screenshot of the normal operation of quickStart.html, demo1.html, and demo2.html from the left.
+### nextjs 실행하기
+
+nextjs를 활용하여 AI Human SDK를 사용한 프로젝트(SDK DEMO 버전)를 빠르게 만들 수 있습니다.
+
+**1. [프로젝트 셋업](../getting-started/projectsetup)를 통해, appId와 userKey를 발급받는다.**
+
+**2. `/nextjs/pages/api/generateJWT.js` 파일을 수정한다.**
+
+- [프로젝트 셋업](../getting-started/projectsetup)에서 생성한 appId를 4번째 줄에 넣어줍니다.
+- [프로젝트 셋업](../getting-started/projectsetup)에서 생성된 userKey를 2번째 줄에 넣어줍니다.
+
+<img src="/img/aihuman/web/sdk_sample3.png" />
+
+**3. `/nextjs` 디렉토리 위치에서 아래의 명령어를 통해 서버을 실행합니다.**
+
+```
+$ npm install
+$ npm run dev
+```
+
+**4. 크롬 브라우저에서 `http://localhost:3000`에 접속합니다.**
+
+**5. 정상작동 스크린샷**
+
+아래와 같은 `SDK DEMO` 버전이 실행됩니다.
+
+<img src="/img/aihuman/web/sdk_demo_01.png" />
+
+<br />
+<br />
+<br />
+
+### node-express 실행하기
+
+**1. [프로젝트 셋업](../getting-started/projectsetup)를 통해, appId와 userKey를 발급받는다.**
+
+**2. `/node-express/server/generateJWT.js` 파일을 수정합니다.**
+
+- [프로젝트 셋업](../getting-started/projectsetup)에서 생성한 appId를 5번째 줄에 넣어줍니다.
+- [프로젝트 셋업](../getting-started/projectsetup)에서 생성된 userKey를 3번째 줄에 넣어줍니다.
+
+<img src="/img/aihuman/web/sdk_sample2.png" />
+
+**3. `/node-express/server` 디렉토리 위치에서 아래의 명령어를 통해 서버을 실행합니다.**
+
+```
+$ npm install
+$ npm start
+```
+
+**4. `/node-express/client/quickStart.html`의 html 파일을 크롬 브라우저에서 실행합니다.**
+
+**5. 정상작동 스크린샷**
+
+아래 이미지는 왼쪽 부터 quickStart.html, demo1.html, demo2.html 정상작동 스크린샷입니다.
 
 <img src="/img/aihuman/web/quick_start.png" />
 <img src="/img/aihuman/web/sdk_demo_01.png" />
