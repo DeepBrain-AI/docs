@@ -74,6 +74,7 @@ Use nextjs to quickly create projects (SDK DEMO versions) using the AI Human SDK
 **3. Run the server from the `/nextjs` directory location using the command below.**
 
 ```
+$ cd nextjs
 $ npm install
 $ npm run dev
 ```
@@ -104,11 +105,12 @@ The following version of `SDK DEMO` will be executed.
 **3. Run the server from the `/node-express/server` directory location using the command below.**
 
 ```
+$ cd node-express/server
 $ npm install
 $ npm start
 ```
 
-**4. Run the `/node-express/client/quickStart.html` file from a Chrome browser.**
+**4. Open the `/node-express/client/quickStart.html` file with a Chrome browser.**
 
 **5. Normal operation screenshot**
 

@@ -74,6 +74,7 @@ nextjs를 활용하여 AI Human SDK를 사용한 프로젝트(SDK DEMO 버전)�
 **3. `/nextjs` 디렉토리 위치에서 아래의 명령어를 통해 서버을 실행합니다.**
 
 ```
+$ cd nextjs
 $ npm install
 $ npm run dev
 ```
@@ -104,11 +105,12 @@ $ npm run dev
 **3. `/node-express/server` 디렉토리 위치에서 아래의 명령어를 통해 서버을 실행합니다.**
 
 ```
+$ cd node-express/server
 $ npm install
 $ npm start
 ```
 
-**4. `/node-express/client/quickStart.html`의 html 파일을 크롬 브라우저에서 실행합니다.**
+**4. 크롬 브라우저로 `/node-express/client/quickStart.html` 파일을 불러옵니다.**
 
 **5. 정상작동 스크린샷**
 
