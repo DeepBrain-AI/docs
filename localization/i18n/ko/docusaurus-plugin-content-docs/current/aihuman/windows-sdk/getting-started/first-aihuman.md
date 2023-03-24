@@ -35,6 +35,7 @@ AI Human 모델을 표시할 위치, 즉 Application에서 AIPlayerView를 배�
 
 ```csharp
 using AIHuman.Core;
+using AIHuman.Utils;
 using System.Windows;
 
 namespace WpfApp1
@@ -42,17 +43,15 @@ namespace WpfApp1
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-
-    /// <summary>
-    /// TODO: You must assign APPID and USERKEY.
-    /// <see cref="APPID"/> is a unique ID of the project(application ID).
-    /// <see cref="USERKEY"/> can be obtained by creating a project on the AIHuman Website and registering the App ID.
-    /// </summary>
-    private string APPID = "";
-    private string USERKEY ="";
-
     public partial class App : Application
     {
+        /// TODO: You must assign APPID and USERKEY.
+        /// DOCS: https://docs.deepbrain.io/aihuman/windows-sdk/getting-started/projectsetup
+        /// <see cref="APPID"/> is a unique ID of the project(application ID).
+        /// <see cref="USERKEY"/> can be obtained by creating a project on the AIHuman Website and registering the App ID.
+        private string APPID = "";
+        private string USERKEY ="";
+
         public App()
         {
             AIAPI.Instance.Authenticate(APPID, USERKEY, (aiLIst, error) => {
@@ -72,22 +71,22 @@ namespace WpfApp1
 
 ### 3. AIPlayer 객체 생성 및 콜백 구현하기
 
+먼저 MainWindow.xaml과 같은 경로에 MainWindowViewModel.cs 파일을 만듭니다.
+
 아래 코드를 참조하여 AIPlayer 객체를 생성하고 IAIPlayerCallback 인터페이스 상속을 통해 AI Human 이벤트 콜백 등의 함수들을 구현해 보세요.
 
 - MainWindowViewModel.cs
 
 ```csharp
-using AIHuman.Common;
 using AIHuman.Common.Base;
-using AIHuman.Common.Model;
-using AIHuman.Core;
+using AIHuman.Common;
 using AIHuman.Interface;
 using AIHuman.Media;
 using AIHuman.WPF;
 using System;
 using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Threading;
+using System.Windows;
 
 namespace WpfApp1
 {
@@ -145,11 +144,13 @@ namespace WpfApp1
             SpeakCommand = new RelayCommand(Speak_Command);
         }
 
-        public void OnAIPlayerError(AIError error)
+        public void OnAIPlayerError(AIError aiError)
         {
-            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, () => {
-                AIStatusText = error.ToString();
-            });
+            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
+            {
+                SpeechList.Add(aiError.ToString());
+                AIStatusText = nameof(AIError);
+            }));
         }
 
         public void OnAIPlayerResLoadingProgressed(int current, int total)
@@ -165,28 +166,10 @@ namespace WpfApp1
         {
             switch (aiEvent.EventType)
             {
-                case AIEvent.Type.RES_LOAD_STARTED:
-                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
-                    {
-                        AIStatusText = "AI Resource loading started.";
-                    }));
-                    break;
                 case AIEvent.Type.RES_LOAD_COMPLETED:
                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
                     {
                         AIStatusText = "AI Resource loading completed.";
-                    }));
-                    break;
-                case AIEvent.Type.AICLIPSET_PLAY_STARTED:
-                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
-                    {
-                        AIStatusText = "AI started speaking.";
-                    }));
-                    break;
-                case AIEvent.Type.AICLIPSET_PLAY_COMPLETED:
-                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
-                    {
-                        AIStatusText = "AI finished speaking.";
                     }));
                     break;
             }

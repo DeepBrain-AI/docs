@@ -38,16 +38,35 @@ Create solutions and projects to use the AI Human SDK in the Visual Studio.
 #### AIHuman.SDK.WPF
 - [.NET Core 3.1](https://dotnet.microsoft.com/en-us/download/dotnet/3.1)
 
-Use the corresponding WPF-based SDK to develop or run custom applications.NET Core 3.1 or later must be installed.
-This is not the case if you want to develop a different target framework or UI using only the core.
+To develop or run an application using AIHuman.SDK.WPF.dll, you must install .NET Core 3.1 or later.
+
+You can also use AIHuman.SDK.Core.dll to develop a target framework or UI other than WPF in an environment that supports NET Standard 2.0. 
+In this case, you will need to implement View (such as UserControl) directly. Development difficulty may increase.
+
+:::info
+- Case of developing WPF as target: AIHuman.SDK.Core and AIHuman.SDK.WPF reference required
+- In an environment that supports .NET Standard 2.0, other UI Frameworks are used: Implement View after referring to AIHuman.SDK.Core only
+:::
+
+### Dependencies Guide
+
+You should refer to the below assemblies with SDK in your project or install Packages from nuget.
+
+#### Assemblies
+
+- AIHuman.SDK.Core.dll (1.4.1)
+- AIHuman.SDK.WPF.dll (1.4.1)
+- JWT.dll (9.0.3)
+- Newtonsoft.Json.dll (13.0.2)
+- SocketIOClient.dll (3.0.3)
+- SocketIOClient.Newtonsoft.Json.dll (3.0.0)
 
 #### Using Packages
 
 - [JWT](https://github.com/jwt-dotnet/jwt) (9.0.3)
 - [Newtonsoft.Json](https://www.newtonsoft.com/json) (13.0.2)
 - [SocketIOClient](https://github.com/doghappy/socket.io-client-csharp) (3.0.3)
-- [System.Drawing.Common](https://github.com/dotnet/runtime) (6.0.0)
-- [System.Configuration.ConfigurationManager](https://github.com/dotnet/runtime) (4.4.1)
+
 
 <br/>
 

@@ -35,7 +35,7 @@ Write a code related to authentication at the time of application initialization
 
 ```csharp
 using AIHuman.Core;
-using Newtonsoft.Json;
+using AIHuman.Utils;
 using System.Windows;
 
 namespace WpfApp1
@@ -45,23 +45,25 @@ namespace WpfApp1
     /// </summary>
     public partial class App : Application
     {
+        /// TODO: You must assign APPID and USERKEY.
+        /// DOCS: https://docs.deepbrain.io/aihuman/windows-sdk/getting-started/projectsetup
+        /// <see cref="APPID"/> is a unique ID of the project(application ID).
+        /// <see cref="USERKEY"/> can be obtained by creating a project on the AIHuman Website and registering the App ID.
+        private string APPID = "";
+        private string USERKEY = "";
+
         public App()
         {
-            AIAPI.Instance.AuthStart("your appId", "your userKey", "your uuid", "wnds",
-                (aiLIst, error) =>
+            AIAPI.Instance.Authenticate(APPID, USERKEY, (aiLIst, error) => {
+                if (error == null && aiLIst != null)
                 {
-                    if (string.IsNullOrEmpty(error) && aiLIst != null)
-                    {
-                        string jsonStr = aiLIst.Root.ToString();
-                        AIAPI.AIList list = JsonConvert.DeserializeObject<AIAPI.AIList>(jsonStr);
-                        // $"Auth Complete, Avaliable Count: {list.ai.Length}";
-                    }
-                    else
-                    {
-                        MessageBox.Show($"AuthStart: {error}");
-                    }
+                    Log.Write($"Authenticate Completed, Avaliable Count: {aiLIst.ai.Length}", Log.Level.Info);
                 }
-            );
+                else
+                {
+                    Log.Write($"Authenticate Failed: {error}", Log.Level.Error);
+                }
+            });
         }
     }
 }
@@ -69,20 +71,22 @@ namespace WpfApp1
 
 ### 3. Create AIPlayer Instance and Implement Callback
 
+First, create the MainWindowViewModel.cs file in the same path as MainWindow.xaml.
+
 Read the code below to create an AIPlayer Instance and try to implement a callback related to AI Human state via IAIPlayerCallback inheritance.
 
 - MainWindowViewModel.cs
 
 ```csharp
-using AIHuman.Common;
 using AIHuman.Common.Base;
-using AIHuman.Core;
+using AIHuman.Common;
 using AIHuman.Interface;
 using AIHuman.Media;
+using AIHuman.WPF;
 using System;
 using System.Collections.ObjectModel;
-using System.Windows;
 using System.Windows.Threading;
+using System.Windows;
 
 namespace WpfApp1
 {
@@ -140,16 +144,16 @@ namespace WpfApp1
             SpeakCommand = new RelayCommand(Speak_Command);
         }
 
-        public void onAIPlayerError(AIError error)
+        public void OnAIPlayerError(AIError aiError)
         {
             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
-                SpeechList.Add(error.getMessage());
+                SpeechList.Add(aiError.ToString());
                 AIStatusText = nameof(AIError);
             }));
         }
 
-        public void onAIPlayerResLoadingProgressed(int current, int total)
+        public void OnAIPlayerResLoadingProgressed(int current, int total)
         {
             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
@@ -158,11 +162,11 @@ namespace WpfApp1
             }));
         }
 
-        public void onAIStateChanged(AIState state)
+        public void OnAIPlayerEvent(AIEvent aiEvent)
         {
-            switch (state.state)
+            switch (aiEvent.EventType)
             {
-                case AIState.RES_LOAD_COMPLETED:
+                case AIEvent.Type.RES_LOAD_COMPLETED:
                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
                     {
                         AIStatusText = "AI Resource loading completed.";

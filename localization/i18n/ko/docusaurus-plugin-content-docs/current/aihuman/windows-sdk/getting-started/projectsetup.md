@@ -39,18 +39,35 @@ Visual Studio에서 솔루션 및 프로젝트를 생성하고 AI Human SDK를 �
 #### AIHuman.SDK.WPF
 - [.NET Core 3.1](https://dotnet.microsoft.com/en-us/download/dotnet/3.1)
 
-해당 WPF 기반의 SDK를 사용하여 Custom Application을 개발하거나 실행시키려면 .NET Core 3.1 이상을 필수로 설치하셔야 됩니다.
-Core만 사용하여 다른 Target Framework 혹은 UI를 개발하려는 경우에는 해당 제약은 없어집니다.
+AIHuman.SDK.WPF.dll을 사용하여 Application을 개발하거나 실행하려면 .NET Core 3.1 혹은 그 이상 버전을 설치해야 합니다.
+
+AIHuman.SDK.Core.dll만을 사용할 수도 있습니다. AIHuman.SDK.Core.dll를 이용하여 .NET Standard 2.0을 지원하는 환경에서 WPF 이외의 Target Framework 혹은 UI 개발할 수 있습니다.
+이 경우 View(UserControl 등)를 직접 구현해야 합니다. 개발 난이도가 높아질 수 있습니다.
+
+:::info 정보
+- WPF를 Target으로 개발하는 경우: AIHuman.SDK.Core와 AIHuman.SDK.WPF 참조 필요
+- .NET Standard 2.0을 지원하는 환경에서 다른 UI Framework 등을 사용하는 경우: AIHuman.SDK.Core만 참조 후 View 구현
+:::
+
+### Dependencies Guide
+
+SDK를 포함한 아래의 Assemblies를 프로젝트에 참조 추가하거나, Nuget을 이용해 아래 Packages를 설치해야 합니다.
+
+#### Assemblies
+
+- AIHuman.SDK.Core.dll (1.4.1)
+- AIHuman.SDK.WPF.dll (1.4.1)
+- JWT.dll (9.0.3)
+- Newtonsoft.Json.dll (13.0.2)
+- SocketIOClient.dll (3.0.3)
+- SocketIOClient.Newtonsoft.Json.dll (3.0.0)
 
 #### Using Packages
 
 - [JWT](https://github.com/jwt-dotnet/jwt) (9.0.3)
 - [Newtonsoft.Json](https://www.newtonsoft.com/json) (13.0.2)
 - [SocketIOClient](https://github.com/doghappy/socket.io-client-csharp) (3.0.3)
-- [System.Drawing.Common](https://github.com/dotnet/runtime) (6.0.0)
-- [System.Configuration.ConfigurationManager](https://github.com/dotnet/runtime) (4.4.1)
 
-<br/>
 
 ## 4. 프로젝트 셋업하기
 
