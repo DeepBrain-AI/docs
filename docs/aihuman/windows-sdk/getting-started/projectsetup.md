@@ -30,7 +30,7 @@ Create solutions and projects to use the AI Human SDK in the Visual Studio.
 #### 	: Create New Project > WPF Application > Target Framework > .NET 5.0 (or .NET Core 3.1 or later WPF support target)
 ####		We will use the default project name, WpfApp1.
 
-### Requirements
+## Requirements
 
 #### AIHuman.SDK.Core
 - [.NET Standard 2.0](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0)
@@ -48,20 +48,20 @@ In this case, you will need to implement View (such as UserControl) directly. De
 - In an environment that supports .NET Standard 2.0, other UI Frameworks are used: Implement View after referring to AIHuman.SDK.Core only
 :::
 
-### Dependencies Guide
+### Library Dependencies Guide
 
 You should refer to the below assemblies with SDK in your project or install Packages from nuget.
 
 #### Assemblies
 
-- AIHuman.SDK.Core.dll (1.4.1)
-- AIHuman.SDK.WPF.dll (1.4.1)
+- AIHuman.SDK.Core.dll (1.4.2)
+- AIHuman.SDK.WPF.dll (1.4.2)
 - JWT.dll (9.0.3)
 - Newtonsoft.Json.dll (13.0.2)
 - SocketIOClient.dll (3.0.3)
 - SocketIOClient.Newtonsoft.Json.dll (3.0.0)
 
-#### Using Packages
+#### Packages
 
 - [JWT](https://github.com/jwt-dotnet/jwt) (9.0.3)
 - [Newtonsoft.Json](https://www.newtonsoft.com/json) (13.0.2)
@@ -82,11 +82,17 @@ Prepare library files necessary for the use of AI Human SDK in the previously cr
 
 You can configure the libraries referenced in the solution through the created folder > right-click > Add > Existing item.
 
+:::info
+The screenshot and the actual assemblies provided may be different. Please refer to the README.md file in the SDK archive file you downloaded.
+:::
+
 <img src="/img/aihuman/windows/NewProject_Add_Sdk.png" />
 
 #### 4-4. Add the downloaded AIHuman SDK library to the solution item.
 
- In Solution Explorer, right-click on "project" at the top > Add > Project Reference > Reference Manager > Browse > Add AIHumanSDK.dll and Newtonsoft.Json.dll. You will then be able to see that AIHuman SDK is registered in Dependencies > Assembly in the project tree.
+Right-click the project at the top of the Solution Explorer > Add > Project Reference > Reference Manager > Browse > AIHuman.Add SDK.Core.dll and Newtonsoft.Json.dll, etc. You can see that references have been added to the Dependencies > Assembly in the project tree.
+
+(Add all the libraries included in the downloaded file.)
 
 <img src="/img/aihuman/windows/NewProject_Add_Ref.png" />
 

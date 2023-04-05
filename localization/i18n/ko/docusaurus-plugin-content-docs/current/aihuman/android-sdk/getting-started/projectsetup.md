@@ -15,7 +15,7 @@ sidebar_position: 2
 아래는 샘플의 환경 설정입니다. 
 
 - 프로젝트 레벨 build.gradle을 설정(탑메뉴 File > Project structure)합니다. 
-  - Android Gradle plugin version : 7.1.1, Gradle Version : 7.2 
+  - Android Gradle plugin version : 7.1.2, Gradle Version : 7.2 
 
 **[프로젝트 레벨 build.gradle 설정]**
 
@@ -88,17 +88,6 @@ dependencies {
 
     //dialogflow (option but needs for the sample)
     implementation 'com.google.cloud:google-cloud-dialogflow:2.1.0'
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.1'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.11.1'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
-
-    implementation 'io.grpc:grpc-okhttp:1.30.0'
-    implementation 'com.google.code.gson:gson:2.8.6'
-
-    //STT (option but needs for the sample)
-    implementation 'org.greenrobot:eventbus:3.1.1'
-    //no need to add protobuf for grpc
-    implementation 'com.google.api.grpc:grpc-google-cloud-speech-v1:1.23.0'
 
     //jwt authentication
     api group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.0'

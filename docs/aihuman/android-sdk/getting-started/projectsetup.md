@@ -15,7 +15,7 @@ Below is the project's setting.(It is a sample, not mandatory)
 **Download the SDK and Android sample from the [SDK Website](https://aihuman.deepbrain.io).** The sample project's configurations are shown below.
 
 - Project level build gradle (File > Project structure)
-  -  Android Gradle plugin version : 7.1.1, Gradle Version : 7.2
+  -  Android Gradle plugin version : 7.1.2, Gradle Version : 7.2
 
 **[Project level build.gradle setup]**
 
@@ -86,17 +86,6 @@ dependencies {
 
     //dialogflow (option but needs for the sample)
     implementation 'com.google.cloud:google-cloud-dialogflow:2.1.0'
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.1'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.11.1'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
-
-    implementation 'io.grpc:grpc-okhttp:1.30.0'
-    implementation 'com.google.code.gson:gson:2.8.6'
-
-    //STT (option but needs for the sample)
-    implementation 'org.greenrobot:eventbus:3.1.1'
-    //no need to add protobuf for grpc
-    implementation 'com.google.api.grpc:grpc-google-cloud-speech-v1:1.23.0'
 
     //jwt authentication
     api group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.0'

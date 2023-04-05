@@ -20,7 +20,7 @@ AIHuman + PlayChat + STT는 DeepBrain AI에서 제공하는 대화형 AI 서비�
 <img src="/img/aihuman/android/Screenshot_20211207-010111.png" style={{zoom: "25%"}} />
 </p>
 
-## 1. 먼저 사용 가능한 AI 리스트 가져온 후 UI를 셋업.
+## 1. 먼저 사용 가능한 AI 리스트를 가져온 후 UI를 셋업.
 
 ```java
 @Override
@@ -56,26 +56,11 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 
 **GoogleSTT로 STT 설정하기**
 
-GoogleSTT 클래스로 생성하여 사용합니다. 이 클래스는 ISTT 인터페이스를 구현하여 startRecognize(), stopRecognize()등의 메소드로 음성인식을 시작하고 마침 동작을 할수 있습니다. GoogleSTT 클래스는 내부적으로 서비스를 사용하므로 AndroidManifest.xml 파일에 아래와 같이 설정이 필요합니다.
-
-```xml
-<service android:name=".stt.google.SpeechService"
-            android:exported="false" />
-```
-
-또한 구글 API를 사용하므로 아래와 같이 인증 파일을 준비 및 설정합니다. 
-
-**구글 Speech To Text 인증 (크리덴셜) 파일 준비**
-
-구글 Speech to Text(음성 인식) 인증 파일(크리덴셜)은 구글 클라우드 API 사이트(https://console.cloud.google.com/apis/dashboard)에서 얻을 수 있습니다. 먼저 Speech to Text를 쓸 프로젝트를 만들어야 합니다. 프로젝트를 생성한 후 Cloud API 중에서 STT 사용 설정을 한후, 사용자 인증 정보 만들기를 하면 크리덴셜 파일(json 파일)을 얻을수 있는데, 그 파일을 다운로드한 후 파일을 앱 프로젝트의 assets  디렉토리에 넣습니다. (assets 디렉토리가 없으면 프로젝트의 app 디렉토리에서 오른쪽 클릭 > New > Folder > Assets Folder로 생성.)  
-
-**크리덴셜 파일을 STT에 설정값으로 넣기**
-
-받은 파일은 assets 디렉토리에 넣었으면, 이제 그 파일의 이름을 아래처럼 "speechgrpc_google_credential.json"라고 된 부분에 JSON 값으로 입력합니다. 이제 이 JSON을 이용해 ChatbotSettings을 만듭니다. 또한 languagecode는 영어라면 en-US를 쓰고, 한국어를 사용한다면 ko-KR로 설정해야합니다. 이에 따라 AI도 설정된 언어를 할수 있는 AI를 사용해야하며 이후 ChatbotSettings를 init(,) 메소드의 첫번째 인자로 넣습니다.
+GoogleSTTV2 클래스(샘플로 제공)로 생성하여 사용합니다. 이 클래스는 ISTT 인터페이스를 구현하여 startRecognize(), stopRecognize()등의 메소드로 음성 인식 동작을 할수 있습니다. 언어 설정과 더불어 콜백을 등록함으로써 인식 결과를 얻을수 있습니다. 
 
 **MS Azure로 STT 설정하기**
 
-구글 STT 외에 MS azure Speech to Text를 사용할수 있습니다. 이를 위해서는 MS 사이트에(https://portal.azure.com/)에서 해당 STT 리소스(음성 서비스)를 생성하고 구독키와 위치/지역 값을 받아 아래의 샘플과 같이 설정해야합니다.
+구글 STT 외에 MS azure Speech to Text(샘플로 제공)를 사용할수 있습니다. 이를 위해서는 MS 사이트에(https://portal.azure.com/)에서 해당 STT 리소스(음성 서비스)를 생성하고 구독키와 위치/지역 값을 받아 아래의 샘플과 같이 설정해야합니다.
 
 ## 3. 챗봇 콜백을 생성하고 init(,) 메소드를 호출하기
 
@@ -94,7 +79,7 @@ private void resetChatbotWithSTT(String sttType) {
         chatbot.init(new ChatbotSettings(null, IChatbot.ChatbotType.NATIVE_MB_PLAYCHAT), iChatbotListener);
 
         //set stt
-        stt_type = sttType;
+        this.sttType = sttType;
         if (stt != null) {
             stt.release();
             stt = null;
@@ -102,13 +87,12 @@ private void resetChatbotWithSTT(String sttType) {
 
         System.gc();
 
-        if (getString(R.string.google_stt).equals(stt_type)) {
-            stt = new GoogleSTT(this,
-                    "speechgrpc_google_credential.json",
-                    "en-US", iSTTListener);
+        if (getString(R.string.google_stt).equals(this.sttType)) {
+            //getLifecycle().addObserver(gglSTT);
+            this.stt = new GoogleSTTV2(this, "en-US", iSTTListener);
         } else { //ms stt
             stt = new MSAzureSTT(this, "your_subscription",
-                    "your_region", "en-US", iSTTListener);
+                    "your_region", "en-US", MSAzureSTT.RECOGNIZE_MODE.ONCE, iSTTListener);
         }
     }
 

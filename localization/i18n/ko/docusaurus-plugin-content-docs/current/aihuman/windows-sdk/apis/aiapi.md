@@ -2,7 +2,9 @@
 sidebar_position: 3
 ---
 
-# AIHuman.Core.AIAPI
+# AIAPI
+
+namespace AIHuman.Core
 
 | Modifier and Type                | Method and Description                                       |
 | -------------------------------- | ------------------------------------------------------------ |

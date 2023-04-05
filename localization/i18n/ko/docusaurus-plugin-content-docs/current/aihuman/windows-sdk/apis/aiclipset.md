@@ -2,7 +2,9 @@
 sidebar_position: 4
 ---
 
-# AIHuman.Common.Model.AIClipSet
+# AIClipSet
+
+namespace AIHuman.Common.Model
 
 | Modifier and Type | Method and Description                                       |
 | ----------------- | ------------------------------------------------------------ |

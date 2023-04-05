@@ -50,29 +50,15 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 ## 2. Initialize Chatbot with Speech Recongnition.
 Initialize PlayChat with a voice recognition function (STT). (AI is set as the default AI)
 
-First, create a chatbot with the ChatbotFactory's static method (**MBPlayChatbot.newMBChatbot(,)**) and then call the init( , ) method. Then you can call STT-related startRecognize() and stopRecognize() methods along with the existing chatbot methods (send(,), etc.).
+First, create a chatbot with the ChatbotFactory's static method (**MBPlayChatbot.newMBChatbot(,)**) and then call the init( , ) method. Then you can call STT-related startRecognize() and stopRecognize() methods along with the existing chatbot methods (send(,), etc.). 
 
-**Set GoogleSTT for STT**
+**Set up GoogleSTT for STT**
 
-Create stt instance with GoogleSTT class. This class which implements ISTT can start and stop speech recognition using  'startRecognize(), stopRecognize()' methods. GoogleSTT class use 'Service' inside so that AndroidManifest.xml needs to be set like below. Be aware where the stt package sits.
-```xml
-<service android:name=".stt.google.SpeechService"
-            android:exported="false" />
-```
+Create stt instance with GoogleSTTV2 class(sample provided). This class which implements ISTT can start and stop speech recognition using  'startRecognize(), stopRecognize()' methods. You can get the result after setting up language and callback.
 
-Also, it uses google API which needs google credential file that is explained below. 
+**Set up MS Azure for STT**
 
-**Get the google Speech To Text authentication(credential) file**
-
-The Google Speech to Text authentication file (credential) can be obtained from the Google Cloud API site (https://console.cloud.google.com/apis/dashboard). First, you need to create a project in order to use Speech to Text. After creating the project, you can get a credential file (json file) by creating user authentication information after setting up STT in Cloud API. After downloading the file, put the file in the assets directory of the app project. (If the assets directory does not exist, right-click in the app directory of the project > New > Folder > Assets Folder to create it.)
-
-**Use the credential file to authenticate STT**
-
-If you place the received file in the assets directory, now enter the name of the file as a JSON value in the "speechgrpc_google_credential.json" part as shown below. Then use this JSON to create ChatbotSettings. The language code for recognizing English is en-US. If you use Korean, set it to ko-KR and use the Korean AI. After that, put ChatbotSettings as the first argument of the init(,) method.
-
-**Set MS Azure for STT**
-
-You can use 'MS azure Speech to Text' beside google STT. To use azure, go to the MS's website(https://portal.azure.com/), create STT resource and get subscription key and region like sample below.
+You can use 'MS azure Speech to Text'(sample provided) beside google STT. To use azure, go to the MS's website(https://portal.azure.com/), create STT resource and get subscription key and region like sample below.
 
 ## 3. Create Callback.
 Create chatbot callback and call the init(,) method.
@@ -92,7 +78,7 @@ private void resetChatbotWithSTT(String sttType) {
         chatbot.init(new ChatbotSettings(null, IChatbot.ChatbotType.NATIVE_MB_PLAYCHAT), iChatbotListener);
 
         //set stt
-        stt_type = sttType;
+        this.sttType = sttType;
         if (stt != null) {
             stt.release();
             stt = null;
@@ -100,13 +86,12 @@ private void resetChatbotWithSTT(String sttType) {
 
         System.gc();
 
-        if (getString(R.string.google_stt).equals(stt_type)) {
-            stt = new GoogleSTT(this,
-                    "speechgrpc_google_credential.json",
-                    "en-US", iSTTListener);
+        if (getString(R.string.google_stt).equals(this.sttType)) {
+            //getLifecycle().addObserver(gglSTT);
+            this.stt = new GoogleSTTV2(this, "en-US", iSTTListener);
         } else { //ms stt
             stt = new MSAzureSTT(this, "your_subscription",
-                    "your_region", "en-US", iSTTListener);
+                    "your_region", "en-US", MSAzureSTT.RECOGNIZE_MODE.ONCE, iSTTListener);
         }
     }
 
