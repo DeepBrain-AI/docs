@@ -1,0 +1,148 @@
+# Change Scene
+
+## 1. API endpoint
+
+```http
+https://aistudios.com/api/odin/editor/scene/${key}
+```
+
+<br/>
+
+## 2. Request parameter
+
+|key|desc|type|required|default|
+|:---|:---|:---|:---|:---|
+|sceneIdx|The index of the scene to be changed|Int|true|-|
+|scene|Contents of the scene to be changed|Json|true|-|
+
+<br/>
+
+## 3. Response parameters
+
+|key|desc|type|
+|:---|:---|:---|
+|success|Progress on Request Success|Boolean|
+|msg|If the request fails, return the reason for the failure.|String|
+
+<br/>
+
+
+## 4. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```js
+curl https://aistudios.com/api/odin/editor/scene/${project key}  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X PUT \
+-d '{
+    "sceneIdx": 0,
+    "scene": {
+        "AIModel": {
+            "model": "M000004017",
+            "clothes": "BG00006160",
+            "script": "Hi",
+            "locationX": 0,
+            "locationY": 0.19,
+            "scale": 1
+        },
+        "clips": [
+            {
+                "type": "background",
+                "detail": {
+                    "url": "https://cdn.aistudios.com/images/news/aiplatform_background_gradient.png"
+                }
+            }
+        ]
+    }
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios" 
+const token = ${API KEY}
+
+axios.put('https://aistudios.com/api/odin/editor/scene/${project key}', 
+    {
+        "sceneIdx": 0,
+        "scene": {
+            "AIModel": {
+                "model": "M000004017",
+                "clothes": "BG00006160",
+                "script": "Hi",
+                "locationX": 0,
+                "locationY": 0.19,
+                "scale": 1
+            },
+            "clips": [
+                {
+                    "type": "background",
+                    "detail": {
+                        "url": "https://cdn.aistudios.com/images/news/aiplatform_background_gradient.png"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        headers: {
+            'Authorization': ${token},
+            'Content-Type': 'application/json'
+        }
+    }
+)
+.then((res) => {
+    console.log(res.data)
+})
+.catch((error) => {
+    console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://aistudios.com/api/odin/editor/scene/${project key}"
+body = {
+    "sceneIdx": 0,
+    "scene": {
+        "AIModel": {
+            "model": "M000004017",
+            "clothes": "BG00006160",
+            "script": "Hi",
+            "locationX": 0,
+            "locationY": 0.19,
+            "scale": 1
+        },
+        "clips": [
+            {
+                "type": "background",
+                "detail": {
+                    "url": "https://cdn.aistudios.com/images/news/aiplatform_background_gradient.png"
+                }
+            }
+        ]
+    }
+}
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": ${API TOKEN}
+}
+
+r = requests.put(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,81 @@
+# Get Chromakey/Audio item
+
+The Get Chromakey/Audio Item section shows you how to send an API request in JSON format to fetch an exported chromakey video or audio file.
+
+## 1. API endpoint
+
+```http
+https://aistudios.com/api/odin/simple/find/${key}
+```
+
+<br/>
+
+## 2. Response parameters
+
+|key|desc|type|
+|:---|:---|:---|
+|success|Progress on Request Success|Boolean|
+|key|Project ID|String|
+
+<br/>
+
+
+## 3. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```js
+curl https://aistudios.com/api/odin/simple/find/${key}  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios" 
+const token = ${API KEY}
+
+axios.post('https://aistudios.com/api/odin/editor/project', 
+    {}, 
+    {
+        headers: {
+            'Authorization': ${token},
+            'Content-Type': 'application/json'
+        }
+    }
+)
+.then((res) => {
+    console.log(res.data)
+})
+.catch((error) => {
+    console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://aistudios.com/api/odin/simple/find/${key}"
+body = {}
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": ${API TOKEN}
+}
+
+r = requests.post(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>

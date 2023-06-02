@@ -1,0 +1,374 @@
+{
+  "aistudiosSidebar": [
+    "aistudios/getting-started",
+    "aistudios/generate-api-key",
+    {
+      "type": "category",
+      "label": "Tutorial",
+      "collapsed": false,
+      "items": [
+        "aistudios/tutorial/multiple-chromakey-export",
+        "aistudios/tutorial/export-from-exist-project",
+        "aistudios/tutorial/export-from-json-template"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "API Reference",
+      "items": [
+        "aistudios/reference/auth",
+        "aistudios/reference/export-project",
+        "aistudios/reference/progress",
+        "aistudios/reference/get-project",
+        "aistudios/reference/get-project-by-name",
+        "aistudios/reference/export-template",
+        "aistudios/reference/scene-add",
+        "aistudios/reference/scene-update",
+        "aistudios/reference/scene-delete",
+        "aistudios/reference/duplicate-project",
+        "aistudios/reference/model-list",
+        "aistudios/reference/simple-video",
+        "aistudios/reference/simple-audio",
+        "aistudios/reference/chromakey-audio-find",
+        "aistudios/reference/webhook"
+      ]
+    }
+  ],
+  "aihumanwebSidebar": [
+    "aihuman/web-sdk/intro",
+    {
+      "type": "category",
+      "label": "Getting Started",
+      "collapsed": false,
+      "link": {
+        "type": "generated-index",
+        "description": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process."
+      },
+      "items": [
+        "aihuman/web-sdk/getting-started/projectsetup",
+        "aihuman/web-sdk/getting-started/first-aihuman"
+      ]
+    },
+    {
+      "type": "category",
+      "collapsed": false,
+      "label": "Sample Project Description",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn AI Human SDK as a sample project."
+      },
+      "items": [
+        "aihuman/web-sdk/sample-project/overview",
+        "aihuman/web-sdk/sample-project/quick-start",
+        "aihuman/web-sdk/sample-project/ai-human-demo",
+        "aihuman/web-sdk/sample-project/with-playchat-azure-stt"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "AIPlayer Description",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn more about AIPlayer objects in the AI Human SDK."
+      },
+      "items": [
+        "aihuman/web-sdk/aiplayer/overview",
+        "aihuman/web-sdk/aiplayer/setup",
+        "aihuman/web-sdk/aiplayer/resources-states",
+        "aihuman/web-sdk/aiplayer/basic-features",
+        "aihuman/web-sdk/aiplayer/advanced-features",
+        "aihuman/web-sdk/aiplayer/other-features",
+        "aihuman/web-sdk/aiplayer/errors"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "API Reference",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn about the main interface, class, and api of the AI Human SDK."
+      },
+      "items": [
+        "aihuman/web-sdk/apis/aiplayer",
+        "aihuman/web-sdk/apis/aiapi",
+        "aihuman/web-sdk/apis/aiplayer-callback",
+        "aihuman/web-sdk/apis/aiplayer-data"
+      ]
+    }
+  ],
+  "aihumanwindowsSidebar": [
+    "aihuman/windows-sdk/intro",
+    {
+      "type": "category",
+      "collapsed": false,
+      "label": "Getting Started",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process."
+      },
+      "items": [
+        "aihuman/windows-sdk/getting-started/projectsetup",
+        "aihuman/windows-sdk/getting-started/first-aihuman"
+      ]
+    },
+    {
+      "type": "category",
+      "collapsed": false,
+      "label": "Sample Project Description",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn AI Human SDK as a sample project."
+      },
+      "items": [
+        "aihuman/windows-sdk/sample-project/overview",
+        "aihuman/windows-sdk/sample-project/quick-start",
+        "aihuman/windows-sdk/sample-project/ai-human-demo",
+        "aihuman/windows-sdk/sample-project/with-playchat-azure-stt",
+        "aihuman/windows-sdk/sample-project/with-google-dialogflow"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "AIPlayer Description",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn more about AIPlayer objects in the AI Human SDK."
+      },
+      "items": [
+        "aihuman/windows-sdk/aiplayer/overview",
+        "aihuman/windows-sdk/aiplayer/setup",
+        "aihuman/windows-sdk/aiplayer/resources-states",
+        "aihuman/windows-sdk/aiplayer/basic-features",
+        "aihuman/windows-sdk/aiplayer/advanced-features",
+        "aihuman/windows-sdk/aiplayer/other-features",
+        "aihuman/windows-sdk/aiplayer/errors"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "API Reference",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn about the main interface, class, and api of the AI Human SDK."
+      },
+      "items": [
+        "aihuman/windows-sdk/apis/aiapi",
+        "aihuman/windows-sdk/apis/iaiplayercallback",
+        "aihuman/windows-sdk/apis/aiplayer",
+        "aihuman/windows-sdk/apis/aiclipset",
+        "aihuman/windows-sdk/apis/aigesture",
+        "aihuman/windows-sdk/apis/aierror",
+        "aihuman/windows-sdk/apis/aievent",
+        "aihuman/windows-sdk/apis/aiplayerstate",
+        "aihuman/windows-sdk/apis/customvoice"
+      ]
+    }
+  ],
+  "aihumanandroidSidebar": [
+    "aihuman/android-sdk/intro",
+    {
+      "type": "category",
+      "collapsed": false,
+      "label": "Getting Started",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process."
+      },
+      "items": [
+        "aihuman/android-sdk/getting-started/projectsetup",
+        "aihuman/android-sdk/getting-started/first-aihuman"
+      ]
+    },
+    {
+      "type": "category",
+      "collapsed": false,
+      "label": "Sample Project Description",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn AI Human SDK as a sample project."
+      },
+      "items": [
+        "aihuman/android-sdk/sample-project/overview",
+        "aihuman/android-sdk/sample-project/quick-start",
+        "aihuman/android-sdk/sample-project/ai-human-demo",
+        "aihuman/android-sdk/sample-project/with-google-dialogflow",
+        "aihuman/android-sdk/sample-project/with-playchat-azure-stt",
+        "aihuman/android-sdk/sample-project/with-3d-character"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "AIPlayer Description",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn how to set up and use AIPlayer and AI3DPlayer."
+      },
+      "items": [
+        "aihuman/android-sdk/aiplayer/overview",
+        "aihuman/android-sdk/aiplayer/setup",
+        "aihuman/android-sdk/aiplayer/resources-states",
+        "aihuman/android-sdk/aiplayer/basic-features",
+        "aihuman/android-sdk/aiplayer/advanced-features",
+        "aihuman/android-sdk/aiplayer/other-features",
+        "aihuman/android-sdk/aiplayer/errors"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "API Reference",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn about the main interface, class, and api of the AI Human SDK."
+      },
+      "items": [
+        "aihuman/android-sdk/apis/aiplayer",
+        "aihuman/android-sdk/apis/ai3dplayer",
+        "aihuman/android-sdk/apis/aiclipsetfactory",
+        "aihuman/android-sdk/apis/aiclipset",
+        "aihuman/android-sdk/apis/aigesture",
+        "aihuman/android-sdk/apis/customvoice",
+        "aihuman/android-sdk/apis/aimodelinfomanager",
+        "aihuman/android-sdk/apis/iaiplayercallback",
+        "aihuman/android-sdk/apis/iunitycallback",
+        "aihuman/android-sdk/apis/iaimodelloadlistener",
+        "aihuman/android-sdk/apis/iapilistener",
+        "aihuman/android-sdk/apis/iauthlistener",
+        "aihuman/android-sdk/apis/aiplayerstate",
+        "aihuman/android-sdk/apis/aievent",
+        "aihuman/android-sdk/apis/aierror"
+      ]
+    }
+  ],
+  "aihumaniosSidebar": [
+    "aihuman/ios-sdk/intro",
+    {
+      "type": "category",
+      "collapsed": false,
+      "label": "Getting Started",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process."
+      },
+      "items": [
+        "aihuman/ios-sdk/getting-started/projectsetup",
+        "aihuman/ios-sdk/getting-started/first-aihuman"
+      ]
+    },
+    {
+      "type": "category",
+      "collapsed": false,
+      "label": "Sample Project Description",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn AI Human SDK as a sample project."
+      },
+      "items": [
+        "aihuman/ios-sdk/sample-project/overview",
+        "aihuman/ios-sdk/sample-project/quick-start",
+        "aihuman/ios-sdk/sample-project/ai-human-demo",
+        "aihuman/ios-sdk/sample-project/with-playchat",
+        "aihuman/ios-sdk/sample-project/with-playchat-and-google-stt"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "AIPlayer Description",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn more about AIPlayer objects in the AI Human SDK."
+      },
+      "items": [
+        "aihuman/ios-sdk/aiplayer/overview",
+        "aihuman/ios-sdk/aiplayer/setup",
+        "aihuman/ios-sdk/aiplayer/resources-states",
+        "aihuman/ios-sdk/aiplayer/basic-features",
+        "aihuman/ios-sdk/aiplayer/advanced-features",
+        "aihuman/ios-sdk/aiplayer/other-features",
+        "aihuman/ios-sdk/aiplayer/errors"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "API Reference",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn about the main interface, class, and api of the AI Human SDK."
+      },
+      "items": [
+        "aihuman/ios-sdk/apis/aiplayer",
+        "aihuman/ios-sdk/apis/aiplayercallback",
+        "aihuman/ios-sdk/apis/aiplayerconfiguration",
+        "aihuman/ios-sdk/apis/aistate",
+        "aihuman/ios-sdk/apis/aievent",
+        "aihuman/ios-sdk/apis/aiclipset",
+        "aihuman/ios-sdk/apis/aigesture",
+        "aihuman/ios-sdk/apis/customvoice",
+        "aihuman/ios-sdk/apis/aiplayeralignment",
+        "aihuman/ios-sdk/apis/aierror"
+      ]
+    }
+  ],
+  "aihumanunitySidebar": [
+    "aihuman/unity-sdk/intro",
+    {
+      "type": "category",
+      "collapsed": false,
+      "label": "Getting Started",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process."
+      },
+      "items": [
+        "aihuman/unity-sdk/getting-started/projectsetup",
+        "aihuman/unity-sdk/getting-started/first-aihuman"
+      ]
+    },
+    {
+      "type": "category",
+      "collapsed": false,
+      "label": "Sample Project Description",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn AI Human SDK as a sample project."
+      },
+      "items": [
+        "aihuman/unity-sdk/sample-project/overview",
+        "aihuman/unity-sdk/sample-project/quick-start",
+        "aihuman/unity-sdk/sample-project/ai-human-demo",
+        "aihuman/unity-sdk/sample-project/with-playchat-azure-stt"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "AIPlayer Description",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn more about AIPlayer objects in the AI Human SDK."
+      },
+      "items": [
+        "aihuman/unity-sdk/aiplayer/overview",
+        "aihuman/unity-sdk/aiplayer/setup",
+        "aihuman/unity-sdk/aiplayer/resources-states",
+        "aihuman/unity-sdk/aiplayer/basic-features",
+        "aihuman/unity-sdk/aiplayer/advanced-features",
+        "aihuman/unity-sdk/aiplayer/other-features",
+        "aihuman/unity-sdk/aiplayer/errors"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "API Reference",
+      "link": {
+        "type": "generated-index",
+        "description": "Learn about the main interface, class, and api of the AI Human SDK."
+      },
+      "items": [
+        "aihuman/unity-sdk/apis/aiapi",
+        "aihuman/unity-sdk/apis/iaiplayercallback",
+        "aihuman/unity-sdk/apis/aiplayer",
+        "aihuman/unity-sdk/apis/aiclipset",
+        "aihuman/unity-sdk/apis/aigesture"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+# Template-based export
+
+
+<br/>
+
+## 1. API endpoint
+
+```http
+https://aistudios.com/api/odin/editor/project/${key}
+```
+
+<br/>
+
+## 2. Request parameter
+
+|key|desc|type|required|default|
+|:---|:---|:---|:---|:---|
+|updates|Content to change in the existing template.|Array(json)|true|-|
+|updates[].sceneIdx|The index of the scene to be changed|Int|true|-|
+|updates[].property|Type of clip to change (AIModel or clips)|String enum(AIModel, clips)|true|-|
+|updates[].values|Content to change|Json|true|-|
+
+<br/>
+
+## 3. Response parameters
+
+|key|desc|type|
+|:---|:---|:---|
+|success|Progress on Request Success|Boolean|
+|cube_used|Number of Cubes used|Int|
+|key|Project ID|String|
+
+<br/>
+
+
+## 4. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```js
+curl https://aistudios.com/api/odin/editor/project/${project key}  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{
+        "updates": [
+            {
+                "sceneIdx": 0,
+                "property": "AIModel",
+                "values": {
+                    "script": "changed script"
+                }
+            },
+            {
+                "sceneIdx": 0,
+                "property": "clips",
+                "clipType": "image",
+                "clipIdx": 0,
+                "values": {
+                    "locationX": 0,
+                    "locationY": 0
+                }
+            }
+        ]
+    }'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios" 
+const token = ${API KEY}
+
+axios.post('https://aistudios.com/api/odin/editor/project/${project key}', 
+    {
+        "updates": [
+            {
+                "sceneIdx": 0,
+                "property": "AIModel",
+                "values": {
+                    "script": "changed script"
+                }
+            },
+            {
+                "sceneIdx": 0,
+                "property": "clips",
+                "clipType": "image",
+                "clipIdx": 0,
+                "values": {
+                    "locationX": 0,
+                    "locationY": 0
+                }
+            }
+        ]
+    },
+    {
+        headers: {
+            'Authorization': ${token},
+            'Content-Type': 'application/json'
+        }
+    }
+)
+.then((res) => {
+    console.log(res.data)
+})
+.catch((error) => {
+    console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://aistudios.com/api/odin/editor/project/${project key}"
+body = {
+    "updates": [
+        {
+            "sceneIdx": 0,
+            "property": "AIModel",
+            "values": {
+                "script": "changed script"
+            }
+        },
+        {
+            "sceneIdx": 0,
+            "property": "clips",
+            "clipType": "image",
+            "clipIdx": 0,
+            "values": {
+                "locationX": 0,
+                "locationY": 0
+            }
+        }
+    ]
+}
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": ${API TOKEN}
+}
+
+r = requests.post(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>

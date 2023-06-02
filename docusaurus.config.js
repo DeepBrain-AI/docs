@@ -54,6 +54,15 @@ const config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/DeepBrain-AI/docs/tree/main/',
+
+          includeCurrentVersion: false,
+          lastVersion: '1.4.x',
+          versions: {
+            '1.3.x': {
+              label: '1.3.x',
+              path: '1.3.x',
+            },
+          },
         },
         blog: false,
         // blog: {
@@ -114,6 +123,15 @@ const config = {
                 to: 'aihuman/windows-sdk',
               },
             ],
+          },
+          {
+            type: 'docsVersionDropdown',
+            position: 'right',
+            // dropdownItemsBefore: [
+            //   { to: 'version-1.4.x', label: '1.4.x' },
+            //   { to: 'version-1.3.x', label: '1.3.x' },
+            // ],
+            // dropdownActiveClassDisabled: true,
           },
           {
             type: 'localeDropdown',
