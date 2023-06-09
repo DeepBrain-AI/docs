@@ -21,6 +21,8 @@ sidebar_position: 3
 | `void`                               | `Release()` Called when release AIPlayer.                |
 | `float`                              | `Speed { get; set; }` Get or Set the AI's speech rate.       |
 | `float`                              | `Scale { get; set; }` Get or Set the AI's scale.             |
+| `float`                              | `Volume { get; set; }` Get or Set the AI's volume.             |
+| `bool`                              | `IsMute { get; set; }` Get or Set the AI's Mute.             |
 | `AIPlayerState`                       | `State { get; }` Get the state of AIPlayer             |
 | `string`                             | `AIName { get; }` Get the AI name.                           |
 | `string`                             | `AIGender { get; }` Get the AI gender.                        |

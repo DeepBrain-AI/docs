@@ -29,3 +29,23 @@ AI_PLAYER.setter({ left: 0 });
 // y position
 AI_PLAYER.setter({ top: 0 });
 ```
+
+### 3. Volume Control
+
+You can control the volume. The possible value range is from 0.0 to 1.0.
+
+```javascript
+AI_PLAYER.setVolume(volume);
+
+const curVolume = AI_PLAYER.getVolume();
+```
+
+### 4. Mute Control
+
+You can mute the speak. **3D Model is Not supported for this feature.**
+
+```javascript
+AI_PLAYER.setMute(true)
+
+const isMuted = AI_PLAYER.getMute();
+```

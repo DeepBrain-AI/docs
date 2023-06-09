@@ -12,7 +12,7 @@ sidebar_position: 3
 AIPlayerDemo is an activity that demonstrates various functionalities of AIPlayer through a simple UI. You can select a different AI model, change the scale of AI, change the speech speed, and let the AI speak multiple sentences and take advantage of the preload function.
 
 <p align="center">
-<img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
+<img src="/img/aihuman/android/sdk_demo_gesture_speak.jpg" style={{zoom: "25%"}} />
 </p>
 
 

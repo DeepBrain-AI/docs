@@ -15,3 +15,18 @@ sidebar_position: 6
 _aiPlayer.Scale = value;
 ```
 
+### 볼륨 조절하기
+
+: AI의 볼륨을 설정할 수 있다. 설정값 범위는 소수 0.0 ~ 1.0 이다.
+
+```csharp
+// set Property(float)
+_aiPlayer.Volume = value;
+```
+
+: 음소거를 설정 및 해제한다.
+
+```csharp
+// set Property(bool)
+_aiPlayer.IsMute = value;
+```

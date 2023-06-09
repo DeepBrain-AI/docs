@@ -20,3 +20,17 @@ The image below shows which settings are configurable in the Sample Project.
 ```Swift
 aiPlayer.scale = scale
 ```
+
+### Volume Control
+
+: You can control the volume. The possible value range is from 0.0 to 1.0.
+
+```swift
+aiPlayer.volume = value;
+```
+
+: Toggle mute on and off.
+
+```swift
+aiPlayer.isMute = value;
+```

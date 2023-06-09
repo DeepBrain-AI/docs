@@ -236,4 +236,4 @@ const AI_PLAYER = new AIPlayer(wrapper, {
 
 <br/>
 
-<img src="/img/aihuman/web/sdk_demo_02.png" />
+<img src="/img/aihuman/web/sdk_demo_02_r1.png" />

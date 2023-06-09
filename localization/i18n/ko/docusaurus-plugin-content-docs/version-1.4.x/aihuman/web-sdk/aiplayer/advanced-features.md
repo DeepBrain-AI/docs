@@ -17,7 +17,7 @@ CLIP_SPEECH_GESTURE: 제스처가 포함된 발화가 가능한 Clip
 
 아래 샘플 스크린샷에서는 Jonathan이라는 AI 모델이 "twohand"라는 제스처를 하면서 발화를 하고 있습니다.
 
-<img src="/img/aihuman/web/sdk_demo_gesture.png" />
+<img src="/img/aihuman/web/sdk_demo_gesture_r1.png" />
 
 <br/>
 
@@ -48,7 +48,7 @@ function sendText() {
 
 Demo 페이지에서 선택할수 있는 customVoice 리스트를 확인할수 있습니다. 
 
-<img src="/img/aihuman/web/sdk_demo_04.png" />
+<img src="/img/aihuman/web/sdk_demo_04_r1.png" />
 
 #### AIPlayer의 언어 및 음성 변경 방법
 
@@ -122,7 +122,7 @@ AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" 
 
 **3d character는 현재 이 기능을 지원하지 않는다.**
 
-<img src="/img/aihuman/web/sdk_demo_preload.png" />
+<img src="/img/aihuman/web/sdk_demo_preload_r1.png" />
 
 ```javascript
 AI_PLAYER.preload("Nice to meet you");

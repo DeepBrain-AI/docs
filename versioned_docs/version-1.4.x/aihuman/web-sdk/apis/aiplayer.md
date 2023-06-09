@@ -21,12 +21,16 @@ sidebar_position: 1
 | `getSpeakableLanguages(gender)` | Get the current ai's speakable language with gender |
 | `getCustomVoice()`   | Get the current customVoice of set ai|
 | `getCustomVoicesWith(language, gender)` | Get the current customVoice of set ai with language and gender |
-| `findCustomVoice(voiceId) `   | Gets the CustomVoice object corresponding to id |
-| `setCustomVoice(customVoice) `   | Sets the voice of AI with specific customVoice|
-| `setCustomVoiceForLanguage(language, gender)`   | Sets the voice of AI by language and gender |
+| `findCustomVoice(voiceId) `   | Get the CustomVoice object corresponding to id |
+| `setCustomVoice(customVoice) `   | Set the voice of AI with specific customVoice|
+| `setCustomVoiceForLanguage(language, gender)`   | Set the voice of AI by language and gender |
 | `reconnect(callback)`   | Try reconnect when AI_DISCNNECTED |
 | `isConnected()`   | Can send to speak if true |
 | `canPreload(callback)`   | Check if preload is possible |
+| `setVolme(volume)`   | Volume Control. |
+| `getVolme()`   | Get Current Volume. |
+| `setMute(isMute)`   | Mute Control. 3D model not supported|
+| `getMute()`   | Get Mute state. 3D model not supported|
 | `generateToken()` | AIAPI - Generate authentication token using clientToken|
 | `getAIList()`     | AIAPI - Get the list of available AI models |
 | `getSampleTextList()` | AIAPI - Get the list of sample text |
@@ -284,4 +288,18 @@ const isConnected = AI_PLAYER.isConnected();
 ## 21. AIPlayer.canPreload()
 ```javascript
 const canPreload = AI_PLAYER.canPreload(callback = () => { });
+```
+
+## 22. AI_PLAYER.setVolume(volume)
+```javascript
+AI_PLAYER.setVolume(volume);
+
+const curVolume = AI_PLAYER.getVolume();
+```
+
+## 23. AI_PLAYER.setMute(isMute)
+```javascript
+AI_PLAYER.setMute(true)
+
+const isMuted = AI_PLAYER.getMute();
 ```

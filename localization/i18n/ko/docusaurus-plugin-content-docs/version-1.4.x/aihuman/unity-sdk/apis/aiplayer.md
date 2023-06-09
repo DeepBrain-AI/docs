@@ -21,6 +21,8 @@ sidebar_position: 3
 | `void`                               | `Release()` AIPlayer를 해제한다.                |
 | `float`                              | `Speed { get; set; }` AI의 발화 속도를 가져오거나 설정한다.       |
 | `float`                              | `Scale { get; set; }` AI 크기(확대/축소)를 가져오거나 설정한다.             |
+| `float`                              | `Volume { get; set; }` AI 음성 볼륨을 가져오거나 설정한다.             |
+| `bool`                               | `IsMute { get; set; }` AI 음소거 상태를 가져오거나 설정한다.             |
 | `AIPlayerState`                       | `State { get; }` AIPlayer의 상태를 가져온다.             |
 | `string`                             | `AIName { get; }` AI 이름을 가져온다.                           |
 | `string`                             | `AIGender { get; }` AI 성별을 가져온다.                        |

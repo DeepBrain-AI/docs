@@ -25,7 +25,7 @@ AI_PLAYER.send("Nice to meet you");
 
 You can test it from the SDK demo page if you want to.
 
-<img src="/img/aihuman/web/sdk_demo_03.png" />
+<img src="/img/aihuman/web/sdk_demo_03_r1.png" />
 
 <br/>
 

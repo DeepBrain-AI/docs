@@ -12,7 +12,7 @@ sidebar_position: 3
 AI Human Demo는 AIPlayer의 다양한 기능들을 구현 한 데모이다. [AI 선택]을 통해 승인된 다른 AI 모델로 변경할 수 있다. 그밖에 자세한 설명은 [AIPlayer 설명](/aihuman/unity-sdk/aiplayer/overview)을 참고하기 바란다.
 
 <p align="center">
-<img src="/img/aihuman/unity/introduction.png" style={{zoom: "40%"}} />
+<img src="/img/aihuman/unity/introduction.png" style={{zoom: "30%"}} />
 </p>
 
 **먼저 사용 가능한 AI 목록을 가져온 후 UI를 셋업한다.**

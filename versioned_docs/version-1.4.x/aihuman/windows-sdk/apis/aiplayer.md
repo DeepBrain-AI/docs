@@ -22,12 +22,14 @@ namespace AIHuman.Media
 | `bool`                               | `SetCustomVoice(CustomVoice cv)` Set AI's voice to cv. return true if success.|
 | `CustomVoice`                        | `GetCustomVoice()` Get the current CustomVoice object of set ai. It returns null if not set. |
 | `bool`                        | `SetCustomVoiceForLanguage(string languageCode, string gender = null) ` Set the voice by the desired language and gender. All available languages when language null is entered, and all genders when null is entered in gender are searched and set as the first voice. If it succeeds, it returns true. Otherwise the default voice will be set. |
-| `void`                               | `Dispose()` Called when destroying AIPlayer.                 |
 | `float`                              | `Speed { get; set; }` Get or Set the AI's speech rate.       |
 | `float`                              | `Scale { get; set; }` Get or Set the AI's scale.             |
 | `AIHuman.Common.Margin`              | `Margin { get; set; }` Get or Set the AI's margin.           |
+| `double`                             | `Volume { get; set; }` Get or Set the AI's volume.           |
+| `bool`                               | `IsMute { get; set; }` Get or Set the AI's mute.             |
 | `string`                             | `AIName { get; }` Get the AI's name.                           |
 | `string`                             | `AIGender { get; }` Get the AI's gender.                        |
 | `string`                             | `AILanguageCode { get; }` Get the AI's language code.                        |
 | `AIHuman.Interface.AIPlayerState`    | `State { get; }` Get the current state of the AIPlayer.                 |
 | `string`                             | `Reconncet(Action<bool> callback)` Attempt to reconnect with AI. Callback lets you know the result of the reconnection.         |
+| `void`                               | `Dispose()` Called when destroying AIPlayer.                 |

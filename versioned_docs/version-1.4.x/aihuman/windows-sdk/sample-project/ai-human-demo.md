@@ -12,7 +12,7 @@ Please refer to the files below in Sample Project.
 
 AI Human Demo is a page where you can try out various functionalities of AIPlayer. You can try changing to another approved AI model through [AI Select]. For other details, please refer to [AIPlayer Description](#aiplayer-description).
 
-<img src="/img/aihuman/windows/WPF_Sample_DemoPage.png" />
+<img src="/img/aihuman/windows/sampledemo_1.4.x.png" />
 
 **First, get a list of available AIs and set up the UI. The Constants.appid, userKey, uuid, and targetPlatform below are parameters entered when calling AuthStart in HomeView.**
 

@@ -12,7 +12,7 @@ In general, speech can be performed using pure text, but speech can also be perf
 
 If the text to speak is too long, it may not be possible to synthesize the resources required for the utterance. There are some models that can synthesize long sentences. Although it varies from ai to ai, it is generally recommended that sentences be cut to an appropriate length in Korean, usually within 30 to 40 characters, and at a similar level in English. In addition, if special characters, lists of incomplete characters, numbers, formulas, symbols, characters or abbreviations in other languages are included, they may or may not be uttered differently than expected.
 
-<img src="/img/aihuman/windows/Speak_Haylyn.png" />
+<img src="/img/aihuman/windows/speak_1.4.x.png" />
 
 ```csharp
 // using pure-text

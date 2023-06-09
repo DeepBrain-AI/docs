@@ -30,7 +30,7 @@ _aiPlayer.Speed = value;
 아래 이미지에서는 AI 모델이 "hi"라는 제스처와 함께 발화를 하고 있다.
 
 <p align="center">
-<img src="/img/aihuman/unity/aiplayer_gesture.png" style={{zoom: "40%"}} />
+<img src="/img/aihuman/unity/aiplayer_gesture.png" style={{zoom: "30%"}} />
 </p>
 
 ```csharp
@@ -65,7 +65,7 @@ _aiPlayer.Send(new[] {clip});
 일부 AI는 기본 음성 외에 다른 음성으로 발화를 할수 있다. 이때 지원하는 음성의 언어가 AI의 기본 언어와 다른 경우에도 발화가 가능하다. 아래와 같이 데모에서 현재 AI가 사용할 수 있는 음성 리스트를 확인할 수 있다. 해당 음성 리스트는 AIHumanSDKManager.Authenticate 혹은 AIAPI.Authenticate, AIAPI.GenerateToken 함수 호출 이후에 확인할 수 있다. 보다 명시적으로는 AIAPI.LoadCustomVoices를 사용할 수 있으나 성공적인 인증 절차 이후에 정상 동작한다.
 
 <p align="center">
-<img src="/img/aihuman/unity/aiplayer_customvoice.png" style={{zoom: "40%"}} />
+<img src="/img/aihuman/unity/aiplayer_customvoice.png" style={{zoom: "30%"}} />
 </p>
 
 <br/>
@@ -127,7 +127,7 @@ _aiPlayer.Send(new[] {aiClipSet});
 프리로드는 다음에 할 말들을 먼저 로드시켜놓고 빠르게 다음 발화를 하고 싶을 때 사용한다. 일종의 캐싱 처리이다. 데모 AIHuman scene의 발화 문장 Dropdown UI에서 하나를 선택하고 **프리로드** 버튼을 누르면 해당 동작이 수행된다.
 
 <p align="center">
-<img src="/img/aihuman/unity/aiplayer_preload.png" style={{zoom: "40%"}} />
+<img src="/img/aihuman/unity/aiplayer_preload.png" style={{zoom: "30%"}} />
 </p>
 
 ```csharp

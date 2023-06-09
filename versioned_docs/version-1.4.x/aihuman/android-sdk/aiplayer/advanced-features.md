@@ -19,7 +19,7 @@ The following are ClipType
 The AI jonathan is speaking with gesture called "hi"(waving hand).
 
 <p align="center">
-<img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
+<img src="/img/aihuman/android/sdk_demo_gesture_speak.jpg" style={{zoom: "25%"}} />
 </p>
 
 AIClipSetFactory.CreateClip can create AIClipset with gesture like below. Only gesture will play if the gesture set witout speech text.
@@ -54,7 +54,7 @@ IAIPlayerCallback.onAIPlayerEvent(AIEvent) will be called like normal 'send' met
 Some AIs can speak with other voices besides basic voices. To use other voices, you should call AIModelInfoManager.generateToken(...) or AIModelInfoManager.loadCustomVoices(...) method before using them. 
 
 <p align="center">
-<img src="/img/aihuman/android/Screenshot_20221107-120630_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
+<img src="/img/aihuman/android/sdk_demo_customvoice_list.jpg" style={{zoom: "25%"}} />
 </p>
 
 ### Set the custom voice using AIPlayer's method
@@ -114,7 +114,7 @@ aiPlayer.send(aiClipSet);
 You can send several sentences at once and the AI will speak sequentially. In the sample below, the corresponding action is performed when the Multi Speak button is pressed.
 
 <p align="center">
-<img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
+<img src="/img/aihuman/android/sdk_demo_gesture_speak.jpg" style={{zoom: "25%"}} />
 </p>
 
 ```java
@@ -132,7 +132,7 @@ Preload is used when you want to make the AI speak the next sentence without del
 **3D character does not support this.** 
 
 <p align="center">
-<img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
+<img src="/img/aihuman/android/sdk_demo_gesture_speak.jpg" style={{zoom: "25%"}} />
 </p>
 
 ```java

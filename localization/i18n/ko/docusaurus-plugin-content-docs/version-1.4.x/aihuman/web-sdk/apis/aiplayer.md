@@ -25,8 +25,12 @@ sidebar_position: 1
 | `setCustomVoice(customVoice) `   | 원하는 음성으로 음성을 변경합니다. 성공시 true 리턴하고 null 인풋시 본래의 목소리로 셋팅됩니다.|
 | `setCustomVoiceForLanguage(language, gender)`   | 원하는 언어와 성별로 음성을 설정합니다. language에 null 또는 빈 값 입력시 AI의 기본언어로 설정되고 true를 리턴합니다. language에 유효하지 않은 값 입력시 AI의 기본 언어로 보이스가 설정되고 false를 리턴합니다. gender에 null을 입력 시 해당 AI의 성별로 검색되고, 그 중 첫번째 음성으로 설정됩니다. 성공 시 true를 리턴하고 찾지 못하면 기본 음성으로 셋팅됩니다. |
 | `reconnect(callback)`   |AI가 연결되지 않았을때 재연결 시도. 연결이 이미 되어있거나 연결시도 할수 없는 상황인 경우 false 리턴. |
-| `isConnected()`   | 현재 AI가 연결된 상태인지 확인 |
+| `isConnected()`   | 현재 AI가 연결된 상태인지 확인. |
 | `canPreload(callback)`   | 프리로드 가능한지 확인.  |
+| `setVolme(volume)`   | 볼륨 조절. |
+| `getVolme()`   | 현재 볼륨 확인 |
+| `setMute(isMute)`   | 음소거 제어. |
+| `getMute()`   | 음소거 상태 확인. |
 | `generateToken()` | AIAPI - 발급받은 userKey로 인증을 시도합니다. 콜백으로 응답이 오며 성공하면 기본 AI 모델 정보가 셋팅됩니다.|
 | `getAIList()`     | AIAPI - SDK 인증 성공한 상태에서 사용가능한 ai 리스트를 콜백을 통해줍니다. |
 | `getSampleTextList()` | AIAPI - 해당 언어의 샘플 문장을 불러와서 콜백으로 전달합니다 |
@@ -39,7 +43,7 @@ sidebar_position: 1
 
   | Param          | Type     | Description                                                       |
   | -------------- | -------- | ----------------------------------------------------------------- |
-  | `json`         | `Object` | parameters of the init function |
+  | `json`         | `Object` | parameters of the init function .,.,, |
   | `json.ai_name` | `String` | AI model name |
   | `json.size`    | `Float`  | AI model size (optional, default: 1.0) |
   | `json.left`    | `Number` | AI model left (optional, default: 0, pixel) |
@@ -281,4 +285,18 @@ const isConnected = AI_PLAYER.isConnected();
 ## 21. AIPlayer.canPreload()
 ```javascript
 const canPreload = AI_PLAYER.canPreload(callback = () => { });
+```
+
+## 22. AI_PLAYER.setVolume(volume)
+```javascript
+AI_PLAYER.setVolume(volume);
+
+const curVolume = AI_PLAYER.getVolume();
+```
+
+## 23. AI_PLAYER.setMute(isMute)
+```javascript
+AI_PLAYER.setMute(true)
+
+const isMuted = AI_PLAYER.getMute();
 ```

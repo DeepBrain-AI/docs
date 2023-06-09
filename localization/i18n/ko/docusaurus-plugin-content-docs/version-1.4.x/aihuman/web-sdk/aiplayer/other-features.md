@@ -29,3 +29,23 @@ AI_PLAYER.setter({ left: 0 });
 // y position
 AI_PLAYER.setter({ top: 0 });
 ```
+
+### 3. 볼륨 조절 
+
+볼륨을 조절할 수 있으며 가능한 값의 범위는 0.0에서 1.0입니다.
+
+```javascript
+AI_PLAYER.setVolume(volume);
+
+const curVolume = AI_PLAYER.getVolume();
+```
+
+### 4. 음소거 제어
+
+발화시 음소거할 수 있습니다. **이 기능은 3D 모델에서 지원되지 않습니다.**
+
+```javascript
+AI_PLAYER.setMute(true)
+
+const isMuted = AI_PLAYER.getMute();
+```

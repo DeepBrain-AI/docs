@@ -10,7 +10,7 @@ AI Human의 기본 개념과 함께 AI Human SDK를 소개합니다.
 
 AI Human SDK(이하 SDK)를 이용하면 딥러닝(학습)을 통해 만들어진 AI를 원하는 위치에 실제 사람처럼 라이브(Live)로 표현할 수 있습니다. 화면만 라이브로 표시하는 것을 뛰어 넘어, **마치 영상 통화를 하듯이 자연스러운 대화가 가능한 AI Human 서비스를 구현할 수 있게 합니다**.
 
-<img src="/img/aihuman/windows/WPF_Sample_DemoPage.png" />
+<img src="/img/aihuman/windows/sampledemo_1.4.x.png" />
 
 <br/>
 

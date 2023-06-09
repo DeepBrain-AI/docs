@@ -31,7 +31,7 @@ AIClipSet types are as follows.
 In the sample screenshot below, an AI model is speaking while waving his hand with a "hi" gesture.
 
 <p align="center">
-<img src="/img/aihuman/unity/aiplayer_gesture.png" style={{zoom: "40%"}} />
+<img src="/img/aihuman/unity/aiplayer_gesture.png" style={{zoom: "30%"}} />
 </p>
 
 ```csharp
@@ -66,7 +66,7 @@ AIPlayerCallback.OnAIPlayerEvent(AIEvent) is called in the same way as the speec
 Some AIs can be filmed with live footage. It is possible even if the language of the supported video is different from the basic language of AI. From a living sample, you can see which activists the AI ​​is currently using. The candidate list operates normally after the cancellation authentication process so that AIAPI.LoadCustomVoices can be resumed more strongly than AIHumanSDKManager.Authenticate, AIAPI.Authenticate, or AIAPI.GenerateToken.
 
 <p align="center">
-<img src="/img/aihuman/unity/aiplayer_customvoice.png" style={{zoom: "40%"}} />
+<img src="/img/aihuman/unity/aiplayer_customvoice.png" style={{zoom: "30%"}} />
 </p>
 
 <br/>
@@ -129,7 +129,7 @@ _aiPlayer.Send(new[] {aiClipSet});
 Preload is used when you want to make the AI speak the next sentence without delay by loading sentences in advance. You could think of it as a caching process. Select a sentence and press the **PRELOAD** button in the sample below to perform the corresponding action.
 
 <p align="center">
-<img src="/img/aihuman/unity/aiplayer_preload.png" style={{zoom: "40%"}} />
+<img src="/img/aihuman/unity/aiplayer_preload.png" style={{zoom: "30%"}} />
 </p>
 
 ```csharp

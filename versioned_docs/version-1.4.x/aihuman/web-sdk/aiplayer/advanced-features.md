@@ -18,7 +18,7 @@ The followings are ClipTypes.
 
 The screenshot below shows AI Model Jonathan opening his hands according to "twohand" gesture.
 
-<img src="/img/aihuman/web/sdk_demo_gesture.png" />
+<img src="/img/aihuman/web/sdk_demo_gesture_r1.png" />
 
 <br/>
 
@@ -48,7 +48,7 @@ Some AIs can speak with other voices besides basic voices. To use other voices, 
 
 Check out the custom voice list that you can select on the Demo page.
 
-<img src="/img/aihuman/web/sdk_demo_04.png" />
+<img src="/img/aihuman/web/sdk_demo_04_r1.png" />
 
 #### Set the custom voice using AIPlayer's method
 
@@ -122,7 +122,7 @@ Preload is used when you want to make the AI speak the next sentence without del
 
 **3D character does not support this.**
 
-<img src="/img/aihuman/web/sdk_demo_preload.png" />
+<img src="/img/aihuman/web/sdk_demo_preload_r1.png" />
 
 ```javascript
 AI_PLAYER.preload("Nice to meet you");

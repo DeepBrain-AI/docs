@@ -39,7 +39,7 @@ aiPlayer.send(clipset: clipset)
 일부 AI는 기본 음성 외에 다른 음성으로 발화를 할수 있다. 이때 지원하는 음성의 언어가 AI의 기본 언어와 다른 경우도 발화 가능하다. 여러 언어와 음성을 사용하기 위해서는 AIPlayer의 generateToken 또는 loadCustomVoices 함수를 호출 한 후 사용할 수 있다.
 
 <p align="center">
-<img src="/img/aihuman/ios/aisample_ss_customvoice.PNG" style={{zoom: "50%"}} />
+<img src="/img/aihuman/ios/aisample_ss_customvoice.PNG" style={{zoom: "35%"}} />
 </p>
 
 #### AIPlayer의 언어 및 음성 변경 방법

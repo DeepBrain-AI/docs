@@ -77,7 +77,7 @@ $ npm run dev
 
 The following web page(`SDK DEMO`) will be shown if everything goes well.
 
-<img src="/img/aihuman/web/sdk_demo_01.png" />
+<img src="/img/aihuman/web/sdk_demo_01_r1.png" />
 
 <br />
 <br />

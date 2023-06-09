@@ -79,7 +79,7 @@ $ npm run dev
 
 문제가 없다면, 아래와 같이 `SDK DEMO`가 실행됩니다.
 
-<img src="/img/aihuman/web/sdk_demo_01.png" />
+<img src="/img/aihuman/web/sdk_demo_01_r1.png" />
 
 <br />
 <br />

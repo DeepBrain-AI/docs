@@ -12,8 +12,6 @@ AIPlayer 리소스 로드가 완료된 후(`AIEventType.RES_LOAD_COMPLETED`), se
 
 말하는 텍스트가 너무 길면 말하는 데 필요한 리소스를 합성하지 못할 수 있습니다. 긴 문장을 합성할 수 있는 모델이 있습니다. AI마다 합성할수 있는 길이는 다르지만 일반적으로 문장은 한국어로 보통 30~40자 이내, 영어로는 비슷한 수준으로 자르는 것이 좋습니다.
 
-<img src="/img/aihuman/web/sdk_demo_03.png" />
-
 ```javascript
 //Case1. One Gesture Speak
 const AIClipSet = { text: "Nice to meet you", gst: "hi" };
@@ -25,7 +23,7 @@ AI_PLAYER.send("Nice to meet you");
 
 SDK demo page에서도 테스트해볼수 있습니다. 
 
-<img src="/img/aihuman/web/sdk_demo_03.png" />
+<img src="/img/aihuman/web/sdk_demo_03_r1.png" />
 
 <br/>
 

@@ -17,7 +17,7 @@ sidebar_position: 5
 아래 샘플 스크린샷에서는 Jonathan이라는 AI 모델이 "hi"(손을 흔든다)라는 제스처를 하면서 발화를 하고 있습니다.
 
 <p align="center">
-<img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
+<img src="/img/aihuman/android/sdk_demo_gesture_speak.jpg" style={{zoom: "25%"}} />
 </p>
 
 AIClipSetFactory.CreateClip 함수를 이용하여 제스처를 하는 AIClipSet을 아래와 같이 생성합니다. 제스처를 설정하였지만, 발화 문장을 셋팅하지 않고 send를 호출하면 발화는 하지않고 제스처만 동작됩니다. 
@@ -51,7 +51,7 @@ if (selectedSpeech != null) {
 일부 AI는 기본 음성 외에 다른 음성으로 발화를 할수 있습니다. 여러 음성을 사용하기 위해서는 먼저 AIModelInfoManager.generateToken(...) 함수나 AIModelInfoManager.loadCustomVoices(...) 메소드를 호출한 후 사용할수 있습니다. 
 
 <p align="center">
-<img src="/img/aihuman/android/Screenshot_20221107-120630_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
+<img src="/img/aihuman/android/sdk_demo_customvoice_list.jpg" style={{zoom: "25%"}} />
 </p>
 
 ### AIPlayer의 언어 및 음성 변경 방법
@@ -109,7 +109,7 @@ aiPlayer.send(aiClipSet);
 aiPlayer에게 여러 문장을 한꺼번에 주고 차례로 발화하게 할수 있습니다. 방법은 다음과 같고 주의할 점은 프리로드와 마찬가지로 일부 ai 모델만 가능합니다. 아래 샘플에서 Multi Speak 버튼을 누르면 해당 행동이 구현되어있습니다.
 
 <p align="center">
-<img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
+<img src="/img/aihuman/android/sdk_demo_gesture_speak.jpg" style={{zoom: "25%"}} />
 </p>
 
 ```java
@@ -118,7 +118,6 @@ aiPlayer.send([texts]); //array
 //or 
 aiPlayer.send([aiClipSets]); //array
 ```
-
 <br/>
 
 ## 프리로드
@@ -128,7 +127,7 @@ aiPlayer.send([aiClipSets]); //array
 **3d character는 현재 이 기능을 지원하지 않는다.** 
 
 <p align="center">
-<img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
+<img src="/img/aihuman/android/sdk_demo_gesture_speak.jpg" style={{zoom: "25%"}} />
 </p>
 
 ```java
