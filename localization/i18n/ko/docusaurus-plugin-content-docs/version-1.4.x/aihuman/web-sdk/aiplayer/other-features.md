@@ -15,8 +15,6 @@ AI가 셋업 완료 이후에도, aiPlayer의 일부 설정들은 변경 가능�
 AI_PLAYER.setter({ size: 1.0 });
 ```
 
-<br/>
-
 ### 2. AI 패딩 조절 
 
 - left, top 값의 조절이 가능합니다.

@@ -15,8 +15,6 @@ The range of possible values are from 0 to 2.0 . The default size is 1.0.
 AI_PLAYER.setter({ size: 1.0 }); //float
 ```
 
-<br/>
-
 ### 2. Adjust AI Padding
 
 It can be adjusted based on both left and top.
