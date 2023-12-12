@@ -63,6 +63,41 @@ const sidebars = {
       ],
     },
   ],
+  aistudioV3Sidebar: [
+    'aistudioV3/getting-started',
+    'aistudioV3/generate-api-key',
+    {
+      type: 'category',
+      label: 'Tutorial',
+      collapsed: false,
+      items: [
+        'aistudioV3/tutorial/multiple-chromakey-export',
+        'aistudioV3/tutorial/export-from-exist-project',
+        'aistudioV3/tutorial/export-from-json-template',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'API Reference',
+      items: [
+        'aistudioV3/reference/auth',
+        'aistudioV3/reference/export-project',
+        'aistudioV3/reference/progress',
+        'aistudioV3/reference/get-project',
+        'aistudioV3/reference/get-project-by-name',
+        'aistudioV3/reference/export-template',
+        'aistudioV3/reference/scene-add',
+        'aistudioV3/reference/scene-update',
+        'aistudioV3/reference/scene-delete',
+        'aistudioV3/reference/duplicate-project',
+        'aistudioV3/reference/model-list',
+        'aistudioV3/reference/simple-video',
+        'aistudioV3/reference/simple-audio',
+        'aistudioV3/reference/chromakey-audio-find',
+        'aistudioV3/reference/webhook',
+      ],
+    },
+  ],
   aihumanwebSidebar: [
     'aihuman/web-sdk/intro',
     {
@@ -366,7 +401,7 @@ const sidebars = {
         "aihuman/unity-sdk/sample-project/overview",
         "aihuman/unity-sdk/sample-project/quick-start",
         "aihuman/unity-sdk/sample-project/ai-human-demo",
-        "aihuman/unity-sdk/sample-project/with-playchat-azure-stt",        
+        "aihuman/unity-sdk/sample-project/with-playchat-azure-stt",
       ],
     },
     {

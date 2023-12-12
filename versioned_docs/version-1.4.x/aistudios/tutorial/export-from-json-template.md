@@ -114,7 +114,7 @@ let projectKey = await fetch('https://aistudios.com/api/odin/editor/project',
 <br/>
 
 ## 4. Check and download project progress
-Deliver the saved project key to the project progress check API to check the progress. Project progress means the degree to which the image synthesis is completed, as it may take some time to complete the image after the synthesis request, and this can be confirmed by API. At this time, the method is GET, and you can pass the project key value to the URL without any body data. And set API key as Authorization value in header and Content-Type as 'application/json'.
+Deliver the saved projectKey to the project progress check API to check the progress. Project progress means the degree to which the image synthesis is completed, as it may take some time to complete the image after the synthesis request, and this can be confirmed by API. At this time, the method is GET, and you can pass the projectKey value to the URL without any body data. And set API key as Authorization value in header and Content-Type as 'application/json'.
 If the image synthesis is completed after successful communication, progress will be 100, and the URL value of the completed image will be returned. Below is an example of downloading to the specified local path (./video/) if the URL value exists, or waiting 3 seconds to check the progress again.
 
 ```js

@@ -1,7 +1,7 @@
 {
   "version.label": {
     "message": "1.4.x",
-    "description": "The label for version current"
+    "description": "The label for version 1.4.x"
   },
   "sidebar.aistudiosSidebar.category.Tutorial": {
     "message": "튜토리얼",
@@ -170,5 +170,13 @@
   "sidebar.aihumanunitySidebar.category.API Reference.link.generated-index.description": {
     "message": "AI Human SDK의 주요 인터페이스와 API에 대해 알아보세요.",
     "description": "The generated-index page description for category API Reference in sidebar aihumanunitySidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Tutorial": {
+    "message": "튜토리얼",
+    "description": "The label for category Tutorial in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.API Reference": {
+    "message": "API 편람",
+    "description": "The label for category API Reference in sidebar aistudioV3Sidebar"
   }
 }

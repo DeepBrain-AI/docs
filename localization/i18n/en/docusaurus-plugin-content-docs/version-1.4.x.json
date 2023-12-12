@@ -1,98 +1,106 @@
 {
   "version.label": {
-    "message": "1.3.x",
-    "description": "The label for version 1.3.x"
+    "message": "1.4.x",
+    "description": "The label for version 1.4.x"
   },
   "sidebar.aistudiosSidebar.category.Tutorial": {
-    "message": "튜토리얼",
+    "message": "Tutorial",
     "description": "The label for category Tutorial in sidebar aistudiosSidebar"
   },
   "sidebar.aistudiosSidebar.category.API Reference": {
-    "message": "API 편람",
+    "message": "API Reference",
     "description": "The label for category API Reference in sidebar aistudiosSidebar"
   },
+  "sidebar.aistudioV3Sidebar.category.Tutorial": {
+    "message": "Tutorial",
+    "description": "The label for category Tutorial in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.API Reference": {
+    "message": "API Reference",
+    "description": "The label for category API Reference in sidebar aistudioV3Sidebar"
+  },
   "sidebar.aihumanwebSidebar.category.Getting Started": {
-    "message": "시작하기",
+    "message": "Getting Started",
     "description": "The label for category Getting Started in sidebar aihumanwebSidebar"
   },
   "sidebar.aihumanwebSidebar.category.Getting Started.link.generated-index.description": {
-    "message": "AI Human SDK를 이용한 개발 준비 부터 첫 AI Human 발화 과정에 대해 알아보세요.",
+    "message": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process.",
     "description": "The generated-index page description for category Getting Started in sidebar aihumanwebSidebar"
   },
   "sidebar.aihumanwebSidebar.category.Sample Project Description": {
-    "message": "샘플 프로젝트 설명",
+    "message": "Sample Project Description",
     "description": "The label for category Sample Project Description in sidebar aihumanwebSidebar"
   },
   "sidebar.aihumanwebSidebar.category.Sample Project Description.link.generated-index.description": {
-    "message": "보다 빠른 AI Human 서비스 구현을 위해 AI Human SDK를 이용한 샘플 프로젝트를 제공합니다. 샘플 프로젝트 내용을 알아보세요.",
+    "message": "Learn AI Human SDK as a sample project.",
     "description": "The generated-index page description for category Sample Project Description in sidebar aihumanwebSidebar"
   },
   "sidebar.aihumanwebSidebar.category.AIPlayer Description": {
-    "message": "AIPlayer 설명",
+    "message": "AIPlayer Description",
     "description": "The label for category AIPlayer Description in sidebar aihumanwebSidebar"
   },
   "sidebar.aihumanwebSidebar.category.AIPlayer Description.link.generated-index.description": {
-    "message": "AI Human SDK의 핵심이라고 할 수 있는 AIPlayer 객체에 대해 알아보세요.",
+    "message": "Learn more about AIPlayer objects in the AI Human SDK.",
     "description": "The generated-index page description for category AIPlayer Description in sidebar aihumanwebSidebar"
   },
   "sidebar.aihumanwebSidebar.category.API Reference": {
-    "message": "API 편람",
+    "message": "API Reference",
     "description": "The label for category API Reference in sidebar aihumanwebSidebar"
   },
   "sidebar.aihumanwebSidebar.category.API Reference.link.generated-index.description": {
-    "message": "AI Human SDK의 주요 인터페이스와 API에 대해 알아보세요.",
+    "message": "Learn about the main interface, class, and api of the AI Human SDK.",
     "description": "The generated-index page description for category API Reference in sidebar aihumanwebSidebar"
   },
   "sidebar.aihumanwindowsSidebar.category.Getting Started": {
-    "message": "시작하기",
+    "message": "Getting Started",
     "description": "The label for category Getting Started in sidebar aihumanwindowsSidebar"
   },
   "sidebar.aihumanwindowsSidebar.category.Getting Started.link.generated-index.description": {
-    "message": "AI Human SDK를 이용한 개발 준비 부터 첫 AI Human 발화 과정에 대해 알아보세요.",
+    "message": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process.",
     "description": "The generated-index page description for category Getting Started in sidebar aihumanwindowsSidebar"
   },
   "sidebar.aihumanwindowsSidebar.category.Sample Project Description": {
-    "message": "샘플 프로젝트 설명",
+    "message": "Sample Project Description",
     "description": "The label for category Sample Project Description in sidebar aihumanwindowsSidebar"
   },
   "sidebar.aihumanwindowsSidebar.category.Sample Project Description.link.generated-index.description": {
-    "message": "보다 빠른 AI Human 서비스 구현을 위해 AI Human SDK를 이용한 샘플 프로젝트를 제공합니다. 샘플 프로젝트 내용을 알아보세요.",
+    "message": "Learn AI Human SDK as a sample project.",
     "description": "The generated-index page description for category Sample Project Description in sidebar aihumanwindowsSidebar"
   },
   "sidebar.aihumanwindowsSidebar.category.AIPlayer Description": {
-    "message": "AIPlayer 설명",
+    "message": "AIPlayer Description",
     "description": "The label for category AIPlayer Description in sidebar aihumanwindowsSidebar"
   },
   "sidebar.aihumanwindowsSidebar.category.AIPlayer Description.link.generated-index.description": {
-    "message": "AI Human SDK의 핵심이라고 할 수 있는 AIPlayer 객체에 대해 알아보세요.",
+    "message": "Learn more about AIPlayer objects in the AI Human SDK.",
     "description": "The generated-index page description for category AIPlayer Description in sidebar aihumanwindowsSidebar"
   },
   "sidebar.aihumanwindowsSidebar.category.API Reference": {
-    "message": "API 편람",
+    "message": "API Reference",
     "description": "The label for category API Reference in sidebar aihumanwindowsSidebar"
   },
   "sidebar.aihumanwindowsSidebar.category.API Reference.link.generated-index.description": {
-    "message": "AI Human SDK의 주요 인터페이스와 API에 대해 알아보세요.",
+    "message": "Learn about the main interface, class, and api of the AI Human SDK.",
     "description": "The generated-index page description for category API Reference in sidebar aihumanwindowsSidebar"
   },
   "sidebar.aihumanandroidSidebar.category.Getting Started": {
-    "message": "시작하기",
+    "message": "Getting Started",
     "description": "The label for category Getting Started in sidebar aihumanandroidSidebar"
   },
   "sidebar.aihumanandroidSidebar.category.Getting Started.link.generated-index.description": {
-    "message": "AI Human SDK를 이용한 개발 준비 부터 첫 AI Human 발화 과정에 대해 알아보세요.",
+    "message": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process.",
     "description": "The generated-index page description for category Getting Started in sidebar aihumanandroidSidebar"
   },
   "sidebar.aihumanandroidSidebar.category.Sample Project Description": {
-    "message": "샘플 프로젝트 설명",
+    "message": "Sample Project Description",
     "description": "The label for category Sample Project Description in sidebar aihumanandroidSidebar"
   },
   "sidebar.aihumanandroidSidebar.category.Sample Project Description.link.generated-index.description": {
-    "message": "보다 빠른 AI Human 서비스 구현을 위해 AI Human SDK를 이용한 샘플 프로젝트를 제공합니다. 샘플 프로젝트 내용을 알아보세요.",
+    "message": "Learn AI Human SDK as a sample project.",
     "description": "The generated-index page description for category Sample Project Description in sidebar aihumanandroidSidebar"
   },
   "sidebar.aihumanandroidSidebar.category.AIPlayer Description": {
-    "message": "AIPlayer 설명",
+    "message": "AIPlayer Description",
     "description": "The label for category AIPlayer Description in sidebar aihumanandroidSidebar"
   },
   "sidebar.aihumanandroidSidebar.category.AIPlayer Description.link.generated-index.description": {
@@ -100,75 +108,75 @@
     "description": "The generated-index page description for category AIPlayer Description in sidebar aihumanandroidSidebar"
   },
   "sidebar.aihumanandroidSidebar.category.API Reference": {
-    "message": "API 편람",
+    "message": "API Reference",
     "description": "The label for category API Reference in sidebar aihumanandroidSidebar"
   },
   "sidebar.aihumanandroidSidebar.category.API Reference.link.generated-index.description": {
-    "message": "AI Human SDK의 주요 인터페이스와 API에 대해 알아보세요.",
+    "message": "Learn about the main interface, class, and api of the AI Human SDK.",
     "description": "The generated-index page description for category API Reference in sidebar aihumanandroidSidebar"
   },
   "sidebar.aihumaniosSidebar.category.Getting Started": {
-    "message": "시작하기",
+    "message": "Getting Started",
     "description": "The label for category Getting Started in sidebar aihumaniosSidebar"
   },
   "sidebar.aihumaniosSidebar.category.Getting Started.link.generated-index.description": {
-    "message": "AI Human SDK를 이용한 개발 준비 부터 첫 AI Human 발화 과정에 대해 알아보세요.",
+    "message": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process.",
     "description": "The generated-index page description for category Getting Started in sidebar aihumaniosSidebar"
   },
   "sidebar.aihumaniosSidebar.category.Sample Project Description": {
-    "message": "샘플 프로젝트 설명",
+    "message": "Sample Project Description",
     "description": "The label for category Sample Project Description in sidebar aihumaniosSidebar"
   },
   "sidebar.aihumaniosSidebar.category.Sample Project Description.link.generated-index.description": {
-    "message": "보다 빠른 AI Human 서비스 구현을 위해 AI Human SDK를 이용한 샘플 프로젝트를 제공합니다. 샘플 프로젝트 내용을 알아보세요.",
+    "message": "Learn AI Human SDK as a sample project.",
     "description": "The generated-index page description for category Sample Project Description in sidebar aihumaniosSidebar"
   },
   "sidebar.aihumaniosSidebar.category.AIPlayer Description": {
-    "message": "AIPlayer 설명",
+    "message": "AIPlayer Description",
     "description": "The label for category AIPlayer Description in sidebar aihumaniosSidebar"
   },
   "sidebar.aihumaniosSidebar.category.AIPlayer Description.link.generated-index.description": {
-    "message": "AI Human SDK의 핵심이라고 할 수 있는 AIPlayer 객체에 대해 알아보세요.",
+    "message": "Learn more about AIPlayer objects in the AI Human SDK.",
     "description": "The generated-index page description for category AIPlayer Description in sidebar aihumaniosSidebar"
   },
   "sidebar.aihumaniosSidebar.category.API Reference": {
-    "message": "API 편람",
+    "message": "API Reference",
     "description": "The label for category API Reference in sidebar aihumaniosSidebar"
   },
   "sidebar.aihumaniosSidebar.category.API Reference.link.generated-index.description": {
-    "message": "AI Human SDK의 주요 인터페이스와 API에 대해 알아보세요.",
+    "message": "Learn about the main interface, class, and api of the AI Human SDK.",
     "description": "The generated-index page description for category API Reference in sidebar aihumaniosSidebar"
   },
   "sidebar.aihumanunitySidebar.category.Getting Started": {
-    "message": "시작하기",
+    "message": "Getting Started",
     "description": "The label for category Getting Started in sidebar aihumanunitySidebar"
   },
   "sidebar.aihumanunitySidebar.category.Getting Started.link.generated-index.description": {
-    "message": "AI Human SDK를 이용한 개발 준비 부터 첫 AI Human 발화 과정에 대해 알아보세요.",
+    "message": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process.",
     "description": "The generated-index page description for category Getting Started in sidebar aihumanunitySidebar"
   },
   "sidebar.aihumanunitySidebar.category.Sample Project Description": {
-    "message": "샘플 프로젝트 설명",
+    "message": "Sample Project Description",
     "description": "The label for category Sample Project Description in sidebar aihumanunitySidebar"
   },
   "sidebar.aihumanunitySidebar.category.Sample Project Description.link.generated-index.description": {
-    "message": "보다 빠른 AI Human 서비스 구현을 위해 AI Human SDK를 이용한 샘플 프로젝트를 제공합니다. 샘플 프로젝트 내용을 알아보세요.",
+    "message": "Learn AI Human SDK as a sample project.",
     "description": "The generated-index page description for category Sample Project Description in sidebar aihumanunitySidebar"
   },
   "sidebar.aihumanunitySidebar.category.AIPlayer Description": {
-    "message": "AIPlayer 설명",
+    "message": "AIPlayer Description",
     "description": "The label for category AIPlayer Description in sidebar aihumanunitySidebar"
   },
   "sidebar.aihumanunitySidebar.category.AIPlayer Description.link.generated-index.description": {
-    "message": "AI Human SDK의 핵심이라고 할 수 있는 AIPlayer 객체에 대해 알아보세요.",
+    "message": "Learn more about AIPlayer objects in the AI Human SDK.",
     "description": "The generated-index page description for category AIPlayer Description in sidebar aihumanunitySidebar"
   },
   "sidebar.aihumanunitySidebar.category.API Reference": {
-    "message": "API 편람",
+    "message": "API Reference",
     "description": "The label for category API Reference in sidebar aihumanunitySidebar"
   },
   "sidebar.aihumanunitySidebar.category.API Reference.link.generated-index.description": {
-    "message": "AI Human SDK의 주요 인터페이스와 API에 대해 알아보세요.",
+    "message": "Learn about the main interface, class, and api of the AI Human SDK.",
     "description": "The generated-index page description for category API Reference in sidebar aihumanunitySidebar"
   }
 }

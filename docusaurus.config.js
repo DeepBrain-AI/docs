@@ -92,6 +92,12 @@ const config = {
         items: [
           {
             type: 'doc',
+            docId: 'aistudioV3/getting-started',
+            position: 'left',
+            label: 'AI Studios V3'
+          },
+          {
+            type: 'doc',
             docId: 'aistudios/getting-started',
             position: 'left',
             label: 'AI Studios',
