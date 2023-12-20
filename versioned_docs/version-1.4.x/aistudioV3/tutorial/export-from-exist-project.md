@@ -56,17 +56,19 @@ const projectInfo = await fetch('https://app.deepbrain.io/api/odin/v3/editor/pro
 The saved scenes data in projectInfo contains overall data such as AI models and attached images and videos in the project. You can also modify the data in the sences according to its projectInfo. An example below shows changing dialogue of the first scene, the URL of the other clips in the first scene (such as an image).
 
 ```js
-const { scenes } = projectInfo;
+const project = { ...projectInfo };
 
-const modelIdx = scenes[0].clips.findIndex((clips) => clips.type === 'aiModel');
+project.name = "Exporting an Existing Project-based";
+
+const modelIdx = project.scenes[0].clips.findIndex((clips) => clips.type === 'aiModel');
 // If you also want to replace your previous image with new image, you can undo comments line below.
-// const imageIdx = scenes[0].clips.findIndex((clips) => clips.type === 'image');
+// const imageIdx = project.scenes[0].clips.findIndex((clips) => clips.type === 'image');
 
 // Please type in your substitute scripts that will replace your old script for new video.
-scenes[0].clips[modelIdx].script.org = "This is overriding old script";
+project.scenes[0].clips[modelIdx].script.org = "This is overriding old script";
 
 // If you also want to replace your previous image with new image, you can undo comments line below.
-// scenes[0].clips[imageIdx].source_url = "##NEW_IMAGE_URL##";
+// project.scenes[0].clips[imageIdx].source_url = "##NEW_IMAGE_URL##";
 ```
 
 <br/>
@@ -178,18 +180,20 @@ const generateVideo = async () => {
     }
   });
 
-  // // #2. Edit scene data
-  const { scenes } = projectInfo;
+  // #2. Edit scene data
+  const project = { ...projectInfo };
 
-  const modelIdx = scenes[0].clips.findIndex((clips) => clips.type === 'aiModel');
+  project.name = "Exporting an Existing Project-based";
+
+  const modelIdx = project.scenes[0].clips.findIndex((clips) => clips.type === 'aiModel');
   // If you also want to replace your previous image with new image, you can undo comments line below.
-  // const imageIdx = scenes[0].clips.findIndex((clips) => clips.type === 'image');
+  // const imageIdx = project.scenes[0].clips.findIndex((clips) => clips.type === 'image');
 
   // Please type in your substitute scripts that will replace your old script for new video.
-  scenes[0].clips[modelIdx].script.org = "This is overriding old script";
+  project.scenes[0].clips[modelIdx].script.org = "This is overriding old script";
 
   // If you also want to replace your previous image with new image, you can undo comments line below.
-  // scenes[0].clips[imageIdx].source_url = "##NEW_IMAGE_URL##";
+  // project.scenes[0].clips[imageIdx].source_url = "##NEW_IMAGE_URL##";
 
   // #3. Request export
   const projectKey = await fetch('https://app.deepbrain.io/api/odin/v3/editor/project',
