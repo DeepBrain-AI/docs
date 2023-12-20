@@ -49,7 +49,7 @@ curl https://app.deepbrain.io/api/odin/v3/editor/project  \
             "top" : 144.5979042385424,
             "left" : 630.2493927359487,
             "script" : {
-              "org" : "<p>Hello, this is test project using Api.</p>"
+              "org" : "<p>Hello, this is test video using Api.</p>"
             },
             "effects" : [
               {
@@ -180,7 +180,7 @@ axios.post('https://app.deepbrain.io/api/odin/v3/editor/project',
           "top" : 144.5979042385424,
           "left" : 630.2493927359487,
           "script" : {
-            "org" : "<p>Hello, this is test project using Api.</p>"
+            "org" : "<p>Hello, this is test video using Api.</p>"
           },
           "effects" : [
             {
@@ -325,7 +325,7 @@ body = {
           "top" : 144.5979042385424,
           "left" : 630.2493927359487,
           "script" : {
-            "org" : "<p>Hello, this is test project using Api.</p>"
+            "org" : "<p>Hello, this is test video using Api.</p>"
           },
           "effects" : [
             {

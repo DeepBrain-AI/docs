@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # 기존 프로젝트 기반 내보내기
@@ -30,7 +30,7 @@ const projectId = '##PROJECT_ID##';
 
 ## 3. 프로젝트 가져오기 API 요청
 
-저장한 projectId를 프로젝트 가져오기 API에 요청합니다. 프로젝트 가져오기 API는 저장된 프로젝트의 이름, 씬 정보 등을 조회하기 위해 사용합니다. 이 때 method는 GET, 별도 body 데이터 없이 URL에 projectId 값을 전달하면 됩니다. 그리고 header에 Authorization 값으로 API 키, Content-Type은 'application/json' 으로 설정해줍니다. 이후 통신 성공 시 해당 정보를 projectInfo 변수에 저장합니다.
+저장한 projectId를 프로젝트 가져오기 API에 요청합니다. 프로젝트 가져오기 API는 저장된 프로젝트의 이름, 씬 정보 등을 조회하기 위해 사용합니다. 이때 method는 GET, 별도 body 데이터 없이 URL에 projectId 값을 전달하면 됩니다. 그리고 header에 Authorization 값으로 API 키, Content-Type은 'application/json' 으로 설정해줍니다. 이후 통신 성공 시 해당 정보를 projectInfo 변수에 저장합니다.
 
 ```js
 const projectInfo = await fetch('https://app.deepbrain.io/api/odin/v3/editor/project/' + projectId,
@@ -59,10 +59,14 @@ const projectInfo = await fetch('https://app.deepbrain.io/api/odin/v3/editor/pro
 const { scenes } = projectInfo;
 
 const modelIdx = scenes[0].clips.findIndex((clips) => clips.type === 'aiModel');
-const imageIdx = scenes[0].clips.findIndex((clips) => clips.type === 'image');
+// If you also want to replace your previous image with new image, you can undo comments line below.
+// const imageIdx = scenes[0].clips.findIndex((clips) => clips.type === 'image');
 
-scenes[0].clips[modelIdx].script.org = "##NEW_SCRIPT##";
-scenes[0].clips[imageIdx].source_url = "##NEW_IMAGE_URL##";
+// Please type in your substitute scripts that will replace your old script for new video.
+scenes[0].clips[modelIdx].script.org = "This is overriding old script";
+
+// If you also want to replace your previous image with new image, you can undo comments line below.
+// scenes[0].clips[imageIdx].source_url = "##NEW_IMAGE_URL##";
 ```
 
 <br/>
@@ -87,7 +91,6 @@ const projectKey = await fetch('https://app.deepbrain.io/api/odin/v3/editor/proj
     return res.data.projectId;
   }
 });
-
 ```
 
 <br/>
@@ -104,7 +107,7 @@ while (true) {
   if (complete) {
     break;
   }
-  await fetch('https://app.deepbrain.io/api/odin/v3/editor/progress/'+projectKey,
+  await fetch('https://app.deepbrain.io/api/odin/v3/editor/progress/' + projectKey,
     {
       method: 'GET',
       headers: {
@@ -122,6 +125,9 @@ while (true) {
           console.log('Start download - project key: ' + projectKey);
           const parsedUrl = new URL(res.data.downloadUrl);
           const filename = path.basename(parsedUrl.pathname);
+          if (!fs.existsSync('./videos')) {
+            fs.mkdirSync('./videos', { recursive: true });
+          }
           const file = fs.createWriteStream("./videos/" + filename);
           const request = https.get(res.data.downloadUrl, function (response) {
             response.pipe(file);
@@ -150,59 +156,13 @@ import * as fs from "fs";
 import * as https from "https";
 
 const token = '##JWT##'; // API KEY
-const projectId = '##PROJECT_ID##';
 
-// #1. Get project info
-const projectInfo = await fetch('https://app.deepbrain.io/api/odin/v3/editor/project/' + projectId,
-  {
-    method: 'GET',
-    headers: {
-      'Authorization': token,
-      'Content-Type': 'application/json'
-    }
-  }
-).then((response) => response.json()
-).then((res) => {
-  if (res.success == true) {
-    console.log('Get project succeed');
-    return res.data.project;
-  }
-});
+// If you don't have a projectId yet, You can copy projectId from the prior example "Exporting an JSON-based Template".
+const projectId = '##YOUR_PROJECT_ID##';
 
-// // #2. Edit scene data
-const { scenes } = projectInfo;
-
-const modelIdx = scenes[0].clips.findIndex((clips) => clips.type === 'aiModel');
-const imageIdx = scenes[0].clips.findIndex((clips) => clips.type === 'image');
-
-scenes[0].clips[modelIdx].script.org = "##NEW_SCRIPT##";
-scenes[0].clips[imageIdx].source_url = "##NEW_IMAGE_URL##";
-
-// #3. Request export
-const projectKey = await fetch('https://app.deepbrain.io/api/odin/v3/editor/project',
-  {
-    method: 'POST',
-    body: JSON.stringify({ scenes }),
-    headers: {
-      'Authorization': token,
-      'Content-Type': 'application/json'
-    }
-  }
-).then((response) => response.json()
-).then((res) => {
-  if (res.success == true) {
-    console.log('Export succeed - ' + res.data.projectId);
-    return res.data.projectId;
-  }
-});
-
-// #4. Check progress & download
-let complete = 0;
-while (true) {
-  if (complete) {
-    break;
-  }
-  await fetch('https://app.deepbrain.io/api/odin/v3/editor/progress/' + projectKey,
+const generateVideo = async () => {
+  // #1. Get project info
+  const projectInfo = await fetch('https://app.deepbrain.io/api/odin/v3/editor/project/' + projectId,
     {
       method: 'GET',
       headers: {
@@ -213,28 +173,86 @@ while (true) {
   ).then((response) => response.json()
   ).then((res) => {
     if (res.success == true) {
-      if (res.data.progress < 100) {
-        console.log('Waiting... progress: ' + res.data.progress);
-      } else { // export complete
-        if (res.data.downloadUrl) {
-          console.log('Start download - project key: ' + projectKey);
-          const parsedUrl = new URL(res.data.downloadUrl);
-          const filename = path.basename(parsedUrl.pathname);
-          const file = fs.createWriteStream("./videos/" + filename);
-          const request = https.get(res.data.downloadUrl, function (response) {
-            response.pipe(file);
-
-            file.on("finish", () => {
-              file.close();
-              console.log("Download completed");
-            });
-          });
-          complete = 1;
-        }
-      }
+      console.log('Get project succeed');
+      return res.data.project;
     }
   });
-  await new Promise(resolve => setTimeout(resolve, 3000)); // Wait 3 seconds
+
+  // // #2. Edit scene data
+  const { scenes } = projectInfo;
+
+  const modelIdx = scenes[0].clips.findIndex((clips) => clips.type === 'aiModel');
+  // If you also want to replace your previous image with new image, you can undo comments line below.
+  // const imageIdx = scenes[0].clips.findIndex((clips) => clips.type === 'image');
+
+  // Please type in your substitute scripts that will replace your old script for new video.
+  scenes[0].clips[modelIdx].script.org = "This is overriding old script";
+
+  // If you also want to replace your previous image with new image, you can undo comments line below.
+  // scenes[0].clips[imageIdx].source_url = "##NEW_IMAGE_URL##";
+
+  // #3. Request export
+  const projectKey = await fetch('https://app.deepbrain.io/api/odin/v3/editor/project',
+    {
+      method: 'POST',
+      body: JSON.stringify({ scenes }),
+      headers: {
+        'Authorization': token,
+        'Content-Type': 'application/json'
+      }
+    }
+  ).then((response) => response.json()
+  ).then((res) => {
+    if (res.success == true) {
+      console.log('Export succeed - ' + res.data.projectId);
+      return res.data.projectId;
+    }
+  });
+
+  // #4. Check progress & download
+  let complete = 0;
+  while (true) {
+    if (complete) {
+      break;
+    }
+    await fetch('https://app.deepbrain.io/api/odin/v3/editor/progress/' + projectKey,
+      {
+        method: 'GET',
+        headers: {
+          'Authorization': token,
+          'Content-Type': 'application/json'
+        }
+      }
+    ).then((response) => response.json()
+    ).then((res) => {
+      if (res.success == true) {
+        if (res.data.progress < 100) {
+          console.log('Waiting... progress: ' + res.data.progress);
+        } else { // export complete
+          if (res.data.downloadUrl) {
+            console.log('Start download - project key: ' + projectKey);
+            const parsedUrl = new URL(res.data.downloadUrl);
+            const filename = path.basename(parsedUrl.pathname);
+            if (!fs.existsSync('./videos')) {
+              fs.mkdirSync('./videos', { recursive: true });
+            }
+            const file = fs.createWriteStream("./videos/" + filename);
+            const request = https.get(res.data.downloadUrl, function (response) {
+              response.pipe(file);
+
+              file.on("finish", () => {
+                file.close();
+                console.log("Download completed");
+              });
+            });
+            complete = 1;
+          }
+        }
+      }
+    });
+    await new Promise(resolve => setTimeout(resolve, 3000)); // Wait 3 seconds
+  }
 }
 
+generateVideo();
 ```

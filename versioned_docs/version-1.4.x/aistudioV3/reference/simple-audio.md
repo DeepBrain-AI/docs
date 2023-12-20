@@ -52,7 +52,7 @@ curl https://app.deepbrain.io/api/odin/v3/simple/audio  \
 -X POST \
 -d '{
       "language": "en",
-      "text": "Hello, this is test script",
+      "text": "Hello, this is test video",
       "model": "M000045058"
     }'
 ```
@@ -67,7 +67,7 @@ const token = ${API KEY};
 axios.post('https://app.deepbrain.io/api/odin/v3/simple/audio', 
   {
     "language": "en",
-    "text": "Hello, this is test script",
+    "text": "Hello, this is test video",
     "model": "M000045058"
   }, 
   {
@@ -95,7 +95,7 @@ import json
 url = "https://app.deepbrain.io/api/odin/v3/simple/audio"
 body = {
   "language": "en",
-  "text": "Hello, this is test script",
+  "text": "Hello, this is test video",
   "model": "M000045058"
 }
     

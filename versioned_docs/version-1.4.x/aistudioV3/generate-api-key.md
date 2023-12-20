@@ -25,8 +25,7 @@ https://app.deepbrain.io/api/odin/v3/auth/token
 |appId|AppId required to issue Api Token. You can check it in the profile.|String|true|-|
 |userKey|UserKey required to issue Api Token. You can check it in the profile.|String|true|-|
 
-TODO _ 주소 변경해야함.
-[Check AppId, UserKey](https://app.deepbrain.io)
+[Check AppId, UserKey](https://account.deepbrain.io/user/api-key)
 
 <br/>
 
@@ -35,3 +34,71 @@ TODO _ 주소 변경해야함.
 |key|desc|type|
 |:---|:---|:---|
 |token|The Api Access Token used for Api calls.|String|
+
+<br/>
+
+
+## 4. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://app.deepbrain.io/api/odin/v3/auth/token  \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{
+      "appId": "##YOUR_APP_ID##",
+      "userKey": "##YOUR_USER_KEY##"
+    }'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios"; 
+
+axios.post(`https://app.deepbrain.io/api/odin/v3/auth/token`, 
+  {
+    "appId": "##YOUR_APP_ID##",
+    "userKey": "##YOUR_USER_KEY##"
+  },
+  {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data);
+})
+.catch((error) => {
+  console.error(error);
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://app.deepbrain.io/api/odin/v3/auth/token"
+body = {
+  "appId": "##YOUR_APP_ID##",
+  "userKey": "##YOUR_USER_KEY##"
+}
+headers = {
+  "Content-Type": "application/json"
+}
+
+r = requests.post(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>

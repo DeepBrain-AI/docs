@@ -6,7 +6,7 @@ sidebar_position: 6
 
 <br/>
 
-The chromakey export section shows how to send an API request in JSON format to export a chormakey video that only contains the AI Model.
+The chroma-key export section shows how to send an API request in JSON format to export a chormakey video that only contains the AI Model.
 
 ## 1. API endpoint
 
@@ -23,7 +23,7 @@ https://app.deepbrain.io/api/odin/v3/simple/video
 |language|The langauge the script is written in.|String|true|-|
 |text|Text for AI to read. It must match the langauge of your selected model.|String|true|-|
 |model|Ther AI Model to be used.|String|true|-|
-|clothesClothes that the AI Model will wear.|String|true|-|
+|clothes|Clothes that the AI Model will wear.|String|true|-|
 |ttsType|External TTS information that is not the default voice of the model.|Json|false|-|
 |[webhookUrl](../reference/webhook)|Url address where the synthesis result should be sent.|String|false|-|
 
@@ -34,7 +34,7 @@ https://app.deepbrain.io/api/odin/v3/simple/video
 
 |key|desc|type|
 |:---|:---|:---|
-|projectId|Project Id - Fetching the Chromakey video data that has been exported.|String|
+|projectId|Project Id - Fetching the Chroma-key video data that has been exported.|String|
 
 <br/>
 

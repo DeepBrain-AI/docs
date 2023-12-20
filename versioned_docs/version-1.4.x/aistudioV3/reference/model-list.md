@@ -1,27 +1,91 @@
-# AI Model List
+# Get Model List
 
-
-## Available AI Models
+The get model list section shows how to check the information of the AI Model that can be used to create a project through the API.
 
 <br/>
 
-|AI Models|clothes|Language|Free or Paid|
-|:---|:---|:---|:---|
-|haylyn|Red blazer, Navy blazer|en|Paid|
-|Shiba|Shiba|ko, en, zh, jp|Paid|
-|Panda|Panda|ko, en, zh, jp|Paid|
-|Adam|Gray suit|en|Paid|
-|Heo Song-yeon|Skyblue blazer - idle, Skyblue blazer - greeting, Skyblue blazer - Grip_idle, Skyblue blazer - twohand_idle, Skyblue blazer - left_mid_idle, Wine dress - idle, Wine dress - greeting, Wine dress - Grip_idle, Wine dress - twohand_idle, Wine dress - left_mid_idle|ko|Paid|
-|Ruby|Navy dress, Black blazer, Wine suit, Skyblue suit|en|Paid|
-|haylyn|Lavender suit|en|Paid|
-|mizuki|Gray dress, White suit, Blue suit|jp|Free|
-|JangJinHwa|Green tie, Beige cardigan, Black suit, Stripe tie|zh|Free|
-|Shaosuki|Red blazer, Black blazer|zh|Free|
-|YooEunjin|Red blazer, Black suit, Gray dress, Black blazer|ko|Paid|
-|YoonSungYoung|Pink dress, Red dress, White suit|ko|Free|
-|JoEunkang|Red tie, Wine tie, Beige blazer, Yellow sweater, Navy suit jacket|ko|Paid|
-|Daniel|White suit, Check jacket, Brown suit, Red sweater, Skyblue shirt|en|Paid|
-|Paris|Yellow dress, Red suit|en|Free|
-|Hyunwook Kim|Red tie, Orange stripe tie, Pink stripe tie|ko|Paid|
-|Jonathan|Black suit|en|Free|
-|Jonathan|Navy suit, Yellow sweater|en|Free|
+## 1. API endpoint
+
+```http
+https://app.deepbrain.io/api/odin/v3/model
+```
+
+<br/>
+
+## 2. Response parameters
+
+|key|desc|type|
+|:---|:---|:---|
+|models|Synthetic model information|Array(json)|
+|models[].id|AI Model's unique key.|String|
+|models[].label|AI Model's name information|Json|
+|models[].label.ko|Korean notation|String|
+|models[].label.en|English notation|String|
+|models[].thumbnail|Image path to preview the model|String|
+|models[].clothes|Clothes information|Array(json)|
+|models[].clothes[].id|Clothes that the AI Model will wear.|String|
+|models[].clothes[].label|Name of clothes|Json|
+|models[].clothes[].label.ko|Korean notation|String|
+|models[].clothes[].label.en|English notation|String|
+|models[].clothes[].thumbnail|Image path to preview the model|String|
+
+<br/>
+
+
+## 3. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://app.deepbrain.io/api/odin/v3/model  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X GET
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios"; 
+const token = ${API KEY};
+
+axios.get(`https://app.deepbrain.io/api/odin/v3/model`, 
+  {
+    headers: {
+      'Authorization': `${token}`,
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data);
+})
+.catch((error) => {
+  console.error(error);
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://app.deepbrain.io/api/odin/v3/model"
+
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": ${API TOKEN}
+}
+
+r = requests.get(url, headers=headers)
+```
+
+</TabItem>
+</Tabs>

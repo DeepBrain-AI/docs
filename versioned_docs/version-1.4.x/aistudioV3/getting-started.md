@@ -16,7 +16,7 @@ AI STUDIOS V3 discloses APIs for external developers, producers, and editors for
 
 If your account subscribes to a plan that is Pro or higher, you must then issue an API key. When selecting the account name at the top right of the screen after logging in to Studio V3, go to the 'Profile' item of the account in the exposure menu and run the 'Issuing API Key' at the bottom of the screen to check the user key and app. Once activated, the generated 'userKey' can no longer be verified, so copy it separately and manage it safely.
 
-[Generate API key](https://www.deepbrain.io/pricing)
+[Generate API key](./generate-api-key)
 
 
 
@@ -49,7 +49,7 @@ curl https://app.deepbrain.io/api/odin/v3/editor/project  \
             "top" : 144.5979042385424,
             "left" : 630.2493927359487,
             "script" : {
-              "org" : "<p>Hello, this is test project using Api.</p>"
+              "org" : "<p>Hello, this is test video using Api.</p>"
             },
             "effects" : [
               {

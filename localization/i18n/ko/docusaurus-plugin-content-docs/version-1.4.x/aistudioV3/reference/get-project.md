@@ -21,7 +21,7 @@ https://app.deepbrain.io/api/odin/v3/editor/project/${key}
 |key|desc|type|
 |:---|:---|:---|
 |project|프로젝트 정보|Json|
-|project._id|프로젝트 ID|Stirng|
+|project._id|프로젝트 ID|String|
 |project.name|프로젝트 이름|String|
 |project.orientation|프로젝트 방향 (가로 / 세로)|String|
 |project.scenes|프로젝트 장면 정보|Array(json)|

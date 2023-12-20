@@ -21,7 +21,7 @@ https://app.deepbrain.io/api/odin/v3/editor/project/${key}
 |key|desc|type|
 |:---|:---|:---|
 |project|Project data|Json|
-|project._id|Project ID|Stirng|
+|project._id|Project ID|String|
 |project.name|Project name|String|
 |project.orientation|Project orientation|String|
 |project.scenes|Scene data|Array(json)|

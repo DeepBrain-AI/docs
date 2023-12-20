@@ -34,7 +34,7 @@ https://app.deepbrain.io/api/odin/v3/editor/project/${key}
 
 |key|desc|type|
 |:---|:---|:---|
-|projectId|Project Id - Fetching the Chromakey video data that has been exported.|String|
+|projectId|Project Id - Fetching the Chroma-key video data that has been exported.|String|
 
 
 <br/>

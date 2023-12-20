@@ -44,7 +44,7 @@ https://app.deepbrain.io/api/odin/v3/editor/project
 
 |key|desc|type|
 |:---|:---|:---|
-|projectId|Project Id - Fetching the Chromakey video data that has been exported.|String|
+|projectId|Project Id - Fetching the Chroma-key video data that has been exported.|String|
 
 <br/>
 
@@ -80,7 +80,7 @@ curl https://app.deepbrain.io/api/odin/v3/editor/project  \
             "top": 146.74129135713008,
             "left": 630.2493927359487,
             "script": {
-              "org": "<p>Hello, this is test script.</p>",
+              "org": "<p>Hello, this is test video.</p>",
               "tts": null
             },
             "effects": [
@@ -215,7 +215,7 @@ axios.post('https://app.deepbrain.io/api/odin/v3/editor/project',
           "top": 146.74129135713008,
           "left": 630.2493927359487,
           "script": {
-            "org": "<p>Hello, this is test script.</p>",
+            "org": "<p>Hello, this is test video.</p>",
             "tts": null
           },
           "effects": [
@@ -362,7 +362,7 @@ body = {
         "top": 146.74129135713008,
         "left": 630.2493927359487,
         "script": {
-          "org": "<p>Hello, this is test script.</p>",
+          "org": "<p>Hello, this is test video.</p>",
           "tts": null
         },
         "effects": [

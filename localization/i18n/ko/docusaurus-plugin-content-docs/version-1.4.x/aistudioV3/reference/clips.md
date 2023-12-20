@@ -1,4 +1,4 @@
-# Clip Properties
+# Clip 속성
 
 ## 1. AiModel
 |key|desc|type|required|default|
@@ -9,6 +9,8 @@
 |model|사용하는 모델 정보|Json|true|-|
 |model.ai_name|사용한 모델의 ID를 나타냅니다.|String|true|-|
 |model.emotion|모델의 복장 ID를 나타냅니다.|String|true|-|
+
+AI 모델에 관한 정보는 [AI 모델 리스트](../reference/model-list)에서 자세히 확인하실 수 있습니다.
 
 ## 2. Shape
 |key|desc|type|required|default|

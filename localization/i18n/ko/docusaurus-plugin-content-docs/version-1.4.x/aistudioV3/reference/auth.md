@@ -6,9 +6,9 @@ sidebar_position: 1
 
 ## 1. API 키 생성
 
-계정이 Pro 이상의 요금제에 가입이 되었다면 이 후 API 키를 발급받아야 합니다. 로그인 후 화면 우측 상단 계정명을 선택 시 노출 메뉴에서 계정의 '프로필' 항목으로 이동하여 화면 하단의 'API 키 발급'을 실행하여, 'AppId', 'UserKey'를 생성합니다. 생성 된 AppId와 UserKey는 한번 활성화 되면 더이상 확인이 불가하므로 별도로 복사하여 안전하게 관리하여 주세요.
+계정이 Pro 이상의 요금제에 가입되었다면 이후 API 키를 발급받아야 합니다. 로그인 후 화면 오른쪽 위 계정명을 선택 시 노출 메뉴에서 계정의 '프로필' 항목으로 이동하여 화면 하단의 'API 키 발급'을 실행하여, 'AppId', 'UserKey'를 생성합니다. 생성된 AppId와 UserKey는 한번 활성화되면 더는 확인이 불가하므로 별도로 복사하여 안전하게 관리하여 주세요.
 
-발급받은 AppId와 UserKey를 통해 API Access Token을 발급받을 수 있습니다. 해당 Token을 통해 API 통신이 가능하며, Token의 유효기간은 1일 (발급시점으로부터 24시간)입니다.
+발급받은 AppId와 UserKey를 통해 API Access Token을 발급받을 수 있습니다. 해당 Token을 통해 API 통신이 가능하며, Token의 유효기간은 1일 (발급 시점으로부터 24시간)입니다.
 
 [API 키 발급하기](../generate-api-key)
 
@@ -49,7 +49,7 @@ curl https://app.deepbrain.io/api/odin/v3/editor/project  \
             "top" : 144.5979042385424,
             "left" : 630.2493927359487,
             "script" : {
-              "org" : "<p>Hello, this is test project using Api.</p>"
+              "org" : "<p>Hello, this is test video using Api.</p>"
             },
             "effects" : [
               {
@@ -180,7 +180,7 @@ axios.post('https://app.deepbrain.io/api/odin/v3/editor/project',
           "top" : 144.5979042385424,
           "left" : 630.2493927359487,
           "script" : {
-            "org" : "<p>Hello, this is test project using Api.</p>"
+            "org" : "<p>Hello, this is test video using Api.</p>"
           },
           "effects" : [
             {
@@ -325,7 +325,7 @@ body = {
           "top" : 144.5979042385424,
           "left" : 630.2493927359487,
           "script" : {
-            "org" : "<p>Hello, this is test project using Api.</p>"
+            "org" : "<p>Hello, this is test video using Api.</p>"
           },
           "effects" : [
             {
