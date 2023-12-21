@@ -1,6 +1,6 @@
 # Get Model List
 
-The get model list section shows how to check the information of the AI Model that can be used to create a project through the API.
+The get model list section demonstrates how to retrieve information about AI models that can be used to create a project through the API.
 
 <br/>
 
@@ -16,18 +16,18 @@ https://app.deepbrain.io/api/odin/v3/model
 
 |key|desc|type|
 |:---|:---|:---|
-|models|Synthetic model information|Array(json)|
-|models[].id|AI Model's unique key.|String|
-|models[].label|AI Model's name information|Json|
+|models|Information about synthetic models|Array(json)|
+|models[].id|Unique key of the AI model|String|
+|models[].label|Name information of the AI model|Json|
 |models[].label.ko|Korean notation|String|
 |models[].label.en|English notation|String|
-|models[].thumbnail|Image path to preview the model|String|
+|models[].thumbnail|Image path for previewing the model|String|
 |models[].clothes|Clothes information|Array(json)|
 |models[].clothes[].id|Clothes that the AI Model will wear.|String|
 |models[].clothes[].label|Name of clothes|Json|
 |models[].clothes[].label.ko|Korean notation|String|
 |models[].clothes[].label.en|English notation|String|
-|models[].clothes[].thumbnail|Image path to preview the model|String|
+|models[].clothes[].thumbnail|Image path for previewing the clothes|String|
 
 <br/>
 
