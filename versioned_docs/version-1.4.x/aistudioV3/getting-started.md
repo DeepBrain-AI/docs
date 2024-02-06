@@ -171,3 +171,4 @@ curl https://aistudios.com/api/odin/editor/progress/${key}
 ## 4. Other API documents
 
 [Detailed API reference document](reference/auth)
+[Sample Code](https://github.com/DeepBrain-AI/studio-v3-api-sample)
