@@ -3,6 +3,10 @@
     "message": "DOCS",
     "description": "The title in the navbar"
   },
+  "item.label.AI Studios V3": {
+    "message": "AI Studios V3",
+    "description": "Navbar item with label AI Studios V3"
+  },
   "item.label.AI Studios": {
     "message": "AI Studios",
     "description": "Navbar item with label AI Studios"
@@ -38,9 +42,5 @@
   "item.label..NET": {
     "message": ".NET",
     "description": "Navbar item with label .NET"
-  },
-  "item.label.AI Studios V3": {
-    "message": "AI Studios V3",
-    "description": "Navbar item with label AI Studios V3"
   }
 }
