@@ -1,0 +1,8 @@
+{
+  "label": "AIPlayer Description",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn more about AIPlayer objects in the AI Human SDK."
+  }
+}

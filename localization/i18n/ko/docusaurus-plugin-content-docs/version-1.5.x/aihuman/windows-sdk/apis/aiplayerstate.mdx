@@ -1,0 +1,21 @@
+---
+sidebar_position: 13
+---
+
+# AIPlayerState
+
+- assembly: AIHuman.SDK.Core  
+- namespace: AIHuman.Interface  
+
+이벤트와 별개로 AIPlayer 객체의 상태를 확인 할 수 있습니다.
+
+:::info
+
+`NONE`(0): 생성 전의 상태  
+`INITIALIZE`(1): 생성 및 초기화 상태  
+`IDLE`(2): 발화와 프리로드 등의 기능을 사용할 수 있는 idle(AI Human 기본 자세) 상태  
+`PLAY`(3): 발화 중인 상태  
+`PAUSE`(4): 일시 정지(AI Human 움직임 없음) 중인 상태  
+`RELEASE`(5): AIPlayer.Dispose 함수를 통해 자원이 반환된 상태  
+
+:::

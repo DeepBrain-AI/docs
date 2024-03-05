@@ -1,0 +1,233 @@
+---
+sidebar_position: 2
+---
+
+# 프로젝트 내보내기
+
+Project export deals with how to synthesize new images by sending api requests in JSON format.
+
+<br/>
+
+## 1. API endpoint
+
+```http
+https://aistudios.com/api/odin/editor/project
+```
+
+<br/>
+
+## 2. Request parameter
+
+|key|desc|type|required|default|
+|:---|:---|:---|:---|:---|
+|scenes|Information about the scene|Array(json)|true|-|
+|scenes[].AIModel|Model clip|Json|true|-|
+|scenes[].AIModel.model|Model's unique key value  [Learn more](https://docs.deepbrainai.io/aistudios/reference/model-list)|String|true|-|
+|scenes[].AIModel.clothes|The unique key value of the outfit  [Learn more](https://docs.deepbrainai.io/aistudios/reference/model-list)|String|true|-|
+|scenes[].AIModel.language|The language the script is written in.|String|true|-|
+|scenes[].AIModel.script|Text for AI to read. It must match the language of the model.|String|true|-|
+|scenes[].AIModel.scale|The size of the model. The default value is 1, and if it is set to 2, the size can be changed to 2 times, and if it is set to 0.5, the size can be changed to 0.5 times.|Float|false|1|
+|scenes[].AIModel.layer|Layer. The higher the Layer value is, the more exposed it is over other clips.|Int|false|300|
+|scenes[].AIModel.locationX|If the X coordinate of the model is 0, the midpoint of the model is in the center of the image. The midpoint of the 0.5 plane model is at the right end of the image. The midpoint of the 0.5 page model is at the left end of the video.)|Float|true|-|
+|scenes[].AIModel.locationY|If the model's Y coordinate is 0, the midpoint of the model is in the center of the image. The midpoint of the 0.5 plane model is at the bottom of the image. The midpoint of the -0.5 model is at the top of the video.)|Float|true|-|
+|scenes[].clips|Fields to add clips such as text, images, and background images.|Array(json)|false|[]|
+|scenes[].clips[].type|Types of clips. Use image for image, background for background image, and text for text.|String enum(image, background, text)|true|-|
+|scenes[].clips[].detail|Information about the clip|Json|true|-|
+|scenes[].clips[].detail.url|Image path. Use when type is image or background.|String|true|-|
+|scenes[].clips[].detail.scale|Image or text size. Use when type is image or text. In the case of an image, if the size value is 1, the longer of the width and length accounts for 50% of the image. With the same principle, 1.5 sides account for 75% and 2 sides 100%. In the case of text, it is difficult to determine the exact size because each font has a different size.|Float|false|1|
+|scenes[].clips[].detail.locationX|The X coordinates of the clip. If it is 0, the midpoint of the clip is in the center of the image. The midpoint of the 0.5 sided clip is at the right end of the image. The midpoint of the -0.5 page clip is at the left end of the image.|Float|false|0|
+|scenes[].clips[].detail.locationY|The Y coordinate of the clip. If it is 0, the midpoint of the clip is in the center of the image. The midpoint of the 0.5-sided clip is at the bottom of the image. The midpoint of the -0.5 page clip is at the upper end of the image.|Float|false|0|
+|scenes[].clips[].detail.layer|Layer. The higher the Layer value is, the more exposed it is over other clips.|Int|false|500|
+|scenes[].clips[].detail.textSource|If it is a text clip, insert the content of the text.|String|false|-|
+|scenes[].clips[].detail.font|Text font properties.|String|false|Noto Sans|
+
+<br/>
+
+## 3. Response parameters
+
+|key|desc|type|
+|:---|:---|:---|
+|success|Progress on Request Success|Boolean|
+|cube_used|Number of Cubes used|Int|
+|key|Project ID|String|
+
+<br/>
+
+
+## 4. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```js
+curl https://aistudios.com/api/odin/editor/project  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{
+    "scenes":
+        [{
+            "AIModel": {
+                "script": "Sample script for exporting project.",
+                "model": "M000004017",
+                "clothes": "BG00006160",
+                "locationX": -0.28,
+                "locationY": 0.19,
+                "scale": 1
+            },
+            "clips": [
+                {
+                    "type": "background",
+                    "detail": {
+                        "url": "https://cdn.aistudios.com/images/news/aiplatform_background_gradient.png"
+                    }
+                },
+                {
+                    "type": "image",
+                    "detail": {
+                        "url": "https://cdn.aistudios.com/images/news/aiplatform_background_space.png",
+                        "locationX": 0.3,
+                        "locationY": -0.3,
+                        "scale": 1
+                    }
+                },
+                {
+                    "type": "text",
+                    "detail": {
+                        "textSource": "hello!",
+                        "locationX": -0.2,
+                        "locationY": -0.2,
+                        "scale": 1.2,
+                        "font": "SourceSerifPro-Regular"
+                    }
+                }
+            ]
+        }]
+    }'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios" 
+const token = ${API KEY}
+
+axios.post('https://aistudios.com/api/odin/editor/project', 
+    {
+        "scenes":
+            [{
+                "AIModel": {
+                    "script": "Sample script for exporting project.",
+                    "model": "M000004017",
+                    "clothes": "BG00006160",
+                    "locationX": -0.28,
+                    "locationY": 0.19,
+                    "scale": 1
+                },
+                "clips": [
+                    {
+                        "type": "background",
+                        "detail": {
+                            "url": "https://cdn.aistudios.com/images/news/aiplatform_background_gradient.png"
+                        }
+                    },
+                    {
+                        "type": "image",
+                        "detail": {
+                            "url": "https://cdn.aistudios.com/images/news/aiplatform_background_space.png",
+                            "locationX": 0.3,
+                            "locationY": -0.3,
+                            "scale": 1
+                        }
+                    },
+                    {
+                        "type": "text",
+                        "detail": {
+                            "textSource": "hello!",
+                            "locationX": -0.2,
+                            "locationY": -0.2,
+                            "scale": 1.2,
+                            "font": "SourceSerifPro-Regular"
+                        }
+                    }
+                ]
+            }]
+    }, 
+    {
+        headers: {
+            'Authorization': ${token},
+            'Content-Type': 'application/json'
+        }
+    }
+)
+.then((res) => {
+    console.log(res.data)
+})
+.catch((error) => {
+    console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://aistudios.com/api/odin/editor/project"
+body = {
+    "scenes":
+        [{
+            "AIModel": {
+                "script": "Sample script for exporting project.",
+                "model": "M000004017",
+                "clothes": "BG00006160",
+                "language": "ko",
+                "locationX": -0.28,
+                "locationY": 0.19,
+                "scale": 1
+            },
+            "clips": [
+                {
+                    "type": "background",
+                    "detail": {
+                        "url": "https://cdn.aistudios.com/images/news/aiplatform_background_gradient.png"
+                    }
+                },
+                {
+                    "type": "image",
+                    "detail": {
+                        "url": "https://cdn.aistudios.com/images/news/aiplatform_background_space.png",
+                        "locationX": 0.3,
+                        "locationY": -0.3,
+                        "scale": 1
+                    }
+                },
+                {
+                    "type": "text",
+                    "detail": {
+                        "textSource": "hello!",
+                        "locationX": -0.2,
+                        "locationY": -0.2,
+                        "scale": 1.2,
+                        "font": "SourceSerifPro-Regular"
+                    }
+                }
+            ]
+        }]
+}
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": ${API TOKEN}
+}
+
+r = requests.post(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>
