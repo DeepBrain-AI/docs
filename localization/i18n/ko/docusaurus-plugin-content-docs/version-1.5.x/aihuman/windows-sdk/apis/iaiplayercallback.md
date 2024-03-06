@@ -4,8 +4,7 @@ sidebar_position: 2
 
 # IAIPlayerCallback
 
-- assembly: AIHuman.SDK.Core  
-- namespace: AIHuman.Interface  
+namespace AIHuman.Interface
 
 | Modifier and Type | Method and Description                                       |
 | ----------------- | ------------------------------------------------------------ |

@@ -107,33 +107,7 @@ AIPlayer의 셋팅값을 가져옵니다.
   AI_PLAYER.getter("key");
 ```
 
-## 5. AIPlayer.preload(...)
-
-AI 발화 데이터를 프리로드합니다. 
-
-- 4가지 타입으로 전달 가능합니다. 
-
-  | Param        | Type             | Description                                                                  |
-  | ------------ | ---------------- | ---------------------------------------------------------------------------- |
-  | `text`       | `String`         | 하나의 보통 문장 형태 |
-  | `texts`      | `Array<String>` | 여러개의 문장 형태.|
-  | `AIClipSet`  | `Object`         | 하나의 제스처 포함 문장 형태  |
-  | `AIClipSets` | `Array<Object>` | 제스처 포함이 가능한 여러개의 문장 형태 |
-
-- Example
-
-```javascript
-// Case1. One Sentence Preload (text)
-AI_PLAYER.preload("Nice to meet you");
-// Case2. Multi Sentence Preload (String Array)
-AI_PLAYER.preload(["Nice to meet you", "How are you?"]);
-// Case3. One Gesture Preload (json)
-AI_PLAYER.preload({ text: "Nice to meet you", gst: "hi" });
-// Case4. Multi Gesture Preload (json Array)
-AI_PLAYER.preload([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
-```
-
-## 6. AIPlayer.send(...)
+## 5. AIPlayer.send(...)
 
 ai에게 발화 또는 제스처 포함 발화를 시킵니다. (프리로드된 데이터가 있으면, 이를 사용합니다)
 여러 문장을 발화시키려면 Array 타입을 사용하십시오. 
@@ -159,6 +133,33 @@ AI_PLAYER.send({ text: "Nice to meet you", gst: "hi" });
 //Case4. Multi Gestures Speak (json Array)
 AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
+
+## 6. AIPlayer.preload(...)
+
+AI 발화 데이터를 프리로드합니다. 
+
+- 4가지 타입으로 전달 가능합니다. 
+
+  | Param        | Type             | Description                                                                  |
+  | ------------ | ---------------- | ---------------------------------------------------------------------------- |
+  | `text`       | `String`         | 하나의 보통 문장 형태 |
+  | `texts`      | `Array<String>` | 여러개의 문장 형태.|
+  | `AIClipSet`  | `Object`         | 하나의 제스처 포함 문장 형태  |
+  | `AIClipSets` | `Array<Object>` | 제스처 포함이 가능한 여러개의 문장 형태 |
+
+- Example
+
+```javascript
+// Case1. One Sentence Preload (text)
+AI_PLAYER.preload("Nice to meet you");
+// Case2. Multi Sentence Preload (String Array)
+AI_PLAYER.preload(["Nice to meet you", "How are you?"]);
+// Case3. One Gesture Preload (json)
+AI_PLAYER.preload({ text: "Nice to meet you", gst: "hi" });
+// Case4. Multi Gesture Preload (json Array)
+AI_PLAYER.preload([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
+```
+
 
 ## 7. AIPlayer.pause()
 

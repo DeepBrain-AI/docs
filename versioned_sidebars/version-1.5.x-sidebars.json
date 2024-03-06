@@ -34,36 +34,6 @@
       ]
     }
   ],
-  "aistudioV3Sidebar": [
-    "aistudioV3/getting-started",
-    "aistudioV3/generate-api-key",
-    {
-      "type": "category",
-      "label": "Tutorial",
-      "collapsed": false,
-      "items": [
-        "aistudioV3/tutorial/multiple-chromakey-export",
-        "aistudioV3/tutorial/export-from-json-template",
-        "aistudioV3/tutorial/export-from-exist-project"
-      ]
-    },
-    {
-      "type": "category",
-      "label": "API Reference",
-      "items": [
-        "aistudioV3/reference/auth",
-        "aistudioV3/reference/export-project",
-        "aistudioV3/reference/progress",
-        "aistudioV3/reference/get-project",
-        "aistudioV3/reference/export-template",
-        "aistudioV3/reference/simple-video",
-        "aistudioV3/reference/simple-audio",
-        "aistudioV3/reference/webhook",
-        "aistudioV3/reference/clips",
-        "aistudioV3/reference/model-list"
-      ]
-    }
-  ],
   "aihumanwebSidebar": [
     "aihuman/web-sdk/intro",
     {
@@ -159,7 +129,6 @@
     },
     {
       "type": "category",
-      "collapsed": false,
       "label": "AIPlayer Description",
       "link": {
         "type": "generated-index",
@@ -186,12 +155,12 @@
         "aihuman/windows-sdk/apis/aiapi",
         "aihuman/windows-sdk/apis/iaiplayercallback",
         "aihuman/windows-sdk/apis/aiplayer",
-        "aihuman/windows-sdk/apis/aiplayerstate",
         "aihuman/windows-sdk/apis/aiclipset",
         "aihuman/windows-sdk/apis/aigesture",
-        "aihuman/windows-sdk/apis/customvoice",
+        "aihuman/windows-sdk/apis/aierror",
         "aihuman/windows-sdk/apis/aievent",
-        "aihuman/windows-sdk/apis/aierror"
+        "aihuman/windows-sdk/apis/aiplayerstate",
+        "aihuman/windows-sdk/apis/customvoice"
       ]
     }
   ],

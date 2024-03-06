@@ -4,8 +4,8 @@ sidebar_position: 2
 
 # AI Human 퀵스타트
 
-:::note Sample Project에서 아래 파일들을 참고하세요.
-
+:::note 정보
+Sample Project에서 아래 파일들을 참고하세요.
 - QuickStartView.xaml
 - QuickStartViewModel.cs
 

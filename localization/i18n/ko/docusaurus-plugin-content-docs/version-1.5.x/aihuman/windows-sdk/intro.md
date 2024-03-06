@@ -10,7 +10,7 @@ AI Human의 기본 개념과 함께 AI Human SDK를 소개합니다.
 
 AI Human SDK(이하 SDK)를 이용하면 딥러닝(학습)을 통해 만들어진 AI를 원하는 위치에 실제 사람처럼 라이브(Live)로 표현할 수 있습니다. 화면만 라이브로 표시하는 것을 뛰어 넘어, **마치 영상 통화를 하듯이 자연스러운 대화가 가능한 AI Human 서비스를 구현할 수 있게 합니다**.
 
-<img src="/img/aihuman/windows/sampledemo_1.5.x.png" />
+<img src="/img/aihuman/windows/sampledemo_1.4.x.png" />
 
 <br/>
 
@@ -25,4 +25,4 @@ AI의 **대기 상태**란 AI가 말을 하기 전 상대방의 말을 듣고 �
 
 발화나 제스처 기능 이외에도 AI의 **크기 및 위치를 조정한다든가 말하기 속도 등도 바꿀수 있으며** 일시중지, 재시작, 중지 기능 등이 제공되어 이를 활용해서 다양한 화면과 시나리오를 구성할 수 있습니다. 또한 **한국어 뿐 아니라 영어, 일본어, 중국어 등**의 외국어를 구사하는 AI 모델들도 있으며, 다국어 기능을 이용하면 다른 여러 다국어 서비스도 구현이 가능합니다. 
 
-보다 자세한 내용은 SDK를 기반으로 제작된 [샘플 프로젝트](../category/sample-project-description-1)와 [AIPlayer 설명](../category/aiplayer-description-1) 챕터를 참고해 주세요.
+보다 자세한 내용은 SDK를 기반으로 제작된 [샘플 프로젝트](../category/sample-project-description-1)와 [AIPlayer](../category/aiplayer-description-1) 설명 챕터를 참고해 주세요.

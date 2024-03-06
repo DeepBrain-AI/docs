@@ -14,7 +14,7 @@ sidebar_position: 3
 **1. 웹 페이지에 SDK 및 AIPlayer를 추가합니다.**
 
 ```html
-<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.4.1.min.js"></script>
+<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.2.min.js"></script>
 
 <div id="AIPlayerWrapper"></div>
 ```
@@ -31,7 +31,7 @@ const AI_PLAYER = new AIPlayer(wrapper);
 **2.1. SDK 웹사이트에 appId를 입력하고 userKey를 발급받기**
 
 - [SDK website](https://aihuman.deepbrain.io/)에서 프로젝트를 생성합니다.
-- 사용할 웹서비스의 appId를 입력하고 저장하면 userkey가 발급됩니다. 
+- 사용할 웹서비스의 appId(도메인 네임을 추천)를 입력하고 저장하면 userkey가 발급됩니다. 
 
 <img src="/img/aihuman/web/project.png" />
 
@@ -146,7 +146,7 @@ async function requestClientToken() {
 // quickStart.js(Client)
 
 await AI_PLAYER.init({
-    aiName: DATA.defaultAI.ai_name, zIndex: 0, size: 1.0, left: 0, top: 0, speed: 1.0
+    aiName: DATA.defaultAI.ai_name, size: 1.0, left: 0, top: 0, speed: 1.0
 });
 ```
 
@@ -154,19 +154,35 @@ await AI_PLAYER.init({
 
 **4. AIPlayer의 콜백을 만들고 그 이벤트를 모니터링합니다**
 
-아래와 같이 AIPlayer의 callback(Listener)을 설정할 수 있습니다. 그리고 리소스 로딩이 완료되면 'send'를 호출할 수 있습니다(AIEventType.RES_LOAD_COMPLETED).
+아래와 같이 AIPlayer의 callback(Listener)을 설정할 수 있습니다. 그리고 AI 초기화가 완료되면 'send'를 호출할 수 있습니다.
 
 ```javascript
+const AIPlayerState = Object.freeze({
+    NONE: 0,
+    INITIALIZE: 1,
+    IDLE: 2,
+    PLAY: 3,
+    PAUSE: 4,
+    RELEASE: 5
+})
+
+let curAIState = AIPlayerState.NONE
 function initAIPlayerEvent() {
   AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
     switch (aiEvent.type) {
       //...
-      case AIEventType.RES_LOAD_COMPLETED:
-        //AI_PLAYER.send({text:"Nice to meet you."})
-        document.getElementById("AIPlayerTexts").style.display = "grid";
+      case AIEventType.AIPLAYER_STATE_CHANGED:
+        let newAIState = AI_PLAYER.getState() 
+        if (curAIState == AIPlayerState.INITIALIZE && newAIState == AIPlayerState.IDLE) {
+          console.log('AI initialization completed.') 
+          //you can send now! 
+          // AI_PLAYER.send("안녕하세요!")
+        }
+        curAIState = newAIState
         break
+      //...
     }
-  };
+  }
 }
 ```
 
@@ -176,6 +192,7 @@ function initAIPlayerEvent() {
 **5. Full Client Sample Source Code**
 
 ```html
+<!-- quickStart.html -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -183,21 +200,68 @@ function initAIPlayerEvent() {
     <title>AIPlayer JavaScript SDK Quick Start</title>
   </head>
   <style>
-    html, body, #AIPlayerWrapper {
+    html,
+    body,
+    #AIPlayerWrapper {
       height: 100%;
     }
-</style>
-  <body style="height:100%">
-    <div style="display: none; width: fit-content;" id="AIPlayerTexts">
+
+    .RightLayout {
+      width: 20vw;
+      height: 100%;
+      min-width: 300px;
+      position: fixed;
+      bottom: 0;
+      right: 5%;
+    }
+
+    .InfoContainer {
+      height: 27vh;
+      min-height: 150px;
+      padding-bottom: 3vh;
+    }
+
+    .demoList {
+      width: 100%;
+      margin-top: 5vh;
+      height: 3vh;
+      min-height: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .demoList > button {
+      width: 6vw;
+      min-width: 90px;
+    }
+  </style>
+
+  <body style="height: 100%">
+    
+    <div id="AIPlayerWrapper"></div>
+
+    <div style="display: grid; position: fixed; top:2%; left:2%; width: fit-content" id="AIPlayerTexts">
       <button onclick="speak(this.innerHTML)">How are you?</button>
       <button onclick="speak(this.innerHTML)">Nice to see you!</button>
     </div>
-    <div id="AIPlayerWrapper"></div>
+    
+    <div class="RightLayout">
+      <div class="InfoContainer">
+        <div id="demoListInQuickstart" class="demoList">
+          <button style="background-color: gold">QuickStart</button>
+          <button onclick="javascript:location.href='./demo1.html'">SDK Demo</button>
+          <button onclick="javascript:location.href='./demo2.html'">STT Demo</button>
+        </div>
+      </div>
+    </div>
+    
   </body>
 
-  <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.4.1.min.js"></script>
+  <!-- 웹 페이지에 JavaScript SDK 포함하기 -->
+  <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.2.min.js"></script>
   <script src="./quickStart.js"></script>
 </html>
+
 ```
 
 <br/>
@@ -217,29 +281,94 @@ async function initSample() {
   await generateVerifiedToken();
 
   await AI_PLAYER.init({
-    aiName: DATA.defaultAI.ai_name, size: 1.0, left: 0, top: 0, speed: 1.0 });
+    aiName: DATA.defaultAI.ai_name,
+    size: 1.0,
+    left: 0,
+    top: 0,
+    speed: 1.0,
+  });
 }
 
-async function generateClientToken() {
-  const result = await makeRequest("GET", "..."); // TODO: Server generateJWT request address input
+// =========================== AIPlayer Setup ================================ //
 
-  // if Success
+async function generateClientToken() {
+  // const result = await makeRequest("GET", "..."); // TODO: Server generateJWT request address input
+  // TODO: response handling
+  const result = await makeRequest("GET", "/api/generateJWT"); // TODO: e.g.
+  console.log('generateClientToken', result)
+
+  // Success
   DATA.appId = result.appId;
   DATA.clientToken = result.token;
   // ...
 }
 
 async function generateVerifiedToken() {
-  const result = await AI_PLAYER.generateToken({ appId: DATA.appId, token: DATA.clientToken });
+  const result = await AI_PLAYER.generateToken({
+    appId: DATA.appId,
+    token: DATA.clientToken,
+  });
+  console.log('generateVerifiedToken', result)
+
   if (result?.succeed) {
+    // TODO: response data handling
     DATA.verifiedToken = result.token;
     DATA.tokenExpire = result.tokenExpire;
     DATA.defaultAI = result.defaultAI;
-  }
+  } else {
+    // TODO: error handling
+    console.log('generateVerifiedToken error', result)
+  } 
 }
 
-//AIEvent & callback 
-const AIEventType = Object.freeze({
+// =========================== AIPlayer Callback ================================ //
+
+function initAIPlayerEvent() {
+  //AIError & callback 
+  const AIErrorCode = Object.freeze({
+    AI_API_ERR: 10000,
+    AI_SERVER_ERR: 11000,
+    AI_RES_ERR: 12000,
+    AI_INIT_ERR: 13000,
+    INVALID_AICLIPSET_ERR: 14000,
+    AICLIPSET_PRELOAD_ERR: 15000,
+    AICLIPSET_PLAY_ERR: 16000,
+    RESERVED_ERR: 17000,
+    UNKNOWN_ERR: -1,
+  })
+
+  // TODO: AIPlayer error handling
+  AI_PLAYER.onAIPlayerErrorV2 = function(aiError) {
+    let codeName = 'UNKNOWN_ERR'
+    if (aiError.code >= AIErrorCode.RESERVED_ERR) {
+      codeName = 'RESERVED_ERR'
+    } else if (aiError.code >= AIErrorCode.AICLIPSET_PLAY_ERR) {
+      codeName = 'AICLIPSET_PLAY_ERR'
+    } else if (aiError.code >= AIErrorCode.AICLIPSET_PRELOAD_ERR) {
+      codeName = 'AICLIPSET_PRELOAD_ERR'
+    } else if (aiError.code >= AIErrorCode.INVALID_AICLIPSET_ERR) {
+      codeName = 'INVALID_AICLIPSET_ERR'
+    } else if (aiError.code >= AIErrorCode.AI_INIT_ERR) {
+      codeName = 'AI_INIT_ERR'
+    } else if (aiError.code >= AIErrorCode.AI_RES_ERR) {
+      codeName = 'AI_RES_ERR'
+    } else if (aiError.code >= AIErrorCode.AI_SERVER_ERR) {
+      codeName = 'AI_SERVER_ERR'
+    } else if (aiError.code >= AIErrorCode.AI_API_ERR) {
+      codeName = 'AI_API_ERR'
+    } else if (aiError.code > AIErrorCode.UNKNOWN_ERR) { //0 ~ 9999
+      codeName = 'BACKEND_ERR'
+
+      if (aiError.code == 1402) { //invalid or token expired
+        refreshTokenIFExpired()
+      }
+    }
+
+    console.log('onAIPlayerErrorV2', aiError.code, codeName, aiError.message)
+  }
+
+  //AIEvent & callback 
+  const AIEventType = Object.freeze({
     RES_LOAD_STARTED: 0,
     RES_LOAD_COMPLETED: 1,
     AICLIPSET_PLAY_PREPARE_STARTED: 2,
@@ -252,28 +381,116 @@ const AIEventType = Object.freeze({
     AICLIPSET_PLAY_FAILED: 9,
     AI_CONNECTED: 10,
     AI_DISCONNECTED: 11,
+    AICLIPSET_PLAY_BUFFERING: 12,
+    AICLIPSET_RESTART_FROM_BUFFERING: 13,
     AIPLAYER_STATE_CHANGED: 14,
+    AI_RECONNECT_ATTEMPT: 15,
+    AI_RECONNECT_FAILED: 16,
     UNKNOWN: -1,
   })
 
-function initAIPlayerEvent() {
+  const AIPlayerState = Object.freeze({
+    NONE: 0,
+    INITIALIZE: 1,
+    IDLE: 2,
+    PLAY: 3,
+    PAUSE: 4,
+    RELEASE: 5
+  })
+
+  let curAIState = AIPlayerState.NONE
   AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
+    let typeName = ""
     switch (aiEvent.type) {
+      case AIEventType.AIPLAYER_STATE_CHANGED:
+        typeName = 'AIPLAYER_STATE_CHANGED';
+
+        let newAIState = AI_PLAYER.getState() 
+        if (curAIState == AIPlayerState.INITIALIZE && newAIState == AIPlayerState.IDLE) {
+          console.log('AI initialization completed.')
+        }
+        curAIState = newAIState
+        break
+      case AIEventType.AI_CONNECTED:
+        typeName = 'AI_CONNECTED';
+        break
+      case AIEventType.RES_LOAD_STARTED:
+        typeName = 'RES_LOAD_STARTED';
+        break
       case AIEventType.RES_LOAD_COMPLETED:
-        //AI_PLAYER.send({text:"Nice to meet you."})
-        document.getElementById("AIPlayerTexts").style.display = "grid";
+        typeName = 'RES_LOAD_COMPLETED';
+        break
+      case AIEventType.AICLIPSET_PLAY_PREPARE_STARTED:
+        typeName = 'AICLIPSET_PLAY_PREPARE_STARTED';
+        // $('#AIPlayerStateText').text('AI started preparation to speak.');
+        break
+      case AIEventType.AICLIPSET_PLAY_PREPARE_COMPLETED:
+        typeName = 'AICLIPSET_PLAY_PREPARE_COMPLETED';
+        // $("#AIPlayerStateText").text("AI finished preparation to speak.");
+        break
+      case AIEventType.AICLIPSET_PRELOAD_STARTED:
+        typeName = 'AICLIPSET_PRELOAD_STARTED';
+        // $("#AIPlayerStateText").text("AI started preparation to preload.");
+        break
+      case AIEventType.AICLIPSET_PRELOAD_COMPLETED:
+        typeName = 'AICLIPSET_PRELOAD_COMPLETED';
+        // $("#AIPlayerStateText").text("AI finished preparation to preload.");
+        break
+      case AIEventType.AICLIPSET_PLAY_STARTED:
+        typeName = 'AICLIPSET_PLAY_STARTED';
+        // $("#AIPlayerStateText").text("AI started speaking.");
+        break
+      case AIEventType.AICLIPSET_PLAY_COMPLETED:
+        typeName = 'AICLIPSET_PLAY_COMPLETED';
+        //$("#AIPlayerStateText").text("AI finished speaking.");
+        break
+      case AIEventType.AI_DISCONNECTED:
+        typeName = 'AI_DISCONNECTED';
+        // $("#AIPlayerStateText").text("AI Disconnected. Please wait or reconnect");
+        break
+      case AIEventType.AICLIPSET_PRELOAD_FAILED:
+        typeName = 'AICLIPSET_PRELOAD_FAILED';
+        // $("#AIPlayerStateText").text("AI preload failed.");
+        break
+      case AIEventType.AICLIPSET_PLAY_FAILED:
+        typeName = 'AICLIPSET_PLAY_FAILED';
+        // $("#AIPlayerStateText").text("AI play failed.");
+        break
+      case AIEventType.AICLIPSET_PLAY_BUFFERING:
+        typeName = 'AICLIPSET_PLAY_BUFFERING';
+        // $("#AIPlayerStateText").text("AI is buffering.");
+        break
+      case AIEventType.AICLIPSET_RESTART_FROM_BUFFERING:
+        typeName = 'AICLIPSET_RESTART_FROM_BUFFERING';
+        // $("#AIPlayerStateText").text("AI is restarted from buffering.");
+        break
+      case AIEventType.UNKNOWN:
+        typeName = 'UNKNOWN';
         break
     }
+
+    console.log('onAIPlayerEvent:', aiEvent.type, typeName, 'clipSet:', aiEvent.clipSet)
+  }
+
+  AI_PLAYER.onAIPlayerLoadingProgressed = function (result) {
+    console.log(`AI Resource Loading... ${result.loading || 0}%`)
   };
 }
+
+// =========================== AIPlayer Function ================================ //
 
 function speak(text) {
   AI_PLAYER.send(text);
 }
 
+// =========================== ETC ================================ //
+
 // sample Server request function
 async function makeRequest(method, url, params) {
-  const options = { method, headers: { "Content-Type": "application/json; charSet=utf-8" } };
+  const options = {
+    method,
+    headers: { "Content-Type": "application/json; charSet=utf-8" },
+  };
 
   if (method === "POST") options.body = JSON.stringify(params || {});
 
@@ -281,11 +498,11 @@ async function makeRequest(method, url, params) {
     .then((response) => response.json())
     .then((data) => data)
     .catch((error) => {
-      console.error("** An error occurred during the fetch", error);
-      showPop("Generate Client Token Error", `no client token can be generated.`);
+      console.error("** An error occurred during the fetch", error)
       return undefined;
     });
 }
+
 ```
 
 <br/>
