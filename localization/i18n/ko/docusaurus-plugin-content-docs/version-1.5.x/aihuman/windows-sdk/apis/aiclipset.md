@@ -4,9 +4,7 @@ sidebar_position: 4
 
 # AIClipSet
 
-- assembly: AIHuman.SDK.Core  
-- namespace: AIHuman.Common.Model  
-
+namespace AIHuman.Common.Model
 
 | Modifier and Type | Method and Description                                       |
 | ----------------- | ------------------------------------------------------------ |
@@ -15,4 +13,4 @@ sidebar_position: 4
 | `string`             | `SpeechText { get; }` 클립셋에 설정된 발화 문장을 가져옵니다.        |
 | `string`             | `GestureName { get; }` 클립셋에 설정된 제스처 이름을 가져옵니다.               |
 | `string`             | `ClipId { get; }` 클립셋에 설정된 아이디를 가져옵니다.             |
-| `CustomVoice`             | `CustomVoice { get; }` 클립셋에 설정된 음성을 가져옵니다. return 값이 null일 경우 해당 AI Human의 기본 음성임을 의미합니다. |
+| `CustomVoice`             | `CustomVoice { get; }` 클립셋에 설정된 음성을 가져옵니다. return 값이 null일 경우는 기본 음성임을 의미합니다. |

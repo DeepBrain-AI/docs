@@ -6,11 +6,11 @@ sidebar_position: 4
 
 ### 1. Send Speaking
 
-After the aiPlayer resource loading is completed(`AIEventType.RES_LOAD_COMPLETED`), call the send method.
+After the aiPlayer initialization is completed(AIPlayer’s state change from INITIALIZE to IDLE), you can call the send method.
 
-You can input just string to make AI speak but json format (AIClipSet object)is also available. When using AIClipSet, you can make AI speak with some gestures. For example, you can order AI to wave and say "hello!" This is called gesture speech. Details are described in the [Gesture](../aiplayer/advanced-features#2-gesture) part.
+You can just input string to make AI speak but json format (AIClipSet object)is also available. When using object(converted into AIClipSet inside AIPlayer), you can make AI speak with gesture. For example, you can order AI to wave and say "hello!" This is called gesture speech. Details are described in the [Gesture](../aiplayer/advanced-features#1-gesture) part.
 
-If the text to speak is too long, it may not be possible to synthesize the resources required for the speaking. There are some models that can synthesize long sentences. Although it varies from AI to AI, it is generally recommended that sentences be cut to an appropriate length in Korean, usually within 30 to 40 characters, and at a similar level in English.
+If the text to speak is too long, it may not be possible to synthesize the resources required for the speaking. There are some models that can synthesize long sentences. Although it varies from AI to AI, it is generally recommended that sentences be cut to an appropriate length in Korean, usually within 100 characters, and at a similar level in English.
 
 <br/>
 
@@ -38,7 +38,7 @@ After calling the `send` method, you can check the feedback on the operation eve
 - AIEventType.AICLIPSET_PLAY_COMPLETED 
 - AIEventType.AICLIPSET_PLAY_FAILED //if there is a failure,
 
-If there are some errors while 'send', the `onAIPlayerErrorV2` will be called with AIError that contains which error has occured. When AICLIPSET_PLAY_ERR or AI_SERVER_ERR occur, `stopSpeak()` will be called internally which means the speech queue will be cleared.
+If there are some errors while 'send', the `onAIPlayerErrorV2` will be called with AIError that contains which error has occured.
 
 ```javascript
 AI_PLAYER.onAIPlayerEvent = function (aiEvent) {

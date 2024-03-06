@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# AIPlayer API Method
+# AIPlayer rest API
 
 ## 1 AIPlayer.generateToken(json)
 

@@ -6,7 +6,8 @@ sidebar_position: 3
 
 ## 1. onAIPlayerError
 
-해당 [콜백 함수](https://docs.deepbrain.io/ko/1.3.x/aihuman/web-sdk/apis/aiplayer-callback)는 더 이상 지원하지 않습니다.
+해당 [콜백 함수](../../../1.3.x/aihuman/web-sdk/apis/aiplayer-callback.md)
+는 더 이상 지원하지 않습니다.
 onAIPlayerErrorV2 사용을 권장합니다.
 
 ## 2. onAIPlayerErrorV2
@@ -34,7 +35,7 @@ AIPlayer 동작중 발생하는 에러를 리턴하는 콜백입니다. AIError�
 
 ## 3. onAIPlayerStateChanged
 
-해당 [콜백 함수](https://docs.deepbrain.io/ko/1.3.x/aihuman/web-sdk/apis/aiplayer-callback)는 더 이상 지원하지 않습니다.
+해당 [콜백 함수](../../../1.3.x/aihuman/web-sdk/apis/aiplayer-callback)는 더 이상 지원하지 않습니다.
 onAIPlayerEvent 사용을 권장합니다.
 
 ## 4. onAIPlayerEvent

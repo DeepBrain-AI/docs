@@ -4,6 +4,6 @@ sidebar_position: 1
 
 # Overview
 
-In this chapter, we will learn how to set up and use the AIPlayer object.
+In this chapter, we will learn how to set up and use the AIPlayer in detail.
 
-AIPlayer implements functions as a player with callbacks to monitor its behaviors.
+AIPlayer’s callbacks will be implemented to monitor and respond to the AIPlayer's behaviors.

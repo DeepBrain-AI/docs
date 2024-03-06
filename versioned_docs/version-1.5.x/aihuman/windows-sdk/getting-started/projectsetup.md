@@ -33,16 +33,15 @@ Create solutions and projects to use the AI Human SDK in the Visual Studio.
 ## Requirements
 
 #### AIHuman.SDK.Core
-- [.NET Standard 2.0](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0) or higher
+- [.NET Standard 2.0](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0)
 
 #### AIHuman.SDK.WPF
-- Supported Framework
-  + [.NET Framework 4.6.2](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net462) or higher
-  + [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) or higher
+- [.NET Core 3.1](https://dotnet.microsoft.com/en-us/download/dotnet/3.1)
 
-To develop or run an application using AIHuman.SDK.WPF.dll, you must install .NET Framework 4.6.2 or .NET 6.0 or higher.
+To develop or run an application using AIHuman.SDK.WPF.dll, you must install .NET Core 3.1 or later.
 
-You can also use AIHuman.SDK.Core.dll only. You can use AIHuman.SDK.Core.dll to develop a target framework or UI other than WPF in an environment that supports .NET Standard 2.0. In this case, you need to implement View (such as UserControl) yourself. This can increase the difficulty of development.
+You can also use AIHuman.SDK.Core.dll to develop a target framework or UI other than WPF in an environment that supports NET Standard 2.0. 
+In this case, you will need to implement View (such as UserControl) directly. Development difficulty may increase.
 
 :::info
 - Case of developing WPF as target: AIHuman.SDK.Core and AIHuman.SDK.WPF reference required

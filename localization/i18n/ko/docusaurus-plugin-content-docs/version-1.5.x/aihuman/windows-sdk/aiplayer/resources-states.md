@@ -4,53 +4,30 @@ sidebar_position: 3
 
 # 이벤트 확인하기
 
-### 리소스 로딩 시작하기
+### Start loading resources 
 
-인증 완료 후 `AIPlayer` 객체가 생성되면 전달한 `aiName`에 따라서 리소스 로딩이 시작되고 `IAIPlayerCallback` 콜백 객체에 의해 리소스 로딩 상태가 보고됩니다. (최초에는 네트워크 상태에 따라 리소스가 로드되는 시간이 다소 필요할 수 있습니다.)
+When AIPlayer is created after authentication is completed, resource loading starts according to the input **AIName**, and the resource loading status is reported to the listener (IAIPlayerCallback) registered in the constructor. (Initially, it may take a few minutes for the resource to complete loading.)
 
-기본적으로 구동에 필요한 리소스는 해당 SDK를 사용하는 프로세스가 위치한 경로에 다운로드가 됩니다.
+<br/>
 
-### IAIPlayerCallback으로 모니터링 구현
+### Monitoring player state through IAIPlayerCallback implementation
 
-먼저 `IAIPlayerCallback` 구현체의 `OnAIPlayerEvent(AIEvent)`가 호출되는데 관련된 `AIEvent.Type`값은 다음과 같습니다.
+The values for the parameter AIState.state in the listener method OnAIPlayerEvent(AIEvent aiEvent) are shown below. You can also implement loading progress with OnAIPlayerResLoadingProgressed(int current, int total).
 
-:::info
+- AIEvent.Type.RES_LOAD_STARTED : resource loading is started.
+- AIEvent.Type.RES_LOAD_COMPLETED : resource loading is completed.
 
-- `AIEvent.Type.RES_LOAD_STARTED` : AI 리소스 로드 시작  
-- `AIEvent.Type.RES_LOAD_COMPLETED` : AI 리소스 로드 완료  
-- `AIEvent.Type.AICLIPSET_PLAY_PREPARE_STARTED` : 발화 준비(합성) 시작  
-- `AIEvent.Type.AICLIPSET_PLAY_PREPARE_COMPLETED` : 발화 시작 조건 달성 완료  
-- `AIEvent.Type.AICLIPSET_PRELOAD_STARTED` : 프리로드 시작  
-- `AIEvent.Type.AICLIPSET_PRELOAD_COMPLETED` : 프리로드 완료  
-- `AIEvent.Type.AICLIPSET_PRELOAD_FAILED` : 프리로드 실패  
-- `AIEvent.Type.AICLIPSET_PLAY_STARTED` : 발화 시작  
-- `AIEvent.Type.AICLIPSET_PLAY_COMPLETED` : 발화 완료  
-- `AIEvent.Type.AICLIPSET_PLAY_FAILED` : 발화 실패  
-- `AIEvent.Type.AI_CONNECTED` : AI와 네트워크 연결 완료  
-- `AIEvent.Type.AI_DISCONNECTED` : AI와 네트워크 연결 끊김  
-- `AIEvent.Type.AICLIPSET_PLAY_BUFFERING` : 발화 중 버퍼링  
-- `AIEvent.Type.AICLIPSET_RESTART_FROM_BUFFERING` : 버퍼링에서 다시 발화 재계  
-- `AIEvent.Type.AIPLAYER_STATE_CHANGED` : AIPlayer 상태 변화 발생  
+If there is any problem during this process, the OnAIPlayerError() method is called. Typically, a response from the OnAIPlayerError() may be notifying the expiration of the authentication token. An appropriate response is required depending on the situation.
 
-:::
-
-`RES_LOAD_COMPLETED`와 `AI_CONNECTED` 콜백을 전달 받았다면 AIPlayer 객체의 모든 기능들이 정상 동작 가능한 상태, 즉 발화(실시간 합성) 가능한 상태라 할 수 있습니다.  
-이와 같이 위의 이벤트 콜백을 활용하여 다양한 서비스 플로우에 대응이 가능합니다.
-
-또한 `OnAIPlayerResLoadingProgressed(int, int)`으로 로딩 프로그레스를 구현할 수 있습니다.
-이 과정에서 혹시 문제가 생기면 `OnAIPlayerError(AIError)`가 호출되는데, 예를 들면 인증 토큰의 만료 등의 내용이 올 수 있습니다. 상황에 따라 적절한 대응이 필요합니다.
-
-- `AIError.Code.AI_API_ERR` : 인증 과정 등 정보 받는 API 부분에서 에러
-- [이 외의 에러](../../../aihuman/windows-sdk/aiplayer/errors)
+- AIError.Code.AI_API_ERR : Notifies error in authentication process API.
 
 :::info  
-- 대응 예: 1402 error (토큰 기한 만료) -> 토큰 갱신 필요 -> AIAPI.GenerateToken 혹은 AIAPI.Authenticate 함수 재호출
-- [AIError](../../../aihuman/windows-sdk/apis/aierror)객체는 API 편람에서 확인할 수 있어요!
+e.g.) 1402 error (value token expired): Token refresh required -> Call Authenticate or GenerateToken method again
 :::
 
 ```csharp
 string message;
-// AI resource related event CallBack
+// AI resource related status CallBack
 public void OnAIPlayerEvent(AIEvent aiEvent)
 {
     switch (aiEvent.EventType)

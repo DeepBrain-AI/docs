@@ -5,7 +5,7 @@ sidebar_position: 6
 # Functionalities other than AI Speaking
 (mainly related to AI settings)
 
-After the resource is loaded, some settings of aiPlayer can be changed while the actual operation is on.
+After the AIPlayer is initialized with an AI, some settings can be changed while the actual operation is on.
 
 ### 1. Adjust AI Size
 

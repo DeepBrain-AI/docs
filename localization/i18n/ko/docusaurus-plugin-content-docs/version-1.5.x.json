@@ -1,6 +1,6 @@
 {
   "version.label": {
-    "message": "최신 버전",
+    "message": "1.5.x",
     "description": "The label for version current"
   },
   "sidebar.aistudiosSidebar.category.Tutorial": {

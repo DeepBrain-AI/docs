@@ -6,8 +6,7 @@ sidebar_position: 5
 
 :::note related files
 
-- DialogFlowView.xaml
-- DialogFlowViewModel.cs
+- demo2.html, demo2.js, demo2.css
 
 :::
 
