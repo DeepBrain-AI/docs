@@ -107,7 +107,33 @@ Get AI object information
   AI_PLAYER.getter("key");
 ```
 
-## 5. AIPlayer.send(...)
+## 5. AIPlayer.preload(...)
+
+Pre-load function for AI Speech
+
+- You may choose from four parameter types depending on use case.
+
+  | Param        | Type             | Description                                                                  |
+  | ------------ | ---------------- | ---------------------------------------------------------------------------- |
+  | `text`       | `String`         | A sentence to preload. Used for preloading a single sentence. |
+  | `texts`      | `Array<String>` | A list of sentences to preload. Used for preloading multiple sentences. |
+  | `AIClipSet`  | `Object`         | A gesture sentence. Used for preloading a single gesture. |
+  | `AIClipSets` | `Array<Object>` | A list of gesture sentences. Used for preloading multiple gesture sentences |
+
+- Example
+
+```javascript
+// Case1. One Sentence Preload (text)
+AI_PLAYER.preload("Nice to meet you");
+// Case2. Multi Sentence Preload (String Array)
+AI_PLAYER.preload(["Nice to meet you", "How are you?"]);
+// Case3. One Gesture Preload (json)
+AI_PLAYER.preload({ text: "Nice to meet you", gst: "hi" });
+// Case4. Multi Gesture Preload (json Array)
+AI_PLAYER.preload([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
+```
+
+## 6. AIPlayer.send(...)
 
 Command used for making the AI speak or perform gesture actions. (If there exists a preloaded data, this data is reused)
 To make the AI speak multiple sentences, send an Array of String or AIClipSet Object.
@@ -134,32 +160,6 @@ AI_PLAYER.send({ text: "Nice to meet you", gst: "hi" });
 AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
 
-## 6. AIPlayer.preload(...)
-
-Pre-load function for AI Speech
-
-- You may choose from four parameter types depending on use case.
-
-  | Param        | Type             | Description                                                                  |
-  | ------------ | ---------------- | ---------------------------------------------------------------------------- |
-  | `text`       | `String`         | A sentence to preload. Used for preloading a single sentence. |
-  | `texts`      | `Array<String>` | A list of sentences to preload. Used for preloading multiple sentences. |
-  | `AIClipSet`  | `Object`         | A gesture sentence. Used for preloading a single gesture. |
-  | `AIClipSets` | `Array<Object>` | A list of gesture sentences. Used for preloading multiple gesture sentences |
-
-- Example
-
-```javascript
-// Case1. One Sentence Preload (text)
-AI_PLAYER.preload("Nice to meet you");
-// Case2. Multi Sentence Preload (String Array)
-AI_PLAYER.preload(["Nice to meet you", "How are you?"]);
-// Case3. One Gesture Preload (json)
-AI_PLAYER.preload({ text: "Nice to meet you", gst: "hi" });
-// Case4. Multi Gesture Preload (json Array)
-AI_PLAYER.preload([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
-```
-
 ## 7. AIPlayer.pause()
 
 Temporarily pause AI speech.
@@ -170,11 +170,11 @@ Resume speech if the AI state was paused previously.
 
 ## 9. AIPlayer.stopSpeak()
 
-Stop AI speech and reset all data on queue. (cannot resume)
+Stop AI speech and reset all data on stack. (cannot resume)
 
 ## 10. AIPlayer.release()
 
-Used to release system resources in use. (not usable any more)
+Used to release system resources in use. (Not reusable)
 
 ## 11. AIPlayer.getGestures()
 

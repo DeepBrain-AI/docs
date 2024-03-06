@@ -5,11 +5,11 @@ sidebar_position: 3
 # AI Human Demo
 :::note related files
 
-- demo1.html
+- demo.html, demo.js, demo.css
 
 :::
 
-This page demonstrates various functionalities of AIPlayer through simple UI. You can select an AI model, change the scale, speech speed of AI, and let the AI speak multiple sentences and take advantage of the preload function, etc.
+This page explains various functionalities of AIPlayer through simple UI. You can select an AI model, change the scale, speech speed of AI, and let the AI speak multiple sentences and take advantage of the preload function, etc.
 
 **1. First, create the AIPlayer object(AI_PLAYER), complete authentication and set up the AIPlayer**
 
@@ -32,7 +32,7 @@ async function generateVerifiedToken() {
 }
 ```
 
-**2. Get the list of available AI models and make UI for the list**
+**2. Get the list of available AI models and start an AI from the list**
 
 ```javascript
 async function getAIList() {
@@ -80,7 +80,7 @@ async function startAI(aiName, aiType) {
 
 **4. Implement callback of AIPlayer to monitor the event and error**
 
-The AIPlayer has 3 callback functions. They are onAIPlayerEvent, onAIPlayerLoadingProgressed and onAIPlayerErrorV2. For detail info about the callback, please refer this [Page](../apis/aiplayer-callback.md) and [Page](../apis/aiplayer-data.md).
+The AIPlayer has 3 callback functions for you. They are onAIPlayerEvent, onAIPlayerLoadingProgressed and onAIPlayerErrorV2. For detail info about the callback, please refer this [Page](../apis/aiplayer-callback.md) and [Page](../apis/aiplayer-data.md).
 
 ```javascript
 function initAIPlayerEvent() {
@@ -174,19 +174,18 @@ function initAIPlayerEvent() {
 
 }
 ```
-**5. AI 발화 관련 함수들 (preload, send, pauses, resume, stop and release)을 구현합니다.**
+
+**5. Examples of AI Speaking related (preload, send, pauses, resume, stop and release) features**
 
 ```javascript
 async function preload(clipSet) {
   await refreshTokenIFExpired();
-  // ...
 
   AI_PLAYER.preload(clipSet);
 }
 
 async function speak(clipSet) {
   await refreshTokenIFExpired();
-  // ...
   
   AI_PLAYER.send(clipSet);
 }
@@ -200,27 +199,31 @@ function resume() {
 }
 
 function stop() {
-  // ...
   AI_PLAYER.stopSpeak();
 }
 
 function release() {
-  // ...
   AI_PLAYER.release();
 }
 ```
 
 **6. 3D AI Model Application Example**
 
-Unlike 2D, 3D AI model requires Unity Webgl build results (files in `build` folder of the SDK zip). 
+Unlike 2D, 3D AI model requires Unity Webgl build results (files in `Build` folder of the SDK zip). 
 
 To show the 3D AI, 
-- Store the `build` folder's files in the location you want(local storage, S3, etc.). (if you want it to be custom location.)
-  + By default, the build folder needs to be placed in the root(check out the sample).
+- Store the `Build` folder's files in the location you want(local storage, S3, etc.). 
 - When creating an AIPlayer object, 
   + Put the UI element where the AIPlayer will be drawn as the first argument(wrapper).
   + The second argument is json, which assigns a local path or URL to the 'buildUrl' key.
-    + You don’t need this if the build folder is located in the root like sdk sample.
+
+Second argument info. 
+
+| Param           | Type     | Description                      |
+| --------------- | -------- | -------------------------------- |
+| `json`          | `Object` | UI element for creating AIPlayer |
+| `json.buildUrl` | `String` | 3d Build folder url              |
+
 
 <br/>
 

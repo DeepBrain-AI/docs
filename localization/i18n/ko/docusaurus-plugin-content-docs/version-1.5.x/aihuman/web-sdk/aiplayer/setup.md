@@ -41,7 +41,7 @@ const result = await AI_PLAYER.generateToken({ appId: appId, token: clientToken 
 
 ### 3. 가능한 AI 리스트 불러오기 
 
-인증이 완료되면 AIPlayer는 인증 정보를 가지고 있습니다. 이제 'AIplayer.getAIlist()'을 호출하여 사용 가능한 AI 목록을 얻을 수 있습니다. 인증이 잘못되었거나 문제가 있으면 '{success:false}'을(를) 반환합니다.
+인증이 완료되면 AIPlayer는 인증 정보를 가지고 있습니다. 이제 'AIplayer.getAIlist()'을 호출하여 사용 가능한 AI 목록을 얻을 수 있습니다. 인증이 잘못되었거나 연결된 사용 가능한 AI가 없으면 함수는 '{success:false}'을(를) 반환합니다.
 
 ```javascript
 const result = await AI_PLAYER.getAIList();
@@ -86,7 +86,7 @@ AIPlayer 객체에 특정 AI를 적용하려면 원하는 AI 모델로 초기화
   });
 ```
 
-### 5. AIPlayer 자원 해제
+- AIPlayer 개체 해제
 
 AIPlayer를 종료하거나 제거하려는 경우 'release()'를 호출하여 리소스를 해제해야 합니다.
 

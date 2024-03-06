@@ -6,7 +6,7 @@ sidebar_position: 5
 
 ### 1. Gesture
 
-As briefly mentioned before, speech may be performed using AIClipSet(object). AIClipSet refers to one speech unit. The types of speech are basic speech, gesture speech including gesture and speech, and gestures that perform only certain actions. 
+As briefly mentioned before, speech may be performed using AIClipSet(json). AIClipSet refers to one utterance unit. The types of speech are basic speech, gesture speech including gesture and speech, and gestures that perform only certain actions. 
 
 The available gestures differs according to AI model, and the list of available gestures can be obtained using the getGestures() function of AIPlayer.
 
@@ -21,10 +21,8 @@ The screenshot below shows AI Model Jonathan opening his hands according to "two
 <img src="/img/aihuman/web/sdk_demo_gesture_r1.png" />
 
 <br/>
-<br/>
-<br/>
 
-You can create AIClipset with gesture like below. Only gesture will play if the gesture set without speech text. 
+You can create AIClipset with gesture like below. Only gesture will play if the gesture set witout speech text. 
 
 ```javascript
 function sendText() {
@@ -66,13 +64,13 @@ Next, the voice list suitable for the corresponding language and gender can be c
 const customVoices = AI_PLAYER.getCustomVoicesWith(language, gender);
 ```
 
-If you know the id of the desired voice, you can find the desired voice using the following method. If there is none, null will be returned.
+If you know the id of the desired voice, you can find the desired voice using the following method. If there is none, return null.
 
 ```javascript
 const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 ```
 
-Direct change to the desired voice on the AIPlayer is set as follows, and is set back to the default voice when null is entered. It will return true when success.
+Direct change to the desired voice on the AIPlayer is set as follows, and is set to the default voice when null is entered. Returns true when success.
 
 ```javascript
 const customVoice = AI_PLAYER.findCustomVoice(voiceId);

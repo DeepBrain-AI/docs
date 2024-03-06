@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 개요
 
-본 문서에서 다루는 샘플 프로젝트는 AI Human SDK 구현 가이드로 제공되며 WPF 기반의 Windows 응용 프로그램입니다. 문서와 샘플 프로젝트를 토대로 AI Human SDK의 모든 기능을 하나씩 구현해 볼 수 있습니다.
+본 문서에서 다루는 샘플 프로젝트는 AI Human SDK 구현 가이드로 제공되며, WPF 기반의 Windows Application입니다. 샘플 프로젝트와 해당 문서를 토대로 AI Human SDK에서 제공하는 기능들을 쉽고 빠르게 구현해 볼 수 있습니다.
 
 앞서 언급한 AI Human 웹사이트에서 다운로드 받은 Sample의 AIHuman_WPF_Sample.sln 솔루션 파일을 열고 아래와 같이 실행해 볼 수 있습니다.
 

@@ -2,11 +2,11 @@
 sidebar_position: 3
 ---
 
-# AIPlayer Callbacks
+# AIPlayer Callback
 
 ## 1. onAIPlayerError
 
-This [Callback function](../../../1.3.x/aihuman/web-sdk/apis/aiplayer-callback) is obsolete.
+This [Callback function](https://docs.deepbrain.io/1.3.x/aihuman/web-sdk/apis/aiplayer-callback) is obsolete.
 Recommend to use a onAIPlayerErrorV2.
 
 ## 2. onAIPlayerErrorV2
@@ -34,7 +34,7 @@ Callback for Errors during AIPlayer operation. Check out the AIError details [he
 
 ## 3. onAIPlayerStateChanged
 
-This [Callback function](../../../aihuman/web-sdk/apis/aiplayer-callback) is obsolete.
+This [Callback function](https://docs.deepbrain.io/1.3.x/aihuman/web-sdk/apis/aiplayer-callback) is obsolete.
 Recommend to use a onAIPlayerEvent.
 
 ## 4. onAIPlayerEvent

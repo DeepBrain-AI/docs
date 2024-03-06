@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # AIPlayer Set up
 
-The setup process consists of next four steps.
+The entire setup process consists of four steps.
 
 - Step 1: Create AIPlayer object
 - Step 2: Authenticate SDK user(returns failure if appId and userKey are not valid.)
@@ -39,7 +39,7 @@ const result = await AI_PLAYER.generateToken({ appId: appId, token: clientToken 
 
 ### 3. Get the list of available AIs
 
-Once the authentication is completed, AIPlayer holds the authentication info. Now, you can get available AI list by calling `AIPlayer.getAIList()` function. If the authentication is invalid or there are no available AIs associated with, the function returns ` {succeed: false} `.
+Once authentication is completed, AIPlayer holds authentication info. Now, you can get available AI list by calling `AIPlayer.getAIList()` function. If the authentication is invalid or there are no available AIs associated with, the function returns ` {succeed: false} `.
 
 ```javascript
 const result = await AI_PLAYER.getAIList();
@@ -54,7 +54,7 @@ const result = await AI_PLAYER.getAIList();
 
 ### 4. Initialize AIPlayer with the desired AI
 
-To show specific AI to the AIPlayer object, you need to initialize with the desired AI model. Call `init(...)` function with the AI name which you can get from the result of getAIList(). Put the name with size, position and speed to initialize AIPlayer. AIPlayer will start to load AI resources according to the parameters passed.
+To apply specific AI to the AIPlayer object, you need to initialize with the desired AI model. Call `init(...)` function with AI name which you can get it from the result of getAIList(). Put the name with size, position and speed to initialize AIPlayer. AIPlayer will start to load AI resources according to the parameters passed.
 
 - Set the callback before you call 'init' to monitor the event, error and progress.
   Please refer this [page](../apis/aiplayer-callback.md) and [page](../apis/aiplayer-data.md).
