@@ -4,33 +4,37 @@ sidebar_position: 4
 
 # MS Azure STT와 PlayCaht 연동
 
-:::note related files
+:::note Sample Project에서 아래 파일들을 참고하세요.
 
 - PlaychatView.xaml
 - PlaychatViewModel.cs
 
 :::
 
+이 메뉴는 AI Human + Playchat(챗봇) + Microsoft Azure Speech SDK(STT)를 연동한 대화형 AI 서비스의 예시입니다. 기본적으로 AI Human과 Playchat은 사용자가 키보드로 입력하여 채팅하는 형식입니다. 추가로 MS Azure STT를 사용하여 실제 사람과 대화하듯 육성으로 대화가 가능하게 됩니다.. 화면에 진입하면 먼저 AI가 인사("Hello, long time no see.")를 합니다. 실제 사람처럼 손을 흔들며 인사하는 등의 다양한 시나리오를 연출할 수 있습니다.
+
+:::info 
+
 [PlayChat](https://aichat.deepbrainai.io/)은 DeepBrain AI의 ChatBot 솔루션입니다.
 
-This menu is an example of a Conversational AI service that integrates AI Human, PlayChat and Microsoft Azure STT. Basically, AI Human and Playchat are in the form of chatting by the user inputting with the keyboard. Additionally, use Azure STT to **speak like a real person**. When the AI load is complete, the AI greets you. ("Hello, long time no see.") 
+:::
 
-After the greeting, chat or click the STT button at the bottom to get a voice input signal, say "**where are you**". (Actual operation is possible after the Azure STT setup is completed. It is explained below in this chapter.) The AI understands the voice and the AI gives an appropriate answer. Currently, as it is a test chatbot, it can answer only a few limited questions, but if the chatbot is advanced, it can be used in various ways, such as ordering at a restaurant or making a reservation for a performance depending on the situation. In addition, the chatbot can also display images by sending **additional information** in addition to text.
+인사말 이후 채팅으로 대화하거나 하단에 STT버튼을 클릭하여 음성 입력 신호가 나오면 "where are you"라고 말해 봅시다. (실제로 동작하는 것은 MS Azure STT의 설정이 완료된 이후에 가능합니다. 이 장의 아래에서 설명하고 있습니다.) AI는 육성을 듣고 AI가 적절한 대답을 하게 됩니다. 현재는 테스트 챗봇이라 몇가지 제한된 물음에만 응답 할 수 있지만 챗봇을 고도화시키면 상황에 따라 식당에서의 주문받기, 공연 예약하기 등 다양하게 활용될 수 있다. 또한 챗봇으로 부터 텍스트 외에 **추가 정보**를 전달하게 하여 이미지 등을 제공하는 시나리오를 구성할 수도 있습니다.
 
 <img src="/img/aihuman/windows/PlaychatWithAzureSTTDemo.png" />
 
-### Using AI Human, Chatbot and MS Azure Speech Recognition
+### AI + Chatbot + Speech Recognition 함께 사용하기
 
-If you want to use the conversational AI service mentioned in the demo, you need to prepare as follows.
+해당 Demo에서 말하는 대화형 AI 서비스를 사용해 보려면, 아래와 같이 일련의 과정이 필요합니다.
 
-- Prepare your Playchat Bot ID: Already prepared in the sample (https://www.playchat.ai/docs/en/menual-chatbot-en.html)
-- Prepare Azure Speech Service Key and Endpoint: https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/overview
+- Playchat Bot ID 준비하기: Sample에 준비되어있음 (https://www.playchat.ai/docs/en/menual-chatbot-en.html)
+- Azure Speech Service Key와 Endpoint 준비하기: https://docs.microsoft.com/ko-kr/azure/cognitive-services/speech-service/overview
 
-Assign values to the PLAYCHAT_BOT_ID, AZURE_STT_URL, and AZURE_SUBSCRIPTION_KEY variables declared at the top of the class definition of the PlaychatViewModel.cs file.
+PlaychatViewModel.cs 파일의 class 정의 상단부에 선언된 PLAYCHAT_BOT_ID, AZURE_STT_URL, AZURE_SUBSCRIPTION_KEY 변수에 각각 값을 지정합니다.
 
-The main thing is to continue the conversation with AI and voice. For this, AIPlayer, chatbot, and voice recognition must work harmoniously. The class that implements this is **PlaychatViewModel**.
+간단히 생각해보면 이 샘플은 AI와 음성으로 대화를 이어나가는 것이 주목적입니다. 이를 위해서는 AIPlayer와 챗봇, 음성 인식이 유기적으로 동작해야 합니다. 따라서 이를 용이하게 하기 위해 전체를 관리하는 **PlaychatViewModel** 클래스를 작성하였습니다.
 
-First, after the chatbot is loaded, it sends a **"start"(Constants.KEY_START)** signal to the chatbot, and when the chatbot recognizes it, it sends a **greeting message**. The greeting is delivered via IChatbotCallback's OnChatbotMessage function. PlaychatViewModel extracts the sentences to be delivered to AI from this message and delivers them to AIPlayer, allowing AI to speak.
+먼저, AI가 로드되었다고 가정하고, 챗봇이 로드되면 챗봇에 **"start"(VALUE_FUNC_NAME_START)** 신호를 보내는데, 이렇게 "start" 신호를 호출하면 챗봇이 인식하고 인사 메세지를 보내게 됩니다. 그 인사말은 IChatbotCallback의 OnChatbotMessage 함수를 통해 전달됩니다. PlaychatViewModel은 이 메시지에서 AI에게 전달할 문장을 추출하여 AIPlayer에게 전달하게 되고 AI가 말하도록 합니다.
 
 ```csharp
 public void OnChattingReady()
@@ -54,15 +58,15 @@ public void OnChatbotMessage(JObject response)
 }
 ```
 
-### Data transfer format of Chatbot (Playchat)
+### Chatbot(Playchat)의 데이터 전송 포맷
 
-When speech is recognized through Azure STT, the content is delivered directly to the Playchat server. However, there are situations where you need to manually send a message or special signal to the chatbot. (This includes the "start" signal mentioned above.) To send the user's message, use the chatbot's Send function.
+MS Azure STT를 통해 음성인식이 되면 그 내용을 바로 Playchat 서버에 전달합니다. 하지만 수동으로 챗봇에 어떤 메세지나 특별한 신호를 보내고 싶은 상황(위에서 말한 "start" 신호 등)도 있을 수 있습니다. 사용자의 메세지를 챗봇에게 보내려면 IChatbot.Send 함수를 활용하면 됩니다.
 
 ```csharp
 bool Send(string command, JObject detail)
 ```
 
-Write the server function name you want in the command, and put the necessary arguments as key:value in detail. The currently set command (or func_name, the same) is as follows.
+command에 원하는 서버측 함수 이름을 전달하고, 필요한 추가 인자들을 detail에 key:value로 넣으면 됩니다. 현재 정해진 command(또는 func_name)는 다음과 같습니다.
 
 ```csharp
 namespace AIHuman.Common.Constants
@@ -79,11 +83,11 @@ public const string VALUE_USERINPUT_NEXT = ":next";
 }
 ```
 
-- In the userInput function, input the argument value with text as the key.
+- userInput 함수는 text를 키로 인자값을 넣으면 됩니다.
 
-- start function takes no arguments.
+- start 함수는 인자가 필요하지 않습니다.
 
-- OnMessage basically comes with the following values. In particular, if the next value is true for 'extra' here, it means that there are additional messages. 
+- onMessage에는 기본적으로 아래와 같이 값이 오며, 특히 여기에서 'extra'에 next값이 true이면 다음에 연속으로 할말이 있다는 뜻 입니다.
 
 ```csharp
   /* example
@@ -97,7 +101,7 @@ public const string VALUE_USERINPUT_NEXT = ":next";
   */ 
 ```
 
-- If there is an additional message, you can receive the additional message by sending it by adding **":next" (VALUE_USERINPUT_NEXT)**, which is a special argument indication, as the argument text in userInput.
+- 다음 메세지가 있을 경우 userInput에 인자 text로 특수 인자 표시인 **":next" (VALUE_USERINPUT_NEXT)**를 넣어서 보내면 다음 메세지를 받을수 있다.
 
 ```csharp
   private void RequestNextMessageIfNeeded(JObject args)
@@ -117,4 +121,4 @@ public const string VALUE_USERINPUT_NEXT = ":next";
   }
 ```
 
-Many of the above explanations have been omitted. Open the solution file of the sample and refer to the Playchat.xaml and PlaychatViewModel.cs files.
+위 내용에는 중략된 부분이 있습니다. 해당 Sample의 Solution 파일을 열어 Playchat.xaml, PlaychatViewModel.cs 파일을 참고해 주세요.

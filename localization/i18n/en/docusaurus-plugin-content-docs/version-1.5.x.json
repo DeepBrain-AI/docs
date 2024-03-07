@@ -1,7 +1,7 @@
 {
   "version.label": {
-    "message": "1.5.x",
-    "description": "The label for version 1.5.x"
+    "message": "1.4.x",
+    "description": "The label for version 1.4.x"
   },
   "sidebar.aistudiosSidebar.category.Tutorial": {
     "message": "Tutorial",

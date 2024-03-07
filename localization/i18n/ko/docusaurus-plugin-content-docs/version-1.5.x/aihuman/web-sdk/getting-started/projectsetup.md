@@ -4,19 +4,14 @@ sidebar_position: 1
 
 # 프로젝트 셋업하기
 
-**0. HW/SW 사양**
-- 100Mbps 이상인 네트워크 
-- PC 경우 i5 CPU 이상/4G RAM 이상
-- Android 경우 CPU S660 이상 또는 그에 준하는 성능/4G RAM 이상 (갤럭시탭 A7 경우 원활하지 않음)
-- iOS 경우 iOS6S 이상
-- 지원 브라우저 : Chrome(109 이상), Safari (16 이상)
+(Working)
 
 **1. SDK 추가하기**
 
 아래와 같이 Javascript SDK를 웹페이지에 추가하십시오.
 
 ```html
-<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.2.min.js"></script>
+<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.4.1.min.js"></script>
 ```
 
 **2. AIPlayer 객체를 포함할 영역을 지정합니다.**

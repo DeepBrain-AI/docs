@@ -32,7 +32,7 @@ async function generateVerifiedToken() {
 }
 ```
 
-**2. 사용가능한 AI 리스트를 불러오고 UI를 만듭니다.**
+**2. 사용가능한 AI 리스트를 불러오고 그중 하나의 AI를 시작시킵니다.**
 
 ```javascript
 async function getAIList() {
@@ -78,7 +78,7 @@ async function startAI(aiName, aiType) {
 }
 ```
 
-**4. AIPlayer의 콜백을 구현하여 이벤트와 에러를 모니터합니다.**
+**4.  AIPlayer의 콜백을 구현하여 이벤트와 에러를 모니터합니다.**
 
 AIPlayer는 3개의 callback 함수를 가지고 있습니다. 그것은 각각 onAIPlayerEvent, onAIPlayerLoadingProgressed 그리고 onAIPlayerErrorV2입니다. 더 자세한 사항은 여기 [Page](../apis/aiplayer-callback.md)와 여기 [Page](../apis/aiplayer-data.md)를 참조하여주십시오.
 
@@ -175,7 +175,7 @@ function initAIPlayerEvent() {
 
 }
 ```
-**5. AI 발화 관련 함수들 (preload, send, pauses, resume, stop and release)을 구현합니다.**
+**5. AI 발화 관련 함수들 (preload, send, pauses, resume, stop and release)**
 
 ```javascript
 async function preload(clipSet) {
@@ -213,15 +213,21 @@ function release() {
 
 **6. 3D AI Model Application 예제**
 
- 2D와는 달리, 3D AI model은 Unity Webgl build 결과물 (SDK zip 파일의 `build` 폴더와 그 파일들)이 필요합니다. 
+ 2D와는 달리, 3D AI model은 Unity Webgl build 결과물 (SDK zip 파일의 `Build` 폴더와 그 파일들)이 필요합니다. 
 
 3D AI를 표시하기 위해서는, 
-- 'build' 폴더 및 파일을 원하는 위치(로컬 저장소, S3 등)에 저장합니다.(커스텀 저장소를 원한다면)
-  + 기본적으로 build 폴더는 루트 폴더에 존재해야합니다.(샘플을 확인)
+- 'Build' 폴더의 파일을 원하는 위치(로컬 저장소, S3 등)에 저장합니다.
 - AIPlayer 개체를 생성할 때,
   + AIPlayer가 그려질 UI 요소를 첫 번째 인수(wrapper)로 지정합니다.
   + 두번째 인수는 json으로, 'buildUrl' 키에 로컬 경로 또는 URL을 할당합니다.
-    + 루트 폴더에 둔다면 이것을 설정할 필요는 없습니다.(샘플 확인)
+
+두번째 인수 정보. 
+
+| Param           | Type     | Description                      |
+| --------------- | -------- | -------------------------------- |
+| `json`          | `Object` | UI element for creating AIPlayer |
+| `json.buildUrl` | `String` | 3d Build folder url              |
+
 
 <br/>
 

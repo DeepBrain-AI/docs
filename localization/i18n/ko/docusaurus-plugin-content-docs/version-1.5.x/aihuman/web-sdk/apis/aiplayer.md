@@ -107,34 +107,7 @@ AIPlayer의 셋팅값을 가져옵니다.
   AI_PLAYER.getter("key");
 ```
 
-## 5. AIPlayer.send(...)
-
-ai에게 발화 또는 제스처 포함 발화를 시킵니다. (프리로드된 데이터가 있으면, 이를 사용합니다)
-여러 문장을 발화시키려면 Array 타입을 사용하십시오. 
-
-- 4가지 타입으로 전달 가능합니다. 
-
-  | Param        | Type             | Description                                                     |
-  | ------------ | ---------------- | --------------------------------------------------------------- |
-  | `text`       | `String`         | A single sentence. Used for single sentence speaking. |
-  | `texts`      | `Array<String>` | A list of sentences.. Used for multiple sentences speaking. |
-  | `AIClipSet`  | `Object`         | A gesture sentence. Used for single gesture action. |
-  | `AIClipSets` | `Array<Object>` | A list of gesture sentences. Used for multiple gesture actions. |
-
-- Example
-
-```javascript
-//Case1. One Sentence Speak (text)
-AI_PLAYER.send("Nice to meet you");
-//Case2. Multi Sentences Speak (String Array)
-AI_PLAYER.send(["Nice to meet you", "How are you?"]);
-//Case3. One Gesture Speak (json)
-AI_PLAYER.send({ text: "Nice to meet you", gst: "hi" });
-//Case4. Multi Gestures Speak (json Array)
-AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
-```
-
-## 6. AIPlayer.preload(...)
+## 5. AIPlayer.preload(...)
 
 AI 발화 데이터를 프리로드합니다. 
 
@@ -160,6 +133,32 @@ AI_PLAYER.preload({ text: "Nice to meet you", gst: "hi" });
 AI_PLAYER.preload([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
 
+## 6. AIPlayer.send(...)
+
+ai에게 발화 또는 제스처 포함 발화를 시킵니다. (프리로드된 데이터가 있으면, 이를 사용합니다)
+여러 문장을 발화시키려면 Array 타입을 사용하십시오. 
+
+- 4가지 타입으로 전달 가능합니다. 
+
+  | Param        | Type             | Description                                                     |
+  | ------------ | ---------------- | --------------------------------------------------------------- |
+  | `text`       | `String`         | A single sentence. Used for single sentence speaking. |
+  | `texts`      | `Array<String>` | A list of sentences.. Used for multiple sentences speaking. |
+  | `AIClipSet`  | `Object`         | A gesture sentence. Used for single gesture action. |
+  | `AIClipSets` | `Array<Object>` | A list of gesture sentences. Used for multiple gesture actions. |
+
+- Example
+
+```javascript
+//Case1. One Sentence Speak (text)
+AI_PLAYER.send("Nice to meet you");
+//Case2. Multi Sentences Speak (String Array)
+AI_PLAYER.send(["Nice to meet you", "How are you?"]);
+//Case3. One Gesture Speak (json)
+AI_PLAYER.send({ text: "Nice to meet you", gst: "hi" });
+//Case4. Multi Gestures Speak (json Array)
+AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
+```
 
 ## 7. AIPlayer.pause()
 

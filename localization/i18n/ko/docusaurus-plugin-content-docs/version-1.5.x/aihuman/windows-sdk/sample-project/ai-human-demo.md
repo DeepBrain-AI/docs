@@ -3,8 +3,8 @@ sidebar_position: 3
 ---
 
 # AI Human 데모
-:::note 정보
-Sample Project에서 아래 파일들을 참고하세요.
+:::note Sample Project에서 아래 파일들을 참고하세요.
+
 - DemoView.xaml
 - DemoViewModel.cs
 
@@ -12,7 +12,7 @@ Sample Project에서 아래 파일들을 참고하세요.
 
 AI Human SDK Demo는 AIPlayer의 다양한 기능을 살펴볼 수 있는 메뉴입니다. [AI 선택]을 통해 승인된 다른 AI 모델로 변경할 수 있습니다. 기타 자세한 내용은 [AIPlayer 설명](../../../category/aiplayer-description-1)을 참고하세요.
 
-<img src="/img/aihuman/windows/sampledemo_1.4.x.png" />
+<img src="/img/aihuman/windows/sampledemo_1.5.x.png" />
 
 **먼저 사용 가능한 AI 목록을 가져와 UI를 설정합니다. 아래 AIAPI.AppId, AIAPI.UserKey는 HomeView에서 Authenticate를 호출할 때 입력한 매개 변수입니다.**
 - 엄밀히 말하면 HomeView에서의 Authenticate는 App.xaml.cs의 생성자에서의 호출을 의미합니다.
@@ -211,6 +211,6 @@ public interface IAIPlayerCallback
 - AICLIPSET_PLAY_STARTED: AI 발화 시작 시 발생
 - AICLIPSET_PLAY_COMPLETED: AI 발화 완료 시 발생
 - AICLIPSET_PLAY_FAILED: AI 발화 실패 시 발생
-- ...
+- [이 외의 Type](../../../aihuman/windows-sdk/apis/aievent)
 
 :::

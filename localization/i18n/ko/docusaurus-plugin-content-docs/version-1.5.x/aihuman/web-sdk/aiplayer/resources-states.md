@@ -10,45 +10,32 @@ AI 플레이어가 생성되고 `init({...}}` 함수가 호출되면 **aiName** 
 
 ### 2. 콜백을 사용하여 AIPlayer 로드 상태 모니터링
 
-init 메서드를 호출한 후 등록한 `onAIPlayerEvent(aiEvent)` callback 메서드가 [AIEvent](../apis/aiplayer-data.md#7-aievent)와 함께 호출됩니다. AIEvent.type은 발생한 이벤트를 나타냅니다(아래 목록 확인). 또한 `onAIPlayerResLoadingProgressed({loading})`를 사용하여 로드 진행률을 구현할 수 있습니다. 전체 목록은 [here](../apis/aiplayer-data#7-aievent)입니다
+init 메서드를 호출한 후 등록한 `onAIPlayerEvent(aiEvent)` callback 메서드가 AIEvent와 함께 호출됩니다. AIEvent.type은 발생한 이벤트를 나타냅니다(아래 목록 확인). 또한 `onAIPlayerResLoadingProgressed({loading})`를 사용하여 로드 진행률을 구현할 수 있습니다. 전체 목록은 [here](../apis/aiplayer-data#7-aievent)입니다
 
-- AIEventType.AIPLAYER_STATE_CHANGED : AIPlayer 상태가 변경된 경우(`AIPlayerState` 클래스 및 getState() 메서드 확인). 
-- AIEventType.RES_LOAD_STARTED : AI가 필요로하는 이미지, 비디오 등의 리소스 로드가 시작되었을 때 
-- AIEventType.AI_CONNECTED : AI가 서비스에 연결되었을때.
-- AIEventType.AI_DISCONNECTED : AI가 서비스에서 분리되었을때. `send` 또는 `preload`가 불가능.
-- AIEventType.RES_LOAD_COMPLETED : AI가 필요로하는 이미지, 비디오 등의 리소스 로드가 완료되었을 때.
-- AIEventType.AI_RECONNECT_ATTEMPT : AI가 서비스에 분리된후 재연결 시도 중일때.
-- AIEventType.AI_RECONNECT_FAILED : AI가 서비스에 분리된후 재연결 시도 실패했을 때. 수동으로 연결하려면 AIPlayer.reconnect(...)를 호출한다. 
+- AIEventType.AIPLAYER_STATE_CHANGED : AIPlayer 상태가 변경된 경우. (`AIPlayerState` 클래스 및 getState() 메서드 확인)
+- AIEventType.RES_LOAD_STARTED : 로드가 시작될 때
+- AIEventType.AI_CONNECTED : AI가 연결되어 있고 AIClipSet를 보내거나 프리로드하여 말할 수 있는 경우.
+- AIEventType.AI_DISCONNECTED : AI가 시스템에서 분리되어 전송 또는 프리로드가 불가능한 경우
+- AIEventType.RES_LOAD_COMPLETED : 로드 및 설정이 완료되고 모든 것이 준비되었을 때.
 
-위의 AIEventType.AIPLAYER_STATE_CHANGED 이벤트를 관찰하면, 그 상태가 AIPlayerState.INITIALIZE 에서 AIPlayerState.IDLE 으로 변합니다. 이 때가 바로 AI의 초기화가 완료된 시점이며, 이후로 send 또는 preload를 호출할수 있습니다.(SDK 샘플 참조)
+이 과정에서 문제가 발생하면 `onAIPlayerErrorV2(aiError)` 메서드가 호출됩니다. 예를 들어 인증 토큰의 만료를 예로 들 수 있습니다. 상황에 따라 적절한 조치가 필요합니다. aiError.code 값은 범위별로 분류할 수 있습니다. 아래 샘플 코드를 확인하십시오.
 
-이 과정에서 문제가 발생하면 `onAIPlayerErrorV2(aiError)` 메서드가 호출되며 상황에 따라 적절한 조치를 필요로합니다. 예를 들어 인증 토큰의 만료의 경우 generateToken을 재호출 하여 토큰을 리프레쉬해야합니다. aiError.code 값은 범위별로 분류할 수 있습니다. 아래 샘플 코드를 확인하십시오.
-
-- AIErrorCode.AI_INIT_ERR : AI를 초기화하는 중 오류가 발생.
-- AIErrorCode.AI_API_ERR : 인증 프로세스와 같은 정보를 수신하는 API 부분에서 오류가 발생.
-- AIErrorCode.AI_RES_ERR : AI에 대한 리소스를 다운로드하는 중 오류가 발생.
+- AIErrorCode.AI_INIT_ERR : AI를 초기화하는 중 오류가 발생했습니다.
+- AIErrorCode.AI_API_ERR : 인증 프로세스와 같은 정보를 수신하는 API 부분에서 오류가 발생했습니다.
+- AIErrorCode.AI_RES_ERR : AI에 대한 리소스를 다운로드하는 중 오류가 발생했습니다.
 
 **ex) 1402 오류(token 만료): 토큰 새로 고침이 필요함 -> `generateToken({ appId, token })` 메서드 다시 호출**
 
 ```javascript
-let curAIState = AIPlayerState.NONE
 AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
     // TODO: event handling 
 
     //example
-    let typeName = ""
     switch (aiEvent.type) {
       case AIEventType.AIPLAYER_STATE_CHANGED:
-        typeName = 'AIPLAYER_STATE_CHANGED';
-        let newAIState = AI_PLAYER.getState()
-        if (curAIState == AIPlayerState.INITIALIZE && newAIState == AIPlayerState.IDLE) {
-          $("#aiList").removeAttr("disabled");
-          $("#AIPlayerStateText").text("AI initialization completed.");
-
-          console.log('AI initialization completed.')
-        }
-        curAIState = newAIState
-        break
+        console.log("AI AIPLAYER_STATE_CHANGED:", aiEvent);
+        onAIStateChanged()
+        break;
       case AIEventType.AI_CONNECTED:
         console.log("AI AI_CONNECTED :", aiEvent);
         break;

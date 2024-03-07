@@ -11,16 +11,14 @@ sidebar_position: 5
 아래와 같은 클립셋의 타입이 존재합니다.
 
 AIClipSet.ClipType
-- CLIP_SPEECH: 제스처가 없는 일반 발화만 가능한 Clip
-- CLIP_GESTURE: 제스처만 가능한 Clip
-- CLIP_SPEECH_GESTURE: 제스처가 포함된 발화가 가능한 Clip
+CLIP_SPEECH: 제스처가 없는 일반 발화만 가능한 Clip
+CLIP_GESTURE: 제스처만 가능한 Clip
+CLIP_SPEECH_GESTURE: 제스처가 포함된 발화가 가능한 Clip
 
 아래 샘플 스크린샷에서는 Jonathan이라는 AI 모델이 "twohand"라는 제스처를 하면서 발화를 하고 있습니다.
 
 <img src="/img/aihuman/web/sdk_demo_gesture_r1.png" />
 
-<br/>
-<br/>
 <br/>
 
 아래와 같이 제스처를 하는 AIClipSet을 생성합니다. 또한 제스처를 설정하였지만, 발화 문장을 셋팅하지 않고 send를 호출하면 발화는 하지않고 제스처만 동작됩니다.
@@ -43,7 +41,8 @@ function sendText() {
 
 <br/>
 
-### 2. 음성 및 언어 변경
+
+### 2. 언어 및 음성 변경
 
 일부 AI는 기본 음성 외에 다른 음성으로 발화를 할수 있습니다. 여러 음성을 사용하기 위해서는 먼저 `AIPlayer.generateToken(...)` 함수나 `AIPlayer.loadCustomVoices(...)` 메소드를 호출한 후 사용할수 있습니다.
 
@@ -121,7 +120,7 @@ AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" 
 
 프리로드는 다음에 할 말들을 먼저 로드시켜놓고 빠르게 다음 발화를 하고 싶을 때 사용합니다. 이는 일종의 캐싱이라고 생각할 수 있습니다. 'preload(...)' 메소드를 호출하면 프리로드가 동작됩니다. 아래 샘플에서 Preload speak 버튼을 누르면 해당 행동이 구현되어 있습니다.
 
-**3d character는 현재 이 기능을 지원하지 않습니다.**
+**3d character는 현재 이 기능을 지원하지 않는다.**
 
 <img src="/img/aihuman/web/sdk_demo_preload_r1.png" />
 
