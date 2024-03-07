@@ -4,14 +4,22 @@ sidebar_position: 1
 
 # Project Setup
 
-(Working)
+**0. AI Human SDK (Web) System Requirements**
+
+|                    | Requirements                       |
+|--------------------|----------------------------------|
+| Network Environment    | 100Mbps or higher                    |
+| PC                 | CPU i5 7Gen or higher or equivalent performance<br/>RAM 4GB or higher       |
+| Android           | CPU S660 or higher or equivalent performance<br/>RAM 4GB or higher<br/>(even if satisfied, it is not smooth for Galaxy FE or A series) |
+| iOS                | iPhone 6S or later                  |
+| Browser          | Chrome 109 or higher<br/>Safari 16 or higher |
 
 **1. Include the SDK**
 
 Include the JavaScript SDK in the web page as shown below. 
 
 ```html
-<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.4.1.min.js"></script>
+<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.1.min.js"></script>
 ```
 
 **2. Specify the area to contain the AIPlayer object.**
