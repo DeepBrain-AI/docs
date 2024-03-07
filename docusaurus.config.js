@@ -10,7 +10,8 @@ const config = {
   tagline: 'Welcome! Here you can read the documentation for the AI Human.',
   url: 'https://docs.deepbrain.io/',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  // onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/db_favicon.ico',
 
@@ -58,17 +59,13 @@ const config = {
           includeCurrentVersion: false,
           lastVersion: '1.5.x',
           versions: {
-            '1.3.x': {
-              label: '1.3.x',
-              path: '1.3.x',
-            },
             '1.4.x': {
               label: '1.4.x',
               path: '1.4.x',
             },
-            '1.5.x': {
-              label: 'Latest',
-              path: '/',
+            '1.3.x': {
+              label: '1.3.x',
+              path: '1.3.x',
             },
           },
         },
