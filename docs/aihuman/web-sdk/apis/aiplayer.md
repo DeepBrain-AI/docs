@@ -6,22 +6,38 @@ sidebar_position: 1
 
 | Method            | Description                                       |
 | ----------------- | ------------------------------------------------- |
-| `init(json)`      | Initializing the AIPlayer object |
-| `setter(json)`    | Set AI object information |
-| `getter(string)`  | Get AI object information |
-| `preload(json)`   | Pre-load for AI Speaking (Four Parameter Types [Reference](#14-aiplayerpreload))) |               
-| `send(json)`      | Command AI Speaking (Four Parameter Types [Reference](#15-aiplayersend))  |   
-| `pause()`         | Pause speaking  |
-| `resume()`        | Resume speaking |
+| `init(json)`      | Initialize the AIPlayer with desired ai |
+| `getState()`      | Get AIPlayer's current State (AIPlayerState) |
+| `setter(json)`    | Set AIPlayer's settings |
+| `getter(string)`  | Get AIPlayer's AIsettings  |
+| `preload(json)`   | Pre-load for AI Speaking. Check example below section |               
+| `send(json)`      | Make AI Speak. Check example below section|
+| `pause()`         | Pause speaking while speaking |
+| `resume()`        | Resume speaking from pause |
 | `stopSpeak()`     | Stop speaking and reset all data. (cannot resume) |
 | `release()`       | Release resource (terminate AIPlayer) |
-| `generateToken()` | Generate authentication token |
-| `getAIList()`     | Get a list of available AI models |
-| `getGesture()`    | Get a list of available AI [gestures](#43-aigesture) |
+| `getGestures()`   | Get the list of available AI |
+| `getGender()`     | Get the current ai's gender|
+| `getSpeakableLanguages(gender)` | Get the current ai's speakable language with gender |
+| `getCustomVoice()`   | Get the current customVoice of set ai|
+| `getCustomVoicesWith(language, gender)` | Get the current customVoice of set ai with language and gender |
+| `findCustomVoice(voiceId) `   | Get the CustomVoice object corresponding to id |
+| `setCustomVoice(customVoice) `   | Set the voice of AI with specific customVoice|
+| `setCustomVoiceForLanguage(language, gender)`   | Set the voice of AI by language and gender |
+| `reconnect(callback)`   | Try reconnect when AI_DISCNNECTED |
+| `isConnected()`   | Can send to speak if true |
+| `canPreload(callback)`   | Check if preload is possible |
+| `setVolme(volume)`   | Volume Control. |
+| `getVolme()`   | Get Current Volume. |
+| `setMute(isMute)`   | Mute Control. 3D model not supported|
+| `getMute()`   | Get Mute state. 3D model not supported|
+| `generateToken()` | AIAPI - Generate authentication token using clientToken|
+| `getAIList()`     | AIAPI - Get the list of available AI models |
+| `getSampleTextList()` | AIAPI - Get the list of sample text |
 
 ## 1. AIPlayer.init(json)
 
-Initializes AI Player object with the given AI model parameters
+Initialize AI Player object with the given AI model parameters
 
 - Parameter
 
@@ -29,32 +45,33 @@ Initializes AI Player object with the given AI model parameters
   | -------------- | -------- | ----------------------------------------------------------------- |
   | `json`         | `Object` | parameters of the init function |
   | `json.ai_name` | `String` | AI model name |
-  | `json.zIndex`  | `Number` | AI model zIndex (optional, default: -1) |
   | `json.size`    | `Float`  | AI model size (optional, default: 1.0) |
   | `json.left`    | `Number` | AI model left (optional, default: 0, pixel) |
   | `json.top`     | `Number` | AI model top (optional, default: 0, pixel) |
   | `json.speed`   | `Float`  | AI model speed (optional, step, 0.1, range : 0.5~1.5, default: 1) |
 
-- Return Paramter
-
-  | Param          | Type             | Description               |
-  | -------------- | ---------------- | ------------------------- |
-  | `return`       | `Object`         | init return               |
-  | `return.texts` | `Array<String\>` | AI Default Text List      |
-
-
 - Example
 
 ```javascript
   const result = await AI_PLAYER.init({
-    aiName: "...", zIndex: 0, size: 1.0, left: 0, top: 0, speed: 1.0
+    aiName: "...", size: 1.0, left: 0, top: 0, speed: 1.0
   });
-
-  // TODO: It is recommended to use "await AI_PLAYER.getSampleTextList()" instead of "result.texts"
-  const texts = result.texts;
 ```
 
-## 2. AIPlayer.setter(json)
+## 2. AIPlayer.getState()
+
+Get the AIPlayer's state. Check out [AIPlayerState](../apis/aiplayer-data#5-aiplayerstate)
+
+- Return Parameter: `AIPlayerState`
+ 
+- Example
+
+```javascript
+  const state = AI_PLAYER.getState());
+```
+  
+
+## 3. AIPlayer.setter(json)
 
 Set AI object information
 
@@ -63,69 +80,31 @@ Set AI object information
   | Param         | Type     | Description                                                               |
   | --------------| -------- | ------------------------------------------------------------------------- |
   | `json`        | `Object` | parameters of the setter function |
-  | `json.zIndex` | `Number` | AI model zIndex (default: -1) |
   | `json.size`   | `Float`  | AI model size (optional, range: 0 ~ 2.0, default: 1.0) |
   | `json.top`    | `Number` | AI model top (optional, default: 0) |
   | `json.left`   | `Number` | AI model left (optional, default: 0) |
-  | `json.speed`  | `Float`  | AI model speech rate (optional, step, 0.1, range : 0.5 ~ 1.5, default: 0) |
-  | `json.token`  | `String` | App verified token |
-  | `json.appId`  | `String` | App verified appId |
+  | `json.speed`  | `Float`  | AI model speech rate (optional, step, 0.1, range : 0.5 ~ 1.5, default: 1) |
 
 - Example
 
 ```javascript
-AI_PLAYER.setter({
-  token: "xxxxxxxxxxxxxxxxxxxxxx",
-  zIndex: 2,
-  size: 1.2,
-  top: 20,
-  left: 20,
-  speed: 1.2,
-  token: "...",
-  appId: "..."
-});
+AI_PLAYER.setter({size: 1.2, top: 20, left: 20, speed: 1.2});
 ```
 
-## 3. AIPlayer.getter(key)
+## 4. AIPlayer.getter(key)
 
 Get AI object information
 
-- Return Parameter: `\*` - AI object information
+- Return Parameter: AI model or AIPlayer information
 
   | Param | Type     | Value                                                                             | Description           |
   | ----- | -------- | --------------------------------------------------------------------------------- | --------------------- |
-  | `key` | `String` | `'maxTextLength'` \| `'language'` \| `'size'` \| `'top'` \| `'left'` \| `'speed'` | AI Object Information
+  | `key` | `String` | `'maxTextLength'` \| `'long_speech'` \| `'language'` \| `'size'` \| `'top'` \| `'left'` \| `'speed'` | AI model or AIPlayer information
 
 - Example
 
 ```javascript
   AI_PLAYER.getter("key");
-```
-
-## 4. AIPlayer.preload(...)
-
-Pre-load function for AI Speech
-
-- You may choose from four parameter types depending on use case.
-
-  | Param        | Type             | Description                                                                  |
-  | ------------ | ---------------- | ---------------------------------------------------------------------------- |
-  | `text`       | `String`         | A sentence to preload. Used for preloading a single sentence. |
-  | `texts`      | `Array<String\>` | A list of sentences to preload. Used for preloading multiple sentences. |
-  | `AIClipSet`  | `Object`         | A gesture sentence. Used for preloading a single gesture. |
-  | `AIClipSets` | `Array<Object\>` | A list of gesture sentences. Used for preloading multiple gesture sentences |
-
-- Example
-
-```javascript
-// Case1. One Sentence Preload (text)
-AI_PLAYER.preload("Nice to meet you");
-// Case2. Multi Sentence Preload (String Array)
-AI_PLAYER.preload(["Nice to meet you", "How are you?"]);
-// Case3. One Gesture Preload (json)
-AI_PLAYER.preload({ text: "Nice to meet you", gst: "hi" });
-// Case4. Multi Gesture Preload (json Array)
-AI_PLAYER.preload([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
 
 ## 5. AIPlayer.send(...)
@@ -138,9 +117,9 @@ To make the AI speak multiple sentences, send an Array of String or AIClipSet Ob
   | Param        | Type             | Description                                                     |
   | ------------ | ---------------- | --------------------------------------------------------------- |
   | `text`       | `String`         | A single sentence. Used for single sentence speaking. |
-  | `texts`      | `Array<String\>` | A list of sentences.. Used for multiple sentences speaking. |
+  | `texts`      | `Array<String>` | A list of sentences.. Used for multiple sentences speaking. |
   | `AIClipSet`  | `Object`         | A gesture sentence. Used for single gesture action. |
-  | `AIClipSets` | `Array<Object\>` | A list of gesture sentences. Used for multiple gesture actions. |
+  | `AIClipSets` | `Array<Object>` | A list of gesture sentences. Used for multiple gesture actions. |
 
 - Example
 
@@ -155,9 +134,31 @@ AI_PLAYER.send({ text: "Nice to meet you", gst: "hi" });
 AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
 
-## 6. AIPlayer.stopSpeak()
+## 6. AIPlayer.preload(...)
 
-Stop AI speech and reset all data on stack. (cannot resume)
+Pre-load function for AI Speech
+
+- You may choose from four parameter types depending on use case.
+
+  | Param        | Type             | Description                                                                  |
+  | ------------ | ---------------- | ---------------------------------------------------------------------------- |
+  | `text`       | `String`         | A sentence to preload. Used for preloading a single sentence. |
+  | `texts`      | `Array<String>` | A list of sentences to preload. Used for preloading multiple sentences. |
+  | `AIClipSet`  | `Object`         | A gesture sentence. Used for preloading a single gesture. |
+  | `AIClipSets` | `Array<Object>` | A list of gesture sentences. Used for preloading multiple gesture sentences |
+
+- Example
+
+```javascript
+// Case1. One Sentence Preload (text)
+AI_PLAYER.preload("Nice to meet you");
+// Case2. Multi Sentence Preload (String Array)
+AI_PLAYER.preload(["Nice to meet you", "How are you?"]);
+// Case3. One Gesture Preload (json)
+AI_PLAYER.preload({ text: "Nice to meet you", gst: "hi" });
+// Case4. Multi Gesture Preload (json Array)
+AI_PLAYER.preload([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
+```
 
 ## 7. AIPlayer.pause()
 
@@ -167,32 +168,24 @@ Temporarily pause AI speech.
 
 Resume speech if the AI state was paused previously.
 
-## 9. AIPlayer.release()
+## 9. AIPlayer.stopSpeak()
 
-Used to release system resources in use. (Not reusable)
+Stop AI speech and reset all data on queue. (cannot resume)
 
-## 10. AIPlayer.getGestures()
+## 10. AIPlayer.release()
 
-Get a list of available [gestures](#43-aigesture)
+Used to release system resources in use. (not usable any more)
 
-- Return Parameter: `Array<AIGesture\>`
+## 11. AIPlayer.getGestures()
+
+Get a list of available gestures.
+
+- Return Parameter: `Array<AIGesture>`
 
 - Examples
 
 ```javascript
   const gestures = AI_PLAYER.getGestures();
-```
-
-## 11. AIPlayer.getSampleTextList()
-
-Gets the sample text list of AI's default language or set voice language
-
-- Return Parameter: `Array<String\>`
-
-- Examples
-
-```javascript
-  const texts = AI_PLAYER.getSampleTextList();
 ```
 
 ## 12. AIPlayer.getGender()
@@ -211,7 +204,7 @@ Gets the current AI gender ('MALE', 'FEMALE', 'UNI') and returns null if there i
 
 Gets the language list of currently loaded voices, valid after loadCustomVoice() or generateToken() method calls.
 
-- Return Parameter: `Array<String\>`
+- Return Parameter: `Array<String>`
 
 - Examples
 
@@ -237,12 +230,12 @@ Gets the list of custom voices that correspond to the language and gender of the
 If you type null in language, you get all languages, and if you type null in gender, you get values that correspond to all genders.  
 Valid after loadCustomVoice() or generateToken() method call.
 
-- Return Parameter: `Array<CustomVoice\>`
+- Return Parameter: `Array<CustomVoice>`
 
 - Examples
 
 ```javascript
-  const customVoices = AI_PLAYER.getSpeakableLanguages(language, gender);
+  const customVoices = AI_PLAYER.getCustomVoicesWith(language, gender);
 ```
 
 ## 16. AIPlayer.findCustomVoice(voiceId)
@@ -280,4 +273,33 @@ If you enter the language value and enter null in the gender, it is set as the f
 
 ```javascript
   const isSuccess = AI_PLAYER.setCustomVoiceForLanguage(language, gender);
+```
+
+## 19. AIPlayer.reconnect(callback)
+```javascript
+AIPlayer.reconnect(callback = () => { })
+```
+
+## 20. AIPlayer.isConnected()
+```javascript
+const isConnected = AI_PLAYER.isConnected();
+```
+
+## 21. AIPlayer.canPreload()
+```javascript
+const canPreload = AI_PLAYER.canPreload(callback = () => { });
+```
+
+## 22. AI_PLAYER.setVolume(volume)
+```javascript
+AI_PLAYER.setVolume(volume);
+
+const curVolume = AI_PLAYER.getVolume();
+```
+
+## 23. AI_PLAYER.setMute(isMute)
+```javascript
+AI_PLAYER.setMute(true)
+
+const isMuted = AI_PLAYER.getMute();
 ```

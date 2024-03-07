@@ -10,7 +10,8 @@ const config = {
   tagline: 'Welcome! Here you can read the documentation for the AI Human.',
   url: 'https://docs.deepbrain.io/',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  // onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/db_favicon.ico',
 
