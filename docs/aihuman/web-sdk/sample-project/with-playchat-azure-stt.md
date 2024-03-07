@@ -6,18 +6,17 @@ sidebar_position: 4
 
 :::note related files
 
-- demo2.html
+- demo2.html, demo2.js, demo2.css
 
 :::
 
-AIPlayer + PlayChat(Webview based Chatbot) is a Conversational AI service provided by Deepbrain AI. In this menu, you will be able to have conversation with the AI on screen.
-Playchat is a chatbot service in which users can have conversation with a bot through text messages.
-In this Demo, Playchat is fully integrated with the AI Models and the AI will speak out sentences coming from the chatbot. In other words, users will be able to have conversation with the AI
-through both text and speech.
+In this page, you will be able to have conversation with the AI on screen. The combination of AIPlayer and PlayChat can create a Conversational AI service. The Playchat(provided by DeepbrainAI) is a chatbot service in which users can have conversation with a bot through text messages.
+
+The Playchat is fully integrated with the AI Models here and the AI will speak sentences coming from the chatbot. In other words, users will be able to have conversation with an AI.
 
 <img src="/img/aihuman/web/stt_demo_02.png" />
 
-## 1. Chatbot (Wrapper Class in PlayChat) settings
+## 1. Configure Chatbot (Wrapper Class of PlayChat)
 
 **1.1. Include the chatbot.js file in a web page**
 
@@ -25,21 +24,22 @@ through both text and speech.
 <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/chatbot.js"></script>
 ```
 
-**1.2. Creates an object CHATBOT of the Deepbrain Chatbot**
+**1.2. Creates an object of the Deepbrain Chatbot**
 
 ```javascript
 const CHATBOT = new DeepbrainChatbot();
 ```
 
-**1.3. Implementing the CHATBOT callback**
+**1.3. Implement the callback to get response from CHATBOT**
 
 ```javascript
 function initChatBotEvent() {
   CHATBOT.onChatbotMessage = async (json) => {
     // ...
 
-    await speak(json?.text); // Making CHATBOT speak to AI about the text it receives
+    await speak(json?.text); // Making AI speak using chatbot response
   };
+
   CHATBOT.onChatbotStateChanged = (json) => {
     if (json?.kind == "postUserInput" && json?.state == "complete") {
       onUserInput = true;
@@ -51,8 +51,12 @@ function initChatBotEvent() {
       onEnd = true;
     }
   };
+  
   CHATBOT.onChatbotError = (json) => {
-    showPop("IChatbot Error", `[${err.errorCode}] ${err.error}\n${err.description}\n${err.detail || ""}`);
+    showPop(
+      "IChatbot Error",
+      `[${err.errorCode}] ${err.error}\n${err.description}\n${err.detail || ""}`
+    );
   };
 }
 ```
@@ -67,7 +71,7 @@ function startChat(obj) {
 }
 ```
 
-**1.5. Send Message to Chatbot and Release**
+**1.5. Send Message to Chatbot**
 
 ```javascript
 function sendMessage(message) {
@@ -77,19 +81,15 @@ function sendMessage(message) {
 
   CHATBOT.send({ cmd: "postUserInput", args: { text: message } });
 }
-
-function stop() {
-  // ...
-
-  AI_PLAYER.stopSpeak();
-}
 ```
 
 ## 2. Set up Google STT
 
-- And when talking to AI, voice recognition (STT) uses Google STT, and the client side communicates with the server side through the websocket. The relevant settings are as follows.
+- In this example, when talking to AI, voice recognition(Google STT) is used. The STT communicates with the server through the websocket inside. The settings are as follows.
 
-**2.1. Server socket source**
+**2.1. Set up Server socket**
+
+- Google STT server socket configuration.
 
 ```javascript
 const speech = require("@google-cloud/speech");
@@ -174,9 +174,9 @@ function stopRecognitionStream() {
  * ******/
 ```
 
-**2.2. Client socket source**
+**2.2. Set up Client socket**
 
-- Google STT socket client setup
+- Google STT Client socket configuration.
 
 ```javascript
   // ...
@@ -184,7 +184,6 @@ function stopRecognitionStream() {
   const socket = io("socket server address",{ transports: ["websocket"] });
 
   // ...
-
   function initSocketEvent() {
     socket.on("connect", function (data) {});
 

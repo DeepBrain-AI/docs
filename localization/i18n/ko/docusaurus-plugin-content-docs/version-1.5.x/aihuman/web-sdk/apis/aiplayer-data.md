@@ -27,7 +27,7 @@ sidebar_position: 1
 ## 3. AIGesture
 
 | Param               | Type      |Description                                     |
----------------------------------------------------------------------------------- |
+| --------------------|-----------|----------------------------------------------- |
 | `json`              | `Object`  | AIClipset json object used for GesturePlay
 | `json.enableSpeech` | `Boolean` | A boolean indicating whether speech can be performed simultaneously to the gesture
 | `json.gst`          | `String`  | Gesture's name
@@ -69,4 +69,4 @@ sidebar_position: 1
 ## 7.1. AIEventType
 | Param               | Type              | Description                            |
 | ------------------- | ------------------| -------------------------------------- |
-| `type`              | `Number`          | AIEventType( `RES_LOAD_STARTED: 0`, `RES_LOAD_COMPLETED: 1`, `AICLIPSET_PLAY_PREPARE_STARTED: 2`, `AICLIPSET_PLAY_PREPARE_COMPLETED: 3`, `AICLIPSET_PRELOAD_STARTED: 4`, `AICLIPSET_PRELOAD_COMPLETED: 5`, `AICLIPSET_PRELOAD_FAILED: 6`, `AICLIPSET_PLAY_STARTED: 7`, `AICLIPSET_PLAY_COMPLETED: 8`, `AICLIPSET_PLAY_FAILED: 9`, `AI_CONNECTED: 10`, `AI_DISCONNECTED: 11`, `AIPLAYER_STATE_CHANGED: 14`, `UNKNOWN: -1`,)
+| `type`              | `Number`          | AIEventType( `RES_LOAD_STARTED: 0`, `RES_LOAD_COMPLETED: 1`, `AICLIPSET_PLAY_PREPARE_STARTED: 2`, `AICLIPSET_PLAY_PREPARE_COMPLETED: 3`, `AICLIPSET_PRELOAD_STARTED: 4`, `AICLIPSET_PRELOAD_COMPLETED: 5`, `AICLIPSET_PRELOAD_FAILED: 6`, `AICLIPSET_PLAY_STARTED: 7`, `AICLIPSET_PLAY_COMPLETED: 8`, `AICLIPSET_PLAY_FAILED: 9`, `AI_CONNECTED: 10`, `AI_DISCONNECTED: 11`, `AICLIPSET_PLAY_BUFFERING: 12`, `AICLIPSET_RESTART_FROM_BUFFERING: 13`, `AIPLAYER_STATE_CHANGED: 14`, `AI_RECONNECT_ATTEMPT: 15`, `AI_RECONNECT_FAILED: 16`, `UNKNOWN: -1`,)

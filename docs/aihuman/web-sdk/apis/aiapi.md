@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# AIPlayer API Method
+# AIPlayer rest API
 
 ## 1 AIPlayer.generateToken(json)
 
@@ -42,10 +42,22 @@ Get a list of available AI models
   | -----------------| ----------------- | -------------------------- |
   | `return`         | `Object`          | getAIList return
   | `return.succeed` | `Boolean`         | True: Success, False: Fail 
-  | `return.ai`      | `Array<AIModel/>` | AI Model List
+  | `return.ai`      | `Array<AIModel>` | AI Model List
 
 - Example
 
 ```javascript
   const result = await AI_PLAYER.getAIList();
+```
+
+## 3. AIPlayer.getSampleTextList()
+
+Gets the sample text list of AI's default language or set voice language
+
+- Return Parameter: `Array<String>`
+
+- Examples
+
+```javascript
+  const texts = await AI_PLAYER.getSampleTextList();
 ```
