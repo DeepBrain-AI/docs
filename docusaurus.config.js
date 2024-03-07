@@ -59,13 +59,17 @@ const config = {
           includeCurrentVersion: false,
           lastVersion: '1.5.x',
           versions: {
+            '1.3.x': {
+              label: '1.3.x',
+              path: '1.3.x',
+            },
             '1.4.x': {
               label: '1.4.x',
               path: '1.4.x',
             },
-            '1.3.x': {
-              label: '1.3.x',
-              path: '1.3.x',
+            '1.5.x': {
+              label: 'Latest',
+              path: '/',
             },
           },
         },
