@@ -4,12 +4,15 @@ sidebar_position: 1
 
 # 프로젝트 셋업하기
 
-**0. HW/SW 사양**
-- 100Mbps 이상인 네트워크 
-- PC 경우 i5 CPU 이상/4G RAM 이상
-- Android 경우 CPU S660 이상 또는 그에 준하는 성능/4G RAM 이상 (갤럭시탭 A7 경우 원활하지 않음)
-- iOS 경우 iOS6S 이상
-- 지원 브라우저 : Chrome(109 이상), Safari (16 이상)
+**0. AI Human SDK (Web) 시스템 요구사항**
+
+|                    | 요구 사항                        |
+|--------------------|----------------------------------|
+| 네트워크 환경     | 100Mbps 이상                     |
+| PC                 | CPU i5 7세대 이상 또는 그에 준하는 성능<br/>RAM 4GB 이상       |
+| Android           | CPU S660 이상 또는 그에 준하는 성능<br/>RAM 4GB 이상<br/>(갤럭시 FE 혹은 A 시리즈의 경우 원활하지 않음) |
+| iOS                | iPhone 6S 이상                   |
+| 브라우저          | Chrome 109 이상<br/>Safari 16 이상 |
 
 **1. SDK 추가하기**
 
