@@ -13,10 +13,14 @@ When AIPlayer is created and `init({...})` function is called, it starts loading
 After calling the `init` method, the listener's `onAIPlayerEvent(aiEvent)` method will be called with AIEvent. The AIEvent.type indicated which event are occured(Check below list). You can also implement loading progress with `onAIPlayerResLoadingProgressed({loading})` while loading. (Full list is [here](../apis/aiplayer-data#7-aievent))
 
 - AIEventType.AIPLAYER_STATE_CHANGED : when AIPlayer's state changed. (Check `AIPlayerState` and getState() method)
-- AIEventType.RES_LOAD_STARTED : when loading starts
-- AIEventType.AI_CONNECTED : when ai is connected and able to send or preload AIClipSet to speak.
-- AIEventType.AI_DISCONNECTED : when ai is disconnected from the system and not able to send or preload
-- AIEventType.RES_LOAD_COMPLETED : when loading and setup finished and every thing is ready.
+- AIEventType.RES_LOAD_STARTED : when the resource loading starts
+- AIEventType.AI_CONNECTED : when the AI is connected to the service
+- AIEventType.AI_DISCONNECTED : when ai is disconnected from the service and not able to `send` or `preload`
+- AIEventType.RES_LOAD_COMPLETED : when the resource loading completes
+- AIEventType.AI_RECONNECT_ATTEMPT : when the AI is reconnecting to the service (after disconnected)
+- AIEventType.AI_RECONNECT_FAILED : when the reconnect try has failed. should call AIPlayer.reconnect(...) to try again.
+
+When you monitor the AIEventType.AIPLAYER_STATE_CHANGED event above, you are able to check when the AIPlayer’s state changes from AIPlayerState.INITIALIZE to AIPlayerState.IDLE and this means the initialization completes so that you can start send or preload. (Please check out the SDK sample)
 
 If there is any problem during this process, the `onAIPlayerErrorV2(aiError)` method is called. For example, the expiration of the authentication token could be an example. An appropriate action is required depending on the situation. The aiError.code values can be categorized by range. Check the sample code below.
 
@@ -27,14 +31,21 @@ If there is any problem during this process, the `onAIPlayerErrorV2(aiError)` me
   **ex) 1402 error (token expired): Token refresh required -> `generateToken({ appId, token })` method again**
 
 ```javascript
+let curAIState = AIPlayerState.NONE
 AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
     // TODO: event handling 
-
-    //example
+    let typeName = ""
     switch (aiEvent.type) {
       case AIEventType.AIPLAYER_STATE_CHANGED:
-        console.log("AI AIPLAYER_STATE_CHANGED:", aiEvent);
-        onAIStateChanged()
+        typeName = 'AIPLAYER_STATE_CHANGED';
+        let newAIState = AI_PLAYER.getState()
+        if (curAIState == AIPlayerState.INITIALIZE && newAIState == AIPlayerState.IDLE) {
+          $("#aiList").removeAttr("disabled");
+          $("#AIPlayerStateText").text("AI initialization completed.");
+
+          console.log('AI initialization completed.')
+        }
+        curAIState = newAIState
         break;
       case AIEventType.AI_CONNECTED:
         console.log("AI AI_CONNECTED :", aiEvent);
