@@ -1,10 +1,10 @@
 ---
-sidebar_position: 15
+sidebar_position: 20
 ---
 
 # Modify subtitles of existing project
 
-Modify the subtitles of an existing project. The new subtitles contents are provided as an array. Each element in the array replaces the subtitle clips of each scene one after the other within the video project. If the length of the provided array is larger than the total number of subtitle clips, the scenes are be duplicated starting from the first one with modified subtitles and concatenated to the video project. The modified project is exported promptly.
+Modify the subtitles of an existing project. The new subtitle contents are provided as an array. Each element in the array replaces subtitle clips of each scene one after the other within the video project. If the length of the provided array is larger than the total number of subtitle clips in the existing video, the scenes are be duplicated starting from the first one with modified subtitles and concatenated to the video project. You can see & edit modified video at [AI Studio by Deepbrain AI](https://app.deepbrain.io).
 
 <br/>
 
@@ -23,7 +23,6 @@ http://app.deepbrain.io/api/odin/balder/project/modify_subtitles
 |projectId|Unique ObjectId of the video project|String|true|-|
 |update|Video project update contents|String|true|-|
 |update.values|Array containing new subtitles|Array(String)|true|-|
-|[webhookUrl](../reference/webhook)|Url address where the synthesis result should be sent.|String|false|-|
 
 <br/>
 

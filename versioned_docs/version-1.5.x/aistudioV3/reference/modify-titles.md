@@ -1,17 +1,17 @@
 ---
-sidebar_position: 19
+sidebar_position: 21
 ---
 
-# Modify scripts of existing project
+# Modify titles of existing project
 
-Modify the scripts of an existing project. The new script contents are provided as an array. Each element in the array replaces the script of each scene within the video project. If the length of the provided array is larger than the total number of scenes, the scenes are be duplicated starting from the first one with modified scripts and concatenated to the video project. You can see & edit modified video at [AI Studio by Deepbrain AI](https://app.deepbrain.io).
+Modify the title of each scene within an existing project. The new title contents are provided as an array. Each element in the array replaces the title clip of each scene one after the other within the video project. If the length of the provided array is larger than the total number of title clips in the existing video, the scenes are be duplicated starting from the first one with modified titles and concatenated to the video project. You can see & edit modified video at [AI Studio by Deepbrain AI](https://app.deepbrain.io).
 
 <br/>
 
 ## 1. API endpoint
 
 ```http
-http://app.deepbrain.io/api/odin/balder/project/modify_scripts
+http://app.deepbrain.io/api/odin/balder/project/modify_titles
 ```
 
 <br/>
@@ -22,7 +22,7 @@ http://app.deepbrain.io/api/odin/balder/project/modify_scripts
 |:---|:---|:---|:---|:---|
 |projectId|Unique ObjectId of the video project|String|true|-|
 |update|Video project update contents|String|true|-|
-|update.values|Array containing new scripts|Array(String)|true|-|
+|update.values|Array containing new titles|Array(String)|true|-|
 
 <br/>
 
@@ -44,7 +44,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```js
-curl http://app.deepbrain.io/api/odin/balder/project/modify_scripts  \
+curl http://app.deepbrain.io/api/odin/balder/project/modify_titles  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -52,9 +52,9 @@ curl http://app.deepbrain.io/api/odin/balder/project/modify_scripts  \
     "projectId":"65fa6b07dca2e367461a2925",
     "update": { 
         "values": [
-            "This is the sample modified script for scene one",
-            "This is the sample modified script for scene two",
-            "This is the sample modified script for scene three"
+            "This is the first modified title sample",
+            "This is the second modified title sample",
+            "This is the third modified title sample"
         ]
     }
     }'
@@ -68,14 +68,14 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.post('http://app.deepbrain.io/api/odin/balder/project/modify_scripts', 
+axios.post('http://app.deepbrain.io/api/odin/balder/project/modify_titles', 
   {
     "projectId":"65fa6b07dca2e367461a2925",
     "update": { 
         "values": [
-            "This is the sample modified script for scene one",
-            "This is the sample modified script for scene two",
-            "This is the sample modified script for scene three"
+            "This is the first modified title sample",
+            "This is the second modified title sample",
+            "This is the third modified title sample"
         ]
     }
   }, 
@@ -101,14 +101,14 @@ axios.post('http://app.deepbrain.io/api/odin/balder/project/modify_scripts',
 import requests
 import json
 
-url = "http://app.deepbrain.io/api/odin/balder/project/modify_scripts"
+url = "http://app.deepbrain.io/api/odin/balder/project/modify_titles"
 body = {
     "projectId":"65fa6b07dca2e367461a2925",
     "update": { 
         "values": [
-            "This is the sample modified script for scene one",
-            "This is the sample modified script for scene two",
-            "This is the sample modified script for scene three"
+            "This is the first modified title sample",
+            "This is the second modified title sample",
+            "This is the third modified title sample"
         ]
     }
 }

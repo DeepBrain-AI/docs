@@ -1,10 +1,10 @@
 ---
-sidebar_position: 15
+sidebar_position: 17
 ---
 
 # Export simple video
 
-Create and export simple chroma-key video. Users can select model to be used and the script spoken by the model within the video.
+Create a simple chroma-key video. Users can select model to be used and the script spoken by the model within the video. The created video must be exported to be available for download. You can see & edit created video at [AI Studio by Deepbrain AI](https://app.deepbrain.io).
 
 <br/>
 
@@ -22,7 +22,6 @@ http://app.deepbrain.io/api/odin/balder/template/create_simple
 |:---|:---|:---|:---|:---|
 |model|Unique ObjectId of the ai model present in the video|String|true|-|
 |text|Script of the video|String|true|-|
-|[webhookUrl](../reference/webhook)|Url address where the synthesis result should be sent.|String|false|-|
 
 <br/>
 

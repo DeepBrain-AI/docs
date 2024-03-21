@@ -1,29 +1,27 @@
 ---
-sidebar_position: 15
+sidebar_position: 18
 ---
 
-# Template-based export by changing title
+# Export existing project
 
-Create a new video project by modifying title of a pre-setted project information (i.e. templates). The created video project is exported promptly.
+Export existing video project. Exported project will be ready for download eventually. This API endpoint is intended to send export request to the backend server of the AI Studio backend server. To retrieve its download url, use the [check-url endpoint](../reference/check-url.md) or the [project-list endpoint](../reference/project-list.md). Video export may take up to 10 minutes depend on its data size (e.g. number of scenes).
 
 <br/>
 
 ## 1. API endpoint
 
 ```http
-http://app.deepbrain.io/api/odin/balder/template/modify_title
+http://app.deepbrain.io/api/odin/balder/project/export
 ```
 
 <br/>
 
-## 2. Request parameter
+## 2. Request parameters
 
 |key|desc|type|required|default|
 |:---|:---|:---|:---|:---|
-|templateId|Unique ObjectId of the template to be used|String|true|-|
-|update|Video project update contents|String|true|-|
-|update.title|New title of the video project|String|true|-|
-|[webhookUrl](../reference/webhook)|Url address where the synthesis result should be sent.|String|false|-|
+|projectId|Unique ObjectId of the video project to be exported|String|true|-|
+|[webhookUrl](../reference/webhook)|Url address where the export result should be sent.|String|false|-|
 
 <br/>
 
@@ -45,16 +43,13 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```js
-curl http://app.deepbrain.io/api/odin/balder/template/modify_title  \
+curl http://app.deepbrain.io/api/odin/balder/project/export  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
 -d '{
     "projectId":"65fa6b07dca2e367461a2925",
-    "update": { 
-        "title" : "This is the new title"
-    }
-    }'
+  }, '
 ```
 
 </TabItem>
@@ -65,12 +60,9 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.post('http://app.deepbrain.io/api/odin/balder/template/modify_title', 
+axios.post('http://app.deepbrain.io/api/odin/balder/project/export', 
   {
     "projectId":"65fa6b07dca2e367461a2925",
-    "update": { 
-        "title" : "This is the new title"
-    }
   }, 
   {
     headers: {
@@ -94,13 +86,10 @@ axios.post('http://app.deepbrain.io/api/odin/balder/template/modify_title',
 import requests
 import json
 
-url = "http://app.deepbrain.io/api/odin/balder/template/modify_title"
+url = "http://app.deepbrain.io/api/odin/balder/project/export"
 body = {
     "projectId":"65fa6b07dca2e367461a2925",
-    "update": { 
-        "title" : "This is the new title"
-    }
-}
+  }, 
 headers = {
   "Content-Type": "application/json",
   "Authorization": ${API TOKEN}
