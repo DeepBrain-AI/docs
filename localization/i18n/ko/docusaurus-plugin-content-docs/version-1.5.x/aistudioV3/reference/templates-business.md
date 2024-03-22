@@ -21,7 +21,7 @@ http://app.deepbrain.io/api/odin/balder/dropdown/templates_business
 |key|desc|type|
 |:---|:---|:---|
 |id|AI 모델의 고유 ObjectId|String|
-|name|템플릿의 이름||
+|name|템플릿의 이름|String|
 
 <br/>
 

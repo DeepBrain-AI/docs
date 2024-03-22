@@ -2,7 +2,7 @@
 sidebar_position: 16
 ---
 
-# Template-based export by changing title
+# Create project from template
 
 Create a new video project by modifying title of a pre-setted project information (i.e. templates). The created video must be exported to be available for download. You can see & edit created video at [AI Studio by Deepbrain AI](https://app.deepbrain.io).
 

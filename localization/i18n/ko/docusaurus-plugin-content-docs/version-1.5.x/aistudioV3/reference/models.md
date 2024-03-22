@@ -21,7 +21,7 @@ http://app.deepbrain.io/api/odin/balder/dropdown/models
 |key|desc|type|
 |:---|:---|:---|
 |id|AI 모델의 고유 식별자|String|
-|label|AI 모델의 사용자 친화적 레이블||
+|label|AI 모델의 사용자 친화적 레이블|String|
 
 <br/>
 

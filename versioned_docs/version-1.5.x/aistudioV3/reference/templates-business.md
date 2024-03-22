@@ -21,7 +21,7 @@ http://app.deepbrain.io/api/odin/balder/dropdown/templates_business
 |key|desc|type|
 |:---|:---|:---|
 |id|Unique ObjectId of the AI model| String|
-|name|Name of the template||
+|name|Name of the template|String|
 
 <br/>
 

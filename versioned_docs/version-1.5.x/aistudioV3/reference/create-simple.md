@@ -2,7 +2,7 @@
 sidebar_position: 17
 ---
 
-# Export simple video
+# Create simple video
 
 Create a simple chroma-key video. Users can select model to be used and the script spoken by the model within the video. The created video must be exported to be available for download. You can see & edit created video at [AI Studio by Deepbrain AI](https://app.deepbrain.io).
 

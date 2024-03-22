@@ -21,7 +21,7 @@ http://app.deepbrain.io/api/odin/balder/dropdown/models
 |key|desc|type|
 |:---|:---|:---|
 |id|Unique identifier of the AI model| String|
-|label|User-friendly label of the AI model||
+|label|User-friendly label of the AI model|String|
 
 <br/>
 
