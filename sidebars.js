@@ -89,7 +89,7 @@ const sidebars = {
         'aistudioV3/reference/simple-audio',
         'aistudioV3/reference/webhook',
         'aistudioV3/reference/clips',
-        'aistudioV3/reference/model-list',
+        'aistudioV3/reference/model-list'
       ],
     },
   ],

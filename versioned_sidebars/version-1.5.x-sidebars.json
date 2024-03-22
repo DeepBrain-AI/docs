@@ -60,7 +60,22 @@
         "aistudioV3/reference/simple-audio",
         "aistudioV3/reference/webhook",
         "aistudioV3/reference/clips",
-        "aistudioV3/reference/model-list"
+        "aistudioV3/reference/model-list",
+
+        "aistudioV3/reference/auth-confirm",
+
+        "aistudioV3/reference/project-list",
+        "aistudioV3/reference/models",
+        "aistudioV3/reference/templates-business",
+
+        "aistudioV3/reference/check-url",
+        "aistudioV3/reference/create-from-template",
+        "aistudioV3/reference/create-simple",
+        "aistudioV3/reference/export-existing-project",
+
+        "aistudioV3/reference/modify-scripts",
+        "aistudioV3/reference/modify-subtitles",
+        "aistudioV3/reference/modify-titles"
       ]
     }
   ],

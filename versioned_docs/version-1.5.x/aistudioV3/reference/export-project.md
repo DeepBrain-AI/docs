@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Exporting projects
 
-Exporting projects describes how to synthesize new videos by sending api requests in JSON format.
+Exporting projects describes how to synthesize new videos by sending api requests in JSON format. You can see & edit exported video at [AI Studio by Deepbrain AI](https://app.deepbrain.io).
 
 <br/>
 
