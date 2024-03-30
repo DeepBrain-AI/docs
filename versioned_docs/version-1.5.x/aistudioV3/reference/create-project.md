@@ -2,9 +2,9 @@
 sidebar_position: 7
 ---
 
-# 프로젝트 생성 후 내보내기
+# Create project and export
 
-프로젝트 내보내기는 JSON 형식으로 API 요청을 전송하여 새로운 이미지를 합성하는 방법을 다룹니다.
+Exporting projects describes how to synthesize new videos by sending api requests in JSON format. You can see & edit exported video at [AI Studio by Deepbrain AI](https://app.deepbrain.io).
 
 <br/>
 
@@ -20,23 +20,23 @@ https://app.deepbrain.io/api/odin/v3/editor/project
 
 |key|desc|type|required|default|
 |:---|:---|:---|:---|:---|
-|name|프로젝트 이름|String|false|Default Template|
-|orientation|프로젝트 형태 (가로 / 세로)|String|false|landscape|
-|dictionary|사용자 추가 발화 데이터|Json|false|-|
-|scenes|각 장면별 정보|Array(json)|true|-|
-|scenes[].sceneIdx|해당 장면의 순번|Int|true|-|
-|scenes[].background|장면별 배경화면 정보|Json|true|-|
-|scenes[].clips|모델, 텍스트, 이미지 등 추가할 클립들의 정보|Array(json)|true|-|
-|scenes[].clips[].scaleX|클립의 크기 배율을 나타냅니다. 높이와 너비 입력을 기준으로 각각 x와 y의 크기 배율을 나타냅니다.|Float|false|1|
-|scenes[].clips[].scaleY|클립의 크기 배율을 나타냅니다. 높이와 너비 입력을 기준으로 각각 x와 y의 크기 배율을 나타냅니다.|Float|false|1|
-|scenes[].clips[].height|클립의 높이를 나타냅니다.|Float|true|-|
-|scenes[].clips[].width|클립의 너비를 나타냅니다.|Float|true|-|
-|scenes[].clips[].left|장면의 좌측을 기준으로 클립의 위치를 나타냅니다.|Float|true|-|
-|scenes[].clips[].top|장면의 상단을 기준으로 클립의 위치를 나타냅니다.|Float|true|-|
-|scenes[].clips[].layer|클립들의 정렬 순서 (번호가 높을수록 상단에 노출)|Int|true|-|
-|scenes[].clips[].id|클립의 Id|String|true|-|
-|scenes[].clips[].type|추가할 클립의 종류  [Learn more](./clips)|String enum (aiModel, shape, image, textImage, videoImage, audio)|true|-|
-|[webhookUrl](../reference/webhook)|합성 결과를 보내줄 주소|String|false|-|
+|name|Project name|String|false|Default Template|
+|orientation|Project orientation|String|false|landscape|
+|dictionary|User additional speech learning data|Json|false|-|
+|scenes|Scene data|Array(json)|true|-|
+|scenes[].sceneIdx|Sequence of the scene|Int|true|-|
+|scenes[].background|Background image information.|Json|true|-|
+|scenes[].clips|Fields to add clips such as text, images, and background images.|Array(json)|true|-|
+|scenes[].clips[].scaleX|Represents the size magnification of the clip. Represents the size magnification of x and y, respectively, based on the height and width input.|Float|false|1|
+|scenes[].clips[].scaleY|Represents the size magnification of the clip. Represents the size magnification of x and y, respectively, based on the height and width input.|Float|false|1|
+|scenes[].clips[].height|The height of the clip.|Float|true|-|
+|scenes[].clips[].width|The width of the clip.|Float|true|-|
+|scenes[].clips[].left|The position of the clip relative to the left side of the scene.|Float|true|-|
+|scenes[].clips[].top|The position of the clip based on the top of the scene.|Float|true|-|
+|scenes[].clips[].layer|Alignment order of clips (the higher the number, the more exposed to the top)|Int|true|-|
+|scenes[].clips[].id|ID of the clip|String|true|-|
+|scenes[].clips[].type|Types of clips.  [Learn more](./clips)|String enum (aiModel, shape, image, textImage, videoImage, audio)|true|-|
+|[webhookUrl](../reference/webhook)|Url address where the synthesis result should be sent.|String|false|-|
 
 <br/>
 
@@ -44,7 +44,7 @@ https://app.deepbrain.io/api/odin/v3/editor/project
 
 |key|desc|type|
 |:---|:---|:---|
-|projectId|합성 요청된 프로젝트의 ID|String|
+|projectId|Project Id - Fetching the Chroma-key video data that has been exported.|String|
 
 <br/>
 

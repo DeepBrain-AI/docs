@@ -1,5 +1,5 @@
 ---
-sidebar_position: 13
+sidebar_position: 15
 ---
 
 # 모델 조회
@@ -11,7 +11,7 @@ sidebar_position: 13
 ## 1. API Endpoint
 
 ```http
-http://app.deepbrain.io/api/odin/balder/dropdown/models
+https://app.deepbrain.io/api/odin/balder/dropdown/models
 ```
 
 <br/>
@@ -34,8 +34,8 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="curl" label="cURL">
 
-```js
-curl http://app.deepbrain.io/api/odin/balder/dropdown/models  \
+```bash
+curl https://app.deepbrain.io/api/odin/balder/dropdown/models  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X GET 
@@ -49,7 +49,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.get('http://app.deepbrain.io/api/odin/balder/dropdown/models', 
+axios.get('https://app.deepbrain.io/api/odin/balder/dropdown/models', 
   {
     headers: {
       'Authorization': ${token},
@@ -72,7 +72,7 @@ axios.get('http://app.deepbrain.io/api/odin/balder/dropdown/models',
 import requests
 import json
 
-url = "http://app.deepbrain.io/api/odin/balder/dropdown/models"
+url = "https://app.deepbrain.io/api/odin/balder/dropdown/models"
 
 headers = {
   "Content-Type": "application/json",

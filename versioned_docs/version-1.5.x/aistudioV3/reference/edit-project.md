@@ -2,9 +2,9 @@
 sidebar_position: 5
 ---
 
-# 템플릿 기반 프로젝트 내보내기
+# Edit project and export
 
-템플릿 기반 프로젝트 내보내기는 기존에 존재하는 프로젝트 정보를 가져와 일부 데이터(대사, 이미지 등)만 변경하여 새로운 이미지를 합성하는 방법을 다룹니다.
+Edit existing project and export the video.
 
 <br/>
 
@@ -20,13 +20,13 @@ https://app.deepbrain.io/api/odin/v3/editor/project/${key}
 
 |key|desc|type|required|default|
 |:---|:---|:---|:---|:---|
-|updates|프로젝트 속 변경 내용|Json|true|-|
-|updates.backgroundAudio|프로젝트 전체 오디오 정보|Json|false|-|
-|updates.value|프로젝트 속 클립별 변경 내용|Array(json)|true|-|
-|updates.value[].sceneIdx|변경할 내용이 있는 장면의 Idx|Int|true|-|
-|updates.value[].type|변경할 내용이 있는 요소의 타입|String enum (aiModel, shape, image, textImage, videoImage, audio, background)|true|-|
-|updates.value[].values|변경 내용|Json|true|-|
-|[webhookUrl](../reference/webhook)|합성 결과를 보내줄 주소|String|false|-|
+|updates|Content to change in the existing template.|Json|true|-|
+|updates.backgroundAudio|Project Background Audio information.|Json|false|-|
+|updates.value|Changes by clip in the project.|Array(json)|true|-|
+|updates.value[].sceneIdx|The index of the scene to be changed|Int|true|-|
+|updates.value[].type|Type of clip to change|String enum<br/>(aiModel, shape, image, textImage, videoImage, audio, background)|true|-|
+|updates.value[].values|Content to change.|Json|true|-|
+|[webhookUrl](../reference/webhook)|Url address where the synthesis result should be sent.|String|false|-|
 
 <br/>
 
@@ -34,7 +34,8 @@ https://app.deepbrain.io/api/odin/v3/editor/project/${key}
 
 |key|desc|type|
 |:---|:---|:---|
-|projectId|합성 요청된 프로젝트의 ID|String|
+|projectId|Project Id - Fetching the Chroma-key video data that has been exported.|String|
+
 
 <br/>
 

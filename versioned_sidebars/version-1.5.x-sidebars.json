@@ -52,30 +52,32 @@
       "label": "API Reference",
       "items": [
         "aistudioV3/reference/auth",
-        "aistudioV3/reference/export-project",
+        "aistudioV3/reference/auth-confirm",
         "aistudioV3/reference/progress",
+
         "aistudioV3/reference/get-project",
-        "aistudioV3/reference/export-template",
-        "aistudioV3/reference/simple-video",
-        "aistudioV3/reference/simple-audio",
-        "aistudioV3/reference/webhook",
-        "aistudioV3/reference/clips",
+        "aistudioV3/reference/edit-project",
+
+        "aistudioV3/reference/get-projects",
         "aistudioV3/reference/create-project",
 
-        "aistudioV3/reference/auth-confirm",
+        "aistudioV3/reference/export-project",
+        "aistudioV3/reference/modify-project",
 
-        "aistudioV3/reference/project-list",
+        "aistudioV3/reference/create-from-template",
+        "aistudioV3/reference/create-from-template-and-modify",
+
+        "aistudioV3/reference/simple-video",
+        "aistudioV3/reference/simple-audio",
+
         "aistudioV3/reference/models",
         "aistudioV3/reference/templates-business",
 
-        "aistudioV3/reference/check-url",
-        "aistudioV3/reference/create-from-template",
-        "aistudioV3/reference/create-simple",
-        "aistudioV3/reference/export-existing-project",
+        "aistudioV3/reference/webhook",
+        "aistudioV3/reference/clips"
+        
 
-        "aistudioV3/reference/modify-scripts",
-        "aistudioV3/reference/modify-subtitles",
-        "aistudioV3/reference/modify-titles"
+       
       ]
     }
   ],

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 12
 ---
 
 # Export Chroma key Video
@@ -25,6 +25,7 @@ https://app.deepbrain.io/api/odin/v3/simple/video
 |model|Ther AI Model to be used.|String|true|-|
 |clothes|Clothes that the AI Model will wear.|String|true|-|
 |ttsType|External TTS information that is not the default voice of the model.|Json|false|-|
+|isExport|Whether this project will be exported|Boolean|false|false|
 |[webhookUrl](../reference/webhook)|Url address where the synthesis result should be sent.|String|false|-|
 
 
@@ -57,6 +58,7 @@ curl https://app.deepbrain.io/api/odin/v3/simple/video  \
       "text": "Sample Script",
       "model": "M000045058",
       "clothes": "BG00002320",
+      "isExport" : true,
       "webhookUrl": ${webhook_delivery_address}
     }'
 ```
@@ -75,6 +77,7 @@ axios.post('https://app.deepbrain.io/api/odin/v3/simple/video',
     "text": "Sample Script",
     "model": "M000045058",
     "clothes": "BG00002320",
+    "isExport" : true,
     "webhookUrl": `${customWebhookUrl}`
   }, 
   {
@@ -105,6 +108,7 @@ body = {
   "text": "Sample Script",
   "model": "M000045058",
   "clothes": "BG00002320",
+  "isExport" : true,
   "webhookUrl": ${webhook_delivery_address}
 }
     

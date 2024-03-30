@@ -1,59 +1,49 @@
 ---
-sidebar_position: 16
+sidebar_position: 10
 ---
 
-# 템플릿 기반 비디오 생성
-
-사전 설정된 프로젝트 정보(예: 템플릿)의 제목을 수정하여 새 비디오 프로젝트를 생성합니다. 생성된 비디오는 다운로드할 수 있도록 내보내야 합니다. [Deepbrain AI의 AI Studio](https://app.deepbrain.io)에서 생성된 비디오를 보고 편집할 수 있습니다.
-
+# 템플릿에서 프로젝트 생성
+템플릿에서 프로젝트를 생성하는 것은 기존 템플릿을 사용하여 새로운 비디오 프로젝트를 생성하는 방법을 다룹니다. (비디오 합성은 포함하지 않습니다.)
 <br/>
 
-## 1. API Endpoint
-
+## 1. API endpoint
 ```http
-http://app.deepbrain.io/api/odin/balder/template/modify_title
+https://app.deepbrain.io/api/odin/v3/editor/template/${templateId}
 ```
-
 <br/>
 
-## 2. Request Parameters
-
+## 2. Request parameters
 |key|desc|type|required|default|
 |:---|:---|:---|:---|:---|
 |templateId|사용할 템플릿의 고유 ObjectId|String|true|-|
-|update|비디오 프로젝트 업데이트 내용|String|true|-|
-|update.name|새 비디오 프로젝트의 새 제목. 이 필드가 정의되지 않은 경우 생성된 비디오는 사용된 템플릿의 이름을 따서 명명됩니다.|String|true|-|
-
+|aiName|변경할 모델의 ID|String|false|-|
+|clothId|변경할 모델의 복장 ID|String|false|-|
+|name|생성된 프로젝트의 이름|String|false|-|
 <br/>
 
-## 3. Response Parameters
-
+## 3. Response parameters
 |key|desc|type|
 |:---|:---|:---|
-|projectId|프로젝트 ID - 내보내기된 비디오 프로젝트 데이터를 가져옵니다.|String|
-
+|projectId|생성된 프로젝트의 ID|String|
 <br/>
 
-
 ## 4. Sample Request
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
 <TabItem value="curl" label="cURL">
 
-```js
-curl http://app.deepbrain.io/api/odin/balder/template/modify_title  \
+```bash
+curl https://app.deepbrain.io/api/odin/v3/editor/template/${templateId} \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
--X POST \
+-G \
 -d '{
-    "projectId":"65fa6b07dca2e367461a2925",
-    "update": { 
-        "title" : "This is the new title"
-    }
-    }'
+  "model": "M000045058",
+  "clothes": "BG00002320",
+  "name" : "새 프로젝트 이름"
+}'
 ```
 
 </TabItem>
@@ -62,22 +52,18 @@ curl http://app.deepbrain.io/api/odin/balder/template/modify_title  \
 ```js
 import axios from "axios";
 const token = ${API KEY};
-const customWebhookUrl = ${webhook_delivery_address};
 
-axios.post('http://app.deepbrain.io/api/odin/balder/template/modify_title', 
-  {
-    "projectId":"65fa6b07dca2e367461a2925",
-    "update": { 
-        "title" : "This is the new title"
-    }
-  }, 
-  {
-    headers: {
-      'Authorization': ${token},
-      'Content-Type': 'application/json'
-    }
-  }
-)
+axios.get('https://app.deepbrain.io/api/odin/v3/editor/template/${templateId}', {
+  headers: {
+    'Authorization': ${token},
+    'Content-Type': 'application/json'
+  },
+  params: {
+    "model": "M000045058",
+    "clothes": "BG00002320",
+    "name" : "새 프로젝트 이름"
+  },
+})
 .then((res) => {
   console.log(res.data);
 })
@@ -93,20 +79,20 @@ axios.post('http://app.deepbrain.io/api/odin/balder/template/modify_title',
 import requests
 import json
 
-url = "http://app.deepbrain.io/api/odin/balder/template/modify_title"
-body = {
-    "projectId":"65fa6b07dca2e367461a2925",
-    "update": { 
-        "title" : "This is the new title"
-    }
+url = "https://app.deepbrain.io/api/odin/v3/editor/template/${templateId}"
+params = {
+  "model": "M000045058",
+  "clothes": "BG00002320",
+  "name" : "새 프로젝트 이름"
 }
 headers = {
   "Content-Type": "application/json",
   "Authorization": ${API TOKEN}
 }
 
-r = requests.post(url, data=json.dumps(body), headers=headers)
+r = requests.get(url, params, headers=headers)
 ```
 
 </TabItem>
 </Tabs>
+```

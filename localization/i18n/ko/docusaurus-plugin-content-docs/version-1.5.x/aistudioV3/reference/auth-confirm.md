@@ -1,5 +1,5 @@
 ---
-sidebar_position: 11
+sidebar_position: 2
 ---
 
 # 인증 확인
@@ -11,7 +11,7 @@ API 키가 유효한지 확인하여 인증 정보를 확인합니다.
 ## 1. API Endpoint
 
 ```http
-https://app.deepbrain.io/api/odin/balder/auth
+https://app.deepbrain.io/api/odin/v3/auth
 ```
 
 <br/>
@@ -20,7 +20,7 @@ https://app.deepbrain.io/api/odin/balder/auth
 
 |key|desc|type|
 |:---|:---|:---|
-|isAuthenticated|API 키의 유효성 여부.|Bool|
+|isAuthenticated|API 키의 유효성 여부.|Boolean|
 
 <br/>
 
@@ -33,7 +33,7 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="curl" label="cURL">
 
-```js
+```bash
 curl https://app.deepbrain.io/api/odin/v3/editor/project  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
@@ -48,7 +48,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.get('https://app.deepbrain.io/api/odin/balder/auth', 
+axios.get('https://app.deepbrain.io/api/odin/v3/auth', 
   {
     headers: {
       'Authorization': ${token},
@@ -71,7 +71,7 @@ axios.get('https://app.deepbrain.io/api/odin/balder/auth',
 import requests
 import json
 
-url = "https://app.deepbrain.io/api/odin/balder/auth"
+url = "https://app.deepbrain.io/api/odin/v3/auth"
 
 headers = {
   "Content-Type": "application/json",
