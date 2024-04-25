@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 12
 ---
 
 # 크로마키 내보내기
@@ -25,6 +25,7 @@ https://app.deepbrain.io/api/odin/v3/simple/video
 |model|사용할 모델의 ID|String|true|-|
 |clothes|모델의 복장 ID|String|true|-|
 |ttsType|모델의 기본 음성이 아닌 외부 TTS 정보|Json|false|-|
+|isExport|이 프로젝트가 내보내질지 여부|Boolean|false|false|
 |[webhookUrl](../reference/webhook)|합성 결과를 보내줄 주소|String|false|-|
 
 
@@ -57,6 +58,7 @@ curl https://app.deepbrain.io/api/odin/v3/simple/video  \
       "text": "Sample Script",
       "model": "M000045058",
       "clothes": "BG00002320",
+      "isExport" : true,
       "webhookUrl": ${webhook_delivery_address}
     }'
 ```
@@ -75,6 +77,7 @@ axios.post('https://app.deepbrain.io/api/odin/v3/simple/video',
     "text": "Sample Script",
     "model": "M000045058",
     "clothes": "BG00002320",
+    "isExport" : true,
     "webhookUrl": `${customWebhookUrl}`
   }, 
   {
@@ -105,6 +108,7 @@ body = {
   "text": "Sample Script",
   "model": "M000045058",
   "clothes": "BG00002320",
+  "isExport" : true,
   "webhookUrl": ${webhook_delivery_address}
 }
     

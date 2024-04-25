@@ -171,4 +171,5 @@ curl https://aistudios.com/api/odin/editor/progress/${key}
 ## 4. 기타 API 문서
 
 [자세한 API 참조 문서](reference/auth)
+
 [간단한 예제 문서](https://github.com/DeepBrain-AI/studio-v3-api-sample)

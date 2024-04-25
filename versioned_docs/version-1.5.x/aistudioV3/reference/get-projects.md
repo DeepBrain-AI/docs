@@ -1,41 +1,33 @@
 ---
-sidebar_position: 15
+sidebar_position: 6
 ---
 
-# Check download url
+# Get projects
+
+Retrieve the list of video projects associated current account that have been already exported. Video project in the list are ready to be downloaded.
 
 <br/>
-
-Check if a selected project is ready for download and retrieve its status along with download url.
 
 ## 1. API endpoint
 
 ```http
-http://app.deepbrain.io/api/odin/balder/check_url/${projectId}
+https://app.deepbrain.io/api/odin/v3/editor/project
 ```
 
 <br/>
 
-## 2. Request parameter
-
-|key|desc|type|required|default|
-|:---|:---|:---|:---|:---|
-|projectId|Id of the video project.|String|true|-|
-
-
-<br/>
-
-## 3. Response parameters
-
+## 2. Response parameters
 |key|desc|type|
 |:---|:---|:---|
-|projectId|Id of the video project.|String|
-|downloadUrl|Download path of the file created. Undefined if the download url does not exist|String|
-|completed|Whether this video is ready for download.|Bool|
+|id|Unique identifier of the video project|String|
+|name|Name of the project|String|
+|state|Export state of the project. This field should be "exported" to be ready for download|String|
+|download_url|Download path of the file created.|String|
 
 <br/>
 
-## 4. Sample Request
+
+## 3. Sample Request
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -44,10 +36,10 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl http://app.deepbrain.io/api/odin/balder/check_url/${projectId}  \
+curl https://app.deepbrain.io/api/odin/v3/editor/project  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
--X GET
+-X GET 
 ```
 
 </TabItem>
@@ -56,8 +48,9 @@ curl http://app.deepbrain.io/api/odin/balder/check_url/${projectId}  \
 ```js
 import axios from "axios";
 const token = ${API KEY};
+const customWebhookUrl = ${webhook_delivery_address};
 
-axios.get('http://app.deepbrain.io/api/odin/balder/check_url/${projectId}', 
+axios.get('https://app.deepbrain.io/api/odin/v3/editor/projects', 
   {
     headers: {
       'Authorization': ${token},
@@ -80,7 +73,8 @@ axios.get('http://app.deepbrain.io/api/odin/balder/check_url/${projectId}',
 import requests
 import json
 
-url = "http://app.deepbrain.io/api/odin/balder/check_url/${projectId}"
+url = "https://app.deepbrain.io/api/odin/v3/editor/projects"
+
 headers = {
   "Content-Type": "application/json",
   "Authorization": ${API TOKEN}

@@ -1,59 +1,49 @@
 ---
-sidebar_position: 16
+sidebar_position: 10
 ---
 
 # Create project from template
-
-Create a new video project by modifying title of a pre-setted project information (i.e. templates). The created video must be exported to be available for download. You can see & edit created video at [AI Studio by Deepbrain AI](https://app.deepbrain.io).
-
+Creating a project from a template covers how to create a new video project using an existing template. (It does not involve video composition.)
 <br/>
 
 ## 1. API endpoint
-
 ```http
-http://app.deepbrain.io/api/odin/balder/template/modify_title
+https://app.deepbrain.io/api/odin/v3/editor/template/${templateId}
 ```
-
 <br/>
 
-## 2. Request parameter
-
+## 2. Request parameters
 |key|desc|type|required|default|
 |:---|:---|:---|:---|:---|
 |templateId|Unique ObjectId of the template to be used|String|true|-|
-|update|Video project update contents|String|true|-|
-|update.name|New title of the new video project. If this field is not defined, the created video is named after the template used.|String|true|-|
-
+|aiName|ID of the model to be changed|String|false|-|
+|clothId|Clothing ID of the model to be changed|String|false|-|
+|name|Name of the created project|String|false|-|
 <br/>
 
 ## 3. Response parameters
-
 |key|desc|type|
 |:---|:---|:---|
-|projectId|Project Id - Fetching the video project data that has been exported.|String|
-
+|projectId|ID of the created project|String|
 <br/>
 
-
 ## 4. Sample Request
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
 <TabItem value="curl" label="cURL">
 
-```js
-curl http://app.deepbrain.io/api/odin/balder/template/modify_title  \
+```bash
+curl https://app.deepbrain.io/api/odin/v3/editor/template/${templateId} \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
--X POST \
--d '{
-    "projectId":"65fa6b07dca2e367461a2925",
-    "update": { 
-        "title" : "This is the new title"
-    }
-    }'
+-G \
+-d '{ 
+  "model": "M000045058", 
+  "clothes": "BG00002320",
+  "name" : "New project name" 
+  }'
 ```
 
 </TabItem>
@@ -61,23 +51,20 @@ curl http://app.deepbrain.io/api/odin/balder/template/modify_title  \
 
 ```js
 import axios from "axios";
-const token = ${API KEY};
-const customWebhookUrl = ${webhook_delivery_address};
 
-axios.post('http://app.deepbrain.io/api/odin/balder/template/modify_title', 
-  {
-    "projectId":"65fa6b07dca2e367461a2925",
-    "update": { 
-        "title" : "This is the new title"
-    }
-  }, 
-  {
-    headers: {
-      'Authorization': ${token},
-      'Content-Type': 'application/json'
-    }
-  }
-)
+const token = ${API KEY};
+
+axios.get('https://app.deepbrain.io/api/odin/v3/editor/template/${templateId}', {
+  headers: {
+    'Authorization': ${token},
+    'Content-Type': 'application/json'
+  },
+  params: {
+    "model": "M000045058", 
+    "clothes": "BG00002320",
+    "name" : "New project name" 
+  },
+})
 .then((res) => {
   console.log(res.data);
 })
@@ -93,19 +80,20 @@ axios.post('http://app.deepbrain.io/api/odin/balder/template/modify_title',
 import requests
 import json
 
-url = "http://app.deepbrain.io/api/odin/balder/template/modify_title"
-body = {
-    "projectId":"65fa6b07dca2e367461a2925",
-    "update": { 
-        "title" : "This is the new title"
-    }
-}
-headers = {
-  "Content-Type": "application/json",
-  "Authorization": ${API TOKEN}
+url = "https://app.deepbrain.io/api/odin/v3/editor/template/${templateId}"
+
+params = {
+    "model": "M000045058", 
+    "clothes": "BG00002320",
+    "name" : "New project name" 
 }
 
-r = requests.post(url, data=json.dumps(body), headers=headers)
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": ${API TOKEN}
+}
+
+r = requests.get(url, params, headers=headers)
 ```
 
 </TabItem>

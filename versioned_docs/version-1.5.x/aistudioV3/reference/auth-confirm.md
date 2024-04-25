@@ -1,5 +1,5 @@
 ---
-sidebar_position: 11
+sidebar_position: 2
 ---
 
 # Confirm authentication
@@ -11,7 +11,7 @@ Confirm authentication information by checking if your api key is valid.
 ## 1. API endpoint
 
 ```http
-https://app.deepbrain.io/api/odin/balder/auth
+https://app.deepbrain.io/api/odin/v3/auth
 ```
 
 <br/>
@@ -20,7 +20,7 @@ https://app.deepbrain.io/api/odin/balder/auth
 
 |key|desc|type|
 |:---|:---|:---|
-|isAuthenticated|Whether the API key is valid.|Bool|
+|isAuthenticated|Whether the API key is valid.|Boolean|
 
 <br/>
 
@@ -33,8 +33,8 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="curl" label="cURL">
 
-```js
-curl https://app.deepbrain.io/api/odin/v3/editor/project  \
+```bash
+curl https://app.deepbrain.io/api/odin/v3/auth  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X GET 
@@ -48,7 +48,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.get('https://app.deepbrain.io/api/odin/balder/auth', 
+axios.get('https://app.deepbrain.io/api/odin/v3/auth', 
   {
     headers: {
       'Authorization': ${token},
@@ -71,7 +71,7 @@ axios.get('https://app.deepbrain.io/api/odin/balder/auth',
 import requests
 import json
 
-url = "https://app.deepbrain.io/api/odin/balder/auth"
+url = "https://app.deepbrain.io/api/odin/v3/auth"
 
 headers = {
   "Content-Type": "application/json",

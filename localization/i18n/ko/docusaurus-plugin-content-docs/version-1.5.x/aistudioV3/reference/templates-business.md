@@ -4,14 +4,14 @@ sidebar_position: 14
 
 # 비즈니스 템플릿 조회
 
-비즈니스 목적으로 비디오를 생성하는 데 사용할 수 있는 사전 설정된 프로젝트 정보(예: 템플릿) 목록을 조회합니다.
+비즈니스 목적으로 비디오를 생성하는 데 사용할 수 있는 사전 설정된 프로젝트 정보(템플릿) 목록을 조회합니다.
 
 <br/>
 
 ## 1. API Endpoint
 
 ```http
-http://app.deepbrain.io/api/odin/balder/dropdown/templates_business
+https://app.deepbrain.io/api/odin/balder/dropdown/templates_business
 ```
 
 <br/>
@@ -34,8 +34,8 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="curl" label="cURL">
 
-```js
-curl http://app.deepbrain.io/api/odin/balder/dropdown/templates_business \
+```bash
+curl https://app.deepbrain.io/api/odin/balder/dropdown/templates_business \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X GET 
@@ -49,7 +49,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.get('http://app.deepbrain.io/api/odin/balder/dropdown/templates_business', 
+axios.get('https://app.deepbrain.io/api/odin/balder/dropdown/templates_business', 
   {
     headers: {
       'Authorization': ${token},
@@ -72,7 +72,7 @@ axios.get('http://app.deepbrain.io/api/odin/balder/dropdown/templates_business',
 import requests
 import json
 
-url = "http://app.deepbrain.io/api/odin/balder/dropdown/templates_business"
+url = "https://app.deepbrain.io/api/odin/balder/dropdown/templates_business"
 
 headers = {
   "Content-Type": "application/json",
