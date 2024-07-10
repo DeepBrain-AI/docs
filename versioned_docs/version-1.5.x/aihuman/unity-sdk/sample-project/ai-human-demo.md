@@ -20,69 +20,84 @@ AI Human Demo is a page where you can try out various functionalities of AIPlaye
 - DemoAIHuman.cs
 
 ```csharp
-private void Awake()
-    {             
-        // Start SDK authentication.
-        AIHumanSDKManager.Instance.Authenticate(OnCompleteAuth);
-    }
-     
-    private void OnCompleteAuth(AIAPI.AIList aiList, AIError error)
+private void Start()
+{
+    // Start SDK authentication.
+    AIError authError = AIHumanSDKManager.Instance.Authenticate();
+    if (authError == null)
     {
-        if (error == null)
-        {                     
-            _aiList = aiList;
-
-            string[] aiNames = GetAINames();
-            if (aiNames != null && aiNames.Length > 0)
+        // If authentication is complete, get the available AI List.
+        AIAPI.Instance.GetAIList(AIListType.Model_2D, (aiList, aiError) =>
+        {
+            if (aiError == null)
             {
-                // Set AI of AIPlayer as the first AI on the list.       
-                Init(GetAINames()[0]);
+                _aiList = aiList;
+
+                string[] aiNames = GetAINames();
+                if (aiNames != null && aiNames.Length > 0)
+                {
+                    Init(aiNames[0]);
+                }
+                else
+                {
+                    Debug.LogError(string.Format("{0} {1}", nameof(DemoAIHuman), "There is no AI Model available."));
+                }
             }
             else
             {
-                Debug.LogError(string.Format("{0} {1}", nameof(DemoAIHuman), "There is no AI Model available."));
+                Debug.LogError(string.Format("{0} {1} {2}", nameof(DemoAIHuman), aiError.ErrorCode, aiError.Description));
             }
-        }
-        else
-        {
-            Debug.LogError(string.Format("{0} {1} {2}", nameof(DemoAIHuman), error.ErrorCode, error.Description));
-        }
+        });
     }
+    else
+    {
+        Debug.LogError(string.Format("{0} {1} {2}", nameof(DemoAIHuman), authError.ErrorCode, authError.Description));
+    }
+}
   
-    private void Init(string aiName)
-    {              
-        // Deliver AIPlayerCallback and AIFrameImageProvider to AIPlayer.
-        _aiPlayer.Init(aiName, _aiPlayerCallback, _aiFrameImageProvider);
+private void Init(string aiName)
+{              
+    // Deliver AIPlayerCallback and AIFrameImageProvider to AIPlayer.
+    _aiPlayer.Init(aiName, _aiPlayerCallback, _aiFrameImageProvider);
 
-        // Set and initialize AI data in Dropdown, Slider UI.
-        InitUI();
-    }
+    // Set and initialize AI data in Dropdown, Slider UI.
+    InitUI();
+}
 ```
 
-**Examples of Speak, Preload, Pause, Multi Speak(Randomly), Resume, and Pause.** 
+**Examples of Speak, Preload, Pause, Multi Speak(Randomly), Resume, and Stop.** 
 
 - DemoAIHuman.cs
 
 ```csharp
-    public void OnClickSpeak()
+public void OnClickSpeak()
+{   
+    // AI language, voice settings
+    CustomVoice cv = null;
+    if (_languageDropdown.value == 0)
     {
-        _sendingMessage.Clear();
+        cv = _voiceDropdown.value == 0 ? null : _customVoiceList[_voiceDropdown.value - 1];
+    }
+    else
+    {
+        cv = _customVoiceList[_voiceDropdown.value];
+    }
 
-        // AI language, voice settings
-        CustomVoice cv = null;
-        if (_languageDropdown.value == 0)
-        {
-            cv = _voiceDropdown.value == 0 ? null : _customVoiceList[_voiceDropdown.value - 1];
-        }
-        else
-        {
-            cv = _customVoiceList[_voiceDropdown.value];
-        }
+    _aiPlayer.SetCustomVoice(cv);
 
-        _aiPlayer.SetCustomVoice(cv);
+    AIClipSet clip = null;
+    string speechText = string.Empty;
+    if (_textDropdown.gameObject.activeSelf)
+    {
+        speechText = _textDropdown.value > 0 ? _sampleTextList[_textDropdown.value] : null;
+    }
+    else
+    {
+        speechText = _enterInput.text;
+    }
 
-        AIClipSet clip = null;
-        string speechText = _textDropdown.value > 0 ? _sampleTextList[_textDropdown.value] : null;
+    if (!string.IsNullOrEmpty(speechText) || _gestureDropdown.value > 0)
+    {
         if (_gestureDropdown.value > 0)
         {
             bool gstEnableSpeech = _gestureList[_gestureDropdown.value - 1].EnableSpeech;
@@ -100,155 +115,66 @@ private void Awake()
             clip = AIAPI.CreateClipSet(speechText);
         }
 
-        _sendingMessage.Add(clip);
-
         _aiPlayer.Send(new[] { clip });
-    }
+    }                 
+}
 
-    public void OnClickPause()
-    {
-        _aiPlayer.Pause();
-    }
-
-    public void OnClickResume()
-    {
-        _aiPlayer.Resume();
-    }
-
-    public void OnClickStop()
-    {
-        _aiPlayer.Stop();
-    }
-
-    public void OnClickMultiSpeak()
-    {
-        _sendingMessage.Clear();
-      
-        for (int i = 1; i < _sampleTextList.Count; i++)
-        {
-            if ((Random.Range(0, 100) % _sampleTextList.Count - 1) % 2 == 0)
-            {
-                _sendingMessage.Add(AIAPI.CreateClipSet(_sampleTextList[i]));
-            }
-        }
-        
-        _aiPlayer.Send(_sendingMessage.ToArray());
-    }
-```
-
-**Receiving callback of AI behavior can be implemented through inheritance of AIPlayerCallback class.** 
-
-- DemoPlayerCallback.cs
-
-```csharp
-public class DemoPlayerCallback : AIPlayerCallback
+public void OnClickPause()
 {
-    public override void OnAIPlayerError(AIError error)
-    {       
-    }
+    _aiPlayer.Pause();
+}
 
-    public override void OnAIPlayerResLoadingProgressed(int current, int total)
-    {             
-    }
+public void OnClickResume()
+{
+    _aiPlayer.Resume();
+}
 
-    public override void OnAIPlayerEvent(AIEvent @event)
-    {      
-        switch (@event.EventType)
+public void OnClickStop()
+{
+    _aiPlayer.StopSpeaking();
+}
+
+public void OnClickMultiSpeak()
+{
+    List<AIClipSet> clipSetList = new List<AIClipSet>();
+
+    for (int i = 1; i < _sampleTextList.Count; i++)
+    {
+        if ((Random.Range(0, 100) % _sampleTextList.Count - 1) % 2 == 0)
         {
-            case AIEvent.Type.RES_LOAD_STARTED:
-                {                   
-                    break;
-                }
-            case AIEvent.Type.RES_LOAD_COMPLETED:
-                {                  
-                    break;
-                }
-            case AIEvent.Type.AICLIPSET_PLAY_PREPARE_STARTED:
-                {                   
-                    break;
-                }
-            case AIEvent.Type.AICLIPSET_PLAY_PREPARE_COMPLETED:
-                {                   
-                    break;
-                }            
-            case AIEvent.Type.AICLIPSET_PLAY_STARTED:
-                {                   
-                    break;
-                }
-            case AIEvent.Type.AICLIPSET_PLAY_COMPLETED:
-                {                   
-                    break;
-                }
-            case AIEvent.Type.AICLIPSET_PLAY_FAILED:
-                {                  
-                    break;
-                }
-            case AIEvent.Type.AICLIPSET_PRELOAD_STARTED:
-                {                   
-                    break;
-                }
-            case AIEvent.Type.AICLIPSET_PRELOAD_COMPLETED:
-                {                
-                    break;
-                }
-            case AIEvent.Type.AICLIPSET_PRELOAD_FAILED:
-                {                   
-                    break;
-                }
-            case AIEvent.Type.AI_CONNECTED:
-                {                 
-                    break;
-                }
-            case AIEvent.Type.AI_DISCONNECTED:
-                {                    
-                    break;
-                }
-            case AIEvent.Type.AICLIPSET_PLAY_BUFFERING:
-                {                  
-                    break;
-                }
-            case AIEvent.Type.AICLIPSET_RESTART_FROM_BUFFERING:
-                {                 
-                    break;
-                }
-            case AIEvent.Type.AIPLAYER_STATE_CHANGED:
-                {                  
-                    break;
-                }
+            clipSetList.Add(AIAPI.CreateClipSet(_sampleTextList[i]));
         }
     }
+    
+    if (clipSetList.Count > 0)
+    {
+        _aiPlayer.Send(clipSetList.ToArray());
+    }           
 }
 ```
 
-**AI image resource (UnityEngine.Texture2D) can be implemented and supplied through AIFrameImageProvider class inheritance.** 
-
-- DemoFrameImageProvider.cs
+**With the implementation of AIPlayerCallback, you can receive callbacks for AI models and the behavior of AIPlayer.** 
 
 ```csharp
-public class DemoFrameImageProvider : AIFrameImageProvider
+public abstract class AIPlayerCallback : MonoBehaviour, IAIPlayerCallback
+{
+    public abstract void OnAIPlayerEvent(AIEvent @event);   
+    public abstract void OnAIPlayerResLoadingProgressed(int current, int total);
+    public abstract void OnAIPlayerError(AIError error);
+}
+```
+
+**With the implementation of AIFrameImageProvider, the Texture of AI models can be supplied.** 
+
+```csharp
+public abstract class AIFrameImageProvider : MonoBehaviour, IFrameImageProvider
 { 
-    public override void OnChangeBackgroundTexture(Vector3 scale, Texture2D bgTexture)
-    {     
-       // callback background texture
-    }
-
-    public override void OnChangeFaceTexture(Vector3 scale, int idleWidth, int idleHeight, FaceRect faceRect, Texture2D faceTexture)
-    {
-        // callback face texture
-    }
-
-    public override void OnDisabledBackgroundTexture()
-    {        
-    }
-
-    public override void OnDisabledFaceTexture()
-    {
-    }
-
-    public override void OnChromakeyFaceTexture(Color minHueColor, Color maxHueColor)
-    {
-        // callback setting chromakey
-    }
+    public abstract void OnChangeBackgroundTexture(Vector3 scale, Texture2D bgTexture);
+    public abstract void OnChangeBackgroundTexture(int frameIdx, byte[] bytes);
+    public abstract void OnChangeFaceTexture(Vector3 scale, int idleWidth, int idleHeight, FaceRect faceRect, Texture2D faceTexture);
+    public abstract void OnDisabledBackgroundTexture();
+    public abstract void OnDisabledFaceTexture();
+    public abstract void OnChromakeyFaceTexture(float minHue, float maxHue, float bottomAlphaHeight, float topAlphaHeight, float sideAlphaWidth);
 }
 ```
 
@@ -262,6 +188,5 @@ AICLIPSET_PLAY_PREPARE_COMPLETED: AI finished preparation to speak.
 AICLIPSET_PLAY_STARTED: AI started speaking.
 AICLIPSET_PLAY_COMPLETED: AI finished speaking.
 AICLIPSET_PLAY_FAILED: AI failed to speak.
-AI_CONNECTED: AI is connected.
-AI_DISCONNECTED: AI is disconnected.
+...
 ```

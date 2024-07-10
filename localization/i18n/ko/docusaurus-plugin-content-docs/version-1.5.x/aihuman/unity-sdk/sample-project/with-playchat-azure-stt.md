@@ -1,18 +1,18 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # MS Azure STT와 PlayChat 연동
 
 :::note related scene
 
-- 3.Playchat & AzureSTT.scene
+- 4.Playchat & AzureSTT.scene
 
 :::
 
 이번 데모는 AI Human + Playchat + Azure STT를 연동한 대화형 AI 서비스의 예제이다. 기본적으로 AI Human과 Playchat은 사용자로부터 문장을 입력 받아 채팅하는 형태이다. 추가적으로 Azure STT를 사용하여 **실제 사람처럼 음성으로 대화한다**. 화면에 진입하면 AI가 인사를 한다. ("Hello, long time no see.") 
 
-인사말 이후 채팅으로 대화하거나 하단에 **Speak now**라는 음성 입력 신호가 나오면 "**where are you**"라고 말해보자. (실제로 동작하는 것은 Azure STT의 설정이 완료된 이후에 가능하다.) AI는 음성을 알아듣고 AI가 적절한 대답을 한다. 현재는 테스트 챗봇이라 몇가지 제한된 물음에만 응답 할수 있지만 챗봇을 고도화시키면 상황에 따라 식당에서 주문이라든가 공연 예약 등 다양하게 활용될 수 있다. 또한 챗봇이 텍스트 외에 **추가 정보를 보내 이미지도 표시**할수 있도록 하였다. 
+인사말 이후 채팅으로 대화하거나 하단에 **Speak now**라는 음성 입력 신호가 나오면 "**where are you**"라고 말해보자. (실제로 동작하는 것은 Azure STT의 설정이 완료된 이후에 가능하다.) AI는 음성을 알아듣고 AI가 적절한 대답을 한다. 현재는 테스트 챗봇이라 몇가지 제한된 물음에만 응답 할수 있지만 챗봇을 고도화시키면 상황에 따라 식당에서 주문이라든가 공연 예약 등 다양하게 활용될 수 있다. 또한 챗봇이 텍스트 외에 **추가 정보를 보내 이미지도 표시**할수 있도록 하였다.
 
 <p align="center">
 <img src="/img/aihuman/unity/sampleproject_azurestt.png" style={{zoom: "40%"}} />
@@ -36,7 +36,7 @@ public void OnChatbotStateChanged(ChatbotState state)
 {
     switch (state.State)
     {
-        case ChatbotState.Type.RES_LOAD_STARTED:
+        case ChatbotState.Type.RES_LOAD_STARTED: 
             {                              
                 break;
             }               

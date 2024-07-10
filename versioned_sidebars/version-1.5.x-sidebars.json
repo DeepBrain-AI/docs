@@ -383,7 +383,10 @@
         "aihuman/unity-sdk/sample-project/overview",
         "aihuman/unity-sdk/sample-project/quick-start",
         "aihuman/unity-sdk/sample-project/ai-human-demo",
-        "aihuman/unity-sdk/sample-project/with-playchat-azure-stt"
+        "aihuman/unity-sdk/sample-project/ai-human-3d-demo",           
+        "aihuman/unity-sdk/sample-project/with-playchat-azure-stt",
+        "aihuman/unity-sdk/sample-project/with-ulipsync-tts",
+        "aihuman/unity-sdk/sample-project/ai-human-metaverse-demo"
       ]
     },
     {
@@ -414,8 +417,14 @@
         "aihuman/unity-sdk/apis/aiapi",
         "aihuman/unity-sdk/apis/iaiplayercallback",
         "aihuman/unity-sdk/apis/aiplayer",
+        "aihuman/unity-sdk/apis/ai3dplayer",
         "aihuman/unity-sdk/apis/aiclipset",
-        "aihuman/unity-sdk/apis/aigesture"
+        "aihuman/unity-sdk/apis/aigesture",
+        "aihuman/unity-sdk/apis/aierror",
+        "aihuman/unity-sdk/apis/aievent",
+        "aihuman/unity-sdk/apis/ai3devent",
+        "aihuman/unity-sdk/apis/aiplayerstate",
+        "aihuman/unity-sdk/apis/customvoice"
       ]
     }
   ]

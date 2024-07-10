@@ -12,12 +12,15 @@ Project창에서 Assets/DeepBrainAI/Demo/Scenes/0.Menu 경로의 해당 scene를
 <br/>
 
 <p align="center">
-<img src="/img/aihuman/unity/demo_menu.png" style={{zoom: "40%"}} />
+<img src="/img/aihuman/unity/demo_menu.png" style={{zoom: "30%"}} />
 </p>
 
 각 메뉴 구성은 아래와 같다. 
 
 - AI Human QuickStart : AI Human 빠르게 시작하기 (1.QuickStart.scene)
 - AI Human SDK Demo : AI Human SDK 활용 예제 살펴보기 (2.AIHuman.scene)
-- with Playchat & Azure STT: AI Human, Playchat, Azure STT 활용 예제 살펴보기 (3.Playchat & AzureSTT.scene)
+- AI Human 3D SDK Demo  : AI Human 3D SDK 활용 예제 살펴보기 (3.AIHuman3D.scene)
+- with Playchat & Azure STT: AI Human, Playchat, Azure STT 활용 예제 살펴보기 (4.Playchat & AzureSTT.scene)
+- with 3D Lipsync & TTS : 3D Model, Lipsync, TTS 활용 예제 살펴보기 (5.uLipsync & TTS.scene)
+- AI Human Metaverse : AI Human SDK 기반의 Metaverse 예제 살펴보기 (6.AIHuman & Metaverse.scene)
 - Quit : App 종료하기

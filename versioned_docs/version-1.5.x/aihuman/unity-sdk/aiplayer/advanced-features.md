@@ -63,7 +63,7 @@ AIPlayerCallback.OnAIPlayerEvent(AIEvent) is called in the same way as the speec
 <br/>
 
 ### Change the Voice or Language
-Some AIs can be filmed with live footage. It is possible even if the language of the supported video is different from the basic language of AI. From a living sample, you can see which activists the AI ​​is currently using. The candidate list operates normally after the cancellation authentication process so that AIAPI.LoadCustomVoices can be resumed more strongly than AIHumanSDKManager.Authenticate, AIAPI.Authenticate, or AIAPI.GenerateToken.
+Some AIs can be filmed with live footage. It is possible even if the language of the supported video is different from the basic language of AI. From a living sample, you can see which activists the AI ​​is currently using. The candidate list operates normally after the cancellation authentication process so that AIAPI.LoadCustomVoices can be resumed more strongly than AIHumanSDKManager.Authenticate or AIAPI.Authenticate.
 
 <p align="center">
 <img src="/img/aihuman/unity/aiplayer_customvoice.png" style={{zoom: "30%"}} />

@@ -16,7 +16,7 @@ sidebar_position: 2
 ### 1단계. 유니티 Scene 구성하기
 
 - [AI Human 퀵스타트](/aihuman/unity-sdk/sample-project/quick-start)를 참고하여 Scene을 구성한다.
-- AIHumanSDK 프리팹을 반드시 사용할 필요는 없다. AIHumanSDK 프리팹과 AIHumanSDKManager 스크립트는 SDK 사용자 편의를 위해 제공되는 것이므로 Inspector에 인정 정보를 설정하지 않고 AIHumanSDKManager.Instance.Authenticate(appId, userKey, platform, onComplete)를 함수를 직접 호출하여도 무방하다.
+- AIHumanSDK 프리팹을 반드시 사용할 필요는 없다. AIHumanSDK 프리팹과 AIHumanSDKManager 스크립트는 SDK 사용자 편의를 위해 제공되는 것이므로 Inspector에 인정 정보를 설정하지 않고 AIHumanSDKManager.Authenticate(appId, userKey, platform)를 함수를 직접 호출하여도 무방하다.
 - AIPlayerUI 프리팹 또한 SDK 사용자 편의를 위해 제공되는 것으므로 반드시 사용할 필요는 없으며, 사용자 정의 UI 또는 Material을 제작하여 AIPlayer에서 제공하는 Texture를 적용할 수 있다.
 
 ### 2단계. 인증 관련 정보 준비하기
@@ -29,29 +29,40 @@ AuthStart 함수에는 3개의 전달인자가 필요하다. 이 3가지는 AppI
 
 ### 3단계. Authenticate 구현 및 AI 가져오기
 
-2단계 과정에서 필요한 정보를 다 준비했다면 인증을 위한 준비가 완료된다. AIHumanSDKManager.Instance.Authenticate 함수의 매개변수로 인증 정보들을 전달하고 콜백 함수를 구현한다. 인증에 성공하면 사용할 수 있는 AI 목록을 돌려준다. 사용할 수 있는 AI가 없으면 aiList는 null이 반환된다. 
+2단계 과정에서 필요한 정보를 다 준비했다면 인증을 위한 준비가 완료된다. AIHumanSDKManager.Authenticate 함수의 매개변수로 인증 정보들을 전달하고 콜백 함수를 구현한다. 인증에 성공하면 사용할 수 있는 AI 목록을 요청한다. 
 
 ```csharp
-AIHuman.SDK.AIHumanSDKManager.Instance.Authenticate("appId", "userKey", Platform.Android, (aiLIst, error) =>
+string message = string.Empty;
+AIError authError =  AIHuman.SDK.AIHumanSDKManager.Instance.Authenticate("appId", "userKey", "platform")
+if (authError == null) // 인증 성공
 {
-    string message = string.Empty;
-    if (error == null && aiLIst != null)
-    {      
-        message = string.Format("Auth Complete, Avaliable Count : {0}", aiLIst.ai.Length);
-
-        /*   e.g.)           
-            "ai":[{"aiName":"vida","aiDisplayName":"Vida","language":"en"},
-                {"aiName":"bret","aiDisplayName":"Bret","language":"en"},
-                {"aiName":"danny","aiDisplayName":"Danny","language":"en"},
-                {"aiName":"kang","aiDisplayName":"Kang","language":"ko"}]
-            */
-    }
-    else
+    AIAPI.Instance.GetAIList(AIListType.All, (aiList, aiError) =>
     {
-        message = string.Format("Auth Error : {0}", error);
-    }
-    Debug.Log(message);
-});
+        if (aiError == null)
+        {          
+            if (aiList != null)
+            {
+                message = string.Format("Auth Complete, Avaliable Count : {0}", aiList.ai.Length);
+
+                /*  e.g.)           
+                    "ai":[{"aiName":"vida","aiDisplayName":"Vida","language":"en"},
+                        {"aiName":"bret","aiDisplayName":"Bret","language":"en"},
+                        {"aiName":"danny","aiDisplayName":"Danny","language":"en"},
+                        {"aiName":"kang","aiDisplayName":"Kang","language":"ko"}]
+                */
+            }           
+        }
+        else
+        {
+             message = string.Format("API Error : {0}", aiError.Description);
+        }
+    });
+}
+else
+{
+    message = string.Format("Auth Error : {0}", authError.Description);
+}
+Debug.Log(message);
 ```
 
 ### 4단계. AIPlayer를 원하는 AI로 초기화하기
