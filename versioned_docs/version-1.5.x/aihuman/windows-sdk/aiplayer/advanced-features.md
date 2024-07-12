@@ -2,22 +2,14 @@
 sidebar_position: 5
 ---
 
-# AIPlayer Advanced Speaking Features
+# Advanced Features
 
-All functions other than speaking(mostly related to AI settings) of AIPlayer are described below.
+The following describes advanced features related to AI speech.
 
-After the resource load required for AI operation is completed, some settings of AIPlayer can be adjusted. When the resource loading is completed (`RES_LOAD_COMPLETED`), the state changes such that actual operations can be performed(Idle). On right side of the panel, **Voice, Gesture, Speed**, etc. can be adjusted as shown below.
-
-### Change AI Speech Rate
-
-: You can set the speech rate of AI. The possible value range is from 0.5 to 1.5.
-```csharp
-// set Property
-_aiPlayer.Speed = value;
-```
+You can set or change **Gestures, Language and CustomVoice, Speed**, etc. in the IDLE state.
 
 ### Gestures
-As briefly mentioned above, speech can also be performed using [ClipSet](#main-class-apis). The ClipSet here refers to one action unit in a series of AI actions. There are three types of ClipSet: general speech that performs only speaking, speech with gesture, and gesture only. The Gesture can be used depending on whether the AI model supports [Gestures](#main-class-apis), and the list of available gestures can be checked using the [GetGestures](#main-class-apis) function of AIPlayer. Even a model that does not support gestures can be operated using ClipSet.
+Use a [AIClipSet](../../../aihuman/windows-sdk/apis/aiclipset) to send utterance commands to the AI. The AIClipSet refers to a series of AI action unit. There are three types of ClipSet: general speech, speech with gesture, and gesture only. The Gesture can be used depending on whether the AI model supports gestures, and the list of available gestures can be checked using the `GetGestures` function of AIPlayer. Even a model that does not support gestures can be operated using ClipSet.
 
 AIClipSet types are as follows.
 
@@ -115,6 +107,16 @@ CustomVoice myVoice = AIAPI.GetCustomVoices("en-US", "MALE")[0];
 AIClipSet aiClipSet = AIAPI.CreateClipSet("this is sample sentence.", null, myVoice);
 _aiPlayer.Send(new[] {aiClipSet});
 ``` 
+
+<br/>
+
+### Change AI Speech Rate
+
+: You can set the speech rate of AI. The possible value range is from 0.5 to 1.5.
+```csharp
+// set Property
+_aiPlayer.Speed = value;
+```
 
 <br/>
 

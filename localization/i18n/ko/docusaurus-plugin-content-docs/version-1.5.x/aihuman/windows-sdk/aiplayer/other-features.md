@@ -3,7 +3,7 @@ sidebar_position: 6
 ---
 
 # 발화 이외 기능들
-다음은 주로 AI 설정 관련 기능들입니다.
+다음은 주로 발화 이외의 AI 설정 관련 기능들입니다.
 
 리소스가 로드되면 AIPlayer의 설정들을 변경할 수 있습니다. 예를들어 **스케일, 여백, 볼륨** 등을 조절할 수 있습니다.
 
@@ -56,7 +56,7 @@ _aiPlayer.IsMute = value;
 
 : AI와 접속 해제를 통해 네트워크 통신이 없는 유휴 상태를 구현할 수 있습니다.
 
-접속 해제 성공 시 `OnAIPlayerEvent(AIEvent)`를 통해 `AI_DISCONNECTED` 이벤트 콜백을 전달 받지만 AIPlayer.Disconnect(callback) 함수 호출 시에도 콜백을 선택적으로 전달할 수 있습니다.
+접속 해제 성공 시 `OnAIPlayerEvent(AIEvent)`를 통해 `AI_DISCONNECTED` 이벤트 콜백을 전달합니다. AIPlayer.Disconnect(callback) 함수 호출 시 매개변수에 콜백 함수를 전달하면 `AI_DISCONNECTED` 이벤트 콜백은 전달하지 않습니다.
 
 ```csharp
 // void Disconnect(Action<bool> callback = null)
@@ -71,7 +71,7 @@ _aiPlayer.Disconnect((result) => {
 
 : AI와 네트워크 연결이 끊긴 상태에서 명시적으로 재접속을 시도할 수 있습니다.
 
-재접속 성공 시 `OnAIPlayerEvent(AIEvent)`를 통해 `AI_CONNECTED` 이벤트 콜백을 전달 받지만 AIPlayer.Reconnect(callback) 함수 호출 시에도 콜백을 선택적으로 전달할 수 있습니다.
+재접속 성공 시 `OnAIPlayerEvent(AIEvent)`를 통해 `AI_CONNECTED` 이벤트 콜백을 전달합니다. AIPlayer.Reconnect(5, 3000, callback) 함수 호출 시 매개변수에 콜백 함수를 전달하면 `AI_CONNECTED` 이벤트 콜백은 전달하지 않습니다.
 
 Reconnect 함수의 인자를 선택적으로 첫번째는 재접속 시도 횟수 이며 두번째는 간격(밀리초) 그리고 세번째는 콜백을 전달할 수 있습니다.
 

@@ -274,7 +274,7 @@ const config = {
             ],
           },
         ],
-        copyright: `© 2022 DeepBrain AI. All Rights Reserved`,
+        copyright: `© 2024 DeepBrain AI. All Rights Reserved`,
       },
       prism: {
         theme: lightCodeTheme,

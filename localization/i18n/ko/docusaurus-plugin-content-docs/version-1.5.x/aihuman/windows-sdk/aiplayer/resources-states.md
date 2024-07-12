@@ -6,13 +6,13 @@ sidebar_position: 3
 
 ### 리소스 로딩 시작하기
 
-인증 완료 후 `AIPlayer` 객체가 생성되면 전달한 `aiName`에 따라서 리소스 로딩이 시작되고 `IAIPlayerCallback` 콜백 객체에 의해 리소스 로딩 상태가 보고됩니다. (최초에는 네트워크 상태에 따라 리소스가 로드되는 시간이 다소 필요할 수 있습니다.)
+인증 완료 후 `AIPlayer` 객체가 생성되면, 전달한 `aiName`에 따라서 리소스 로딩이 시작되고 `IAIPlayerCallback` 콜백 객체에 의해 리소스 로딩 상태가 보고됩니다. (최초에는 네트워크 상태에 따라 리소스가 로드되는 시간이 다소 필요할 수 있습니다.)
 
 기본적으로 구동에 필요한 리소스는 해당 SDK를 사용하는 프로세스가 위치한 경로에 다운로드가 됩니다.
 
 ### IAIPlayerCallback으로 모니터링 구현
 
-먼저 `IAIPlayerCallback` 구현체의 `OnAIPlayerEvent(AIEvent)`가 호출되는데 관련된 `AIEvent.Type`값은 다음과 같습니다.
+먼저 콜백을 받으려는(모니터링) 클래스는 `IAIPlayerCallback`를 상속 받아 구현합니다. 구현체의 이벤트 관련 콜백으로는 `OnAIPlayerEvent(AIEvent)` 함수를 구현해야 하고 이벤트 종류인 `AIEvent.Type`값은 다음과 같습니다.
 
 :::info
 
@@ -37,8 +37,8 @@ sidebar_position: 3
 `RES_LOAD_COMPLETED`와 `AI_CONNECTED` 콜백을 전달 받았다면 AIPlayer 객체의 모든 기능들이 정상 동작 가능한 상태, 즉 발화(실시간 합성) 가능한 상태라 할 수 있습니다.  
 이와 같이 위의 이벤트 콜백을 활용하여 다양한 서비스 플로우에 대응이 가능합니다.
 
-또한 `OnAIPlayerResLoadingProgressed(int, int)`으로 로딩 프로그레스를 구현할 수 있습니다.
-이 과정에서 혹시 문제가 생기면 `OnAIPlayerError(AIError)`가 호출되는데, 예를 들면 인증 토큰의 만료 등의 내용이 올 수 있습니다. 상황에 따라 적절한 대응이 필요합니다.
+또한 `OnAIPlayerResLoadingProgressed(int, int)` 콜백 함수를 이용해 로딩 프로그레스를 구현할 수 있습니다.
+이 과정에서 혹시 문제가 생기면 `AIError.ErrorCode`가 `AI_RES_ERR`로 `OnAIPlayerError(AIError)` 콜백을 통해 전달됩니다. 추가로, 예를 들면 인증 토큰의 만료 등의 내용이 올 수 있습니다. 상황에 따라 적절한 대응이 필요합니다.
 
 - `AIError.Code.AI_API_ERR` : 인증 과정 등 정보 받는 API 부분에서 에러
 - [이 외의 에러](../../../aihuman/windows-sdk/aiplayer/errors)
@@ -71,7 +71,7 @@ public void OnAIPlayerEvent(AIEvent aiEvent)
 public void OnAIPlayerResLoadingProgressed(int current, int total)
 {
     float progress = ((float) current / (float) total) * 100;
-    message = string.Format("AI Resource Loading... {0}%", (int)progress);
+    message = $"AI Resource Loading... {progress}%";
 }
 
 // AI error CallBack
@@ -94,3 +94,10 @@ public void OnAIPlayerError(AIError error)
     }
 }
 ```
+
+:::info Dev Tips!
+
+- 콜백 받을 구현체가 AIHuman.Interface.IAIPlayerCallback를 상속 받고, 콜백 함수를 구현 후 AIPlayer 객체를 생성할 때 매개변수로 전달해 보세요!
+- OnAIPlayerEvent 콜백 함수와 별개로 [AIPlayerState](../../../aihuman/windows-sdk/apis/aiplayerstate)를 통해 AIPlayer의 상태값을 확인할 수 있어요!
+
+:::
