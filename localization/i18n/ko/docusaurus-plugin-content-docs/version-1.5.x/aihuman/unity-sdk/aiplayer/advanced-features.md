@@ -62,7 +62,7 @@ _aiPlayer.Send(new[] {clip});
 <br/>
 
 ### 언어 및 음성 변경
-일부 AI는 기본 음성 외에 다른 음성으로 발화를 할수 있다. 이때 지원하는 음성의 언어가 AI의 기본 언어와 다른 경우에도 발화가 가능하다. 아래와 같이 데모에서 현재 AI가 사용할 수 있는 음성 리스트를 확인할 수 있다. 해당 음성 리스트는 AIHumanSDKManager.Authenticate 혹은 AIAPI.Authenticate, AIAPI.GenerateToken 함수 호출 이후에 확인할 수 있다. 보다 명시적으로는 AIAPI.LoadCustomVoices를 사용할 수 있으나 성공적인 인증 절차 이후에 정상 동작한다.
+일부 AI는 기본 음성 외에 다른 음성으로 발화를 할수 있다. 이때 지원하는 음성의 언어가 AI의 기본 언어와 다른 경우에도 발화가 가능하다. 아래와 같이 데모에서 현재 AI가 사용할 수 있는 음성 리스트를 확인할 수 있다. 해당 음성 리스트는 AIHumanSDKManager.Authenticate 혹은 AIAPI.Authenticate 함수 호출 이후에 확인할 수 있다. 보다 명시적으로는 AIAPI.LoadCustomVoices를 사용할 수 있으나 성공적인 인증 절차 이후에 정상 동작한다.
 
 <p align="center">
 <img src="/img/aihuman/unity/aiplayer_customvoice.png" style={{zoom: "30%"}} />

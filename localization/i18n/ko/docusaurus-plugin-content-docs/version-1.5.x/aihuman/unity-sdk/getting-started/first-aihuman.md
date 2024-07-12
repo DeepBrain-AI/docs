@@ -24,8 +24,6 @@ sidebar_position: 3
 
 <img src="/img/aihuman/unity/quickstart_hierarchy.png" />
 
-#### 1-6. URP 또는 HDRP 환경으로 Unity 프로젝트를 생성 한 경우에는 Hierarchy창에서 AIPlayerUI 게임오브젝트의 "Canvas/AIHumanView/RawImage - face"를 선택 후 Inspector창의 Material 항목을 "Chromakey - Built-in" 에서 "Chromakey - URP" 재질로 변경한다.
- 
 ### 2. AIPlayer 기능 구현을 위한 Script를 작성한다.
 Unity Editor 메뉴에서 Assets > Create > C# Script을 선택하여 스크립트를 생성 후 아래와 같이 작성한다.
 
@@ -106,7 +104,21 @@ public class MyAIPlayerCallback : AIPlayerCallback
                 {
                     _statusText.text = "AI is disconnected.";
                     break;
-                }                      
+                } 
+            case AIEvent.Type.AICLIPSET_PLAY_BUFFERING:
+                {
+                    _statusText.text = "Buffering in progress.";
+                    break;
+                }
+            case AIEvent.Type.AICLIPSET_RESTART_FROM_BUFFERING:
+                {
+                    _statusText.text = "Buffering is complete and restart.";
+                    break;
+                }
+            case AIEvent.Type.AIPLAYER_STATE_CHANGED:
+                {
+                    break;
+                }                     
         }
     }
 }
@@ -127,6 +139,7 @@ public class MyAIFrameImageProvider : AIFrameImageProvider
     public RawImage _backgroundRawImage = null;
     public RawImage _faceRawImage = null;
 
+    // Set background texture (png)
     public override void OnChangeBackgroundTexture(Vector3 scale, Texture2D bgTexture)
     {     
         _backgroundRawImage.gameObject.SetActive(true);
@@ -135,6 +148,19 @@ public class MyAIFrameImageProvider : AIFrameImageProvider
 
         _backgroundRawImage.texture = bgTexture;
         _backgroundRawImage.transform.localScale = scale;
+    }
+
+    // Set background texture (webp)
+    public override void OnChangeBackgroundTexture(int frameIdx, byte[] bytes)
+    {
+        StartCoroutine(LoadBackgroundTexture(frameIdx, bytes, (bgTexture) =>
+        {
+            _backgroundRawImage.gameObject.SetActive(true);
+
+            _backgroundRawImage.GetComponent<RectTransform>().sizeDelta = new Vector2(bgTexture.width, bgTexture.height);
+
+            _backgroundRawImage.texture = bgTexture;
+        }));
     }
 
     public override void OnChangeFaceTexture(Vector3 scale, int idleWidth, int idleHeight, FaceRect faceRect, Texture2D faceTexture)
@@ -162,10 +188,13 @@ public class MyAIFrameImageProvider : AIFrameImageProvider
         _faceRawImage.gameObject.SetActive(false);
     }
 
-    public override void OnChromakeyFaceTexture(Color minHueColor, Color maxHueColor)
+    public override void OnChromakeyFaceTexture(float minHue, float maxHue, float bottomAlphaHeight, float topAlphaHeight, float sideAlphaWidth)
     {
-        _faceRawImage.material.SetColor("HueMin", minHueColor);
-        _faceRawImage.material.SetColor("HueMax", maxHueColor);
+        _faceRawImage.material.SetFloat("_HueMin", minHue);
+        _faceRawImage.material.SetFloat("_HueMax", maxHue);
+        _faceRawImage.material.SetFloat("_FaceBtmAlphaHeight", bottomAlphaHeight);
+        _faceRawImage.material.SetFloat("_FaceTopAlphaHeight", topAlphaHeight);
+        _faceRawImage.material.SetFloat("_FaceSideAlphaWidth", sideAlphaWidth);
     }
 }
 ```
@@ -194,40 +223,39 @@ public class QuickStart : MonoBehaviour
 
     private StringBuilder _sb = new StringBuilder();
 
-    private void Awake()
+    private void Start()
     {               
-        AIHumanSDKManager.Instance.Authenticate(OnCompleteAuth);
-
-        _btnSend.onClick.AddListener(OnClickSend);
-    }
-
-    private void OnCompleteAuth(AIAPI.AIList aiList, AIError error)
-    {
-        if (error == null)
+        AIError aiError = AIHumanSDKManager.Instance.Authenticate();
+        if (aiError == null)
         {
             _aiPlayer.Init(AIAPI.Instance.DefaultAIName, _aiPlayerCallback, _aiFrameImageProvider);
         }
         else
         {
-            Debug.LogError(string.Format("{0} {1} {2}", nameof(AIHumanSDKManager), error.ErrorCode, error.Description));
+            Debug.LogError(string.Format("{0} {1} {2}", nameof(AIHumanSDKManager), aiError.ErrorCode, aiError.Description));
         }
-    }
 
+        _btnSend.onClick.AddListener(OnClickSend);
+    }
+ 
     public void OnClickSend()
     {
-        string[] requests = new string[] { _inputChat.text };
-        _aiPlayer.Send(requests);
-
-        for (int i = 0; i < requests.Length; i++)
+        if (!string.IsNullOrEmpty(_inputChat.text))
         {
-            if (!string.IsNullOrEmpty(_sb.ToString()))
+            string[] requests = new string[] { _inputChat.text };
+            _aiPlayer.Send(requests);
+
+            for (int i = 0; i < requests.Length; i++)
             {
-                _sb.Append("\n");
+                if (!string.IsNullOrEmpty(_sb.ToString()))
+                {
+                    _sb.Append("\n");
+                }
+                _sb.Append(requests[i]);
             }
-            _sb.Append(requests[i]);
-        }
-        _chatHistory.text = _sb.ToString();
-        _inputChat.text = string.Empty;
+            _chatHistory.text = _sb.ToString();
+            _inputChat.text = string.Empty;
+        }       
     }   
 }
 ```
