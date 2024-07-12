@@ -2,10 +2,10 @@
 sidebar_position: 6
 ---
 
-# Functionalities other than AI Speaking
-(mainly related to AI settings)
+# Optional Features
+The following are mainly AI setting-related features other than speech.
 
-After the resource is loaded, some settings of aiPlayer can be changed while the actual operation is on. In the sample project screen below, you can see that **Scale, Margins**, etc. can be adjusted.
+Once the resource is loaded, you can change AIPlayer's settings; for example, you can adjust the **Scale, Margin, Volume**, etc.
 
 ### Change AI Size(Scale)
 <img src="/img/aihuman/windows/scale_1.4.x.png" />
@@ -47,3 +47,36 @@ _aiPlayer.Volume = value;
 // set Property(bool)
 _aiPlayer.IsMute = value;
 ```
+
+### Disconnect from AI
+
+<img src="/img/aihuman/windows/disconnect_1.5.x.png" />
+
+: By disconnection from AI, you can implement an idle state without network communication.
+
+If the disconnect is successful, `AI_DISCONNECTED` event callback is received through `OnAIPlayerEvent`. If the AIPlayer.Disconnect(callback) function is called and the callback function is passed to the parameter, the `AI_DISCONNECTED` event callback is not received.
+
+```csharp
+// void Disconnect(Action<bool> callback = null)
+_aiPlayer.Disconnect((result) => {
+    MessageBox.Show($"Disconnect result: {result}");
+});
+```
+
+### Reconnect to AI
+
+<img src="/img/aihuman/windows/reconnect_1.5.x.png" />
+
+: You can explicitly try to reconnect while you are disconnected from the AI.
+
+If the reconnection is successful, `AI_CONNECTED` event callback is received through `OnAIPlayerEvent`. If the AIPlayer.Reconnect(5, 3000, callback) function is called and the callback function is passed to the parameter, the `AI_CONNECTED` event callback is not received.
+
+Optionally, the factors of the Reconnect function are the number of reconnection attempts, the second is the interval (in milliseconds), and the third is the callback.
+
+```csharp
+// void Reconnect(int attempts = 5, int delay = 3000, Action<bool> callback = null)
+_aiPlayer.Reconnect(1, 1000, (result) => {
+    MessageBox.Show($"reconnect result: {result}");
+});
+```
+

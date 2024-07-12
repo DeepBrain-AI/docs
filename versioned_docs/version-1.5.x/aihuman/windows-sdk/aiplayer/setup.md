@@ -73,7 +73,7 @@ AIAPI.Instance.Authenticate(APPID, USERKEY, (aiList, error) => {
     string message = string.Empty;
     if (error == null)
     {
-        message = string.Format("Auth Complete, Avaliable Count : {0}", aiList.ai.Length);
+        message = $"Auth Complete, Avaliable Count : {aiList.ai.Length}";
 
         /* e.g.)
         "ai":[{"aiName":"vida","aiDisplayName":"Vida","language":"en"},
@@ -90,18 +90,48 @@ AIAPI.Instance.Authenticate(APPID, USERKEY, (aiList, error) => {
     }
     else
     {
-        message = string.Format("Auth Error : {0}", error.ToString());
+        message = $"Auth Error : {error.ToString()}";
     }
 
-    AIHuman.Util.Log.LogWrite(message);
+    AIHuman.Utils.Log.Write(message, Log.Level.Info);
 });
 ```
 
 ### Step 4. Initialize AIPlayer to the desired AI
 
-After authenticating and checking the list of available AIs, it is necessary to initialize the AI first in order to actually use a specific AI. To initialize it, create AIPlayer with the desired AIName as shown below. If there is an existing AIPlayer, delete it and create a new one.
+After authentication, you can check the list of AIs that can be used and initialize them to the desired AI. First, create the `AIPlayerOptions` object with the desired `AIAPI.AI.aiName` as shown in the example code below. If you want to remove the `AIPlayer` object that you were using before, use the `Dispose` function to release the resource.
 
-Once you initialize, AIPlayer downloads necessary resources based on initial settings and becomes active. You can also receive AI status through callback function registered in the second argument of the AIPlayer constructor.
+### AIPlayerOptions 
+Used as a parameter to create `AIPlayer` objects. Valid only at initialization, refer to implementations to use properties or functions of `AIPlayer` objects at runtime.
+
+#### AIName
+Set the AI you want to initialize.  
+Assigns the `AIList.AI.aiName` value acquired by the `AIHuman.Core.AIAPI.Authenticate` or `GetAIList` function to this property.
+If you assign any value, the AIPlayer may not initialize normally.
+
+#### AIScale
+Set the [Scale](../../../aihuman/windows-sdk/aiplayer/other-features#change-ai-sizescale) of the AI at the initialization.  
+The default is `1.0f`.
+
+#### AIMargin
+Set the [Margin](../../../aihuman/windows-sdk/aiplayer/other-features#change-ai-positionmargin) of the AI at initialization.  
+The default is `null`.
+
+#### AISpeed
+Set the [Speed](../../../aihuman/windows-sdk/aiplayer/advanced-features#change-ai-speech-rate) of the AI at initialization.  
+The default is `1.0f`.
+
+#### AIDisconnection
+Set the [Disconnection](../../../aihuman/windows-sdk/aiplayer/other-features#disconnect-from-ai) of the AI at initialization.  
+The default is `false`.
+
+#### AICachingStrategy
+Set the local [Caching Strategy](../../../aihuman/windows-sdk/aiplayer/basic-features#local-caching) of the AIPlayer at initialization.  
+The default is `AIHuman.Interface.AIPlayerCachingStrategy.V1`.
+
+#### CacheLimit
+Set the [Maximum Local Caching Count](../../../aihuman/windows-sdk/aiplayer/basic-features#local-caching) of the AIPlayer at initialization.  
+The default is `2000` units. The unit is `AIClipSet`.
 
 ```csharp
 public AIPlayer AIPlayerObject // View Binding object
@@ -141,9 +171,29 @@ private void UpdateSelectedAI()
     GestureList?.Clear();
     SpeakableLanguages?.Clear();
 
-    _aiPlayer = new(SelectedAI.aiName, this);
-    AIPlayerObject = _aiPlayer.GetObject();    
+    AIPlayerOptions options = new AIPlayerOptions(SelectedAI.aiName);
+    //options.AICachingStrategy = AIPlayerCachingStrategy.V2; // for using local caching
+    //options.CacheLimit = 300; // for using local caching Limit
+    //options.AIScale = 1.2f; // for AI Human Scale
+    //options.AISpeed = 1.2f; // for AI Human Speed
+    //options.AIMargin = AIMargin; // for AI Human Position
+    //options.AIDisconnection = true; // for AI Human network on/off-line
+
+    _aiPlayer = new AIPlayer(options, this);
+    AIPlayerObject = _aiPlayer.GetObject();     
     
     ...
 }
 ```
+
+Depending on the option, the AIPlayer changes to an operable standby ([IDLE](../../../aihuman/windows-sdk/apis/aiplayerstate)) state after initialization (download and load resources) is completed. It can also receive a callback as a second parameter in the `AIPlayer` constructor.
+
+:::info Dev Tips!
+
+- You can set various options using AIPlayerOptions objects!
+- You can inherit AIHuman.Interface.IAIPlayerCallback and receive a callback for events, etc. through the implemented object!
+- The API Reference also specifies this!
+
+:::
+
+Callbacks such as AI events will be covered in the next chapter.

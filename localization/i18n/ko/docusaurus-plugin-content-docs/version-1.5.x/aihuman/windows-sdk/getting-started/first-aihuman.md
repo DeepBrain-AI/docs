@@ -27,7 +27,7 @@ AI Human 모델을 표시할 위치, 즉 Application에서 `AIPlayerView`를 배
 <img src="/img/aihuman/windows/NewProject_Add_AIPlayer.png" />
 
 ### 2. Authenticate 함수를 이용하여 인증하기
-아래 코드를 참고하여 Application 초기화 시 AI Human SDK 인증 관련 코드를 작성하세요.
+아래 코드를 참고하여 Application 초기화 시 SDK 인증 관련 코드를 작성하세요.
 
 - App.xaml.cs
 
@@ -158,7 +158,7 @@ namespace WpfApp1
             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
                 float progress = ((float)current / (float)total) * 100;
-                AIStatusText = string.Format("AI Resource Loading... {0}%", (int)progress);
+                AIStatusText = $"AI Resource Loading... {progress}%");
             }));
         }
 
