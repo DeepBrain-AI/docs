@@ -9,13 +9,13 @@ sidebar_position: 3
 
 :::
 
-AI Human Demo는 AIPlayer의 다양한 기능들을 구현 한 데모이다. [AI 선택]을 통해 승인된 다른 AI 모델로 변경할 수 있다. 그밖에 자세한 설명은 [AIPlayer 설명](/aihuman/unity-sdk/aiplayer/overview)을 참고하기 바란다.
+AI Human Demo는 AIPlayer의 다양한 기능들을 구현 한 데모입니다. [AI 선택]을 통해 승인된 다른 AI 모델로 변경할 수 있습니다. 그밖에 자세한 설명은 [AIPlayer 설명](/aihuman/unity-sdk/aiplayer/overview)을 참고 바랍니다.
 
 <p align="center">
 <img src="/img/aihuman/unity/introduction.png" style={{zoom: "30%"}} />
 </p>
 
-**먼저 사용 가능한 AI 목록을 가져온 후 UI를 셋업한다.**
+**먼저 사용 가능한 AI 목록을 가져온 후 UI를 셋업합니다.**
 
 - DemoAIHuman.cs
 
@@ -65,7 +65,7 @@ private void Init(string aiName)
 }
 ```
 
-**AI에게 발화시키기, 여러말 발화시키기, 일시정지, 재시작, 정지의 코드 예제는 아래와 같다.** 
+**AI에게 발화시키기, 여러말 발화시키기, 일시정지, 재시작, 정지의 코드 예제는 아래와 같습니다.** 
 
 - DemoAIHuman.cs
 
@@ -178,7 +178,7 @@ public abstract class AIFrameImageProvider : MonoBehaviour, IFrameImageProvider
 }
 ```
 
-OnAIPlayerEvent 구현을 통해 AI의 상태를 모니터링 할 수 있으며, 상태는 아래와 같다.
+OnAIPlayerEvent 구현을 통해 AI의 상태를 모니터링 할 수 있으며, 상태는 아래와 같습니다.
 
 ```csharp
 RES_LOAD_STARTED: AI리소스 로드를 시작합니다.

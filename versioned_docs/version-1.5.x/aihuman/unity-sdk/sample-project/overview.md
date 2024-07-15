@@ -6,7 +6,7 @@ sidebar_position: 1
 
 The demonstrations provided by AI Human SDK allow you to take a closer look at how you can actually use and utilize the SDK.
 
-In the Project window, run the corresponding scene in the Asset/DeepBrainAI/Demo/Scenes/0.Menu path to check the following menu configuration.
+In the Project window, run the corresponding scene in the `Asset/DeepBrainAI/Demo/Scenes/0.Menu` path to check the following menu configuration.
 
 
 <br/>

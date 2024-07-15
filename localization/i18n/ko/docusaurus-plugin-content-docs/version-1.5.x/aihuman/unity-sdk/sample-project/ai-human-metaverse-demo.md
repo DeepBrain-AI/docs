@@ -10,7 +10,7 @@ sidebar_position: 7
 
 :::
 
-이번 데모는 AI Human SDK를 활용한 메타버스 서비스의 예제이다. 해당 데모를 통해 3D 공간에서 AIPlayer를 활용한 2D 컨텐츠와 AI3DPlayer를 활용한 3D 캐릭터와의 대화형 서비스를 살펴볼 수 있다. 
+이번 데모는 AI Human SDK를 활용한 메타버스 서비스의 예제입니다. 해당 데모를 통해 3D 공간에서 AIPlayer를 활용한 2D 컨텐츠와 AI3DPlayer를 활용한 3D 캐릭터와의 대화형 서비스를 살펴볼 수 있습니다. 
 
 - **Built-in, URP 지원**
 - **TextMeshPro 패키지 필요**
@@ -21,7 +21,7 @@ sidebar_position: 7
 <img src="/img/aihuman/unity/metaverse_aiplayer.png" style={{zoom: "60%"}} />
 </p>
 
-위 이미지와 같이 해당 데모에서는 3D 공간에서 AIPlayer를 활용하여 TV 뉴스를 구현한 모습을 볼 수 있다. 간략한 구현 과정은 아래와 같다.
+위 이미지와 같이 해당 데모에서는 3D 공간에서 AIPlayer를 활용하여 TV 뉴스를 구현한 모습을 볼 수 있습니다. 간략한 구현 과정은 아래와 같습니다.
 
 - TV 속 UI 만들기 (자막, 뉴스 이미지) 
 - 2D AI 모델을 그릴 AIPlayer View 만들기 
@@ -30,7 +30,7 @@ sidebar_position: 7
 - AI 모델 발화, OnAIPlayerEvent()를 활용해서 상황에 맞는 뉴스 자막 및 이미지 띄우기
 
 :::tip related scripts
-자세한 내용은 해당 스크립트들과 Scene의 Hierarchy 구성을 참고하기 바란다.
+자세한 내용은 해당 스크립트들과 Scene의 Hierarchy 구성을 참고하기 바랍니다.
 - DemoMetaverse.cs
 - MetaverseAIPlayer.cs
 - MetaversePlayerCallback.cs
@@ -43,7 +43,7 @@ sidebar_position: 7
 <img src="/img/aihuman/unity/metaverse_ai3dplayer.png" style={{zoom: "60%"}} />
 </p>
 
-위 이미지와 같이 해당 데모에서는 3D 공간에서 AI3DPlayer를 활용하여 간단한 대화형 서비스를 구현한 모습을 볼 수 있다. 간략한 구현 과정은 아래와 같다.
+위 이미지와 같이 해당 데모에서는 3D 공간에서 AI3DPlayer를 활용하여 간단한 대화형 서비스를 구현한 모습을 볼 수 있습니다. 간략한 구현 과정은 아래와 같습니다.
 
 - 채팅 UI 만들기
 - 대화를 위한 Chatbot 구성하기
@@ -51,7 +51,7 @@ sidebar_position: 7
 - AI3DPlayer.onAIPlayerEvent와 ChatbotManager를 활용해서 AI 모델 발화 및 립싱크 하기
 
 :::tip related scripts
-자세한 내용은 해당 스크립트들과 Scene의 Hierarchy 구성을 참고하기 바란다.
+자세한 내용은 해당 스크립트들과 Scene의 Hierarchy 구성을 참고하기 바랍니다.
 - MetaverseAI3DPlayer.cs
 - UIMetaverseChat.cs
 - ChatbotManager.cs
@@ -59,7 +59,7 @@ sidebar_position: 7
 
 ### 메타버스 구현을 위한 다른 기능들
 
-중점적으로 다루지는 않았지만 해당 데모에는 메타버스를 위한 몇가지 기능들이 구현되어 있다.
+중점적으로 다루지는 않았지만 해당 데모에는 메타버스를 위한 몇가지 기능들이 구현되어 있습니다.
 
 - 1인칭 시점의 플레이어 조작
 - 특정 오브젝트와 상호작용 하기

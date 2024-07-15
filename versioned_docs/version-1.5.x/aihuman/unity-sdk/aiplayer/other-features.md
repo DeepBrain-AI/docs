@@ -2,9 +2,11 @@
 sidebar_position: 6
 ---
 
-# Functionalities other than AI Speaking
+# Optional Features
 
-The following are actions other than the utterance of the AIPlayer.
+The following are mainly AI setting-related features other than speech.
+
+Once the resource is loaded, you can change AIPlayer's settings; for example, you can adjust the **Scale, Volume**, etc.
 
 ### Change AI Size(Scale)
 

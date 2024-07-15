@@ -4,32 +4,32 @@ sidebar_position: 3
 
 # 나의 AI Human 만들기
 
-이 장에서는 신속하게 AIPlayer를 기본 AI로 셋업하고 AI에게 발화 시키는 과정을 알아 본다. AIPlayer 최초 셋업시에는 네트워크 상태에 따라 수분 정도의 로딩이 걸릴 수 있다.
+이어서 `AIPlayer`에서 기본 AI Human 모델을 셋업하고 AI에게 발화 시키는 과정을 알아봅니다. `AIPlayer`가 최초 초기화될 때 네트워크 상태에 따라 모델 리소스 로딩 시간이 지연될 수 있습니다.
 
 :::tip
-다음과 같은 SDK 데모의 Scene, Script 파일을 통해 더 많은 것을 배울 수 있다. 
+아래 파일들을 참고하세요. 
 - 1.QuickStart.scene
 - DemoQuickStart.cs
 - DemoPlayerCallback.cs
 - DemoFrameImageProvider.cs
 :::
 
-### 1. AIPlayer 기능 구현을 위한 Scene을 구성한다.
+### 1. AIPlayer 기능 구현을 위한 Scene을 구성합니다.
 
-#### 1-1. Unity Editor 메뉴에서 Assets > Create > Scene을 선택하여 새로운 Scene을 생성한다. 
-#### 1-2. 기본으로 생성되어 있는 Main Camera, Directional Light 게임오브젝트를 삭제한다.
-#### 1-3. Project창의 Assets/DeepBrainAI/SDK/Prefabs 경로의 AIHumanSDK, AIPlayer, AIPlayerUI 프리팹을 선택 후 드래그앤드랍으로 Hierarchy창에 배치한다.
-#### 1-4. Hierarchy창에서 AIHumanSDK 게임오브젝트를 선택 후 Inspector > AIHumanSDKManager 컴포넌트의 AppId, UserKey, Platform 항목에 **[AI Human SDK Website](https://aihuman.deepbrain.io)** 에서 발급 받은 인증 정보를 입력 또는 설정한다. 
-#### 1-5. Unity Editor 메뉴에서 GameObject > Create Empty 를 통해 새 게임오브젝트를 생성하고 이름은 QuickStart로 설정한다.
+#### 1-1. Unity Editor 메뉴에서 Assets > Create > Scene을 선택하여 새로운 Scene을 생성
+#### 1-2. 기본으로 생성되어 있는 Main Camera, Directional Light 게임오브젝트를 삭제
+#### 1-3. Project창의 Assets/DeepBrainAI/SDK/Prefabs 경로의 AIHumanSDK, AIPlayer, AIPlayerUI 프리팹을 선택 후 드래그앤드랍으로 Hierarchy창에 배치
+#### 1-4. Hierarchy창에서 AIHumanSDK 게임오브젝트를 선택 후 Inspector > AIHumanSDKManager 컴포넌트의 AppId, UserKey, Platform 항목에 **[AI Human 웹사이트](https://www.deepbrain.io/aihuman)** 에서 발급 받은 인증 정보를 입력 또는 설정
+#### 1-5. Unity Editor 메뉴에서 GameObject > Create Empty 를 통해 새 게임오브젝트를 생성하고 이름은 QuickStart로 설정
 
 <img src="/img/aihuman/unity/quickstart_hierarchy.png" />
 
-### 2. AIPlayer 기능 구현을 위한 Script를 작성한다.
-Unity Editor 메뉴에서 Assets > Create > C# Script을 선택하여 스크립트를 생성 후 아래와 같이 작성한다.
+### 2. AIPlayer 기능 구현을 위한 Script를 작성합니다.
+Unity Editor 메뉴에서 `Assets > Create > C# Script`을 선택하여 스크립트를 생성 후 아래와 같이 작성합니다.
 
 - MyAIPlayerCallback.cs
 
-AIPlayer 동작 모니터링을 위해 AIPlayerCallback을 상속 및 구현한다.
+AIPlayer 동작 모니터링을 위해 `AIPlayerCallback`을 상속 및 구현합니다.
 
 ```csharp
 using UnityEngine;
@@ -126,7 +126,7 @@ public class MyAIPlayerCallback : AIPlayerCallback
 
 - MyAIFrameImageProvider.cs
 
-AI 이미지(UnityEngine.Texture2D)를 공급받기 위해 AIFrameImageProvider를 상속 및 구현한다.
+AI 이미지(UnityEngine.Texture2D)를 공급받기 위해 `AIFrameImageProvider`를 상속 및 구현합니다.
 
 ```csharp
 using UnityEngine;
@@ -201,7 +201,7 @@ public class MyAIFrameImageProvider : AIFrameImageProvider
 
 - QuickStart.cs
 
-SDK 인증 프로세스 및 AIPlayer 초기화 코드를 작성하고 버튼 클릭을 통한 AI 발화를 구현한다.
+SDK 인증 프로세스 및 `AIPlayer` 초기화 코드를 작성하고 버튼 클릭을 통한 AI 발화를 구현합니다.
 
 ```csharp
 using UnityEngine;
@@ -261,10 +261,10 @@ public class QuickStart : MonoBehaviour
 ```
 
 
-### 3. 작성한 스크립트를 적용한다.
+### 3. 작성한 스크립트를 적용합니다.
 
-#### 3-1. Hierarchy창에서 QuickStart 게임오브젝트를 선택 후 2번 항목에서 작성한 스크립트들을 Inspector창에서 Add Component 버튼을 통해 등록한다.
-#### 3-2. Inspector창의 각 항목들을 아래 이미지와 같이 Hierarchy창에서 해당 게임오브젝트 선택 후 드래그앤드롭을 통해 등록해준다.
+#### 3-1. Hierarchy창에서 QuickStart 게임오브젝트를 선택 후 2번 항목에서 작성한 스크립트들을 Inspector창에서 Add Component 버튼을 통해 등록
+#### 3-2. Inspector창의 각 항목들을 아래 이미지와 같이 Hierarchy창에서 해당 게임오브젝트 선택 후 드래그앤드롭을 통해 등록
 
 <img src="/img/aihuman/unity/quickstart_inspector.png" />
 
@@ -273,7 +273,7 @@ public class QuickStart : MonoBehaviour
 - Editor Play > 리소스 로딩 > 하단 InputText에 문장 입력 > Send 버튼 클릭
 
 :::note
-실제 AI Human은 스크린샷과 다를 수 있다.
+실제 AI Human은 스크린샷과 다를 수 있습니다.
 :::
 
 <p align="center">
