@@ -9,13 +9,13 @@ sidebar_position: 4
 
 :::
 
-AI Human 3D Demo는 AI3DPlayer의 다양한 기능들을 구현 한 데모이다. [AI 선택]을 통해 승인된 다른 AI 모델로 변경할 수 있다.
+AI Human 3D Demo는 AI3DPlayer의 다양한 기능들을 구현 한 데모입니다. [AI 선택]을 통해 승인된 다른 AI 모델로 변경할 수 있습니다.
 
 <p align="center">
 <img src="/img/aihuman/unity/introduction_3d.png" style={{zoom: "30%"}} />
 </p>
 
-**먼저 사용 가능한 AI 목록을 가져온 후 UI를 셋업한다.**
+**먼저 사용 가능한 AI 목록을 가져온 후 UI를 셋업합니다.**
 
 - DemoAIHuman3D.cs
 
@@ -68,7 +68,7 @@ private void Init(string aiName)
 
 <br/>
 
-**AI 관련 Event, Error 받기는 아래와 같은 함수 구현을 통해 가능하다.** 
+**AI 관련 Event, Error 받기는 아래와 같은 함수 구현을 통해 가능합니다.** 
 
 - DemoAIHuman3D.cs
 
@@ -126,7 +126,7 @@ private void OnAIPlayerError(AIError aiError)
 
 <br/>
 
-**AI에게 발화시키기, 일시정지, 재시작, 정지의 코드 예제는 아래와 같다.** 
+**AI에게 발화시키기, 일시정지, 재시작, 정지의 코드 예제는 아래와 같습니다.** 
 
 - DemoAIHuman3D.cs
 
@@ -194,7 +194,7 @@ public void OnClickStop()
 
 <br/>
 
-**AI의 Scale을 변경하는 코드 예제는 아래와 같다.** 
+**AI의 Scale을 변경하는 코드 예제는 아래와 같습니다.** 
 
 - DemoAIHuman3D.cs
 
@@ -217,7 +217,7 @@ private void OnChangedScale(float value)
 
 <br/>
 
-OnAIPlayerEvent 함수 구현을 통해 AI의 상태를 모니터링 할 수 있으며, 상태는 아래와 같다.
+OnAIPlayerEvent 함수 구현을 통해 AI의 상태를 모니터링 할 수 있으며, 상태는 아래와 같습니다.
 
 ```csharp
 RES_LOAD_STARTED: AI리소스 로드를 시작합니다.

@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Own your first AI Human
 
-In this chapter, we will quickly set up AIPlayer with the default AI and learn about AI speaking process. When setting up AIPlayer for the first time, it may take several minutes to load depending on the network condition.
+In this chapter, we will quickly set up `AIPlayer` with the default AI and learn about AI speaking process. When setting up `AIPlayer` for the first time, it may take several minutes to load depending on the network condition.
 
 For your information, it is similar to the QuickStart part of the Sample, which can be downloaded from the SDK website.
 
@@ -21,17 +21,17 @@ From the demo, you can learn more from the scene and code in the file below.
 #### 1-1. Select Assets > Create > Scene from the Unity Editor menu to create a new scene.
 #### 1-2. Delete the Main Camera and Directional Light game objects that are created by default.
 #### 1-3. Select AIHumanSDK, AIPlayer, and AIPlayerUI prefabs in the Assets/DeepBrainAI/SDK/Prefabs path of the Project window and place them in the Hierarchy window with drag and drop.
-#### 1-4. After selecting the AIHumanSDK game object in the Hierarchy window, enter or set the authentication information issued by **[AI Human SDK Website](https://aihuman.deepbrain.io)** in the AppId, UserKey, and Platform items of the Inspector > AIHumanSDKManager component. 
+#### 1-4. After selecting the AIHumanSDK game object in the Hierarchy window, enter or set the authentication information issued by **[AI Human SDK Website](https://www.deepbrain.io/aihuman)** in the AppId, UserKey, and Platform items of the Inspector > AIHumanSDKManager component. 
 #### 1-5. In the Unity Editor menu, create a new game object through GameObject > Create Empty and set the name to QuickStart.
 
 <img src="/img/aihuman/unity/quickstart_hierarchy.png" />
 
 ### 2. Write a script for implementing the AIPlayer function.
-Select Assets > Create > C# Script from the Unity Editor menu to create a script and write it as follows.
+Select `Assets > Create > C# Script` from the Unity Editor menu to create a script and write it as follows.
 
 - MyAIPlayerCallback.cs
 
-Inherit and implement AIPlayerCallback for monitoring AIPlayer behavior.
+Inherit and implement `AIPlayerCallback` for monitoring AIPlayer behavior.
 
 ```csharp
 using UnityEngine;
@@ -128,7 +128,7 @@ public class MyAIPlayerCallback : AIPlayerCallback
 
 - MyAIFrameImageProvider.cs
 
-Implement ImageProvider by inheriting AIFrameImageProvider to receive AI resources (UnityEngine.Texture2D).
+Implement ImageProvider by inheriting `AIFrameImageProvider` to receive AI resources (UnityEngine.Texture2D).
 
 ```csharp
 using UnityEngine;
@@ -203,7 +203,7 @@ public class MyAIFrameImageProvider : AIFrameImageProvider
 
 - QuickStart.cs
 
-Write the SDK authentication process and AIPlayer initialization code. It also implements AI speaking through Button clicks.
+Write the SDK authentication process and `AIPlayer` initialization code. It also implements AI speaking through Button clicks.
 
 ```csharp
 using UnityEngine;
