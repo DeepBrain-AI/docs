@@ -51,7 +51,7 @@ npm install jsonwebtoken
 ```javascript
   // generateJWT.js(Server)
 
-  const jwt = require("jsonwebtoken");
+  import jwt from "jsonwebtoken" 
 
   const userKey = "...";  // TODO: userKey input
   const payload = {

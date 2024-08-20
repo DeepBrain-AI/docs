@@ -108,7 +108,8 @@
         "aihuman/web-sdk/sample-project/overview",
         "aihuman/web-sdk/sample-project/quick-start",
         "aihuman/web-sdk/sample-project/ai-human-demo",
-        "aihuman/web-sdk/sample-project/with-playchat-azure-stt"
+        "aihuman/web-sdk/sample-project/with-playchat-azure-stt",
+        "aihuman/web-sdk/sample-project/demo-aws-sdk"
       ]
     },
     {
