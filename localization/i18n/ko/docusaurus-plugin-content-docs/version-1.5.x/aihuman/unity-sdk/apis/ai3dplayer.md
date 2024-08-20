@@ -27,7 +27,7 @@ namespace AIHuman.View
 | `AIPlayerState`                       | `State { get; }` AI3DPlayer의 상태를 가져옵니다.             |
 | `string`                             | `AIName { get; }` AI 이름을 가져옵니다.                           |
 | `string`                             | `AIGender { get; }` AI 성별을 가져옵니다.                        |
-| `string`                             | `AILanguage { get; }` AI 언어을 가져옵니다.                        |
+| `string`                             | `AILanguage { get; }` AI 기본 언어를 가져옵니다.                        |
 | `string[]`                             | `AIGestures { get; }` AI gesture 배열을 가져옵니다.                        |
 | `OnAIPlayerEvent`                             | `onAIPlayerEvent` AI3DPlayer의 이벤트를 등록할 수 있는 대리자.    |
 | `OnAIPlayerError`                             | `onAIPlayerError` AI3DPlayer의 에러를 등록할 수 있는 대리자.    |

@@ -21,6 +21,7 @@ Each menu is as follows.
 - AI Human SDK Demo : An example of using AI Human SDK (2.AIHuman.scene)
 - AI Human 3D SDK Demo  : An example of using AI Human 3D SDK (3.AIHuman3D.scene)
 - with Playchat & Azure STT: Conversational AI example using AI Human, Playchat, and Azure STT (4.Playchat & AzureSTT.scene)
-- with 3D Lipsync & TTS : An example of using 3D Model, Lipsync, and TTS (5.uLipsync & TTS.scene)
-- AI Human Metaverse : An example of using Metaverse based on AI Human SDK (6.AIHuman & Metaverse.scene)
+- with AWS Bedrock Claude & Transcribe: Conversational AI example using AI Human, AWS Bedrock Claude, and AWS Transcribe (5.AWS Bedrock Claude & Transcribe.scene)
+- with 3D Lipsync & TTS : An example of using 3D Model, Lipsync, and TTS (6.uLipsync & TTS.scene)
+- AI Human Metaverse : An example of using Metaverse based on AI Human SDK (7.AIHuman & Metaverse.scene)
 - Quit : Exit the App

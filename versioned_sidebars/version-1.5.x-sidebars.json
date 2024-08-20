@@ -383,8 +383,9 @@
         "aihuman/unity-sdk/sample-project/overview",
         "aihuman/unity-sdk/sample-project/quick-start",
         "aihuman/unity-sdk/sample-project/ai-human-demo",
-        "aihuman/unity-sdk/sample-project/ai-human-3d-demo",           
+        "aihuman/unity-sdk/sample-project/ai-human-3d-demo",
         "aihuman/unity-sdk/sample-project/with-playchat-azure-stt",
+        "aihuman/unity-sdk/sample-project/with-aws-bedrock-transcribe",
         "aihuman/unity-sdk/sample-project/with-ulipsync-tts",
         "aihuman/unity-sdk/sample-project/ai-human-metaverse-demo"
       ]
