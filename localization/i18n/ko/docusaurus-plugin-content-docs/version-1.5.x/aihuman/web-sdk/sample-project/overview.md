@@ -17,6 +17,7 @@ Demo web page에서는 AI Human Web SDK(js)'의 기능을 사용해볼수 있습
 - QuickStart : 빠른 AIPlayer 시작
 - SDK Demo : AIPlayer 기능 예시 
 - STT Demo : AIPlayer + Chatbot(PlayChat) 예시 
+- AWS Demo : AIPlayer + AWS Transcbribe/Chatbot(Claud) example
 
 ## 샘플 Project
 
@@ -51,6 +52,9 @@ zip file의 압축을 풀면, 다음과 같은 폴더가 생성됩니다.
 | `demo.html`      | `Client` | sdk demo html
 | `demo.js`        | `Client` | sdk demo javascript
 | `demo.css`       | `Client` | sdk demo css
+| `demo_aws_sdk.html`      | `Client` | aws sdk demo html
+| `aws_sdk_index.js`        | `Client` | aws sdk demo javascript
+| `demo2.css`       | `Client` | stt/aws sdk demo css
 
 
 <br />
@@ -84,6 +88,28 @@ $ npm run dev
 <br />
 <br />
 <br />
+
+#### AWS demo 실행하기 
+
+**1. AWS SDK를 위한 key와 secret을 준비한다.** 
+
+이 예제에서는, Transcribe를 위한 REGION(e.g. us-west-2)과 IDENTITY_POOL_ID(Amazon Cognito Identity Pool ID)가 필요합니다. 또한 llmModelId, region, accessKeyId와 secretAccessKey가 BedrockRuntimeClient을 위해 필요합니다. 자세한 내용은 demo-aws-sdk 섹션을 참고하여주세요.
+
+**2. AWS SDK demo 실행하기(`/nextjs` directory 에서 터미널 이용)** 
+
+키와 시크릿을 모두 셋업한 이후, 'npm run aws'를 입력하여 AWS sdk 관련 소스를 webpack 빌드합니다. 물론 AIPlayer를 위한 appId와 userkey는 실행전에 셋업이 되어야합니다. 
+
+```
+$ cd nextjs
+$ npm install
+$ npm run aws
+$ npm run dev
+```
+
+**3. From Chrome browser, go to `http://localhost:3000/demo_aws_sdk.html`.**
+
+The AWS sdk demo will show.
+
 
 ### node-express 실행하기
 
