@@ -2,22 +2,41 @@
 sidebar_position: 3
 ---
 
-# AIPlayer Resources and States
+# AIPlayer Callback
 
 ### Start loading resources 
 
-When AIPlayer is created after authentication is completed, resource loading starts according to the input **AIName**, and the resource loading status is reported to the listener (AIPlayerCallback) registered in the constructor. (Initially, it may take a few minutes for the resource to complete loading.)
+When `AIPlayer` is created after authentication is completed, resource loading starts according to the input **AIName**, and the resource loading status is reported to the `AIPlayerCallback` registered in the constructor. (The download time may initially depend on network conditions.)
+
+The SDK downloads the required resources of the AI you set to the path where the process is located.
 
 <br/>
 
-### Monitoring player state through AIPlayerCallback implementation
+### Implement callback with IAIPlayerCallback
 
-First, the listener's OnAIPlayerEvent(AIEvent @event) method is called, and the related event. event values are as follows. In addition, loading progress can be implemented with OnAIPlayerResLoadingProgressed(int current, int total).
+First, the class that wants to receive the callback (monitoring) must inherit the `AIPlayerCallback`. As an event-related callback for the implementation, the `OnAIPlayerEvent(AIEvent @event)` function must be implemented, and the types of events, `AIEvent.Type`, are as follows.
 
-- AIEvent.Type.RES_LOAD_STARTED : resource loading is started.
-- AIEvent.Type.RES_LOAD_COMPLETED : resource loading is completed.
+:::info
 
-If there is any problem during this process, the OnAIPlayerError() method is called. Typically, a response from the OnAIPlayerError() may be notifying the expiration of the authentication token. An appropriate response is required depending on the situation.
+- AIEvent.Type.RES_LOAD_STARTED : Started loading AI resources
+- AIEvent.Type.RES_LOAD_COMPLETED : Completed loading AI resources
+- AIEvent.Type.AICLIPSET_PLAY_PREPARE_STARTED : Started of preparation (synthesis) for utterance (action)
+- AIEvent.Type.AICLIPSET_PLAY_PREPARE_COMPLETED : Completed of preparation (synthesis) for utterance (action)
+- AIEvent.Type.AICLIPSET_PRELOAD_STARTED : Started preloading for utterance (action) data
+- AIEvent.Type.AICLIPSET_PRELOAD_COMPLETED : Completed preloading for utterance (action) data
+- AIEvent.Type.AICLIPSET_PRELOAD_FAILED : Failed preloading for utterance (action) data
+- AIEvent.Type.AICLIPSET_PLAY_STARTED : Started utterance (action)
+- AIEvent.Type.AICLIPSET_PLAY_COMPLETED : Completed utterance (action)
+- AIEvent.Type.AICLIPSET_PLAY_FAILED : Failed utterance (action)
+- AIEvent.Type.AI_CONNECTED : Connected to AI (network connection)
+- AIEvent.Type.AI_DISCONNECTED : Disconnected from AI (network connection)
+- AIEvent.Type.AICLIPSET_PLAY_BUFFERING : Buffering during utterance (action)
+- AIEvent.Type.AICLIPSET_RESTART_FROM_BUFFERING : Restart from buffering
+- AIEvent.Type.AIPLAYER_STATE_CHANGED : Changed AIPlayer's State
+
+:::
+
+You can also implement loading progress using the `OnAIPlayerResLoadingProgressed(int current, int total)` callback function. If there is a problem in this process, `AIError.ErrorCode` is delivered to `AI_RES_ERR` through `OnAIPlayerError(AIError error)` callback. Additionally, for example, errors such as the expiration of an authentication token can occur. It can be handled appropriately for various error cases.
 
 - AIError.Code.AI_API_ERR : Notifies error in authentication process API.
 

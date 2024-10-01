@@ -1,0 +1,186 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.aistudiosSidebar.category.Tutorial": {
+    "message": "Tutorial",
+    "description": "The label for category Tutorial in sidebar aistudiosSidebar"
+  },
+  "sidebar.aistudiosSidebar.category.API Reference": {
+    "message": "API Reference",
+    "description": "The label for category API Reference in sidebar aistudiosSidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Tutorial": {
+    "message": "Tutorial",
+    "description": "The label for category Tutorial in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.API Reference": {
+    "message": "API Reference",
+    "description": "The label for category API Reference in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Auth": {
+    "message": "Auth",
+    "description": "The label for category Auth in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aihumanwebSidebar.category.Getting Started": {
+    "message": "Getting Started",
+    "description": "The label for category Getting Started in sidebar aihumanwebSidebar"
+  },
+  "sidebar.aihumanwebSidebar.category.Getting Started.link.generated-index.description": {
+    "message": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process.",
+    "description": "The generated-index page description for category Getting Started in sidebar aihumanwebSidebar"
+  },
+  "sidebar.aihumanwebSidebar.category.Sample Project Description": {
+    "message": "Sample Project Description",
+    "description": "The label for category Sample Project Description in sidebar aihumanwebSidebar"
+  },
+  "sidebar.aihumanwebSidebar.category.Sample Project Description.link.generated-index.description": {
+    "message": "Learn AI Human SDK as a sample project.",
+    "description": "The generated-index page description for category Sample Project Description in sidebar aihumanwebSidebar"
+  },
+  "sidebar.aihumanwebSidebar.category.AIPlayer Description": {
+    "message": "AIPlayer Description",
+    "description": "The label for category AIPlayer Description in sidebar aihumanwebSidebar"
+  },
+  "sidebar.aihumanwebSidebar.category.AIPlayer Description.link.generated-index.description": {
+    "message": "Learn more about AIPlayer objects in the AI Human SDK.",
+    "description": "The generated-index page description for category AIPlayer Description in sidebar aihumanwebSidebar"
+  },
+  "sidebar.aihumanwebSidebar.category.API Reference": {
+    "message": "API Reference",
+    "description": "The label for category API Reference in sidebar aihumanwebSidebar"
+  },
+  "sidebar.aihumanwebSidebar.category.API Reference.link.generated-index.description": {
+    "message": "Learn about the main interface, class, and api of the AI Human SDK.",
+    "description": "The generated-index page description for category API Reference in sidebar aihumanwebSidebar"
+  },
+  "sidebar.aihumanwindowsSidebar.category.Getting Started": {
+    "message": "Getting Started",
+    "description": "The label for category Getting Started in sidebar aihumanwindowsSidebar"
+  },
+  "sidebar.aihumanwindowsSidebar.category.Getting Started.link.generated-index.description": {
+    "message": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process.",
+    "description": "The generated-index page description for category Getting Started in sidebar aihumanwindowsSidebar"
+  },
+  "sidebar.aihumanwindowsSidebar.category.Sample Project Description": {
+    "message": "Sample Project Description",
+    "description": "The label for category Sample Project Description in sidebar aihumanwindowsSidebar"
+  },
+  "sidebar.aihumanwindowsSidebar.category.Sample Project Description.link.generated-index.description": {
+    "message": "Learn AI Human SDK as a sample project.",
+    "description": "The generated-index page description for category Sample Project Description in sidebar aihumanwindowsSidebar"
+  },
+  "sidebar.aihumanwindowsSidebar.category.AIPlayer Description": {
+    "message": "AIPlayer Description",
+    "description": "The label for category AIPlayer Description in sidebar aihumanwindowsSidebar"
+  },
+  "sidebar.aihumanwindowsSidebar.category.AIPlayer Description.link.generated-index.description": {
+    "message": "Learn more about AIPlayer objects in the AI Human SDK.",
+    "description": "The generated-index page description for category AIPlayer Description in sidebar aihumanwindowsSidebar"
+  },
+  "sidebar.aihumanwindowsSidebar.category.API Reference": {
+    "message": "API Reference",
+    "description": "The label for category API Reference in sidebar aihumanwindowsSidebar"
+  },
+  "sidebar.aihumanwindowsSidebar.category.API Reference.link.generated-index.description": {
+    "message": "Learn about the main interface, class, and api of the AI Human SDK.",
+    "description": "The generated-index page description for category API Reference in sidebar aihumanwindowsSidebar"
+  },
+  "sidebar.aihumanandroidSidebar.category.Getting Started": {
+    "message": "Getting Started",
+    "description": "The label for category Getting Started in sidebar aihumanandroidSidebar"
+  },
+  "sidebar.aihumanandroidSidebar.category.Getting Started.link.generated-index.description": {
+    "message": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process.",
+    "description": "The generated-index page description for category Getting Started in sidebar aihumanandroidSidebar"
+  },
+  "sidebar.aihumanandroidSidebar.category.Sample Project Description": {
+    "message": "Sample Project Description",
+    "description": "The label for category Sample Project Description in sidebar aihumanandroidSidebar"
+  },
+  "sidebar.aihumanandroidSidebar.category.Sample Project Description.link.generated-index.description": {
+    "message": "Learn AI Human SDK as a sample project.",
+    "description": "The generated-index page description for category Sample Project Description in sidebar aihumanandroidSidebar"
+  },
+  "sidebar.aihumanandroidSidebar.category.AIPlayer Description": {
+    "message": "AIPlayer Description",
+    "description": "The label for category AIPlayer Description in sidebar aihumanandroidSidebar"
+  },
+  "sidebar.aihumanandroidSidebar.category.AIPlayer Description.link.generated-index.description": {
+    "message": "Learn how to set up and use AIPlayer and AI3DPlayer.",
+    "description": "The generated-index page description for category AIPlayer Description in sidebar aihumanandroidSidebar"
+  },
+  "sidebar.aihumanandroidSidebar.category.API Reference": {
+    "message": "API Reference",
+    "description": "The label for category API Reference in sidebar aihumanandroidSidebar"
+  },
+  "sidebar.aihumanandroidSidebar.category.API Reference.link.generated-index.description": {
+    "message": "Learn about the main interface, class, and api of the AI Human SDK.",
+    "description": "The generated-index page description for category API Reference in sidebar aihumanandroidSidebar"
+  },
+  "sidebar.aihumaniosSidebar.category.Getting Started": {
+    "message": "Getting Started",
+    "description": "The label for category Getting Started in sidebar aihumaniosSidebar"
+  },
+  "sidebar.aihumaniosSidebar.category.Getting Started.link.generated-index.description": {
+    "message": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process.",
+    "description": "The generated-index page description for category Getting Started in sidebar aihumaniosSidebar"
+  },
+  "sidebar.aihumaniosSidebar.category.Sample Project Description": {
+    "message": "Sample Project Description",
+    "description": "The label for category Sample Project Description in sidebar aihumaniosSidebar"
+  },
+  "sidebar.aihumaniosSidebar.category.Sample Project Description.link.generated-index.description": {
+    "message": "Learn AI Human SDK as a sample project.",
+    "description": "The generated-index page description for category Sample Project Description in sidebar aihumaniosSidebar"
+  },
+  "sidebar.aihumaniosSidebar.category.AIPlayer Description": {
+    "message": "AIPlayer Description",
+    "description": "The label for category AIPlayer Description in sidebar aihumaniosSidebar"
+  },
+  "sidebar.aihumaniosSidebar.category.AIPlayer Description.link.generated-index.description": {
+    "message": "Learn more about AIPlayer objects in the AI Human SDK.",
+    "description": "The generated-index page description for category AIPlayer Description in sidebar aihumaniosSidebar"
+  },
+  "sidebar.aihumaniosSidebar.category.API Reference": {
+    "message": "API Reference",
+    "description": "The label for category API Reference in sidebar aihumaniosSidebar"
+  },
+  "sidebar.aihumaniosSidebar.category.API Reference.link.generated-index.description": {
+    "message": "Learn about the main interface, class, and api of the AI Human SDK.",
+    "description": "The generated-index page description for category API Reference in sidebar aihumaniosSidebar"
+  },
+  "sidebar.aihumanunitySidebar.category.Getting Started": {
+    "message": "Getting Started",
+    "description": "The label for category Getting Started in sidebar aihumanunitySidebar"
+  },
+  "sidebar.aihumanunitySidebar.category.Getting Started.link.generated-index.description": {
+    "message": "Learn from the preparation for using the AI Human SDK to the first AI Human speech process.",
+    "description": "The generated-index page description for category Getting Started in sidebar aihumanunitySidebar"
+  },
+  "sidebar.aihumanunitySidebar.category.Sample Project Description": {
+    "message": "Sample Project Description",
+    "description": "The label for category Sample Project Description in sidebar aihumanunitySidebar"
+  },
+  "sidebar.aihumanunitySidebar.category.Sample Project Description.link.generated-index.description": {
+    "message": "Learn AI Human SDK as a sample project.",
+    "description": "The generated-index page description for category Sample Project Description in sidebar aihumanunitySidebar"
+  },
+  "sidebar.aihumanunitySidebar.category.AIPlayer Description": {
+    "message": "AIPlayer Description",
+    "description": "The label for category AIPlayer Description in sidebar aihumanunitySidebar"
+  },
+  "sidebar.aihumanunitySidebar.category.AIPlayer Description.link.generated-index.description": {
+    "message": "Learn more about AIPlayer objects in the AI Human SDK.",
+    "description": "The generated-index page description for category AIPlayer Description in sidebar aihumanunitySidebar"
+  },
+  "sidebar.aihumanunitySidebar.category.API Reference": {
+    "message": "API Reference",
+    "description": "The label for category API Reference in sidebar aihumanunitySidebar"
+  },
+  "sidebar.aihumanunitySidebar.category.API Reference.link.generated-index.description": {
+    "message": "Learn about the main interface, class, and api of the AI Human SDK.",
+    "description": "The generated-index page description for category API Reference in sidebar aihumanunitySidebar"
+  }
+}

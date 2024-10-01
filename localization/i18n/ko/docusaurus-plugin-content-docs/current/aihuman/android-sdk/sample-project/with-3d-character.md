@@ -13,7 +13,7 @@ sidebar_position: 6
 이 샘플에서는 3D 캐릭터를 이용하여 AI Human을 구현하였고, 기본적으로 AIPlayerDemo와 동일한 UI를 제공하여 3D캐릭터를 사용해볼 수 있습니다. 주의할 점은 이 액티비티의 프로세스가 기본 프로세스와 달라야한다는 점입니다. 사용시에 AndroidManifest.xml의 activity process 설정을 따로 해주어야합니다(샘플 참조).
 
 <p align="center">
-<img src="/img/aihuman/android/Screenshot_20221107-120426_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
+<img src="/img/aihuman/android/sdk_demo_unity_speak.jpg" style={{zoom: "25%"}} />
 </p>
 
 **UnityPlayerActivity를 위한 AndroidManifest.xml의 설정**

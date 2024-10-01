@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# STT(MS Azure, Google)와 PlayChat 연동
+# STT와 PlayChat 연동
 
 :::note 관련 파일
 
@@ -10,9 +10,10 @@ sidebar_position: 5
 
 :::
 
+Google STT 혹은 MS Azure STT와 PlayChat을 연동한 대화형 AI Human 구현 방법을 제시합니다.  
 [PlayChat](https://aichat.deepbrainai.io/)은 DeepBrain AI의 ChatBot 솔루션입니다.
 
-AIHuman + PlayChat + STT는 DeepBrain AI에서 제공하는 대화형 AI 서비스 예제라고 볼수 있습니다. 기본적으로 AIHuman + DialogFlow와 비슷하지만 사용자가 키보드로 입력을 하는 것이 아니라 **실제 사람처럼 음성으로 대화합니다**. 화면에 진입하면 AI가 먼저 인사말을 합니다.(Hello long time no see.) 
+아래 내용들은 AIHuman + PlayChat + STT는 DeepBrain AI에서 제공하는 대화형 AI 서비스 예제라고 볼수 있습니다. 기본적으로 AIHuman + DialogFlow와 비슷하지만 사용자가 키보드로 입력을 하는 것이 아니라 **실제 사람처럼 음성으로 대화합니다**. 화면에 진입하면 AI가 먼저 인사말("Hello long time no see.")을 합니다.
 
 인사말 이후 **지금 말하세요**라고 아래에 음성 입력 신호가 나오면 **where are you**라고 말해보십시오.**(실제로 동작하는 것은 구글 STT 또는 MS STT의 설정이 완료된 이후에 가능합니다. 이 단락의 아래에 설명이 되어있습니다.)** AI는 사용자의 음성을 알아듣고 챗봇의 응답에 따라 적절한 대답을 합니다. 현재는 테스트 챗봇이라 몇가지 제한된 물음에만 응답 할수 있지만 챗봇을 고도화시키면 상황에 따라 식당에서 주문이라든가 공연 예약 등 다양하게 응용할수 있습니다. 또한 챗봇이 텍스트 외에 **추가 정보를 보내 이미지도 표시**할수 있도록 하였습니다. 
 
@@ -54,7 +55,7 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 
 먼저 MBPlayChatbot의 스태틱 메소드(**newMBChatbot**(,))로 챗봇을 생성한 후 init( , ) 메소드를 호출합니다. 이 클래스는 IChatbot 인터페이스를 구현하였으므로 기존의 챗봇 메소드(send(,))을 사용할수 있습니다. 
 
-**GoogleSTT로 STT 설정하기**
+**Google STT로 STT 설정하기**
 
 GoogleSTTV2 클래스(샘플로 제공)로 생성하여 사용합니다. 이 클래스는 ISTT 인터페이스를 구현하여 startRecognize(), stopRecognize()등의 메소드로 음성 인식 동작을 할수 있습니다. 언어 설정과 더불어 콜백을 등록함으로써 인식 결과를 얻을수 있습니다. 
 

@@ -11,7 +11,7 @@ AI Human의 기본 개념과 함께 AI Human SDK를 소개합니다.
 AI Human SDK(이하 SDK)를 이용하면 딥러닝(학습)을 통해 만들어진 AI를 원하는 위치에 실제 사람처럼 라이브(Live)로 표현할 수 있습니다. 화면만 라이브로 표시하는 것을 뛰어 넘어, **마치 영상 통화를 하듯이 자연스러운 대화가 가능한 AI Human 서비스를 구현할 수 있게 합니다**.
 
 <p align="center">
-<img src="/img/aihuman/ios/aisample_intro_2d.png" style={{zoom: "25%"}} />
+<img src="/img/aihuman/ios/aisample_intro_2d.png" style={{zoom: "40%"}} />
 </p>
 
 <br/>
@@ -36,7 +36,7 @@ AI 모델 목록에서 3D 캐릭터를 선택 할 수도 있습니다.
 3D 캐릭터 또한 다른 모델들과 동일한 기능을 사용하여 서비스를 구현할 수 있습니다.
 
 <p align="center">
-<img src="/img/aihuman/ios/aisample_intro_3d.png" style={{zoom: "25%"}} />
+<img src="/img/aihuman/ios/aisample_intro_3d.png" style={{zoom: "40%"}} />
 </p>
 
 보다 자세한 내용은 SDK를 기반으로 제작된 [샘플 프로젝트](../category/sample-project-description-3)와 [AIPlayer](../category/aiplayer-description-3) 설명 챕터를 참고해 주세요.

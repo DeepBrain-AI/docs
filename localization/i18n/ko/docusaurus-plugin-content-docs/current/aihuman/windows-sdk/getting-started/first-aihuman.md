@@ -4,9 +4,9 @@ sidebar_position: 3
 
 # 나의 AI Human 만들기
 
-이번 장에서는 기본(default) AI Human 모델로 AIPlayer 객체를 셋업하고 AI 발화 절차에 대해 알아봅니다. AIPlayer가 처음 초기화될 때 네트워크 상태에 따라 모델 리소스 로딩을 하는 데 몇 분이 걸릴 수도 있습니다.
+이어서, 기본(default) AI Human 모델로 `AIPlayer` 객체를 생성하고 AI 발화 절차에 대해 알아봅니다. `AIPlayer`가 처음 초기화될 때 네트워크 상태에 따라 모델 리소스 로딩을 하는 데 몇 분이 걸릴 수도 있습니다.
 
-참고로 아래 내용은 AI Human 웹사이트에서 다운로드 받을 수 있는 Sample Project의 Quick Start 부분과 유사합니다.
+참고로 아래 내용은 AI Human 웹사이트에서 다운로드 받을 수 있는 Sample Project의 QuickStart 부분과 유사합니다.
 
 <img src="/img/aihuman/windows/QuickStart_Main.png" />
 
@@ -17,21 +17,21 @@ Sample Project에서 아래 파일들을 참고하세요.
 :::
 
 ### 1. View Control 추가하기
-AIPlayer의 View 컨트롤을 바인딩할 Control을 MainWindow.xaml에 추가합니다.
+`AIPlayer`의 View(UserControl) 바인딩할 Control(ContentControl)을 MainWindow.xaml에 추가합니다.
 
-AI Human을 동작하게 하는 View를 AIPlayerView라고 합니다.
-AI Human 모델을 표시할 위치, 즉 Application에서 AIPlayerView를 배치할 위치를 지정합니다.
+AI Human을 동작하게 하는 View를 `AIPlayerView`라고 합니다.
+AI Human 모델을 표시할 위치, 즉 Application에서 `AIPlayerView`를 배치할 위치를 지정합니다.
 
 <img src="/img/aihuman/windows/NewProject_Add_Layout.png"  />
 
 <img src="/img/aihuman/windows/NewProject_Add_AIPlayer.png" />
 
 ### 2. Authenticate 함수를 이용하여 인증하기
-아래 코드를 참고하여 Application 초기화 시 AI Human SDK 인증 관련 코드를 작성하세요.
+아래 코드를 참고하여 Application 초기화 시 SDK 인증 관련 코드를 작성하세요.
 
 - App.xaml.cs
 
-  SDK 구동을 위해 가장 먼저 인증 과정이 필요합니다. USERKEY는 AI Human 웹사이트에서 APPID를 등록하면 발급받을 수 있습니다.
+  SDK 구동을 위해 가장 먼저 인증 과정이 필요합니다. `USERKEY`는 AI Human 웹사이트에서 `APPID`를 등록하면 발급받을 수 있습니다.
 
 ```csharp
 using AIHuman.Core;
@@ -73,7 +73,7 @@ namespace WpfApp1
 
 먼저 MainWindow.xaml과 같은 경로에 MainWindowViewModel.cs 파일을 만듭니다.
 
-아래 코드를 참조하여 AIPlayer 객체를 생성하고 IAIPlayerCallback 인터페이스 상속을 통해 AI Human 이벤트 콜백 등의 함수들을 구현해 보세요.
+아래 코드를 참조하여 `AIPlayer` 객체를 생성하고 `IAIPlayerCallback` 인터페이스 상속을 통해 AI Human 이벤트 콜백 등의 함수들을 구현해 보세요.
 
 - MainWindowViewModel.cs
 
@@ -95,7 +95,7 @@ namespace WpfApp1
         private AIPlayer _aiPlayer;
         public AIPlayerView AIPlayerObject
         {
-            get => _aiPlayer.GetObject();
+            get => (AIPlayerView)_aiPlayer.GetObject();
             private set => OnPropertyChanged(nameof(AIPlayerObject));
         }
 
@@ -139,7 +139,7 @@ namespace WpfApp1
             SpeechList = new ObservableCollection<string>();
 
             _aiPlayer = new AIPlayer(this);
-            AIPlayerObject = _aiPlayer.GetObject();
+            AIPlayerObject = (AIPlayerView)_aiPlayer.GetObject();
 
             SpeakCommand = new RelayCommand(Speak_Command);
         }
@@ -158,7 +158,7 @@ namespace WpfApp1
             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() =>
             {
                 float progress = ((float)current / (float)total) * 100;
-                AIStatusText = string.Format("AI Resource Loading... {0}%", (int)progress);
+                AIStatusText = $"AI Resource Loading... {progress}%");
             }));
         }
 
@@ -276,7 +276,7 @@ namespace WpfApp1
 
 ### 4. AI 발화 시키기
 
-- 솔루션 빌드 > 디버깅 없이 실행 > (AI Human 모델 리소스 로딩) > 우측 하단 텍스트 박스에 발화 시킬 문장 입력 > Send 버튼 클릭
+- 솔루션 빌드 > 디버깅 없이 실행 > (AI Human 모델 리소스 로딩) > 우측 하단 텍스트 박스에 발화 시킬 문장 입력 > Speak 버튼 클릭
 
 :::note
 실제 기본(default) AI Human 모델은 스크린샷과 다를 수 있습니다.

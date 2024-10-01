@@ -4,7 +4,9 @@ sidebar_position: 4
 
 # AIClipSet
 
-namespace AIHuman.Common.Model
+- assembly: AIHuman.SDK.Core  
+- namespace: AIHuman.Common.Model  
+
 
 | Modifier and Type | Method and Description                                       |
 | ----------------- | ------------------------------------------------------------ |
@@ -13,3 +15,4 @@ namespace AIHuman.Common.Model
 | `string`             | `SpeechText { get; }` Get the sentence set in the AIClipSet.               |
 | `string`             | `GestureName { get; }` Get the gesture name set in the AIClipSet.               |
 | `string`             | `ClipId { get; }` Get the ID set in the AIClipSet.               |
+| `CustomVoice`             | `CustomVoice { get; }` Get the voice set in the AIClipSet, if the return value is null, this is the default voice for the AI Human. |
