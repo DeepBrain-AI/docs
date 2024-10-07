@@ -2,27 +2,53 @@
 sidebar_position: 3
 ---
 
-# AIPlayer Resources and States
+# AIPlayer Callback
 
 ### Start loading resources 
 
-When AIPlayer is created after authentication is completed, resource loading starts according to the input **AIName**, and the resource loading status is reported to the listener (IAIPlayerCallback) registered in the constructor. (Initially, it may take a few minutes for the resource to complete loading.)
+When an `AIPlayer` object is created after authentication is completed, resource loading can begin according to the aiName that you set and the `IAIPlayerCallback` implementation can callback the resource loading progress. (The download time may initially depend on network conditions.)
 
-<br/>
+The SDK downloads the required resources of the AI you set to the path where the process is located.
 
-### Monitoring player state through IAIPlayerCallback implementation
+### Implement callback with IAIPlayerCallback
 
-The values for the parameter AIState.state in the listener method OnAIPlayerEvent(AIEvent aiEvent) are shown below. You can also implement loading progress with OnAIPlayerResLoadingProgressed(int current, int total).
+First, the class that wants to receive the callback (monitoring) must inherit the `IAIPlayerCallback`.
+As an event-related callback for the implementation, the `OnAIPlayerEvent(event)` function must be implemented, and the types of events, `AIEvent.Type`, are as follows.
 
-- AIEvent.Type.RES_LOAD_STARTED : resource loading is started.
-- AIEvent.Type.RES_LOAD_COMPLETED : resource loading is completed.
+:::info
 
-If there is any problem during this process, the OnAIPlayerError() method is called. Typically, a response from the OnAIPlayerError() may be notifying the expiration of the authentication token. An appropriate response is required depending on the situation.
+- AIEvent.Type.RES_LOAD_STARTED: Started loading AI resources
+- AIEvent.Type.RES_LOAD_COMPLETED: Completed loading AI resources
+- AIEvent.Type.AICLIPSET_PLAY_PREPARE_STARTED: Started of preparation (synthesis) for utterance (action)
+- AIEvent.Type.AICLIPSET_PLAY_PREPARE_COMPLETED: Completed of preparation (synthesis) for utterance (action)
+- AIEvent.Type.AICLIPSET_PRELOAD_STARTED: Started preloading for utterance (action) data
+- AIEvent.Type.AICLIPSET_PRELOAD_COMPLETED : Completed preloading for utterance (action) data
+- AIEvent.Type.AICLIPSET_PRELOAD_FAILED: Failed preloading for utterance (action) data
+- AIEvent.Type.AICLIPSET_PLAY_STARTED : Started utterance (action)
+- AIEvent.Type.AICLIPSET_PLAY_COMPLETED : Completed utterance (action)
+- AIEvent.Type.AICLIPSET_PLAY_FAILED : Failed utterance (action)
+- AIEvent.Type.AI_CONNECTED: Connected to AI (network connection)
+- AIEvent.Type.AI_DISCONNECTED: Disconnected from AI (network connection)
+- AIEvent.Type.AICLIPSET_PLAY_BUFFERING: Buffering during utterance (action)
+- AIEvent.Type.AICLIPSET_RESTART_FROM_BUFFERING: Restart from buffering
+- AIEvent.Type.AIPLAYER_STATE_CHANGED: Changed AIPlayer's State
+
+:::
+
+If `RES_LOAD_COMPLETED` and `AI_CONNECTED` callbacks are received, all functions of the AIPlayer object can be operated normally. It is an Idle state that enables utterance (real-time synthesis) operation.  
+In this way, the above event callback can be utilized to respond to various service flows.
+
+You can also implement loading progress using the `OnAIPlayerResLoadingProgressed(int, int)` callback function.
+If there is a problem in this process, `AIError.ErrorCode` is delivered to `AI_RES_ERR` through `OnAIPlayerError(error)` callback.
+Additionally, for example, errors such as the expiration of an authentication token can occur.
+It can be handled appropriately for various error cases.
 
 - AIError.Code.AI_API_ERR : Notifies error in authentication process API.
+- [Other Error Codes](../../../aihuman/windows-sdk/aiplayer/errors)
 
 :::info  
 e.g.) 1402 error (value token expired): Token refresh required -> Call Authenticate or GenerateToken method again
+- [AIError](../../../aihuman/windows-sdk/apis/aierror) object can be found in API Reference!
 :::
 
 ```csharp
@@ -48,7 +74,7 @@ public void OnAIPlayerEvent(AIEvent aiEvent)
 public void OnAIPlayerResLoadingProgressed(int current, int total)
 {
     float progress = ((float) current / (float) total) * 100;
-    message = string.Format("AI Resource Loading... {0}%", (int)progress);
+    message = "AI Resource Loading... {progress}%";
 }
 
 // AI error CallBack
@@ -57,6 +83,9 @@ public void OnAIPlayerError(AIError error)
     switch (error.ErrorCode)
     {
         case AIError.Code.AI_API_ERR:
+            // TODO: impl error handling
+            break;
+        case AIError.Code.AICLIPSET_PLAY_ERR:
             // TODO: impl error handling
             break;
         

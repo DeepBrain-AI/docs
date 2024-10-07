@@ -4,7 +4,8 @@ sidebar_position: 6
 
 # CustomVoice
 
-namespace AIHuman.Common
+- assembly: AIHuman.SDK.Core  
+- namespace: AIHuman.Common  
 
 | Modifier and Type | Method and Description                    |
 | ----------------- | ----------------------------------------- |

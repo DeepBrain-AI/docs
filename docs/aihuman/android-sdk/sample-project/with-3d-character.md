@@ -15,8 +15,11 @@ sidebar_position: 6
 You can change to other 3d models and it can speak with gestures.
 
 <p align="center">
-<img src="/img/aihuman/android/Screenshot_20221107-120426_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
+<img src="/img/aihuman/android/sdk_demo_unity_speak.jpg" style={{zoom: "25%"}} />
 </p>
+
+**Set up AndroidManifest.xml for UnityPlayerActivity**
+As mentioned in project setup, UnityPlayerActivity needs AndroidManifest.xml setup. Please refer this [link](../getting-started/projectsetup.md).
 
 To use 3D character, the activity should extends UnityPlayerActivity and should implement IUnityPlayerCallback interface. **In the 'UnityToAndroid(String param) method which is IUnityPlayerCallback, 'mAI3DPlayer.UnityToAndroid(param)' must be called.**
 
@@ -31,8 +34,7 @@ public class UnityActivity extends UnityPlayerActivity implements IUnityPlayerCa
 }
 ```
 
-**Set up AndroidManifest.xml for UnityPlayerActivity**
-As mentioned in project setup, UnityPlayerActivity needs AndroidManifest.xml setup. Please refer this [link](../getting-started/projectsetup.md). 
+
 
 
 **Next, to setup UnityPlayerActivity, we need to set currentActivity, mUnityPlayer on ' onCreate(...)'.** On 'createAI3DPlayer()', the  mAI3DPlayer is instanciated and it is 3D character loadable Player which extends from UnityPlayer and we can make the character speak using it.
@@ -68,8 +70,6 @@ private void createAI3DPlayer() {
     mAI3DPlayer.requestFocus();
 }
 ```
-
-
 
 After receiving the usable AI list, we set up the UI. (Only 3D characters for this time).  **UnityPlayerActivity needs its own process. So, call AIModelInfoManager.generateToken() first to get the data correctly.** 
 

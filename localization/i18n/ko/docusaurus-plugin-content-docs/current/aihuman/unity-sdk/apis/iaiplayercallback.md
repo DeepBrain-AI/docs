@@ -2,7 +2,9 @@
 sidebar_position: 2
 ---
 
-# AIHuman.Interface.IAIPlayerCallback
+# IAIPlayerCallback
+
+namespace AIHuman.Interface
 
 | Modifier and Type | Method and Description                                       |
 | ----------------- | ------------------------------------------------------------ |

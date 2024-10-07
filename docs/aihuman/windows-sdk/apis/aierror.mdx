@@ -4,11 +4,12 @@ sidebar_position: 15
 
 # AIError
 
-namespace AIHuman.Common
+- assembly: AIHuman.SDK.Core  
+- namespace: AIHuman.Common  
 
 | Modifier and Type | Method and Description |
 | ----------------- | ---------------------- |
-| `int`   | `ErrorCode { get; }` error's code. This can vary from AIError.Code.UNKNOWN_ERR ~ AIError.Code.RESERVED_ERR  |
+| `int`   | `ErrorCode { get; }` error's code. This can vary from AIError.Code.UNKNOWN_ERR ~ AIError.Code.RESERVED_ERR <br/> ([Details](../../../aihuman/windows-sdk/aiplayer/errors)) |
 | `string`   |  `Description { get; }` error's Description  |
 | `string`   |  `ToString()` Returns a string in the form "ErrorCode: Description".   |
 

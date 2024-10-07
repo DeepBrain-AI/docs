@@ -4,7 +4,8 @@ sidebar_position: 3
 
 # AIAPI
 
-namespace AIHuman.Core
+- assembly: AIHuman.SDK.Core  
+- namespace: AIHuman.Core  
 
 | Modifier and Type                | Method and Description                                       |
 | -------------------------------- | ------------------------------------------------------------ |

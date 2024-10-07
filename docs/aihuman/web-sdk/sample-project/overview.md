@@ -14,7 +14,8 @@ The demo web page allows you to experience the AI Human Web SDK(js)'s features. 
 
 - QuickStart : Start AIPlayer quickly
 - SDK Demo : Demo of AIPlayer Functionalities
-- STT Demo : AIPlayer + Chatbot(PlayChat) example
+- STT Demo : AIPlayer + Google STT/Chatbot(PlayChat) example
+- AWS Demo : AIPlayer + AWS Transcbribe/Chatbot(Claud) example
 
 ## Sample Project
 
@@ -49,6 +50,9 @@ And files inside nextjs folder.
 | `demo.html`      | `Client` | sdk demo html
 | `demo.js`        | `Client` | sdk demo javascript
 | `demo.css`       | `Client` | sdk demo css
+| `demo_aws_sdk.html`      | `Client` | aws sdk demo html
+| `aws_sdk_index.js`        | `Client` | aws sdk demo javascript
+| `demo2.css`       | `Client` | stt/aws sdk demo css
 
 
 <br />
@@ -65,7 +69,7 @@ Let's get into the nextjs folder from the sample.
 
 <img src="/img/aihuman/web/sdk_sample3.png" />
 
-**3. Run the server from the `/nextjs` directory using commands below.**
+**3. Run the server from the `/nextjs` directory using commands below(Terminal).**
 
 ```
 $ cd nextjs
@@ -73,7 +77,7 @@ $ npm install
 $ npm run dev
 ```
 
-**4. From a Chrome browser, go to `http://localhost:3000`.**
+**4. From Chrome browser, go to `http://localhost:3000`.**
 
 The following web page(`SDK DEMO`) will be shown if everything goes well.
 
@@ -82,6 +86,28 @@ The following web page(`SDK DEMO`) will be shown if everything goes well.
 <br />
 <br />
 <br />
+
+#### Run AWS demo
+
+**1. Prepare the keys and secrets for the AWS sdk .** 
+
+In this example, you need REGION(e.g. us-west-2) and IDENTITY_POOL_ID(Amazon Cognito Identity Pool ID) for Transcribe. And llmModelId, region, accessKeyId and secretAccessKey for BedrockRuntimeClient. 
+
+**2. Run the AWS SDK demo from the `/nextjs` directory using commands below(Terminal).** 
+
+After set those keys and secrets, the 'npm run aws' command below is necessary for AWS sdk build using 'webpack'. Of course, you need to set the appId and userkey up before running it.
+
+```
+$ cd nextjs
+$ npm install
+$ npm run aws
+$ npm run dev
+```
+
+**3. From Chrome browser, go to `http://localhost:3000/demo_aws_sdk.html`.**
+
+The AWS sdk demo will show.
+
 
 #### Run node-express sample
 

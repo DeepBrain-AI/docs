@@ -4,7 +4,8 @@ sidebar_position: 5
 
 # AIGesture
 
-namespace AIHuman.Common.Model
+- assembly: AIHuman.SDK.Core  
+- namespace: AIHuman.Common.Model  
 
 | Modifier and Type    | Method and Description                                       |
 | -------------------- | ------------------------------------------------------------ |

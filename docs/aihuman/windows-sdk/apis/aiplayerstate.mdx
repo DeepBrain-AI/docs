@@ -4,9 +4,18 @@ sidebar_position: 13
 
 # AIPlayerState
 
-namespace AIHuman.Interface
+- assembly: AIHuman.SDK.Core  
+- namespace: AIHuman.Interface  
 
-| Modifier and Type | Method and Description |
-| ----------------- | ---------------------- |
-| `enum`   | NONE, INITIALIZE, IDLE, PLAY, PAUSE, RELEASE |
+Apart from the event callback, you can check the state of the AIPlayer object. Enum type.
 
+:::info
+
+`NONE`(0): State before creation  
+`INITIALIZE`(1): State during creation and initialization (including resource download)  
+`IDLE`(2): An AI Human Idle state in which functions such as utterance (action) and preload can be used  
+`PLAY`(3): State of utterance (action)  
+`PAUSE`(4): State on pause (no AI human movement)  
+`RELEASE`(5): Resource released by AIPlayer.Dispose function 
+
+:::

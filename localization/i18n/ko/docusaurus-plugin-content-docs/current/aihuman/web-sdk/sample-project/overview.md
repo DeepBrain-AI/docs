@@ -6,72 +6,72 @@ sidebar_position: 1
 
 ## Demo web page
 
-본 문서에서 다루는 샘플은 AI Human SDK를 사용한 예시로, DEMO 버튼[(Link)](https://aihuman.deepbrain.io/webdemo/demo1.html)을 누르면 웹페이지의 우측 상단에 아래와 같은 메뉴가 나타납니다.
+Demo web page에서는 AI Human Web SDK(js)'의 기능을 사용해볼수 있습니다. 여기[(Link)](https://aihuman.deepbrain.io/webdemo/demo1.html). 페이지의 오른쪽 상단에 아래와 같은 메뉴가 나오며, 이를 통해 SDK의 기능들을 둘러보십시오.
 
 <img src="/img/aihuman/web/demo_btn.png" />
 
-### Demo web page menu
+### Demo web page 메뉴
 
 각 메뉴의 구성은 아래와 같습니다.
 
-- QuickStart : AIPlayer QuickStart
-- SDK Demo : functionalities of AIPlayer
-- STT Demo : AIPlayer + PlayChat
+- QuickStart : 빠른 AIPlayer 시작
+- SDK Demo : AIPlayer 기능 예시 
+- STT Demo : AIPlayer + Chatbot(PlayChat) 예시 
+- AWS Demo : AIPlayer + AWS Transcbribe/Chatbot(Claud) example
 
-## Sample Project
+## 샘플 Project
 
-본 내용은 AI Human SDK를 사용하여 간단힌 프로젝트를 만드는 방법을 제공합니다. 이는 샘플 프로젝트를 다운받아 간단히 구현이 가능합니다. 다운 받은 샘플 프로젝트의 세부 파일에 대한 설명은 아래와 같습니다.
+SDK 사이트에 제공된 샘플은 SDK의 기능을 보여주는 예입니다. 이를 통해 SDK가 실제로 어떻게 작동하는지 확인할 수 있습니다.
 
-**파일 구성**
-
-| Filename          | Division | Description                      |
-| ----------------- | -------- | -------------------------------- |
-| `generateJWT.js`  | `Server` | generate client token javascript |
-| `quickStart.html` | `Client` | quick start html                 |
-| `quickStart.js`   | `Client` | quick start javascript           |
-| `demo1.html`      | `Client` | sdk demo html                    |
-| `demo1.js`        | `Client` | sdk demo javascript              |
-| `demo1.css`       | `Client` | sdk demo css                     |
-| `demo2.html`      | `Client` | stt demo css                     |
-| `demo2.js`        | `Client` | stt demo css                     |
-| `demo2.css`       | `Client` | stt demo css                     |
-
-<br />
-
-### 실행방법
-
-샘플 프로젝트 코드 환경은 node-express와 nextjs로 두 가지를 제공한다. SDK-Project[(링크)](https://aihuman.deepbrain.io/aihuman/sdk)를 접속 후, 하단에서 아래의 `Sample` 버튼을 클릭하면 sample 프로젝트를 다운 받을 수 있습니다.
+여기[(link)](https://aihuman.deepbrain.io/aihuman/sdk)에서 다운로드하십시오.
 
 <img src="/img/aihuman/web/sdk_sample1.png" />
 
 <br />
 <br />
 
-**파일 구성**
+### 실행 방법
 
-다운 받은 파일의 압축을 풀면 아래의 파일 구조를 가집니다. 각 프로젝트의 실행 방법은 다음과 같습니다.
+샘플 프로젝트는 node-express와 nextjs로 두 가지를 제공합니다. 먼저 샘플의 내용을 확인합니다.
+
+### Contents
+
+zip file의 압축을 풀면, 다음과 같은 폴더가 생성됩니다. 
 
 | Folder name    | Description      |
 | -------------- | ---------------- |
 | `node-express` | sample project 1 |
 | `nextjs`       | sample project 2 |
 
+
+폴더 안에는 다음과 같은 파일들이 있습니다. 
+
+| Filename          | Division  |Description                      |
+| ----------------- | -------- |----------------------------------|
+| `generateJWT.js`  | `Server` | generate client token javascript
+| `demo.html`      | `Client` | sdk demo html
+| `demo.js`        | `Client` | sdk demo javascript
+| `demo.css`       | `Client` | sdk demo css
+| `demo_aws_sdk.html`      | `Client` | aws sdk demo html
+| `aws_sdk_index.js`        | `Client` | aws sdk demo javascript
+| `demo2.css`       | `Client` | stt/aws sdk demo css
+
+
 <br />
 
 ### nextjs 실행하기
 
-nextjs를 활용하여 AI Human SDK를 사용한 프로젝트(SDK DEMO 버전)를 빠르게 만들 수 있습니다.
+샘플의 nextjs 폴더를 살펴봅니다.
 
-**1. [프로젝트 셋업](../getting-started/projectsetup)를 통해, appId와 userKey를 발급받는다.**
+**1. [프로젝트 셋업](../getting-started/projectsetup)를 통해, appId를 입력하고, userKey를 발급받습니다.**
 
-**2. `/nextjs/pages/api/generateJWT.js` 파일을 수정한다.**
+**2. `/nextjs/pages/api/generateJWT.js` 파일을 수정합니다.**
 
-- [프로젝트 셋업](../getting-started/projectsetup)에서 생성한 appId를 4번째 줄에 넣어줍니다.
-- [프로젝트 셋업](../getting-started/projectsetup)에서 생성된 userKey를 2번째 줄에 넣어줍니다.
+- 아래와 같이 appId, userkey를 입력합니다. 
 
 <img src="/img/aihuman/web/sdk_sample3.png" />
 
-**3. `/nextjs` 디렉토리 위치에서 아래의 명령어를 통해 서버을 실행합니다.**
+**3. `/nextjs` 디렉토리에서 아래의 명령어를 통해 서버을 실행합니다.**
 
 ```
 $ cd nextjs
@@ -81,24 +81,43 @@ $ npm run dev
 
 **4. 크롬 브라우저에서 `http://localhost:3000`에 접속합니다.**
 
-**5. 정상작동 스크린샷**
+문제가 없다면, 아래와 같이 `SDK DEMO`가 실행됩니다.
 
-아래와 같은 `SDK DEMO` 버전이 실행됩니다.
-
-<img src="/img/aihuman/web/sdk_demo_01.png" />
+<img src="/img/aihuman/web/sdk_demo_01_r1.png" />
 
 <br />
 <br />
 <br />
+
+#### AWS demo 실행하기 
+
+**1. AWS SDK를 위한 key와 secret을 준비한다.** 
+
+이 예제에서는, Transcribe를 위한 REGION(e.g. us-west-2)과 IDENTITY_POOL_ID(Amazon Cognito Identity Pool ID)가 필요합니다. 또한 llmModelId, region, accessKeyId와 secretAccessKey가 BedrockRuntimeClient을 위해 필요합니다. 자세한 내용은 demo-aws-sdk 섹션을 참고하여주세요.
+
+**2. AWS SDK demo 실행하기(`/nextjs` directory 에서 터미널 이용)** 
+
+키와 시크릿을 모두 셋업한 이후, 'npm run aws'를 입력하여 AWS sdk 관련 소스를 webpack 빌드합니다. 물론 AIPlayer를 위한 appId와 userkey는 실행전에 셋업이 되어야합니다. 
+
+```
+$ cd nextjs
+$ npm install
+$ npm run aws
+$ npm run dev
+```
+
+**3. From Chrome browser, go to `http://localhost:3000/demo_aws_sdk.html`.**
+
+The AWS sdk demo will show.
+
 
 ### node-express 실행하기
 
-**1. [프로젝트 셋업](../getting-started/projectsetup)를 통해, appId와 userKey를 발급받는다.**
+**1. [프로젝트 셋업](../getting-started/projectsetup)를 통해, appId를 입력하고, userKey를 발급받습니다.**
 
 **2. `/node-express/server/generateJWT.js` 파일을 수정합니다.**
 
-- [프로젝트 셋업](../getting-started/projectsetup)에서 생성한 appId를 5번째 줄에 넣어줍니다.
-- [프로젝트 셋업](../getting-started/projectsetup)에서 생성된 userKey를 3번째 줄에 넣어줍니다.
+- 아래와 같이 appId, userkey를 입력합니다. 
 
 <img src="/img/aihuman/web/sdk_sample2.png" />
 
@@ -111,11 +130,3 @@ $ npm start
 ```
 
 **4. 크롬 브라우저로 `/node-express/client/quickStart.html` 파일을 불러옵니다.**
-
-**5. 정상작동 스크린샷**
-
-아래 이미지는 왼쪽 부터 quickStart.html, demo1.html, demo2.html 정상작동 스크린샷입니다.
-
-<img src="/img/aihuman/web/quick_start.png" />
-<img src="/img/aihuman/web/sdk_demo_01.png" />
-<img src="/img/aihuman/web/stt_demo_01.png" />

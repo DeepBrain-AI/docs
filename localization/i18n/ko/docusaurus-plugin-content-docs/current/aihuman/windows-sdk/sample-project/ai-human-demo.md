@@ -3,8 +3,8 @@ sidebar_position: 3
 ---
 
 # AI Human 데모
-:::note 정보
-Sample Project에서 아래 파일들을 참고하세요.
+:::note Sample Project에서 아래 파일들을 참고하세요.
+
 - DemoView.xaml
 - DemoViewModel.cs
 
@@ -12,38 +12,54 @@ Sample Project에서 아래 파일들을 참고하세요.
 
 AI Human SDK Demo는 AIPlayer의 다양한 기능을 살펴볼 수 있는 메뉴입니다. [AI 선택]을 통해 승인된 다른 AI 모델로 변경할 수 있습니다. 기타 자세한 내용은 [AIPlayer 설명](../../../category/aiplayer-description-1)을 참고하세요.
 
-<img src="/img/aihuman/windows/WPF_Sample_DemoPage.png" />
+<img src="/img/aihuman/windows/sampledemo_1.5.x.png" />
 
-**먼저 사용 가능한 AI 목록을 가져와 UI를 설정합니다. 아래 AIAPI.AppId, AIAPI.UserKey는 HomeView에서 Authenticate를 호출할 때 입력한 매개 변수입니다.**
-- 엄밀히 말하면 HomeView에서의 Authenticate는 App.xaml.cs의 생성자에서의 호출을 의미합니다.
+**먼저 사용 가능한 AI 목록을 가져와 UI를 설정합니다. 아래 AIAPI.AppId, AIAPI.UserKey는 앞서 입력한 App.xaml.cs의 APPID, USERKEY와 동일합니다. HomeView에서 Authenticate를 호출할 때 사용한 매개 변수입니다.**
+- 엄밀히 말하면 HomeView에서의 Authenticate는 App.xaml.cs의 생성자에 의한 호출을 의미합니다.
 - 초기 Authenticate 호출에 사용한 첫번째, 두번째 인자는 AIAPI.AppId, AIAPI.UserKey에 내부적으로 할당됩니다.
 
 ```csharp
-AIAPI.Instance.Authenticate(AIAPI.AppId, AIAPI.UserKey, (aiList, error) =>
+// AIPlayer 객체 멤버 변수
+private AIPlayer _aiPlayer;
+// AIPlayer 뷰 반인딩 멤버 프로퍼티
+public object AIPlayerObject
 {
-    try
+    get => (_aiPlayer?.GetObject());
+    private set => OnPropertyChanged(nameof(AIPlayerObject));
+}
+
+public DemoViewModel()
+{
+    ...
+
+    // SDK 인증 API
+    // 인증이 성공적으로 완료되면 할당된 AI 목록을 확인할 수 있습니다. 인증에 실패하거나 할당된 모델이 없다면 에러 객체를 전달합니다.
+    AIAPI.Instance.Authenticate(AIAPI.AppId, AIAPI.UserKey, (aiList, error) =>
     {
-        if (error != null)
+        try
         {
-            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Render, () => {
+            if (error != null)
+            {
                 AIStatusText = error.ToString();
-            });
-            return;
-        }
+                return;
+            }
 
-        AIs = new ObservableCollection<AIAPI.AI>();
-        foreach (AIAPI.AI item in aiList.ai)
+            AIs = new ObservableCollection<AIAPI.AI>();
+            foreach (AIAPI.AI item in aiList.ai)
+            {
+                AIs.Add(item);
+            }
+
+            SelectedAI = AIs[0];
+        }
+        catch (Exception /*e*/)
         {
-            AIs.Add(item);
+            AIStatusText = Resource.ApiAiListEmptyError;
         }
+    });
 
-        SelectedAI = AIs[0];
-    }
-    catch (Exception /*e*/)
-    {
-        AIStatusText = Resource.ApiAiListEmptyError;
-    }
-});
+    ...
+}
 ```
 
 **AI 모델을 변경하는 부분 입니다.** AIPlayer를 생성하고 추가하는 것 외에도 샘플 텍스트를 얻어오고 발화 문장 콤보박스를 채웁니다. 나머지 기본 설정값들도 가져와 업데이트됩니다.
@@ -59,19 +75,20 @@ private void UpdateSelectedAI()
     }
     ...
 
-    _aiPlayer = new(SelectedAI.aiName, this);
+    // AIPlayerOptions 객체를 통해 AIPlayer 객체를 생성합니다.
+    AIPlayerOptions options = new AIPlayerOptions(SelectedAI.aiName);
+    _aiPlayer = new AIPlayer(options, this);
+    // 새로 생성한 AIPlayer 객체의 뷰를 갱신합니다.
     AIPlayerObject = _aiPlayer.GetObject();           
 
-    OnPropertyChanged(nameof(AISpeed));
-    OnPropertyChanged(nameof(AIScale));
+    ...
 
-    _aiMargin = AIMargin;
-    OnPropertyChanged(nameof(AIMargin_X));
-    OnPropertyChanged(nameof(AIMargin_Y));
-
+    // 현재 AI가 사용할 수 있는 gesture 목록을 얻을 수 있습니다.
     _gestures = _aiPlayer.GetGestures();
     ...
 
+    // 구사할 수 있는 언어들을 조회할 수 있습니다.
+    // 이외에 AI와 관련된 API 함수들은 API 편람을 참고해 주세요.
     SpeakableLanguages = AIAPI.GetSpeakableLanguages(_aiPlayer.AIGender);
     ...
 }
@@ -161,21 +178,6 @@ private void Stop_Command(object args)
     AIStatusText = Resource.StopStatus;
 }
 
-private void Multi_Command(object args)
-{
-    _sendingMessage.Clear();
-
-    for (int i = 1; i < SpeechList.Count; ++i)
-    {
-        if (i % 2 != 0)
-        {
-            _sendingMessage.Add(AIAPI.CreateClipSet(SpeechList[i]));
-        }
-    }
-
-    _aiPlayer.Send(_sendingMessage.ToArray());
-}
-
 private void Resume_Command(object args)
 {
     _aiPlayer.Resume();
@@ -211,6 +213,6 @@ public interface IAIPlayerCallback
 - AICLIPSET_PLAY_STARTED: AI 발화 시작 시 발생
 - AICLIPSET_PLAY_COMPLETED: AI 발화 완료 시 발생
 - AICLIPSET_PLAY_FAILED: AI 발화 실패 시 발생
-- ...
+- [이 외의 Type](../../../aihuman/windows-sdk/apis/aievent)
 
 :::

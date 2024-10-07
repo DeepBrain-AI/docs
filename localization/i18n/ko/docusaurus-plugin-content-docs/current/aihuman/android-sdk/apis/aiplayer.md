@@ -4,8 +4,8 @@ sidebar_position: 1
 
 # AIPlayer
 
-| Modifier and Type        | Method and Description                                       |
-| ------------------------ | ------------------------------------------------------------ |
+| Modifier and Type        | Method and Description|
+| ------------------------ | ------------------------ |
 | `java.lang.String`       | `getAIName()`현재 설정된 ai의 이름 확인   |
 | `float`                  | `getScale()`현재 설정된 ai의 스케일 확인  |
 | `float`                  | `getSpeed()` 현재 설정된 ai의 말하기 속도 확인   |
@@ -33,6 +33,8 @@ sidebar_position: 1
 | `String`                 | `getLanguageCode()` 현재 설정된 음성의 언어 (en 또는 en-US 포맷)를 리턴합니다. AI가 설정되지 않았으면 null을 리턴합니다.    |
 | `String`                 | `getGender()` 현재 설정된 AI의 성별을 가져옵니다. MALE, FEMALE, UNI 값을 가질수 있으며 AI가 설정되지 않았으면 null을 리턴합니다.   |
 | `AIPlayerState`          | `getState()` AIPlayer의 현재 상태 확인  |
+| `void`                    | `setVolume(float volume)` 볼륨 조절. 0 ~ 1 범위 |
+| `float`                   | `getVolume()` 현재 설정된 볼륨 확인. |
 | `boolean`                | `isConnected()` 현재 AI가 연결된 상태인지 확인  |
 | `boolean`                | `canPreload()` 프리로드 가능한지 확인. false 리턴. (현재 지원하지 않음)  |
 | `boolean`                | `reconnect(IAIReconnectCallback reconnectCallback)` AI가 연결되지 않았을때 재연결 시도. 연결이 이미 되어있거나 연결시도 할수 없는 상황인 경우 false 리턴.|

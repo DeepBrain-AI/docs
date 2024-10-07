@@ -1,8 +1,10 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 
-# AIHuman.Model.AIClipSet
+# AIClipSet
+
+namespace AIHuman.Model
 
 | Modifier and Type | Method and Description                                       |
 | ----------------- | ------------------------------------------------------------ |

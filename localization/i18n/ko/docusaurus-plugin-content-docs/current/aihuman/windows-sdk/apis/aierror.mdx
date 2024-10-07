@@ -4,11 +4,11 @@ sidebar_position: 15
 
 # AIError
 
-namespace AIHuman.Common
+- assembly: AIHuman.SDK.Core  
+- namespace: AIHuman.Common  
 
 | Modifier and Type | Method and Description |
 | ----------------- | ---------------------- |
-| `int`   | `ErrorCode { get; }` 에러 코드. 범위 값으로 AIError.Code.UNKNOWN_ERR ~ AIError.Code.RESERVED_ERR 값을 갖습니다.  |
-| `string`   |  `Description { get; }` 에러 설명.  |
-| `string`   |  `ToString()` "ErrorCode: Description" 형식의 문자열을 리턴합니다.  |
-
+| `int`   | `ErrorCode { get; }` 에러 코드입니다. <br/> 범위 값으로 `AIError.Code.UNKNOWN_ERR` ~ `AIError.Code.RESERVED_ERR` 값을 갖습니다. <br/> ([상세 내용](../../../aihuman/windows-sdk/aiplayer/errors))  |
+| `string`   |  `Description { get; }` 에러에 대한 추가적인 설명입니다.  |
+| `string`   |  `ToString()` "{ErrorCode}: {Description}" 형식의 문자열을 리턴합니다.  |

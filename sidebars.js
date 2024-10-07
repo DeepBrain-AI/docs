@@ -80,16 +80,56 @@ const sidebars = {
       type: 'category',
       label: 'API Reference',
       items: [
-        'aistudioV3/reference/auth',
-        'aistudioV3/reference/export-project',
-        'aistudioV3/reference/progress',
-        'aistudioV3/reference/get-project',
-        'aistudioV3/reference/export-template',
-        'aistudioV3/reference/simple-video',
-        'aistudioV3/reference/simple-audio',
-        'aistudioV3/reference/webhook',
-        'aistudioV3/reference/clips',
-        'aistudioV3/reference/model-list'
+        {
+          type: 'category',
+          label: 'Authentication',
+          collapsed: false,
+          items: [
+            "aistudioV3/reference/auth",
+            "aistudioV3/reference/auth-confirm",
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Project',
+          collapsed: true,
+          items: [
+            "aistudioV3/reference/progress",
+            "aistudioV3/reference/get-project",
+            "aistudioV3/reference/edit-project",
+            "aistudioV3/reference/get-projects",
+            "aistudioV3/reference/create-project",
+            "aistudioV3/reference/export-project",
+            "aistudioV3/reference/modify-project",
+            "aistudioV3/reference/create-from-template",
+            "aistudioV3/reference/create-from-template-and-modify",
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Utilities',
+          items: [
+            "aistudioV3/reference/models",
+            "aistudioV3/reference/templates-business",
+            "aistudioV3/reference/simple-video",
+            "aistudioV3/reference/simple-audio",
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Data formats',
+          items: [
+            "aistudioV3/reference/webhook",
+            "aistudioV3/reference/clips"
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Tools',
+          items: [
+            'aistudioV3/reference/tools/voice-generator'
+          ],
+        },
       ],
     },
   ],
@@ -117,11 +157,11 @@ const sidebars = {
         "description": "Learn AI Human SDK as a sample project."
       },
       items: [
-        'aihuman/web-sdk/sample-project/overview',
-        'aihuman/web-sdk/sample-project/quick-start',
-        'aihuman/web-sdk/sample-project/ai-human-demo',
-        'aihuman/web-sdk/sample-project/with-playchat-azure-stt',
-        'aihuman/web-sdk/sample-project/with-google-dialogflow',
+        "aihuman/web-sdk/sample-project/overview",
+        "aihuman/web-sdk/sample-project/quick-start",
+        "aihuman/web-sdk/sample-project/ai-human-demo",
+        "aihuman/web-sdk/sample-project/with-playchat-azure-stt",
+        "aihuman/web-sdk/sample-project/demo-aws-sdk"
       ],
     },
     {
@@ -189,6 +229,7 @@ const sidebars = {
     },
     {
       type: 'category',
+      collapsed: false,
       label: 'AIPlayer Description',
       link: {
         "type": "generated-index",
@@ -212,15 +253,15 @@ const sidebars = {
         "description": "Learn about the main interface, class, and api of the AI Human SDK."
       },
       items: [
-        'aihuman/windows-sdk/apis/aiapi',
-        'aihuman/windows-sdk/apis/iaiplayercallback',
-        'aihuman/windows-sdk/apis/aiplayer',
-        'aihuman/windows-sdk/apis/aiclipset',
-        'aihuman/windows-sdk/apis/aigesture',
-        'aihuman/windows-sdk/apis/aierror',
-        'aihuman/windows-sdk/apis/aievent',
-        'aihuman/windows-sdk/apis/aiplayerstate',
-        'aihuman/windows-sdk/apis/customvoice',
+        "aihuman/windows-sdk/apis/aiapi",
+        "aihuman/windows-sdk/apis/iaiplayercallback",
+        "aihuman/windows-sdk/apis/aiplayer",
+        "aihuman/windows-sdk/apis/aiplayerstate",
+        "aihuman/windows-sdk/apis/aiclipset",
+        "aihuman/windows-sdk/apis/aigesture",
+        "aihuman/windows-sdk/apis/customvoice",
+        "aihuman/windows-sdk/apis/aievent",
+        "aihuman/windows-sdk/apis/aierror"
       ],
     },
   ],
@@ -396,7 +437,11 @@ const sidebars = {
         "aihuman/unity-sdk/sample-project/overview",
         "aihuman/unity-sdk/sample-project/quick-start",
         "aihuman/unity-sdk/sample-project/ai-human-demo",
+        "aihuman/unity-sdk/sample-project/ai-human-3d-demo",
         "aihuman/unity-sdk/sample-project/with-playchat-azure-stt",
+        "aihuman/unity-sdk/sample-project/with-aws-bedrock-transcribe",
+        "aihuman/unity-sdk/sample-project/with-ulipsync-tts",
+        "aihuman/unity-sdk/sample-project/ai-human-metaverse-demo"
       ],
     },
     {
@@ -428,8 +473,14 @@ const sidebars = {
         "aihuman/unity-sdk/apis/aiapi",
         "aihuman/unity-sdk/apis/iaiplayercallback",
         "aihuman/unity-sdk/apis/aiplayer",
+        "aihuman/unity-sdk/apis/ai3dplayer",
         "aihuman/unity-sdk/apis/aiclipset",
         "aihuman/unity-sdk/apis/aigesture",
+        "aihuman/unity-sdk/apis/aierror",
+        "aihuman/unity-sdk/apis/aievent",
+        "aihuman/unity-sdk/apis/ai3devent",
+        "aihuman/unity-sdk/apis/aiplayerstate",
+        "aihuman/unity-sdk/apis/customvoice"
       ],
     },
   ],

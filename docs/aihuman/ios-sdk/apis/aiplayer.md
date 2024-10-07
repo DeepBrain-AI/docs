@@ -42,8 +42,10 @@ sidebar_position: 1
 | `var language`           | `String { getter }` read only<br/> AIPlayer language                                |
 | `var gestures`        |   `Array { getter }` read only <br/> List of available gestures   |
 | `var size`           | `CGSize { getter }` read only<br/> AIPlayer size                  |
-| `var scale`          | `CGFloat { getter setter }` <br/> set AIPlayer size                      |
-| `var speechSpeed`            | `Float { getter setter }`<br/> set AI speech rate             |
+| `var scale`          | `CGFloat { getter setter }` <br/> get or set AIPlayer size                      |
+| `var volume`          | `Float { getter setter }` <br/> get or set AIPlayer volume                      |
+| `var isMute`          | `Bool { getter setter }` <br/> get or set AIPlayer mute                      |
+| `var speechSpeed`            | `Float { getter setter }`<br/> get or set AI speech rate             |
 | `var enableViewAspectRatio`  | `Bool { getter }`<br/> AIPlayer View Size aspect Ratio Optimization Enabled             |
 | `var verticalAlignment` | `AIPlayerVerticalAlignment { getter setter }`<br/> AI vertical alignment on size update |
 | `var horizontalAlignment` | `AIPlayerHorizontalAlignment {getter setter }`<br/> AI horizontal alignment on size update |

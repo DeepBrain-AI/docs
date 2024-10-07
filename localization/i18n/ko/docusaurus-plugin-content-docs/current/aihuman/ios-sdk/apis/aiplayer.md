@@ -43,6 +43,8 @@ sidebar_position: 1
 | `var gestures`        |   `Array { getter }` 읽기 전용 <br/> 사용 가능한 제스쳐 목록   |
 | `var size`           | `CGSize { getter }` 읽기 전용<br/> AIPlayer 크기                                |
 | `var scale`          | `CGFloat { getter setter }` <br/> AIPlayer 크기 조절                                    |
+| `var volume`          | `Float { getter setter }` <br/> AIPlayer 볼륨 조절                      |
+| `var isMute`          | `Bool { getter setter }` <br/> AIPlayer 음소거                      |
 | `var enableViewAspectRatio`   | `Bool { getter }` <br/> AIPlayer 뷰 사이즈 비율 최적화 적용 여부                                    |
 | `var speechSpeed`            | `Float { getter setter }`<br/> AI 말하기 속도 조절                              |
 | `var verticalAlignment` | `AIPlayerVerticalAlignment { getter setter }`<br/> AI 크기를 조절할 때 수직 기준점                |

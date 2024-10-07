@@ -4,10 +4,10 @@ sidebar_position: 14
 
 # AIEvent
 
-namespace AIHuman.Common
+- assembly: AIHuman.SDK.Core  
+- namespace: AIHuman.Common  
 
 | Modifier and Type | Method and Description |
 | ----------------- | ---------------------- |
-| `AIEvent.Type`   |  `EventType { get; }` 이벤트의 타입. 다음과 같은 값을 갖습니다. <br/>- RES_LOAD_STARTED, <br/>- RES_LOAD_COMPLETED, <br/>- AICLIPSET_PLAY_PREPARE_STARTED, <br/>- AICLIPSET_PLAY_PREPARE_COMPLETED, <br/>- AICLIPSET_PRELOAD_STARTED, <br/>- AICLIPSET_PRELOAD_COMPLETED, <br/>- AICLIPSET_PRELOAD_FAILED, <br/>- AICLIPSET_PLAY_STARTED, <br/>- AICLIPSET_PLAY_COMPLETED, <br/>- AICLIPSET_PLAY_FAILED, <br/>- AI_CONNECTED, <br/>- AI_DISCONNECTED, <br/>- AICLIPSET_PLAY_BUFFERING, <br/>- AICLIPSET_RESTART_FROM_BUFFERING, <br/>- AIPLAYER_STATE_CHANGED |
-| `AIHuman.Common.Model.AIClipSet`   |  `ClipSet { get; }` 이벤트의 AIClipSet 객체.  |
-
+| `AIEvent.Type`   |  `EventType { get; }` 이벤트 종류입니다. 다음과 같은 값을 갖습니다. <br/>- UNKNOWN(-1) <br/>- RES_LOAD_STARTED(0): AI 리소스 로드 시작 <br/>- RES_LOAD_COMPLETED(1): AI 리소스 로드 완료 <br/>- AICLIPSET_PLAY_PREPARE_STARTED(2): 발화 준비(합성) 시작 <br/>- AICLIPSET_PLAY_PREPARE_COMPLETED(3): 발화 시작 조건 달성 완료 <br/>- AICLIPSET_PRELOAD_STARTED(4): 프리로드 시작  <br/>- AICLIPSET_PRELOAD_COMPLETED(5): 프리로드 완료 <br/>- AICLIPSET_PRELOAD_FAILED(6): 프리로드 실패 <br/>- AICLIPSET_PLAY_STARTED(7): 발화 시작 <br/>- AICLIPSET_PLAY_COMPLETED(8): 발화 완료 <br/>- AICLIPSET_PLAY_FAILED(9): 발화 실패 <br/>- AI_CONNECTED: AI와 네트워크 연결 완료 <br/>- AI_DISCONNECTED: AI와 네트워크 연결 끊김 <br/>- AICLIPSET_PLAY_BUFFERING: 발화 중 버퍼링 <br/>- AICLIPSET_RESTART_FROM_BUFFERING: 버퍼링에서 다시 발화 재계 <br/>- AIPLAYER_STATE_CHANGED: AIPlayer 상태 변화 발생 |
+| `AIHuman.Common.Model.AIClipSet`   |  `ClipSet { get; }` 이벤트에 해당하는 AIClipSet 객체입니다.  |

@@ -6,13 +6,13 @@ slug: /aihuman/windows-sdk
 
 # Introduction
 
-### Basic Concepts of AI Human (Video Conversation or AILive)
+We introduce the AI ​​Human SDK along with the basic concepts of AI Human.
 
-AI Human(previously called AILive) SDK can display a trained AI model that resembles real human on the screen in realtime. However, it goes beyond just realtime displaying the AI model. It even **allows the AI to speak naturally as if in a video call**. The most critical component of the SDK is AIPlayer.
+Using the AI ​​Human SDK (hereinafter referred to as SDK), AI created using deep learning can be expressed in real-time at the desired time and arrangement. AI Human can perform certain hand gestures or gestures, and by linking with a chatbot, implement services that **enable natural conversations like real people (Face to Face)**, refer to this as **Conversational AI Human**.
 
-<img src="/img/aihuman/windows/WPF_Sample_DemoPage.png" />
+<img src="/img/aihuman/windows/sampledemo_1.4.x.png" />
 
-AIPlayer is a View(UserControl) component where the AI model is displayed in real time and can be freely positioned. The AI within the AIPlayer was created by **training the voice and facial expression of a real person**. Therefore, it does not have any artificial sounds and is more natural than the previously existing TTS.
+When implementing AI Human services using SDK, AIPlayer, a key object, is used. The View of the AIPlayer object is UserControl and can be used by binding it to the View Layer you want to implement. The AI within the AIPlayer was created by **training the voice and facial expression of a real person**. Therefore, it does not have any artificial sounds and is more natural than the previously existing TTS.
 
 In addition, it is possible to select a variety of different models through AIPlayer. When an AI model is selected, the selected AI model in an Idle state is displayed on the screen after the loading process (user authentication and resource loading) as shown in the image above. 
 

@@ -12,7 +12,7 @@ sidebar_position: 3
 AIPlayerDemo 액티비티는 AIPlayer의 다양한 기능들을 UI를 통해 시연해볼수 있는 액티비티입니다. 여러 모델을 쓸수 있는 라이센스를 가지고 있다면, 다른 AI 모델로 변경해볼 수 있습니다. 또한 AI의 Scale을 변경하여 화면내에서 적절한 크기를 잡을수 있습니다. 말하기 속도 변경 및 여러 문장 발화시키기와 프리로드 기능도 사용해볼수 있습니다. 
 
 <p align="center">
-<img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
+<img src="/img/aihuman/android/sdk_demo_gesture_speak.jpg" style={{zoom: "25%"}} />
 </p>
 
 

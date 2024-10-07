@@ -6,34 +6,31 @@ sidebar_position: 4
 
 :::note related files
 
-- demo2.html
+- demo2.html, demo2.js, demo2.css
 
 :::
 
-[PlayChat](https://aichat.deepbrainai.io/)은 DeepBrain AI의 ChatBot 솔루션입니다.
+이 페이지에서는 화면에서 AI와 대화를 나누는 예제를 제공합니다. 이와 같이 AIPlayer와 플레이챗을 결합함으로 대화형 AI 서비스를 만들 수 있습니다. 플레이챗(딥브레인 제공)은 봇과 문자 메시지를 통해 대화를 나눌 수 있는 챗봇 서비스입니다.
 
-AIPlayer + PlayChat(Webview based Chatbot) is a Conversational AI service provided by Deepbrain AI. In this menu, you will be able to have conversation with the AI on screen.
-Playchat is a chatbot service in which users can have conversation with a bot through text messages.
-In this Demo, Playchat is fully integrated with the AI Models and the AI will speak out sentences coming from the chatbot. In other words, users will be able to have conversation with the AI
-through both text and speech.
+여기에서 플레이챗은 AIPlayer와 통합되어 있으며, AI는 그 챗봇에서 나오는 문장을 말할 것입니다. 즉, 사용자가 인공지능과 대화를 할 수 있는 것입니다. 플레이챗은 딥브레인이 제공하는 챗봇서비스이며, 원하는 챗봇 서비스가 있다면 자유롭게 구현하셔도됩니다.
 
 <img src="/img/aihuman/web/stt_demo_02.png" />
 
-## 1. Chatbot (Wrapper Class in PlayChat) settings
+## 1. Chatbot (Wrapper Class of PlayChat) 설정 
 
-**1.1. Include the chatbot.js file in a web page**
+**1.1. chatbot.js file을 web page에 추가**
 
 ```html
 <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/chatbot.js"></script>
 ```
 
-**1.2. Creates an object CHATBOT of the Deepbrain Chatbot**
+**1.2. Deepbrain Chatbot 개체를 생성**
 
 ```javascript
 const CHATBOT = new DeepbrainChatbot();
 ```
 
-**1.3. Implementing the CHATBOT callback**
+**1.3. CHATBOT 응답을 위해 콜백을 구현**
 
 ```javascript
 function initChatBotEvent() {
@@ -59,7 +56,7 @@ function initChatBotEvent() {
 }
 ```
 
-**1.4. Start CHATBOT**
+**1.4. CHATBOT 시작하기**
 
 ```javascript
 function startChat(obj) {
@@ -69,7 +66,7 @@ function startChat(obj) {
 }
 ```
 
-**1.5. Send Message to Chatbot and Release**
+**1.5. Chatbot에 메세지 보내기**
 
 ```javascript
 function sendMessage(message) {
@@ -79,17 +76,11 @@ function sendMessage(message) {
 
   CHATBOT.send({ cmd: "postUserInput", args: { text: message } });
 }
-
-function stop() {
-  // ...
-
-  AI_PLAYER.stopSpeak();
-}
 ```
 
-## 2. Set up Google STT
+## 2. Google STT 셋업
 
-- And when talking to AI, voice recognition (STT) uses Google STT, and the client side communicates with the server side through the websocket. The relevant settings are as follows.
+- 이 예에서는 AI와 대화할 때 음성 인식(Google STT)이 사용됩니다. STT는 내부의 웹 소켓을 통해 서버와 통신합니다. 설정은 다음과 같습니다.
 
 **2.1. Server socket source**
 
@@ -209,7 +200,7 @@ function stopRecognitionStream() {
   }
 ```
 
-- Start, Stop speech recognition
+- 음성인식의 시작, 중지
 
 ```javascript
   function startRecording(_stringArray) {

@@ -51,7 +51,7 @@ npm install jsonwebtoken
 ```javascript
   // generateJWT.js(Server)
 
-  const jwt = require("jsonwebtoken");
+  import jwt from "jsonwebtoken" 
 
   const userKey = "...";  // TODO: userKey input
   const payload = {
@@ -120,7 +120,7 @@ async function requestClientToken() {
 
 **2.4. generateToken request**
 
-- After the 'requestClientToken' call is succeeded, then call AIPlayer's "generateToken" function with appId and clientToken. It responds with JSON containing information such as verifiedToken, tokenExpire, and defaultAI. The 'generateToken' call succeeds means the authication is completed. For more info, refer to [API](../apis/aiapi.md)section.
+- After the 'requestClientToken' call is succeeded, then call AIPlayer's "generateToken" function with appId and clientToken. It responds with JSON containing information such as verifiedToken, tokenExpire, and defaultAI. The 'generateToken' call succeeds means the authication is completed. For more info, refer to [API](../apis/aiapi.md) section.
 
 ```javascript
   // quickStart.js(Client)
@@ -176,7 +176,7 @@ function initAIPlayerEvent() {
         if (curAIState == AIPlayerState.INITIALIZE && newAIState == AIPlayerState.IDLE) {
           console.log('AI initialization completed.') 
           // you can send now! 
-          // AI_PLAYER.send("안녕하세요!")
+          // AI_PLAYER.send("Hello!")
         }
         curAIState = newAIState
         break
@@ -516,7 +516,7 @@ async function makeRequest(method, url, params) {
 ```javascript
 // generateJWT.js(Server)
 
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken" 
 
 const userKey = "..."; // TODO: userKey input
 const payload = { 

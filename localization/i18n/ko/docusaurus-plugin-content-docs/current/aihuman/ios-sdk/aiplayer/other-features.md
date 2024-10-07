@@ -20,3 +20,17 @@ sidebar_position: 6
 ```swift
 aiPlayer.scale = scale
 ```
+
+### 볼륨 조절하기
+
+: AI의 볼륨을 설정합니다. 설정값 범위는 0.0 ~ 1.0 입니다.
+
+```swift
+aiPlayer.volume = value;
+```
+
+: 음소거를 설정 및 해제합니다.
+
+```swift
+aiPlayer.isMute = value;
+```

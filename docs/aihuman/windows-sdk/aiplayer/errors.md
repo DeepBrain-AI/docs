@@ -6,8 +6,22 @@ sidebar_position: 7
 
 You can receive the error code and its details as a callback(OnAIPlayerError) and take appropriate action.
 
-When an error occurs, the `OnAIPlayerError(AIError)` callback function is called. `AIError`, the argument of this function, contains information about the error. `AIError.errorType` tells what kind of error has occurred, and you can find out the details of the error as JSON String through the `GetMessage()` function.
+If an error occurs, the `OnAIPlayerError(AIError)` callback function is called from the IAIPlayerCallback implementation. The `AIError`, a parameter of this function, contains information about the error. The `ErrorCode` property can identify the type of error compared to the `AIError.Code` and can identify additional explanations through the `Description` property. For the `sender` member considering the extension, currently delivering the identification value (AIName) of the model where the error occurred.
 
-By using this message, you can take action when a specific error occurs. For example, `code 1402` may mean Token expired, and in this case, call `AuthStart()` to refresh the token.
+:::info
+AIError.Code
+- `UNKNOWN_ERR` : Unknown error other than SDK
+- `AI_API_ERR` : API error provided by SDK
+- `AI_SERVER_ERR` : Error received from server
+- `AI_RES_ERR` : Error in downloading and loading resources
+- `AI_INIT_ERR` : Error during initialization
+- `INVALID_AICLIPSET_ERR` : Error in invalid clip set
+- `AICLIPSET_PRELOAD_ERR` : Preload related error
+- `AICLIPSET_PLAY_ERR` : Utterance (action) related error
+- `RESERVED_ERR` : (Currently Not Used)
 
-**Check the full error types [here](https://ai-platform-prd.s3.ap-northeast-2.amazonaws.com/aihuman/docs/Deepbrain-AIHuman-Error-Code-V1.1.pdf)**.
+:::
+
+Take error handling, for example, when the error code is `1402`, it means Token Expired, and in response, you can call the `Authenticate` or `GenerateToekn` function to update the token.
+
+You can find the overall contents of the errors in **[this link](https://ai-platform-prd.s3.ap-northeast-2.amazonaws.com/aihuman/docs/Deepbrain-AIHuman-Error-Code-V1.1.pdf)**.
