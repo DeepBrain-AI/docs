@@ -6,9 +6,18 @@ slug: /aistudioV3/getting-started
 
 # API 시작하기
 
+:::caution
+
+도메인이 변경되었습니다. 오류가 발생하지 않도록 주의해 주세요.
+
+- 이전 도메인 - `https://app.deepbrain.io`
+- 변경 도메인 - `https://app.aistudios.com`
+
+:::
+
 AI STUDIOS V3에서는 외부 개발자, 또는 제작자, 편집자들이 쉽고 빠른 서비스를 이용하기 위해 API를 공개하고 있습니다. 일반적으로 비디오 합성에는 사용자의 데이터 편집과 변환시간이 필요합니다. 이러한 많은 양의 제작이 필요할 때 사용자의 편집을 최소화하고 반복되는 과정을 자동화하는 API를 사용하여 작업시간을 단축하고 효율적으로 관리할 수 있습니다. API를 이용하기 위해서는 AI STUDIOS V3 계정이 하며, Pro 이상의 요금제에 가입되어있어야 합니다.
 
-[API 요금제 구독하기](https://app.deepbrain.io)
+[API 요금제 구독하기](https://app.aistudios.com)
 
 
 
@@ -25,7 +34,7 @@ AI STUDIOS V3에서는 외부 개발자, 또는 제작자, 편집자들이 쉽�
 발급된 'API Key'로 테스트 영상을 제작하여, 생성된 영상의 ID값을 확인합니다.
 
 ```bash
-curl https://app.deepbrain.io/api/odin/v3/editor/project  \
+curl https://app.aistudios.com/api/odin/v3/editor/project  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \

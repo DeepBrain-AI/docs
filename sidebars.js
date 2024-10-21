@@ -68,7 +68,7 @@ const sidebars = {
     'aistudioV3/generate-api-key',
     {
       type: 'category',
-      label: 'Tutorial',
+      label: 'Basic Guides',
       collapsed: false,
       items: [
         'aistudioV3/tutorial/multiple-chromakey-export',
@@ -127,7 +127,19 @@ const sidebars = {
           type: 'category',
           label: 'Tools',
           items: [
-            'aistudioV3/reference/tools/voice-generator'
+            'aistudioV3/reference/tools/voice-generator',
+            'aistudioV3/reference/tools/image-generator',
+            'aistudioV3/reference/tools/video-generator',
+            'aistudioV3/reference/tools/text-generator',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Avatars',
+          items: [
+            'aistudioV3/reference/avatars/custom-avatar',
+            'aistudioV3/reference/avatars/voice-cloning',
+            'aistudioV3/reference/avatars/dream-avatar',
           ],
         },
       ],

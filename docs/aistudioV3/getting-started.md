@@ -6,9 +6,18 @@ slug: /aistudioV3/getting-started
 
 # Get started with API
 
+:::caution
+
+The domain has been changed. Please be careful to avoid errors.
+
+- Previous domain - `https://app.deepbrain.io`
+- New domain - `https://app.aistudios.com`
+
+:::
+
 AI STUDIOS V3 discloses APIs for external developers, producers, and editors for quick and easy services. In general, video synthesis requires user data editing and conversion time. When a large amount of production is required in this synthesis process, API can be used to minimize user editing and automate repetitive processes to reduce working time and ensure efficient management. In order to use the API, you must have an AI Studios V3 account and subscribe to an Pro or higher plan.
 
-[Subscribe to the API plan](https://app.deepbrain.io)
+[Subscribe to the API plan](https://app.aistudios.com)
 
 
 
@@ -25,7 +34,7 @@ If your account subscribes to a plan that is Pro or higher, you must then issue 
 A test image is produced with the issued 'API Key' to check ther ID value of the generated image.
 
 ```bash
-curl https://app.deepbrain.io/api/odin/v3/editor/project  \
+curl https://app.aistudios.com/api/odin/v3/editor/project  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \

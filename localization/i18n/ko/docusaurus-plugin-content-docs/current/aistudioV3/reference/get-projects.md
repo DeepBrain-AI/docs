@@ -11,7 +11,7 @@ sidebar_position: 6
 ## 1. API Endpoint
 
 ```http
-http://app.deepbrain.io/api/odin/v3/editor/projects
+http://app.aistudios.com/api/odin/v3/editor/projects
 ```
 
 <br/>
@@ -36,7 +36,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl http://app.deepbrain.io/api/odin/v3/editor/project  \
+curl http://app.aistudios.com/api/odin/v3/editor/project  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X GET 
@@ -50,7 +50,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.get('http://app.deepbrain.io/api/odin/v3/editor/project', 
+axios.get('http://app.aistudios.com/api/odin/v3/editor/project', 
   {
     headers: {
       'Authorization': ${token},
@@ -73,7 +73,7 @@ axios.get('http://app.deepbrain.io/api/odin/v3/editor/project',
 import requests
 import json
 
-url = "http://app.deepbrain.io/api/odin/v3/editor/project"
+url = "http://app.aistudios.com/api/odin/v3/editor/project"
 
 headers = {
   "Content-Type": "application/json",

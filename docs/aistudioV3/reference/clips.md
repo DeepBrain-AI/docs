@@ -3,12 +3,10 @@
 ## 1. AiModel
 |key|desc|type|required|default|
 |:---|:---|:---|:---|:---|
-|script|Model utterance information|Json|true|-|
-|script.org|Text for AI to read. It must match the language of the model.|String|true|-|
-|script.tts|External TTS information that is not the default voice of the model.|Json|false|-|
 |model|Model Information|Json|true|-|
 |model.ai_name|The AI Model to be used.|String|true|-|
 |model.emotion|The clothes that ther AI Model will wear.|String|true|-|
+|tag|Tag to identify the clip|String|false|-|
 
 If you don't have an issued key yet, you can issue it through [Generate API key](../generate-api-key).
 
@@ -32,6 +30,7 @@ If you don't have an issued key yet, you can issue it through [Generate API key]
 |animation.type|Animation type|String enum (fade-in, fade-out, in-right, in-down, in-left, in-up, out-right, out-down, out-left, out-up, zoom-in, zoom-out)|true|-|
 |animation.duration|Animation effect duration|Int range(1-30)|true|-|
 |animation.delay|Animation effect latency|Int range(0-30)|true|-|
+|tag|Tag to identify the clip|String|false|-|
 
 
 ## 3. Image
@@ -44,6 +43,7 @@ If you don't have an issued key yet, you can issue it through [Generate API key]
 |animation.type|Animation type|String enum (fade-in, fade-out, in-right, in-down, in-left, in-up, out-right, out-down, out-left, out-up, zoom-in, zoom-out)|true|-|
 |animation.duration|Animation effect duration|Int range(1-30)|true|-|
 |animation.delay|Animation effect latency|Int range(0-30)|true|-|
+|tag|Tag to identify the clip|String|false|-|
 
 
 ## 4. TextImage
@@ -72,6 +72,7 @@ If you don't have an issued key yet, you can issue it through [Generate API key]
 |animation.type|Animation type|String enum (fade-in, fade-out, in-right, in-down, in-left, in-up, out-right, out-down, out-left, out-up, zoom-in, zoom-out)|true|-|
 |animation.duration|Animation effect duration|Int range(1-30)|true|-|
 |animation.delay|Animation effect latency|Int range(0-30)|true|-|
+|tag|Tag to identify the clip|String|false|-|
 
 ## 5. VideoImage
 |key|desc|type|required|default|
@@ -79,6 +80,7 @@ If you don't have an issued key yet, you can issue it through [Generate API key]
 |video_url|Source path of the video.|String|true|-|
 |volume|The volume of the video.|Int range(1-100)|false|100|
 |opacity|The transparency of the video.|Int range (1-100)|false|100|
+|tag|Tag to identify the clip|String|false|-|
 
 ## 6. Audio
 |key|desc|type|required|default|

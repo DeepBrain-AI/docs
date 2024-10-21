@@ -150,7 +150,7 @@ const sceneInfo = `{
           "id": "image-1hgur0eiu11",
           "type": "image",
           "layer": 2,
-          "source_url": "https://cdn-studio.deepbrain.io/images/657c091a3dbfd5f37bf9ef8d.jpg",
+          "source_url": "https://cdn-studio.aistudios.com/images/657c091a3dbfd5f37bf9ef8d.jpg",
           "width": 2333,
           "height": 3500,
           "left": 202.78299206561076,
@@ -294,10 +294,10 @@ const sceneInfo = `{
           "id": "videoImage-1hguqu268jj",
           "type": "videoImage",
           "layer": 2,
-          "source_url": "https://cdn-studio.deepbrain.io/images/658279786cebbf10f29e2c5a.png",
+          "source_url": "https://cdn-studio.aistudios.com/images/658279786cebbf10f29e2c5a.png",
           "width": 480,
           "height": 270,
-          "video_url": "https://cdn-studio.deepbrain.io/videos/658279796cebbf10f29e2c5b.mp4",
+          "video_url": "https://cdn-studio.aistudios.com/videos/658279796cebbf10f29e2c5b.mp4",
           "volume": 100,
           "left": -4.5977011494253475,
           "top": -3.4483267519073024,
@@ -330,7 +330,7 @@ const sceneInfo = `{
 설정한 JSON 데이터를 프로젝트 내보내기 API에 요청합니다. '내보내기'란 영상을 생성하기 위한 합성 요청을 의미하며, 프로젝트 내보내기 API 요청 시 보낼 수 있는 전체 데이터 종류는 [여기](../reference/export-project)에서 자세히 확인하실 수 있습니다. 이때 method는 POST, body에 위에서 설정한 JSON 데이터(sceneInfo)를 전달합니다. 그리고 header에 Authorization 값으로 API 키, Content-Type은 'application/json' 으로 설정해줍니다. 이후 통신 성공 시 생성된 프로젝트 키값을 projectKey 변수에 저장합니다.
 
 ```js
-const projectKey = await fetch('https://app.deepbrain.io/api/odin/v3/editor/project',
+const projectKey = await fetch('https://app.aistudios.com/api/odin/v3/editor/project',
   {
     method: 'POST',
     body: sceneInfo,
@@ -361,7 +361,7 @@ while (true) {
   if (complete) {
     break;
   }
-  await fetch('https://app.deepbrain.io/api/odin/v3/editor/progress/' + projectKey,
+  await fetch('https://app.aistudios.com/api/odin/v3/editor/progress/' + projectKey,
     {
       method: 'GET',
       headers: {
@@ -538,7 +538,7 @@ const generateVideo = async () => {
             "id": "image-1hgur0eiu11",
             "type": "image",
             "layer": 2,
-            "source_url": "https://cdn-studio.deepbrain.io/images/657c091a3dbfd5f37bf9ef8d.jpg",
+            "source_url": "https://cdn-studio.aistudios.com/images/657c091a3dbfd5f37bf9ef8d.jpg",
             "width": 2333,
             "height": 3500,
             "left": 202.78299206561076,
@@ -682,10 +682,10 @@ const generateVideo = async () => {
             "id": "videoImage-1hguqu268jj",
             "type": "videoImage",
             "layer": 2,
-            "source_url": "https://cdn-studio.deepbrain.io/images/658279786cebbf10f29e2c5a.png",
+            "source_url": "https://cdn-studio.aistudios.com/images/658279786cebbf10f29e2c5a.png",
             "width": 480,
             "height": 270,
-            "video_url": "https://cdn-studio.deepbrain.io/videos/658279796cebbf10f29e2c5b.mp4",
+            "video_url": "https://cdn-studio.aistudios.com/videos/658279796cebbf10f29e2c5b.mp4",
             "volume": 100,
             "left": -4.5977011494253475,
             "top": -3.4483267519073024,
@@ -712,7 +712,7 @@ const generateVideo = async () => {
 
 
   // #2. Request export
-  const projectKey = await fetch('https://app.deepbrain.io/api/odin/v3/editor/project',
+  const projectKey = await fetch('https://app.aistudios.com/api/odin/v3/editor/project',
     {
       method: 'POST',
       body: sceneInfo,
@@ -735,7 +735,7 @@ const generateVideo = async () => {
     if (complete) {
       break;
     }
-    await fetch('https://app.deepbrain.io/api/odin/v3/editor/progress/' + projectKey,
+    await fetch('https://app.aistudios.com/api/odin/v3/editor/progress/' + projectKey,
       {
         method: 'GET',
         headers: {

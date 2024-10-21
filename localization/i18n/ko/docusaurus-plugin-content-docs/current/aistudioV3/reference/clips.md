@@ -3,12 +3,10 @@
 ## 1. AiModel
 |key|desc|type|required|default|
 |:---|:---|:---|:---|:---|
-|script|모델의 발화 정보|Json|true|-|
-|script.org|모델의 발화 내용을 나타냅니다.|String|true|-|
-|script.tts|모델의 기본 음성 이외의 외부 TTS 정보를 나타냅니다.|Json|false|-|
 |model|사용하는 모델 정보|Json|true|-|
 |model.ai_name|사용한 모델의 ID를 나타냅니다.|String|true|-|
 |model.emotion|모델의 복장 ID를 나타냅니다.|String|true|-|
+|tag|클립을 특정할 수 있는 태그|String|false|-|
 
 AI 모델에 관한 정보는 [AI 모델 리스트](../reference/model-list)에서 자세히 확인하실 수 있습니다.
 
@@ -32,6 +30,7 @@ AI 모델에 관한 정보는 [AI 모델 리스트](../reference/model-list)에�
 |animation.type|애니매이션 타입을 나타냅니다.|String enum (fade-in, fade-out, in-right, in-down, in-left, in-up, out-right, out-down, out-left, out-up, zoom-in, zoom-out)|true|-|
 |animation.duration|애니매이션 효과 지속시간을 나타냅니다.|Int range(1-30)|true|-|
 |animation.delay|애니매이션 효과 지연시간을 나타냅니다.|Int range(0-30)|true|-|
+|tag|클립을 특정할 수 있는 태그|String|false|-|
 
 
 ## 3. Image
@@ -44,6 +43,7 @@ AI 모델에 관한 정보는 [AI 모델 리스트](../reference/model-list)에�
 |animation.type|애니매이션 타입을 나타냅니다.|String enum (fade-in, fade-out, in-right, in-down, in-left, in-up, out-right, out-down, out-left, out-up, zoom-in, zoom-out)|true|-|
 |animation.duration|애니매이션 효과 지속시간을 나타냅니다.|Int range(1-30)|true|-|
 |animation.delay|애니매이션 효과 지연시간을 나타냅니다.|Int range(0-30)|true|-|
+|tag|클립을 특정할 수 있는 태그|String|false|-|
 
 
 ## 4. TextImage
@@ -72,6 +72,7 @@ AI 모델에 관한 정보는 [AI 모델 리스트](../reference/model-list)에�
 |animation.type|애니매이션 타입을 나타냅니다.|String enum (fade-in, fade-out, in-right, in-down, in-left, in-up, out-right, out-down, out-left, out-up, zoom-in, zoom-out)|true|-|
 |animation.duration|애니매이션 효과 지속시간을 나타냅니다.|Int range(1-30)|true|-|
 |animation.delay|애니매이션 효과 지연시간을 나타냅니다.|Int range(0-30)|true|-|
+|tag|클립을 특정할 수 있는 태그|String|false|-|
 
 ## 5. VideoImage
 |key|desc|type|required|default|
@@ -79,6 +80,7 @@ AI 모델에 관한 정보는 [AI 모델 리스트](../reference/model-list)에�
 |video_url|입력한 비디오의 원본 URL|String|true|-|
 |volume|비디오의 음량을 나타냅니다.|Int range(1-100)|false|100|
 |opacity|비디오의 투명도를 나타냅니다.|Int range (1-100)|false|100|
+|tag|클립을 특정할 수 있는 태그|String|false|-|
 
 ## 6. Audio
 |key|desc|type|required|default|

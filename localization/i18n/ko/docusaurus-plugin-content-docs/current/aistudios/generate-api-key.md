@@ -6,7 +6,7 @@ sidebar_position: 2
 
 <br/>
 
-<img src="/img/aistudios/ic-key.svg" /> <br/>
+![key](@site/static/img/aistudios/ic-key.svg)
 
 <br/><br/>
 
@@ -16,4 +16,4 @@ API 키를 생성해서 비디오 내보내기 프로세스를 자동화를 경�
 
 AI Studios API는 엔터프라이즈 이상의 고객이 이용할 수 있다.
 
-[API 키 생성하기](https://aistudios.com)
+[API 키 생성하기](https://www.aistudios.com)

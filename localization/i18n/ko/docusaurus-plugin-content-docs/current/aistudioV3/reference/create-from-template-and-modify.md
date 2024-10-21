@@ -4,14 +4,14 @@ sidebar_position: 11
 
 # 템플릿에서 프로젝트 생성 및 편집
 
-템플릿에서 새 프로젝트를 생성하고 수정합니다. "title" 태그 또는 "subtitles" 태그가 있는 클립을 편집할 수 있습니다. 또한 비디오의 스크립트 내용을 편집할 수 있습니다. "updates" 매개변수는 프로젝트에 대한 업데이트 정보를 포함하는 키-값 쌍입니다. "title", "subtitles" 또는 "scripts"를 키로 포함할 수 있습니다. 수정 중인 프로젝트에 동일한 태그를 가진 여러 클립이 포함되어 있는 경우 인덱스 번호로 키에 레이블을 지정할 수 있습니다. 인덱스 번호는 비디오 내에서 클립의 순서 위치를 나타냅니다(0부터 시작). 예를 들어, 비디오에서 "title" 태그가 있는 2번째, 3번째 및 5번째 클립을 편집하려는 경우 "title_1", "title_2" 및 "title_4"와 같이 키를 포맷할 수 있습니다. 마찬가지로 비디오의 처음 세 장면의 오디오 스크립트 내용을 편집하려면 "scripts", "scripts_1" 및 "scripts_2"와 같이 키를 포맷할 수 있습니다. 자세한 예시는 샘플 코드를 참조하세요. [Deepbrain AI의 AI Studio](https://app.deepbrain.io)에서 수정된 비디오를 볼 수 있고 편집할 수 있습니다.
+템플릿에서 새 프로젝트를 생성하고 수정합니다. "title" 태그 또는 "subtitles" 태그가 있는 클립을 편집할 수 있습니다. 또한 비디오의 스크립트 내용을 편집할 수 있습니다. "updates" 매개변수는 프로젝트에 대한 업데이트 정보를 포함하는 키-값 쌍입니다. "title", "subtitles" 또는 "scripts"를 키로 포함할 수 있습니다. 수정 중인 프로젝트에 동일한 태그를 가진 여러 클립이 포함되어 있는 경우 인덱스 번호로 키에 레이블을 지정할 수 있습니다. 인덱스 번호는 비디오 내에서 클립의 순서 위치를 나타냅니다(0부터 시작). 예를 들어, 비디오에서 "title" 태그가 있는 2번째, 3번째 및 5번째 클립을 편집하려는 경우 "title_1", "title_2" 및 "title_4"와 같이 키를 포맷할 수 있습니다. 마찬가지로 비디오의 처음 세 장면의 오디오 스크립트 내용을 편집하려면 "scripts", "scripts_1" 및 "scripts_2"와 같이 키를 포맷할 수 있습니다. 자세한 예시는 샘플 코드를 참조하세요. [Deepbrain AI의 AI Studio](https://app.aistudios.com)에서 수정된 비디오를 볼 수 있고 편집할 수 있습니다.
 
 <br/>
 
 ## 1. API endpoint
 
 ```http
-https://app.deepbrain.io/api/odin/v3/editor/template/modify
+https://app.aistudios.com/api/odin/v3/editor/template/modify
 ```
 
 <br/>
@@ -47,7 +47,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.deepbrain.io/api/odin/v3/editor/template/modify  \
+curl https://app.aistudios.com/api/odin/v3/editor/template/modify  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -77,7 +77,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.post('https://app.deepbrain.io/api/odin/v3/editor/template/modify', 
+axios.post('https://app.aistudios.com/api/odin/v3/editor/template/modify', 
   {
     "templateId":"655c744d2b4d3b4051400be0",
     "name": "새 프로젝트 이름",
@@ -116,7 +116,7 @@ axios.post('https://app.deepbrain.io/api/odin/v3/editor/template/modify',
 import requests
 import json
 
-url = "https://app.deepbrain.io/api/odin/v3/editor/template/modify"
+url = "https://app.aistudios.com/api/odin/v3/editor/template/modify"
 body = {
     "templateId":"655c744d2b4d3b4051400be0",
     "name": "새 프로젝트 이름",
