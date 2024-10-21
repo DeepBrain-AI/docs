@@ -182,5 +182,33 @@
   "sidebar.aihumanunitySidebar.category.API Reference.link.generated-index.description": {
     "message": "Learn about the main interface, class, and api of the AI Human SDK.",
     "description": "The generated-index page description for category API Reference in sidebar aihumanunitySidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Basic Guides": {
+    "message": "Basic Guides",
+    "description": "The label for category Basic Guides in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Authentication": {
+    "message": "Authentication",
+    "description": "The label for category Authentication in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Project": {
+    "message": "Project",
+    "description": "The label for category Project in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Utilities": {
+    "message": "Utilities",
+    "description": "The label for category Utilities in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Data formats": {
+    "message": "Data formats",
+    "description": "The label for category Data formats in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Tools": {
+    "message": "Tools",
+    "description": "The label for category Tools in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Avatars": {
+    "message": "Avatars",
+    "description": "The label for category Avatars in sidebar aistudioV3Sidebar"
   }
 }

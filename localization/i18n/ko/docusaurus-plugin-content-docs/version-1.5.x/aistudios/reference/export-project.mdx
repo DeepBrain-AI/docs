@@ -11,7 +11,7 @@ Project export deals with how to synthesize new images by sending api requests i
 ## 1. API endpoint
 
 ```http
-https://aistudios.com/api/odin/editor/project
+https://v2.aistudios.com/api/odin/editor/project
 ```
 
 <br/>
@@ -22,8 +22,8 @@ https://aistudios.com/api/odin/editor/project
 |:---|:---|:---|:---|:---|
 |scenes|Information about the scene|Array(json)|true|-|
 |scenes[].AIModel|Model clip|Json|true|-|
-|scenes[].AIModel.model|Model's unique key value  [Learn more](https://docs.deepbrainai.io/aistudios/reference/model-list)|String|true|-|
-|scenes[].AIModel.clothes|The unique key value of the outfit  [Learn more](https://docs.deepbrainai.io/aistudios/reference/model-list)|String|true|-|
+|scenes[].AIModel.model|Model's unique key value  [Learn more](./model-list.md)|String|true|-|
+|scenes[].AIModel.clothes|The unique key value of the outfit  [Learn more](./model-list.md)|String|true|-|
 |scenes[].AIModel.language|The language the script is written in.|String|true|-|
 |scenes[].AIModel.script|Text for AI to read. It must match the language of the model.|String|true|-|
 |scenes[].AIModel.scale|The size of the model. The default value is 1, and if it is set to 2, the size can be changed to 2 times, and if it is set to 0.5, the size can be changed to 0.5 times.|Float|false|1|
@@ -63,7 +63,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```js
-curl https://aistudios.com/api/odin/editor/project  \
+curl https://v2.aistudios.com/api/odin/editor/project  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -116,7 +116,7 @@ curl https://aistudios.com/api/odin/editor/project  \
 import axios from "axios" 
 const token = ${API KEY}
 
-axios.post('https://aistudios.com/api/odin/editor/project', 
+axios.post('https://v2.aistudios.com/api/odin/editor/project', 
     {
         "scenes":
             [{
@@ -179,7 +179,7 @@ axios.post('https://aistudios.com/api/odin/editor/project',
 import requests
 import json
 
-url = "https://aistudios.com/api/odin/editor/project"
+url = "https://v2.aistudios.com/api/odin/editor/project"
 body = {
     "scenes":
         [{

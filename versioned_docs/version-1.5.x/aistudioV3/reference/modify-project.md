@@ -4,14 +4,14 @@ sidebar_position: 9
 
 # Modify project
 
-Modifying an existing project. You can edit clips with the "title" tag or "subtitles" tag. You can also edit the script content of the video. The "updates" parameter is a key-value pair containing the update information for the project. You can include "title", "subtitles", or "scripts" as keys. If the project you are modifying includes multiple clips with the same tag, you can label the keys with index numbers. The index number represents the location of the clip in order within the video (zero-indexed). For example, if you intend to edit the 2nd, 3rd, and 5th clips in the video with the "title" tag, you can format your keys as "title_1", "title_2", and "title_4". Similarly, if you would like to edit the audio script content of the first three scenes in the video, you can format the keys as "scripts", "scripts_1", and "scripts_2". See the sample code for a detailed example. You can see & edit modified video at [AI Studio by Deepbrain AI](https://app.deepbrain.io).
+Modifying an existing project. You can edit clips with the "title" tag or "subtitles" tag. You can also edit the script content of the video. The "updates" parameter is a key-value pair containing the update information for the project. You can include "title", "subtitles", or "scripts" as keys. If the project you are modifying includes multiple clips with the same tag, you can label the keys with index numbers. The index number represents the location of the clip in order within the video (zero-indexed). For example, if you intend to edit the 2nd, 3rd, and 5th clips in the video with the "title" tag, you can format your keys as "title_1", "title_2", and "title_4". Similarly, if you would like to edit the audio script content of the first three scenes in the video, you can format the keys as "scripts", "scripts_1", and "scripts_2". See the sample code for a detailed example. You can see & edit modified video at [AI Studio by Deepbrain AI](https://app.aistudios.com).
 
 <br/>
 
 ## 1. API endpoint
 
 ```http
-https://app.deepbrain.io/api/odin/v3/project/modify
+https://app.aistudios.com/api/odin/v3/project/modify
 ```
 
 <br/>
@@ -47,7 +47,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.deepbrain.io/api/odin/v3/project/modify  \
+curl https://app.aistudios.com/api/odin/v3/project/modify  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -76,7 +76,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.post('https://app.deepbrain.io/api/odin/v3/project/modify', 
+axios.post('https://app.aistudios.com/api/odin/v3/project/modify', 
   {
     "projectId":"65fa6b07dca2e367461a2925",
     "updates": { 
@@ -114,7 +114,7 @@ axios.post('https://app.deepbrain.io/api/odin/v3/project/modify',
 import requests
 import json
 
-url = "https://app.deepbrain.io/api/odin/v3/project/modify"
+url = "https://app.aistudios.com/api/odin/v3/project/modify"
 body = {
     "projectId":"65fa6b07dca2e367461a2925",
     "updates": { 

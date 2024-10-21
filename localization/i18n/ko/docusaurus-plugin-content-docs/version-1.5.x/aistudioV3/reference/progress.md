@@ -11,7 +11,7 @@ sidebar_position: 3
 ## 1. API endpoint
 
 ```http
-https://app.deepbrain.io/api/odin/v3/editor/progress/${key}
+https://app.aistudios.com/api/odin/v3/editor/progress/${key}
 ```
 
 <br/>
@@ -35,7 +35,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.deepbrain.io/api/odin/v3/editor/progress/${project key}  \
+curl https://app.aistudios.com/api/odin/v3/editor/progress/${project key}  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X GET
@@ -48,7 +48,7 @@ curl https://app.deepbrain.io/api/odin/v3/editor/progress/${project key}  \
 import axios from "axios"; 
 const token = ${API KEY};
 
-axios.get(`https://app.deepbrain.io/api/odin/v3/editor/progress/${project key}`, 
+axios.get(`https://app.aistudios.com/api/odin/v3/editor/progress/${project key}`, 
   {
     headers: {
       'Authorization': `${token}`,
@@ -71,7 +71,7 @@ axios.get(`https://app.deepbrain.io/api/odin/v3/editor/progress/${project key}`,
 import requests
 import json
 
-url = "https://app.deepbrain.io/api/odin/v3/editor/progress/${project key}"
+url = "https://app.aistudios.com/api/odin/v3/editor/progress/${project key}"
 
 headers = {
   "Content-Type": "application/json",

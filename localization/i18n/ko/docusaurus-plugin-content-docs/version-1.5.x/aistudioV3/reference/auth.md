@@ -25,7 +25,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.deepbrain.io/api/odin/v3/editor/project  \
+curl https://app.aistudios.com/api/odin/v3/editor/project  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -159,7 +159,7 @@ curl https://app.deepbrain.io/api/odin/v3/editor/project  \
 import axios from 'axios' 
 const token = ${API KEY}
 
-axios.post('https://app.deepbrain.io/api/odin/v3/editor/project', 
+axios.post('https://app.aistudios.com/api/odin/v3/editor/project', 
   {
     "name": "Test Project Using Api",
     "orientation": "landscape",
@@ -303,7 +303,7 @@ axios.post('https://app.deepbrain.io/api/odin/v3/editor/project',
 import requests
 import json
 
-url = 'https://app.deepbrain.io/api/odin/v3/editor/project'
+url = 'https://app.aistudios.com/api/odin/v3/editor/project'
 body = {
   {
     "name": "Test Project Using Api",

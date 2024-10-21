@@ -8,7 +8,7 @@ Creating a project from a template covers how to create a new video project usin
 
 ## 1. API endpoint
 ```http
-https://app.deepbrain.io/api/odin/v3/editor/template/${templateId}
+https://app.aistudios.com/api/odin/v3/editor/template/${templateId}
 ```
 <br/>
 
@@ -35,7 +35,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.deepbrain.io/api/odin/v3/editor/template/${templateId} \
+curl https://app.aistudios.com/api/odin/v3/editor/template/${templateId} \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -G \
@@ -54,7 +54,7 @@ import axios from "axios";
 
 const token = ${API KEY};
 
-axios.get('https://app.deepbrain.io/api/odin/v3/editor/template/${templateId}', {
+axios.get('https://app.aistudios.com/api/odin/v3/editor/template/${templateId}', {
   headers: {
     'Authorization': ${token},
     'Content-Type': 'application/json'
@@ -80,7 +80,7 @@ axios.get('https://app.deepbrain.io/api/odin/v3/editor/template/${templateId}', 
 import requests
 import json
 
-url = "https://app.deepbrain.io/api/odin/v3/editor/template/${templateId}"
+url = "https://app.aistudios.com/api/odin/v3/editor/template/${templateId}"
 
 params = {
     "model": "M000045058", 

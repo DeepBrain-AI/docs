@@ -39,7 +39,7 @@
     "aistudioV3/generate-api-key",
     {
       "type": "category",
-      "label": "Tutorial",
+      "label": "Basic Guides",
       "collapsed": false,
       "items": [
         "aistudioV3/tutorial/multiple-chromakey-export",
@@ -51,23 +51,68 @@
       "type": "category",
       "label": "API Reference",
       "items": [
-        "aistudioV3/reference/auth",
-        "aistudioV3/reference/auth-confirm",
-        "aistudioV3/reference/progress",
-        "aistudioV3/reference/get-project",
-        "aistudioV3/reference/edit-project",
-        "aistudioV3/reference/get-projects",
-        "aistudioV3/reference/create-project",
-        "aistudioV3/reference/export-project",
-        "aistudioV3/reference/modify-project",
-        "aistudioV3/reference/create-from-template",
-        "aistudioV3/reference/create-from-template-and-modify",
-        "aistudioV3/reference/simple-video",
-        "aistudioV3/reference/simple-audio",
-        "aistudioV3/reference/models",
-        "aistudioV3/reference/templates-business",
-        "aistudioV3/reference/webhook",
-        "aistudioV3/reference/clips"
+        {
+          "type": "category",
+          "label": "Authentication",
+          "collapsed": false,
+          "items": [
+            "aistudioV3/reference/auth",
+            "aistudioV3/reference/auth-confirm"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Project",
+          "collapsed": true,
+          "items": [
+            "aistudioV3/reference/progress",
+            "aistudioV3/reference/get-project",
+            "aistudioV3/reference/edit-project",
+            "aistudioV3/reference/get-projects",
+            "aistudioV3/reference/create-project",
+            "aistudioV3/reference/export-project",
+            "aistudioV3/reference/modify-project",
+            "aistudioV3/reference/create-from-template",
+            "aistudioV3/reference/create-from-template-and-modify"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Utilities",
+          "items": [
+            "aistudioV3/reference/models",
+            "aistudioV3/reference/templates-business",
+            "aistudioV3/reference/simple-video",
+            "aistudioV3/reference/simple-audio"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Data formats",
+          "items": [
+            "aistudioV3/reference/webhook",
+            "aistudioV3/reference/clips"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Tools",
+          "items": [
+            "aistudioV3/reference/tools/voice-generator",
+            "aistudioV3/reference/tools/image-generator",
+            "aistudioV3/reference/tools/video-generator",
+            "aistudioV3/reference/tools/text-generator"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Avatars",
+          "items": [
+            "aistudioV3/reference/avatars/custom-avatar",
+            "aistudioV3/reference/avatars/voice-cloning",
+            "aistudioV3/reference/avatars/dream-avatar"
+          ]
+        }
       ]
     }
   ],

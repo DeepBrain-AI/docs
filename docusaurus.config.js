@@ -56,7 +56,7 @@ const config = {
           editUrl:
             'https://github.com/DeepBrain-AI/docs/tree/main/',
 
-          includeCurrentVersion: true,
+          includeCurrentVersion: false,
           lastVersion: '1.5.x',
           versions: {
             '1.3.x': {

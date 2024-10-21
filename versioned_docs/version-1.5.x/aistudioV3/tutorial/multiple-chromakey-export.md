@@ -54,7 +54,7 @@ Now let us loop through the data that we set up in Step 2 above, and send chroma
 ```js
 for (const i in jobs) {
   // #1. Request export
-  let projectKey = await fetch('https://app.deepbrain.io/api/odin/v3/simple/video',
+  let projectKey = await fetch('https://app.aistudios.com/api/odin/v3/simple/video',
     {
       method: 'POST',
       body: JSON.stringify(jobs[i]),
@@ -93,7 +93,7 @@ for (const i in jobs) {
     if (complete) {
       break;
     }
-    await fetch('https://app.deepbrain.io/api/odin/v3/editor/progress/' + projectKey,
+    await fetch('https://app.aistudios.com/api/odin/v3/editor/progress/' + projectKey,
       {
         method: 'GET',
         headers: {
@@ -168,7 +168,7 @@ const jobs = [
 const generateVideo = async () => {
   for (const i in jobs) {
     // #1. Request export
-    let projectKey = await fetch('https://app.deepbrain.io/api/odin/v3/simple/video',
+    let projectKey = await fetch('https://app.aistudios.com/api/odin/v3/simple/video',
       {
         method: 'POST',
         body: JSON.stringify(jobs[i]),
@@ -191,7 +191,7 @@ const generateVideo = async () => {
       if (complete) {
         break;
       }
-      await fetch('https://app.deepbrain.io/api/odin/v3/editor/progress/' + projectKey,
+      await fetch('https://app.aistudios.com/api/odin/v3/editor/progress/' + projectKey,
         {
           method: 'GET',
           headers: {

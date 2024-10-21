@@ -54,7 +54,7 @@ const jobs = [
 ```js
 for (const i in jobs) {
     // #1. Request export
-    let projectKey = await fetch('https://aistudios.com/api/odin/simple/video',
+    let projectKey = await fetch('https://v2.aistudios.com/api/odin/simple/video',
         {
         method: 'POST',
         body: JSON.stringify(jobs[i]),
@@ -93,7 +93,7 @@ for (const i in jobs) {
       if (complete) {
         break;
       }
-      await fetch('https://aistudios.com/api/odin/editor/progress/'+projectKey,
+      await fetch('https://v2.aistudios.com/api/odin/editor/progress/'+projectKey,
         {
           method: 'GET',
           headers: {
@@ -164,7 +164,7 @@ const jobs = [
 
 for (const i in jobs) {
     // #1. Request export
-    let projectKey = await fetch('https://aistudios.com/api/odin/simple/video',
+    let projectKey = await fetch('https://v2.aistudios.com/api/odin/simple/video',
     {
         method: 'POST',
         body: JSON.stringify(jobs[i]),
@@ -187,7 +187,7 @@ for (const i in jobs) {
     if (complete) {
         break;
     }
-    await fetch('https://aistudios.com/api/odin/editor/progress/'+projectKey,
+    await fetch('https://v2.aistudios.com/api/odin/editor/progress/'+projectKey,
         {
         method: 'GET',
         headers: {

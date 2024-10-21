@@ -11,6 +11,18 @@
     "message": "API 편람",
     "description": "The label for category API Reference in sidebar aistudiosSidebar"
   },
+  "sidebar.aistudioV3Sidebar.category.Tutorial": {
+    "message": "튜토리얼",
+    "description": "The label for category Tutorial in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.API Reference": {
+    "message": "API 편람",
+    "description": "The label for category API Reference in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Auth": {
+    "message": "인증",
+    "description": "The label for category Auth in sidebar aistudioV3Sidebar"
+  },
   "sidebar.aihumanwebSidebar.category.Getting Started": {
     "message": "시작하기",
     "description": "The label for category Getting Started in sidebar aihumanwebSidebar"
@@ -170,5 +182,33 @@
   "sidebar.aihumanunitySidebar.category.API Reference.link.generated-index.description": {
     "message": "AI Human SDK의 주요 인터페이스와 API에 대해 알아보세요.",
     "description": "The generated-index page description for category API Reference in sidebar aihumanunitySidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Basic Guides": {
+    "message": "기본 가이드",
+    "description": "The label for category Basic Guides in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Authentication": {
+    "message": "인증",
+    "description": "The label for category Authentication in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Project": {
+    "message": "프로젝트",
+    "description": "The label for category Project in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Utilities": {
+    "message": "유틸리티",
+    "description": "The label for category Utilities in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Data formats": {
+    "message": "데이터 형식",
+    "description": "The label for category Data formats in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Tools": {
+    "message": "도구",
+    "description": "The label for category Tools in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Avatars": {
+    "message": "아바타",
+    "description": "The label for category Avatars in sidebar aistudioV3Sidebar"
   }
 }

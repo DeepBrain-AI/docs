@@ -13,7 +13,7 @@ The AI Studios V3 API is available for customers on the Enterprise Plan and abov
 ## 1. API endpoint
 
 ```http
-https://app.deepbrain.io/api/odin/v3/auth/token
+https://app.aistudios.com/api/odin/v3/auth/token
 ```
 
 <br/>
@@ -25,7 +25,7 @@ https://app.deepbrain.io/api/odin/v3/auth/token
 |appId|AppId required to issue Api Token. You can check it in the profile.|String|true|-|
 |userKey|UserKey required to issue Api Token. You can check it in the profile.|String|true|-|
 
-[Check AppId, UserKey](https://account.deepbrain.io/user/api-key)
+[Check AppId, UserKey](https://account.aistudios.com/user/api-key)
 
 <br/>
 
@@ -47,7 +47,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.deepbrain.io/api/odin/v3/auth/token  \
+curl https://app.aistudios.com/api/odin/v3/auth/token  \
 -H "Content-Type: application/json" \
 -X POST \
 -d '{
@@ -62,7 +62,7 @@ curl https://app.deepbrain.io/api/odin/v3/auth/token  \
 ```js
 import axios from "axios"; 
 
-axios.post(`https://app.deepbrain.io/api/odin/v3/auth/token`, 
+axios.post(`https://app.aistudios.com/api/odin/v3/auth/token`, 
   {
     "appId": "##YOUR_APP_ID##",
     "userKey": "##YOUR_USER_KEY##"
@@ -88,7 +88,7 @@ axios.post(`https://app.deepbrain.io/api/odin/v3/auth/token`,
 import requests
 import json
 
-url = "https://app.deepbrain.io/api/odin/v3/auth/token"
+url = "https://app.aistudios.com/api/odin/v3/auth/token"
 body = {
   "appId": "##YOUR_APP_ID##",
   "userKey": "##YOUR_USER_KEY##"
