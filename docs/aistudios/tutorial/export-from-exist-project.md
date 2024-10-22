@@ -10,7 +10,7 @@ If you want to create an image by importing information from an existing project
 
 ## 1. API key settings
 
-Authentication is required for all API communications within AISTUDIOS. The API key is used for this purpose. Sets the API key issued to the token variable. If you don't have the issued key yet, you can issue it through [Generate API key](https://www.deepbrain.io/pricing).
+Authentication is required for all API communications within AISTUDIOS. The API key is used for this purpose. Sets the API key issued to the token variable. If you don't have the issued key yet, you can issue it through [Generate API key](https://www.aistudios.com/pricing).
 ```js
 const token = '##JWT##'; // API KEY
 ```
@@ -18,7 +18,7 @@ const token = '##JWT##'; // API KEY
 <br/>
 
 ## 2. Set Project ID
-Set the previously created project ID in the projectId variable. The project ID can be found through the URL when entering the edit screen by clicking on the previously saved project on the [My Studio](https://aistudios.com/login) page. For example, on aistudios.com/v2/news/edit.news?id=abcdefg, the project ID is abcdefg.
+Set the previously created project ID in the projectId variable. The project ID can be found through the URL when entering the edit screen by clicking on the previously saved project on the [My Studio](https://v2.aistudios.com/login) page. For example, on v2.aistudios.com/v2/news/edit.news?id=abcdefg, the project ID is abcdefg.
 ```js
 const projectId = '##PROJECT_ID##';
 ```
@@ -28,7 +28,7 @@ const projectId = '##PROJECT_ID##';
 ## 3. Request Project Import API
 Request the saved projectId to the project import API. The Import Project API is used to query the name, scene information, etc. of a saved project. At this time, the method is GET, and you can pass the projectId value to the URL without any body data. And set API key as Authorization value in header and Content-Type as 'application/json'. If subsequent communication is successful, the information is stored in the projectInfo variable.
 ```js
-const projectInfo = await fetch('https://aistudios.com/api/odin/editor/project/'+projectId,
+const projectInfo = await fetch('https://v2.aistudios.com/api/odin/editor/project/'+projectId,
   {
     method: 'GET',
     headers: {
@@ -60,7 +60,7 @@ sceneInfo[0].clips[1].detail.url = "##NEW_IMAGE_URL##";
 Request modified scene data to the project export API. By 'export' we mean a legal request to create a video, and you can read more about the full kind of data you can send when making a Project Support API request [here](../reference/export-project). At this time, the method sets the key of the API request data to the POST, body, to scenes and forwards it in the form of a json string. And set API key as Authorization value in header and Content-Type as 'application/json'. The project key value generated during subsequent successful communication is stored in the projectKey variable.
 
 ```js
-let projectKey = await fetch('https://aistudios.com/api/odin/editor/project',
+let projectKey = await fetch('https://v2.aistudios.com/api/odin/editor/project',
   {
     method: 'POST',
     body: JSON.stringify({scenes: sceneInfo}),
@@ -89,7 +89,7 @@ while (true) {
   if (complete) {
     break;
   }
-  await fetch('https://aistudios.com/api/odin/editor/progress/'+projectKey,
+  await fetch('https://v2.aistudios.com/api/odin/editor/progress/'+projectKey,
     {
       method: 'GET',
       headers: {
@@ -139,7 +139,7 @@ const token = '##JWT##'; // API KEY
 const projectId = '##PROJECT_ID##';
 
 // #1. Get project info
-const projectInfo = await fetch('https://aistudios.com/api/odin/editor/project/'+projectId,
+const projectInfo = await fetch('https://v2.aistudios.com/api/odin/editor/project/'+projectId,
 {
   method: 'GET',
   headers: {
@@ -161,7 +161,7 @@ sceneInfo[0].AIModel.script = "##NEW_SCRIPT##";
 sceneInfo[0].clips[1].detail.url = "##NEW_IMAGE_URL##";
 
 // #3. Request export
-let projectKey = await fetch('https://aistudios.com/api/odin/editor/project',
+let projectKey = await fetch('https://v2.aistudios.com/api/odin/editor/project',
 {
   method: 'POST',
   body: JSON.stringify({scenes: sceneInfo}),
@@ -184,7 +184,7 @@ while (true) {
 if (complete) {
   break;
 }
-await fetch('https://aistudios.com/api/odin/editor/progress/'+projectKey,
+await fetch('https://v2.aistudios.com/api/odin/editor/progress/'+projectKey,
   {
     method: 'GET',
     headers: {

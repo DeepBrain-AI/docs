@@ -2,23 +2,14 @@
 sidebar_position: 5
 ---
 
-# AIPlayer Advanced Speaking Features
+# Advanced Features
 
-All functions other than speaking(mostly related to AI settings) of AIPlayer are described below.
+The following describes advanced features related to AI speech
 
-The following are additional actions related to AIPlayer's utterance.
-After the resource load required for AI operation is completed, some settings of AIPlayer can be adjusted. When the resource loading is completed (`RES_LOAD_COMPLETED`), the state changes such that actual operations can be performed(Idle). On right side of the panel, **Voice, Gesture, Speed**, etc. can be adjusted as shown below.
-
-### Change AI Speech Rate
-
-: You can set the speech rate of AI. The possible value range is from 0.5 to 1.5.
-```csharp
-// set Property
-_aiPlayer.Speed = value;
-```
+You can set or change **Gestures, Language and CustomVoice, Speed**, etc. in the IDLE state.
 
 ### Gestures
-As briefly mentioned above, speech can also be performed using [ClipSet](/aihuman/unity-sdk/apis/aiclipset). The ClipSet here refers to one action unit in a series of AI actions. There are three types of ClipSet: general speech that performs only speaking, speech with gesture, and gesture only. The Gesture can be used depending on whether the AI model supports [Gestures](/aihuman/unity-sdk/apis/aigesture), and the list of available gestures can be checked using the [GetGestures](/aihuman/unity-sdk/apis/aiplayer) function of AIPlayer. Even a model that does not support gestures can be operated using ClipSet.
+Use a [AIClipSet](/aihuman/unity-sdk/apis/aiclipset) to send utterance commands to the AI. The AIClipSet refers to a series of AI action unit. There are three types of ClipSet: general speech, speech with gesture, and gesture only. The Gesture can be used depending on whether the AI model supports gestures, and the list of available gestures can be checked using the `GetGestures` function of AIPlayer. Even a model that does not support gestures can be operated using ClipSet.
 
 AIClipSet types are as follows.
 
@@ -31,7 +22,7 @@ AIClipSet types are as follows.
 In the sample screenshot below, an AI model is speaking while waving his hand with a "hi" gesture.
 
 <p align="center">
-<img src="/img/aihuman/unity/aiplayer_gesture.png" style={{zoom: "40%"}} />
+<img src="/img/aihuman/unity/aiplayer_gesture.png" style={{zoom: "30%"}} />
 </p>
 
 ```csharp
@@ -63,10 +54,10 @@ AIPlayerCallback.OnAIPlayerEvent(AIEvent) is called in the same way as the speec
 <br/>
 
 ### Change the Voice or Language
-Some AIs can be filmed with live footage. It is possible even if the language of the supported video is different from the basic language of AI. From a living sample, you can see which activists the AI ​​is currently using. The candidate list operates normally after the cancellation authentication process so that AIAPI.LoadCustomVoices can be resumed more strongly than AIHumanSDKManager.Authenticate, AIAPI.Authenticate, or AIAPI.GenerateToken.
+Some AIs can be filmed with live footage. It is possible even if the language of the supported video is different from the basic language of AI. From a living sample, you can see which activists the AI ​​is currently using. The candidate list operates normally after the cancellation authentication process so that AIAPI.LoadCustomVoices can be resumed more strongly than AIHumanSDKManager.Authenticate or AIAPI.Authenticate.
 
 <p align="center">
-<img src="/img/aihuman/unity/aiplayer_customvoice.png" style={{zoom: "40%"}} />
+<img src="/img/aihuman/unity/aiplayer_customvoice.png" style={{zoom: "30%"}} />
 </p>
 
 <br/>
@@ -129,7 +120,7 @@ _aiPlayer.Send(new[] {aiClipSet});
 Preload is used when you want to make the AI speak the next sentence without delay by loading sentences in advance. You could think of it as a caching process. Select a sentence and press the **PRELOAD** button in the sample below to perform the corresponding action.
 
 <p align="center">
-<img src="/img/aihuman/unity/aiplayer_preload.png" style={{zoom: "40%"}} />
+<img src="/img/aihuman/unity/aiplayer_preload.png" style={{zoom: "30%"}} />
 </p>
 
 ```csharp
@@ -187,3 +178,12 @@ AIPlayerCallback.OnAIPlayerEvent(AIEvent) is called for each sentence. The possi
 - `AICLIPSET_PLAY_PREPARE_COMPLETED`
 
 If you send several sentences, it automatically preloads if possible. In this case, you can see that the delay between utterances when the AI speaks is reduced.
+
+
+### Change AI Speech Rate
+
+: You can set the speech rate of AI. The possible value range is from 0.5 to 1.5.
+```csharp
+// set Property
+_aiPlayer.Speed = value;
+```

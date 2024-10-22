@@ -8,7 +8,7 @@ The chromakey export section shows how to send an API request in JSON format to 
 ## 1. API endpoint
 
 ```http
-https://aistudios.com/api/odin/simple/video
+https://v2.aistudios.com/api/odin/simple/video
 ```
 
 <br/>
@@ -23,7 +23,7 @@ https://aistudios.com/api/odin/simple/video
 |clothes|The clothes that the AI Model will wear.|String|true|-|
 |locale|The environment where the user is accessing the API. For users accessing from China, the value should be 'zh'|String|false|-|
 |uppercut|How much the area above model should be cropped in a chromakey video.|Number|false|-|
-|[webhook](https://aistudios.com/api-doc/reference/webhook)|The address where the synthesis result should be sent.|String|false|-|
+|[webhook](./webhook.mdx)|The address where the synthesis result should be sent.|String|false|-|
 
 <br/>
 
@@ -46,7 +46,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```js
-curl https://aistudios.com/api/odin/simple/video  \
+curl https://v2.aistudios.com/api/odin/simple/video  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -66,7 +66,7 @@ curl https://aistudios.com/api/odin/simple/video  \
 import axios from "axios" 
 const token = ${API KEY}
 
-axios.post('https://aistudios.com/api/odin/simple/video', 
+axios.post('https://v2.aistudios.com/api/odin/simple/video', 
     {
         "language":"ko",
         "text":"샘플 스크립트",
@@ -96,7 +96,7 @@ axios.post('https://aistudios.com/api/odin/simple/video',
 import requests
 import json
 
-url = "https://aistudios.com/api/odin/simple/video"
+url = "https://v2.aistudios.com/api/odin/simple/video"
 body = {
     "language": "ko",
     "text": "샘플 스크립트",

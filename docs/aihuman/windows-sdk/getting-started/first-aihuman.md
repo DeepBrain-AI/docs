@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Own your first AI Human
 
-In this chapter, we will quickly set up AIPlayer with the default AI and learn about AI speaking process. When setting up AIPlayer for the first time, it may take several minutes to load depending on the network condition.
+In this chapter, we will quickly set up `AIPlayer` object with the default AI and learn about AI speaking process. When `AIPlayer` object is initialized, loading AI resources may take several minutes depending on network conditions.
 
 For your information, it is similar to the QuickStart part of the Sample, which can be downloaded from the SDK website.
 

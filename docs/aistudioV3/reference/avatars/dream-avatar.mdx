@@ -1,0 +1,105 @@
+# Create Dream Avatar
+
+Create a dream avatar using an image.
+
+<br/>
+
+## 1. API endpoint
+
+```
+POST https://app.aistudios.com/api/odin/v3/avatars/dreamavatar
+```
+
+<br/>
+
+## 2. Request parameter
+
+|key|desc|type|required|default|
+|:---|:---|:---|:---|:---|
+|url|Image URL|String|true|-|
+|name|Name of the dream avatar|String|true|-|
+|gender|Gender of the dream avatar|String enum (MALE, FEMALE)|true|-|
+|tts|TTS of the dream avatar|Json|false|null|
+
+<br/>
+
+## 3. Response parameters
+
+|key|desc|type|
+|:---|:---|:---|
+|avatarId|ID of the created dream avatar|String|
+
+<br/>
+
+
+## 4. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://app.aistudios.com/api/odin/v3/avatars/dreamavatar  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{
+    "url": "https://cdn.aistudios.com/uploads/models/en/M000351175_BG00001308.png",
+    "name": "Ian",
+    "gender": "MALE"
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios";
+const token = ${API KEY};
+
+axios.post('https://app.aistudios.com/api/odin/v3/avatars/dreamavatar', 
+  {
+    "url": "https://cdn.aistudios.com/uploads/models/en/M000351175_BG00001308.png",
+    "name": "Ian",
+    "gender": "MALE"
+  }, 
+  {
+    headers: {
+      'Authorization': ${token},
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data);
+})
+.catch((error) => {
+  console.error(error);
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://app.aistudios.com/api/odin/v3/avatars/dreamavatar"
+body = {
+  "url": "https://cdn.aistudios.com/uploads/models/en/M000351175_BG00001308.png",
+  "name": "Ian",
+  "gender": "MALE"
+}
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": ${API TOKEN}
+}
+
+r = requests.post(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>

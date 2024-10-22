@@ -10,7 +10,7 @@ sidebar_position: 3
 
 ## 1. API 키 설정
 
-AI STUDIOS 내 모든 API 통신 시에는 인증이 필요합니다. 이를 위해 사용되는 것이 API 키입니다. token 변수에 발급받은 API 키를 설정합니다. 아직 발급받은 키가 없다면 [API 키 발급하기](https://www.deepbrainai.io/pricing) 에서 발급하실 수 있습니다.
+AI STUDIOS 내 모든 API 통신 시에는 인증이 필요합니다. 이를 위해 사용되는 것이 API 키입니다. token 변수에 발급받은 API 키를 설정합니다. 아직 발급받은 키가 없다면 [API 키 발급하기](https://www.aistudios.com/pricing) 에서 발급하실 수 있습니다.
 
 ```js
 const token = '##JWT##'; // API KEY
@@ -98,7 +98,7 @@ const sceneInfo = `{
 설정한 JSON 데이터를 프로젝트 내보내기 API에 요청합니다. '내보내기'란 영상을 생성하기 위한 합성 요청을 의미하며, 프로젝트 내보내기 API 요청 시 보낼 수 있는 전체 데이터 종류는 [여기](../reference/export-project)에서 자세히 확인하실 수 있습니다. 이 때 method는 POST, body에 위에서 설정한 JSON 데이터(sceneInfo)를 전달합니다. 그리고 header에 Authorization 값으로 API 키, Content-Type은 'application/json' 으로 설정해줍니다. 이후 통신 성공 시 생성된 프로젝트 키값을 projectKey 변수에 저장합니다.
 
 ```js
-let projectKey = await fetch('https://aistudios.com/api/odin/editor/project',
+let projectKey = await fetch('https://v2.aistudios.com/api/odin/editor/project',
   {
     method: 'POST',
     body: sceneInfo, // JSON Data
@@ -129,7 +129,7 @@ while (true) {
   if (complete) {
     break;
   }
-  await fetch('https://aistudios.com/api/odin/editor/progress/'+projectKey,
+  await fetch('https://v2.aistudios.com/api/odin/editor/progress/'+projectKey,
     {
       method: 'GET',
       headers: {
@@ -244,7 +244,7 @@ const sceneInfo = `{
 }`;
 
 // #2. Request export
-let projectKey = await fetch('https://aistudios.com/api/odin/editor/project',
+let projectKey = await fetch('https://v2.aistudios.com/api/odin/editor/project',
   {
     method: 'POST',
     body: sceneInfo,
@@ -267,7 +267,7 @@ while (true) {
   if (complete) {
     break;
   }
-  await fetch('https://aistudios.com/api/odin/editor/progress/'+projectKey,
+  await fetch('https://v2.aistudios.com/api/odin/editor/progress/'+projectKey,
     {
       method: 'GET',
       headers: {

@@ -39,7 +39,7 @@ aiPlayer.send(clipset: clipset)
 Some AIs can speak with other voices besides basic voices. At this time, it is also possible to speak when the language of the supported voice is different from the basic language of AI. To use multiple languages and voices, you can use AIPlayer's generateToken or loadCustomVoices function after calling it.
 
 <p align="center">
-<img src="/img/aihuman/ios/aisample_ss_customvoice.PNG" style={{zoom: "50%"}} />
+<img src="/img/aihuman/ios/aisample_ss_customvoice.PNG" style={{zoom: "35%"}} />
 </p>
 
 #### Set the custom voice using AIPlayer's method

@@ -2,22 +2,14 @@
 sidebar_position: 5
 ---
 
-# AIPlayer Advanced Speaking Features
+# Advanced Features
 
-All functions other than speaking(mostly related to AI settings) of AIPlayer are described below.
+The following describes advanced features related to AI speech.
 
-After the resource load required for AI operation is completed, some settings of AIPlayer can be adjusted. When the resource loading is completed (`RES_LOAD_COMPLETED`), the state changes such that actual operations can be performed(Idle). On right side of the panel, **Voice, Gesture, Speed**, etc. can be adjusted as shown below.
-
-### Change AI Speech Rate
-
-: You can set the speech rate of AI. The possible value range is from 0.5 to 1.5.
-```csharp
-// set Property
-_aiPlayer.Speed = value;
-```
+You can set or change **Gestures, Language and CustomVoice, Speed**, etc. in the IDLE state.
 
 ### Gestures
-As briefly mentioned above, speech can also be performed using [ClipSet](#main-class-apis). The ClipSet here refers to one action unit in a series of AI actions. There are three types of ClipSet: general speech that performs only speaking, speech with gesture, and gesture only. The Gesture can be used depending on whether the AI model supports [Gestures](#main-class-apis), and the list of available gestures can be checked using the [GetGestures](#main-class-apis) function of AIPlayer. Even a model that does not support gestures can be operated using ClipSet.
+Use a [AIClipSet](../../../aihuman/windows-sdk/apis/aiclipset) to send utterance commands to the AI. The AIClipSet refers to a series of AI action unit. There are three types of ClipSet: general speech, speech with gesture, and gesture only. The Gesture can be used depending on whether the AI model supports gestures, and the list of available gestures can be checked using the `GetGestures` function of AIPlayer. Even a model that does not support gestures can be operated using ClipSet.
 
 AIClipSet types are as follows.
 
@@ -29,7 +21,7 @@ AIClipSet types are as follows.
 
 In the sample screenshot below, an AI model named Jonathan is speaking while waving his hand with a "hi" gesture.
 
-<img src="/img/aihuman/windows/Jonathan_Gesture_Demo.png" />
+<img src="/img/aihuman/windows/gesture_1.4.x.png" />
 
 ```csharp
 using AIHuman.Common.Model;
@@ -61,7 +53,7 @@ IAIPlayerCallback.OnAIPlayerEvent(AIEvnet aiEvent) is called in the same way as 
 ### Change the Voice or Language
 Some AIs can speak with other voices besides basic voices. It is also possible to speak other language than the basic voice's language if the supported voice's language is different from the basic language of AI. You can check the sample for a list of voices that are currently available to a AI. The custom voices is AIAPI.AuthStart or AIAPI.It can be checked after the GenerateToken function is called. More explicitly, AIAPI.LoadCustomVoices may be used, but it will function normally after a successful authentication procedure.
 
-<img src="/img/aihuman/windows/CustomVoice_GCE.png" />
+<img src="/img/aihuman/windows/customvoice_1.4.x.png" />
 
 <br/>
 
@@ -118,11 +110,21 @@ _aiPlayer.Send(new[] {aiClipSet});
 
 <br/>
 
+### Change AI Speech Rate
+
+: You can set the speech rate of AI. The possible value range is from 0.5 to 1.5.
+```csharp
+// set Property
+_aiPlayer.Speed = value;
+```
+
+<br/>
+
 ### Preload
 
 Preload is used when you want to make the AI speak the next sentence without delay by loading sentences in advance. You could think of it as a caching process. Select a sentence and press the **Preload** button in the sample below to perform the corresponding action.
 
-<img src="/img/aihuman/windows/Haylyn_Preload.png" />
+<img src="/img/aihuman/windows/preload_1.4.x.png" />
 
 ```csharp
 // using pure-text
@@ -165,7 +167,7 @@ public void OnAIPlayerEvent(AIEvent aiEvent)
 
 You can give AIPlayer several sentences at once and make them speak sequentially. In the sample, multi-speaking is performed by selecting random sentences from sentences in the ComboBox. It can be one sentence or it can be several sentences. Press the **Multi Speak** button in the app below to perform the operation.
 
-<img src="/img/aihuman/windows/Haylyn_MultiSpeak.png" />
+<img src="/img/aihuman/windows/multispeak_1.4.x.png" />
 
 ```csharp
 // using pure-text

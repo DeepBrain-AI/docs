@@ -1,0 +1,101 @@
+# Video Generation
+
+Enter a topic to generate a video about that topic.
+
+<br/>
+
+## 1. API endpoint
+
+```
+POST https://app.aistudios.com/api/odin/v3/tools/video-generator
+```
+
+<br/>
+
+## 2. Request parameter
+
+|key|desc|type|required|default|
+|:---|:---|:---|:---|:---|
+|topic|Topic of the video to be generated|String|true|-|
+
+<br/>
+
+## 3. Response parameters
+
+|key|desc|type|
+|:---|:---|:---|
+|downloadUrl|URL of the generated video data|String|
+
+:::info
+
+The generated video data can be deleted at any time, so you should download and use the video instead of using the generated URL directly.
+
+:::
+
+<br/>
+
+
+## 4. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://app.aistudios.com/api/odin/v3/tools/video-generator  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{
+  "topic": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios";
+
+axios.post("https://app.aistudios.com/api/odin/v3/tools/video-generator", 
+  {
+    "topic": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+  }, 
+  {
+    headers: {
+      "Authorization": ${API KEY},
+      "Content-Type": "application/json",
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data);
+})
+.catch((error) => {
+  console.error(error);
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://app.aistudios.com/api/odin/v3/tools/video-generator"
+body = {
+  "topic": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+}
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": ${API KEY}
+}
+
+r = requests.post(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>

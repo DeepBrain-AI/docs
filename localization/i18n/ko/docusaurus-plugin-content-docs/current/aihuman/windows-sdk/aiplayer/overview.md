@@ -4,17 +4,17 @@ sidebar_position: 1
 
 # 개요
 
-In this chapter, we will learn how to set up and use the AIPlayer object that can perform specific actions by actually displaying AI Human.
+본 장에서는 AI Human을 실제 등장시켜 특정 동작을 수행할 수 있는 AIPlayer 객체를 셋업하고 사용하는 방법에 대해 알아봅니다.
 
-AIPlayer consists of UserControl type View and ViewModel that controls related routines. For more details, please refer to the contents below and the main class API manual.
+AIPlayer는 UserControl 형태의 View와 시스템 로직과 관련된 동작들을 제어하는 ViewModel로 구성되어 있습니다. 다음 페이지와 주요 클래스 API 편람에서 보다 자세히 알아보겠습니다.
 
 
-:::tip Dev Tips!
+:::tip 개발 팁!
 
-- The concepts of MVVM, Dependency Injection, and Data Binding are applied to AI Human SDK and WPF Sample.
-- When developing a custom app by using the SDK, create an AIHuman.Media.AIPlayer object. When composing a screen, obtain a View object by using the GetObject() function of AIPlayer and place it.
-- It is recommended to use Data Binding for properties such as margin, size, and speed in AIPlayer.
-- For ViewModel related to SDK in Custom App, it is recommended to inherit and implement AIHuman.Common.Base.ViewModelBase, AIHuman.Interface.IAIPlayerCallback.
-- It is recommended to call the Dispose() function of the object before destroying or terminating the AIPlayer. (AIPlayerViewModel is a Dispoable object.)
+- AI Human SDK 및 Sample에는 MVVM, Dependency Injection, Data Binding의 개념을 사용하고 있습니다.
+- Custom Application 혹은 Service를 개발할 시에는 AIHuman.Media.AIPlayer 객체를 생성하고 화면을 구성하기 위해 AIPlayer의 GetObject() 함수를 이용해 View 객체를 얻어다가 배치시킵니다.
+- AIPlayer에서 여백, 크기, 속도 등의 Data는 Control과 Binding 시키는 형태의 구현 방식을 권장합니다.
+- SDK와 관계된 ViewModel의 경우 AIHuman.Common.Base.ViewModelBase, AIHuman.Interface.IAIPlayerCallback를 상속받아 구현하기를 권장합니다.
+- AIPlayer를 소멸 혹은 종료전 해당 객체의 Dispose() 함수를 반드시 호출하기를 권장합니다. (AIPlayerViewModel은 Dispoable 객체입니다.)
 
 :::

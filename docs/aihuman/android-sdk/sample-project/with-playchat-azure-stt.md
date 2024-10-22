@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# with Playchat & MS Azure STT
+# with Playchat & STT
 
 :::note related files
 
@@ -10,7 +10,10 @@ sidebar_position: 5
 
 :::
 
-AI Human + PlayChat + STT is a demo of an interactive AI service. Basically, it is similar to AIHuman + DialogFlow, but instead of typing in the keyboard, users can have a voice conversation with the AI. AI greets you when you enter the screen. ('Hello long time no see.')
+This chapter presents a Conversational AI Human implementation approach that integrates Google STT or MS Azure STT with PlayChat.  
+[PlayChat](https://aichat.deepbrainai.io/) is DeepBrain AI's ChatBot solution.
+
+AI Human + PlayChat + STT is a demo of an interactive AI service. Basically, it is similar to AIHuman + DialogFlow, but instead of typing in the keyboard, users can have a voice conversation with the AI. AI greets("Hello long time no see.") you when you enter the screen.
 
 After the greeting, if a voice input signal **Speak Now** appears below , say **where are you**. The AI understands the sentence and responds with an appropriate answer. Currently, the chatbot has limited speech sets, so it can only answer a few questions. If the chatbot is more advanced, it can be applied to  a variety of situations such as ordering at a restaurant or making a reservation. In addition, the chatbot can also display images with information on the side in addition to text.(Chatbot server should be implemented for this.)
 
@@ -52,7 +55,7 @@ Initialize PlayChat with a voice recognition function (STT). (AI is set as the d
 
 First, create a chatbot with the ChatbotFactory's static method (**MBPlayChatbot.newMBChatbot(,)**) and then call the init( , ) method. Then you can call STT-related startRecognize() and stopRecognize() methods along with the existing chatbot methods (send(,), etc.). 
 
-**Set up GoogleSTT for STT**
+**Set up Google for STT**
 
 Create stt instance with GoogleSTTV2 class(sample provided). This class which implements ISTT can start and stop speech recognition using  'startRecognize(), stopRecognize()' methods. You can get the result after setting up language and callback.
 

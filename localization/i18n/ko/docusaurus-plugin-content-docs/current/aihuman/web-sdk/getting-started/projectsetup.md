@@ -4,45 +4,37 @@ sidebar_position: 1
 
 # 프로젝트 셋업하기
 
-(Working)
+**0. AI Human SDK (Web) 시스템 요구사항**
 
-**1. Including the SDK**
+|                    | 요구 사항                        |
+|--------------------|----------------------------------|
+| 네트워크 환경     | 100Mbps 이상                     |
+| PC                 | CPU i5 7세대 이상 또는 그에 준하는 성능<br/>RAM 4GB 이상       |
+| Android           | CPU S660 이상 또는 그에 준하는 성능<br/>RAM 4GB 이상<br/>(갤럭시 FE 혹은 A 시리즈의 경우 원활하지 않음) |
+| iOS                | iPhone 6S 이상                   |
+| 브라우저          | Chrome 109 이상<br/>Safari 16 이상 |
 
-Include the JavaScript SDK in the web page as shown below. The URL included in the script is the latest JavaScript SDK download path provided by Deep Brain AI, so you can always use the latest version.
+**1. SDK 추가하기**
+
+아래와 같이 Javascript SDK를 웹페이지에 추가하십시오.
 
 ```html
-<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-latest.min.js"></script>
+<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.2.min.js"></script>
 ```
 
-In addition, a specific version other than the latest version may be used as shown below.
+**2. AIPlayer 객체를 포함할 영역을 지정합니다.**
 
-```html
-<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.4.0.min.js"></script>
-```
-
-**2. Specifies the area to contain the AIPlayer object.**
-
-Designate the HTML Element area to include the AIPlayer object as shown below. You can freely adjust the area where the AIPlayer will be drawn by adjusting the size or position of the area.
+아래와 같이 AIPlayer 객체를 포함할 HTML Element 영역을 지정합니다. 영역의 크기나 위치를 조정하여 AIPlayer가 그려질 영역을 자유롭게 조정할 수 있습니다.
 
 ```html
 <div id="AIPlayerWrapper"></div>
 ```
 
-**3. Creating an AIPlayer object**
+**3. AIPlayer 객체를 생성하십시오.**
 
-Create an AIPlayer object by entering the area where the AIPlayer is to be drawn as an argument to the AIPlayer constructor as shown below.
+AIPlayer 생성자에 대한 인수로 위에서 지정한 AIPlayer의 영역(wrapper)을 입력하여 AIPlayer 객체를 만듭니다.
 
 ```javascript
 const wrapper = document.getElementById("AIPlayerWrapper");
 const AI_PLAYER = new AIPlayer(wrapper);
 ```
-
-**4. Authenticating the SDK**
-
-**4.1. Setting up appId and issuing userKey on SDK website**
-
-- Log in to the [SDK website](https://aihuman.deepbrain.io)
-- If there is no project, you can get a userkey by entering the appId to be used on the web after creation and pressing OK.
-- If you have a project, you can check the appId of the project and the userKey issued.
-
-<img src="/img/aihuman/web/project.png" />

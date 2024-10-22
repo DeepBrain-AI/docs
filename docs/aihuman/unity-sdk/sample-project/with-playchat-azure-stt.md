@@ -1,12 +1,12 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # with Playchat & Azure STT
 
 :::note related files
 
-- 3.Playchat & AzureSTT.scene
+- 4.Playchat & AzureSTT.scene
 
 :::
 

@@ -11,7 +11,7 @@ Project export deals with how to synthesize new images by sending api requests i
 ## 1. API endpoint
 
 ```http
-https://aistudios.com/api/odin/editor/project
+https://v2.aistudios.com/api/odin/editor/project
 ```
 
 <br/>
@@ -63,7 +63,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```js
-curl https://aistudios.com/api/odin/editor/project  \
+curl https://v2.aistudios.com/api/odin/editor/project  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -116,7 +116,7 @@ curl https://aistudios.com/api/odin/editor/project  \
 import axios from "axios" 
 const token = ${API KEY}
 
-axios.post('https://aistudios.com/api/odin/editor/project', 
+axios.post('https://v2.aistudios.com/api/odin/editor/project', 
     {
         "scenes":
             [{
@@ -179,7 +179,7 @@ axios.post('https://aistudios.com/api/odin/editor/project',
 import requests
 import json
 
-url = "https://aistudios.com/api/odin/editor/project"
+url = "https://v2.aistudios.com/api/odin/editor/project"
 body = {
     "scenes":
         [{
