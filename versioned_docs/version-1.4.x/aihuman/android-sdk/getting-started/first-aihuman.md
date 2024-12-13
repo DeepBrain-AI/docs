@@ -248,7 +248,7 @@ public class AILiveQuickStart extends AppCompatActivity {
     }
 
     private void initSDKAuthInfoVars() {
-        appId = getString(R.string.appid);
+        appId = getString(R.string.appId);
         userkey = getString(R.string.userkey);
     }
 

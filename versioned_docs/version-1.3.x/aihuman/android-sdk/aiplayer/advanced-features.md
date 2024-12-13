@@ -22,7 +22,7 @@ The AI jonathan is speaking with gesture called "hi"(waving hand).
 <img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
 </p>
 
-AIClipSetFactory.CreateClip can create AIClipset with gesture like below. Only gesture will play if the gesture set witout speech text.
+AIClipSetFactory.CreateClip can create AIClipset with gesture like below. Only the gesture will play if the gesture is set without speech text.
 
 ```java
 if (selectedSpeech != null) {
@@ -39,7 +39,7 @@ if (selectedSpeech != null) {
 ```
 
 ### Monitor the gesture's event
-IAIPlayerCallback.onAIPlayerEvent(AIEvent) will be called like normal 'send' method. AIEvent'type valued will be like below so that we can check out. Also we can access the AIEvent.clipset.getClipType(), getGesture(), getSpeechText(). That means we can distinguish that it is a gesture or just speaking.
+IAIPlayerCallback.onAIPlayerEvent(AIEvent) will be called like normal 'send' method. AIEvent's type value will be like below so that we can check out. Also we can access the AIEvent.clipset.getClipType(), getGesture(), getSpeechText(). That means we can distinguish that it is a gesture or just speaking.
 
 - AIEvent.AICLIPSET_PLAY_PREPARE_STARTED 
 - AIEvent.AICLIPSET_PLAY_PREPARE_COMPLETED 
@@ -76,7 +76,7 @@ If you know the id of the desired voice, you can find the desired voice using th
 CustomVoice myVoice = AIModelInfoManager.findCustomVoice(voiceId);
 ``` 
 
-Direct change to the desired voice on the aplayer is set as follows, and is set to the default voice when null is entered. Returns true when success.
+Direct change to the desired voice on the aplayer is set as follows, and is set to the default voice when null is entered. Returns true if successful.
 
 
 ```java
@@ -198,7 +198,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
             if (error.code == 1402) { //refresh token
                 AIModelInfoManager.generateToken(AIPlayerDemo.this,
-                        getString(R.string.appid),
+                        getString(R.string.appId),
                         getString(R.string.userkey),
                         (aiError, resp) -> binding.aiStateTxt.setText("Token ref finished " + resp));
             }

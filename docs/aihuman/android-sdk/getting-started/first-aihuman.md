@@ -12,7 +12,7 @@ In this chapter, we will quickly look at AIHuman(AIPlayer) setup process and mak
 Here we create AILiveQuickStart.java.
 
 ## 3. Create a layout file.
-And make a view(eg. RelativeLayout) as a wrapper for the AIPlayer and set it as the Activity's contentView.
+And make a view(e.g. RelativeLayout) as a wrapper for the AIPlayer and set it as the Activity's contentView.
 
 **AI is drawn in parentView fully in vertical way.(scale 1.0)**
 
@@ -57,7 +57,7 @@ public class AILiveQuickStart extends AppCompatActivity {
 
 ## 4. The next step is to authenticate the SDK user.
 
-**Create a project in [SDK Website](https://aihuman.aistudios.com), enter appId of Android and click confirm. Then userkey will be issued.**
+**Create a project in [SDK Website](https://aihuman.aistudios.com), enter appId of Android and click confirm. Then userKey will be issued.**
 
 <img src="/img/aihuman/android/screenshot_quickstart_sdkwebsite.png"/>
 
@@ -99,7 +99,7 @@ aiPlayer.init(aiSettings, iAiPlayerCallback);
 ```
 
 ## 7. Let's make AIPlayer's callback as a member of Activity and set it in AIPlayer's init method to monitor the state of AIPlayer.
-Notice below that it sends a sentence("Nice to meet you") to AI when resource-loading(AIEvent.RES_LOAD_COMPLETED) is completed.
+Notice below that it sends a sentence("Nice to meet you") to AI when resource loading(AIEvent.RES_LOAD_COMPLETED) is completed.
 
 ```java
 public class AILiveQuickStart extends AppCompatActivity {
@@ -248,7 +248,7 @@ public class AILiveQuickStart extends AppCompatActivity {
     }
 
     private void initSDKAuthInfoVars() {
-        appId = getString(R.string.appid);
+        appId = getString(R.string.appId);
         userkey = getString(R.string.userkey);
     }
 

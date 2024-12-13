@@ -23,7 +23,7 @@ AIPlayerDemo 액티비티는 AIPlayer의 다양한 기능들을 UI를 통해 시
      * aiPlayer creation. Gives AILIVE type to {@link AIPlayerFactory}
      */
     private void initThis() {
-        //AIPlayer.enableLog(true); Enable log.
+        // Enable logging for debugging: AIPlayer.enableLog(true);
 
         AIModelInfoManager.getAIList((aiError, resp) -> {
             /* resp
@@ -75,7 +75,7 @@ private void setUpUIWithAIPlayer() {
 // UI and AIPlayer's setup 
 private void setUpUIWithAIPlayer() {
 		//...
-		bbinding.sendTextBtn.setOnClickListener(view -> {
+		binding.sendTextBtn.setOnClickListener(view -> {
             testMode = TESTMODE_NORMAL;
 
             if (selectedSpeech != null) {
@@ -140,7 +140,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
             Log.d(TAG, "onAIPlayerError: " + error);
 
             if (error.code >= AIError.RESERVED_ERR) {
-                //You've got reserved error. Check up the error list!
+                //You've encountered a reserved error. Please check the error list!
                 binding.aiStateTxt.setText("RESERVED_ERR :" + error.message);
             } else if (error.code >= AIError.AICLIPSET_PLAY_ERR) {
                 binding.aiStateTxt.setText("AICLIPSET_PLAY_ERR :" + error.message);
@@ -161,7 +161,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
                 if (error.code == 1402) { //refresh token
                     AIModelInfoManager.generateToken(AIPlayerDemo.this,
-                            getString(R.string.appid),
+                            getString(R.string.appId),
                             getString(R.string.userkey),
                             (aiError, resp) -> binding.aiStateTxt.setText("Token ref finished " + resp));
                 }

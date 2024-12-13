@@ -66,7 +66,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
         enableAllUI(true); //reset ui
 
         if (error.code >= AIError.RESERVED_ERR) {
-            //You've got reserved error. Check up the error list!
+            //You've encountered a reserved error. Please check the error list!
             binding.aiStateTxt.setText("RESERVED_ERR :" + error.message);
         } else if (error.code >= AIError.AI_INIT_ERR) {
             binding.aiStateTxt.setText("AI_INIT_ERR :" + error.message);
@@ -81,7 +81,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
             if (error.code == 1402) { //refresh token
                 AIModelInfoManager.generateToken(AIPlayerDemo.this,
-                        getString(R.string.appid),
+                        getString(R.string.appId),
                         getString(R.string.userkey),
                         (aiError, resp) -> binding.aiStateTxt.setText("Token ref finished " + resp));
             }

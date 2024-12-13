@@ -120,7 +120,7 @@ protected void onDestroy() {
 
 ### Step 4. Initialize AIPlayer to your desired AI
 
-In order to change AI models, you need to intialize AIPlayer with a configuration class AIPlayerSettings. By updating the aiName field of the AIPlayerSettings, you can change the AI model to your desired AI. Call the init(......) method of AIPlayer with the AIPlayerSettings config as shown below. In this way, aiPlayer downloads relevant resources and updates to an operable state. In addition, the status can be reported to the registered callback.
+In order to change AI models, you need to initialize AIPlayer with a configuration class AIPlayerSettings. By updating the aiName field of the AIPlayerSettings, you can change the AI model to your desired AI. Call the init(......) method of AIPlayer with the AIPlayerSettings config as shown below. In this way, aiPlayer downloads relevant resources and updates to an operable state. In addition, the status can be reported to the registered callback.
 
 ```java
 //AIPlayer created 

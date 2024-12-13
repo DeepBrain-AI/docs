@@ -131,6 +131,6 @@ for 3d character activity (if you use it)
 
 ## 5. Gradle JDK setting (11)
 
-If you use android studio over articfox version, you will see "Android Gradle plugin requires Java 11 to run. You are currently using Java 1.8." error. For this case, choose gradle jdk 11 (Top menu > preference > build, Execution, Deployment > Build Tool > Gradle > Gradle JDK > 11 version). If you don' have 11 version, please download it from [oracle website](http://www.oracle.com). [link](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
+If you use android studio over articfox version, you will see "Android Gradle plugin requires Java 11 to run. You are currently using Java 1.8." error. For this case, choose gradle jdk 11 (Top menu > preference > build, Execution, Deployment > Build Tool > Gradle > Gradle JDK > 11 version). If you don' have 11 version, please download it from [Oracle website](http://www.oracle.com). [link](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
 
 <img src="/img/aihuman/android/screenshot_projectsetup_5.png"/>
