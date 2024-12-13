@@ -19,7 +19,7 @@ AI에게 [클립셋](/aihuman/unity-sdk/apis/aiclipset)을 이용하여 발화 �
 - CLIP_SPEECH: 제스처가 없는 일반 발화만 가능한 Clip
 - CLIP_GESTURE: 제스처만 가능한 Clip
 - CLIP_SPEECH_GESTURE: 제스처가 포함된 발화가 가능한 Clip
-  :::
+:::
 
 아래 이미지에서는 AI 모델이 "hi"라는 제스처와 함께 발화하는 모습을 볼 수 있습니다.
 

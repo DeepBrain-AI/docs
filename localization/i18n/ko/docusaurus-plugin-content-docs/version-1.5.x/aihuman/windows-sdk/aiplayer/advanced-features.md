@@ -8,7 +8,7 @@ sidebar_position: 5
 
 대기(IDLE) 상태에서 **제스처, 언어 및 음성, 속도** 등을 설정 또는 변경할 수 있습니다.
 
-## 제스처 발화
+### 제스처 발화
 
 AI에게 [클립셋](../../../aihuman/windows-sdk/apis/aiclipset)을 이용하여 발화 명령을 전달합니다. 클립셋은 일련의 AI 행동 단위를 의미합니다. 이때 발화의 종류는 말하기만을 수행하는 일반 발화와 제스처를 포함한 말하기인 제스처 발화, 그리고 어떤 동작만 수행하는 제스처가 있습니다. AI Human 모델의 제스처 기능 제공 유무에 따라 해당 기능을 사용할 수 있으며 AIPlayer의 `GetGestures` 함수를 이용하여 사용 가능한 제스처 목록을 가져올 수 있습니다. 제스처를 지원하지 않는 모델의 경우에도 클립셋을 이용하여 동작시킬 수 있습니다.
 
@@ -42,7 +42,7 @@ AIClipSet clip = AIAPI.CreateClipSet("nice to meet you.", gesture.Name);
 _aiPlayer.Send(new[] {clip});
 ```
 
-### 제스처 동작의 콜백 모니터링
+#### 제스처 동작의 콜백 모니터링
 
 일반 발화 동작과 동일하게 `IAIPlayerCallback.OnAIPlayerEvent(AIEvnet)`가 호출됩니다. `AIEvnet`의 `Type`값은 다음과 같으로 전달되어 이벤트를 모니터링할 수 있습니다. 이때 `AIEvent.ClipSet` 프로퍼티를 통해 `Type`과 `GestureName` 그리고 `SpeechText` 등을 알 수 있어 제스처 동작인지, 그냥 발화동작인지 등의 여러가지 시나리오 대응에 활용할 수 있습니다.
 
@@ -53,7 +53,7 @@ _aiPlayer.Send(new[] {clip});
 
 <br/>
 
-## 언어 및 음성 변경
+### 언어 및 음성 변경
 
 AI Human 자신의 기본 음성 외에도 다른 음성으로 발화를 할 수 있습니다. 이때 지원하는 음성의 언어가 AI Human 모델의 기본 언어와 다른 경우에도 발화가 가능합니다. 다국어 구사가 가능하다는 뜻이 됩니다. 아래 스크린샷과 같이 현재 AI가 사용할 수 있는 음성 리스트를 확인할 수 있습니다. 해당 음성 리스트는 `AIAPI.Authenticate` 혹은 `AIAPI.GenerateToken` 함수 호출 이후에 확인할 수 있습니다. 보다 명시적으로는 `AIAPI.LoadCustomVoices` 함수를 사용할 수 있으나 성공적인 인증 절차 이후에 정상 동작합니다.
 
@@ -61,7 +61,7 @@ AI Human 자신의 기본 음성 외에도 다른 음성으로 발화를 할 수
 
 <br/>
 
-### AIPlayer의 언어 및 음성 변경하기
+#### AIPlayer의 언어 및 음성 변경하기
 
 먼저 현재 AI가 발화할 수 있는 언어의 리스트는 다음의 메소드를 통해 확인할 수 있습니다.
 
@@ -101,7 +101,7 @@ bool succeeded = _aiPlayer.SetCustomVoiceForLanguage("en-US", "MALE");
 CustomVoice customVoice = _aiPlayer.GetCustomVoice();
 ```
 
-### AIClipSet을 이용한 추가 활용 방법
+#### AIClipSet을 이용한 추가 활용 방법
 
 기본 음성 외에 다른 음성을 설정하기 위해 `SetCustomVoice` 메소드를 사용하는 방법 외에, `AIClipSet`을 이용하여 다음과 같이 원하는 음성으로 발화할 수 있습니다. 이 방법은 기존에 `AIPlayer`에 설정된 `CustomVoice` 중간에 임시로 다른 음성으로 발화시킬 수 있는 장점이 있습니다.
 
@@ -113,7 +113,7 @@ _aiPlayer.Send(new[] {aiClipSet});
 
 <br/>
 
-## AI 말하기 속도 조절하기
+### AI 말하기 속도 조절하기
 
 : AI의 말하기 속도를 설정할 수 있습니다. 설정값 범위는 소수 0.5 ~ 1.5 입니다.
 
@@ -122,7 +122,7 @@ _aiPlayer.Send(new[] {aiClipSet});
 _aiPlayer.Speed = value;
 ```
 
-## 프리로드
+### 프리로드
 
 프리로드는 다음에 할 말들을 먼저 로드시켜놓고 빠르게 다음 발화를 하고 싶을 때 사용합니다. 일종의 캐싱 처리입니다. 스크린샷의 샘플 프로젝트에서 발화 문장 ComboBox 항목 중 하나를 선택하고 프리로드 버튼을 누르면 해당 동작이 수행됩니다.
 
@@ -135,7 +135,7 @@ _aiPlayer.Preload(new[] {"sentence"});
 _aiPlayer.Preload(new[] {clip});
 ```
 
-### 프리로드 가능 상태 확인하기
+#### 프리로드 가능 상태 확인하기
 
 앞장의 [이벤트 확인하기](../../../aihuman/windows-sdk/aiplayer/resources-states)에서 AI와의 네트워크 연결 상태에 따른 이벤트 콜백도 있다는 것을 확인하였습니다.
 
@@ -148,7 +148,7 @@ _aiPlayer.Preload(new[] {clip});
 - `AICLIPSET_PRELOAD_ERR`: OnAIPlayerError로 부터 발생 (프리로드 전용 네트워크 연결 상태에 의한 처리 실패 시)
 - `AICLIPSET_PRELOAD_FAILED` : OnAIPlayerEvent로 부터 발생 (백엔드단 합성 실패 혹은 SDK 내부 네이티브단 처리 실패 시)
 
-### 프리로드 동작의 콜백 모니터링
+#### 프리로드 동작의 콜백 모니터링
 
 발화 동작과 마찬가지로 프리로드 동작시에도 `IAIPlayerCallback.OnAIPlayerEvent(AIEvent)`가 호출됩니다. `AIEvent.Type`의 값은 아래와 같습니다.
 
@@ -177,7 +177,7 @@ public void OnAIPlayerEvent(AIEvent aiEvent)
 
 <br/>
 
-## 여러 문장 연속 발화
+### 여러 문장 연속 발화
 
 AIPlayer는 여러 문장 혹은 클립셋을 한번에 전달하고 차례대로 발화하게 할 수 있습니다. 이를 데모로 보여주기 위해서 아래 샘플 프로젝트에서는 임의 다중 발화(Random Multi Speak) 버튼을 이용하여 예시로 제공하고 있습니다. 발화 문장 ComboBox에 있는 문장들 중 임의의 문장들을 선정하여 다중 발화를 수행합니다.
 
@@ -190,7 +190,7 @@ _aiPlayer.Send(new[] {"This is sample sentence1", "This is sample sentence2"});
 _aiPlayer.Send(new[] {clip1, clip2});
 ```
 
-### 여러 문장 연속 발화의 콜백 모니터링
+#### 여러 문장 연속 발화의 콜백 모니터링
 
 한 문장 혹은 클립셋 마다 `IAIPlayerCallback.OnAIPlayerEvent(AIEvnet)`가 호출됩니다. `AIEvnet`의 값은 다음과 같이 호출되어 상태를 알 수 있습니다.
 

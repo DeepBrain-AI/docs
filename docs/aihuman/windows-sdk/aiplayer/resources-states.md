@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # AIPlayer Callback
 
-### Start loading resources 
+#### Start loading resources 
 
 When an `AIPlayer` object is created after authentication is completed, resource loading can begin according to the aiName that you set and the `IAIPlayerCallback` implementation can callback the resource loading progress. (The download time may initially depend on network conditions.)
 

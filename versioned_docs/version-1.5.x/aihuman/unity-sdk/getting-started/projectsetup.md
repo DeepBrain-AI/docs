@@ -23,7 +23,7 @@ The appId, userKey, and platform information will be used as arguments for Authe
 - The appId is the project's unique Id, which is usually generated as "com.example.project.appname".
 - Userkey can create a project on the AI Human website and receive it while registering the appId.
 - The platform value is set to match the App Platform. (Android, iOS, Windows)
-  :::
+:::
 
 ### 3. Create a new project in Unity Hub
 

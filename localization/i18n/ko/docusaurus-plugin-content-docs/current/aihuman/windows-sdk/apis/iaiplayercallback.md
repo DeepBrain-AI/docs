@@ -6,7 +6,7 @@ sidebar_position: 2
 
 [상세 내용](../../../aihuman/windows-sdk/aiplayer/resources-states#iaiplayercallback으로-모니터링-구현)
 
-## IAIPlayerCallback
+### IAIPlayerCallback
 
 - assembly: AIHuman.SDK.Core  
 - namespace: AIHuman.Interface  

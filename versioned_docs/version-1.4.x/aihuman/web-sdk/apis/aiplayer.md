@@ -35,7 +35,7 @@ sidebar_position: 1
 | `getAIList()`     | AIAPI - Get the list of available AI models |
 | `getSampleTextList()` | AIAPI - Get the list of sample text |
 
-## 1. AIPlayer.init(json)
+### 1. AIPlayer.init(json)
 
 Initialize AI Player object with the given AI model parameters
 
@@ -58,7 +58,7 @@ Initialize AI Player object with the given AI model parameters
   });
 ```
 
-## 2. AIPlayer.getState()
+### 2. AIPlayer.getState()
 
 Get the AIPlayer's state. Check out [AIPlayerState](../apis/aiplayer-data#5-aiplayerstate)
 
@@ -71,7 +71,7 @@ Get the AIPlayer's state. Check out [AIPlayerState](../apis/aiplayer-data#5-aipl
 ```
   
 
-## 3. AIPlayer.setter(json)
+### 3. AIPlayer.setter(json)
 
 Set AI object information
 
@@ -91,7 +91,7 @@ Set AI object information
 AI_PLAYER.setter({size: 1.2, top: 20, left: 20, speed: 1.2});
 ```
 
-## 4. AIPlayer.getter(key)
+### 4. AIPlayer.getter(key)
 
 Get AI object information
 
@@ -160,23 +160,23 @@ AI_PLAYER.send({ text: "Nice to meet you", gst: "hi" });
 AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
 
-## 7. AIPlayer.pause()
+### 7. AIPlayer.pause()
 
 Temporarily pause AI speech.
 
-## 8. AIPlayer.resume()
+### 8. AIPlayer.resume()
 
 Resume speech if the AI state was paused previously.
 
-## 9. AIPlayer.stopSpeak()
+### 9. AIPlayer.stopSpeak()
 
 Stop AI speech and reset all data on stack. (cannot resume)
 
-## 10. AIPlayer.release()
+### 10. AIPlayer.release()
 
 Used to release system resources in use. (Not reusable)
 
-## 11. AIPlayer.getGestures()
+### 11. AIPlayer.getGestures()
 
 Get a list of available gestures.
 
@@ -188,7 +188,7 @@ Get a list of available gestures.
   const gestures = AI_PLAYER.getGestures();
 ```
 
-## 12. AIPlayer.getGender()
+### 12. AIPlayer.getGender()
 
 Gets the current AI gender ('MALE', 'FEMALE', 'UNI') and returns null if there is no value.
 
@@ -200,7 +200,7 @@ Gets the current AI gender ('MALE', 'FEMALE', 'UNI') and returns null if there i
   const gender = AI_PLAYER.getGender();
 ```
 
-## 13. AIPlayer.getSpeakableLanguages(gender)
+### 13. AIPlayer.getSpeakableLanguages(gender)
 
 Gets the language list of currently loaded voices, valid after loadCustomVoice() or generateToken() method calls.
 
@@ -212,7 +212,7 @@ Gets the language list of currently loaded voices, valid after loadCustomVoice()
   const languages = AI_PLAYER.getSpeakableLanguages(gender);
 ```
 
-## 14. AIPlayer.getCustomVoice()
+### 14. AIPlayer.getCustomVoice()
 
 Gets the currently set voice and returns null if there is no set value or default voice.
 
@@ -224,7 +224,7 @@ Gets the currently set voice and returns null if there is no set value or defaul
   const customVoice = AI_PLAYER.getCustomVoice();
 ```
 
-## 15. AIPlayer.getCustomVoicesWith(language, gender)
+### 15. AIPlayer.getCustomVoicesWith(language, gender)
 
 Gets the list of custom voices that correspond to the language and gender of the input among the loaded voices
 If you type null in language, you get all languages, and if you type null in gender, you get values that correspond to all genders.  
@@ -238,7 +238,7 @@ Valid after calling loadCustomVoice() or generateToken() methods.
   const customVoices = AI_PLAYER.getCustomVoicesWith(language, gender);
 ```
 
-## 16. AIPlayer.findCustomVoice(voiceId)
+### 16. AIPlayer.findCustomVoice(voiceId)
 
 Gets the CustomVoice object corresponding to id in the voice list, and returns null if there is no value.
 
@@ -250,7 +250,7 @@ Gets the CustomVoice object corresponding to id in the voice list, and returns n
   const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 ```
 
-## 17. AIPlayer.setCustomVoice(customVoice)
+### 17. AIPlayer.setCustomVoice(customVoice)
 
 It sets the voice of AI and returns true on success and false on failure. Also, when null is entered, it is set to the original voice.
 
@@ -262,7 +262,7 @@ It sets the voice of AI and returns true on success and false on failure. Also, 
   const isSuccess = AI_PLAYER.setCustomVoice(customVoice);
 ```
 
-## 18. AIPlayer.setCustomVoiceForLanguage(language, gender)
+### 18. AIPlayer.setCustomVoiceForLanguage(language, gender)
 
 Voice is set by desired language and gender, and when null is entered in language, it is set as the original voice.  
 If you enter the language value and enter null in the gender, it is set as the first voice in the voice list of the language.
@@ -275,29 +275,29 @@ If you enter the language value and enter null in the gender, it is set as the f
   const isSuccess = AI_PLAYER.setCustomVoiceForLanguage(language, gender);
 ```
 
-## 19. AIPlayer.reconnect(callback)
+### 19. AIPlayer.reconnect(callback)
 ```javascript
 AIPlayer.reconnect(callback = () => { })
 ```
 
-## 20. AIPlayer.isConnected()
+### 20. AIPlayer.isConnected()
 ```javascript
 const isConnected = AI_PLAYER.isConnected();
 ```
 
-## 21. AIPlayer.canPreload()
+### 21. AIPlayer.canPreload()
 ```javascript
 const canPreload = AI_PLAYER.canPreload(callback = () => { });
 ```
 
-## 22. AI_PLAYER.setVolume(volume)
+### 22. AI_PLAYER.setVolume(volume)
 ```javascript
 AI_PLAYER.setVolume(volume);
 
 const curVolume = AI_PLAYER.getVolume();
 ```
 
-## 23. AI_PLAYER.setMute(isMute)
+### 23. AI_PLAYER.setMute(isMute)
 ```javascript
 AI_PLAYER.setMute(true)
 

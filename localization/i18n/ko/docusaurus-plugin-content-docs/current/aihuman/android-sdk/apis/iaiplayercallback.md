@@ -2,7 +2,7 @@
 sidebar_position: 8
 ---
 
-# Interface IAIPlayerCallback
+# IAIPlayerCallback
 
 | Modifier and Type | Method and Description                                       |
 | ----------------- | ------------------------------------------------------------ |

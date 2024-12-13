@@ -174,7 +174,7 @@ function initAIPlayerEvent() {
 
 }
 ```
-**5. AI 발화 관련 함수들 (preload, send, pauses, resume, stop and release)을 구현합니다.**
+**5. Implement AI utterance-related functions (preload, send, paces, resume, stop and release).**
 
 ```javascript
 async function preload(clipSet) {

@@ -15,7 +15,7 @@ The sample covered in this document is an example of using the AI Human SDK. By 
 <img src="/img/aihuman/ios/aisample_ss_menu.PNG" style={{zoom: "25%"}} />
 </p>
 
-#### ViewController's menu
+### ViewController's menu
 
 - AI Quick sample (AIQuickSampleViewController.swift)
 - AI Player sample (AISampleViewController.swift)

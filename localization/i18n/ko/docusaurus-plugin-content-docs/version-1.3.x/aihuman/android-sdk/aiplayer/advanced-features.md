@@ -36,7 +36,7 @@ if (selectedSpeech != null) {
 }
 ```
 
-### 제스처 동작의 콜백 모니터링
+#### 제스처 동작의 콜백 모니터링
 
 발화동작과 동일하게 IAIPlayerCallback.onAIPlayerEvent(AIEvent)가 호출됩니다. AIEvent의 type값은 다음과 같이 호출되어 상태를 알 수 있습니다. 단, 여기서 aiEvent.clipset.getClipType(), getGesture(), getSpeechText()를 알 수 있으므로 제스처 동작인지, 그냥 발화 동작인지 알 수 있습니다.
 
@@ -49,7 +49,7 @@ if (selectedSpeech != null) {
 
 <br/>
 
-## 언어 및 음성 변경
+### 언어 및 음성 변경
 
 일부 AI는 기본 음성 외에 다른 음성으로 발화를 할 수 있습니다. 여러 음성을 사용하기 위해서는 먼저 AIModelInfoManager.generateToken(...) 함수나 AIModelInfoManager.loadCustomVoices(...) 메소드를 호출한 후 사용할 수 있습니다.
 
@@ -110,7 +110,7 @@ aiPlayer.send(aiClipSet);
 
 <br/>
 
-## 여러 문장 연속 발화
+### 여러 문장 연속 발화
 
 aiPlayer에게 여러 문장을 한꺼번에 주고 차례로 발화하게 할 수 있습니다. 방법은 다음과 같고 주의할 점은 프리로드와 마찬가지로 일부 AI 모델만 가능합니다. 아래 샘플에서 Multi Speak 버튼을 누르면 해당 행동이 구현되어 있습니다.
 
@@ -127,7 +127,7 @@ aiPlayer.send([aiClipSets]); //array
 
 <br/>
 
-## 프리로드
+### 프리로드
 
 프리로드는 다음에 할 말들을 먼저 로드시켜놓고 빠르게 다음 발화를 하고 싶을 때 사용합니다. 이는 일종의 캐싱이라고 생각할 수 있습니다. 'preload(...)' 메소드를 호출하면 프리로드가 동작됩니다. 아래 샘플에서 Preload speak 버튼을 누르면 해당 행동이 구현되어 있습니다.
 
@@ -141,7 +141,7 @@ aiPlayer.send([aiClipSets]); //array
 aiPlayer.preload([text]);
 ```
 
-### 프리로드 동작의 콜백 모니터링
+#### 프리로드 동작의 콜백 모니터링
 
 발화동작과 마찬가지로 프리로드 동작시에도 IAIPlayerCallback.onAIPlayerEvent(AIevent)가 호출됩니다. AIEvent 값은 다음과 같이 호출되어 상태를 알 수 있습니다.
 

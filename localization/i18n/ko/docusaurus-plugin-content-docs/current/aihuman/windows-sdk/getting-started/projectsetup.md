@@ -27,9 +27,9 @@ sidebar_position: 2
 
 - App ID는 해당 프로젝트에서 유일한(Unique) 값이어야 합니다. (예: "dev.aihuman.yourappname")
 - User Key는 AI Human 웹사이트에서 프로젝트를 생성하고 App ID를 입력하면 발급받을 수 있습니다.
-  :::
+:::
 
-## 3. Visual Studio에서 새 프로젝트 생성하기
+### 3. Visual Studio에서 새 프로젝트 생성하기
 
 Visual Studio에서 솔루션 및 프로젝트를 생성하고 AI Human SDK를 사용합니다.
 
@@ -37,7 +37,7 @@ Visual Studio에서 솔루션 및 프로젝트를 생성하고 AI Human SDK를 �
 
 #### 여기서는 기본 프로젝트명인 WpfApp1를 사용하겠습니다.
 
-## 요구사항
+### 요구사항
 
 #### AIHuman.SDK.Core
 
@@ -60,7 +60,7 @@ AIHuman.SDK.Core.dll만을 사용할 수도 있습니다. AIHuman.SDK.Core.dll�
 
 - WPF를 Target으로 개발하는 경우: AIHuman.SDK.Core와 AIHuman.SDK.WPF 참조 필요
 - .NET Standard 2.0을 지원하는 환경에서 다른 UI Framework 등을 사용하는 경우: AIHuman.SDK.Core만 참조 후 View 구현
-  :::
+:::
 
 ### 라이브러리 종속성 안내
 
@@ -86,7 +86,7 @@ SDK를 포함한 아래의 어셈블리들을 프로젝트에 참조 추가하�
 
 위의 Nuget 패키지 (권장) AIHuman.SDK.WPF를 설치(종속 패키지인 AIHuman.SDK.Core는 자동 설치)하면 여기서 프로젝트 셋업하기는 끝이 납니다.
 
-## 4. 프로젝트 셋업하기 (어셈블리 참조를 사용하는 경우)
+### 4. 프로젝트 셋업하기 (어셈블리 참조를 사용하는 경우)
 
 AIHuman.SDK.Core.dll 참조 등 프로젝트의 초기 설정을 수행합니다.
 

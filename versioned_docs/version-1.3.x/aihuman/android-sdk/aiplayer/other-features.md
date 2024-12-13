@@ -11,14 +11,14 @@ After the resource is loaded, some settings of aiPlayer can be changed while the
 <img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
 </p>
 
-## Change AI Size(Scale)
+### Change AI Size(Scale)
 : value between 0.5 and 1.5
 
 ```java
 aiPlayer.setScale(scale);
 ```
 
-## Change AI Top Margin
+### Change AI Top Margin
 The larger the value, the lower it is drawn.
 
 ```java

@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # AIPlayer Callback
 
-## 1. onAIPlayerError
+### 1. onAIPlayerError
 
 Callback for Errors during AIPlayer operation
 

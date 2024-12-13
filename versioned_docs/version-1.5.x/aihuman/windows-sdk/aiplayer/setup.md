@@ -101,7 +101,7 @@ AIAPI.Instance.Authenticate(APPID, USERKEY, (aiList, error) => {
 
 After authentication, you can check the list of AIs that can be used and initialize them to the desired AI. First, create the `AIPlayerOptions` object with the desired `AIAPI.AI.aiName` as shown in the example code below. If you want to remove the `AIPlayer` object that you were using before, use the `Dispose` function to release the resource.
 
-### AIPlayerOptions 
+#### AIPlayerOptions 
 Used as a parameter to create `AIPlayer` objects. Valid only at initialization, refer to implementations to use properties or functions of `AIPlayer` objects at runtime.
 
 #### AIName

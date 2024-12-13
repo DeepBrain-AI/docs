@@ -4,12 +4,12 @@ sidebar_position: 3
 
 # AIPlayer Callback
 
-## 1. onAIPlayerError
+### 1. onAIPlayerError
 
 This [Callback function](../../../1.3.x/aihuman/web-sdk/apis/aiplayer-callback) is obsolete.
 Recommend to use a onAIPlayerErrorV2.
 
-## 2. onAIPlayerErrorV2
+### 2. onAIPlayerErrorV2
 
 Callback for Errors during AIPlayer operation. Check out the AIError details [here](../apis/aiplayer-data)
 
@@ -32,12 +32,12 @@ Callback for Errors during AIPlayer operation. Check out the AIError details [he
   };
 ```
 
-## 3. onAIPlayerStateChanged
+### 3. onAIPlayerStateChanged
 
 This [Callback function](../../../1.3.x/aihuman/web-sdk/apis/aiplayer-callback) is obsolete.
 Recommend to use a onAIPlayerEvent.
 
-## 4. onAIPlayerEvent
+### 4. onAIPlayerEvent
 
 Callback for AIPlayer's Event. Check out the AIEvent details [here](../apis/aiplayer-data)
 
@@ -62,7 +62,7 @@ AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
 };
 ```
 
-## 5. onAIPlayerLoadingProgressed
+### 5. onAIPlayerLoadingProgressed
 
 Callback for AIPlayer Loading Progress
 

@@ -24,7 +24,7 @@ The appId, userKey, uuid, and platform information will be used as arguments for
 - userkey can be obtained by creating a project on the AIHuman website and registering the appId.
 - uuid refers to the unique ID of the device where the application is installed. It is created by calling Guid.NewGuid(), and saved and reused after initial creation so that it does not change each time it is called.
 - platform argument uses "wnds", which means windows.
-  :::
+:::
 
 ### 3. Create a new project in Visual Studio
 
@@ -53,7 +53,7 @@ In this case, you will need to implement View (such as UserControl) directly. De
 
 - Case of developing WPF as target: AIHuman.SDK.Core and AIHuman.SDK.WPF reference required
 - In an environment that supports .NET Standard 2.0, other UI Frameworks are used: Implement View after referring to AIHuman.SDK.Core only
-  :::
+:::
 
 ### Library Dependencies Guide
 

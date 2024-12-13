@@ -6,12 +6,12 @@ sidebar_position: 1
 
 [Details](../../../aihuman/windows-sdk/aiplayer/setup#step-4-initialize-aiplayer-to-the-desired-ai)
 
-## IAIPlayer
+### IAIPlayer
 
 - assembly: AIHuman.SDK.Core  
 - namespace: AIHuman.Interface  
 
-## AIPlayer
+### AIPlayer
 
 - assembly: AIHuman.SDK.WPF  
 - namespace: AIHuman.Media  
@@ -48,7 +48,7 @@ sidebar_position: 1
 
 <br/>
 
-## AIPlayerOptions
+### AIPlayerOptions
 
 - assembly: AIHuman.SDK.Core  
 - namespace: AIHuman.Common  
@@ -71,7 +71,7 @@ sidebar_position: 1
 <br/>
 
 (For on-premises customers)
-## ServerConfiguration
+### ServerConfiguration
 
 - assembly: AIHuman.SDK.Core  
 - namespace: AIHuman.Common  
@@ -93,7 +93,7 @@ The key (string) members required for this setting are internally defined.
 
 Customers who use cloud services do not need to be aware of this.
 
-## Supporting Offline Mode 
+### Supporting Offline Mode 
 
 (Features covered by CES 2024)
 

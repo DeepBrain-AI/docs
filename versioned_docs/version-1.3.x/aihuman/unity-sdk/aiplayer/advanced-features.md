@@ -29,7 +29,7 @@ AIClipSet types are as follows.
 - CLIP_SPEECH: Clip only for speech without gestures
 - CLIP_GESTURE: Gesture only Clip
 - CLIP_SPEECH_GESTURE: Clip for speech with gestures
-  :::
+:::
 
 In the sample screenshot below, an AI model is speaking while waving his hand with a "hi" gesture.
 

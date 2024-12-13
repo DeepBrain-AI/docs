@@ -28,7 +28,7 @@ appId, userKey, platform 정보는 인증 기능인 Authenticate() 함수의 전
 - App ID는 프로젝트의 고유한 Id로 일반적으로 "com.example.project.appname" 과 같이 생성합니다.
 - User key는 AI Human 웹사이트에서 프로젝트를 생성하고 App ID를 입력하면 발급받을 수 있습니다.
 - platform 값은 App Platform에 맞는 것을 설정합니다. (Android, iOS, Windows)
-  :::
+:::
 
 ### 3. Unity Hub에서 새 프로젝트 생성하기
 

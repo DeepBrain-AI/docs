@@ -107,7 +107,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
 <br/>
 
-## Make resposive UI with AIPLAYER_STATE_CHANGED event
+### Make resposive UI with AIPLAYER_STATE_CHANGED event
 
 The AIPlayer has several states that a user can notice and respond to. When the state is changed, the 'onAIPlayerEvent' callback is called with AIEvent.AIPLAYER_STATE_CHANGED and AIPlayer.getState() method return the current state.
 
@@ -160,7 +160,7 @@ private void onAIStateChanged() {
 
 <br/>
 
-## Pause Speaking
+### Pause Speaking
 
 AIPlayer's state will be changed to PAUSE.
 
@@ -171,7 +171,7 @@ aiPlayer.pause()
 
 <br/>
 
-## Resume Speaking
+### Resume Speaking
 
 Resume from pause. AIPlayer's state will be changed to PLAY.
 
@@ -182,7 +182,7 @@ aiPlayer.resume()
 
 <br/>
 
-## Stop Speaking
+### Stop Speaking
 
 Stop the speaking and also clear all data in the queue(Resume is not possible). AIPlayer's state will be changed to IDLE.
 

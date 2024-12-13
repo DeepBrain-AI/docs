@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # 발화 관련 기본 기능
 
-### 1. Send  
+### 1. Send
 
 AIPlayer 리소스 로드가 완료된 후(`AIEventType.RES_LOAD_COMPLETED`), send 함수를 호출해야 합니다.
 

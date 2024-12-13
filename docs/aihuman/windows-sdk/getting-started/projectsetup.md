@@ -26,7 +26,7 @@ You can authenticate the App ID and userKey prepared above with the first and se
 
 - appId is a unique Id of the project, and is generally created like "dev.aihuman.yourappname".
 - userkey can be obtained by creating a project on the AIHuman website and registering the appId.
-  :::
+:::
 
 ### 3. Create a new project in Visual Studio
 
@@ -58,7 +58,7 @@ You can also use AIHuman.SDK.Core.dll only. You can use AIHuman.SDK.Core.dll to 
 
 - Case of developing WPF as target: AIHuman.SDK.Core and AIHuman.SDK.WPF reference required
 - In an environment that supports .NET Standard 2.0, other UI Frameworks are used: Implement View after referring to AIHuman.SDK.Core only
-  :::
+:::
 
 ### Library Dependencies Guide
 

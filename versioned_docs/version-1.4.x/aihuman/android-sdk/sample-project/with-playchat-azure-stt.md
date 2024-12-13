@@ -21,7 +21,7 @@ After the greeting, if a voice input signal **Speak Now** appears below , say **
 <img src="/img/aihuman/android/Screenshot_20211207-010111.png" style={{zoom: "25%"}} />
 </p>
 
-## 1. Set up the AI and UI.
+### 1. Set up the AI and UI.
 
 ```java
 @Override

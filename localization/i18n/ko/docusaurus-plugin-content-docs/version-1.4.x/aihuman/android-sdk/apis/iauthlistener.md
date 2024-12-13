@@ -4,7 +4,7 @@ sidebar_position: 12
 
 # IAuthListener
 
-Interface AIModelInfoManager.IAuthListener
+[Interface] AIModelInfoManager.IAuthListener
 
 | Modifier and Type | Method and Description                                       |
 | :---------------- | :----------------------------------------------------------- |

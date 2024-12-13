@@ -35,7 +35,7 @@ sidebar_position: 1
 | `getAIList()`                                 | AIAPI - SDK 인증 성공한 상태에서 사용가능한 AI 리스트를 콜백을 제공합니다.                                                                                                                                                                                                                                                                                         |
 | `getSampleTextList()`                         | AIAPI - 해당 언어의 샘플 문장을 불러 와서 콜백으로 전달합니다                                                                                                                                                                                                                                                                                                      |
 
-## 1. AIPlayer.init(json)
+### 1. AIPlayer.init(json)
 
 원하는 ai로 AIPlayer 셋업합니다.
 
@@ -62,7 +62,7 @@ const result = await AI_PLAYER.init({
 });
 ```
 
-## 2. AIPlayer.getState()
+### 2. AIPlayer.getState()
 
 AIPlayer의 상태를 가져옵니다. 여기[AIPlayerState](../apis/aiplayer-data#5-aiplayerstate)를 확인하십시오.
 
@@ -74,7 +74,7 @@ AIPlayer의 상태를 가져옵니다. 여기[AIPlayerState](../apis/aiplayer-da
   const state = AI_PLAYER.getState());
 ```
 
-## 3. AIPlayer.setter(json)
+### 3. AIPlayer.setter(json)
 
 AIPlayer를 셋팅합니다.
 
@@ -94,7 +94,7 @@ AIPlayer를 셋팅합니다.
 AI_PLAYER.setter({ size: 1.2, top: 20, left: 20, speed: 1.2 });
 ```
 
-## 4. AIPlayer.getter(key)
+### 4. AIPlayer.getter(key)
 
 AIPlayer의 셋팅값을 가져옵니다.
 
@@ -163,23 +163,23 @@ AI_PLAYER.send({ text: "Nice to meet you", gst: "hi" });
 AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
 
-## 7. AIPlayer.pause()
+### 7. AIPlayer.pause()
 
 발화를 일시 중지 시킵니다.
 
-## 8. AIPlayer.resume()
+### 8. AIPlayer.resume()
 
 일시중지된 발화를 재시작 시킵니다.
 
-## 9. AIPlayer.stopSpeak()
+### 9. AIPlayer.stopSpeak()
 
 현재 발화를 중지시키고, 발화 큐에 데이터도 클리어시킵니다.
 
-## 10. AIPlayer.release()
+### 10. AIPlayer.release()
 
 AIPlayer의 자원을 해제합니다. 더이상 사용치 않을때 호출합니다.
 
-## 11. AIPlayer.getGestures()
+### 11. AIPlayer.getGestures()
 
 현재 AI의 제스처 목록을 가져옵니다.
 
@@ -191,7 +191,7 @@ AIPlayer의 자원을 해제합니다. 더이상 사용치 않을때 호출합�
 const gestures = AI_PLAYER.getGestures();
 ```
 
-## 12. AIPlayer.getGender()
+### 12. AIPlayer.getGender()
 
 현재 AI의 성별을 가져옵니다.
 
@@ -203,7 +203,7 @@ const gestures = AI_PLAYER.getGestures();
 const gender = AI_PLAYER.getGender();
 ```
 
-## 13. AIPlayer.getSpeakableLanguages(gender)
+### 13. AIPlayer.getSpeakableLanguages(gender)
 
 발화할 수 있는 언어 중 해당 성별인 언어 리스트를 가져옵니다.
 
@@ -215,7 +215,7 @@ const gender = AI_PLAYER.getGender();
 const languages = AI_PLAYER.getSpeakableLanguages(gender);
 ```
 
-## 14. AIPlayer.getCustomVoice()
+### 14. AIPlayer.getCustomVoice()
 
 현재 설정된 customVoice를 가져옵니다.
 
@@ -227,7 +227,7 @@ const languages = AI_PLAYER.getSpeakableLanguages(gender);
 const customVoice = AI_PLAYER.getCustomVoice();
 ```
 
-## 15. AIPlayer.getCustomVoicesWith(language, gender)
+### 15. AIPlayer.getCustomVoicesWith(language, gender)
 
 해당 언어와 성별에 해당하는 customVoice리스트를 가져옵니다.
 
@@ -239,7 +239,7 @@ const customVoice = AI_PLAYER.getCustomVoice();
 const customVoices = AI_PLAYER.getCustomVoicesWith(language, gender);
 ```
 
-## 16. AIPlayer.findCustomVoice(voiceId)
+### 16. AIPlayer.findCustomVoice(voiceId)
 
 전달된 id에 해당하는 customVoice 개체를 가져옵니다.
 
@@ -251,7 +251,7 @@ const customVoices = AI_PLAYER.getCustomVoicesWith(language, gender);
 const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 ```
 
-## 17. AIPlayer.setCustomVoice(customVoice)
+### 17. AIPlayer.setCustomVoice(customVoice)
 
 전달된 customVoice로 현재 AI의 목소리를 셋팅합니다. null을 입력하면 본래 목소리로 셋팅됩니다.
 
@@ -263,7 +263,7 @@ const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 const isSuccess = AI_PLAYER.setCustomVoice(customVoice);
 ```
 
-## 18. AIPlayer.setCustomVoiceForLanguage(language, gender)
+### 18. AIPlayer.setCustomVoiceForLanguage(language, gender)
 
 전달된 language와 gender에 해당하는 customVoice로 현재 AI의 목소리를 설정합니다.
 
@@ -275,25 +275,25 @@ const isSuccess = AI_PLAYER.setCustomVoice(customVoice);
 const isSuccess = AI_PLAYER.setCustomVoiceForLanguage(language, gender);
 ```
 
-## 19. AIPlayer.reconnect(callback)
+### 19. AIPlayer.reconnect(callback)
 
 ```javascript
 AIPlayer.reconnect((callback = () => {}));
 ```
 
-## 20. AIPlayer.isConnected()
+### 20. AIPlayer.isConnected()
 
 ```javascript
 const isConnected = AI_PLAYER.isConnected();
 ```
 
-## 21. AIPlayer.canPreload()
+### 21. AIPlayer.canPreload()
 
 ```javascript
 const canPreload = AI_PLAYER.canPreload((callback = () => {}));
 ```
 
-## 22. AI_PLAYER.setVolume(volume)
+### 22. AI_PLAYER.setVolume(volume)
 
 ```javascript
 AI_PLAYER.setVolume(volume);
@@ -301,7 +301,7 @@ AI_PLAYER.setVolume(volume);
 const curVolume = AI_PLAYER.getVolume();
 ```
 
-## 23. AI_PLAYER.setMute(isMute)
+### 23. AI_PLAYER.setMute(isMute)
 
 ```javascript
 AI_PLAYER.setMute(true);

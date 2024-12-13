@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # AIPlayer Advanced Speaking Features
 
-## Gestures
+### Gestures
 
 As briefly mentioned above, speech may be performed using AIClipSet. AIClipSet refers to one utterance unit. The types of speech are basic speech, gesture speech including gesture and speech, and gestures that perform only certain actions. The available gestures differ according to AI model, and the list of available gestures can be obtained using the getGestures() function of AIPlayer.
 
@@ -50,7 +50,7 @@ IAIPlayerCallback.onAIPlayerEvent(AIEvent) will be called like normal `send` met
 
 <br/>
 
-## Change the voice or language
+### Change the voice or language
 
 Some AIs can speak with other voices besides basic voices. To use other voices, you should call AIModelInfoManager.generateToken(...) or AIModelInfoManager.loadCustomVoices(...) method before using them.
 
@@ -110,7 +110,7 @@ aiPlayer.send(aiClipSet);
 
 <br/>
 
-## Speak Multiple Sentences Consecutively
+### Speak Multiple Sentences Consecutively
 
 You can send several sentences at once and the AI will speak sequentially. In the sample below, the corresponding action is performed when the Multi Speak button is pressed.
 
@@ -213,7 +213,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
 <br/>
 
-## Try reconnect
+### Try reconnect
 
 **Reconnect** might be used when network is not connected. When the network is not available, the AI_DISCONNECTED event will be fired and SDK will try reconnect one time internally. You can call reconnect as you need and the result will be returned the registered callback(IAIReconnectCallback).
 
@@ -249,7 +249,7 @@ boolean isConnected = aiPlayer.isConnected();
 
 <br/>
 
-## Check before preload, 'canPreload'
+### Check before preload, 'canPreload'
 
 Check if it is able to preload now. You can preload if it is true. AIError.AICLIPSET_PRELOAD_ERR and AIEvent.AICLIPSET_PRELOAD_FAILED will be sent on onAIPlayerError and onAIPlayerEvent respectively if you preload when it is false.
 
@@ -259,7 +259,7 @@ boolean canPreload = aiPlayer.canPreload();
 
 <br/>
 
-## Change AI Speech Speed
+### Change AI Speech Speed
 
 Change AI speech speed between 0.5 and 1.5
 

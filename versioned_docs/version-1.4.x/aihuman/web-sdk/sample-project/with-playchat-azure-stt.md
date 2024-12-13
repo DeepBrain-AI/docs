@@ -16,7 +16,7 @@ The Playchat is fully integrated with the AI Models here and the AI will speak s
 
 <img src="/img/aihuman/web/stt_demo_02.png" />
 
-## 1. Configure Chatbot (Wrapper Class of PlayChat)
+### 1. Configure Chatbot (Wrapper Class of PlayChat)
 
 **1.1. Include the chatbot.js file in a web page**
 
@@ -83,7 +83,7 @@ function sendMessage(message) {
 }
 ```
 
-## 2. Set up Google STT
+### 2. Set up Google STT
 
 - In this example, when talking to AI, voice recognition(Google STT) is used. The STT communicates with the server through the websocket inside. The settings are as follows.
 

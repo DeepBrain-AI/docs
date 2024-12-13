@@ -10,7 +10,7 @@ sidebar_position: 3
 샘플에서 아래 파일의 코드를 통해 더 많은 것을 알 수 있습니다.
 
 - AIQuickSampleViewController.swift
-  :::
+:::
 
 ### 1. 프로젝트를 생성 및 설정
 

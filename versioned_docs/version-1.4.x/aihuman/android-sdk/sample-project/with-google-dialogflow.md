@@ -18,7 +18,7 @@ To set up, go to the DialogFlow service first, create a chatbot you want, and th
 <img src="/img/aihuman/android/Screenshot_20211207-005743.png" style={{zoom: "25%"}} />
 </p>
 
-## 1. Set up the AI and UI.
+### 1. Set up the AI and UI.
 First, get a list of available AIs and then set up the UI.
 
 ```java
@@ -53,7 +53,7 @@ First, get a list of available AIs and then set up the UI.
     }
 ```
 
-## 2. Configuration of Chatbot.
+### 2. Configuration of Chatbot.
 
 First, create a DialogFlow chatbot with 'new DialogFlowChatbot()'.
 
@@ -107,7 +107,7 @@ private IChatbotCallback iChatbotCallback = new IChatbotCallback() {
 
 ```
 
-## 3. Send message to Chatbot(DialogFlow).
+### 3. Send message to Chatbot(DialogFlow).
 
  You can send a message by calling the **send(Constants.CMD_QUERY, JSONObject)** method to the chatbot as shown below. The desired text and **language code** is added as a "query" key of JSON (Constants.KEY_QUERY in this case) and sent.
 
@@ -128,7 +128,7 @@ As shown above, you can send a message to Dialogflow. After sending the message,
 
 Because AIPlayer and Dialogflow chatbot work closely, a class (**AIChatbotController**) was created in order to control these classes. The activity does not directly control AIPlayer or Chatbot, but controls AIChatbotController to perform desired actions. It is written to reduce complexity.
 
-## 4. Conversation with AI.
+### 4. Conversation with AI.
 
 Chat with AI (get response from DialogFlow and talk with AI)
 

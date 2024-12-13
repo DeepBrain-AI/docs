@@ -21,7 +21,7 @@ Google STT 혹은 MS Azure STT와 PlayChat을 연동한 대화형 AI Human 구�
 <img src="/img/aihuman/android/Screenshot_20211207-010111.png" style={{zoom: "25%"}} />
 </p>
 
-## 1. 먼저 사용 가능한 AI 리스트를 가져온 후 UI를 셋업.
+###  1. 사용 가능한 AI 리스트를 가져온 후 UI를 설정
 
 ```java
 @Override
@@ -50,7 +50,7 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 }
 ```
 
-## 2. 챗봇과 음성 인식 초기화
+###  2. 챗봇과 음성 인식 초기화
 
 음성인식기능(STT(Speech to Text))과 PlayChat을 초기화합니다. (AI는 기본 AI로 설정되어 있습니다.)
 
@@ -64,7 +64,7 @@ GoogleSTTV2 클래스(샘플로 제공)로 생성하여 사용합니다. 이 클
 
 구글 STT 외에 MS azure Speech to Text(샘플로 제공)를 사용할수 있습니다. 이를 위해서는 MS 사이트에(https://portal.azure.com/)에서 해당 STT 리소스(음성 서비스)를 생성하고 구독키와 위치/지역 값을 받아 아래의 샘플과 같이 설정해야합니다.
 
-## 3. 챗봇 콜백을 생성하고 init(,) 메소드를 호출하기
+###  3. 챗봇 콜백을 생성하고 init(,) 메소드를 호출하기
 
 챗봇 콜백(iChatbotCallback)은 챗봇의 상태 변화나 에러, 메세지 수신 등을 알 수 있는 콜백입니다. 이 콜백 인스턴스를 생성하여 ChatbotSettings 인스턴스와 함께 chatbot.init(,) 메소드에 아래와 같이 넣어 호출하면 됩니다. onChatbotStateChanged 메소드에 ChatbotState.SESSION_INITIALIZED가 오면 준비가 완료되어 Chatbot 서비스에 메세지를 보내고 받을 수 있습니다. 음성인식 서비스도 준비가 된 것입니다.
 
@@ -176,7 +176,7 @@ stt.stopRecognize();
     };
 ```
 
-## 4. AI + 챗봇 + 음성 인식 함께 사용하기
+###  4. AI + 챗봇 + 음성 인식 함께 사용하기
 
 간단히 생각해보면 이 샘플은 AI와 음성으로 대화를 이어나가는 것이 주목적입니다. 이를 위해서는 AIPlayer와 챗봇, 음성 인식이 조화롭게 동작되어야 합니다. 따라서 이를 용이하게 하기 위해 전체를 관리하는 **AIChatbotController** 클래스(aiChatbotCtlr 멤버 변수)를 작성하였습니다.
 

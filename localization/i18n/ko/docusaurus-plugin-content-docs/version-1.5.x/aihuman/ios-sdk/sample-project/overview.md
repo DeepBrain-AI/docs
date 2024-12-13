@@ -15,7 +15,7 @@ sidebar_position: 1
 <img src="/img/aihuman/ios/aisample_ss_menu.PNG" style={{zoom: "25%"}} />
 </p>
 
-#### ViewController's menu
+### ViewController's menu
 
 - AI Quick sample (AIQuickSampleViewController.swift)
 - AI Player sample (AISampleViewController.swift)

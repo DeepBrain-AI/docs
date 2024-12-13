@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # 발화 관련 기본 기능
 
-### 1. Send  
+### 1. Send
 
 AIPlayer의 초기화가 완료된 후(`AIEventType.AIPLAYER_STATE_CHANGED`에서 State가 INITIALIZE에서 IDLE로 변화를 체크), send 함수를 호출할수 있습니다.
 

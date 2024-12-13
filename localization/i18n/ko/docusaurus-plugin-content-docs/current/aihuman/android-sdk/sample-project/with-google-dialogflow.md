@@ -19,7 +19,7 @@ sidebar_position: 4
 <img src="/img/aihuman/android/Screenshot_20211207-005743.png" style={{zoom: "25%"}} />
 </p>
 
-## 1. AI와 UI 셋업하기
+### 1. AI와 UI 셋업하기
 먼저 사용 가능한 AI 리스트 가져온 후 UI를 셋업합니다.
 
 ```java
@@ -54,7 +54,7 @@ sidebar_position: 4
     }
 ```
 
-## 2. Chatbot(DialogFlow의 Wrapper 클래스)의 설정
+### 2. Chatbot(DialogFlow의 Wrapper 클래스)의 설정
 
 **Dialogflow 크리덴셜 파일 준비**
 
@@ -106,7 +106,7 @@ private IChatbotCallback iChatbotCallback = new IChatbotCallback() {
 
 ```
 
-## 3. Chatbot(DialogFlow)에 메세지 보내기
+### 3. Chatbot(DialogFlow)에 메세지 보내기
 
 chatbot에 **send("query", JSONObject)** 메소드를 다음과 같이 호출하여 메세지를 보낼 수 있습니다. 원하는 텍스트는 JSON의 "query"키 (여기서는 Constants.KEY_QUERY)로 추가하며 **언어 코드**도 추가해서 보냅니다.
 
@@ -127,7 +127,7 @@ chatbot에 **send("query", JSONObject)** 메소드를 다음과 같이 호출하
 
 이렇게 AIPlayer와 Dialogflow 챗봇이 긴밀하게 동작됨으로 인해 이 클래스들을 가지고 컨트롤하기 위한 클래스(**AIChatbotController**)를 작성하였습니다. 이 액티비티에서는 직접적으로 AIPlayer나 Chatbot을 컨트롤하지 않고, 원하는 행위 기준으로 작성된 클래스인 AIChatbotController의 메소드를 호출함으로서 복잡도를 줄이도록 작성되었습니다.
 
-## 4. AI와 채팅하기 (DialogFlow에서 응답을 가져와 AI에게 말시키기)
+### 4. AI와 채팅하기 (DialogFlow에서 응답을 가져와 AI에게 말시키기)
 
 aiChatbotCtlr.sendNewQuery(text)를 호출하여 Dialogflow에서 메세지를 보내고, 메세지에 대한 응답은 iChatbotCallback의 **onChatbotMessage()** 쪽으로 옵니다. 이것을 다시 aiChatbotCtlr.onChatbotMessage()로 넘기면 내부적으로 AIPlayer에게 말을 시키고 채팅을 추가하는 등의 동작이 수행됩니다.
 
