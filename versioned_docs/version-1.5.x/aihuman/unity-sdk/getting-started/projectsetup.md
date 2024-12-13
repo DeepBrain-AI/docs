@@ -10,6 +10,9 @@ In this chapter, you will learn how to create and register UserKey and AppId, et
 
 Create an account on the **[AI Human SDK Website](https://www.aistudios.com/aihuman)**.
 
+
+<br/>
+
 ### 2. Add a project to My workspace
 
 Create a project in **[My workspace](https://aihuman.aistudios.com/aihuman/sdk)**, enter App Id of Platform(Android, iOS, Windows) and click confirm. Then User Key will be issued.
@@ -24,6 +27,9 @@ The appId, userKey, and platform information will be used as arguments for Authe
 - Userkey can create a project on the AI Human website and receive it while registering the appId.
 - The platform value is set to match the App Platform. (Android, iOS, Windows)
 :::
+
+
+<br/>
 
 ### 3. Create a new project in Unity Hub
 
@@ -62,6 +68,9 @@ Render pipeline compatibility
 		<td width="200" align="center" bgcolor="#ffffff">Not compatible</td>
 	</tr>	
 </table>
+
+
+<br/>
 
 ### 4. Set up the project
 
@@ -103,7 +112,10 @@ Users of the Unity Editor 2021.2.x version may encounter reference errors in New
 
 <img src="/img/aihuman/unity/Newtonsoft_Json.png" />
 
-## 5. Sample project build guide.
+
+<br/>
+
+### 5. Sample project build guide
 
 To build a sample project, perform the following steps on a platform-by-platform basis.
 

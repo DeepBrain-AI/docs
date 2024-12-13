@@ -78,6 +78,9 @@ function sendMessage(message) {
 }
 ```
 
+<br/>
+
+
 ## 2. Google STT 셋업
 
 - 이 예에서는 AI와 대화할 때 음성 인식(Google STT)이 사용됩니다. STT는 내부의 웹 소켓을 통해 서버와 통신합니다. 설정은 다음과 같습니다.

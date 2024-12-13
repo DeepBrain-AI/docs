@@ -50,7 +50,7 @@ Check out the custom voice list that you can select on the Demo page.
 
 <img src="/img/aihuman/web/sdk_demo_04_r1.png" />
 
-#### Set the custom voice using AIPlayer's method
+##### Set the custom voice using AIPlayer's method
 
 First, the list of languages that AI can currently speak can be checked through the following method.
 
@@ -90,7 +90,7 @@ Check current CustomVoice with following method. It returns null if customVoice 
 const customVoice = AI_PLAYER.getCustomVoice();
 ```
 
-#### Set the custom voice using AIClipSet
+##### Set the custom voice using AIClipSet
 
 In addition to the method of using the setCustomVoice method to set a voice other than the default voice, AIClipSet can be used to speak the desired voice as follows.
 
@@ -114,6 +114,9 @@ AI_PLAYER.send(["Nice to meet you", "How are you?"]);
 // Case2. Multi Gesture Speak and just speak
 AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
+
+
+<br/>
 
 ### 4. Preload
 
@@ -159,6 +162,9 @@ AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
 };
 ```
 
+
+<br/>
+
 ### 6. Try reconnect
 
 Reconnect might be used when the network is not connected. When the network is not available, the AI_DISCONNECTED event will be fired and SDK will try reconnect one time internally. You can call reconnect as you need and the result will be returned the registered callback.
@@ -182,6 +188,9 @@ AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
 };
 ```
 
+
+<br/>
+
 ### 7. Check before send, 'isConnected'
 
 Check if AI is connected. You can send if it is true.
@@ -190,6 +199,9 @@ Check if AI is connected. You can send if it is true.
 const isConnected = AI_PLAYER.isConnected();
 ```
 
+
+<br/>
+
 ### 8. Check before preload, 'canPreload'
 
 Check if it is able to preload now. You can preload if it is true.
@@ -197,6 +209,9 @@ Check if it is able to preload now. You can preload if it is true.
 ```javascript
 const canPreload = AI_PLAYER.canPreload((callback = () => {}));
 ```
+
+
+<br/>
 
 ### 9. Adjust AI Speech Rate
 

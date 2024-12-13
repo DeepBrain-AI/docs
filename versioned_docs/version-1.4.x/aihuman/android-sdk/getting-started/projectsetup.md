@@ -27,11 +27,17 @@ Below is the project's setting.(It is a sample, not mandatory)
 
 <img src="/img/aihuman/android/screenshot_projectsetup_3.png"/>
 
+
+<br/>
+
 ### 2. Add SDK (aar) to project
 
 Add the 2 aar files(AIHumanSDK, AIHuman3DSDK) to your project's libs. The libs folder should be created under app dir. And update dependency in app level build.gradle file.(implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])). Check below **App level build.gradle** section.
 
 <img src="/img/aihuman/android/screenshot_projectsetup_4.png"/>
+
+
+<br/>
 
 ### 3. App level build.gradle : (Check the sample's build.gradle)
 
@@ -97,6 +103,9 @@ dependencies {
 }
 ```
 
+
+<br/>
+
 ### 4. AndroidManifest.xml setup
 
 permission : INTERNET is required
@@ -124,6 +133,9 @@ for 3d character activity (if you use it)
     android:theme="@style/UnityThemeSelector.Translucent"
     android:process=":Unity"/>
 ```
+
+
+<br/>
 
 ### 5. Gradle JDK setting (11)
 

@@ -42,7 +42,7 @@ Some AIs can speak with other voices besides basic voices. At this time, it is a
 <img src="/img/aihuman/ios/aisample_ss_customvoice.PNG" style={{zoom: "50%"}} />
 </p>
 
-#### Set the custom voice using AIPlayer's method
+##### Set the custom voice using AIPlayer's method
 
 A list of available languages can be found by the following methods. If you enter a gender as a value, you can only get a list of languages available for that gender.
 
@@ -77,7 +77,7 @@ If the gender value is nil, use the gender of ai.
 aiPlayer.setCustomVoiceForLanguage(language:, gender)
 ```
 
-#### Set the custom voice using AIClipSet
+##### Set the custom voice using AIClipSet
 
 In addition to using the setCustomVoice method to set up a voice other than the basic voice, AIClipSet can be used to change the voice by sentence.
 

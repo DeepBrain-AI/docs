@@ -65,7 +65,7 @@ Some AIs can be filmed with live footage. It is possible even if the language of
 
 <br/>
 
-#### Set the custom voice using AIPlayer's method
+##### Set the custom voice using AIPlayer's method
 
 First, the list of languages that AI can currently speak can be checked through the following method.
 
@@ -105,7 +105,7 @@ Check current CustomVoice with following method. It returns null if CustomVoice 
 CustomVoice customVoice = _aiPlayer.GetCustomVoice();
 ```
 
-#### Set the custom voice using AIClipSet
+##### Set the custom voice using AIClipSet
 
 In addition to the method of using the SetCustomVoice method to set a voice other than the default voice, AIClipSet can be used to speak the desired voice as follows.
 
@@ -161,7 +161,7 @@ public void OnAIPlayerEvent(AIEvent @event)
 
 <br/>
 
-### Speak Multiple Sentences Consecutively
+#### Speak Multiple Sentences Consecutively
 
 You can give AIPlayer several sentences at once and make them speak sequentially. In the sample, multi-speaking is performed by selecting random sentences from sentences in the Dropdown. It can be one sentence or it can be several sentences. Press the **MULTI SPEAK** button in the app below to perform the operation.
 

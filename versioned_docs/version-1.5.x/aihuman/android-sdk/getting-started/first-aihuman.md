@@ -8,8 +8,14 @@ In this chapter, we will quickly look at AIHuman(AIPlayer) setup process and mak
 
 ### 1. Create a project and complete the previous project setup
 
+
+<br/>
+
 ### 2. Create an Activity to include AIPlayer
 Here we create AILiveQuickStart.java.
+
+
+<br/>
 
 ### 3. Create a layout file
 And make a view(eg. RelativeLayout) as a wrapper for the AIPlayer and set it as the Activity's contentView.
@@ -55,6 +61,9 @@ public class AILiveQuickStart extends AppCompatActivity {
 </RelativeLayout>
 ```
 
+
+<br/>
+
 ### 4. The next step is to authenticate the SDK user
 
 **Create a project in [SDK Website](https://aihuman.aistudios.com), enter appId of Android and click confirm. Then userkey will be issued.**
@@ -80,6 +89,9 @@ AIModelInfoManager.generateToken(this, userkey, (aiError, resp) -> {
   });
 ```
 
+
+<br/>
+
 ### 5. After authentication is successfully finished, create AIPlayer
 AIPlayer takes in the aiWrapper view.
 
@@ -87,6 +99,9 @@ AIPlayer takes in the aiWrapper view.
 //put aiWrapper in the argument and create AIPlayer.
 aiPlayer = AIPlayerFactory.create(AILiveQuickStart.this, binding.aiWrapper, AILIVE, null);
 ```
+
+
+<br/>
 
 ### 6. After creating AIPlayer, it needs to set which AI to use
 If authentication is successful, it can be set with the default AI.
@@ -98,7 +113,10 @@ AIPlayerSettings aiSettings = new AIPlayerSettings(defaultAI.getName(), AILIVE, 
 aiPlayer.init(aiSettings, iAiPlayerCallback);
 ```
 
-### 7. Let's make AIPlayer's callback as a member of Activity and set it in AIPlayer's init method to monitor the state of AIPlayer
+
+<br/>
+
+###  7. Let's make AIPlayer's callback as a member of Activity and set it in AIPlayer's init method to monitor the state of AIPlayer and set it in AIPlayer's init method to monitor the state of AIPlayer
 Notice below that it sends a sentence("Nice to meet you") to AI when resource-loading(AIEvent.RES_LOAD_COMPLETED) is completed.
 
 ```java
@@ -135,7 +153,10 @@ public class AILiveQuickStart extends AppCompatActivity {
 ```
 
 
-### 8. The full code is shown below
+
+<br/>
+
+###  8. The full code is shown below
 Activity code (AILiveQuickStart.java)
 
 ```java

@@ -15,6 +15,9 @@ sidebar_position: 1
 | `json.language`      | `String` | AI available Language(`'kr'`, `'en'`, `'zh'`)
 | `json.thumbUrl`      | `String` | AI thumbnail image url
 
+
+<br/>
+
 ### 2. AIClipSet
 
 | Param       | Type     | Description                                             |
@@ -24,6 +27,9 @@ sidebar_position: 1
 | `json.gst`  | `String` | Gesture name. 
 | `json.voice` | `CustomVoice` | A Custom Voice to be synthesized
 
+
+<br/>
+
 ### 3. AIGesture
 
 | Param               | Type      |Description                                     |
@@ -31,6 +37,9 @@ sidebar_position: 1
 | `json`              | `Object`  | AIClipset json object used for GesturePlay
 | `json.enableSpeech` | `Boolean` | A boolean indicating whether speech can be performed simultaneously to the gesture
 | `json.gst`          | `String`  | Gesture's name
+
+
+<br/>
 
 ### 4. CustomVoice
 
@@ -42,10 +51,16 @@ sidebar_position: 1
 | `json.name`         | `String`          | CustomVoice name
 | `json.gender`       | `String`          | CustomVoice gender(`MALE`, `FEMALE`, `UNI`)
 
+
+<br/>
+
 ### 5. AIPlayerState
 | Param               | Type              | Description                            |
 | ------------------- | ------------------| -------------------------------------- |
 | `state`             | `Number`          | AIPlayerState(`NONE: 0`, `INITIALIZE: 1`, `IDLE: 2`, `PLAY: 3`, `PAUSE: 4`, `RELEASE: 5`)
+
+
+<br/>
 
 ### 6. AIError
 | Param               | Type              | Description                            |
@@ -58,6 +73,9 @@ sidebar_position: 1
 | Param               | Type              | Description                            |
 | ------------------- | ------------------| -------------------------------------- |
 | `code`              | `Number`          | AIErrorCode(`AI_API_ERR: 10000`, `AI_SERVER_ERR: 11000`, `AI_RES_ERR: 12000`, `AI_INIT_ERR: 13000`, `INVALID_AICLIPSET_ERR: 14000`, `AICLIPSET_PRELOAD_ERR: 15000`, `AICLIPSET_PLAY_ERR: 16000`, `RESERVED_ERR: 17000`, `UNKNOWN_ERR:-1`,)
+
+
+<br/>
 
 ### 7. AIEvent
 | Param               | Type              | Description                            |

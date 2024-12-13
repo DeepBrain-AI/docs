@@ -8,6 +8,9 @@ sidebar_position: 3
 
 When AIPlayer is created and `init({...})` function is called, it starts loading resource according to **aiName** parameter. The loading status can be checked through the registered listener(`onAIPlayerLoadingProgressed(result)`). (Initially, it may take a few minutes for the resources to complete loading.)
 
+
+<br/>
+
 ### 2. Monitor AIPlayer loading state with callback
 
 After calling the `init` method, the listener's `onAIPlayerEvent(aiEvent)` method will be called with AIEvent. The AIEvent.type indicated which event are occurred(Check below list). You can also implement loading progress with `onAIPlayerResLoadingProgressed({loading})` while loading. (Full list is [here](../apis/aiplayer-data#7-aievent))

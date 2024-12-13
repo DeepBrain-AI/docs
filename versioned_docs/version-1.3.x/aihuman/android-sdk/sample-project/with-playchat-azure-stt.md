@@ -18,7 +18,10 @@ After the greeting, if a voice input signal **Speak Now** appears below , say **
 <img src="/img/aihuman/android/Screenshot_20211207-010111.png" style={{zoom: "25%"}} />
 </p>
 
-### 1. Set up the AI and UI.
+
+<br/>
+
+###  1. Set up the AI and UI.
 
 ```java
 @Override
@@ -47,7 +50,13 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 }
 ```
 
-## 2. Initialize Chatbot with Speech Recongnition.
+
+<br/>
+
+
+<br/>
+
+### 2. Initialize Chatbot with Speech Recongnition.
 Initialize PlayChat with a voice recognition function (STT). (AI is set as the default AI)
 
 First, create a chatbot with the ChatbotFactory's static method (**MBPlayChatbot.newMBChatbot(,)**) and then call the init( , ) method. Then you can call STT-related startRecognize() and stopRecognize() methods along with the existing chatbot methods (send(,), etc.). 
@@ -60,7 +69,10 @@ Create stt instance with GoogleSTTV2 class(sample provided). This class which im
 
 You can use 'MS azure Speech to Text'(sample provided) beside google STT. To use azure, go to the MS's website(https://portal.azure.com/), create STT resource and get subscription key and region like sample below.
 
-## 3. Create Callback.
+
+<br/>
+
+### 3. Create Callback.
 Create chatbot callback and call the init(,) method.
 
 The chatbot callback (iChatbotCallback) is a callback that notifies the status change of the chatbot, reports error and messages, etc. Create an instance with the new operator and call it by putting it in the chatbot.init(,) method together with the ChatbotSettings instance as shown below. When ChatbotState.SESSION_INITIALIZED is returned in the onChatbotStateChanged method, it is ready and you can send and receive messages to the Chatbot service. The voice recognition service is now ready.
@@ -172,7 +184,10 @@ stt.stopRecognize();
     };
 ```
 
-## 4. Using AI + chatbot + voice recognition together.
+
+<br/>
+
+### 4. Using AI + chatbot + voice recognition together.
 
 Simply put, the main purpose of this sample is for conversations with AI using voice. For this, AIPlayer, chatbot, and voice recognition must work harmoniously. Therefore, we created the **AIChatbotController** class (aiChatbotCtlr member variable) that manages everything.
 

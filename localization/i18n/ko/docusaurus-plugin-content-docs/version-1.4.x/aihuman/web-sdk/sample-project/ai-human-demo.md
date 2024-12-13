@@ -31,6 +31,7 @@ async function generateVerifiedToken() {
   } else DATA.verifiedToken = "";
 }
 ```
+<br/>
 
 **2. 사용가능한 AI 리스트를 불러오고 그중 하나의 AI를 시작시킵니다.**
 
@@ -55,6 +56,8 @@ async function getAIList() {
 }
 ```
 
+<br/>
+
 **3. 선택한 AI 이름으로 AIPlayer의 init 함수 호출**
 
 원하는 AI를 해당 the AI의 name, size, left, top and speech speed와 함께 초기화(init)합니다.
@@ -77,6 +80,8 @@ async function startAI(aiName, aiType) {
   });
 }
 ```
+
+<br/>
 
 **4.  AIPlayer의 콜백을 구현하여 이벤트와 에러를 모니터합니다.**
 
@@ -175,6 +180,9 @@ function initAIPlayerEvent() {
 
 }
 ```
+
+<br/>
+
 **5. AI 발화 관련 함수들 (preload, send, pauses, resume, stop and release)**
 
 ```javascript
@@ -210,6 +218,9 @@ function release() {
   AI_PLAYER.release();
 }
 ```
+
+<br/>
+
 
 **6. 3D AI Model Application 예제**
 

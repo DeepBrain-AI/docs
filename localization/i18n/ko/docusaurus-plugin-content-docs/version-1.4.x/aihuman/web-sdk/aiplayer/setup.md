@@ -21,6 +21,9 @@ const wrapper = document.getElementById("AIPlayerWrapper");
 const AI_PLAYER = new AIPlayer(wrapper);
 ```
 
+<br/>
+
+
 ### 2. SDK 사용자 인증
 
 AIPlayer를 사용하기 위해서는 사용자가 인증 절차를 거쳐야 합니다. 첫 번째 인증 단계는 사용자 키를 얻는 것입니다. UserKey는 DeepBrain AI가 생성한 고유 문자열로 절대 공개해서는 안 됩니다. 이 키와 appId를 사용하여 서버에 JWT ClientToken을 만듭니다. 그런 다음 비동기 'AIPlayer.generateToken()'함수를 호출합니다. 이는 JWT ClientToken의 결과를 사용하는 함수입니다.
@@ -39,6 +42,9 @@ const result = await AI_PLAYER.generateToken({ appId: appId, token: clientToken 
 		"defaultAI":   {"ai_na...} */
 ```
 
+<br/>
+
+
 ### 3. 가능한 AI 리스트 불러오기 
 
 인증이 완료되면 AIPlayer는 인증 정보를 가지고 있습니다. 이제 'AIplayer.getAIlist()'을 호출하여 사용 가능한 AI 목록을 얻을 수 있습니다. 인증이 잘못되었거나 연결된 사용 가능한 AI가 없으면 함수는 '{success:false}'을(를) 반환합니다.
@@ -53,6 +59,9 @@ const result = await AI_PLAYER.getAIList();
       {"aiName":"samh","aiDisplayName":"Samh","language":"en"},
       {"aiName":"kang","aiDisplayName":"Kang","language":"ko"}]} */
 ```
+
+<br/>
+
 
 ### 4. 원하는 AI로 AIPlayer 초기화
 

@@ -18,6 +18,9 @@ After the greeting, if a voice input signal **Speak now** appears below , say 'w
 <img src="/img/aihuman/unity/sampleproject_azurestt.png" style={{zoom: "40%"}} />
 </p>
 
+
+<br/>
+
 ### Using AI Human, Chatbot and MS Azure Speech Recognition
 
 If you want to use the conversational AI service mentioned in the demo, you need to prepare as follows.
@@ -62,6 +65,9 @@ public void OnChatbotMessage(JObject response)
     }
 }
 ```
+
+
+<br/>
 
 ### Data transfer format of Chatbot (Playchat)
 

@@ -17,6 +17,9 @@ Once the resource is loaded, you can change AIPlayer's settings; for example, yo
 _aiPlayer.Scale = value;
 ```
 
+
+<br/>
+
 ### Change AI Position(Margin)
 <img src="/img/aihuman/windows/margin_1.4.x.png" />
 
@@ -29,6 +32,9 @@ _aiMargin.Y = 8;
 // set Property
 _aiPlayer.Margin = _aiMargin;
 ```
+
+
+<br/>
 
 ### Volume Control
 
@@ -48,6 +54,9 @@ _aiPlayer.Volume = value;
 _aiPlayer.IsMute = value;
 ```
 
+
+<br/>
+
 ### Disconnect from AI
 
 <img src="/img/aihuman/windows/disconnect_1.5.x.png" />
@@ -62,6 +71,9 @@ _aiPlayer.Disconnect((result) => {
     MessageBox.Show($"Disconnect result: {result}");
 });
 ```
+
+
+<br/>
 
 ### Reconnect to AI
 

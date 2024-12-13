@@ -38,3 +38,6 @@ AIPlayer 생성자에 대한 인수로 위에서 지정한 AIPlayer의 영역(wr
 const wrapper = document.getElementById("AIPlayerWrapper");
 const AI_PLAYER = new AIPlayer(wrapper);
 ```
+
+<br/>
+

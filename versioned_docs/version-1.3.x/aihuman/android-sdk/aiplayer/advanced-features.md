@@ -37,7 +37,7 @@ if (selectedSpeech != null) {
 }
 ```
 
-### Monitor the gesture's event
+#### Monitor the gesture's event
 
 IAIPlayerCallback.onAIPlayerEvent(AIEvent) will be called like normal `send` method. AIEvent's type value will be like below so that we can check out. Also we can access the AIEvent.clipset.getClipType(), getGesture(), getSpeechText(). That means we can distinguish that it is a gesture or just speaking.
 
@@ -58,7 +58,7 @@ Some AIs can speak with other voices besides basic voices. To use other voices, 
 <img src="/img/aihuman/android/Screenshot_20221107-120630_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
 </p>
 
-### Set the custom voice using AIPlayer's method
+#### Set the custom voice using AIPlayer's method
 
 First, the list of languages that AI can currently speak can be checked through the following method.
 
@@ -98,7 +98,7 @@ Check current CustomVoice with following method. It returns null if customVoice 
 CustomVoice customVoice = aiPlayer.getCustomVoice();
 ```
 
-### Set the custom voice using AIClipSet
+#### Set the custom voice using AIClipSet
 
 In addition to the method of using the setCustomVoice method to set a voice other than the default voice, AIClipSet can be used to speak the desired voice as follows.
 
@@ -110,7 +110,7 @@ aiPlayer.send(aiClipSet);
 
 <br/>
 
-### Speak Multiple Sentences Consecutively
+#### Speak Multiple Sentences Consecutively
 
 You can send several sentences at once and the AI will speak sequentially. In the sample below, the corresponding action is performed when the Multi Speak button is pressed.
 
@@ -239,7 +239,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
 <br/>
 
-## Check before send, 'isConnected'
+### Check before send, 'isConnected'
 
 Check if AI is connected. You can send if it is true. AIError.AICLIPSET_PLAY_ERR and AIEvent.AICLIPSET_PLAY_FAILED will be sent on onAIPlayerError and onAIPlayerEvent respectively if you send when it is false.
 

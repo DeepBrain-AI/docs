@@ -32,6 +32,9 @@ sidebar_position: 2
   const result = await AI_PLAYER.generateToken({ appId: "...", token: "..." });
 ```
 
+
+<br/>
+
 ### 2. AIPlayer.getAIList()
 
 SDK 인증 성공한 상태에서 사용가능한 AI 리스트를 가져옵니다.
@@ -49,6 +52,9 @@ SDK 인증 성공한 상태에서 사용가능한 AI 리스트를 가져옵니�
 ```javascript
   const result = await AI_PLAYER.getAIList();
 ```
+
+
+<br/>
 
 ### 3. AIPlayer.getSampleTextList()
 

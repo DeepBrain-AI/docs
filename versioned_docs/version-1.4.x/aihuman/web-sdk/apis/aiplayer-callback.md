@@ -9,6 +9,9 @@ sidebar_position: 3
 This [Callback function](https://docs.deepbrain.io/1.3.x/aihuman/web-sdk/apis/aiplayer-callback) is obsolete.
 Recommend to use a onAIPlayerErrorV2.
 
+
+<br/>
+
 ### 2. onAIPlayerErrorV2
 
 Callback for Errors during AIPlayer operation. Check out the AIError details [here](../apis/aiplayer-data.md)
@@ -32,10 +35,16 @@ Callback for Errors during AIPlayer operation. Check out the AIError details [he
   };
 ```
 
+
+<br/>
+
 ### 3. onAIPlayerStateChanged
 
 This [Callback function](https://docs.deepbrain.io/1.3.x/aihuman/web-sdk/apis/aiplayer-callback) is obsolete.
 Recommend to use a onAIPlayerEvent.
+
+
+<br/>
 
 ### 4. onAIPlayerEvent
 
@@ -61,6 +70,9 @@ Callback for AIPlayer's Event. Check out the AIEvent details [here](../apis/aipl
     if (aiEvent.type === AIEventType.RES_LOAD_COMPLETED) hideLoadingProcess();
   };
 ```
+
+
+<br/>
 
 ### 5. onAIPlayerLoadingProgressed
 

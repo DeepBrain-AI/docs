@@ -15,6 +15,9 @@ sidebar_position: 1
 | `json.language`      | `String` | AI available Language(`'kr'`, `'en'`, `'zh'`)
 | `json.thumbUrl`      | `String` | AI thumbnail image url
 
+
+<br/>
+
 ### 2. AIClipSet
 
 | Param       | Type     | Description                                                                                                                                              |
@@ -23,6 +26,9 @@ sidebar_position: 1
 | `json.text` | `String` | A sentence to be synthesized
 | `json.gst`  | `String` | Gesture name can be obtained from [AIPlayer.getGestures()](#110-aiplayergetgestures), If there is no gst value, the function performs like normal speech
 
+
+<br/>
+
 ### 3. AIGesture
 
 | Param               | Type      | Description                                                                        |
@@ -30,6 +36,9 @@ sidebar_position: 1
 | `json`              | `Object`  | AIClipset json object used for GesturePlay
 | `json.enableSpeech` | `Boolean` | A boolean indicating whether speech can be performed simultaneously to the gesture
 | `json.gst`          | `String`  | Gesture's name
+
+
+<br/>
 
 ### 4. CustomVoice
 

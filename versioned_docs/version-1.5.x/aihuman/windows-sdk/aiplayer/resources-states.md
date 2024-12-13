@@ -10,6 +10,9 @@ When an `AIPlayer` object is created after authentication is completed, resource
 
 The SDK downloads the required resources of the AI you set to the path where the process is located.
 
+
+<br/>
+
 ### Implement callback with IAIPlayerCallback
 
 First, the class that wants to receive the callback (monitoring) must inherit the `IAIPlayerCallback`.

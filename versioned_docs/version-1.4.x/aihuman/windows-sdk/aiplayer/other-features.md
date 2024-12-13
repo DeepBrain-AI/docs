@@ -17,6 +17,9 @@ After the resource is loaded, some settings of aiPlayer can be changed while the
 _aiPlayer.Scale = value;
 ```
 
+
+<br/>
+
 ### Change AI Position(Margin)
 <img src="/img/aihuman/windows/margin_1.4.x.png" />
 
@@ -29,6 +32,9 @@ _aiMargin.Y = 8;
 // set Property
 _aiPlayer.Margin = _aiMargin;
 ```
+
+
+<br/>
 
 ### Volume Control
 

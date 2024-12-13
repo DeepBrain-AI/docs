@@ -21,6 +21,9 @@ The image below shows which settings are configurable in the Sample Project.
 aiPlayer.scale = scale
 ```
 
+
+<br/>
+
 ### Volume Control
 
 : You can control the volume. The possible value range is from 0.0 to 1.0.

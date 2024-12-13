@@ -29,6 +29,9 @@ You can test it from the SDK demo page if you want to.
 
 <br/>
 
+
+<br/>
+
 ### 2. Monitoring of speaking behavior
 
 After calling the `send` method, you can check the feedback on the operation event in the registered listener. This feedback is returned by calling the event related method (`onAIPlayerEvent`) of the listener. For example, when you call `send` method, the following events will be sent as an argument of `onAIPlayerEvent` sequencially.
@@ -99,6 +102,9 @@ AI_PLAYER.onAIPlayerErrorV2 = function (aiError) {
 };
 ```
 
+
+<br/>
+
 ### 3. Make resposive UI with AIPLAYER_STATE_CHANGED event
 
 The AIPlayer has several states that a user can notice and respond to. When the state is changed, the 'onAIPlayerEvent' callback is called with AIEventType.AIPLAYER_STATE_CHANGED and AIPlayer.getState() method return the current state.
@@ -124,6 +130,9 @@ function onAIStateChange() {
   console.log("onAIStateChange state:", AI_PLAYER.getState());
 }
 ```
+
+
+<br/>
 
 ### 4. Pause Speaking
 

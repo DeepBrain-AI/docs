@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 개요
 
-## Demo web page
+### Demo web page
 
 본 문서에서 다루는 샘플은 AI Human SDK를 사용한 예시로, DEMO 버튼[(Link)](https://aihuman.aistudios.com/webdemo/demo1.html)을 누르면 웹페이지의 우측 상단에 아래와 같은 메뉴가 나타납니다.
 
@@ -18,7 +18,7 @@ sidebar_position: 1
 - SDK Demo : functionalities of AIPlayer
 - STT Demo : AIPlayer + PlayChat
 
-## Sample Project
+### Sample Project
 
 본 내용은 AI Human SDK를 사용하여 간단힌 프로젝트를 만드는 방법을 제공합니다. 이는 샘플 프로젝트를 다운받아 간단히 구현이 가능합니다. 다운 받은 샘플 프로젝트의 세부 파일에 대한 설명은 아래와 같습니다.
 

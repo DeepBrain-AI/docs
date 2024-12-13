@@ -35,6 +35,9 @@ sidebar_position: 1
 | `getAIList()`                                 | AIAPI - SDK 인증 성공한 상태에서 사용가능한 AI 리스트를 콜백을 제공합니다.                                                                                                                                                                                                                                                                                         |
 | `getSampleTextList()`                         | AIAPI - 해당 언어의 샘플 문장을 불러 와서 콜백으로 전달합니다                                                                                                                                                                                                                                                                                                      |
 
+
+<br/>
+
 ### 1. AIPlayer.init(json)
 
 원하는 ai로 AIPlayer 셋업합니다.
@@ -62,6 +65,9 @@ const result = await AI_PLAYER.init({
 });
 ```
 
+
+<br/>
+
 ### 2. AIPlayer.getState()
 
 AIPlayer의 상태를 가져옵니다. 여기[AIPlayerState](../apis/aiplayer-data#5-aiplayerstate)를 확인하십시오.
@@ -73,6 +79,9 @@ AIPlayer의 상태를 가져옵니다. 여기[AIPlayerState](../apis/aiplayer-da
 ```javascript
   const state = AI_PLAYER.getState());
 ```
+
+
+<br/>
 
 ### 3. AIPlayer.setter(json)
 
@@ -93,6 +102,9 @@ AIPlayer를 셋팅합니다.
 ```javascript
 AI_PLAYER.setter({ size: 1.2, top: 20, left: 20, speed: 1.2 });
 ```
+
+
+<br/>
 
 ### 4. AIPlayer.getter(key)
 
@@ -163,21 +175,36 @@ AI_PLAYER.send({ text: "Nice to meet you", gst: "hi" });
 AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
 
+
+<br/>
+
 ### 7. AIPlayer.pause()
 
 발화를 일시 중지 시킵니다.
+
+
+<br/>
 
 ### 8. AIPlayer.resume()
 
 일시중지된 발화를 재시작 시킵니다.
 
+
+<br/>
+
 ### 9. AIPlayer.stopSpeak()
 
 현재 발화를 중지시키고, 발화 큐에 데이터도 클리어시킵니다.
 
+
+<br/>
+
 ### 10. AIPlayer.release()
 
 AIPlayer의 자원을 해제합니다. 더이상 사용치 않을때 호출합니다.
+
+
+<br/>
 
 ### 11. AIPlayer.getGestures()
 
@@ -191,6 +218,9 @@ AIPlayer의 자원을 해제합니다. 더이상 사용치 않을때 호출합�
 const gestures = AI_PLAYER.getGestures();
 ```
 
+
+<br/>
+
 ### 12. AIPlayer.getGender()
 
 현재 AI의 성별을 가져옵니다.
@@ -202,6 +232,9 @@ const gestures = AI_PLAYER.getGestures();
 ```javascript
 const gender = AI_PLAYER.getGender();
 ```
+
+
+<br/>
 
 ### 13. AIPlayer.getSpeakableLanguages(gender)
 
@@ -215,6 +248,9 @@ const gender = AI_PLAYER.getGender();
 const languages = AI_PLAYER.getSpeakableLanguages(gender);
 ```
 
+
+<br/>
+
 ### 14. AIPlayer.getCustomVoice()
 
 현재 설정된 customVoice를 가져옵니다.
@@ -226,6 +262,9 @@ const languages = AI_PLAYER.getSpeakableLanguages(gender);
 ```javascript
 const customVoice = AI_PLAYER.getCustomVoice();
 ```
+
+
+<br/>
 
 ### 15. AIPlayer.getCustomVoicesWith(language, gender)
 
@@ -239,6 +278,9 @@ const customVoice = AI_PLAYER.getCustomVoice();
 const customVoices = AI_PLAYER.getCustomVoicesWith(language, gender);
 ```
 
+
+<br/>
+
 ### 16. AIPlayer.findCustomVoice(voiceId)
 
 전달된 id에 해당하는 customVoice 개체를 가져옵니다.
@@ -250,6 +292,9 @@ const customVoices = AI_PLAYER.getCustomVoicesWith(language, gender);
 ```javascript
 const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 ```
+
+
+<br/>
 
 ### 17. AIPlayer.setCustomVoice(customVoice)
 
@@ -263,6 +308,9 @@ const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 const isSuccess = AI_PLAYER.setCustomVoice(customVoice);
 ```
 
+
+<br/>
+
 ### 18. AIPlayer.setCustomVoiceForLanguage(language, gender)
 
 전달된 language와 gender에 해당하는 customVoice로 현재 AI의 목소리를 설정합니다.
@@ -275,11 +323,17 @@ const isSuccess = AI_PLAYER.setCustomVoice(customVoice);
 const isSuccess = AI_PLAYER.setCustomVoiceForLanguage(language, gender);
 ```
 
+
+<br/>
+
 ### 19. AIPlayer.reconnect(callback)
 
 ```javascript
 AIPlayer.reconnect((callback = () => {}));
 ```
+
+
+<br/>
 
 ### 20. AIPlayer.isConnected()
 
@@ -287,11 +341,17 @@ AIPlayer.reconnect((callback = () => {}));
 const isConnected = AI_PLAYER.isConnected();
 ```
 
+
+<br/>
+
 ### 21. AIPlayer.canPreload()
 
 ```javascript
 const canPreload = AI_PLAYER.canPreload((callback = () => {}));
 ```
+
+
+<br/>
 
 ### 22. AI_PLAYER.setVolume(volume)
 
@@ -300,6 +360,9 @@ AI_PLAYER.setVolume(volume);
 
 const curVolume = AI_PLAYER.getVolume();
 ```
+
+
+<br/>
 
 ### 23. AI_PLAYER.setMute(isMute)
 

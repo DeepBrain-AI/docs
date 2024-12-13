@@ -15,6 +15,9 @@ The following are actions other than the utterance of the AIPlayer.
 _aiPlayer.Scale = value;
 ```
 
+
+<br/>
+
 ### Volume Control
 
 : You can control the volume. The possible value range is from 0.0 to 1.0.

@@ -47,6 +47,9 @@ readonly RegionEndpoint _bedrockRegionEndPoint = RegionEndpoint.USWest2;
 Now you're ready to run the demo. Try talking to AI through the microphone.
 
 
+
+<br/>
+
 ### Implementing an STT with AWS Transcribe
 
 In this demonstration, AWS Transcribe is linked to convert voice into text.
@@ -150,6 +153,9 @@ private void OnMessage(byte[] bytes)
     }
 }
 ```
+
+
+<br/>
 
 ### Implementation of TTS by interlocking AWS Bedrock Claude with AI Human
 

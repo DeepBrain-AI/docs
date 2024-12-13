@@ -32,6 +32,9 @@ Get JWT Verified Token
   const result = await AI_PLAYER.generateToken({ appId: "...", token: "..." });
 ```
 
+
+<br/>
+
 ### 2. AIPlayer.getAIList()
 
 Get a list of available AI models

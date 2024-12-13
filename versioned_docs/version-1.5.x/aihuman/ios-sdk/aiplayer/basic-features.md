@@ -25,6 +25,9 @@ It is also possible to perform an utterance with a specific gesture. For example
 If the text to be spoken is too long, it may not be possible to synthesize the text. There are other models that can synthesize long sentences. Although it varies from AI to AI, it is generally recommended that sentences be cut to an appropriate length in Korean, usually within 30 to 40 characters, and at a similar level in English. <br/>
 In addition, if special characters, lists of incomplete characters, numbers, formulas, symbols, characters or abbreviations in other languages are included, they may or may not be uttered differently than expected.
 
+
+<br/>
+
 ### Monitoring speech state through AIPlayerCallback
 
 You can check AIPlayer's state through onAIPlayerEvent method in the **delegate** property.
@@ -55,19 +58,28 @@ extension AISampleViewController: AIPlayerCallback {
 	}
 ```
 
-#### Pause speaking
+#
+<br/>
+
+### Pause Speaking
 
 ```Swift
 aiPlayer.pause()
 ```
 
-#### Resume speaking
+#
+<br/>
+
+### Resume Speaking
 
 ```Swift
 aiPlayer.resume()
 ```
 
-#### Stop speaking (can not resume)
+#
+<br/>
+
+### Stop Speaking (can not resume)
 
 ```Swift
 aiPlayer.stopSpeaking()

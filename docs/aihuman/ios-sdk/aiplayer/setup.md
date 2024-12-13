@@ -33,6 +33,9 @@ AIPlayer.generateToken { (error) in
 }
 ```
 
+
+<br/>
+
 ### Step 2: Get default AI List after authentication 
 
 Once authentication completes, AIPlayer object contains authentication result data. By calling getAiList(), all the available AI List will be returned. If you don't have any AI model permissions, or if you call this function before authentication, 0 is returned.
@@ -65,6 +68,9 @@ You can get this list anytime by calling AIPlayer.aiList() method.
 let aiList = AIPlayer.aiList()
 ```
 
+
+<br/>
+
 ### Step 3: Create AIPlayer
 
 After checking available AIs in step 2, initialize an AIPlayer class through the **create** method. You would need to prepare **aiName** as a parameter to the create method in order to initialize AIPlayer instance. Once AIPlayer class is created, you can place AIPlayer on UIView. You can keep track of AI state through the class's delegate property.
@@ -95,6 +101,9 @@ class CustomViewController: UIViewController, AIPlayerCallback {
 }
   
 ```
+
+
+<br/>
 
 ### Step 4: Remove AIPlayer Object
 

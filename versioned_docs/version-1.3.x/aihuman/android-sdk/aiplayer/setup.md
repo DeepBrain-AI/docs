@@ -46,6 +46,9 @@ AIModelInfoManager.generateToken(this, appId, userkey, (aiError, resp) -> {
 
 
 
+
+<br/>
+
 ### Step 2. Get the list of available AIs
 
 AIModelInfoManager authenticates and returns the authentication result. To check which AIs can be used after authentication, call the following method after  authentication succeeds. If there is no AI available or if this value is checked before authentication, null is returned.

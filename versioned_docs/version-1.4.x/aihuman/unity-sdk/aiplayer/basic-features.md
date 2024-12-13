@@ -20,6 +20,9 @@ AIClipSet clip = AIAPI.CreateClipSet("this is sample sentence.");
 _aiPlayer.Send(new[] {clip});
 ```
 
+
+<br/>
+
 ### Speaking related Monitoring
 
 After the Send method is called, you can listen to the operation event feedback in the registered listener. This feedback is returned by calling the method (OnAIPlayerEvent) of the listener(AIPlayerCallback). OnAIPlayerEvent sequentially returns the following AIEvent values.
@@ -73,6 +76,9 @@ public void OnAIPlayerError(AIError error)
 
 The following are actions that can be performed while the AIPlayer is Speaking.
 
+
+<br/>
+
 ### Pause Speaking
 
 : Pause speaking.
@@ -82,6 +88,9 @@ The following are actions that can be performed while the AIPlayer is Speaking.
 _aiPlayer.Pause()
 ```
 
+
+<br/>
+
 ### Resume Speaking
 
 : Resume speaking. (resume from pause)
@@ -90,6 +99,9 @@ _aiPlayer.Pause()
 // resume method
 _aiPlayer.Resume()
 ```
+
+
+<br/>
 
 ### Stop Speaking
 

@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # 개요
 
-## Demo web page
+### Demo web page
 
 Demo web page에서는 AI Human Web SDK(js)'의 기능을 사용해 볼 수 있습니다. 여기[(Link)](https://aihuman.aistudios.com/webdemo/demo1.html). 페이지의 오른쪽 상단에 아래와 같은 메뉴가 나오며, 이를 통해 SDK의 기능들을 둘러보십시오.
 
@@ -18,6 +18,8 @@ Demo web page에서는 AI Human Web SDK(js)'의 기능을 사용해 볼 수 있�
 - SDK Demo : AIPlayer 기능 예시 
 - STT Demo : AIPlayer + Chatbot(PlayChat) 예시 
 - AWS Demo : AIPlayer + AWS Transcbribe/Chatbot(Claud) example
+
+<br/>
 
 ## 샘플 Project
 
@@ -109,6 +111,8 @@ $ npm run dev
 **3. From Chrome browser, go to `http://localhost:3000/demo_aws_sdk.html`.**
 
 The AWS sdk demo will show.
+
+<br/>
 
 
 ### node-express 실행하기

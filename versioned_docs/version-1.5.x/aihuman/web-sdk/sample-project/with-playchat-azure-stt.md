@@ -83,6 +83,9 @@ function sendMessage(message) {
 }
 ```
 
+<br/>
+
+
 ### 2. Set up Google STT
 
 - In this example, when talking to AI, voice recognition(Google STT) is used. The STT communicates with the server through the websocket inside. The settings are as follows.

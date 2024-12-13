@@ -45,6 +45,9 @@ const AI_PLAYER = new AIPlayer(wrapper);
 
 <br/>
 
+
+<br/>
+
 **4. Authenticating the SDK**
 
 **4.1. Setting up appId and issuing userKey on SDK website**

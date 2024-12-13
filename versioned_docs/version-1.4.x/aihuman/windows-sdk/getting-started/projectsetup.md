@@ -10,6 +10,9 @@ In this chapter, you will learn how to create and register UserKey and AppId, et
 
 Create an account on the **[AI Human SDK Website](https://aihuman.aistudios.com/)**.
 
+
+<br/>
+
 ### 2. Add a project to My workspace
 
 Create a project in **[My workspace](https://aihuman.aistudios.com/aihuman/sdk)**, enter App Id of Windows and click confirm. Then User Key will be issued.
@@ -25,6 +28,9 @@ The appId, userKey, uuid, and platform information will be used as arguments for
 - uuid refers to the unique ID of the device where the application is installed. It is created by calling Guid.NewGuid(), and saved and reused after initial creation so that it does not change each time it is called.
 - platform argument uses "wnds", which means windows.
 :::
+
+
+<br/>
 
 ### 3. Create a new project in Visual Studio
 
@@ -73,6 +79,9 @@ You should refer to the below assemblies with SDK in your project or install Pac
 - [JWT](https://github.com/jwt-dotnet/jwt) (9.0.3)
 - [Newtonsoft.Json](https://www.newtonsoft.com/json) (13.0.2)
 - [SocketIOClient](https://github.com/doghappy/socket.io-client-csharp) (3.0.3)
+
+<br/>
+
 
 <br/>
 

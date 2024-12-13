@@ -19,6 +19,9 @@ AI_PLAYER.setter({ size: 1.0 });
 
 <br/>
 
+
+<br/>
+
 ### 2. Adjust AI Padding
 
 - You can choose AI's padding.

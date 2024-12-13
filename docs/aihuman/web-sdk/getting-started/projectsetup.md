@@ -38,3 +38,6 @@ Create an AIPlayer object with the area (element) where the AIPlayer is to be dr
 const wrapper = document.getElementById("AIPlayerWrapper");
 const AI_PLAYER = new AIPlayer(wrapper);
 ```
+
+<br/>
+

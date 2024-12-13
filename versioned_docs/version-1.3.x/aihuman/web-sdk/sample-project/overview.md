@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Overview
 
-## Demo web page
+### Demo web page
 
 The demo web page is a web page that allows you to experience functions using the Web(js) AI Human SDK, and when you press the DEMO button[(Link)](https://aihuman.aistudios.com/webdemo/demo1.html), the following menu appears at the top right of the web page.
 
@@ -18,7 +18,7 @@ Each menu is as follows.
 - SDK Demo : functionalities of AIPlayer
 - STT Demo : AIPlayer + PlayChat
 
-## Sample Project
+### Sample Project
 
 The sample covered in this document is an example using the AI Human SDK, which provides a demonstration of its functions by implementing them in the Sample Project. Through this, it is possible to examine in detail how SDK can be actually used and operated.
 

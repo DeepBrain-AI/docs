@@ -16,6 +16,9 @@ After the resource is loaded, some settings of aiPlayer can be changed while the
 _aiPlayer.Scale = value;
 ```
 
+
+<br/>
+
 ### Change AI Position(Margin)
 <img src="/img/aihuman/windows/YSB_Margin.png" />
 : You can change the position(margins) of AI. It can be adjusted based on the X-axis(Horizontal) and the Y-axis(Vertical).

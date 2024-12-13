@@ -26,6 +26,9 @@ const AI_PLAYER = new AIPlayer(wrapper);
 
 <br/>
 
+
+<br/>
+
 **2. SDK 인증하기**
 
 **2.1. SDK 웹사이트에 appId를 입력하고 userKey를 발급받기**

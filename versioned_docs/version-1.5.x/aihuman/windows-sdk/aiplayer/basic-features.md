@@ -22,6 +22,9 @@ AIClipSet clip = AIAPI.CreateClipSet("this is sample sentence.");
 _aiPlayer.Send(new[] {clip});
 ```
 
+
+<br/>
+
 ### Local Caching
 
 Local caching refers to the ability to store utterance (clipset) data internally in storage, and to reuse existing data when requesting the same utterance (AIClipSet) again without communication with the server.
@@ -42,6 +45,9 @@ Local caching refers to the ability to store utterance (clipset) data internally
   - If the CacheLimit is not exceeded, the caching data remains in the local area.
 
 :::
+
+
+<br/>
 
 ### Speaking related Monitoring
 
@@ -100,6 +106,9 @@ public void OnAIPlayerError(AIError error)
 
 The following are actions that can be performed while the AIPlayer is Speaking.
 
+
+<br/>
+
 ### Pause Speaking
 
 : Pause speaking.
@@ -109,6 +118,9 @@ The following are actions that can be performed while the AIPlayer is Speaking.
 _aiPlayer.Pause()
 ```
 
+
+<br/>
+
 ### Resume Speaking
 
 : Resume speaking. (resume from pause)
@@ -117,6 +129,9 @@ _aiPlayer.Pause()
 // resume method
 _aiPlayer.Resume()
 ```
+
+
+<br/>
 
 ### Stop Speaking
 

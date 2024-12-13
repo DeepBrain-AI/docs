@@ -20,7 +20,7 @@ SDK를 적용 할 Xcode 프로젝트를 생성합니다.
 
 터미널에서 경로를 프로젝트가 위치한 곳으로 변경합니다.
 
-#### 3-1. Podfile 생성
+#### 3.1.. Podfile 생성
 
 cocoapods 구성 파일을 만듭니다.
 
@@ -32,7 +32,7 @@ cd /project_path
 pod init
 ```
 
-#### 3-2. `pod 'AIPlayerSDK'` 추가 및 설치
+#### 3.2.. `pod 'AIPlayerSDK'` 추가 및 설치
 
 생성된 podfile을 열고 **AIPlayerSDK**를 추가합니다. <br/>
 3D캐릭터를 사용하려면 **`pod 'AIPlayerSDK/Include3D'`**를 추가해야 합니다.

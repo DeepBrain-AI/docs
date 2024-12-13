@@ -12,6 +12,9 @@ The SDK downloads the required resources of the AI you set to the path where the
 
 <br/>
 
+
+<br/>
+
 ### Implement callback with IAIPlayerCallback
 
 First, the class that wants to receive the callback (monitoring) must inherit the `AIPlayerCallback`. As an event-related callback for the implementation, the `OnAIPlayerEvent(AIEvent @event)` function must be implemented, and the types of events, `AIEvent.Type`, are as follows.

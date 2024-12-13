@@ -56,7 +56,7 @@ Some AIs can speak with other voices besides basic voices. To use other voices, 
 
 <img src="/img/aihuman/web/sdk_demo_04.png" />
 
-#### Set the custom voice using AIPlayer's method
+##### Set the custom voice using AIPlayer's method
 
 First, the list of languages that AI can currently speak can be checked through the following method.
 
@@ -96,7 +96,7 @@ Check current CustomVoice with following method. It returns null if customVoice 
 const isSuccess = AI_PLAYER.getCustomVoice();
 ```
 
-#### Set the custom voice using AIClipSet
+##### Set the custom voice using AIClipSet
 
 In addition to the method of using the setCustomVoice method to set a voice other than the default voice, AIClipSet can be used to speak the desired voice as follows.
 
@@ -106,6 +106,9 @@ const AIClipSet = { text: "Nice to meet you", gst: "hi", voice: customVoice };
 
 AI_PLAYER.send(AIClipSet);
 ```
+
+<br/>
+
 
 <br/>
 

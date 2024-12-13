@@ -37,7 +37,10 @@ AWS 계정으로부터 accessKeyId, secretAccessKey 값을 확인하십시오. �
 
 이제 llm 모델을 선택합니다. 여기서는 anthropicClaude을 사용하였습니다. 
 
-- https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javascriptv3/example_code/bedrock-runtime/models/anthropicClaude/invoke_claude_2.js 
+- https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javascriptv3/example_code/bedrock-runtime/models/anthropicClaude/invoke_claude_2.js
+
+<br/>
+ 
 
 ## 웹팩(Webpack) 빌드를 셋업
 

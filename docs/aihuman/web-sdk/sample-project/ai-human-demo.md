@@ -11,6 +11,9 @@ sidebar_position: 3
 
 This page demonstrates various functionalities of AIPlayer through simple UI. You can select an AI model, change the scale, speech speed of AI, and let the AI speak multiple sentences and take advantage of the preload function, etc.
 
+<br/>
+
+
 **1. First, create the AIPlayer object(AI_PLAYER), complete authentication and set up the AIPlayer**
 
 ```javascript
@@ -31,6 +34,7 @@ async function generateVerifiedToken() {
   } else DATA.verifiedToken = "";
 }
 ```
+<br/>
 
 **2. Get the list of available AI models and make UI for the list**
 
@@ -55,6 +59,8 @@ async function getAIList() {
 }
 ```
 
+<br/>
+
 **3. Call AIPlayer's init function with the selected AI name**
 
 Initialize the corresponding AI with the AI's name, size, left, top and speech speed.
@@ -77,6 +83,8 @@ async function startAI(aiName, aiType) {
   });
 }
 ```
+
+<br/>
 
 **4. Implement callback of AIPlayer to monitor the event and error**
 
@@ -174,6 +182,9 @@ function initAIPlayerEvent() {
 
 }
 ```
+
+<br/>
+
 **5. Implement AI utterance-related functions (preload, send, paces, resume, stop and release).**
 
 ```javascript
@@ -209,6 +220,9 @@ function release() {
   AI_PLAYER.release();
 }
 ```
+
+<br/>
+
 
 **6. 3D AI Model Application Example**
 

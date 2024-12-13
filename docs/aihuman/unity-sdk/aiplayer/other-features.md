@@ -17,6 +17,9 @@ Once the resource is loaded, you can change AIPlayer's settings; for example, yo
 _aiPlayer.Scale = value;
 ```
 
+
+<br/>
+
 ### Volume Control
 
 : You can control the volume. The possible value range is from 0.0 to 1.0.
