@@ -58,7 +58,7 @@ sidebar_position: 4
 
 **Dialogflow 크리덴셜 파일 준비**
 
-DiallogFlow는 구글의 해당 서비스 사이트에서 서비스를 생성하면 사용할수 있습니다. 서비스를 생성하면 **크리덴셜 파일(json 파일)**을 얻을수 있는데, 그 파일을 다운로드한 후 사용자 앱의 **assets** 디렉토리에 넣습니다(assets 디렉토리가 없으면 프로젝트의 app 디렉토리에서 오른쪽 클릭 > New > Folder > Assets Folder로 생성).
+DiallogFlow는 구글의 해당 서비스 사이트에서 서비스를 생성하면 사용 할 수 있습니다. 서비스를 생성하면 **크리덴셜 파일(json 파일)**을 얻을 수 있는데, 그 파일을 다운로드한 후 사용자 앱의 **assets** 디렉토리에 넣습니다(assets 디렉토리가 없으면 프로젝트의 app 디렉토리에서 오른쪽 클릭 > New > Folder > Assets Folder로 생성).
 
 이후 new DialogFlowChatbot()로 DialogFlow 챗봇을 생성합니다.
 
@@ -68,7 +68,7 @@ DiallogFlow는 구글의 해당 서비스 사이트에서 서비스를 생성하
 
 **챗봇 콜백을 생성하고 init(,) 메소드를 호출하기**
 
-챗봇 콜백(**iChatbotCallback**)은 챗봇의 상태 변화나 에러, 메세지 수신 등을 알수 있는 콜백입니다. new 연산자로 인스턴스를 생성하여 ChatbotSettings 인스턴스와 함께 chatbot.init(,) 메소드에 아래와 같이 넣어 호출합니다. **onChatbotStateChanged** 메소드에 **ChatbotState.SESSION_INITIALIZED** 신호가 오면 챗봇을 사용할 준비가 완료된 것이며 이후부터 DialogFlow 서비스에 메세지를 보내고 받을 수 있습니다.
+챗봇 콜백(**iChatbotCallback**)은 챗봇의 상태 변화나 에러, 메세지 수신 등을 알 수 있는 콜백입니다. new 연산자로 인스턴스를 생성하여 ChatbotSettings 인스턴스와 함께 chatbot.init(,) 메소드에 아래와 같이 넣어 호출합니다. **onChatbotStateChanged** 메소드에 **ChatbotState.SESSION_INITIALIZED** 신호가 오면 챗봇을 사용할 준비가 완료된 것이며 이후부터 DialogFlow 서비스에 메세지를 보내고 받을 수 있습니다.
 
 ```java
 private void initAIChatbotController() {
@@ -108,7 +108,7 @@ private IChatbotCallback iChatbotCallback = new IChatbotCallback() {
 
 ## 3. Chatbot(DialogFlow)에 메세지 보내기
 
-chatbot에 **send("query", JSONObject)** 메소드를 다음과 같이 호출하여 메세지를 보낼수 있습니다. 원하는 텍스트는 JSON의 "query"키 (여기서는 Constants.KEY_QUERY)로 추가하며 **언어 코드**도 추가해서 보냅니다.
+chatbot에 **send("query", JSONObject)** 메소드를 다음과 같이 호출하여 메세지를 보낼 수 있습니다. 원하는 텍스트는 JSON의 "query"키 (여기서는 Constants.KEY_QUERY)로 추가하며 **언어 코드**도 추가해서 보냅니다.
 
 ```java
     JSONObject json = new JSONObject();

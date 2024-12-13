@@ -117,7 +117,7 @@ protected void onDestroy() {
 
 ### 4단계. AIPlayer를 원하는 AI로 초기화하기
 
-AIPlayer 객체 생성 후 실제로 어떤 AI를 사용하려면 그 AI로 초기화가 필요합니다. 방법은 아래와 같이 AIPlayerSettings 클래스를 원하는 aiName을 주고 생성한후 AIPlayer의 init(..., ...) 메소드의 인자로 주고 호출하는 것입니다. 이렇게 하면 aiPlayer는 설정된 값에 따라 리소스를 다운받아 동작 가능한 상태로 바뀝니다. 또한 등록된 콜백으로 상황을 보고 받을 수 있습니다.  
+AIPlayer 객체 생성 후 실제로 어떤 AI를 사용하려면 그 AI로 초기화가 필요합니다. 방법은 아래와 같이 AIPlayerSettings 클래스를 원하는 aiName을 주고 생성한 후 AIPlayer의 init(..., ...) 메소드의 인자로 주고 호출하는 것입니다. 이렇게 하면 aiPlayer는 설정된 값에 따라 리소스를 다운받아 동작 가능한 상태로 바뀝니다. 또한 등록된 콜백으로 상황을 보고 받을 수 있습니다.  
 
 ```java
 //AIPlayer created 
@@ -138,6 +138,6 @@ aiPlayer.init(config, iAIPlayerCallback);
 // mAI3DPlayer.init(curAIPlayerSettings, iAiPlayerCallback);
 ```
 
-AIPlayer의 init 메소드에 config(AIPlyerSettings) 인자는 player의 설정입니다. AIPlyerSettings 클래스의 aiName은 사용할 AI를 결정합니다. aiScale은 기본 1.0이며 aiTopMargin은 상단으로부터 거리. aiSpeed는 말하기 속도(기본 1)를 말합니다. init 메소드에 callback인자는 AIPlayer의 이벤트, 로딩 상태, 에러 등을 모니터링하며 적절한 동작을 취할수 있는 리스너입니다.
+AIPlayer의 init 메소드에 config(AIPlyerSettings) 인자는 player의 설정입니다. AIPlyerSettings 클래스의 aiName은 사용할 AI를 결정합니다. aiScale은 기본 1.0이며 aiTopMargin은 상단으로부터 거리. aiSpeed는 말하기 속도(기본 1)를 말합니다. init 메소드에 callback인자는 AIPlayer의 이벤트, 로딩 상태, 에러 등을 모니터링하며 적절한 동작을 취할 수 있는 리스너입니다.
 
 **3D Character의 경우는 약간의 추가 셋업 과정이 필요합니다. [링크](../sample-project/with-3d-character.md) 참조**
