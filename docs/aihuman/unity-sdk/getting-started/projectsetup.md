@@ -67,9 +67,9 @@ Render pipeline compatibility
 
 Perform the import package process of the AI Human SDK.
 
-#### 4-1. Download the SDK for Unity from the AI Human SDK website.
+#### 4.1. Download the SDK for Unity from the AI Human SDK website.
 
-#### 4-2. Install the following packages through Assets > Package Manager in the Unity Editor menu.
+#### 4.2. Install the following packages through Assets > Package Manager in the Unity Editor menu.
 
 - Burst : Used in lipsync of 3D characters
 - Mathematics : Used in lipsync of 3D characters
@@ -77,31 +77,31 @@ Perform the import package process of the AI Human SDK.
 
 <img src="/img/aihuman/unity/package_manager.png" />
 
-#### 4-3. Import the Unity AI Human SDK (.unitypackage) downloaded from the Unity Editor menu via Assets > Import Package > Custom Package.
+#### 4.3. Import the Unity AI Human SDK (.unitypackage) downloaded from the Unity Editor menu via Assets > Import Package > Custom Package.
 
 <img src="/img/aihuman/unity/import_package.png" />
 
-#### 4-4. Since the Sample UI of the AI Human SDK is made with a resolution of 9:16 or higher, select the Free Aspect item in the Game View and set the resolution to 9:16 or higher. As an exception, the AIHuman & Metaverse Sample is made based on a 16:9 aspect ratio, so the resolution is set to 16:9 aspect ratio or Free Aspect.
+#### 4.4. Since the Sample UI of the AI Human SDK is made with a resolution of 9:16 or higher, select the Free Aspect item in the Game View and set the resolution to 9:16 or higher. As an exception, the AIHuman & Metaverse Sample is made based on a 16:9 aspect ratio, so the resolution is set to 16:9 aspect ratio or Free Aspect.
 
 <img src="/img/aihuman/unity/aspect.png" />
 
-#### 4-5. To run Sample, you must select File > Build Settings from the Unity Editor menu and then drag and drop all scenes in the Asset/DeepBrainAI/Demo/Scenes/ path in the Project window to the Scenes In Build area of the Build Settings window.
+#### 4.5. To run Sample, you must select File > Build Settings from the Unity Editor menu and then drag and drop all scenes in the Asset/DeepBrainAI/Demo/Scenes/ path in the Project window to the Scenes In Build area of the Build Settings window.
 
 <img src="/img/aihuman/unity/build_setting.png" />
 
-#### 4-5-1. (optional) When using the DeepbrainAI 3D Model, we recommend changing the Edit > Project Settings > Player > Other Settings > Color Space entry to Linear in the Unity Editor menu.
+#### 4.5.1. (optional) When using the DeepbrainAI 3D Model, we recommend changing the Edit > Project Settings > Player > Other Settings > Color Space entry to Linear in the Unity Editor menu.
 
-#### 4-5-2. (Android target) For projects on Android targets, set the Edit > Project Settings > Player > Other Settings > Scripting Backend entry to IL2CPP in the Unity Editor menu.
+#### 4.5.2. (Android target) For projects on Android targets, set the Edit > Project Settings > Player > Other Settings > Scripting Backend entry to IL2CPP in the Unity Editor menu.
 
-#### 4-6. Exceptions
+#### 4.6. Exceptions
 
 Users of the Unity Editor 2021.2.x version may encounter reference errors in Newtonsoft.Json.dll included in the SDK. When an error occurs, a reference error may be solved through a series of processes as follows.
 
-##### 4-6-1. Select Window > Package Manager from the Unity Editor menu
+##### 4.6.1. Select Window > Package Manager from the Unity Editor menu
 
-##### 4-6-2. Select Version Control from the Package - Unity entry in the Package Manager window
+##### 4.6.2. Select Version Control from the Package - Unity entry in the Package Manager window
 
-##### 4-6-3. Enable Update in the lower right corner of the Package Manager window
+##### 4.6.3. Enable Update in the lower right corner of the Package Manager window
 
 <img src="/img/aihuman/unity/Newtonsoft_Json.png" />
 
@@ -109,4 +109,4 @@ Users of the Unity Editor 2021.2.x version may encounter reference errors in New
 
 To build a sample project, perform the following steps on a platform-by-platform basis.
 
-#### 5-1. In the sample project, the plugin of the Speech SDK for Azure STT includes only the Standalone plugin. If you want to build as an Android or iOS target, you must download the Speech SDK for Unity via the following link and then include the Android or iOS plugin in your project. (https://learn.microsoft.com/ko-kr/azure/ai-services/speech-service/quickstarts/setup-platform?tabs=windows%2Cubuntu%2Cdotnetcli%2Cunity%2Cjre%2Cmaven%2Cnodejs%2Cmac%2Cpypi&pivots=programming-language-csharp)
+#### 5.1. In the sample project, the plugin of the Speech SDK for Azure STT includes only the Standalone plugin. If you want to build as an Android or iOS target, you must download the Speech SDK for Unity via the following link and then include the Android or iOS plugin in your project. (https://learn.microsoft.com/ko-kr/azure/ai-services/speech-service/quickstarts/setup-platform?tabs=windows%2Cubuntu%2Cdotnetcli%2Cunity%2Cjre%2Cmaven%2Cnodejs%2Cmac%2Cpypi&pivots=programming-language-csharp)

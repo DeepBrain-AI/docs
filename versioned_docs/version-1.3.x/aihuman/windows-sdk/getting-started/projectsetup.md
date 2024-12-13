@@ -80,11 +80,11 @@ You should refer to the below assemblies with SDK in your project or install Pac
 
 Prepare library files necessary for the use of AI Human SDK in the previously created project.
 
-#### 4-1. Download the SDK for Windows from the AI Human SDK website.
+#### 4.1. Download the SDK for Windows from the AI Human SDK website.
 
-#### 4-2. Move the downloaded SDK and related files to the previously created project path.
+#### 4.2. Move the downloaded SDK and related files to the previously created project path.
 
-#### 4-3. In Solution Explorer, right-click Project > Right-click > Add > Create a new folder with a name.
+#### 4.3. In Solution Explorer, right-click Project > Right-click > Add > Create a new folder with a name.
 
 You can configure the libraries referenced in the solution through the created folder > right-click > Add > Existing item.
 
@@ -94,7 +94,7 @@ The screenshot and the actual assemblies provided may be different. Please refer
 
 <img src="/img/aihuman/windows/NewProject_Add_Sdk.png" />
 
-#### 4-4. Add the downloaded AIHuman SDK library to the solution item.
+#### 4.4. Add the downloaded AIHuman SDK library to the solution item.
 
 Right-click the project at the top of the Solution Explorer > Add > Project Reference > Reference Manager > Browse > AIHuman.Add SDK.Core.dll and Newtonsoft.Json.dll, etc. You can see that references have been added to the Dependencies > Assembly in the project tree.
 

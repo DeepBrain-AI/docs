@@ -30,8 +30,11 @@ const AI_PLAYER = new AIPlayer(wrapper);
 
 **2.1. SDK 웹사이트에 appId를 입력하고 userKey를 발급받기**
 
-- [SDK website](https://aihuman.aistudios.com/)에서 프로젝트를 생성합니다.
-- 사용할 웹서비스의 appId를 입력하고 저장하면 userkey가 발급됩니다. 
+**[AI Human 웹사이트](https://www.aistudios.com/aihuman)**에서 계정을 생성하고 로그인 합니다.
+
+- 우측 상단 > Login(Sign In) > Create account
+- 로그인 이후에 [SDK](https://aihuman.aistudios.com/aihuman/sdk) 카테고리에서 프로젝트를 생성할 수 있습니다.
+- [SDK](https://aihuman.aistudios.com/aihuman/sdk) 카테고리 접근이 불가하다면 [고객센터](https://www.aistudios.com/ko/company/contact)로 문의해 주세요.
 
 <img src="/img/aihuman/web/project.png" />
 
@@ -39,7 +42,6 @@ const AI_PLAYER = new AIPlayer(wrapper);
 
 - 다음으로 인증을 위한 clientToken 생성 API를 만듭니다.
 - clientToken 생성 api는 여러분의 서버에 구현되어야하며, 이를 통해 client는 필요할때 호출하여 사용합니다.
-  
 - 아래는 jsonwebtoken lib for JWT를 여러분의 서버에 설치하는 방법입니다.(Note: [JWT](https://jwt.io/))
 
 ```
@@ -49,56 +51,56 @@ npm install jsonwebtoken
 - 아래는 node.js를 사용한 clientToken을 생성하는 방법입니다.
 
 ```javascript
-  // generateJWT.js(Server)
+// generateJWT.js(Server)
 
-  const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
-  const userKey = "...";  // TODO: userKey input
-  const payload = {
-    appId: "...",  // TODO: appId input
-    platform: "web"
-  };
-  const options = {
-    header: { typ: "JWT", alg: "HS256" }, 
-    expiresIn: 60 * 5 // expire time: 5 mins
-  };
+const userKey = "..."; // TODO: userKey input
+const payload = {
+  appId: "...", // TODO: appId input
+  platform: "web",
+};
+const options = {
+  header: { typ: "JWT", alg: "HS256" },
+  expiresIn: 60 * 5, // expire time: 5 mins
+};
 
-  function generateJWT(req, res) {
-    try {
-      const clientToken = jwt.sign(payload, userKey, options);
+function generateJWT(req, res) {
+  try {
+    const clientToken = jwt.sign(payload, userKey, options);
 
-      res.json({ appId: payload.appId, token: clientToken });
-    } catch (e) {
-      console.log("jwt generate err ", e.name, e.message);
-    }
+    res.json({ appId: payload.appId, token: clientToken });
+  } catch (e) {
+    console.log("jwt generate err ", e.name, e.message);
   }
+}
 ```
 
 - generateJWT 함수(API)의 next.js routing입니다.
 
 ```javascript
-  // generateJWT.js(Server) append
-  export default (req, res) => {
-    if (req.method === "GET") return generateJWT(req, res);
+// generateJWT.js(Server) append
+export default (req, res) => {
+  if (req.method === "GET") return generateJWT(req, res);
 
-    // if (req.method === "POST") return generateJWT(req, res);
-  };
+  // if (req.method === "POST") return generateJWT(req, res);
+};
 ```
 
 - 그리고 generateJWT function의 express 버전입니다.
 
 ```javascript
-  // generateJWT.js(Server)
-  module.export = generateJWT;
+// generateJWT.js(Server)
+module.export = generateJWT;
 ```
 
 ```javascript
-  const express = require('express');
-  const app = express();
-  const generateJWT = require("..."); // TODO: generateJWT.js access path
+const express = require("express");
+const app = express();
+const generateJWT = require("..."); // TODO: generateJWT.js access path
 
-  app.get('/generateJWT', generateJWT);
-  // app.post('/generateJWT', generateJWT);
+app.get("/generateJWT", generateJWT);
+// app.post('/generateJWT', generateJWT);
 ```
 
 **2.3. Client에서 Server의 generateJWT(requestClientToken)를 호출합니다.**
@@ -109,7 +111,7 @@ npm install jsonwebtoken
 async function requestClientToken() {
   // TODO: Server generateJWT request address input
   // for example : const result = await makeRequest("GET", "/api/generateJWT");
-  const result = await makeRequest("GET", "..."); 
+  const result = await makeRequest("GET", "...");
 
   // Success
   DATA.appId = result.appId;
@@ -123,17 +125,17 @@ async function requestClientToken() {
 - `requestClientToken` 호출이 성공한 후 AIPlayer의 `generateToken` 함수(appId, clientToke 사용)를 호출합니다. 응답은 JSON이며 그 내용은 verifiedToken, tokenExpire 및 defaultAI 값입니다. 'generateToken'의 호출 성공은 인증이 완료되었음을 의미합니다. 더 자세한 설명은 [API](../apis/aiapi.md) 문서를 참조해주십시오.
 
 ```javascript
-  // quickStart.js(Client)
+// quickStart.js(Client)
 
-  async function generateVerifiedToken() {
-    const result = await AI_PLAYER.generateToken({ appId: DATA.appId, token: DATA.clientToken });
-    
-    if (result?.succeed) {
-      DATA.verifiedToken = result.token;
-      DATA.tokenExpire = result.tokenExpire;
-      DATA.defaultAI = result.defaultAI;
-    }
+async function generateVerifiedToken() {
+  const result = await AI_PLAYER.generateToken({ appId: DATA.appId, token: DATA.clientToken });
+
+  if (result?.succeed) {
+    DATA.verifiedToken = result.token;
+    DATA.tokenExpire = result.tokenExpire;
+    DATA.defaultAI = result.defaultAI;
   }
+}
 ```
 
 <br/>
@@ -146,7 +148,12 @@ async function requestClientToken() {
 // quickStart.js(Client)
 
 await AI_PLAYER.init({
-    aiName: DATA.defaultAI.ai_name, zIndex: 0, size: 1.0, left: 0, top: 0, speed: 1.0
+  aiName: DATA.defaultAI.ai_name,
+  zIndex: 0,
+  size: 1.0,
+  left: 0,
+  top: 0,
+  speed: 1.0,
 });
 ```
 
@@ -164,14 +171,13 @@ function initAIPlayerEvent() {
       case AIEventType.RES_LOAD_COMPLETED:
         //AI_PLAYER.send({text:"Nice to meet you."})
         document.getElementById("AIPlayerTexts").style.display = "grid";
-        break
+        break;
     }
   };
 }
 ```
 
 <br/>
-
 
 **5. Full Client Sample Source Code**
 
@@ -183,10 +189,12 @@ function initAIPlayerEvent() {
     <title>AIPlayer JavaScript SDK Quick Start</title>
   </head>
   <style>
-    html, body, #AIPlayerWrapper {
+    html,
+    body,
+    #AIPlayerWrapper {
       height: 100%;
     }
-</style>
+  </style>
   <body style="height:100%">
     <div style="display: none; width: fit-content;" id="AIPlayerTexts">
       <button onclick="speak(this.innerHTML)">How are you?</button>
@@ -217,7 +225,12 @@ async function initSample() {
   await generateVerifiedToken();
 
   await AI_PLAYER.init({
-    aiName: DATA.defaultAI.ai_name, size: 1.0, left: 0, top: 0, speed: 1.0 });
+    aiName: DATA.defaultAI.ai_name,
+    size: 1.0,
+    left: 0,
+    top: 0,
+    speed: 1.0,
+  });
 }
 
 async function generateClientToken() {
@@ -238,23 +251,23 @@ async function generateVerifiedToken() {
   }
 }
 
-//AIEvent & callback 
+//AIEvent & callback
 const AIEventType = Object.freeze({
-    RES_LOAD_STARTED: 0,
-    RES_LOAD_COMPLETED: 1,
-    AICLIPSET_PLAY_PREPARE_STARTED: 2,
-    AICLIPSET_PLAY_PREPARE_COMPLETED: 3,
-    AICLIPSET_PRELOAD_STARTED: 4,
-    AICLIPSET_PRELOAD_COMPLETED: 5,
-    AICLIPSET_PRELOAD_FAILED: 6,
-    AICLIPSET_PLAY_STARTED: 7,
-    AICLIPSET_PLAY_COMPLETED: 8,
-    AICLIPSET_PLAY_FAILED: 9,
-    AI_CONNECTED: 10,
-    AI_DISCONNECTED: 11,
-    AIPLAYER_STATE_CHANGED: 14,
-    UNKNOWN: -1,
-  })
+  RES_LOAD_STARTED: 0,
+  RES_LOAD_COMPLETED: 1,
+  AICLIPSET_PLAY_PREPARE_STARTED: 2,
+  AICLIPSET_PLAY_PREPARE_COMPLETED: 3,
+  AICLIPSET_PRELOAD_STARTED: 4,
+  AICLIPSET_PRELOAD_COMPLETED: 5,
+  AICLIPSET_PRELOAD_FAILED: 6,
+  AICLIPSET_PLAY_STARTED: 7,
+  AICLIPSET_PLAY_COMPLETED: 8,
+  AICLIPSET_PLAY_FAILED: 9,
+  AI_CONNECTED: 10,
+  AI_DISCONNECTED: 11,
+  AIPLAYER_STATE_CHANGED: 14,
+  UNKNOWN: -1,
+});
 
 function initAIPlayerEvent() {
   AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
@@ -262,7 +275,7 @@ function initAIPlayerEvent() {
       case AIEventType.RES_LOAD_COMPLETED:
         //AI_PLAYER.send({text:"Nice to meet you."})
         document.getElementById("AIPlayerTexts").style.display = "grid";
-        break
+        break;
     }
   };
 }
@@ -298,13 +311,13 @@ async function makeRequest(method, url, params) {
 const jwt = require("jsonwebtoken");
 
 const userKey = "..."; // TODO: userKey input
-const payload = { 
+const payload = {
   appId: "...", // TODO: appId input
-  platform: "web"
+  platform: "web",
 };
 const options = {
   header: { typ: "JWT", alg: "HS256" },
-  expiresIn: 60 * 5 // expire time: 5 mins
+  expiresIn: 60 * 5, // expire time: 5 mins
 };
 
 function generateJWT(req, res) {

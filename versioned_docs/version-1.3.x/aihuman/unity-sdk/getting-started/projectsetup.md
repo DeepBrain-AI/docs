@@ -42,28 +42,28 @@ The appId, userKey, and platform information will be used as arguments for Authe
 
 Perform the import package process of the AI Human SDK.
 
-#### 4-1. Download the SDK for Unity from the AI Human SDK website.
+#### 4.1. Download the SDK for Unity from the AI Human SDK website.
 
-#### 4-2. Import the Unity AI Human SDK (.unitypackage) downloaded from the Unity Editor menu via Assets > Import Package > Custom Package.
+#### 4.2. Import the Unity AI Human SDK (.unitypackage) downloaded from the Unity Editor menu via Assets > Import Package > Custom Package.
 
 <img src="/img/aihuman/unity/import_package.png" />
 
-#### 4-3. Since the Sample UI of the AI Human SDK is made with a resolution of 9:16 or higher, select the Free Aspect item in the Game View and set the resolution to 9:16 or higher.
+#### 4.3. Since the Sample UI of the AI Human SDK is made with a resolution of 9:16 or higher, select the Free Aspect item in the Game View and set the resolution to 9:16 or higher.
 
 <img src="/img/aihuman/unity/aspect.png" />
 
-#### 4-4. To run Sample, you must select File > Build Settings from the Unity Editor menu and then drag and drop all scenes in the Asset/DeepBrainAI/Demo/Scenes/ path in the Project window to the Scenes In Build area of the Build Settings window.
+#### 4.4. To run Sample, you must select File > Build Settings from the Unity Editor menu and then drag and drop all scenes in the Asset/DeepBrainAI/Demo/Scenes/ path in the Project window to the Scenes In Build area of the Build Settings window.
 
 <img src="/img/aihuman/unity/build_setting.png" />
 
-#### 4-5. Exceptions
+#### 4.5. Exceptions
 
 Users of the Unity Editor 2021.2.x version may encounter reference errors in Newtonsoft.Json.dll included in the SDK. When an error occurs, a reference error may be solved through a series of processes as follows.
 
-##### 4-5-1. Select Window > Package Manager from the Unity Editor menu
+##### 4.5.1. Select Window > Package Manager from the Unity Editor menu
 
-##### 4-5-2. Select Version Control from the Package - Unity entry in the Package Manager window
+##### 4.5.2. Select Version Control from the Package - Unity entry in the Package Manager window
 
-##### 4-5-3. Enable Update in the lower right corner of the Package Manager window
+##### 4.5.3. Enable Update in the lower right corner of the Package Manager window
 
 <img src="/img/aihuman/unity/Newtonsoft_Json.png" />
