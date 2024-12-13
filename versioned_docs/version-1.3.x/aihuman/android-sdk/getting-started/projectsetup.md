@@ -6,7 +6,7 @@ sidebar_position: 2
 
 In this chapter, you will learn how to create a project and register UserKey using android project's AppId. Userkey is required for authentication to use AI Human SDK.
 
-## 1. Create android project using Android Studio.
+### 1. Create android project using Android Studio
 
 Below is the project's setting.(It is a sample, not mandatory)
 
@@ -27,7 +27,7 @@ Below is the project's setting.(It is a sample, not mandatory)
 <img src="/img/aihuman/android/screenshot_projectsetup_3.png"/>
 
 
-## 2. Add SDK (aar) to project
+### 2. Add SDK (aar) to project
 
 Add the 2 aar files(AIHumanSDK, AIHuman3DSDK) to your project's libs. The libs folder should be make under app dir. And update dependency in app level build.gradle file.(implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])). Check below **App level build.gradle** section. 
 
@@ -35,7 +35,7 @@ Add the 2 aar files(AIHumanSDK, AIHuman3DSDK) to your project's libs. The libs f
 
 
 
-## 3. App level build.gradle : (Check the sample's build.gradle)
+### 3. App level build.gradle : (Check the sample's build.gradle)
 
 Configure the following items in build.gradle. See the sample for more details.
 
@@ -101,7 +101,7 @@ dependencies {
 
 
 
-## 4. AndroidManifest.xml setup
+### 4. AndroidManifest.xml setup
 
 permission : INTERNET is required
 
@@ -129,7 +129,7 @@ for 3d character activity (if you use it)
     android:process=":Unity"/>
 ```
 
-## 5. Gradle JDK setting (11)
+### 5. Gradle JDK setting (11)
 
 If you use android studio over articfox version, you will see "Android Gradle plugin requires Java 11 to run. You are currently using Java 1.8." error. For this case, choose gradle jdk 11 (Top menu > preference > build, Execution, Deployment > Build Tool > Gradle > Gradle JDK > 11 version). If you don' have 11 version, please download it from [Oracle website](http://www.oracle.com). [link](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
 

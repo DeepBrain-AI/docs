@@ -6,17 +6,17 @@ sidebar_position: 2
 
 In this chapter, you will learn how to create and register UserKey and AppId, etc. required for authentication for using AI Human SDK.
 
-## 1. Download SDK
+### 1. Download SDK
 You can download SDKs for each platform here. **[AI Human SDK Website](https://aihuman.aistudios.com)**.
 
-## 2. Create an Xcode project and cocoapods
+### 2. Create an Xcode project and cocoapods
 
 Create project to use the AI Human SDK in the Xcode.
 
 Add the **AIPlayer.podspec file and the AIPlayer folder** to the Project folder.
 
 
-## 3. Setup the project
+### 3. Setup the project
 
 Changing the terminal path to the location of the project.
 
@@ -89,7 +89,7 @@ pod install
 
 <br/>
 
-## 4. Notes for reference
+### 4. Notes for reference
 
 - AIPlayer SDK works with **iOS 11.0** or later.
 

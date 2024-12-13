@@ -6,11 +6,11 @@ sidebar_position: 2
 
 In this chapter, you will learn how to create and register UserKey and AppId, etc. required for authentication for using AI Human SDK.
 
-## 1. Create an account
+### 1. Create an account
 
 Create an account on the **[AI Human SDK Website](https://aihuman.aistudios.com)**.
 
-## 2. Add a project to My workspace
+### 2. Add a project to My workspace
 
 Create a project in **[My workspace](https://aihuman.aistudios.com/aihuman/sdk)**, enter App Id of Platform(Android, iOS, Windows) and click confirm. Then User Key will be issued.
 
@@ -25,7 +25,7 @@ The appId, userKey, and platform information will be used as arguments for Authe
 - The platform value is set to match the App Platform. (Android, iOS, Windows)
   :::
 
-## 3. Create a new project in Unity Hub.
+### 3. Create a new project in Unity Hub
 
 <table>
 	<tr>
@@ -38,7 +38,7 @@ The appId, userKey, and platform information will be used as arguments for Authe
 	</tr>
 </table>
 
-## 4. Set up the project.
+### 4. Set up the project
 
 Perform the import package process of the AI Human SDK.
 

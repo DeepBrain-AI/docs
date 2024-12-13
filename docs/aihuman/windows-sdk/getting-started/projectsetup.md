@@ -6,7 +6,7 @@ sidebar_position: 2
 
 In this chapter, you will learn how to create and register UserKey and AppId, etc. required for authentication for using AI Human SDK.
 
-## 1. Create an account
+### 1. Create an account
 
 Create an account on the **[AI Human SDK Website](https://www.aistudios.com/aihuman/)**.
 
@@ -14,7 +14,7 @@ Create an account on the **[AI Human SDK Website](https://www.aistudios.com/aihu
 - After you log in, you can create a project in the SDK category.
 - If you are not allowed access to SDK categories after logging in, please contact our customer center.
 
-## 2. Add a project to My workspace
+### 2. Add a project to My workspace
 
 Create a project in **[My workspace](https://aihuman.aistudios.com/aihuman/sdk)**, enter App Id of Windows and click confirm. Then User Key will be issued.
 
@@ -28,7 +28,7 @@ You can authenticate the App ID and userKey prepared above with the first and se
 - userkey can be obtained by creating a project on the AIHuman website and registering the appId.
   :::
 
-## 3. Create a new project in Visual Studio.
+### 3. Create a new project in Visual Studio
 
 Create solutions and projects to use the AI Human SDK in the Visual Studio.
 
@@ -36,7 +36,7 @@ Create solutions and projects to use the AI Human SDK in the Visual Studio.
 
 #### We will use the default project name, WpfApp1.
 
-## Requirements
+### Requirements
 
 #### AIHuman.SDK.Core
 
@@ -84,7 +84,7 @@ You should refer to the below assemblies with SDK in your project or install Pac
 
 Install the above Nuget package (recommended) AIHuman.SDK.WPF (the dependent package, AIHuman.SDK.Core, is automatically installed) and you are done setting up the project here.
 
-## 4. Set up the project.
+### 4. Set up the project
 
 Prepare library files necessary for the use of AI Human SDK in the previously created project.
 
