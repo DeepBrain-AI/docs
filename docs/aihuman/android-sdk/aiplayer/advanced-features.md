@@ -39,7 +39,7 @@ if (selectedSpeech != null) {
 ```
 
 ### Monitor the gesture's event
-IAIPlayerCallback.onAIPlayerEvent(AIEvent) will be called like normal 'send' method. AIEvent's type value will be like below so that we can check out. Also we can access the AIEvent.clipset.getClipType(), getGesture(), getSpeechText(). That means we can distinguish that it is a gesture or just speaking.
+IAIPlayerCallback.onAIPlayerEvent(AIEvent) will be called like normal `send` method. AIEvent's type value will be like below so that we can check out. Also we can access the AIEvent.clipset.getClipType(), getGesture(), getSpeechText(). That means we can distinguish that it is a gesture or just speaking.
 
 - AIEvent.AICLIPSET_PLAY_PREPARE_STARTED 
 - AIEvent.AICLIPSET_PLAY_PREPARE_COMPLETED 

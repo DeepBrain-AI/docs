@@ -30,7 +30,7 @@ You can test it from the SDK demo page if you want to.
 <br/>
 
 ### 2. Monitoring of speaking behavior
-After calling the `send` method, you can check the feedback on the operation event in the registered listener. This feedback is returned by calling the event related method (`onAIPlayerEvent`) of the listener. For example, when you call 'send' method, the following events will be sent as an argument of `onAIPlayerEvent` sequencially.
+After calling the `send` method, you can check the feedback on the operation event in the registered listener. This feedback is returned by calling the event related method (`onAIPlayerEvent`) of the listener. For example, when you call `send` method, the following events will be sent as an argument of `onAIPlayerEvent` sequencially.
 
 - AIEventType.AICLIPSET_PLAY_PREPARE_STARTED
 - AIEventType.AICLIPSET_PLAY_PREPARE_COMPLETED
@@ -38,7 +38,7 @@ After calling the `send` method, you can check the feedback on the operation eve
 - AIEventType.AICLIPSET_PLAY_COMPLETED 
 - AIEventType.AICLIPSET_PLAY_FAILED //if there is a failure,
 
-If there are some errors while 'send', the `onAIPlayerErrorV2` will be called with AIError that contains which error has occured. When AICLIPSET_PLAY_ERR or AI_SERVER_ERR occur, `stopSpeak()` will be called internally which means the speech queue will be cleared.
+If there are some errors while `send`, the `onAIPlayerErrorV2` will be called with AIError that contains which error has occured. When AICLIPSET_PLAY_ERR or AI_SERVER_ERR occur, `stopSpeak()` will be called internally which means the speech queue will be cleared.
 
 ```javascript
 AI_PLAYER.onAIPlayerEvent = function (aiEvent) {

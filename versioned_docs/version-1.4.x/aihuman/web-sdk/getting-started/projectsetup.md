@@ -14,7 +14,7 @@ Include the JavaScript SDK in the web page as shown below.
 <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.4.1.min.js"></script>
 ```
 
-**2. Specify the area to contain the AIPlayer object.**
+**2. Specify the area to contain the AIPlayer object**
 
 Designate the HTML Element area to include the AIPlayer object as shown below. You can freely adjust the area where the AIPlayer will be drawn by adjusting the size or position of the area.
 

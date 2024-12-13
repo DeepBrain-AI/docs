@@ -122,7 +122,7 @@ async function requestClientToken() {
 
 **2.4. generateToken request**
 
-- After the 'requestClientToken' call is succeeded, then call AIPlayer's "generateToken" function with appId and clientToken. It responds with JSON containing information such as verifiedToken, tokenExpire, and defaultAI. The 'generateToken' call succeeds means the authication is completed. For more info, refer to [API](../apis/aiapi.md)section.
+- After the `requestClientToken` call is succeeded, then call AIPlayer's `generateToken` function with appId and clientToken. It responds with JSON containing information such as verifiedToken, tokenExpire, and defaultAI. The `generateToken` call succeeds means the authication is completed. For more info, refer to [API](../apis/aiapi.md)section.
 
 ```javascript
 // quickStart.js(Client)

@@ -27,7 +27,7 @@ aiPlayer.send(new String[]{"Nice to meet you"});
 
 ### Monitoring of speaking behavior
 
-After calling the send method, you can check the feedback on the operation event in the registered listener. This feedback is returned by calling the event related method (onAIPlayerEvent) of the listener(IAIPlayerCallback). AIEvent received as an argument of onAIPlayerEvent is called with the following event values when called 'send' method. 
+After calling the send method, you can check the feedback on the operation event in the registered listener. This feedback is returned by calling the event related method (onAIPlayerEvent) of the listener(IAIPlayerCallback). AIEvent received as an argument of onAIPlayerEvent is called with the following event values when called `send` method. 
 
 - AIEvent.AICLIPSET_PLAY_PREPARE_STARTED 
 - AIEvent.AICLIPSET_PLAY_PREPARE_COMPLETED 
@@ -37,7 +37,7 @@ After calling the send method, you can check the feedback on the operation event
 - AIEvent.AICLIPSET_RESTART_FROM_BUFFERING
 - AIEvent.AICLIPSET_PLAY_FAILED
 
-If there are some errors while 'send', the 'onAIPlayerError' will be called with AIError that contains which error has occured. When AICLIPSET_PLAY_ERR or AI_SERVER_ERR occur, 'stopSpeaking()' will be called internally which means the speech queue will be cleared. 
+If there are some errors while `send`, the 'onAIPlayerError' will be called with AIError that contains which error has occured. When AICLIPSET_PLAY_ERR or AI_SERVER_ERR occur, 'stopSpeaking()' will be called internally which means the speech queue will be cleared. 
 
 ```java
 private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {

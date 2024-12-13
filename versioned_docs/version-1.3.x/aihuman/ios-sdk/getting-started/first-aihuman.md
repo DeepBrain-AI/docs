@@ -37,7 +37,7 @@ You can add project for each platform here.
 
 When adding a project, registration is possible for each platform, and the AppID and UserKey of the platform registered at this time are required.
 
-<img src="/img/aihuman/ios/aisample_regist_001.png" />
+<img src="/img/aihuman/ios/view_project.png" />
 
 Set the appId and userKey of the registered project to the SDK.
 
