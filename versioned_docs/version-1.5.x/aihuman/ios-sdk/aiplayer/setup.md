@@ -33,7 +33,7 @@ AIPlayer.generateToken { (error) in
 }
 ```
 
-### Step 2 : Get default AI List after authentication 
+### Step 2: Get default AI List after authentication 
 
 Once authentication completes, AIPlayer object contains authentication result data. By calling getAiList(), all the available AI List will be returned. If you don't have any AI model permissions, or if you call this function before authentication, 0 is returned.
 

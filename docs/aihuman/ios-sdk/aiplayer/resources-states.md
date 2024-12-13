@@ -6,7 +6,7 @@ sidebar_position: 3
 
 Check if resource is fully loaded in AIPlayer
 
-On class creation, AIPlayer automatically starts loading resources. You can check the loading status in registered delegate property. 
+When the class is created, AIPlayer automatically starts loading resources. You can check the loading status in registered delegate property. 
 
 ### Monitor resource loading through AIPlayerCallback
 
@@ -15,7 +15,7 @@ You can check if the resource loading started and completed through the onAIPlay
 - AIState.RES_LOAD_STARTED : On loading start
 - AIState.RES_LOAD_COMPLETED : On loading complete
 
-While the resource is loading you can use onAIPlayerResLoadingProgressed method to check loading progress. 
+While the resource is loading you can monitor the loading progress using the onAIPlayerResLoadingProgressed method to check loading progress. 
 
 If an error occurs during resource load, an error is reported through onAIPlayerError method. 
 

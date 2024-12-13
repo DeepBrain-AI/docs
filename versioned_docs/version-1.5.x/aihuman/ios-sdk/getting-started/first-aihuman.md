@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Own your first AI Human
 
-n this chapter, we will quickly set up AIPlayer with the Default AI and learn about AI speaking process. When setting up AIPlayer for the first time, it may take several minutes to load depending on the network condition. You can monitor the loading progress by implementing the onAIPlayerResLoadingProgressed function of AIPlayerCallback.
+In this chapter, we will quickly set up AIPlayer with the Default AI and learn about AI speaking process. When setting up AIPlayer for the first time, it may take several minutes to load depending on the network condition. You can monitor the loading progress by implementing the onAIPlayerResLoadingProgressed function of AIPlayerCallback.
 
 :::tip
 From the sample, you can learn more from the code in the file below.
