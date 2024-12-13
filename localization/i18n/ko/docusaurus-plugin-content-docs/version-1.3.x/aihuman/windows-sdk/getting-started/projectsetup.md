@@ -13,7 +13,6 @@ sidebar_position: 2
 - 우측 상단 > Sign In > Create an account
 
 ### 2. My Workspace에 Project 추가하기
-
 **[My workspace](https://aihuman.aistudios.com//aihuman/sdk)**에서 Project를 만들고, Windows App ID 부분에 SDK를 사용하는 Windows Application 명을 입력하고 확인을 클릭합니다. 해당 App ID에서 사용할 수 있는 User Key가 발급됩니다.
 
 <img src="/img/aihuman/windows/SDK_WebPage_UserKey.png" />

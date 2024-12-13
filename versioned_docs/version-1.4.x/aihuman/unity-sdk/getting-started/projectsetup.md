@@ -61,9 +61,7 @@ Perform the import package process of the AI Human SDK.
 Users of the Unity Editor 2021.2.x version may encounter reference errors in Newtonsoft.Json.dll included in the SDK. When an error occurs, a reference error may be solved through a series of processes as follows.
 
 ##### 4.5.1. Select Window > Package Manager from the Unity Editor menu
-
 ##### 4.5.2. Select Version Control from the Package - Unity entry in the Package Manager window
-
 ##### 4.5.3. Enable Update in the lower right corner of the Package Manager window
 
 <img src="/img/aihuman/unity/Newtonsoft_Json.png" />

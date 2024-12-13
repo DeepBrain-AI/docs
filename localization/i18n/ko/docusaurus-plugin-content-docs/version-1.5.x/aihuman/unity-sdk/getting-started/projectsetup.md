@@ -103,9 +103,7 @@ AI Human SDK의 Import Package 과정을 수행합니다.
 Unity Editor 2021.2.x 버전 사용자는 SDK에 포함 된 Newtonsoft.Json.dll의 참조 에러가 발생 할 수 있습니다. 에러 발생 시 다음과 같은 일련의 과정을 통해 참조 에러를 해결 할 수 있습니다.
 
 ##### 4.6.1. Unity Editor 메뉴에서 Window > Package Manager 선택
-
 ##### 4.6.2. Package Manager창의 Packages - Unity 항목에서 Version Control 선택
-
 ##### 4.6.3. Package Manager창 오른쪽 하단의 Update 실행
 
 <img src="/img/aihuman/unity/Newtonsoft_Json.png" />
