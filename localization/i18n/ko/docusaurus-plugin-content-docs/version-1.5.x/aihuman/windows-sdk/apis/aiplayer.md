@@ -101,4 +101,4 @@ sidebar_position: 1
 
 <br/>
 
-[문의하기](https://www.deepbrain.io/company/contact)
+[문의하기](https://www.aistudios.com/company/contact)

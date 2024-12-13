@@ -102,4 +102,4 @@ Supports SDK-driven modes that can operate without network communication based o
 
 <br/>
 
-[Contact](https://www.deepbrain.io/company/contact)
+[Contact](https://www.aistudios.com/company/contact)

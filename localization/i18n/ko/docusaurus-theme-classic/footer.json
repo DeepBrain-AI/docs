@@ -25,31 +25,31 @@
   },
   "link.item.label.AI Studios": {
     "message": "AI Studios",
-    "description": "The label of footer link with label=AI Studios linking to https://www.deepbrain.io/aistudios"
+    "description": "The label of footer link with label=AI Studios linking to https://www.aistudios.com/aistudios"
   },
   "link.item.label.AI Human": {
     "message": "AI Human",
-    "description": "The label of footer link with label=AI Human linking to https://www.deepbrain.io/aihuman"
+    "description": "The label of footer link with label=AI Human linking to https://www.aistudios.com/aihuman"
   },
   "link.item.label.Financial Services": {
     "message": "Financial Services",
-    "description": "The label of footer link with label=Financial Services linking to https://www.deepbrain.io/solutions/finance"
+    "description": "The label of footer link with label=Financial Services linking to https://www.aistudios.com/solutions/finance"
   },
   "link.item.label.Retail & Commerce": {
     "message": "Retail & Commerce",
-    "description": "The label of footer link with label=Retail & Commerce linking to https://www.deepbrain.io/solutions/retail"
+    "description": "The label of footer link with label=Retail & Commerce linking to https://www.aistudios.com/solutions/retail"
   },
   "link.item.label.Education": {
     "message": "Education",
-    "description": "The label of footer link with label=Education linking to https://www.deepbrain.io/solutions/education"
+    "description": "The label of footer link with label=Education linking to https://www.aistudios.com/solutions/education"
   },
   "link.item.label.Media": {
     "message": "Media",
-    "description": "The label of footer link with label=Media linking to https://www.deepbrain.io/solutions/news"
+    "description": "The label of footer link with label=Media linking to https://www.aistudios.com/solutions/news"
   },
   "link.item.label.Pricing": {
     "message": "Pricing",
-    "description": "The label of footer link with label=Pricing linking to https://www.deepbrain.io/pricing"
+    "description": "The label of footer link with label=Pricing linking to https://www.aistudios.com/pricing"
   },
   "link.item.label.Docs": {
     "message": "Docs",
@@ -57,7 +57,7 @@
   },
   "link.item.label.Blog": {
     "message": "Blog",
-    "description": "The label of footer link with label=Blog linking to https://www.deepbrain.io/blog"
+    "description": "The label of footer link with label=Blog linking to https://www.aistudios.com/blog"
   },
   "link.item.label.Forum": {
     "message": "Forum",
@@ -69,15 +69,15 @@
   },
   "link.item.label.About": {
     "message": "About",
-    "description": "The label of footer link with label=About linking to https://www.deepbrain.io/company/about"
+    "description": "The label of footer link with label=About linking to https://www.aistudios.com/company/about"
   },
   "link.item.label.Careers": {
     "message": "Careers",
-    "description": "The label of footer link with label=Careers linking to https://www.deepbrain.io/company/careers"
+    "description": "The label of footer link with label=Careers linking to https://www.aistudios.com/company/careers"
   },
   "link.item.label.Contact": {
     "message": "Contact",
-    "description": "The label of footer link with label=Contact linking to https://www.deepbrain.io/company/contact"
+    "description": "The label of footer link with label=Contact linking to https://www.aistudios.com/company/contact"
   },
   "link.item.label.LinkedIn": {
     "message": "LinkedIn",

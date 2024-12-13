@@ -7,10 +7,10 @@ sidebar_position: 2
 AI Human SDK를 이용해 인증에 필요한 UserKey, AppId 등을 생성하고 등록하는 방법에 대해 알아봅니다.
 
 ## 1. 사이트 진입하기
-**[AI Human 웹사이트](https://www.deepbrain.io/aihuman)**에서 계정을 생성하고 로그인 합니다.
+**[AI Human 웹사이트](https://www.aistudios.com/aihuman)**에서 계정을 생성하고 로그인 합니다.
 - 우측 상단 > Login(Sign In) > Create account  
 - 로그인 이후에 [SDK](https://aihuman.deepbrain.io/aihuman/sdk) 카테고리에서 프로젝트를 생성할 수 있습니다.
-- [SDK](https://aihuman.deepbrain.io/aihuman/sdk) 카테고리 접근이 불가하다면 [고객센터](https://www.deepbrain.io/ko/company/contact)로 문의해 주세요.
+- [SDK](https://aihuman.deepbrain.io/aihuman/sdk) 카테고리 접근이 불가하다면 [고객센터](https://www.aistudios.com/ko/company/contact)로 문의해 주세요.
 
 ## 2. My Workspace에 Project 추가하기
 **[My workspace](https://aihuman.deepbrain.io/aihuman/sdk)** 에서 Project를 만들고, 플랫폼(Android, iOS, Windows)의 App Id를 입력하고 확인을 클릭합니다. (이때 App ID는 자동으로 중복체크를 수행합니다.)

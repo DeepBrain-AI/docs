@@ -7,7 +7,7 @@ sidebar_position: 2
 In this chapter, you will learn how to create and register UserKey and AppId, etc. required for authentication for using AI Human SDK.
 
 ## 1. Create an account
-Create an account on the **[AI Human SDK Website](https://www.deepbrain.io/aihuman/)**.
+Create an account on the **[AI Human SDK Website](https://www.aistudios.com/aihuman/)**.
 - Top right > Login(Sign In) > Create account
 - After you log in, you can create a project in the SDK category.
 - If you are not allowed access to SDK categories after logging in, please contact our customer center.
