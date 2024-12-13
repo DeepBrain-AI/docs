@@ -42,7 +42,7 @@ sidebar_position: 1
 | `string`                             | `AILanguageCode { get; }` Get the AI's language code.                        |
 | `AIHuman.Interface.AIPlayerState`    | `State { get; }` Get the current state of the AIPlayer.                 |
 | `bool`                               | `IsConnected { get; }` Get the network connection with the AI.       |
-| `string`                             | `Reconncet(int attempts = 5, int delay = 3000, Action<bool> callback = null)` Attempt to reconnect with AI. callback can be invoked using optional parameters.       |
+| `string`                             | `Reconnect(int attempts = 5, int delay = 3000, Action<bool> callback = null)` Attempt to reconnect with AI. callback can be invoked using optional parameters.       |
 | `void`                               | `Disconnect(Action<bool> callback = null)` Disconnect network connection with AI, callback can be invoked using optional parameters.    |
 | `void`                               | `Dispose()` Called when destroying AIPlayer.                 |
 

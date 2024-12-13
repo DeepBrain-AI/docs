@@ -34,7 +34,7 @@ After the Send method is called, you can listen to the operation status feedback
 ```csharp
 string message;
 
-// Speaking related CallBack example
+// Speaking related Callback example
 public void OnAIPlayerEvent(AIEvnet aiEvent)
 {
     switch (aiEvent.EventType)
@@ -57,7 +57,7 @@ public void OnAIPlayerEvent(AIEvnet aiEvent)
     }
 }
 
-// AI error CallBack example
+// AI error Callback example
 public void OnAIPlayerError(AIError error)
 {
     switch (error.ErrorCode)

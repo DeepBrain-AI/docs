@@ -57,7 +57,7 @@ namespace WpfApp1
             AIAPI.Instance.Authenticate(APPID, USERKEY, (aiLIst, error) => {
                 if (error == null && aiLIst != null)
                 {
-                    Log.Write($"Authenticate Completed, Avaliable Count: {aiLIst.ai.Length}", Log.Level.Info);
+                    Log.Write($"Authenticate Completed, Available Count: {aiLIst.ai.Length}", Log.Level.Info);
                 }
                 else
                 {

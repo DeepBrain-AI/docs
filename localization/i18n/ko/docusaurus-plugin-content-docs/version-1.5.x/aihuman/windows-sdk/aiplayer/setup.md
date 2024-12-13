@@ -70,7 +70,7 @@ public object AIPlayerObject
 
 ## 3단계. 인증 이후 사용가능한 AI 획득하기
 
-`AIHuam.AIAPI.Instance.Authenticate` 함수의 매개변수에 준비한 정보들을 입력하고 콜백 함수를 구현합니다. 인증에 성공하면 사용할 수 있는 AI 목록을 리턴합니다. 사용할 수 있는 AI가 없으면 aiList는 null이 반환됩니다.
+`AIHuman.AIAPI.Instance.Authenticate` 함수의 매개변수에 준비한 정보들을 입력하고 콜백 함수를 구현합니다. 인증에 성공하면 사용할 수 있는 AI 목록을 리턴합니다. 사용할 수 있는 AI가 없으면 aiList는 null이 반환됩니다.
 
 ```csharp
 public ObservableCollection<AIAPI.AI> AIs { get; private set; }
@@ -81,7 +81,7 @@ AIAPI.Instance.Authenticate("APPID", "USERKEY", (aiList, error) => {
     string message = string.Empty;
     if (error == null)
     {
-        message = $"Auth Complete, Avaliable Count : {aiList.ai.Length}";
+        message = $"Auth Complete, Available Count : {aiList.ai.Length}";
 
         /* e.g.)
         "ai":[{"aiName":"vida","aiDisplayName":"Vida","language":"en", ...},
@@ -123,7 +123,7 @@ AIAPI.Instance.GetAIList((aiList, error) => {
     string message = string.Empty;
     if (error == null)
     {
-        message = $"Auth Complete, Avaliable Count : {aiList.ai.Length}";
+        message = $"Auth Complete, Available Count : {aiList.ai.Length}";
 
         AIs = new ObservableCollection<AIAPI.AI>();
         foreach (AIAPI.AI item in aiList.ai)

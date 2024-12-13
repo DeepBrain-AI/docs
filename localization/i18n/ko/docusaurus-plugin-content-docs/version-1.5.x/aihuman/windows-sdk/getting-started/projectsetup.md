@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # 프로젝트 셋업하기
 
-이번 장에서는 AI Human SDK 구동의 인증 절차에 필요한 App ID, User Key 등을 생성하고 설정하는 방법에 대해 알아봅니다.
+이번 장에서는 AI Human SDK 구동의 인증 절차에 필요한 App ID, userKey 등을 생성하고 설정하는 방법에 대해 알아봅니다.
 
 ## 1. 사이트 진입하기
 **[AI Human 웹사이트](https://www.aistudios.com/aihuman/)**에서 계정을 생성하고 로그인 합니다.

@@ -30,4 +30,4 @@ namespace AIHuman.Media
 | `string`                             | `AIGender { get; }` AI의 성별을 가져옵니다.                        |
 | `string`                             | `AILanguageCode { get; }` AI가 현재 구사하는 언어 코드를 가져옵니다.         |
 | `AIHuman.Interface.AIPlayerState`    | `State { get; }` AIPlayer의 현재 상태를 가져옵니다.                 |
-| `string`                             | `Reconncet(Action<bool> callback)` AI와 재연결을 시도합니다. 콜백을 통해 재연결 결과를 알 수 있습니다.           |
+| `string`                             | `Reconnect(Action<bool> callback)` AI와 재연결을 시도합니다. 콜백을 통해 재연결 결과를 알 수 있습니다.           |

@@ -15,7 +15,7 @@ AI Human Demo is a page where you can try out various functionalities of AIPlaye
 
 <img src="/img/aihuman/windows/sampledemo_1.4.x.png" />
 
-**First, get a list of available AIs and set up the UI. The Constants.appid, userKey, uuid, and targetPlatform below are parameters entered when calling AuthStart in HomeView.**
+**First, get a list of available AIs and set up the UI. The Constants.appId, userKey, uuid, and targetPlatform below are parameters entered when calling AuthStart in HomeView.**
 
 ```csharp
 // AIPlayer's member variable
@@ -200,7 +200,7 @@ public interface IAIPlayerCallback
 }
 ```
 
-Through OnAIPlayerEvent implementation, you can receive CallBack of AI Event shown below.
+Through OnAIPlayerEvent implementation, you can receive Callback of AI Event shown below.
 
 :::info AIEvent.Type
 

@@ -7,39 +7,46 @@ sidebar_position: 2
 In this chapter, you will learn how to create and register UserKey and AppId, etc. required for authentication for using AI Human SDK.
 
 ## 1. Create an account
+
 Create an account on the **[AI Human SDK Website](https://www.aistudios.com/aihuman/)**.
+
 - Top right > Login(Sign In) > Create account
 - After you log in, you can create a project in the SDK category.
 - If you are not allowed access to SDK categories after logging in, please contact our customer center.
 
 ## 2. Add a project to My workspace
+
 Create a project in **[My workspace](https://aihuman.aistudios.com/aihuman/sdk)**, enter App Id of Windows and click confirm. Then User Key will be issued.
 
 <img src="/img/aihuman/windows/SDK_WebPage_UserKey.png" />
 
-You can authenticate the App ID and User Key prepared above with the first and second parameters of the Authenticate function. You can get the results through the callback of the third parameter.
+You can authenticate the App ID and userKey prepared above with the first and second parameters of the Authenticate function. You can get the results through the callback of the third parameter.
 
 :::info
+
 - appId is a unique Id of the project, and is generally created like "dev.aihuman.yourappname".
 - userkey can be obtained by creating a project on the AIHuman website and registering the appId.
-:::
+  :::
 
 ## 3. Create a new project in Visual Studio.
 
 Create solutions and projects to use the AI Human SDK in the Visual Studio.
 
-#### 	: Create New Project > WPF Application > Target Framework > .NET 6.0 (or .NET Framework 4.6.2 or later WPF support target)
-####		We will use the default project name, WpfApp1.
+#### : Create New Project > WPF Application > Target Framework > .NET 6.0 (or .NET Framework 4.6.2 or later WPF support target)
+
+#### We will use the default project name, WpfApp1.
 
 ## Requirements
 
 #### AIHuman.SDK.Core
+
 - [.NET Standard 2.0](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0) or higher
 
 #### AIHuman.SDK.WPF
+
 - Supported Framework
-  + [.NET Framework 4.6.2](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net462) or higher
-  + [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) or higher
+  - [.NET Framework 4.6.2](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net462) or higher
+  - [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) or higher
 
 <img src="/img/aihuman/windows/projectsetup_frameworks_1.5.x.png" />
 
@@ -48,9 +55,10 @@ To develop or run an application using AIHuman.SDK.WPF.dll, you must install .NE
 You can also use AIHuman.SDK.Core.dll only. You can use AIHuman.SDK.Core.dll to develop a target framework or UI other than WPF in an environment that supports .NET Standard 2.0. In this case, you need to implement View (such as UserControl) yourself. This can increase the difficulty of development.
 
 :::info
+
 - Case of developing WPF as target: AIHuman.SDK.Core and AIHuman.SDK.WPF reference required
 - In an environment that supports .NET Standard 2.0, other UI Frameworks are used: Implement View after referring to AIHuman.SDK.Core only
-:::
+  :::
 
 ### Library Dependencies Guide
 
@@ -59,7 +67,7 @@ You should refer to the below assemblies with SDK in your project or install Pac
 #### Nuget Packages (Recommended)
 
 - [AIHuman.SDK.WPF](https://www.nuget.org/packages/AIHuman.SDK.WPF)
-  + Dependencies: [AIHuman.SDK.Core](https://www.nuget.org/packages/AIHuman.SDK.Core/)
+  - Dependencies: [AIHuman.SDK.Core](https://www.nuget.org/packages/AIHuman.SDK.Core/)
 
 #### Assemblies
 

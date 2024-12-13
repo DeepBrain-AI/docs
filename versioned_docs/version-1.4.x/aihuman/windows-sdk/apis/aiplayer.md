@@ -31,5 +31,5 @@ namespace AIHuman.Media
 | `string`                             | `AIGender { get; }` Get the AI's gender.                        |
 | `string`                             | `AILanguageCode { get; }` Get the AI's language code.                        |
 | `AIHuman.Interface.AIPlayerState`    | `State { get; }` Get the current state of the AIPlayer.                 |
-| `string`                             | `Reconncet(Action<bool> callback)` Attempt to reconnect with AI. Callback lets you know the result of the reconnection.         |
+| `string`                             | `Reconnect(Action<bool> callback)` Attempt to reconnect with AI. Callback lets you know the result of the reconnection.         |
 | `void`                               | `Dispose()` Called when destroying AIPlayer.                 |

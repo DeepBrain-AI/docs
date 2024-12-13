@@ -50,7 +50,7 @@ sidebar_position: 3
 
 ```csharp
 string message;
-// AI resource related event CallBack
+// AI resource related event Callback
 public void OnAIPlayerEvent(AIEvent aiEvent)
 {
     switch (aiEvent.EventType)
@@ -67,14 +67,14 @@ public void OnAIPlayerEvent(AIEvent aiEvent)
     }
 }
 
-// AI resource loading progress CallBack
+// AI resource loading progress Callback
 public void OnAIPlayerResLoadingProgressed(int current, int total)
 {
     float progress = ((float) current / (float) total) * 100;
     message = $"AI Resource Loading... {progress}%";
 }
 
-// AI error CallBack
+// AI error Callback
 public void OnAIPlayerError(AIError error)
 {
     switch (error.ErrorCode)

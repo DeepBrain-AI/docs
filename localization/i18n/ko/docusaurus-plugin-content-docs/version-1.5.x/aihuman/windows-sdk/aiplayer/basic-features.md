@@ -55,7 +55,7 @@ _aiPlayer.Send(new[] {clip});
 ```csharp
 string message;
 
-// Speaking related CallBack example
+// Speaking related Callback example
 public void OnAIPlayerEvent(AIEvnet aiEvent)
 {
     switch (aiEvent.EventType)
@@ -78,7 +78,7 @@ public void OnAIPlayerEvent(AIEvnet aiEvent)
     }
 }
 
-// AI error CallBack example
+// AI error Callback example
 public void OnAIPlayerError(AIError aiError)
 {
     switch (aiError.ErrorCode)
