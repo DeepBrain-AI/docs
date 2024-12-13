@@ -6,9 +6,9 @@ sidebar_position: 5
 
 ### 1. Gesture
 
-As briefly mentioned before, speech may be performed using AIClipSet(json). AIClipSet refers to one utterance unit. The types of speech are basic speech, gesture speech including gesture and speech, and gestures that perform only certain actions. 
+As briefly mentioned before, speech may be performed using AIClipSet(json). AIClipSet refers to one utterance unit. The types of speech are basic speech, gesture speech including gesture and speech, and gestures that perform only certain actions.
 
-The available gestures differs according to AI model, and the list of available gestures can be obtained using the getGestures() function of AIPlayer.
+The available gestures differ according to AI model, and the list of available gestures can be obtained using the getGestures() function of AIPlayer.
 
 The followings are ClipTypes.
 
@@ -22,7 +22,7 @@ The screenshot below shows AI Model Jonathan opening his hands according to "two
 
 <br/>
 
-You can create AIClipset with gesture like below. Only the gesture will play if the gesture is set without speech text. 
+You can create AIClipset with gesture like below. Only the gesture will play if the gesture is set without speech text.
 
 ```javascript
 function sendText() {
@@ -36,7 +36,7 @@ function sendText() {
 		   "enableSpeech": false
         }] */
   const AIClipSet = { text: "nice to meet you.", gst: gestures[0].gst }; //hi
-  AI_PLAYER.send(AIClipSet)
+  AI_PLAYER.send(AIClipSet);
 }
 ```
 
@@ -78,7 +78,7 @@ const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 const isSuccess = AI_PLAYER.setCustomVoice(customVoice);
 ```
 
-Instead of using CustomVoice instance directly, you can set CustomVoice with language and gender. In this case, the first customVoice of the filtered list is set. 
+Instead of using CustomVoice instance directly, you can set CustomVoice with language and gender. In this case, the first customVoice of the filtered list is set.
 
 ```javascript
 const isSuccess = AI_PLAYER.setCustomVoiceForLanguage(language, gender);
@@ -99,7 +99,7 @@ const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 const AIClipSet = { text: "Nice to meet you", gst: "hi", voice: customVoice };
 
 AI_PLAYER.send(AIClipSet);
-``` 
+```
 
 <br/>
 
@@ -114,7 +114,6 @@ AI_PLAYER.send(["Nice to meet you", "How are you?"]);
 // Case2. Multi Gesture Speak and just speak
 AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
-
 
 ### 4. Preload
 
@@ -142,48 +141,50 @@ The preload function can be utilized when there is a need to cache. When AI has 
 
 ```javascript
 AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
-    // TODO: event handling 
+  // TODO: event handling
 
-    //example
-    switch (aiEvent.type) {
-      case AIEventType.AICLIPSET_PRELOAD_STARTED:
-        console.log("AI AICLIPSET_PRELOAD_STARTED: ", aiEvent);
-        break;
-      case AIEventType.AICLIPSET_PRELOAD_COMPLETED:
-        console.log("AI AICLIPSET_PRELOAD_STARTED: ", aiEvent);
-        break;
-      case AIEventType.AICLIPSET_PRELOAD_FAILED:
-        console.log("AI AICLIPSET_PRELOAD_FAILED: ", aiEvent);
-        break;
-      //...
-      }
-  };
+  //example
+  switch (aiEvent.type) {
+    case AIEventType.AICLIPSET_PRELOAD_STARTED:
+      console.log("AI AICLIPSET_PRELOAD_STARTED: ", aiEvent);
+      break;
+    case AIEventType.AICLIPSET_PRELOAD_COMPLETED:
+      console.log("AI AICLIPSET_PRELOAD_STARTED: ", aiEvent);
+      break;
+    case AIEventType.AICLIPSET_PRELOAD_FAILED:
+      console.log("AI AICLIPSET_PRELOAD_FAILED: ", aiEvent);
+      break;
+    //...
+  }
+};
 ```
 
 ### 6. Try reconnect
 
-Reconnect might be used when network is not connected. When the network is not available, the AI_DISCONNECTED event will be fired and SDK try reconnect one time internally. You can call reconnect as you need and the result will be returned the registered callback.
+Reconnect might be used when the network is not connected. When the network is not available, the AI_DISCONNECTED event will be fired and SDK will try reconnect one time internally. You can call reconnect as you need and the result will be returned the registered callback.
 
 ```javascript
 AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
-    // TODO: event handling 
+  // TODO: event handling
 
-    //example
-    switch (aiEvent.type) {
-      case AIEventType.AI_DISCONNECTED:
-        console.log("AI AI_DISCONNECTED: ", aiEvent);
-        //reconnect if you want 
-        callback = (isSuccess) => { /*...*/} 
-        AI_PLAYER.reconnect(callback)
-        break;
-      //...
-      }
-  };
+  //example
+  switch (aiEvent.type) {
+    case AIEventType.AI_DISCONNECTED:
+      console.log("AI AI_DISCONNECTED: ", aiEvent);
+      //reconnect if you want
+      callback = (isSuccess) => {
+        /*...*/
+      };
+      AI_PLAYER.reconnect(callback);
+      break;
+    //...
+  }
+};
 ```
 
 ### 7. Check before send, 'isConnected'
 
-Check if AI is connected. You can send if it is true. 
+Check if AI is connected. You can send if it is true.
 
 ```javascript
 const isConnected = AI_PLAYER.isConnected();
@@ -194,7 +195,7 @@ const isConnected = AI_PLAYER.isConnected();
 Check if it is able to preload now. You can preload if it is true.
 
 ```javascript
-const canPreload = AI_PLAYER.canPreload(callback = () => { });
+const canPreload = AI_PLAYER.canPreload((callback = () => {}));
 ```
 
 ### 9. Adjust AI Speech Rate

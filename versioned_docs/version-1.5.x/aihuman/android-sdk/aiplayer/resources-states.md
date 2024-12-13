@@ -10,20 +10,20 @@ If init(config, listener) is called after AIPlayer instance creation, resource l
 
 ## Monitor the player's resource loading status with IAIPlayerCallback
 
-After calling the 'init' method, the listener's onAIPlayerEvent(AIEvent event) method will be called with AIEvent. The AIEvent.type indicated which event are occured(Check below list). You can also implement loading progress with onAIPlayerResLoadingProgressed(int current, int total) while loading.
+After calling the 'init' method, the listener's onAIPlayerEvent(AIEvent event) method will be called with AIEvent. The AIEvent.type indicated which event are occurred(Check below list). You can also implement loading progress with onAIPlayerResLoadingProgressed(int current, int total) while loading.
 
 - AIEvent.AIPLAYER_STATE_CHANGED : when AIPlayer's state changed. (Check AIPlayerState and getState() method)
 - AIEvent.RES_LOAD_STARTED : when loading starts
-- AIEvent.AI_CONNECTED : when ai is connected and able to send or preload AIClipSet to speak.
-- AIEvent.AI_DISCONNECTED : when ai is disconnected from the system and not able to send or preload
-- AIEvent.RES_LOAD_COMPLETED : when loading and setup finished and every thing is ready.
+- AIEvent.AI_CONNECTED : when AI is connected and able to send or preload AIClipSet to speak.
+- AIEvent.AI_DISCONNECTED : when AI is disconnected from the system and unable to send or preload
+- AIEvent.RES_LOAD_COMPLETED : when loading and setup finished and everything is ready.
 
 If there is any problem during this process, the onAIPlayerError(AIError error) method is called. For example, the expiration of the authentication token could be an example. An appropriate action is required depending on the situation. The AIError.code values can be categorized by range. Check the sample code below.
 
-- AIError.AI_INIT_ERR : Error while initializing an AI. 
+- AIError.AI_INIT_ERR : Error while initializing an AI.
 - AIError.AI_API_ERR : Error in API part receiving information such as authentication process.
 - AIError.AI_RES_ERR : Error while downloading resource for AI.
-  
+
   **Ex) 1402 error (value token expired): Token refresh required -> Recall AIModelInfoManager.generateToken method**
 
 ```java

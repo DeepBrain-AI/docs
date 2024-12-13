@@ -88,7 +88,7 @@ pod install
 
 <img src="/img/aihuman/ios/aisample_disable_bitcode.png" /> <br/>
 
-.xcworkspace 파일을 실행한 후 **build setting**에서 **Enble Bitcode**를 사용하지 않음으로 설정합니다.
+.xcworkspace 파일을 실행한 후 **build setting**에서 **Enable Bitcode**를 사용하지 않음으로 설정합니다.
 
 <br/>
 

@@ -10,7 +10,7 @@ sidebar_position: 6
 
 :::
 
-3D Character is implemented in AI Human. Basically, it provides the same UI with AIPlayerDemo's and you can test it. This activity should use different than default process. (Check out the AndroidManifest.xml's activity process settings.)
+3D Character is implemented in AI Human. Basically, it provides the same UI with AIPlayerDemo and you can test it. This activity should use a process different from the default. (Check out the AndroidManifest.xml's activity process settings.)
 
 You can change to other 3d models and it can speak with gestures.
 
@@ -25,7 +25,7 @@ To use 3D character, the activity should extends UnityPlayerActivity and should 
 
 ```java
 public class UnityActivity extends UnityPlayerActivity implements IUnityPlayerCallback {
-  
+
     @Override
     public void UnityToAndroid(String param) {
       Log.d(TAG, "param:" + param);
@@ -34,10 +34,7 @@ public class UnityActivity extends UnityPlayerActivity implements IUnityPlayerCa
 }
 ```
 
-
-
-
-**Next, to setup UnityPlayerActivity, we need to set currentActivity, mUnityPlayer on ' onCreate(...)'.** On 'createAI3DPlayer()', the  mAI3DPlayer is instanciated and it is 3D character loadable Player which extends from UnityPlayer and we can make the character speak using it.
+**Next, to setup UnityPlayerActivity, we need to set currentActivity, mUnityPlayer on ' onCreate(...)'.** On 'createAI3DPlayer()', the mAI3DPlayer is instantiated and it is 3D character loadable Player which extends from UnityPlayer and we can make the character speak using it.
 
 ```java
 private AI3DPlayer mAI3DPlayer;
@@ -71,7 +68,7 @@ private void createAI3DPlayer() {
 }
 ```
 
-After receiving the usable AI list, we set up the UI. (Only 3D characters for this time).  **UnityPlayerActivity needs its own process. So, call AIModelInfoManager.generateToken() first to get the data correctly.** 
+After receiving the usable AI list, we set up the UI. (Only 3D characters for this time). **UnityPlayerActivity needs its own process. So, call AIModelInfoManager.generateToken() first to get the data correctly.**
 
 ```java
 private void initThis() {
@@ -92,8 +89,6 @@ private void initThis() {
     });
 }
 ```
-
-
 
 **changing current AI.**
 
@@ -133,8 +128,7 @@ binding.aiSelectSpinner.setAdapter(new ArrayAdapter<>(UnityActivity.this,
         });
 ```
 
-
-The speak, pausePlay, resumePlay, stopSpeaking examples are below. **The 'preload' method does not work for 3D character.**
+Examples for speak, pausePlay, resumePlay, and stopSpeaking are shown below. **The 'preload' method does not work for 3D character.**
 
 ```java
 private void setUpUIWithAIPlayer() {
@@ -176,9 +170,7 @@ private void setUpUIWithAIPlayer() {
 }
 ```
 
-
-
-**AI's callback.** 
+**AI's callback.**
 
 ```java
 private final IAIPlayerCallback iAiPlayerCallback = new IAIPlayerCallback() {

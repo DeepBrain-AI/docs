@@ -10,7 +10,7 @@ After AIPlayer resource is loaded, call **Send method**. In AI Human SDK Demo, t
 
 In general, speech can be performed using pure text, but speech can also be performed using [AIHuman.Model.AIClipSet](/aihuman/unity-sdk/apis/aiclipset). Also, speech can be performed along with a specific gesture. For example, you could instruct the AI to say hello by waving his hand. This is called gesture speech. Details are explained in [Gesture speech related parts](/aihuman/unity-sdk/aiplayer/advanced-features#gestures).
 
-If the text to speak is too long, it may not be possible to synthesize the resources required for the utterance. There are some models that can synthesize long sentences. Although it varies from ai to ai, it is generally recommended that sentences be cut to an appropriate length in Korean, usually within 30 to 40 characters, and at a similar level in English. In addition, if special characters, lists of incomplete characters, numbers, formulas, symbols, characters or abbreviations in other languages are included, they may or may not be uttered differently than expected.
+If the text to speak is too long, it may not be possible to synthesize the resources required for the utterance. There are some models that can synthesize long sentences. Although it varies from AI to AI, it is generally recommended that sentences be cut to an appropriate length in Korean, usually within 30 to 40 characters, and at a similar level in English. In addition, if special characters, lists of incomplete characters, numbers, formulas, symbols, characters or abbreviations in other languages are included, they may or may not be uttered differently than expected.
 
 ```csharp
 // using pure-text
@@ -24,7 +24,7 @@ _aiPlayer.Send(new[] {clip});
 
 After the Send method is called, you can listen to the operation event feedback in the registered listener. This feedback is returned by calling the method (OnAIPlayerEvent) of the listener(AIPlayerCallback). OnAIPlayerEvent sequentially returns the following AIEvent values.
 
-- AICLIPSET_PLAY_PREPARE_STARTED 
+- AICLIPSET_PLAY_PREPARE_STARTED
 - AICLIPSET_PLAY_PREPARE_COMPLETED
 - AICLIPSET_PLAY_STARTED
 - AICLIPSET_PLAY_COMPLETED
@@ -36,7 +36,7 @@ public void OnAIPlayerEvent(AIEvent @event)
     if (@event.EventType == AIEvent.Type.AICLIPSET_PLAY_PREPARE_STARTED)
     {
         _statusText.text = "AI started preparation to speak.";
-    } 
+    }
     else if (@event.EventType == AIEvent.Type.AICLIPSET_PLAY_PREPARE_COMPLETED)
     {
         _statusText.text = "AI finished preparation to speak.";
@@ -52,7 +52,7 @@ public void OnAIPlayerEvent(AIEvent @event)
 }
 
 // AI error Callback example
-public void OnAIPlayerError(AIError error) 
+public void OnAIPlayerError(AIError error)
 {
     if (error.ErrorCode == (int)AIError.Code.AI_API_ERR)
     {
@@ -68,6 +68,7 @@ public void OnAIPlayerError(AIError error)
     }
 }
 ```
+
 <br/>
 
 The following are actions that can be performed while the AIPlayer is Speaking.
@@ -75,6 +76,7 @@ The following are actions that can be performed while the AIPlayer is Speaking.
 ### Pause Speaking
 
 : Pause speaking.
+
 ```csharp
 // pause method
 _aiPlayer.Pause()
@@ -83,6 +85,7 @@ _aiPlayer.Pause()
 ### Resume Speaking
 
 : Resume speaking. (resume from pause)
+
 ```csharp
 // resume method
 _aiPlayer.Resume()
@@ -91,6 +94,7 @@ _aiPlayer.Resume()
 ### Stop Speaking
 
 : Stop speaking and reset all data. (cannot resume)
+
 ```csharp
 // stop method
 _aiPlayer.StopSpeaking()
