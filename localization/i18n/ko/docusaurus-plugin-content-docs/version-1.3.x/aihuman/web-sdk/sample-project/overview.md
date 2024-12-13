@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## Demo web page
 
-본 문서에서 다루는 샘플은 AI Human SDK를 사용한 예시로, DEMO 버튼[(Link)](https://aihuman.deepbrain.io/webdemo/demo1.html)을 누르면 웹페이지의 우측 상단에 아래와 같은 메뉴가 나타납니다.
+본 문서에서 다루는 샘플은 AI Human SDK를 사용한 예시로, DEMO 버튼[(Link)](https://aihuman.aistudios.com/webdemo/demo1.html)을 누르면 웹페이지의 우측 상단에 아래와 같은 메뉴가 나타납니다.
 
 <img src="/img/aihuman/web/demo_btn.png" />
 
@@ -40,7 +40,7 @@ sidebar_position: 1
 
 ### 실행방법
 
-샘플 프로젝트 코드 환경은 node-express와 nextjs로 두 가지를 제공한다. SDK-Project[(링크)](https://aihuman.deepbrain.io/aihuman/sdk)를 접속 후, 하단에서 아래의 `Sample` 버튼을 클릭하면 sample 프로젝트를 다운 받을 수 있습니다.
+샘플 프로젝트 코드 환경은 node-express와 nextjs로 두 가지를 제공한다. SDK-Project[(링크)](https://aihuman.aistudios.com/aihuman/sdk)를 접속 후, 하단에서 아래의 `Sample` 버튼을 클릭하면 sample 프로젝트를 다운 받을 수 있습니다.
 
 <img src="/img/aihuman/web/sdk_sample1.png" />
 

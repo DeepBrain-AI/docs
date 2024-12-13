@@ -30,7 +30,7 @@ const AI_PLAYER = new AIPlayer(wrapper);
 
 **2.1. Enter appId and get userKey from SDK website**
 
-- Create a project in [SDK website](https://aihuman.deepbrain.io/)
+- Create a project in [SDK website](https://aihuman.aistudios.com/)
 - Enter the appId for the web appId(recommend unique appId such as your web service’s domain). Then userkey will be issued. 
 
 <img src="/img/aihuman/web/project.png" />

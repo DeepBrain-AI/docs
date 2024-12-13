@@ -57,7 +57,7 @@ public class AILiveQuickStart extends AppCompatActivity {
 
 ## 4. The next step is to authenticate the SDK user.
 
-**Create a project in [SDK Website](https://aihuman.deepbrain.io), enter appId of Android and click confirm. Then userkey will be issued.**
+**Create a project in [SDK Website](https://aihuman.aistudios.com), enter appId of Android and click confirm. Then userkey will be issued.**
 
 <img src="/img/aihuman/android/screenshot_quickstart_sdkwebsite.png"/>
 

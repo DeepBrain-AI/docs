@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## Demo web page
 
-The demo web page allows you to experience the AI Human Web SDK(js)'s features. You can check out the page here[(Link)](https://aihuman.deepbrain.io/webdemo/demo1.html). On the page, the following menu appears at the top right. Check out the Demo page to look around the SDK's features.
+The demo web page allows you to experience the AI Human Web SDK(js)'s features. You can check out the page here[(Link)](https://aihuman.aistudios.com/webdemo/demo1.html). On the page, the following menu appears at the top right. Check out the Demo page to look around the SDK's features.
 
 <img src="/img/aihuman/web/demo_btn.png" />
 
@@ -20,7 +20,7 @@ The demo web page allows you to experience the AI Human Web SDK(js)'s features. 
 
 The sample provided on the SDK site is an example of the SDK, which demonstrates its functions. Through this, you can check out how the SDK actually works. 
 
-You can download it from here[(link)](https://aihuman.deepbrain.io/aihuman/sdk).
+You can download it from here[(link)](https://aihuman.aistudios.com/aihuman/sdk).
 
 <img src="/img/aihuman/web/sdk_sample1.png" />
 

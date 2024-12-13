@@ -59,7 +59,7 @@ public class AILiveQuickStart extends AppCompatActivity {
 ## 4. SDK 인증하기
 SDK 사이트에서 Android sample 및 SDK를 다운로드 받아 참조할수 있습니다.
 
-**[SDK Website](https://aihuman.deepbrain.io)에서 프로젝트를 생성하고, 안드로이드의 appId를 입력하고 confirm을 클릭 > 맨 하단에 확인 클릭 > 다시 들어가보면 userkey가 발급되어 있습니다.**
+**[SDK Website](https://aihuman.aistudios.com)에서 프로젝트를 생성하고, 안드로이드의 appId를 입력하고 confirm을 클릭 > 맨 하단에 확인 클릭 > 다시 들어가보면 userkey가 발급되어 있습니다.**
 
 <img src="/img/aihuman/android/screenshot_quickstart_sdkwebsite.png"/>
 

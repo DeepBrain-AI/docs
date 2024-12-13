@@ -11,7 +11,7 @@ sidebar_position: 2
 
 <img src="/img/aihuman/android/screenshot_projectsetup_1.png"/>
 
-**[SDK 웹사이트](https://aihuman.deepbrain.io)에서 Android sample 및 SDK를 다운로드 받아 참조하세요.** 
+**[SDK 웹사이트](https://aihuman.aistudios.com)에서 Android sample 및 SDK를 다운로드 받아 참조하세요.** 
 아래는 샘플의 환경 설정입니다. 
 
 - 프로젝트 레벨 build.gradle을 설정(탑메뉴 File > Project structure)합니다. 

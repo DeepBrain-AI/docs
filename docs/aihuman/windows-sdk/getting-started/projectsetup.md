@@ -13,7 +13,7 @@ Create an account on the **[AI Human SDK Website](https://www.aistudios.com/aihu
 - If you are not allowed access to SDK categories after logging in, please contact our customer center.
 
 ## 2. Add a project to My workspace
-Create a project in **[My workspace](https://aihuman.deepbrain.io/aihuman/sdk)**, enter App Id of Windows and click confirm. Then User Key will be issued.
+Create a project in **[My workspace](https://aihuman.aistudios.com/aihuman/sdk)**, enter App Id of Windows and click confirm. Then User Key will be issued.
 
 <img src="/img/aihuman/windows/SDK_WebPage_UserKey.png" />
 

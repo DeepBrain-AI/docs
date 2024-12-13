@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## Demo web page
 
-The demo web page is a web page that allows you to experience functions using the Web(js) AI Human SDK, and when you press the DEMO button[(Link)](https://aihuman.deepbrain.io/webdemo/demo1.html), the following menu appears at the top right of the web page.
+The demo web page is a web page that allows you to experience functions using the Web(js) AI Human SDK, and when you press the DEMO button[(Link)](https://aihuman.aistudios.com/webdemo/demo1.html), the following menu appears at the top right of the web page.
 
 <img src="/img/aihuman/web/demo_btn.png" />
 
@@ -40,7 +40,7 @@ The sample covered in this document is an example using the AI Human SDK, which 
 
 ### How to Run
 
-The sample project environment provides two types: node-express and nextjs. After accessing SDK-Project[(link)](https://aihuman.deepbrain.io/aihuman/sdk), you can download the sample project by clicking the 'Sample' button below.
+The sample project environment provides two types: node-express and nextjs. After accessing SDK-Project[(link)](https://aihuman.aistudios.com/aihuman/sdk), you can download the sample project by clicking the 'Sample' button below.
 
 <img src="/img/aihuman/web/sdk_sample1.png" />
 

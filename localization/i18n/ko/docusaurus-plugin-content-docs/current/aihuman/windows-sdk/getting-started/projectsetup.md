@@ -9,11 +9,11 @@ sidebar_position: 2
 ## 1. 사이트 진입하기
 **[AI Human 웹사이트](https://www.aistudios.com/aihuman/)**에서 계정을 생성하고 로그인 합니다.
 - 우측 상단 > Login(Sign In) > Create account  
-- 로그인 이후에 [SDK](https://aihuman.deepbrain.io/aihuman/sdk) 카테고리에서 프로젝트를 생성할 수 있습니다.
-- [SDK](https://aihuman.deepbrain.io/aihuman/sdk) 카테고리 접근이 불가하다면 [고객센터](https://www.aistudios.com/ko/company/contact)로 문의해 주세요.
+- 로그인 이후에 [SDK](https://aihuman.aistudios.com/aihuman/sdk) 카테고리에서 프로젝트를 생성할 수 있습니다.
+- [SDK](https://aihuman.aistudios.com/aihuman/sdk) 카테고리 접근이 불가하다면 [고객센터](https://www.aistudios.com/ko/company/contact)로 문의해 주세요.
 
 ## 2. My Workspace에 Project 추가하기
-**[My Workspace](https://aihuman.deepbrain.io/aihuman/sdk)**에서 Project를 만들고, Windows App ID 부분에 SDK를 사용하는 Windows Application 이름을 입력하고 확인을 클릭합니다. (이때 App ID는 자동으로 중복체크를 수행합니다.)
+**[My Workspace](https://aihuman.aistudios.com/aihuman/sdk)**에서 Project를 만들고, Windows App ID 부분에 SDK를 사용하는 Windows Application 이름을 입력하고 확인을 클릭합니다. (이때 App ID는 자동으로 중복체크를 수행합니다.)
 해당 App ID에서 사용할 수 있는 User Key가 발급됩니다.
 
 <img src="/img/aihuman/windows/SDK_WebPage_UserKey.png" />

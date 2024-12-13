@@ -7,7 +7,7 @@ sidebar_position: 2
 이번 챕터에서는 AI Human SDK를 이용한 인증에 필요한 UserKey, AppId 등을 생성하고 등록하는 방법에 대해 알 수 있다.
 
 ## 1. Download SDK
-**[AI Human SDK Website](https://aihuman.deepbrain.io)**에서 각 플랫폼에 대한 SDK를 다운로드할 수 있다.
+**[AI Human SDK Website](https://aihuman.aistudios.com)**에서 각 플랫폼에 대한 SDK를 다운로드할 수 있다.
 
 ## 2. Xcode 프로젝트 생성
 

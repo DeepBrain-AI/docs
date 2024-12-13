@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## Demo web page
 
-Demo web page에서는 AI Human Web SDK(js)'의 기능을 사용해볼수 있습니다. 여기[(Link)](https://aihuman.deepbrain.io/webdemo/demo1.html). 페이지의 오른쪽 상단에 아래와 같은 메뉴가 나오며, 이를 통해 SDK의 기능들을 둘러보십시오.
+Demo web page에서는 AI Human Web SDK(js)'의 기능을 사용해볼수 있습니다. 여기[(Link)](https://aihuman.aistudios.com/webdemo/demo1.html). 페이지의 오른쪽 상단에 아래와 같은 메뉴가 나오며, 이를 통해 SDK의 기능들을 둘러보십시오.
 
 <img src="/img/aihuman/web/demo_btn.png" />
 
@@ -22,7 +22,7 @@ Demo web page에서는 AI Human Web SDK(js)'의 기능을 사용해볼수 있습
 
 SDK 사이트에 제공된 샘플은 SDK의 기능을 보여주는 예입니다. 이를 통해 SDK가 실제로 어떻게 작동하는지 확인할 수 있습니다.
 
-여기[(link)](https://aihuman.deepbrain.io/aihuman/sdk)에서 다운로드하십시오.
+여기[(link)](https://aihuman.aistudios.com/aihuman/sdk)에서 다운로드하십시오.
 
 <img src="/img/aihuman/web/sdk_sample1.png" />
 

@@ -19,7 +19,7 @@ sidebar_position: 3
 #### 1-1. Unity Editor 메뉴에서 Assets > Create > Scene을 선택하여 새로운 Scene을 생성한다. 
 #### 1-2. 기본으로 생성되어 있는 Main Camera, Directional Light 게임오브젝트를 삭제한다.
 #### 1-3. Project창의 Assets/DeepBrainAI/SDK/Prefabs 경로의 AIHumanSDK, AIPlayer, AIPlayerUI 프리팹을 선택 후 드래그앤드랍으로 Hierarchy창에 배치한다.
-#### 1-4. Hierarchy창에서 AIHumanSDK 게임오브젝트를 선택 후 Inspector > AIHumanSDKManager 컴포넌트의 AppId, UserKey, Platform 항목에 **[AI Human SDK Website](https://aihuman.deepbrain.io)** 에서 발급 받은 인증 정보를 입력 또는 설정한다. 
+#### 1-4. Hierarchy창에서 AIHumanSDK 게임오브젝트를 선택 후 Inspector > AIHumanSDKManager 컴포넌트의 AppId, UserKey, Platform 항목에 **[AI Human SDK Website](https://aihuman.aistudios.com)** 에서 발급 받은 인증 정보를 입력 또는 설정한다. 
 #### 1-5. Unity Editor 메뉴에서 GameObject > Create Empty 를 통해 새 게임오브젝트를 생성하고 이름은 QuickStart로 설정한다.
 
 <img src="/img/aihuman/unity/quickstart_hierarchy.png" />

@@ -31,7 +31,7 @@ class AIQuickSampleViewController {
 ### 3. Set appId and userKey in AIPlayer.
 
 You can add project for each platform here.
-**[https://aihuman.deepbrain.io](https://aihuman.deepbrain.io)**
+**[https://aihuman.aistudios.com](https://aihuman.aistudios.com)**
 
 <!-- <img src="images/aisample_regist_000.png" width="1191" height="301"> -->
 

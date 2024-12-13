@@ -21,7 +21,7 @@ From the demo, you can learn more from the scene and code in the file below.
 #### 1-1. Select Assets > Create > Scene from the Unity Editor menu to create a new scene.
 #### 1-2. Delete the Main Camera and Directional Light game objects that are created by default.
 #### 1-3. Select AIHumanSDK, AIPlayer, and AIPlayerUI prefabs in the Assets/DeepBrainAI/SDK/Prefabs path of the Project window and place them in the Hierarchy window with drag and drop.
-#### 1-4. After selecting the AIHumanSDK game object in the Hierarchy window, enter or set the authentication information issued by **[AI Human SDK Website](https://aihuman.deepbrain.io)** in the AppId, UserKey, and Platform items of the Inspector > AIHumanSDKManager component. 
+#### 1-4. After selecting the AIHumanSDK game object in the Hierarchy window, enter or set the authentication information issued by **[AI Human SDK Website](https://aihuman.aistudios.com)** in the AppId, UserKey, and Platform items of the Inspector > AIHumanSDKManager component. 
 #### 1-5. In the Unity Editor menu, create a new game object through GameObject > Create Empty and set the name to QuickStart.
 
 <img src="/img/aihuman/unity/quickstart_hierarchy.png" />

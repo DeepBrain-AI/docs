@@ -30,7 +30,7 @@ const AI_PLAYER = new AIPlayer(wrapper);
 
 **2.1. SDK 웹사이트에 appId를 입력하고 userKey를 발급받기**
 
-- [SDK website](https://aihuman.deepbrain.io/)에서 프로젝트를 생성합니다.
+- [SDK website](https://aihuman.aistudios.com/)에서 프로젝트를 생성합니다.
 - 사용할 웹서비스의 appId를 입력하고 저장하면 userkey가 발급됩니다. 
 
 <img src="/img/aihuman/web/project.png" />
