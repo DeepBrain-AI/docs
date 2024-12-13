@@ -82,7 +82,7 @@ If you know the id of the desired voice, you can find the desired voice using th
 CustomVoice myVoice = AIHumanSDKManager.Instance.FindCustomVoice(voiceId);
 ``` 
 
-Direct change to the desired voice on the aplayer is set as follows, and is set to the default voice when null is entered. Returns true when success.
+Direct change to the desired voice on the aplayer is set as follows, and is set to the default voice when null is entered. Returns true if successful.
 
 ```csharp
 List<CustomVoice> customVoices = AIHumanSDKManager.Instance.GetCustomVoices();
@@ -142,7 +142,7 @@ AIPlayerCallback.OnAIPlayerEvent(AIEvent) is called during the preload operation
 When the AI has several sentences to speak, it first processes the very first sentence. Once the returned state from OnAIPlayerEvent is AICLIPSET_PLAY_STARTED, which is when the AI starts to speak the first sentence, the next sentence can be preloaded. If you play the next sentence after the state update to AICLIPSET_PRELOAD_COMPLETED, there will be minimum delays between sentences. 
 
 ```csharp
-// AI Preload related CallBack
+// AI Preload related Callback
 public void OnAIPlayerEvent(AIEvent @event)
 {
     if (@event.EventType == AIEvent.Type.AICLIPSET_PRELOAD_STARTED)
