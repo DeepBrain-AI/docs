@@ -76,7 +76,7 @@ If you know the id of the desired voice, you can find the desired voice using th
 const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 ```
 
-Direct change to the desired voice on the aplayer is set as follows, and is set to the default voice when null is entered. Returns true when success.
+Direct change to the desired voice on the aplayer is set as follows, and is set to the default voice when null is entered. Returns true if successful.
 
 ```javascript
 const customVoice = AI_PLAYER.findCustomVoice(voiceId);

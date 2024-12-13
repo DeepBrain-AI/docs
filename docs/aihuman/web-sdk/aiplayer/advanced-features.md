@@ -24,7 +24,7 @@ The screenshot below shows AI Model Jonathan opening his hands according to "two
 <br/>
 <br/>
 
-You can create AIClipset with gesture like below. Only gesture will play if the gesture set without speech text. 
+You can create AIClipset with gesture like below. Only the gesture will play if the gesture is set without speech text.
 
 ```javascript
 function sendText() {

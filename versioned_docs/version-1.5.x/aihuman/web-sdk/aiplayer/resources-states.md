@@ -73,7 +73,7 @@ AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
     console.log('onAIPlayerErrorV2:', aiError.code, aiError.message)
 
     if (aiError.code >= AIError.RESERVED_ERR) {
-      //You've got reserved error. Check up the error list!
+      //You've encountered a reserved error. Please check the error list!
       console.log("RESERVED_ERR :" , aiError.message);
     } else if (aiError.code >= AIErrorCode.AI_INIT_ERR) {
       console.log("AI_INIT_ERR :" , aiError.message);

@@ -74,7 +74,7 @@ AI_PLAYER.onAIPlayerErrorV2 = function (aiError) {
     // TODO: error handling
 
     if (aiError.code >= AIError.RESERVED_ERR) {
-      //You've got reserved error. Check up the error list!
+      //You've encountered a reserved error. Please check the error list!
       console.log("RESERVED_ERR :" , aiError.message);
     } else if (aiError.code >= AIErrorCode.AICLIPSET_PLAY_ERR) {
       console.log("AICLIPSET_PLAY_ERR :" , aiError.message);

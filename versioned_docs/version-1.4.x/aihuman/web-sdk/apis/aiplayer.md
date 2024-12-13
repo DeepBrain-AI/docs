@@ -228,7 +228,7 @@ Gets the currently set voice and returns null if there is no set value or defaul
 
 Gets the list of custom voices that correspond to the language and gender of the input among the loaded voices
 If you type null in language, you get all languages, and if you type null in gender, you get values that correspond to all genders.  
-Valid after loadCustomVoice() or generateToken() method call.
+Valid after calling loadCustomVoice() or generateToken() methods.
 
 - Return Parameter: `Array<CustomVoice>`
 

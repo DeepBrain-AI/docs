@@ -24,7 +24,7 @@ sidebar_position: 4
 <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/chatbot.js"></script>
 ```
 
-**1.2. Deepbrain Chatbot 개체를 생성**
+**1.2. DeepBrain Chatbot 개체를 생성**
 
 ```javascript
 const CHATBOT = new DeepbrainChatbot();

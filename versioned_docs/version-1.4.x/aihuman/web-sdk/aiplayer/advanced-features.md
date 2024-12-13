@@ -22,7 +22,7 @@ The screenshot below shows AI Model Jonathan opening his hands according to "two
 
 <br/>
 
-You can create AIClipset with gesture like below. Only gesture will play if the gesture set witout speech text. 
+You can create AIClipset with gesture like below. Only the gesture will play if the gesture is set without speech text. 
 
 ```javascript
 function sendText() {
@@ -70,7 +70,7 @@ If you know the id of the desired voice, you can find the desired voice using th
 const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 ```
 
-Direct change to the desired voice on the AIPlayer is set as follows, and is set to the default voice when null is entered. Returns true when success.
+Direct change to the desired voice on the AIPlayer is set as follows, and is set to the default voice when null is entered. Returns true if successful.
 
 ```javascript
 const customVoice = AI_PLAYER.findCustomVoice(voiceId);

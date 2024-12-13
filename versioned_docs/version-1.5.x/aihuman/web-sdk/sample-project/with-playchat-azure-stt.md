@@ -24,7 +24,7 @@ The Playchat is fully integrated with the AI Models here and the AI will speak s
 <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/chatbot.js"></script>
 ```
 
-**1.2. Creates an object of the Deepbrain Chatbot**
+**1.2. Creates an object of the DeepBrain Chatbot**
 
 ```javascript
 const CHATBOT = new DeepbrainChatbot();

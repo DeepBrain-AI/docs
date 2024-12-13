@@ -25,7 +25,7 @@ through both text and speech.
 <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/chatbot.js"></script>
 ```
 
-**1.2. Creates an object CHATBOT of the Deepbrain Chatbot**
+**1.2. Creates an object CHATBOT of the DeepBrain Chatbot**
 
 ```javascript
 const CHATBOT = new DeepbrainChatbot();
