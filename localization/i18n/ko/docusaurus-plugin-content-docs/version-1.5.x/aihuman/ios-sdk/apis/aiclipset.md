@@ -8,7 +8,7 @@ sidebar_position: 5
 
 | Name                     | Description                                         |
 | ------------------------ | ------------------------------------------------------------ |
-| `static func clipset(text:, gesture:, customVoice:)`            | 'text': 발화 문장, <br/> 'gesture': 제스처 <br/> 'customVoice': 음성 <br/> 발화 문장과 제스처를 인자로 ClipSet을 생성 한다.     |
+| `static func clipset(text:, gesture:, customVoice:)`            | 'text': 발화 문장, <br/> 'gesture': 제스처 <br/> 'customVoice': 음성 <br/> 발화 문장과 제스처를 인자로 ClipSet을 생성합니다.     |
 
 
 ### properties

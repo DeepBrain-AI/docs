@@ -4,27 +4,28 @@ sidebar_position: 2
 
 # 프로젝트 셋업하기
 
-이번 챕터에서는 AI Human SDK를 이용한 인증에 필요한 UserKey, AppId 등을 생성하고 등록하는 방법에 대해 알 수 있다.
+이번 챕터에서는 AI Human SDK를 이용한 인증에 필요한 UserKey, AppId 등을 생성하고 등록하는 방법에 대해 알 수 있습니다.
 
 ### 1. Download SDK
-**[AI Human SDK Website](https://aihuman.aistudios.com)**에서 각 플랫폼에 대한 SDK를 다운로드할 수 있다.
+
+**[AI Human SDK Website](https://aihuman.aistudios.com)**에서 각 플랫폼에 대한 SDK를 다운로드할 수 있습니다.
 
 ### 2. Xcode 프로젝트 생성
 
-SDK를 적용 할 Xcode 프로젝트를 생성한다.
+SDK를 적용 할 Xcode 프로젝트를 생성합니다.
 
-프로젝트 폴더에 **AIPlayerSDK.podspec 파일과 the AIPlayerSDK 폴더**를 추가한다.
-
+프로젝트 폴더에 **AIPlayerSDK.podspec 파일과 the AIPlayerSDK 폴더**를 추가합니다.
 
 ### 3. project 설정
 
-터미널에서 경로를 프로젝트가 위치한 곳으로 변경한다.
+터미널에서 경로를 프로젝트가 위치한 곳으로 변경합니다.
 
 #### 3-1. Podfile 생성
 
-cocoapods 구성 파일을 만든다.
-- **Cocoapods**는 다양한 Xcode 프로젝트 라이브러리를 사용할 수 있는 라이브러리 종속성 관리자이다.
-- 설치 및 사용 방법은 **[cocoapods](https://cocoapods.org)**에서 확인할 수 있다.
+cocoapods 구성 파일을 만듭니다.
+
+- **Cocoapods**는 다양한 Xcode 프로젝트 라이브러리를 사용할 수 있는 라이브러리 종속성 관리자입니다.
+- 설치 및 사용 방법은 **[cocoapods](https://cocoapods.org)**에서 확인할 수 있습니다.
 
 ```console
 cd /project_path
@@ -33,9 +34,9 @@ pod init
 
 #### 3-2. `pod 'AIPlayerSDK'` 추가 및 설치
 
-생성된 podfile을 열고 **AIPlayerSDK**를 추가한다. <br/>
-3D캐릭터를 사용하려면 **`pod 'AIPlayerSDK/Include3D'`**를 추가해야 한다.
-실행 시에 라이브러리를 찾지 못하는 문제가 생기는 경우에는 post_install 부분을 추가해 줘야 한다.
+생성된 podfile을 열고 **AIPlayerSDK**를 추가합니다. <br/>
+3D캐릭터를 사용하려면 **`pod 'AIPlayerSDK/Include3D'`**를 추가해야 합니다.
+실행 시에 라이브러리를 찾지 못하는 문제가 생기는 경우에는 post_install 부분을 추가해 줘야 합니다.
 
 ```console
 target 'your project' do
@@ -67,13 +68,15 @@ post_install do |installer|
 end
 ```
 
-Objective-C 프로젝트에서 사용할 때는 스위프트의 버젼을 podfile에 명시해 줘야 한다.
+Objective-C 프로젝트에서 사용할 때는 스위프트의 버젼을 podfile에 명시해야 합니다.
+
 ```
 ENV['SWIFT_VERSION'] = '5'
 ```
- to the podfile.
 
-podfile을 저장한 후 터미널에서 아래 명령을 통해 라이브러리를 추가할 수 있다.
+to the podfile.
+
+podfile을 저장한 후 터미널에서 아래 명령을 통해 라이브러리를 추가할 수 있습니다.
 
 ```
 pod install
@@ -84,8 +87,8 @@ pod install
 #### 3-3. 프로젝트 설정 변경
 
 <img src="/img/aihuman/ios/aisample_disable_bitcode.png" /> <br/>
- 
- .xcworkspace 파일을 실행한 후 **build setting**에서 **Enble Bitcode**를 사용하지 않음으로 설정한다.
+
+.xcworkspace 파일을 실행한 후 **build setting**에서 **Enble Bitcode**를 사용하지 않음으로 설정합니다.
 
 <br/>
 
