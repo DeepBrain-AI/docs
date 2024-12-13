@@ -22,7 +22,7 @@ If there is any problem during this process, the OnAIPlayerError() method is cal
 - AIError.Code.AI_API_ERR : Notifies error in authentication process API.
 
 ```csharp
-// AI resource related event CallBack
+// AI resource related event Callback
 public void OnAIPlayerEvent(AIEvent @event)
 {
     if (@event.EventType == AIEvent.Type.RES_LOAD_STARTED)
@@ -35,14 +35,14 @@ public void OnAIPlayerEvent(AIEvent @event)
     }
 }
 
-// AI resource loading progress CallBack
+// AI resource loading progress Callback
 public void OnAIPlayerResLoadingProgressed(int current, int total)
 {
     float progress = ((float)current / (float)total) * 100;
     UnityEngine.Debug.Log(string.Format("AI Resource Loading... {0} %", (int)progress));
 }
 
-// AI error CallBack
+// AI error Callback
 public void OnAIPlayerError(AIError error)
 {
     if (error.ErrorCode == (int)AIError.Code.AI_API_ERR)

@@ -37,7 +37,7 @@ AIHuman.SDK.AIHumanSDKManager.Instance.Authenticate("appId", "userKey", Platform
     string message = string.Empty;
     if (error == null && aiLIst != null)
     {      
-        message = string.Format("Auth Complete, Avaliable Count : {0}", aiLIst.ai.Length);
+        message = string.Format("Auth Complete, Available Count : {0}", aiLIst.ai.Length);
 
         /*   e.g.)           
             "ai":[{"aiName":"vida","aiDisplayName":"Vida","language":"en"},

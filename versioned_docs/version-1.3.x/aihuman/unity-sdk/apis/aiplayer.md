@@ -27,4 +27,4 @@ sidebar_position: 3
 | `string`                             | `AILanguage { get; }` Get the AI language.                        |
 | `bool`                             | `CanPreload { get; }` It brings whether AI is in a preloadable state.                      |
 | `bool`                             | `IsConnected { get; }` It brings whether AI is connected.                    |
-| `void`                        | `Reconncet(Action<bool> callback)` Attempt to reconnect AI. Return the reconnection result via callback. | 
+| `void`                        | `Reconnect(Action<bool> callback)` Attempt to reconnect AI. Return the reconnection result via callback. | 

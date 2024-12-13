@@ -29,4 +29,4 @@ sidebar_position: 3
 | `string`                             | `AILanguage { get; }` AI 언어을 가져온다.                        |
 | `bool`                             | `CanPreload { get; }` AI가 프리로드 가능한 상태인지를 가져온다.                      |
 | `bool`                             | `IsConnected { get; }` AI가 연결된 상태인지를 가져온다.                      |
-| `void`                        | `Reconncet(Action<bool> callback)` AI 재연결을 시도한다. 콜백을 통해 재연결 결과를 리턴한다. |
+| `void`                        | `Reconnect(Action<bool> callback)` AI 재연결을 시도한다. 콜백을 통해 재연결 결과를 리턴한다. |

@@ -42,7 +42,7 @@ if (authError == null) // 인증 성공
         {          
             if (aiList != null)
             {
-                message = string.Format("Auth Complete, Avaliable Count : {0}", aiList.ai.Length);
+                message = string.Format("Auth Complete, Available Count : {0}", aiList.ai.Length);
 
                 /*  e.g.)           
                     "ai":[{"aiName":"vida","aiDisplayName":"Vida","language":"en"},

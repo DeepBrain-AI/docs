@@ -27,7 +27,7 @@ AIPlayer.Send 함수 호출 이후 등록된 listener(AIPlayerCallback)에서 �
 - AICLIPSET_PLAY_COMPLETED
 
 ```csharp
-// 발화 동작에 따른 CallBack 활용 예
+// 발화 동작에 따른 Callback 활용 예
 public void OnAIPlayerEvent(AIEvent @event)
 {
     if (@event.EventType == AIEvent.Type.AICLIPSET_PLAY_PREPARE_STARTED)
@@ -48,7 +48,7 @@ public void OnAIPlayerEvent(AIEvent @event)
     }
 }
 
-// AI 에러 발생 시 CallBack 활용 예
+// AI 에러 발생 시 Callback 활용 예
 public void OnAIPlayerError(AIError error) 
 {
     if (error.ErrorCode == (int)AIError.Code.AI_API_ERR)

@@ -32,5 +32,5 @@ namespace AIHuman.View
 | `string`                             | `AILanguage { get; }` AI 기본 언어를 가져옵니다.                        |
 | `bool`                             | `CanPreload { get; }` AI가 프리로드 가능한 상태인지를 가져옵니다.                      |
 | `bool`                             | `IsConnected { get; }` AI가 연결된 상태인지를 가져옵니다.                      |
-| `void`                        | `Reconncet(int attempts = 5, int delay = 3000, Action<bool> callback = null)` 시도 횟수와 지연시간(millisecond)을 전달인자로 받아서 AI 재연결을 시도합니다. 콜백을 통해 재연결 결과를 전달합니다. |
+| `void`                        | `Reconnect(int attempts = 5, int delay = 3000, Action<bool> callback = null)` 시도 횟수와 지연시간(millisecond)을 전달인자로 받아서 AI 재연결을 시도합니다. 콜백을 통해 재연결 결과를 전달합니다. |
 | `void`                        | `Disconnect(Action<bool> callback = null)` AI 연결을 해제합니다. 콜백을 통해 연결 해제 결과를 전달합니다. |

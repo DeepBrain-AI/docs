@@ -252,7 +252,7 @@ public class DemoFrameImageProvider : AIFrameImageProvider
 }
 ```
 
-Through OnAIPlayerEvent implementation, you can receive CallBack of AI states shown below.
+Through OnAIPlayerEvent implementation, you can receive Callback of AI states shown below.
 
 ```csharp
 RES_LOAD_STARTED: AI Resource loading started.

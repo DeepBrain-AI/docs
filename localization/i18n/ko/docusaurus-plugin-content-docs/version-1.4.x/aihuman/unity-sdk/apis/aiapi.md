@@ -6,7 +6,7 @@ sidebar_position: 1
 
 | Modifier and Type                | Method and Description                                       |
 | -------------------------------- | ------------------------------------------------------------ |
-| ` void`                          | `Authenticate(string appId, string userKey, string platform, Action<AIList, AIError> onComplete)` 발급받은 userKey로 인증을 시도한다. CallBack(onComplete)으로 응답을 전달하며 성공하면 사용할수 있는 AI 모델을 얻을 수 있다. |
+| ` void`                          | `Authenticate(string appId, string userKey, string platform, Action<AIList, AIError> onComplete)` 발급받은 userKey로 인증을 시도한다. Callback(onComplete)으로 응답을 전달하며 성공하면 사용할수 있는 AI 모델을 얻을 수 있다. |
 | `AIHuman.Common.AIError`                        | `GenerateToken(string appId, string userKey, string platform)` 해당 정보로 서버에 인증을 시도하고 실패하면 관련 내용을 AIError를 통해 리턴한다. |
 | `void`                           | `GetAIList(Action<AIList, AIError> OnComplete)` 현재 인증된 상태의 사용가능한 AI 모델 목록을 얻어 온다.             |
 | `string`                         | `DefaultAIName { get; }` 현재 설정되어 있는 기본(default) AI의 이름을 가져온다.  |

@@ -149,7 +149,7 @@ _aiPlayer.Preload(new[] {clip});
 AI가 할 말이 여러 문장있을 때, 먼저 첫번째 문장을 발화시킨다. OnAIPlayerEvent()에서 AICLIPSET_PLAY_STARTED 상태가 보고 되면, 즉 AI가 첫문장을 발화하기 시작할 때 다음에 할 말을 프리로드 시킨 후 AICLIPSET_PRELOAD_COMPLETED를 통해 프리로드 시킨 문장이 프리로드 완료되었음을 인지할 수 있고, 이때 다음 문장을 발화시키면 보다 빠르게 발화시킬수 있다. 
 
 ```csharp
-// AI 프리로드 CallBack 활용 예
+// AI 프리로드 Callback 활용 예
 public void OnAIPlayerEvent(AIEvent @event)
 {
     if (@event.EventType == AIEvent.Type.AICLIPSET_PRELOAD_STARTED)

@@ -28,7 +28,7 @@ After the Send method is called, you can listen to the operation event feedback 
 - AICLIPSET_PLAY_COMPLETED
 
 ```csharp
-// Speaking related CallBack example
+// Speaking related Callback example
 public void OnAIPlayerEvent(AIEvent @event)
 {
     if (@event.EventType == AIEvent.Type.AICLIPSET_PLAY_PREPARE_STARTED)
@@ -49,7 +49,7 @@ public void OnAIPlayerEvent(AIEvent @event)
     }
 }
 
-// AI error CallBack example
+// AI error Callback example
 public void OnAIPlayerError(AIError error) 
 {
     if (error.ErrorCode == (int)AIError.Code.AI_API_ERR)

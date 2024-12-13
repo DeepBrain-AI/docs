@@ -7,9 +7,11 @@ sidebar_position: 2
 In this chapter, you will learn how to create and register UserKey and AppId, etc. required for authentication for using AI Human SDK.
 
 ## 1. Create an account
+
 Create an account on the **[AI Human SDK Website](https://aihuman.aistudios.com)**.
 
 ## 2. Add a project to My workspace
+
 Create a project in **[My workspace](https://aihuman.aistudios.com/aihuman/sdk)**, enter App Id of Platform(Android, iOS, Windows) and click confirm. Then User Key will be issued.
 
 <img src="/img/aihuman/unity/SDK_WebPage_UserKey.png" />
@@ -17,10 +19,11 @@ Create a project in **[My workspace](https://aihuman.aistudios.com/aihuman/sdk)*
 The appId, userKey, and platform information will be used as arguments for Authenticate(), an authentication function.
 
 :::info
+
 - The appId is the project's unique Id, which is usually generated as "com.example.project.appname".
 - Userkey can create a project on the AI Human website and receive it while registering the appId.
 - The platform value is set to match the App Platform. (Android, iOS, Windows)
-:::
+  :::
 
 ## 3. Create a new project in Unity Hub.
 
@@ -58,7 +61,9 @@ Perform the import package process of the AI Human SDK.
 Users of the Unity Editor 2021.2.x version may encounter reference errors in Newtonsoft.Json.dll included in the SDK. When an error occurs, a reference error may be solved through a series of processes as follows.
 
 ##### 4-5-1. Select Window > Package Manager from the Unity Editor menu
+
 ##### 4-5-2. Select Version Control from the Package - Unity entry in the Package Manager window
+
 ##### 4-5-3. Enable Update in the lower right corner of the Package Manager window
 
 <img src="/img/aihuman/unity/Newtonsoft_Json.png" />
