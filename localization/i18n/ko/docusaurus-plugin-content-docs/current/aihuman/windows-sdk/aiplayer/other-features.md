@@ -32,6 +32,8 @@ _aiMargin.Y = 8;
 _aiPlayer.Margin = _aiMargin;
 ```
 
+<br/>
+
 ### 볼륨 조절하기
 
 <img src="/img/aihuman/windows/volumecontrol_1.5.x.png" />

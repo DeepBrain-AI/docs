@@ -95,6 +95,9 @@ AI_PLAYER.onAIPlayerErrorV2 = function (aiError) {
 ```
 
 
+
+<br/>
+
 ### 3. AIPLAYER_STATE_CHANGED 이벤트로 반응하는 UI 만들기
 
 AI 플레이어에는 사용자가 알아차리고 응답할 수 있는 여러 상태가 있습니다. 상태가 변경되면 'onAIPlayerEvent' 콜백은 AIEventType.AIPLAYER_STATE_CHANGED를 인수로 호출되며 이 때 AIPlayer의 상태는 AI_PLAYER.getState() 메서드를 통해 알수 있습니다.

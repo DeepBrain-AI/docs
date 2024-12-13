@@ -56,9 +56,6 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 
 <br/>
 
-
-<br/>
-
 ### 2. Initialize Chatbot with Speech Recongnition.
 Initialize PlayChat with a voice recognition function (STT). (AI is set as the default AI)
 

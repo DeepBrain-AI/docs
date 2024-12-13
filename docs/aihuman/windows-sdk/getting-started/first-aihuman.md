@@ -286,9 +286,6 @@ There are many omitted parts in the above explanation. Please refer to App.xaml,
 
 <br/>
 
-
-<br/>
-
 ### 4. Command the AI to speak 
 
 - Build Solution > Run > (Loading Resources) > Enter a sentence in the text box at the bottom right > Click the Send button

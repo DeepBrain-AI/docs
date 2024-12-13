@@ -10,7 +10,7 @@ Demo web page에서는 AI Human Web SDK(js)'의 기능을 사용해 볼 수 있�
 
 <img src="/img/aihuman/web/demo_btn.png" />
 
-### Demo web page 메뉴
+#### Demo web page 메뉴
 
 각 메뉴의 구성은 아래와 같습니다.
 
@@ -18,7 +18,7 @@ Demo web page에서는 AI Human Web SDK(js)'의 기능을 사용해 볼 수 있�
 - SDK Demo : AIPlayer 기능 예시 
 - STT Demo : AIPlayer + Chatbot(PlayChat) 예시 
 
-## 샘플 Project
+### 샘플 Project
 
 SDK 사이트에 제공된 샘플은 SDK의 기능을 보여주는 예입니다. 이를 통해 SDK가 실제로 어떻게 작동하는지 확인할 수 있습니다.
 
@@ -33,7 +33,7 @@ SDK 사이트에 제공된 샘플은 SDK의 기능을 보여주는 예입니다.
 
 샘플 프로젝트는 node-express와 nextjs로 두 가지를 제공합니다. 먼저 샘플의 내용을 확인합니다.
 
-### Contents
+#### Contents
 
 zip file의 압축을 풀면, 다음과 같은 폴더가 생성됩니다. 
 

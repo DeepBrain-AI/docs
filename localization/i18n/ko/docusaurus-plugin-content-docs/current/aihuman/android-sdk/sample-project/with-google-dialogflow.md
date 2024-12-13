@@ -54,6 +54,9 @@ sidebar_position: 4
     }
 ```
 
+
+<br/>
+
 ### 2. Chatbot(DialogFlow의 Wrapper 클래스)의 설정
 
 **Dialogflow 크리덴셜 파일 준비**
@@ -106,6 +109,9 @@ private IChatbotCallback iChatbotCallback = new IChatbotCallback() {
 
 ```
 
+
+<br/>
+
 ### 3. Chatbot(DialogFlow)에 메세지 보내기
 
 chatbot에 **send("query", JSONObject)** 메소드를 다음과 같이 호출하여 메세지를 보낼 수 있습니다. 원하는 텍스트는 JSON의 "query"키 (여기서는 Constants.KEY_QUERY)로 추가하며 **언어 코드**도 추가해서 보냅니다.
@@ -126,6 +132,9 @@ chatbot에 **send("query", JSONObject)** 메소드를 다음과 같이 호출하
 위와 같이 Dialogflow에 하나의 메세지를 보낼 수 있지만 메세지를 보내고 나서 채팅창도 업데이트합니다. 마찬가지로 DialogFlow로부터 응답을 받으면 AI에게 발화도 시키고 채팅창도 업데이트하는 일련의 과정들이 있어야 자연스럽게 채팅이 이루어집니다. 
 
 이렇게 AIPlayer와 Dialogflow 챗봇이 긴밀하게 동작됨으로 인해 이 클래스들을 가지고 컨트롤하기 위한 클래스(**AIChatbotController**)를 작성하였습니다. 이 액티비티에서는 직접적으로 AIPlayer나 Chatbot을 컨트롤하지 않고, 원하는 행위 기준으로 작성된 클래스인 AIChatbotController의 메소드를 호출함으로서 복잡도를 줄이도록 작성되었습니다.
+
+
+<br/>
 
 ### 4. AI와 채팅하기 (DialogFlow에서 응답을 가져와 AI에게 말시키기)
 

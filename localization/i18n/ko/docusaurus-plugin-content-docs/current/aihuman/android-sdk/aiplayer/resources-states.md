@@ -8,7 +8,10 @@ sidebar_position: 3
 
 AIPlayer 객체 생성 후 init(config, listener)을 호출하면 지시한 **aiName에** 따라, 리소스 로딩이 시작되고 등록된 listener(IAIPlayerCallback)에 리소스 로딩 상태가 보고됩니다. (최초에는 리소스 로드 완료까지 수분이 걸릴 수 있습니다.)
 
-###  IAIPlayerCallback으로 플레이어의 리소스 로딩 상태 모니터링
+
+<br/>
+
+### IAIPlayerCallback으로 플레이어의 리소스 로딩 상태 모니터링
 
 먼저 listener의 onAIPlayerEvent(AIEvent event)메소드가 호출됩니다. AIEvent.type값은 어떤 이벤트가 발생했는지를 의미합니다(아래의 리스트를 확인). 또한 onAIPlayerResLoadingProgressed(int current, int total) 으로 로딩 프로그레스를 구현할 수 있습니다.
 

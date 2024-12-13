@@ -56,13 +56,13 @@ extension AISampleViewController: AIPlayerCallback {
 	}
 ```
 
-#### 발화 일시정지
+##### 발화 일시정지
 
 ```swift
 aiPlayer.pause()
 ```
 
-#### 발화 재시작
+##### 발화 재시작
 
 ```swift
 aiPlayer.resume()

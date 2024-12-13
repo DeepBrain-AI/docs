@@ -50,6 +50,9 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 }
 ```
 
+
+<br/>
+
 ###  2. 챗봇과 음성 인식 초기화
 
 음성인식기능(STT(Speech to Text))과 PlayChat을 초기화합니다. (AI는 기본 AI로 설정되어 있습니다.)
@@ -63,6 +66,9 @@ GoogleSTTV2 클래스(샘플로 제공)로 생성하여 사용합니다. 이 클
 **MS Azure로 STT 설정하기**
 
 구글 STT 외에 MS azure Speech to Text(샘플로 제공)를 사용할수 있습니다. 이를 위해서는 MS 사이트에(https://portal.azure.com/)에서 해당 STT 리소스(음성 서비스)를 생성하고 구독키와 위치/지역 값을 받아 아래의 샘플과 같이 설정해야합니다.
+
+
+<br/>
 
 ###  3. 챗봇 콜백을 생성하고 init(,) 메소드를 호출하기
 
@@ -175,6 +181,9 @@ stt.stopRecognize();
         }
     };
 ```
+
+
+<br/>
 
 ###  4. AI + 챗봇 + 음성 인식 함께 사용하기
 

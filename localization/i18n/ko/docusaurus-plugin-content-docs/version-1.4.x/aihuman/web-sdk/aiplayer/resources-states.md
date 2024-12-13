@@ -8,6 +8,9 @@ sidebar_position: 3
 
 AI 플레이어가 생성되고 `init({...}}` 함수가 호출되면 **aiName** 매개 변수에 따라 리소스 로드를 시작합니다. 로딩 상태는 등록된 callback을 통해 확인할 수 있습니다(`onAIPlayerLoadingProgressed(result)`). (처음에는 리소스 로드를 완료하는 데 몇 분 정도 걸릴 수 있습니다.)
 
+
+<br/>
+
 ### 2. 콜백을 사용하여 AIPlayer 로드 상태 모니터링
 
 init 메서드를 호출한 후 등록한 `onAIPlayerEvent(aiEvent)` callback 메서드가 AIEvent와 함께 호출됩니다. AIEvent.type은 발생한 이벤트를 나타냅니다(아래 목록 확인). 또한 `onAIPlayerResLoadingProgressed({loading})`를 사용하여 로드 진행률을 구현할 수 있습니다. 전체 목록은 [here](../apis/aiplayer-data#7-aievent)입니다

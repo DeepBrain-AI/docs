@@ -109,9 +109,6 @@ AI_PLAYER.send(AIClipSet);
 
 <br/>
 
-
-<br/>
-
 ### 4. Preload
 
 Preload is used when you want to make the AI speak the next sentence without delay by loading sentences in advance. You could think of it as a caching process. In the sample project below, preload is automatically executed from the time the sentence button is shown.

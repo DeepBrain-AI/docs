@@ -8,9 +8,15 @@ sidebar_position: 3
 
 테스트를 할 프로젝트를 만들고 이전 단계를 참고하여 프로젝트 설정을 완료합니다.
 
+
+<br/>
+
 ### 2. AIPlayer가 포함될 Activity를 생성
 
 여기서는 `AILiveQuickStart`라는 Activity를 만들었습니다.
+
+
+<br/>
 
 ### 3. 레이아웃 파일 생성
 
@@ -58,6 +64,9 @@ public class AILiveQuickStart extends AppCompatActivity {
 </RelativeLayout>
 ```
 
+
+<br/>
+
 ### 4. SDK 인증하기
 
 SDK 사이트에서 Android sample 및 SDK를 다운로드 받아 참조할수 있습니다.
@@ -85,6 +94,9 @@ AIModelInfoManager.generateToken(this, userkey, (aiError, resp) -> {
   });
 ```
 
+
+<br/>
+
 ### 5. AIPlayer를 생성
 
 AIPlayer는 위에서 만들어준 aiWrapper뷰를 인자로 하여 다음과 같이 만듭니다.
@@ -93,6 +105,9 @@ AIPlayer는 위에서 만들어준 aiWrapper뷰를 인자로 하여 다음과 �
 //put aiWrapper in the argument and create AIPlayer.
 aiPlayer = AIPlayerFactory.create(AILiveQuickStart.this, binding.aiWrapper, AILIVE, null);
 ```
+
+
+<br/>
 
 ### 6. 사용할 AI를 선택 및 설정
 
@@ -104,6 +119,9 @@ AIModelInfo defaultAI = AIModelInfoManager.getDefaultAIModelInfo();
 AIPlayerSettings aiSettings = new AIPlayerSettings(defaultAI.getName(), AILIVE, 1.0f, 40, 1);
 aiPlayer.init(aiSettings, iAiPlayerCallback);
 ```
+
+
+<br/>
 
 ### 7. AIPlayer의 콜백을 Activity의 멤버 변수로 만들고, init 메소드 호출
 
@@ -140,6 +158,9 @@ public class AILiveQuickStart extends AppCompatActivity {
     }
  }
 ```
+
+
+<br/>
 
 ### 8. 전체 코드
 

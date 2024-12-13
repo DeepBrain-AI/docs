@@ -160,9 +160,6 @@ private void onAIStateChanged() {
 
 <br/>
 
-
-<br/>
-
 ### Pause Speaking
 
 AIPlayer's state will be changed to PAUSE.
@@ -174,9 +171,6 @@ aiPlayer.pause()
 
 <br/>
 
-
-<br/>
-
 ### Resume Speaking
 
 Resume from pause. AIPlayer's state will be changed to PLAY.
@@ -185,9 +179,6 @@ Resume from pause. AIPlayer's state will be changed to PLAY.
 aiPlayer.resume()
 // mAI3DPlayer.resumePlay() for 3d
 ```
-
-<br/>
-
 
 <br/>
 

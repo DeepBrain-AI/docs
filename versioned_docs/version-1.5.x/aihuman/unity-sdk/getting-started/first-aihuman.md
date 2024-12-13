@@ -282,9 +282,6 @@ public class QuickStart : MonoBehaviour
 
 <br/>
 
-
-<br/>
-
 ### 4. Command the AI to speak 
 
 - Editor Play > Loading Resources > Input Text at the bottom > Click the Send button

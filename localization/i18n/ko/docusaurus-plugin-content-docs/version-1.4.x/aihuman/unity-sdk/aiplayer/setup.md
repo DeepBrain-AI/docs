@@ -54,6 +54,9 @@ AIHuman.SDK.AIHumanSDKManager.Instance.Authenticate("appId", "userKey", Platform
 });
 ```
 
+
+<br/>
+
 ### 4단계. AIPlayer를 원하는 AI로 초기화하기
 
 인증 및 사용할수 있는 AI 목록을 확인 후 원하는 AI를 적용하려면 AIPlayer의 초기화 과정이 필요하다. AIPlayer.Init(string aiName, IAIPlayerCallback callback, IFrameImageProvider imageProvider) 함수를 호출하면 되는데 다른 AI로 교체가 필요할때도 마찬가지로 Init() 함수를 호출하면 된다.

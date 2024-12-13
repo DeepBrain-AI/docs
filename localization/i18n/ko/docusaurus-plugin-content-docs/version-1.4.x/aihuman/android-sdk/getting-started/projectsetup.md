@@ -30,11 +30,17 @@ sidebar_position: 2
 
 <img src="/img/aihuman/android/screenshot_projectsetup_3.png"/>
 
+
+<br/>
+
 ### 2. 사용할 프로젝트에 SDK (aar 파일) 추가하기
 
 AI Human SDK aar 파일들(2개 AIHumanSDK, AIHuman3DSDK)을 프로젝트 libs에 추가합니다. libs 폴더는 app 디렉토리 아래에 생성합니다. 앱레벨 build.gradle 파일에 aar 관련 내용(implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"]))을 추가합니다. 아래에 **build.gradle 파일 섹션** 참조하세요.
 
 <img src="/img/aihuman/android/screenshot_projectsetup_4.png"/>
+
+
+<br/>
 
 ### 3. app 레벨의 build.gradle 파일 : (샘플 프로젝트의 build.gradle 파일 참조)
 
@@ -100,6 +106,9 @@ dependencies {
 }
 ```
 
+
+<br/>
+
 ### 4. AndroidManifest.xml 파일 설정
 
 권한 추가 : INTERNET은 필수
@@ -127,6 +136,9 @@ application 속성 추가
     android:theme="@style/UnityThemeSelector.Translucent"
     android:process=":Unity"/>
 ```
+
+
+<br/>
 
 ### 5. Gradle JDK 설정 (11)
 

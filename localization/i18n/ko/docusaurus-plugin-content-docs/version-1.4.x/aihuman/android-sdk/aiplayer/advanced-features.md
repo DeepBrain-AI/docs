@@ -57,7 +57,7 @@ if (selectedSpeech != null) {
 <img src="/img/aihuman/android/sdk_demo_customvoice_list.jpg" style={{zoom: "25%"}} />
 </p>
 
-### AIPlayer의 언어 및 음성 변경 방법
+#### AIPlayer의 언어 및 음성 변경 방법
 
 먼저 현재 AI가 발화할수 있는 언어의 리스트는 다음의 메소드를 통해 확인할 수 있습니다.
 
@@ -98,7 +98,7 @@ boolean isSuccess = aiPlayer.setCustomVoiceForLanguage(language, gender);
 CustomVoice customVoice = aiPlayer.getCustomVoice();
 ```
 
-### AICLipSet 이용 방법
+#### AICLipSet 이용 방법
 
 기본 음성 외에 다른 음성을 설정하기 위해 setCustomVoice 메소드를 사용하는 방법 외에, AIClipSet을 이용하여 다음과 같이 원하는 음성으로 발화할 수 있습니다. 이 방법은 기존에 AIPlayer에 설정된 customVoice 중간에 임시로 다른 음성으로 발화 시킬 수 있는 장점이 있습니다.
 
@@ -213,7 +213,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
 <br/>
 
-## 재연결(reconnect)
+### 재연결(reconnect)
 
 **Reconnect**는 네트워크가 연결되지 않은 경우 사용될 수 있습니다. 네트워크를 사용할 수 없는 경우 AI_DISCONNECTED 이벤트가 발생하고 SDK 내부적으로 한 번 재연결을 시도합니다. reconnect을 호출하면 결과가 등록된 콜백(IAIReconnect Callback)으로 반환됩니다.
 
@@ -239,7 +239,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
 <br/>
 
-## 전송하기 전에 'isConnected'를 확인하기
+### 전송하기 전에 'isConnected'를 확인하기
 
 AI가 연결되어 있는지 확인합니다. 연결이 되어있다면 send를 할 수 있습니다. false일 때 전송하는 경우 AIError.AICLIPSET_PLAY_ERR 및 AIEvent.AICLIPSET_PLAY_FAILED가 onAIPlayerError 및 onAIPlayerEvent 콜백으로 각각 값이 전달됩니다.
 
@@ -249,7 +249,7 @@ boolean isConnected = aiPlayer.isConnected();
 
 <br/>
 
-## 프리로드하기 전에 'canPreload' 확인하기
+### 프리로드하기 전에 'canPreload' 확인하기
 
 프리로드가 가능한지 확인합니다. true라면 preload를 할 수 있습니다. false일 때 preload하는 경우에는 AIError.AICLIPSET_PRELOAD_ERR 및 AIEvent.AICLIPSET_PRELOAD_FAILED가 각각 onAIPlayerError와 onAIPlayerEvent 메소드로 전송됩니다.
 
@@ -259,7 +259,7 @@ boolean canPreload = aiPlayer.canPreload();
 
 <br/>
 
-## AI 말하기 속도를 변경합니다.
+### AI 말하기 속도를 변경합니다.
 
 변경 가능한 값은 0.5~1.5 범위입니다.
 

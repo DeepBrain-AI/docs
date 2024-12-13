@@ -140,6 +140,9 @@ AIAPI.Instance.GetAIList((aiList, error) => {
 });
 ```
 
+
+<br/>
+
 ### 4단계. AIPlayer를 원하는 AI로 초기화하기
 
 인증 및 사용할 수 있는 AI 목록을 확인 후 실제로 어떤 AI를 적용하려면 그 AI로 초기화가 필요합니다. 우선, 아래 예제 코드와 같이 원하는 `AIAPI.AI.aiName`으로 `AIPlayerOptions` 객체를 생성합니다. 기존에 사용하고 있던 `AIPlayer` 객체를 제거하고 싶다면 `Dispose` 함수를 이용하여 자원을 해제해 줍니다.

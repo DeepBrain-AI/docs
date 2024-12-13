@@ -100,7 +100,7 @@ public void OnAIPlayerError(AIError aiError)
 
 다음은 AIPlayer 발화 중에 수행할 수 있는 동작들입니다.
 
-### 발화 일시정지
+#### 발화 일시정지
 
 : 발화를 일시정지 시킵니다.
 ```csharp
@@ -116,7 +116,7 @@ _aiPlayer.Pause();
 _aiPlayer.Resume();
 ```
 
-### 발화 정지
+#### 발화 정지
 
 : 발화를 중단하고 발화 대기 큐도 모두 리셋합니다. (발화 재개 불가)
 ```csharp

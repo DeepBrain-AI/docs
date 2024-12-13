@@ -82,9 +82,6 @@ You should refer to the below assemblies with SDK in your project or install Pac
 
 <br/>
 
-
-<br/>
-
 ### 4. Set up the project
 
 Prepare library files necessary for the use of AI Human SDK in the previously created project.

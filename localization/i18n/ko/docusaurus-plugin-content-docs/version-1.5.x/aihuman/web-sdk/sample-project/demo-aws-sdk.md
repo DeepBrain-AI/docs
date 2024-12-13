@@ -14,6 +14,9 @@ sidebar_position: 5
 
 <img src="/img/aihuman/web/aws_sdk_web.png" />
 
+
+<br/>
+
 ### AI Human과 AWS Transcribe/LLM 챗봇 사용하기 
 
 이제 강력한 AWS SDK를 사용하여 대화형 AI 서비스를 구축 할 수 있습니다. 
@@ -23,14 +26,17 @@ sidebar_position: 5
 - 참고 샘플: https://github.com/awsdocs/aws-doc-sdk-examples 
 
 
-## AWS SDK의 개발 환경 셋업 
-### 1. Transcribe SDK 
+
+<br/>
+
+### AWS SDK의 개발 환경 셋업 
+#### 1. Transcribe SDK 
 아래의 링크를 참조하여 AWS에서 필요한 환경을 설정하십시오. 이것은 이 SDK를 사용하려면 aws 인증을 한후 aws 리소스를 생성해야함을 의미합니다. 목표는 'transcribe'용 region과 'Physical ID of the IDENTITY_POOL_ID'를 획득하는 것입니다. 
 - https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/cross-services/transcribe-streaming-app 
 
 다음으로 위 사이트에서 src/libs 아래의 js 파일들을 복사 한 후 당신의 프로젝트에 동일한 dir 구조 아래에 넣으십시오. 이후 Region과 IDENTITY_POOL_ID을 awsID.js 파일에 입력하십시오. 
 
-### 2. Anthropic Claude(Bedrock Runtime) SDK
+#### 2. Anthropic Claude(Bedrock Runtime) SDK
 AWS 계정으로부터 accessKeyId, secretAccessKey 값을 확인하십시오. 이 데모는 단지 샘플이므로 키나 시크릿 같은 값을 노출하는 것은 바람직하지 않습니다. 키/시크릿의 보호를 위해서 다른 프록시 서버를 이용하는 것이 좋습니다. 아래의 사이트에서 코드 샘플을 확인합니다.
 
 - https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/bedrock-runtime
@@ -42,7 +48,7 @@ AWS 계정으로부터 accessKeyId, secretAccessKey 값을 확인하십시오. �
 <br/>
  
 
-## 웹팩(Webpack) 빌드를 셋업
+### 웹팩(Webpack) 빌드를 셋업
 
 aws 샘플에서는 웹팩이 사용되었습니다. 프로젝트의 'package.json' 파일을 주의깊게 살펴보고 웹팩 빌드에 사용된 'webpack_aws.config.js' 옵션(scripts.aws)을 확인하십시오. 또한 ES 스타일을 위한 'type:module' 셋팅과 dependencies들을 확인하십시오. 
 
@@ -50,7 +56,10 @@ aws 샘플에서는 웹팩이 사용되었습니다. 프로젝트의 'package.js
 
 'demo_aws_sdk.js' 파일을 빌드하시려면, 터미널에 'npm run aws'를 입력하세요.
 
-## AIHuman과 AWS SDK를 연동하기
+
+<br/>
+
+### AIHuman과 AWS SDK를 연동하기
 entry 파일에는, 4개의 중요한 클래스가 있습니다. AppController, LLMChatbot, Transcriber 그리고 AIPlayer가 그것들입니다. LLMChatbot은 BedrockRuntimeClient를 가지고 있습니다. Transcriber는 transcribeClient를 포함합니다. 해당하는 key와 secret들을 입력하고 'npm run build' 명령어를 이용해 빌드하고 'npm run dev'로 실행시킨후 데모가 어떻게 동작되는지 확인합니다.
 
 ```javascript

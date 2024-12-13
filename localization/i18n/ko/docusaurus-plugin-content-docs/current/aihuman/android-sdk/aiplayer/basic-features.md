@@ -106,7 +106,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 ```
 <br/>
 
-## AIPLAYER_STATE_CHANGED 이벤트로 UI를 반응하도록 만들기
+### AIPLAYER_STATE_CHANGED 이벤트로 UI를 반응하도록 만들기
 
 AIPlayer는 사용자가 인지하고 응답할 수 있는 몇가지 상태가 있습니다. 상태가 변경되면 'onAIPlayerEvent' 콜백으로 AIEvent가  넘어옵니다. 이때 AIEvent.AIPLAYER_STATE_CHANGED인 경우 AIPLAYER.getState() 메서드는 변화된 현재 상태를 반환합니다.
 
@@ -159,7 +159,7 @@ private void onAIStateChanged() {
 
 <br/>
 
-## 발화 일시정지
+### 발화 일시정지
 AIPlayer'의 상태는 PAUSE.
 
 ```java
@@ -169,7 +169,7 @@ aiPlayer.pause()
 
 <br/>
 
-## 발화 재시작
+### 발화 재시작
 일시정지 상태에서 다시 시작. AIPlayer의 상태는 PLAY.
 
 ```java
@@ -179,7 +179,7 @@ aiPlayer.resume()
 
 <br/>
 
-## 발화 정지 
+### 발화 정지 
 발화를 멈추고 가지고 있는 데이터를 모두 리셋합니다(resume 불가). AIPlayer의 상태는 IDLE. 
 
 ```java

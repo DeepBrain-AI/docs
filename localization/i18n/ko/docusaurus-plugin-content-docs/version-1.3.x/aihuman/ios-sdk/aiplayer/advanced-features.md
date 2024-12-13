@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # 발화 관련 추가 기능
 
-### AI 말하기 속도를 변경합니다.: 0.5~1.5 사이 값
+#### AI 말하기 속도를 변경합니다.: 0.5~1.5 사이 값
 
 ```swift
 aiPlayer.speechSpeed = speechSpeed
@@ -33,6 +33,9 @@ AIClipSet.clipset 함수를 이용하여 생성할 수 있습니다.
 let clipset = AIClipSet.cipset(text: "an speech sentence", gesture: "gesture")
 aiPlayer.send(clipset: clipset)
 ```
+
+
+<br/>
 
 ### 언어 및 음성 변경
 
@@ -84,6 +87,9 @@ aiPlayer.setCustomVoiceForLanguage(language:, gender)
 let customVoice = AIPlayer.getCustomVoicesWith()[0]
 let clipSet = AIClipSet.clipSet(text: speechText, customVoice: customVoice)
 ```
+
+
+<br/>
 
 ### 프리로드
 
