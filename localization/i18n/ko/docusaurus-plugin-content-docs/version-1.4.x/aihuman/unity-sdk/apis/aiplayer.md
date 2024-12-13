@@ -9,7 +9,7 @@ sidebar_position: 3
 | `void`                               | `Init(string aiName, IAIPlayerCallback callback, IFrameImageProvider imageProvider)`  전달 받은 AI로 AIPlayer를 초기화하고 상태 모니터링을 위한 콜백과 AI 랜더링을 위한 이미지 공급자를 등록한다. (인증 완료 상태에서만 유효) |
 | `void`                               | `Send(string[] sentences)` string type의 문장을 이용하여 발화한다. |
 | `void`                               | `Send(AIClipSet[] clips)` AIHuman.Model.AIClipSet type을 이용하여 AI가 말이나 제스처 등을 수행하도록 한다. |
-| `void`                               | `Stop()` 현재 하고 있는 말을 멈춘다. 발화 큐에 있는 내용도 삭제한다. |
+| `void`                               | `Stop()` 현재 진행되는 발화를 멈춥니다. 발화 큐에 있는 내용도 삭제한다. |
 | `void`                               | `Pause()` 발화 중 일때 발화를 일시정지 시킨다.                                 |
 | `void`                               | `Resume()` 일시정지 시점 부터 다시 발화를 계속한다.  |
 | `void`                               | `Preload(string[] sentences)` AI 에게 말할 예정인 문장들을 미리 준비시킨다. |

@@ -23,7 +23,7 @@ sidebar_position: 2
 
 AuthStart 함수에는 3개의 전달인자가 필요합니다. 이 3가지는 `AppID, UserKey, Platform` 입니다. 
 
-특히 UserKey는 DeepBrain AI에서 만든 문자열 타입으로써, 절대 외부에 노출되면 안되는 중요한 데이터입니다. 이 인증키를 이용하여 API를 호출하면 사용 가능한 기본 AI 데이터와 앞으로 사용할 토큰을 얻을수 있습니다. Platform은 사용자의 App Platform을 고려하여 Android, iOS, Windows 중에 하나를 선택합니다.
+특히 UserKey는 DeepBrain AI에서 만든 문자열 타입으로써, 절대 외부에 노출되면 안되는 중요한 데이터입니다. 이 인증키를 이용하여 API를 호출하면 사용 가능한 기본 AI 데이터와 앞으로 사용할 토큰을 얻을 수 있습니다. Platform은 사용자의 App Platform을 고려하여 Android, iOS, Windows 중에 하나를 선택합니다.
 
 **토큰 사용기간이 만료되어 토큰 리프레쉬가 필요한 경우는 Authenticate() 함수의 재호출이 필요합니다.**
 
