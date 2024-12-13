@@ -15,7 +15,7 @@ namespace AIHuman.Media
 | `void`                               | `Send(AIClipSet[] clips)` AI에게 발화 또는 제스처 포함 발화를 시킵니다. (AIHuman.Common.Model.AIClipSet 사용) |
 | `void`                               | `StopSpeaking()` 현재 하고 있는 말을 멈추고 할말 큐에 있는 내용도 삭제합니다. |
 | `void`                               | `Pause()` 하던 말이 있으면 영상과 음성을 잠시 중단합니다.                                    |
-| `void`                               | `Resume()` 플레이 중이었으면 멈춘곳에서부터 다시 시작합니다.   |
+| `void`                               | `Resume()` 플레이 중이었으면 멈춘 곳에서 부터 다시 시작합니다.   |
 | `void`                               | `Preload(string[] sentences)` AI에게 발화 시킬 문장을 프리로드시킵니다. |
 | `void`                               | `Preload(AIClipSet[] clips)` AI에게 발화 또는 제스처 포함 발화를 프리로드시킵니다. |
 | `Collection<AIGesture>`              | `GetGestures()` 제스처 콜렉션(사용가능한 제스처)을 가져옵니다. |
