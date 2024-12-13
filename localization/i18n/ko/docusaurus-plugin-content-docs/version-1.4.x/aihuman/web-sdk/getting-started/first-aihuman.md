@@ -38,7 +38,7 @@ const AI_PLAYER = new AIPlayer(wrapper);
 
 <img src="/img/aihuman/web/project.png" />
 
-**2.2. 당신의 서버에 ClientToken API를 생성하십시오.**
+**2.2. ClientToken을 생성하는 API 제작**
 
 - 다음으로 인증을 위한 clientToken 생성 API를 만듭니다.
 - clientToken 생성 api는 여러분의 서버에 구현되어야하며, 이를 통해 client는 필요할때 호출하여 사용합니다.
@@ -159,9 +159,9 @@ await AI_PLAYER.init({
 
 <br/>
 
-**4. AIPlayer의 콜백을 만들고 그 이벤트를 모니터링합니다**
+**4. AIPlayer의 콜백함수 & 이벤트 모니터링**
 
-아래와 같이 AIPlayer의 callback(Listener)을 설정할 수 있습니다. 그리고 리소스 로딩이 완료되면 'send'를 호출할 수 있습니다(AIEventType.RES_LOAD_COMPLETED).
+아래와 같이 AIPlayer의 callback(Listener)을 설정할 수 있습니다. 그리고 리소스 로딩이 완료되면 `send`를 호출할 수 있습니다(AIEventType.RES_LOAD_COMPLETED).
 
 ```javascript
 function initAIPlayerEvent() {

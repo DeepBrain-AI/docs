@@ -28,7 +28,7 @@ SDK demo page에서도 테스트해볼수 있습니다.
 <br/>
 
 ### 2. 발화 동작의 모니터링
-'send' 함수를 호출한 후, 등록된 콜백에서 동작 이벤트에 대한 피드백을 확인할 수 있습니다. 이 피드백은 이벤트 관련 콜백 메서드('onAIPlayerEvent')를 호출하여 반환됩니다. 예를 들어 'send' 메서드를 호출하면 다음 이벤트가 'onAIPlayerEvent'로 순차적으로 호출됩니다. 
+`send` 함수를 호출한 후, 등록된 콜백에서 동작 이벤트에 대한 피드백을 확인할 수 있습니다. 이 피드백은 이벤트 관련 콜백 메서드('onAIPlayerEvent')를 호출하여 반환됩니다. 예를 들어 `send` 메서드를 호출하면 다음 이벤트가 'onAIPlayerEvent'로 순차적으로 호출됩니다. 
 
 - AIEventType.AICLIPSET_PLAY_PREARE_STARTED
 - AIEventType.AICLIPSET_PLAY_PREARE_COMPLETED
@@ -36,7 +36,7 @@ SDK demo page에서도 테스트해볼수 있습니다.
 - AIEventType.AICLIPSET_PLAY_COMPLETED
 - AIEventType.AICLIPSET_PLAY_FAILED //실패가 있는 경우,
 
-'send' 중에 오류가 발생하면 'onAIPlayerErrorV2'로 AIError와 함께 호출됩니다.
+`send` 중에 오류가 발생하면 'onAIPlayerErrorV2'로 AIError와 함께 호출됩니다.
 
 ```javascript
 AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
