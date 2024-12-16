@@ -10,6 +10,9 @@ sidebar_position: 5
 aiPlayer.speechSpeed = speechSpeed
 ```
 
+<br/>
+
+
 ### Gesture
 
 As briefly mentioned above, the speech may be performed using the AIClipSet. Here, the term AIClipSet refers to one speech unit in a series of AI operations. At this time, the types of speech include general speech that only speaks speech, gesture speech that includes gestures, and gestures that perform only gesture. Depending on whether the AI model provides the AIGesture feature, the feature can be used, and a list of available gestures can be obtained using the AIPlayer's guestures array. Even in the case of a model that does not support a gesture, it may be operated using a clipset.

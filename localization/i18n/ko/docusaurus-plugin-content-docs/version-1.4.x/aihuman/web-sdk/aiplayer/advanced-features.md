@@ -114,6 +114,9 @@ AI_PLAYER.send(["Nice to meet you", "How are you?"]);
 AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
 
+
+<br/>
+
 ### 4. 프리로드
 
 프리로드는 다음에 할 말들을 먼저 로드시켜놓고 빠르게 다음 발화를 하고 싶을 때 사용합니다. 이는 일종의 캐싱이라고 생각할 수 있습니다. 'preload(...)' 메소드를 호출하면 프리로드가 동작됩니다. 아래 샘플에서 Preload speak 버튼을 누르면 해당 행동이 구현되어 있습니다.

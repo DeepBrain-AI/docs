@@ -10,11 +10,17 @@ sidebar_position: 2
 
 **[AI Human SDK Website](https://aihuman.aistudios.com)**에서 각 플랫폼에 대한 SDK를 다운로드할 수 있습니다.
 
+
+<br/>
+
 ### 2. Xcode 프로젝트 생성
 
 SDK를 적용 할 Xcode 프로젝트를 생성합니다.
 
 프로젝트 폴더에 **AIPlayerSDK.podspec 파일과 the AIPlayerSDK 폴더**를 추가합니다.
+
+
+<br/>
 
 ### 3. project 설정
 

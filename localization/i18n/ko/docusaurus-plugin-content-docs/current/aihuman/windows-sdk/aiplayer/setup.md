@@ -28,6 +28,8 @@ public object AIPlayerObject	// View (UserControl) of AIPlayer to be used in xam
 }
 ```
 
+<br/>
+
 ### 1단계. 레이아웃 구성하기
 
 XAML 파일에 AI Human을 사용할 View(UI Element)를 구성합니다. AI를 배치할 위치를 결정하고 거기에 `AIPlayer`를 Binding시킬 `ContentControl`을 생성합니다. CS 파일에는 실제 Binding되는 객체의 `Properties`를 정의합니다.
@@ -53,6 +55,9 @@ public object AIPlayerObject
 ...
 ```
 
+
+<br/>
+
 ### 2단계. 인증 관련 정보 준비하기
 
 인증 과정에는 appId, userKey, uuid, platrom 정보가 필요합니다.  
@@ -67,6 +72,8 @@ public object AIPlayerObject
 
 특히 `userKey`는 DeepBrain AI에서 만든 문자열 타입으로써, **외부에 노출되지 않도록 주의**해야 합니다. 이 인증키를 이용하여 API를 호출하면 사용 가능한 기본 AI 데이터와 앞으로 사용할 `토큰` 등을 내부적으로 획득하게 됩니다.  
 토큰 사용기간이 만료되어 토큰 리프레쉬가 필요한 경우는 `GenerateToken` 혹은 `Authenticate` 함수를 다시 호출하면 리프레쉬가 됩니다.  
+
+<br/>
 
 ### 3단계. 인증 이후 사용가능한 AI 획득하기
 

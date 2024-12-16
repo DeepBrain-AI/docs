@@ -30,7 +30,8 @@ sidebar_position: 2
 
 <img src="/img/aihuman/android/screenshot_projectsetup_3.png"/>
 
-
+<br/>
+<br/>
 <br/>
 
 ### 2. 사용할 프로젝트에 SDK (aar 파일) 추가하기
@@ -39,7 +40,8 @@ AI Human SDK aar 파일들(2개 AIHumanSDK, AIHuman3DSDK)을 프로젝트 libs�
 
 <img src="/img/aihuman/android/screenshot_projectsetup_4.png"/>
 
-
+<br/>
+<br/>
 <br/>
 
 ### 3. app 레벨의 build.gradle 파일 : (샘플 프로젝트의 build.gradle 파일 참조)

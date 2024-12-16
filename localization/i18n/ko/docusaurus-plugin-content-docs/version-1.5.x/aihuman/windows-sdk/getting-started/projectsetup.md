@@ -14,6 +14,9 @@ sidebar_position: 2
 - 로그인 이후에 [SDK](https://aihuman.aistudios.com/aihuman/sdk) 카테고리에서 프로젝트를 생성할 수 있습니다.
 - [SDK](https://aihuman.aistudios.com/aihuman/sdk) 카테고리 접근이 불가하다면 [고객센터](https://www.aistudios.com/ko/company/contact)로 문의해 주세요.
 
+
+<br/>
+
 ### 2. My Workspace에 Project 추가하기
  
 **[My Workspace](https://aihuman.aistudios.com/aihuman/sdk)**에서 Project를 만들고, Windows App ID 부분에 SDK를 사용하는 Windows Application 이름을 입력하고 확인을 클릭합니다. (이때 App ID는 자동으로 중복체크를 수행합니다.)
@@ -30,6 +33,8 @@ sidebar_position: 2
 - App ID는 해당 프로젝트에서 유일한(Unique) 값이어야 합니다. (예: "dev.aihuman.yourappname")
 - User Key는 AI Human 웹사이트에서 프로젝트를 생성하고 App ID를 입력하면 발급받을 수 있습니다.
 :::
+
+<br/>
 
 ### 3. Visual Studio에서 새 프로젝트 생성하기
 
@@ -87,6 +92,8 @@ SDK를 포함한 아래의 어셈블리들을 프로젝트에 참조 추가하�
 - 기타: 프로젝트에 따라 config 등의 추가 설정이 필요할 수 있음
 
 위의 Nuget 패키지 (권장) AIHuman.SDK.WPF를 설치(종속 패키지인 AIHuman.SDK.Core는 자동 설치)하면 여기서 프로젝트 셋업하기는 끝이 납니다.
+
+<br/>
 
 ### 4. 프로젝트 셋업하기 (어셈블리 참조를 사용하는 경우)
 

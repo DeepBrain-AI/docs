@@ -22,6 +22,8 @@ AIClipSet clip = AIAPI.CreateClipSet("this is sample sentence.");
 _aiPlayer.Send(new[] {clip});
 ```
 
+<br/>
+
 ### 로컬 캐싱
 
 로컬 캐싱은 발화(클립셋) 데이터를 내부적으로 저장하고, 같은 발화(AIClipSet)를 다시 요청할 때 기존 데이터를 재활용하여 서버와의 통신 없이 즉각 수행하도록 하는 기능을 말합니다.
@@ -41,6 +43,9 @@ _aiPlayer.Send(new[] {clip});
   + CacheLimit을 초과하지 않는 경우 캐싱 데이터는 로컬 영역에 그대로 유지됩니다.
 
 :::
+
+
+<br/>
 
 ### 발화 동작 모니터링
 
@@ -100,13 +105,15 @@ public void OnAIPlayerError(AIError aiError)
 
 다음은 AIPlayer 발화 중에 수행할 수 있는 동작들입니다.
 
-#### 발화 일시정지
+### 발화 일시정지
 
 : 발화를 일시정지 시킵니다.
 ```csharp
 // pause method
 _aiPlayer.Pause();
 ```
+
+<br/>
 
 ### 발화 재개
 
@@ -116,7 +123,9 @@ _aiPlayer.Pause();
 _aiPlayer.Resume();
 ```
 
-#### 발화 정지
+<br/>
+
+### 발화 정지
 
 : 발화를 중단하고 발화 대기 큐도 모두 리셋합니다. (발화 재개 불가)
 ```csharp

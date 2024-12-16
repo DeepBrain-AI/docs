@@ -18,6 +18,9 @@ AIClipSet clip = AIAPI.CreateClipSet("this is sample sentence.");
 _aiPlayer.Send(new[] {clip});
 ```
 
+
+<br/>
+
 ### 발화 동작 모니터링
 AIPlayer.Send 함수 호출 이후 등록된 listener(AIPlayerCallback)에서 동작에 대한 상태를 확인할 수 있습니다. 아래와 같이 정의된 AIEvent를 순차적으로 전달 받을 수 있습니다.
 
@@ -69,7 +72,7 @@ public void OnAIPlayerError(AIError error)
 
 다음은 AIPlayer 발화 중에 할수 있는 동작들입니다. 
 
-#### 발화 일시정지
+### 발화 일시정지
 
 : 발화를 일시정지 시킵니다.
 ```csharp
@@ -77,7 +80,7 @@ public void OnAIPlayerError(AIError error)
 _aiPlayer.Pause()
 ```
 
-#### 발화 재시작
+### 발화 재시작
 
 : 발화 일시정지 상태에서 재개합니다.
 ```csharp
@@ -85,7 +88,7 @@ _aiPlayer.Pause()
 _aiPlayer.Resume()
 ```
 
-#### 발화 정지
+### 발화 정지
 
 : 발화(현재 말하기)를 중단하고 데이터를 모두 초기화합니다. (resume 불가)
 ```csharp

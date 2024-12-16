@@ -25,6 +25,9 @@ aiPlayer.send(new String[]{"Nice to meet you"});
 
 ```
 
+
+<br/>
+
 ### 발화 동작 모니터링
 
 send 메소드 호출 이후 등록된 listener에서 동작 상태에 대한 피드백을 확인 할 수 있습니다. 이 피드백은 listener(IAIPlayerCallback)의 이벤트 관련 메소드(onAIPlayerEvent)가 호출됨으로 알 수 있습니다. onAIPlayerEvent의 인자로 들어오는 AIEvent가 다음의 상태값으로 호출됩니다. 

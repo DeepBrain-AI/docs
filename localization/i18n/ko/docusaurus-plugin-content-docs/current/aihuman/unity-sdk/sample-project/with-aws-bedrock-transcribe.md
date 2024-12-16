@@ -18,6 +18,9 @@ sidebar_position: 6
 <img src="/img/aihuman/unity/sampleproject_aws_bedrock_transcribe.png" style={{zoom: "70%"}} />
 </p>
 
+
+<br/>
+
 ### AI + AWS Bedrock Claude + AWS Transcribe 함께 사용하기
 
 위에서 언급한 대화형 AI 서비스를 해당 데모에서 구동하기 위해서는, 아래와 같이 `aws access` 정보가 필요합니다.
@@ -43,6 +46,9 @@ readonly RegionEndpoint _bedrockRegionEndPoint = RegionEndpoint.USWest2;
 ```
 
 이제 데모 구동을 위한 준비가 완료되었습니다. 마이크를 통해 AI와 대화를 시도해보세요.
+
+
+<br/>
 
 ### AWS Transcribe를 연동하여 STT 구현
 
@@ -146,6 +152,9 @@ private void OnMessage(byte[] bytes)
     }
 }
 ```
+
+
+<br/>
 
 ### AWS Bedrock Claude와 AI Human을 연동하여 TTS 구현
 

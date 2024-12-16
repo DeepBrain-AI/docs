@@ -240,6 +240,11 @@ public class QuickStart : MonoBehaviour
 
 <img src="/img/aihuman/unity/quickstart_inspector.png" />
 
+
+<br/>
+<br/>
+<br/>
+
 ### 4. 한 문장 발화 테스트
 
 - Editor Play > 리소스 로딩 > 하단 InputText에 문장 입력 > Send 버튼 클릭

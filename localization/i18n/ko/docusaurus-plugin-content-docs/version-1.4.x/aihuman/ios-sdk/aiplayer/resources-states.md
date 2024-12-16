@@ -8,6 +8,9 @@ AIPlayer를 위한 리소스가 완전히 로드되었는지 확인하기
 
 객체 생성 후 AIPlayer는 자동으로 리소스 로딩이 시작되고 등록 된 **delegate** 에 리소스 로딩 상태가 보고됩니다.
 
+
+<br/>
+
 ### AIPlayerCallback을 통한 리소스 로딩 상태 모니터링
 
 먼저 **delegate**의 onAIPlayerEvent 메소드를 통해 리소스의 로딩 시작과 완료를 알 수가 있습니다.

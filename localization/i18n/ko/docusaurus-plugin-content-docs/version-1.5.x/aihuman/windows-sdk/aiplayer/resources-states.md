@@ -10,6 +10,8 @@ sidebar_position: 3
 
 기본적으로 구동에 필요한 리소스는 해당 SDK를 사용하는 프로세스가 위치한 경로에 다운로드가 됩니다.
 
+<br/>
+
 ### IAIPlayerCallback으로 모니터링 구현
 
 먼저 콜백을 받으려는(모니터링) 클래스는 `IAIPlayerCallback`를 상속 받아 구현합니다. 구현체의 이벤트 관련 콜백으로는 `OnAIPlayerEvent(AIEvent)` 함수를 구현해야 하고 이벤트 종류인 `AIEvent.Type`값은 다음과 같습니다.

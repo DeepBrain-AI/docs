@@ -4,11 +4,14 @@ sidebar_position: 5
 
 # 발화 관련 추가 기능
 
-#### AI 말하기 속도를 변경합니다.: 0.5~1.5 사이 값
+### AI 말하기 속도를 변경합니다.: 0.5~1.5 사이 값
 
-```swift
+```Swift
 aiPlayer.speechSpeed = speechSpeed
 ```
+
+<br/>
+
 
 ### 제스쳐 동작
 

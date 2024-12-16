@@ -26,6 +26,8 @@ SDK demo page에서도 테스트해볼수 있습니다.
 <img src="/img/aihuman/web/sdk_demo_03_r1.png" />
 
 <br/>
+<br/>
+<br/>
 
 ### 2. 발화 동작의 모니터링
 `send` 함수를 호출한 후, 등록된 콜백에서 동작 이벤트에 대한 피드백을 확인할 수 있습니다. 이 피드백은 이벤트 관련 콜백 메서드('onAIPlayerEvent')를 호출하여 반환됩니다. 예를 들어 `send` 메서드를 호출하면 다음 이벤트가 'onAIPlayerEvent'로 순차적으로 호출됩니다. 

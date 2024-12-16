@@ -16,6 +16,11 @@ sidebar_position: 4
 
 <img src="/img/aihuman/web/stt_demo_02.png" />
 
+
+<br/>
+<br/>
+<br/>
+
 ### 1. Chatbot (Wrapper Class of PlayChat) 설정 
 
 **1.1. chatbot.js file을 web page에 추가**

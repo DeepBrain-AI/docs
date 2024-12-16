@@ -14,6 +14,9 @@ AI Human SDK를 이용해 인증에 필요한 UserKey, AppId 등을 생성하고
 - 로그인 이후에 [SDK](https://aihuman.aistudios.com/aihuman/sdk) 카테고리에서 프로젝트를 생성할 수 있습니다.
 - [SDK](https://aihuman.aistudios.com/aihuman/sdk) 카테고리 접근이 불가하다면 [고객센터](https://www.aistudios.com/ko/company/contact)로 문의해 주세요.
 
+
+<br/>
+
 ### 2. My Workspace에 Project 추가하기
 
 **[My workspace](https://aihuman.aistudios.com/aihuman/sdk)** 에서 Project를 만들고, 플랫폼(Android, iOS, Windows)의 App Id를 입력하고 확인을 클릭합니다. (이때 App ID는 자동으로 중복체크를 수행합니다.)
@@ -29,6 +32,9 @@ appId, userKey, platform 정보는 인증 기능인 Authenticate() 함수의 전
 - User key는 AI Human 웹사이트에서 프로젝트를 생성하고 App ID를 입력하면 발급받을 수 있습니다.
 - platform 값은 App Platform에 맞는 것을 설정합니다. (Android, iOS, Windows)
 :::
+
+
+<br/>
 
 ### 3. Unity Hub에서 새 프로젝트 생성하기
 
@@ -108,7 +114,11 @@ Unity Editor 2021.2.x 버전 사용자는 SDK에 포함 된 Newtonsoft.Json.dll�
 
 <img src="/img/aihuman/unity/Newtonsoft_Json.png" />
 
-## 5. 샘플 프로젝트 빌드 가이드
+<br/>
+<br/>
+<br/>
+
+### 5. 샘플 프로젝트 빌드 가이드
 
 샘플 프로젝트를 빌드하기 위해 해당 플랫폼에서 다음 과정을 수행해야 합니다.
 

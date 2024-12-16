@@ -34,6 +34,9 @@ AIPlayer.generateToken { (error) in
 }
 ```
 
+
+<br/>
+
 ### 2단계 : 인증 후 기본 AI 목록 가져오기
 
 인증이 완료되면 AIPlayer는 인증 결과를 가지고 있습니다. getAiList()를 호출하면, 사용 가능한 모든 AI목록이 반환됩니다. AI 모델 권한이 없거나 인증 전에 getAiList()를 호출하면 에러가 반환됩니다.
@@ -63,6 +66,9 @@ AI 리스트를 가져온 이후 AIPlayer.aiList() 함수를 통해 언제든지
 ```swift
 let aiList = AIPlayer.aiList()
 ```
+
+
+<br/>
 
 ### 3단계: AIPlayer 생성하기
 
@@ -94,6 +100,9 @@ class CustomViewController: UIViewController, AIPlayerCallback {
 }
 
 ```
+
+
+<br/>
 
 ### 4단계: AI 객체 제거하기
 

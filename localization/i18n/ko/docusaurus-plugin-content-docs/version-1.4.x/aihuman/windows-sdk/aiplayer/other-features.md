@@ -7,6 +7,8 @@ sidebar_position: 6
 
 리소스가 로드되면 AIPlayer의 설정들을 변경할 수 있습니다. 예를들어 **스케일, 여백, 볼륨** 등을 조절할 수 있습니다.
 
+<br/>
+
 ### 스케일 조절하기
 <img src="/img/aihuman/windows/scale_1.4.x.png" />
 
@@ -16,6 +18,8 @@ sidebar_position: 6
 // set Property(float)
 _aiPlayer.Scale = value;
 ```
+
+<br/>
 
 ### 여백 조절하기
 <img src="/img/aihuman/windows/margin_1.4.x.png" />

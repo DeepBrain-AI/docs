@@ -23,6 +23,9 @@ sidebar_position: 4
 
 <img src="/img/aihuman/windows/PlaychatWithAzureSTTDemo.png" />
 
+<br/>
+<br/>
+
 ### AI + Chatbot + Speech Recognition 함께 사용하기
 
 해당 Demo에서 말하는 대화형 AI 서비스를 사용해 보려면, 아래와 같이 일련의 과정이 필요합니다.
@@ -57,6 +60,9 @@ public void OnChatbotMessage(JObject response)
     }
 }
 ```
+
+
+<br/>
 
 ### Chatbot(Playchat)의 데이터 전송 포맷
 

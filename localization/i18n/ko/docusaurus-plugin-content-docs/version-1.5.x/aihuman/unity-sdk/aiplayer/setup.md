@@ -13,11 +13,17 @@ sidebar_position: 2
 
 :::
 
+
+<br/>
+
 ### 1단계. 유니티 Scene 구성하기
 
 - [AI Human 퀵스타트](/aihuman/unity-sdk/sample-project/quick-start)를 참고하여 Scene을 구성합니다.
 - AIHumanSDK 프리팹을 반드시 사용할 필요는 없습니다. AIHumanSDK 프리팹과 AIHumanSDKManager 스크립트는 SDK 사용자 편의를 위해 제공되는 것이므로 Inspector에 인정 정보를 설정하지 않고 AIHumanSDKManager.Authenticate(appId, userKey, platform)를 함수를 직접 호출하여도 무방합니다.
 - AIPlayerUI 프리팹 또한 SDK 사용자 편의를 위해 제공되는 것으므로 반드시 사용할 필요는 없으며, 사용자 정의 UI 또는 Material을 제작하여 AIPlayer에서 제공하는 Texture를 적용할 수 있습니다.
+
+
+<br/>
 
 ### 2단계. 인증 관련 정보 준비하기
 
@@ -26,6 +32,9 @@ AuthStart 함수에는 3개의 전달인자가 필요합니다. 이 3가지는 `
 특히 UserKey는 DeepBrain AI에서 만든 문자열 타입으로써, 절대 외부에 노출되면 안되는 중요한 데이터입니다. 이 인증키를 이용하여 API를 호출하면 사용 가능한 기본 AI 데이터와 앞으로 사용할 토큰을 얻을 수 있습니다. Platform은 사용자의 App Platform을 고려하여 Android, iOS, Windows 중에 하나를 선택합니다.
 
 **토큰 사용기간이 만료되어 토큰 리프레쉬가 필요한 경우는 Authenticate() 함수의 재호출이 필요합니다.**
+
+
+<br/>
 
 ### 3단계. Authenticate 구현 및 AI 가져오기
 
