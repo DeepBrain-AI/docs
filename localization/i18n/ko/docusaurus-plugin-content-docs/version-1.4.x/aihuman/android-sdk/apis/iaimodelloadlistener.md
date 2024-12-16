@@ -4,7 +4,7 @@ sidebar_position: 10
 
 # IAIModelLoadListener
 
-Interface AIModelInfoManager.IAIModelLoadListener
+[Interface] AIModelInfoManager.IAIModelLoadListener
 
 | Modifier and Type | Method and Description                                       |
 | :---------------- | :----------------------------------------------------------- |

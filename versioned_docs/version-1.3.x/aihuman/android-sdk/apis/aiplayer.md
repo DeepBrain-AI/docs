@@ -19,9 +19,9 @@ sidebar_position: 1
 | `void`                   | `release()`release the aiplayer when done. Similar to 'onDestroy()'. |
 | `void`                   | `resume()` resume the speech if possible                     |
 | `void`                   | `send(java.lang.String request)` send speech to speak          |
-| `void`                   | `send(java.lang.String[] requests)` send speechs to speak    |
+| `void`                   | `send(java.lang.String[] requests)` send speeches to speak    |
 | `void`                   | `send(AIClipSet requests)` send speech with gesture |
-| `void`                   | `send(AIClipSet[] requests)` send speechs with gesture |
+| `void`                   | `send(AIClipSet[] requests)` send speeches with gesture |
 | `void`                   | `setScale(float scale)` set the scale of ai                  |
 | `void`                   | `setSpeed(float speed)` set the ai speech rate               |
 | `void`                   | `setTopMargin(int topMargin)`  set top margin of ai to be displayed |

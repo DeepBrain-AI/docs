@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # AIPlayer
 
-## functions
+### Functions
 
 | Name                     | Description                                         |
 | ------------------------ | ------------------------------------------------------------ |

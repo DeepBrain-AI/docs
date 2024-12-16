@@ -4,7 +4,7 @@ sidebar_position: 11
 
 # IAPIListener
 
-Interface AIModelInfoManager.IAPIListener
+[Interface] AIModelInfoManager.IAPIListener
 
 | Modifier and Type | Method and Description                                       |
 | :---------------- | :----------------------------------------------------------- |

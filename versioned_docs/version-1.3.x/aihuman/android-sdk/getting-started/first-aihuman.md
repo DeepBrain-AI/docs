@@ -6,12 +6,18 @@ sidebar_position: 3
 
 In this chapter, we will quickly look at AIHuman(AIPlayer) setup process and make the default AI say a sentence. When running AIPlayer for the first time, it may take several minutes to load resources depending on the network condition. The progress of this loading process can be monitored.
 
-## 1. Create a project and complete the previous project setup.
+### 1. Create a project and complete the previous project setup
 
-## 2. Create an Activity to include AIPlayer.
+
+<br/>
+
+### 2. Create an Activity to include AIPlayer
 Here we create AILiveQuickStart.java.
 
-## 3. Create a layout file.
+
+<br/>
+
+### 3. Create a layout file
 And make a view(eg. RelativeLayout) as a wrapper for the AIPlayer and set it as the Activity's contentView.
 
 **AI is drawn in parentView fully in vertical way.(scale 1.0)**
@@ -55,9 +61,12 @@ public class AILiveQuickStart extends AppCompatActivity {
 </RelativeLayout>
 ```
 
-## 4. The next step is to authenticate the SDK user.
 
-**Create a project in [SDK Website](https://aihuman.deepbrain.io), enter appId of Android and click confirm. Then userkey will be issued.**
+<br/>
+
+### 4. The next step is to authenticate the SDK user
+
+**Create a project in [SDK Website](https://aihuman.aistudios.com), enter appId of Android and click confirm. Then userkey will be issued.**
 
 <img src="/img/aihuman/android/screenshot_quickstart_sdkwebsite.png"/>
 
@@ -80,7 +89,10 @@ AIModelInfoManager.generateToken(this, userkey, (aiError, resp) -> {
   });
 ```
 
-## 5. After authentication is successfully finished, create AIPlayer.
+
+<br/>
+
+### 5. After authentication is successfully finished, create AIPlayer
 AIPlayer takes in the aiWrapper view.
 
 ```java
@@ -88,7 +100,10 @@ AIPlayer takes in the aiWrapper view.
 aiPlayer = AIPlayerFactory.create(AILiveQuickStart.this, binding.aiWrapper, AILIVE, null);
 ```
 
-## 6. After creating AIPlayer, it needs to set which AI to use.
+
+<br/>
+
+### 6. After creating AIPlayer, it needs to set which AI to use
 If authentication is successful, it can be set with the default AI.
 
 ```java
@@ -98,7 +113,10 @@ AIPlayerSettings aiSettings = new AIPlayerSettings(defaultAI.getName(), AILIVE, 
 aiPlayer.init(aiSettings, iAiPlayerCallback);
 ```
 
-## 7. Let's make AIPlayer's callback as a member of Activity and set it in AIPlayer's init method to monitor the state of AIPlayer.
+
+<br/>
+
+###  7. Let's make AIPlayer's callback as a member of Activity and set it in AIPlayer's init method to monitor the state of AIPlayer and set it in AIPlayer's init method to monitor the state of AIPlayer
 Notice below that it sends a sentence("Nice to meet you") to AI when resource-loading(AIEvent.RES_LOAD_COMPLETED) is completed.
 
 ```java
@@ -135,7 +153,10 @@ public class AILiveQuickStart extends AppCompatActivity {
 ```
 
 
-## 8. The full code is shown below.
+
+<br/>
+
+###  8. The full code is shown below
 Activity code (AILiveQuickStart.java)
 
 ```java
@@ -248,7 +269,7 @@ public class AILiveQuickStart extends AppCompatActivity {
     }
 
     private void initSDKAuthInfoVars() {
-        appId = getString(R.string.appid);
+        appId = getString(R.string.appId);
         userkey = getString(R.string.userkey);
     }
 

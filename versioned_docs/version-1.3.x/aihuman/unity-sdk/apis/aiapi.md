@@ -6,7 +6,7 @@ sidebar_position: 1
 
 | Modifier and Type                | Method and Description                                       |
 | -------------------------------- | ------------------------------------------------------------ |
-| ` void`                          | `Authenticate(string appId, string userKey, string platform, Action<AIList, AIError> onComplete)` Attempts to authenticate with the issued userKey. It passes the response to CallBack(onComplete) and if successful, you can get a usable AI model. |
+| ` void`                          | `Authenticate(string appId, string userKey, string platform, Action<AIList, AIError> onComplete)` Attempts to authenticate with the issued userKey. It passes the response to Callback(onComplete) and if successful, you can get a usable AI model. |
 | `AIHuman.Common.AIError`                        | `GenerateToken(string appId, string userKey, string platform)` If the server attempts authentication with the information and fails, the related content is returned through AIError. |
 | `void`                           | `GetAIList(Action<AIList, AIError> OnComplete)` Get a list of available AI models.             |
 | `string`                         | `DefaultAIName { get; }` Get the default AI information.  |

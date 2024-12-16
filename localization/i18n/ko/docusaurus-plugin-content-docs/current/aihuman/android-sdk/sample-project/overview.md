@@ -10,7 +10,7 @@ sidebar_position: 1
 <img src="/img/aihuman/android/Screenshot_20220530-201302-3909315-3915724.png" style={{zoom: "25%"}} />
 </p>
 
-MainActivity에는 **AI Human SDK 인증 기능이 포함됩니다(onStart()에 generateToken(,) 메서드)**. 앱을 실행하려면 [여기](../getting-started/first-aihuman.md)와 같이 appId와 userkey를 generateToken 함수에 넣어야 합니다.
+MainActivity에는 **AI Human SDK 인증 기능이 포함됩니다(onStart()에 generateToken() 메서드)**. 앱을 실행하려면 [여기](../getting-started/first-aihuman.md)와 같이 appId와 userkey를 generateToken 함수에 넣어야 합니다.
 
 
 **MainActivity의 메뉴**

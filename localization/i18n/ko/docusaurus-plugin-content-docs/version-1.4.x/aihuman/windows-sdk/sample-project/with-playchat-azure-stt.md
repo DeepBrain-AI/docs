@@ -19,6 +19,11 @@ After the greeting, chat or click the STT button at the bottom to get a voice in
 
 <img src="/img/aihuman/windows/PlaychatWithAzureSTTDemo.png" />
 
+
+<br/>
+<br/>
+<br/>
+
 ### Using AI Human, Chatbot and MS Azure Speech Recognition
 
 If you want to use the conversational AI service mentioned in the demo, you need to prepare as follows.
@@ -53,6 +58,9 @@ public void OnChatbotMessage(JObject response)
     }
 }
 ```
+
+
+<br/>
 
 ### Data transfer format of Chatbot (Playchat)
 

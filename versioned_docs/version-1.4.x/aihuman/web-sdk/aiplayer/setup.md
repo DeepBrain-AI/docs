@@ -11,6 +11,9 @@ The entire setup process consists of four steps.
 - Step 3: Get the list of available AIs(returns error if not authenticated)
 - Step 4: Initialize AIPlayer with the desired AI's name
 
+<br/>
+
+
 ### 1. Create AIPlayer object.
 
 Create the AIPlayer object using its constructor.
@@ -19,6 +22,9 @@ Create the AIPlayer object using its constructor.
 const wrapper = document.getElementById("AIPlayerWrapper");
 const AI_PLAYER = new AIPlayer(wrapper);
 ```
+
+<br/>
+
 
 ### 2. Authenticate SDK user
 
@@ -37,6 +43,9 @@ const result = await AI_PLAYER.generateToken({ appId: appId, token: clientToken 
 		"defaultAI":   {"ai_na...} */
 ```
 
+<br/>
+
+
 ### 3. Get the list of available AIs
 
 Once authentication is completed, AIPlayer holds authentication info. Now, you can get available AI list by calling `AIPlayer.getAIList()` function. If the authentication is invalid or there are no available AIs associated with, the function returns ` {succeed: false} `.
@@ -51,6 +60,9 @@ const result = await AI_PLAYER.getAIList();
       {"aiName":"samh","aiDisplayName":"Samh","language":"en"},
       {"aiName":"kang","aiDisplayName":"Kang","language":"ko"}]} */
 ```
+
+<br/>
+
 
 ### 4. Initialize AIPlayer with the desired AI
 

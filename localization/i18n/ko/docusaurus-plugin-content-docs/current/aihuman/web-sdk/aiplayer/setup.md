@@ -12,6 +12,8 @@ sidebar_position: 2
 - 4단계: 원하는 AI의 이름으로 AIPlayer 초기화
 
 
+<br/>
+
 ### 1. AIPlayer 객체를 만듭니다.
 
 해당 생성자를 사용하여 AIPlayer 개체를 생성합니다.
@@ -20,6 +22,9 @@ sidebar_position: 2
 const wrapper = document.getElementById("AIPlayerWrapper");
 const AI_PLAYER = new AIPlayer(wrapper);
 ```
+
+<br/>
+
 
 ### 2. SDK 사용자 인증
 
@@ -39,6 +44,9 @@ const result = await AI_PLAYER.generateToken({ appId: appId, token: clientToken 
 		"defaultAI":   {"ai_na...} */
 ```
 
+<br/>
+
+
 ### 3. 가능한 AI 리스트 불러오기 
 
 인증이 완료되면 AIPlayer는 인증 정보를 가지고 있습니다. 이제 'AIplayer.getAIlist()'을 호출하여 사용 가능한 AI 목록을 얻을 수 있습니다. 인증이 잘못되었거나 문제가 있으면 '{success:false}'을(를) 반환합니다.
@@ -53,6 +61,9 @@ const result = await AI_PLAYER.getAIList();
       {"aiName":"samh","aiDisplayName":"Samh","language":"en"},
       {"aiName":"kang","aiDisplayName":"Kang","language":"ko"}]} */
 ```
+
+<br/>
+
 
 ### 4. 원하는 AI로 AIPlayer 초기화
 
@@ -85,6 +96,9 @@ AIPlayer 객체에 특정 AI를 적용하려면 원하는 AI 모델로 초기화
     aiName: "...", size: 1.0, left: 0, top: 0, speed: 1.0
   });
 ```
+
+
+<br/>
 
 ### 5. AIPlayer 자원 해제
 

@@ -2,7 +2,7 @@
 sidebar_position: 9
 ---
 
-# Interface IUnityCallback 
+# IUnityCallback 
 
 | Modifier and Type | Method and Description                           |
 | :---------------- | :----------------------------------------------- |

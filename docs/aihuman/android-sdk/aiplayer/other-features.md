@@ -11,21 +11,28 @@ After the resource is loaded, some settings of aiPlayer can be changed while the
 <img src="/img/aihuman/android/sdk_demo_gesture_speak.jpg" style={{zoom: "25%"}} />
 </p>
 
-## Change AI Size(Scale)
+<br/>
+
+### Change AI Speech Rate
 : value between 0.5 and 1.5
 
 ```java
 aiPlayer.setScale(scale);
 ```
 
-## Change AI Top Margin
+<br/>
+
+### Change AI Top Margin
 The larger the value, the lower it is drawn.
 
 ```java
 aiPlayer.setTopMargin(topMargin); //3d not support 
 ```
 
-## Volume Control
+
+<br/>
+
+### Volume Control
 
 You can control the volume. The possible value range is from 0.0 to 1.0.
 

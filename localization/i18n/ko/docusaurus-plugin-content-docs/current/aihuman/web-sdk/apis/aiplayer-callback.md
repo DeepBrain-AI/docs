@@ -4,13 +4,16 @@ sidebar_position: 3
 
 # AIPlayer 콜백
 
-## 1. onAIPlayerError
+### 1. onAIPlayerError
 
 해당 [콜백 함수](../../../1.3.x/aihuman/web-sdk/apis/aiplayer-callback)
 는 더 이상 지원하지 않습니다.
 onAIPlayerErrorV2 사용을 권장합니다.
 
-## 2. onAIPlayerErrorV2
+
+<br/>
+
+### 2. onAIPlayerErrorV2
 
 AIPlayer 동작중 발생하는 에러를 리턴하는 콜백입니다. AIError의 자세한 사항은 여기 [here](../apis/aiplayer-data)를 참조하십시오. 
 
@@ -33,12 +36,18 @@ AIPlayer 동작중 발생하는 에러를 리턴하는 콜백입니다. AIError�
   };
 ```
 
-## 3. onAIPlayerStateChanged
+
+<br/>
+
+### 3. onAIPlayerStateChanged
 
 해당 [콜백 함수](../../../1.3.x/aihuman/web-sdk/apis/aiplayer-callback)는 더 이상 지원하지 않습니다.
 onAIPlayerEvent 사용을 권장합니다.
 
-## 4. onAIPlayerEvent
+
+<br/>
+
+### 4. onAIPlayerEvent
 
 AIPlayer 동작중 발생하는 이벤트를 리턴하는 콜백입니다. AIEvent의 자세한 사항은 여기 [here](../apis/aiplayer-data)를 참조하십시오. 
 
@@ -63,7 +72,10 @@ AIPlayer 동작중 발생하는 이벤트를 리턴하는 콜백입니다. AIEve
   };
 ```
 
-## 5. onAIPlayerLoadingProgressed
+
+<br/>
+
+### 5. onAIPlayerLoadingProgressed
 
 AIPlayer 리소스 로딩 진행율을 리턴하는 콜백입니다.
 

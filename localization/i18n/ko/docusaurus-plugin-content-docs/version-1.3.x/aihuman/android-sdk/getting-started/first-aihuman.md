@@ -4,19 +4,32 @@ sidebar_position: 3
 
 # 나의 AI Human 만들기
 
-이 장에서는 신속하게 AIHuman(AIPlayer)를 셋업하고 기본 AI에게 한문장 발화까지 시키는 과정을 알아 봅니다. AIPlayer를 최초 셋업시에는 네트워크 상태에 따라 수분 정도의 로딩이 걸릴 수 있습니다. 이 로딩 과정은 진행율을 모니터링 할수 있습니다.
+이 장에서는 신속하게 AIHuman(AIPlayer)를 설정하고 기본 AI를 발화시키는 과정을 알아봅니다. AIPlayer를 처음 설정할 때는 네트워크 상태에 따라 수 분 정도의 로딩이 걸릴 수 있습니다. 이 로딩 과정은 진행율을 모니터링 할 수 있습니다.
 
-## 1. 테스트를 할 프로젝트를 만들고 이전 단계의 프로젝트 셋업을 완료한다. 
 
-## 2. AIPlayer가 포함될 Activity를 만든다.  
-여기서는 AILiveQuickStart를 만들었습니다.
+<br/>
 
-## 3. 래이아웃 파일 생성 
-Activity의 contentView(layout 파일)에 AIPlayer(View의 확장 클래스)가 add될 parentView(예, RelativeLayout)를 하나 만들어줍니다. 
+### 1. 프로젝트를 생성 및 설정
+
+테스트를 할 프로젝트를 만들고 이전 단계를 참고하여 프로젝트 설정을 완료합니다.
+
+
+<br/>
+
+### 2. AIPlayer가 포함될 Activity를 생성
+
+여기서는 `AILiveQuickStart`라는 Activity를 만들었습니다.
+
+
+<br/>
+
+### 3. 레이아웃 파일 생성
+
+Activity의 `contentView`(layout 파일)에 AIPlayer(View의 확장 클래스)가 추가될 `parentView`(예, RelativeLayout)를 하나 만들어줍니다.
 
 **AI는 parentView에 세로 기준으로 꽉차게 그려집니다.(스케일 1.0)**
 
-아래 샘플에서는 viewBinding을 사용하여 aiWrapper라는 이름을 주어 binding.aiWrapper로 parentView를 얻었습니다. 그러나 viewBinding을 쓰지 않아도 상관없습니다(findViewById()로 사용해도 됨).
+아래 샘플에서는 `viewBinding`을 사용하여 `aiWrapper`라는 이름을 붙여 `binding.aiWrapper`로 parentView를 얻었습니다. 그러나 viewBinding을 쓰지 않아도 상관없습니다(findViewById()로 사용해도 됨).
 
 - Activity Code
 
@@ -26,8 +39,8 @@ import androidx.annotation.Nullable;
 
 public class AILiveQuickStart extends AppCompatActivity {
     private IAIPlayer aiPlayer;
-    private AILiveQuickStartBinding binding; //using viewBinding 
-		
+    private AILiveQuickStartBinding binding; //using viewBinding
+
     @Override
   	protected void onCreate(@Nullable Bundle savedInstanceState) {
 	   	super.onCreate(savedInstanceState);
@@ -56,10 +69,14 @@ public class AILiveQuickStart extends AppCompatActivity {
 </RelativeLayout>
 ```
 
-## 4. SDK 인증하기
+
+<br/>
+
+### 4. SDK 인증하기
+
 SDK 사이트에서 Android sample 및 SDK를 다운로드 받아 참조할수 있습니다.
 
-**[SDK Website](https://aihuman.deepbrain.io)에서 프로젝트를 생성하고, 안드로이드의 appId를 입력하고 confirm을 클릭 > 맨 하단에 확인 클릭 > 다시 들어가보면 userkey가 발급되어 있습니다.**
+**[SDK Website](https://aihuman.aistudios.com)에서 프로젝트를 생성하고, 플랫폼은 Android 값을 선택, appId를 입력하고 생성버튼을 클릭 > 다시 들어가보면 userkey가 발급되어 있습니다.**
 
 <img src="/img/aihuman/android/screenshot_quickstart_sdkwebsite.png"/>
 
@@ -73,7 +90,7 @@ AIModelInfoManager.generateToken(this, appId, userkey, (aiError, resp) -> {
           */
   });
 
-//or                                  
+//or
 AIModelInfoManager.generateToken(this, userkey, (aiError, resp) -> {
       /* resp{
           "succeed":true,
@@ -82,31 +99,43 @@ AIModelInfoManager.generateToken(this, userkey, (aiError, resp) -> {
   });
 ```
 
-## 5. A인증이 성공되었으면 AIPlayer를 생성
-AIPlayer는 위에서 만들어준 aiWrapper뷰를 인자로 하여 다음과 같이 만듭니다. 
+
+<br/>
+
+### 5. AIPlayer를 생성
+
+AIPlayer는 위에서 만들어준 aiWrapper뷰를 인자로 하여 다음과 같이 만듭니다.
 
 ```java
 //put aiWrapper in the argument and create AIPlayer.
 aiPlayer = AIPlayerFactory.create(AILiveQuickStart.this, binding.aiWrapper, AILIVE, null);
 ```
 
-## 6. AIPlayer를 만들었으면 어떤 AI를 쓸지 설정
-인증이 성공하면 기본 AI로 설정이 가능합니다. 
+
+<br/>
+
+### 6. 사용할 AI를 선택 및 설정
+
+인증이 성공하면 기본 AI로 설정이 가능합니다.
 
 ```java
-//set default AI. If authentication fails, defaultAI will be null. 
+//set default AI. If authentication fails, defaultAI will be null.
 AIModelInfo defaultAI = AIModelInfoManager.getDefaultAIModelInfo();
 AIPlayerSettings aiSettings = new AIPlayerSettings(defaultAI.getName(), AILIVE, 1.0f, 40, 1);
 aiPlayer.init(aiSettings, iAiPlayerCallback);
 ```
 
-## 7. AIPlayer의 콜백을 Activity의 멤버 변수로 만들고, AIPlayer의 init 메소드 호출
-아래 예제는 AI의 발화 준비가 완료(AIEvent.RES_LOAD_COMPLETED)되었을 때 'Nice to meet you' 문장을 send(발화)시키고 있습니다. 
+
+<br/>
+
+### 7. AIPlayer의 콜백을 Activity의 멤버 변수로 만들고, init 메소드 호출
+
+아래 예제는 AI의 발화 준비가 완료(AIEvent.RES_LOAD_COMPLETED)되었을 때 'Nice to meet you' 문장을 send(발화)시키고 있습니다.
 
 ```java
 public class AILiveQuickStart extends AppCompatActivity {
-    
-    //make AIPlayer's callback, 
+
+    //make AIPlayer's callback,
     private IAIPlayerCallback iAiPlayerCallback = new IAIPlayerCallback() {
         @Override
         public void onAIPlayerEvent(AIEvent event) {
@@ -117,26 +146,29 @@ public class AILiveQuickStart extends AppCompatActivity {
                     break;
             }
         }
-   			
+
     };
-  
+
     @Override
   	protected void onCreate(@Nullable Bundle savedInstanceState) {
 	   	super.onCreate(savedInstanceState);
 
         //...
-        //set callback in AIPlayer's init method 
-        aiPlayer.init(aiSettings, iAiPlayerCallback);  
+        //set callback in AIPlayer's init method
+        aiPlayer.init(aiSettings, iAiPlayerCallback);
     }
-  
+
     private void sendSpeakToAI(String text) {
         aiPlayer.send(new String[]{text});
-    } 
+    }
  }
 ```
 
 
-## 8. 전체 코드
+<br/>
+
+### 8. 전체 코드
+
 Activity code (AILiveQuickStart.java)
 
 ```java
@@ -249,7 +281,7 @@ public class AILiveQuickStart extends AppCompatActivity {
     }
 
     private void initSDKAuthInfoVars() {
-        appId = getString(R.string.appid);
+        appId = getString(R.string.appId);
         userkey = getString(R.string.userkey);
     }
 
@@ -279,6 +311,7 @@ public class AILiveQuickStart extends AppCompatActivity {
 ```
 
 Layout(ailive_quick_start.xml)
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

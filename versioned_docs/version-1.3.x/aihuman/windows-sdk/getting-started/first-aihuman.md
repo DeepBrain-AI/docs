@@ -16,6 +16,9 @@ From the sample, you can learn more from the code in the file below.
 - QuickStartViewModel.cs
 :::
 
+
+<br/>
+
 ### 1. Add View Control
 Add Layout Component(parent layout) to which AIPlayer will be added to MainWindow.xaml.
 
@@ -25,6 +28,11 @@ Specify the location where you want the AI Human to appear, i.e. where you want 
 <img src="/img/aihuman/windows/NewProject_Add_Layout.png"  />
 
 <img src="/img/aihuman/windows/NewProject_Add_AIPlayer.png" />
+
+
+<br/>
+<br/>
+<br/>
 
 ### 2. Authenticate with AuthStart function
 Write a code related to authentication at the time of application initialization by referring to the code below.
@@ -57,7 +65,7 @@ namespace WpfApp1
             AIAPI.Instance.Authenticate(APPID, USERKEY, (aiLIst, error) => {
                 if (error == null && aiLIst != null)
                 {
-                    Log.Write($"Authenticate Completed, Avaliable Count: {aiLIst.ai.Length}", Log.Level.Info);
+                    Log.Write($"Authenticate Completed, Available Count: {aiLIst.ai.Length}", Log.Level.Info);
                 }
                 else
                 {
@@ -68,6 +76,9 @@ namespace WpfApp1
     }
 }
 ```
+
+
+<br/>
 
 ### 3. Create AIPlayer Instance and Implement Callback
 
@@ -273,6 +284,11 @@ namespace WpfApp1
 :::info
 There are many omitted parts in the above explanation. Please refer to App.xaml, QuickStartView.xaml, and QuickStartViewModel.cs files by opening the Solution file of the given Sample. 
 :::
+
+
+<br/>
+<br/>
+<br/>
 
 ### 4. Command the AI to speak 
 

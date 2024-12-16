@@ -16,7 +16,12 @@ sidebar_position: 4
 
 <img src="/img/aihuman/web/stt_demo_02.png" />
 
-## 1. Chatbot (Wrapper Class of PlayChat) 설정 
+
+<br/>
+<br/>
+<br/>
+
+### 1. Chatbot (Wrapper Class of PlayChat) 설정 
 
 **1.1. chatbot.js file을 web page에 추가**
 
@@ -24,7 +29,7 @@ sidebar_position: 4
 <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/chatbot.js"></script>
 ```
 
-**1.2. Deepbrain Chatbot 개체를 생성**
+**1.2. DeepBrain Chatbot 개체를 생성**
 
 ```javascript
 const CHATBOT = new DeepbrainChatbot();
@@ -78,7 +83,10 @@ function sendMessage(message) {
 }
 ```
 
-## 2. Google STT 셋업
+<br/>
+
+
+### 2. Google STT 셋업
 
 - 이 예에서는 AI와 대화할 때 음성 인식(Google STT)이 사용됩니다. STT는 내부의 웹 소켓을 통해 서버와 통신합니다. 설정은 다음과 같습니다.
 

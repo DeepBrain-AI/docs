@@ -6,12 +6,12 @@ sidebar_position: 1
 
 [상세 내용](../../../aihuman/windows-sdk/aiplayer/setup#4단계-aiplayer를-원하는-ai로-초기화하기)
 
-## IAIPlayer
+### IAIPlayer
 
 - assembly: AIHuman.SDK.Core  
 - namespace: AIHuman.Interface  
 
-## AIPlayer
+### AIPlayer
 
 - assembly: AIHuman.SDK.WPF  
 - namespace: AIHuman.Media  
@@ -48,7 +48,7 @@ sidebar_position: 1
 
 <br/>
 
-## AIPlayerOptions
+### AIPlayerOptions
 
 - assembly: AIHuman.SDK.Core  
 - namespace: AIHuman.Common  
@@ -71,7 +71,7 @@ sidebar_position: 1
 <br/>
 
 (온프레미스 고객용)
-## ServerConfiguration
+### ServerConfiguration
 
 - assembly: AIHuman.SDK.Core  
 - namespace: AIHuman.Common  
@@ -101,4 +101,4 @@ sidebar_position: 1
 
 <br/>
 
-[문의하기](https://www.deepbrain.io/company/contact)
+[문의하기](https://www.aistudios.com/company/contact)

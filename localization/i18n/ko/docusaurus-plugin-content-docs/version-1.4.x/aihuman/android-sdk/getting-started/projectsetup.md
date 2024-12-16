@@ -4,18 +4,19 @@ sidebar_position: 2
 
 # 프로젝트 셋업하기
 
-이 장에서는 android project의 appId를 이용하여, 프로젝트를 생성하고 userkey를 발급받는 과정을 알아봅니다. userkey는 AIHuman SDK의 인증에 사용됩니다. 
+이 장에서는 android project의 appId를 이용하여, 프로젝트를 생성하고 userkey를 발급받는 과정을 알아봅니다. userkey는 AIHuman SDK의 인증에 사용됩니다.
 
-## 1. 원하는 프로젝트를 Android Studio 기반으로 생성하고 아래와 같이 셋업합니다.
-프로젝트 설정을 아래와 같이 할수 있습니다.(샘플이며 필수 아님.) 
+### 1. 프로젝트를 Android Studio로 생성 및 설정
+
+프로젝트 설정을 아래와 같이 할수 있습니다.(샘플이며 필수 아님.)
 
 <img src="/img/aihuman/android/screenshot_projectsetup_1.png"/>
 
-**[SDK 웹사이트](https://aihuman.deepbrain.io)에서 Android sample 및 SDK를 다운로드 받아 참조하세요.** 
-아래는 샘플의 환경 설정입니다. 
+**[SDK 웹사이트](https://aihuman.aistudios.com)에서 Android sample 및 SDK를 다운로드 받아 참조하세요.**
+아래는 샘플의 환경 설정입니다.
 
-- 프로젝트 레벨 build.gradle을 설정(탑메뉴 File > Project structure)합니다. 
-  - Android Gradle plugin version : 7.1.2, Gradle Version : 7.2 
+- 프로젝트 레벨 build.gradle을 설정(탑메뉴 File > Project structure)합니다.
+  - Android Gradle plugin version : 7.1.2, Gradle Version : 7.2
 
 **[프로젝트 레벨 build.gradle 설정]**
 
@@ -24,27 +25,33 @@ sidebar_position: 2
 <br/>
 
 **[app 레벨 build.gradle 설정]**
+
 - compileSdkVersion 32, buildToolVersion "30.0.3", minSdkVersion 22, targetSdkVersion 32
 
 <img src="/img/aihuman/android/screenshot_projectsetup_3.png"/>
 
+<br/>
+<br/>
+<br/>
 
-## 2. 사용할 프로젝트에 SDK (aar 파일) 추가하기
+### 2. 사용할 프로젝트에 SDK (aar 파일) 추가하기
 
 AI Human SDK aar 파일들(2개 AIHumanSDK, AIHuman3DSDK)을 프로젝트 libs에 추가합니다. libs 폴더는 app 디렉토리 아래에 생성합니다. 앱레벨 build.gradle 파일에 aar 관련 내용(implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"]))을 추가합니다. 아래에 **build.gradle 파일 섹션** 참조하세요.
 
 <img src="/img/aihuman/android/screenshot_projectsetup_4.png"/>
 
+<br/>
+<br/>
+<br/>
 
+### 3. app 레벨의 build.gradle 파일 : (샘플 프로젝트의 build.gradle 파일 참조)
 
-## 3. app 레벨의 build.gradle 파일 : (샘플 프로젝트의 build.gradle 파일 참조)
+아래의 내용들을 설정해야합니다. 더 자세한 사항은 샘플을 참조하여주세요.
 
-아래의 내용들을 설정해야합니다. 더 자세한 사항은 샘플을 참조하여주세요. 
-
-1. 자바 8 사용 설정 : compileOptions 확인 
+1. 자바 8 사용 설정 : compileOptions 확인
 2. packagingOptions : exclude 메타 정보 파일 설정 추가
 3. viewBinding 설정(옵션) : 꼭 추가할 필요 없음. 하지만 샘플 코드는 사용 설정 되어 있음.
-4. 디펜던시 추가 : SDK의 디펜던시를 추가 후 sync 클릭 
+4. dependencies 추가 : SDK의 dependency를 추가 후 sync 클릭
 
 ```groovy
 android{
@@ -102,17 +109,18 @@ dependencies {
 ```
 
 
+<br/>
 
-## 4. AndroidManifest.xml 파일 설정 
+### 4. AndroidManifest.xml 파일 설정
 
-권한 추가 : INTERNET은 필수 
+권한 추가 : INTERNET은 필수
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
 ```
 
-application 속성 추가 
-​	**"Namespace 'tools' is not bound" 에러가 발생하면 Create Namespace declaration을 눌러줍니다.**
+application 속성 추가
+​ **"Namespace 'tools' is not bound" 에러가 발생하면 Create Namespace declaration을 눌러줍니다.**
 
 ```xml
 <application
@@ -131,7 +139,10 @@ application 속성 추가
     android:process=":Unity"/>
 ```
 
-## 5. Gradle JDK 설정 (11)
+
+<br/>
+
+### 5. Gradle JDK 설정 (11)
 
 android studio articfox이상 버전을 사용중이면 "Android Gradle plugin requires Java 11 to run. You are currently using Java 1.8." 에러가 발생합니다. 맥OS 기준 탑메뉴 > preference > build, Execution, Deployment > Build Tool > Gradle > Gradle JDK > 11 버전을 선택합니다. Java 11 버전이 설치되어있지 않으면 [오라클 웹사이트](http://www.oracle.com) 에서 jdk 11 버전을 다운로드 받아 설치합니다. [링크](https://www.oracle.com/kr/java/technologies/javase/jdk11-archive-downloads.html)
 

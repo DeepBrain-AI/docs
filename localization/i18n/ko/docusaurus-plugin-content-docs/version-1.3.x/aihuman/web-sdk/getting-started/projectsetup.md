@@ -37,11 +37,14 @@ const wrapper = document.getElementById("AIPlayerWrapper");
 const AI_PLAYER = new AIPlayer(wrapper);
 ```
 
+<br/>
+
+
 **4. Authenticating the SDK**
 
 **4.1. Setting up appId and issuing userKey on SDK website**
 
-- Log in to the [SDK website](https://aihuman.deepbrain.io)
+- Log in to the [SDK website](https://aihuman.aistudios.com)
 - If there is no project, you can get a userkey by entering the appId to be used on the web after creation and pressing OK.
 - If you have a project, you can check the appId of the project and the userKey issued.
 

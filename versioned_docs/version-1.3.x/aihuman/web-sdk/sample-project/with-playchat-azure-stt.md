@@ -25,7 +25,7 @@ through both text and speech.
 <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/chatbot.js"></script>
 ```
 
-**1.2. Creates an object CHATBOT of the Deepbrain Chatbot**
+**1.2. Creates an object CHATBOT of the DeepBrain Chatbot**
 
 ```javascript
 const CHATBOT = new DeepbrainChatbot();
@@ -85,7 +85,7 @@ function stop() {
 }
 ```
 
-## 2. Set up Google STT
+### 2. Set up Google STT
 
 - And when talking to AI, voice recognition (STT) uses Google STT, and the client side communicates with the server side through the websocket. The relevant settings are as follows.
 

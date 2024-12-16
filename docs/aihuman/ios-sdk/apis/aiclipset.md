@@ -4,14 +4,14 @@ sidebar_position: 5
 
 # AIClipSet
 
-### functions
+### Functions
 
 | Name                     | Description                           |
 | ------------------------ | ------------------------------------- |
 | `static func clipset(text: gesture:, customVoice:)` | 'text': a speech sentence,<br/>'gesture': gesture<br/> 'customVoice': voice model<br/> Create ClipSet with speech sentences and gestures as factors. |
 
 
-### properties
+### Properties
 
 | Name     | Description     |
 | -------- | --------------- |

@@ -15,6 +15,9 @@ This demo is an example of a metaverse service using the AI Human SDK. Through t
 - **Supports built-in and URP.**
 - **TextMeshPro package installation is required.**
 
+
+<br/>
+
 ### Using AIPlayer in 3D Space
 
 <p align="center">
@@ -37,6 +40,9 @@ For more information, refer to the Hierarchy configuration of the Scene and scri
 - MetaverseFrameImageProvider.cs
 :::
 
+
+<br/>
+
 ### Using AI3DPlayer in 3D Space
 
 <p align="center">
@@ -56,6 +62,9 @@ For more information, refer to the Hierarchy configuration of the Scene and scri
 - UIMetaverseChat.cs
 - ChatbotManager.cs
 :::
+
+
+<br/>
 
 ### Other features for metaverse implementation
 

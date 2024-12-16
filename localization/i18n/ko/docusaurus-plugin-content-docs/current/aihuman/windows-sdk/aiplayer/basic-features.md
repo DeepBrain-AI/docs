@@ -22,6 +22,8 @@ AIClipSet clip = AIAPI.CreateClipSet("this is sample sentence.");
 _aiPlayer.Send(new[] {clip});
 ```
 
+<br/>
+
 ### 로컬 캐싱
 
 로컬 캐싱은 발화(클립셋) 데이터를 내부적으로 저장하고, 같은 발화(AIClipSet)를 다시 요청할 때 기존 데이터를 재활용하여 서버와의 통신 없이 즉각 수행하도록 하는 기능을 말합니다.
@@ -42,6 +44,9 @@ _aiPlayer.Send(new[] {clip});
 
 :::
 
+
+<br/>
+
 ### 발화 동작 모니터링
 
 `Send` 함수 호출 이후 등록된 콜백 객체에서 동작 이벤트에 대한 피드백을 확인할 수 있습니다. 이 피드백은 콜백(`IAIPlayerCallback`)의 이벤트 관련 함수(`OnAIPlayerEvent`)를 통해 가능합니다. 아래와 같은 이벤트 타입들이 `OnAIPlayerEvent`의 인자 `AIEvnet`를 통해 순차적으로 전달 받습니다.
@@ -55,7 +60,7 @@ _aiPlayer.Send(new[] {clip});
 ```csharp
 string message;
 
-// Speaking related CallBack example
+// Speaking related Callback example
 public void OnAIPlayerEvent(AIEvnet aiEvent)
 {
     switch (aiEvent.EventType)
@@ -78,7 +83,7 @@ public void OnAIPlayerEvent(AIEvnet aiEvent)
     }
 }
 
-// AI error CallBack example
+// AI error Callback example
 public void OnAIPlayerError(AIError aiError)
 {
     switch (aiError.ErrorCode)
@@ -108,6 +113,8 @@ public void OnAIPlayerError(AIError aiError)
 _aiPlayer.Pause();
 ```
 
+<br/>
+
 ### 발화 재개
 
 : 발화 일시정지 상태에서 다시 시작할 수 있습니다.
@@ -115,6 +122,8 @@ _aiPlayer.Pause();
 // resume method
 _aiPlayer.Resume();
 ```
+
+<br/>
 
 ### 발화 정지
 

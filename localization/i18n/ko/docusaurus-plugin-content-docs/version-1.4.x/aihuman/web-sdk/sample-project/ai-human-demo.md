@@ -9,9 +9,13 @@ sidebar_position: 3
 
 :::
 
-이 페이지는 AIPlayer의 다양한 기능을 간단한 UI를 통해 보여줍니다. 다른 AI 모델을 선택하고, AI의 스케일을 변경하고, 음성 속도를 변경하고, AI가 여러 문장을 말하게 하고, 프리로드 등의 기능을 사용해볼 수 있습니다.
+이 페이지는 AIPlayer의 다양한 기능을 간단한 UI를 통해 보여줍니다. 다른 AI 모델을 선택하고, AI의 스케일을 변경하고, 음성 속도를 변경하고, AI가 여러 문장을 말하게 하고, 프리로드 등의 기능을 사용해 볼 수 있습니다.
 
-**1. 먼저 AIPlayer(AI_PLAYER)를 생성하고, 인증을 완료후 셋업을 진행합니다.**
+<br/>
+
+### 1. AIPlayer(AI_PLAYER) 생성 및 인증
+
+먼저 AIPlayer(AI_PLAYER)를 생성하고, 인증을 완료후 셋업을 진행합니다.
 
 ```javascript
 const wrapper = document.getElementById("AIPlayerWrapper");
@@ -31,8 +35,11 @@ async function generateVerifiedToken() {
   } else DATA.verifiedToken = "";
 }
 ```
+<br/>
 
-**2. 사용가능한 AI 리스트를 불러오고 그중 하나의 AI를 시작시킵니다.**
+### 2. AI 리스트를 불러오기 및 AI를 시작
+
+사용가능한 AI 리스트를 불러오고 그중 하나의 AI를 시작시킵니다.
 
 ```javascript
 async function getAIList() {
@@ -55,7 +62,9 @@ async function getAIList() {
 }
 ```
 
-**3. 선택한 AI 이름으로 AIPlayer의 init 함수 호출**
+<br/>
+
+### 3. 선택한 AI 이름으로 AIPlayer의 init 함수 호출
 
 원하는 AI를 해당 the AI의 name, size, left, top and speech speed와 함께 초기화(init)합니다.
 
@@ -77,6 +86,8 @@ async function startAI(aiName, aiType) {
   });
 }
 ```
+
+<br/>
 
 **4.  AIPlayer의 콜백을 구현하여 이벤트와 에러를 모니터합니다.**
 
@@ -146,7 +157,7 @@ function initAIPlayerEvent() {
     // TODO: error handling
 
     if (aiError.code >= AIError.RESERVED_ERR) {
-      //You've got reserved error. Check up the error list!
+      //You've encountered a reserved error. Please check the error list!
       console.log("RESERVED_ERR :" , aiError.message);
     } else if (aiError.code >= AIErrorCode.AICLIPSET_PLAY_ERR) {
       console.log("AICLIPSET_PLAY_ERR :" , aiError.message);
@@ -175,6 +186,9 @@ function initAIPlayerEvent() {
 
 }
 ```
+
+<br/>
+
 **5. AI 발화 관련 함수들 (preload, send, pauses, resume, stop and release)**
 
 ```javascript
@@ -211,7 +225,10 @@ function release() {
 }
 ```
 
-**6. 3D AI Model Application 예제**
+<br/>
+
+
+### 6. 3D AI Model Application 예제
 
  2D와는 달리, 3D AI model은 Unity Webgl build 결과물 (SDK zip 파일의 `Build` 폴더와 그 파일들)이 필요합니다. 
 

@@ -18,6 +18,9 @@ sidebar_position: 7
 <img src="/img/aihuman/unity/sampleproject_lipsync_tts.png" style={{zoom: "30%"}} />
 </p>
 
+
+<br/>
+
 ### 3D모델 + uLipsync + TTS 함께 사용하기
 
 해당 Demo에서 Lipsync AI 서비스를 사용해 보려면, 아래와 같이 준비 과정이 필요합니다.

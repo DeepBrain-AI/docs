@@ -10,6 +10,9 @@ sidebar_position: 5
 aiPlayer.speechSpeed = speechSpeed
 ```
 
+<br/>
+
+
 ### Gesture
 
 As briefly mentioned above, the speech may be performed using the AIClipSet. Here, the term AIClipSet refers to one speech unit in a series of AI operations. At this time, the types of speech include general speech that only speaks speech, gesture speech that includes gestures, and gestures that perform only gesture. Depending on whether the AI model provides the AIGesture feature, the feature can be used, and a list of available gestures can be obtained using the AIPlayer's guestures array. Even in the case of a model that does not support a gesture, it may be operated using a clipset.
@@ -34,7 +37,7 @@ let clipset = AIClipSet.cipset(text: "an speech sentence", gesture: "gesture")
 aiPlayer.send(clipset: clipset)
 ```
 
-### Change the voice or language
+#### Change the voice or language
 
 Some AIs can speak with other voices besides basic voices. At this time, it is also possible to speak when the language of the supported voice is different from the basic language of AI. To use multiple languages and voices, you can use AIPlayer's generateToken or loadCustomVoices function after calling it.
 
@@ -42,7 +45,7 @@ Some AIs can speak with other voices besides basic voices. At this time, it is a
 <img src="/img/aihuman/ios/aisample_ss_customvoice.PNG" style={{zoom: "35%"}} />
 </p>
 
-#### Set the custom voice using AIPlayer's method
+##### Set the custom voice using AIPlayer's method
 
 A list of available languages can be found by the following methods. If you enter a gender as a value, you can only get a list of languages available for that gender.
 
@@ -77,7 +80,7 @@ If the gender value is nil, use the gender of ai.
 aiPlayer.setCustomVoiceForLanguage(language:, gender)
 ```
 
-#### Set the custom voice using AIClipSet
+##### Set the custom voice using AIClipSet
 
 In addition to using the setCustomVoice method to set up a voice other than the basic voice, AIClipSet can be used to change the voice by sentence.
 
@@ -85,6 +88,8 @@ In addition to using the setCustomVoice method to set up a voice other than the 
 let customVoice = AIPlayer.getCustomVoicesWith()[0]
 let clipSet = AIClipSet.clipSet(text: speechText, customVoice: customVoice)
 ```
+
+<br/>
 
 ### Preload
 

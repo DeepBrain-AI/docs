@@ -11,7 +11,11 @@ sidebar_position: 3
 
 This page demonstrates various functionalities of AIPlayer through simple UI. You can select an AI model, change the scale, speech speed of AI, and let the AI speak multiple sentences and take advantage of the preload function, etc.
 
-**1. First, create the AIPlayer object(AI_PLAYER), complete authentication and set up the AIPlayer**
+<br/>
+
+
+### 1. Create the AIPlayer object(AI_PLAYER), complete authentication and set up the AIPlayer
+
 
 ```javascript
 const wrapper = document.getElementById("AIPlayerWrapper");
@@ -31,8 +35,9 @@ async function generateVerifiedToken() {
   } else DATA.verifiedToken = "";
 }
 ```
+<br/>
 
-**2. Get the list of available AI models and make UI for the list**
+### 2. Get the list of available AI models and make UI for the list
 
 ```javascript
 async function getAIList() {
@@ -55,7 +60,9 @@ async function getAIList() {
 }
 ```
 
-**3. Call AIPlayer's init function with the selected AI name**
+<br/>
+
+### 3. Call AIPlayer's init function with the selected AI name
 
 Initialize the corresponding AI with the AI's name, size, left, top and speech speed.
 
@@ -78,7 +85,9 @@ async function startAI(aiName, aiType) {
 }
 ```
 
-**4. Implement callback of AIPlayer to monitor the event and error**
+<br/>
+
+### 4. Implement callback of AIPlayer to monitor the event and error
 
 The AIPlayer has 3 callback functions. They are onAIPlayerEvent, onAIPlayerLoadingProgressed and onAIPlayerErrorV2. For detail info about the callback, please refer this [Page](../apis/aiplayer-callback.md) and [Page](../apis/aiplayer-data.md).
 
@@ -145,7 +154,7 @@ function initAIPlayerEvent() {
     // TODO: error handling
 
     if (aiError.code >= AIError.RESERVED_ERR) {
-      //You've got reserved error. Check up the error list!
+      //You've encountered a reserved error. Please check the error list!
       console.log("RESERVED_ERR :" , aiError.message);
     } else if (aiError.code >= AIErrorCode.AICLIPSET_PLAY_ERR) {
       console.log("AICLIPSET_PLAY_ERR :" , aiError.message);
@@ -174,7 +183,12 @@ function initAIPlayerEvent() {
 
 }
 ```
-**5. AI 발화 관련 함수들 (preload, send, pauses, resume, stop and release)을 구현합니다.**
+
+<br/>
+
+### 5. Implement AI utterance-related functions
+
+Implement AI utterance-related functions (preload, send, paces, resume, stop and release).
 
 ```javascript
 async function preload(clipSet) {
@@ -210,7 +224,10 @@ function release() {
 }
 ```
 
-**6. 3D AI Model Application Example**
+<br/>
+
+
+### 6. 3D AI Model Application Example
 
 Unlike 2D, 3D AI model requires Unity Webgl build results (files in `build` folder of the SDK zip). 
 

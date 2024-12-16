@@ -12,11 +12,14 @@ sidebar_position: 6
 
 이번 데모는 AI Human + AWS Bedrock Claude + AWS Transcribe를 연동한 대화형 AI 서비스의 예제입니다. AI Human은 AWS Bedrock Claude와 결합하여 `실시간 대화`가 가능합니다. 추가적으로 AWS Transcribe를 사용하여 `실제 사람처럼 음성으로 대화가 가능합니다`.
 
- `5.AWS Bedrock Claude & Transcribe` scene을 열고 AI와 대화를 시도해보세요. (실제로 동작하는 것은 AWS Transcribe의 설정이 완료된 이후에 가능합니다.) AI가 음성을 인식하고 Anthropic의 대규모 언어 모델인 Claude를 통해 적절한 대답을 하는것을 볼 수 있습니다. 현재 데모에서는 텍스트 기반의 대화만 구성되어 있지만 Amazon Bedrock의 모델 또는 백엔드 설정에 따라 이미지 출력도 가능합니다.
+`5.AWS Bedrock Claude & Transcribe` scene을 열고 AI와 대화를 시도해보세요. (실제로 동작하는 것은 AWS Transcribe의 설정이 완료된 이후에 가능합니다.) AI가 음성을 인식하고 Anthropic의 대규모 언어 모델인 Claude를 통해 적절한 대답을 하는 것을 볼 수 있습니다. 현재 데모에서는 텍스트 기반의 대화만 구성되어 있지만 Amazon Bedrock의 모델 또는 백엔드 설정에 따라 이미지 출력도 가능합니다.
 
 <p align="center">
 <img src="/img/aihuman/unity/sampleproject_aws_bedrock_transcribe.png" style={{zoom: "70%"}} />
 </p>
+
+
+<br/>
 
 ### AI + AWS Bedrock Claude + AWS Transcribe 함께 사용하기
 
@@ -29,9 +32,7 @@ Amazon Bedrock Claude와 AWS Transcribe의 설명과 구성은 아래 페이지�
 - Amazon Bedrock 기반 Claude 시작하기: https://aws.amazon.com/ko/bedrock/claude
 - Amazon Transcribe 시작하기 : https://aws.amazon.com/ko/transcribe
 
-
 AI 대화형 서비스를 위한 준비가 완료 되었다면 데모의 Hierarchy창에서 `DemoAWS-Bedrock-Claude-Trancribe`를 선택 후 Inspector창에서 위에서 준비한 aws access 값들을 입력합니다.
-
 
 <p align="center">
 <img src="/img/aihuman/unity/sampleproject_aws_bedrock_transcribe_inspector.png" style={{zoom: "70%"}} />
@@ -47,6 +48,8 @@ readonly RegionEndpoint _bedrockRegionEndPoint = RegionEndpoint.USWest2;
 이제 데모 구동을 위한 준비가 완료되었습니다. 마이크를 통해 AI와 대화를 시도해보세요.
 
 
+<br/>
+
 ### AWS Transcribe를 연동하여 STT 구현
 
 해당 데모에서는 음성을 텍스트로 변환하기 위해 AWS Transcribe를 연동하여 사용하고 있습니다.
@@ -55,7 +58,6 @@ readonly RegionEndpoint _bedrockRegionEndPoint = RegionEndpoint.USWest2;
 변환된 텍스트는 `WebSocket.OnMessage` 이벤트를 통해 확인할 수 있습니다.
 
 아래는 AWS Transcribe 연동을 위한 AWSController script의 주요 함수입니다.
-
 
 ```csharp
 // AWSController.cs
@@ -68,7 +70,7 @@ public async void Connect()
         Debug.LogError($"{nameof(AWSController)} There are no microphones available.");
         return;
     }
-  
+
     AWSTranscribePresignedURL transcribePresignedURL = GetComponent<AWSTranscribePresignedURL>();
     if (transcribePresignedURL == null)
     {
@@ -131,7 +133,7 @@ private void OnMessage(byte[] bytes)
     string message = Encoding.UTF8.GetString(payload);
 
     AWSTranscribeWebsocketMessage jsonMessage = JsonUtility.FromJson<AWSTranscribeWebsocketMessage>(message);
-    
+
     if (jsonMessage != null && jsonMessage.Transcript.Results.Count > 0)
     {
         string resultMessage = jsonMessage.Transcript.Results[0].Alternatives[0].Transcript;
@@ -146,10 +148,13 @@ private void OnMessage(byte[] bytes)
 
             // invoke bedrock model
             Task.Run(() => InvokeModel(resultMessage));
-        }             
+        }
     }
 }
 ```
+
+
+<br/>
 
 ### AWS Bedrock Claude와 AI Human을 연동하여 TTS 구현
 
@@ -170,7 +175,7 @@ public async Task InvokeModel(string userMessage)
     {
         _bedrockClient = new AmazonBedrockRuntimeClient(_accessKey, _secretKey, _bedrockRegionEndPoint);
     }
-                        
+
     var nativeRequest = JsonSerializer.Serialize(new
     {
         anthropic_version = _anthropicVersion,
@@ -195,7 +200,7 @@ public async Task InvokeModel(string userMessage)
         var responseText = modelResponse["content"]?[0]?["text"] ?? "";
 
         // Since it is not unity's main thread, we put the response text into a queue and process it in the Update() function.
-        _reponseClaudeQueue.Enqueue(responseText.ToString());              
+        _reponseClaudeQueue.Enqueue(responseText.ToString());
     }
     catch (AmazonBedrockRuntimeException e)
     {
@@ -204,7 +209,7 @@ public async Task InvokeModel(string userMessage)
 }
 
 private void Update()
-{  
+{
     if (_reponseClaudeQueue.Count > 0)
     {
         string responseText = _reponseClaudeQueue.Dequeue();
@@ -215,9 +220,8 @@ private void Update()
         {
             demoAWS.Speak(responseText.ToString());
         }
-    }        
+    }
 }
 ```
-
 
 위 설명은 중략된 부분이 많습니다. 더 자세한 내용은 데모의 AWS Bedrock Claude & Transcribe Scene을 참고 바랍니다.

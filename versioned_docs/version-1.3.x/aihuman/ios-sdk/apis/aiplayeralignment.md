@@ -4,7 +4,7 @@ sidebar_position: 8
 
 # AIPlayerAlignment
 
-## AIPlayerVerticalAlignment
+### AIPlayerVerticalAlignment
 
 Vertical alignment used when changing AIPlayer size.
 
@@ -15,7 +15,7 @@ Vertical alignment used when changing AIPlayer size.
 | `bottom`               | bottom alignment |
 
 
-## AIPlayerHorizontalAlignment
+### AIPlayerHorizontalAlignment
 
 Horizontal alignment used when changing AIPlayer size.
 

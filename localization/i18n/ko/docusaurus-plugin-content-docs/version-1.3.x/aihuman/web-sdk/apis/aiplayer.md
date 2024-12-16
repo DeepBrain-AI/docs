@@ -19,7 +19,10 @@ sidebar_position: 1
 | `getAIList()`     | Get a list of available AI models |
 | `getGesture()`    | Get a list of available AI [gestures](#43-aigesture) |
 
-## 1. AIPlayer.init(json)
+
+<br/>
+
+### 1. AIPlayer.init(json)
 
 Initializes AI Player object with the given AI model parameters
 
@@ -128,7 +131,10 @@ AI_PLAYER.preload({ text: "Nice to meet you", gst: "hi" });
 AI_PLAYER.preload([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
 
-## 5. AIPlayer.send(...)
+
+<br/>
+
+### 5. AIPlayer.send(...)
 
 Command used for making the AI speak or perform gesture actions. (If there exists a preloaded data, this data is reused)
 To make the AI speak multiple sentences, send an Array of String or AIClipSet Object.
@@ -159,11 +165,17 @@ AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" 
 
 Stop AI speech and reset all data on stack. (cannot resume)
 
-## 7. AIPlayer.pause()
+
+<br/>
+
+### 7. AIPlayer.pause()
 
 Temporarily pause AI speech.
 
-## 8. AIPlayer.resume()
+
+<br/>
+
+### 8. AIPlayer.resume()
 
 Resume speech if the AI state was paused previously.
 
@@ -195,7 +207,10 @@ Gets the sample text list of AI's default language or set voice language
   const texts = AI_PLAYER.getSampleTextList();
 ```
 
-## 12. AIPlayer.getGender()
+
+<br/>
+
+### 12. AIPlayer.getGender()
 
 Gets the current AI gender ('MALE', 'FEMALE', 'UNI') and returns null if there is no value.
 
@@ -207,7 +222,10 @@ Gets the current AI gender ('MALE', 'FEMALE', 'UNI') and returns null if there i
   const gender = AI_PLAYER.getGender();
 ```
 
-## 13. AIPlayer.getSpeakableLanguages(gender)
+
+<br/>
+
+### 13. AIPlayer.getSpeakableLanguages(gender)
 
 Gets the language list of currently loaded voices, valid after loadCustomVoice() or generateToken() method calls.
 
@@ -219,7 +237,10 @@ Gets the language list of currently loaded voices, valid after loadCustomVoice()
   const languages = AI_PLAYER.getSpeakableLanguages(gender);
 ```
 
-## 14. AIPlayer.getCustomVoice()
+
+<br/>
+
+### 14. AIPlayer.getCustomVoice()
 
 Gets the currently set voice and returns null if there is no set value or default voice.
 
@@ -231,11 +252,14 @@ Gets the currently set voice and returns null if there is no set value or defaul
   const customVoice = AI_PLAYER.getCustomVoice();
 ```
 
-## 15. AIPlayer.getCustomVoicesWith(language, gender)
+
+<br/>
+
+### 15. AIPlayer.getCustomVoicesWith(language, gender)
 
 Gets the list of custom voices that correspond to the language and gender of the input among the loaded voices
 If you type null in language, you get all languages, and if you type null in gender, you get values that correspond to all genders.  
-Valid after loadCustomVoice() or generateToken() method call.
+Valid after calling loadCustomVoice() or generateToken() methods.
 
 - Return Parameter: `Array<CustomVoice\>`
 
@@ -245,7 +269,10 @@ Valid after loadCustomVoice() or generateToken() method call.
   const customVoices = AI_PLAYER.getSpeakableLanguages(language, gender);
 ```
 
-## 16. AIPlayer.findCustomVoice(voiceId)
+
+<br/>
+
+### 16. AIPlayer.findCustomVoice(voiceId)
 
 Gets the CustomVoice object corresponding to id in the voice list, and returns null if there is no value.
 
@@ -257,7 +284,10 @@ Gets the CustomVoice object corresponding to id in the voice list, and returns n
   const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 ```
 
-## 17. AIPlayer.setCustomVoice(customVoice)
+
+<br/>
+
+### 17. AIPlayer.setCustomVoice(customVoice)
 
 It sets the voice of AI and returns true on success and false on failure. Also, when null is entered, it is set to the original voice.
 
@@ -269,7 +299,10 @@ It sets the voice of AI and returns true on success and false on failure. Also, 
   const isSuccess = AI_PLAYER.setCustomVoice(customVoice);
 ```
 
-## 18. AIPlayer.setCustomVoiceForLanguage(language, gender)
+
+<br/>
+
+### 18. AIPlayer.setCustomVoiceForLanguage(language, gender)
 
 Voice is set by desired language and gender, and when null is entered in language, it is set as the original voice.  
 If you enter the language value and enter null in the gender, it is set as the first voice in the voice list of the language.

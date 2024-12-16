@@ -6,7 +6,7 @@ sidebar_position: 2
 
 [Details](../../../aihuman/windows-sdk/aiplayer/resources-states#implement-callback-with-iaiplayercallback)
 
-## IAIPlayerCallback
+### IAIPlayerCallback
 
 - assembly: AIHuman.SDK.Core  
 - namespace: AIHuman.Interface  

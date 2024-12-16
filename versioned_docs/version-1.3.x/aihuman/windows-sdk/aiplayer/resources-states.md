@@ -27,7 +27,7 @@ e.g.) 1402 error (value token expired): Token refresh required -> Call Authentic
 
 ```csharp
 string message;
-// AI resource related status CallBack
+// AI resource related status Callback
 public void OnAIPlayerEvent(AIEvent aiEvent)
 {
     switch (aiEvent.EventType)
@@ -44,14 +44,14 @@ public void OnAIPlayerEvent(AIEvent aiEvent)
     }
 }
 
-// AI resource loading progress CallBack
+// AI resource loading progress Callback
 public void OnAIPlayerResLoadingProgressed(int current, int total)
 {
     float progress = ((float) current / (float) total) * 100;
     message = string.Format("AI Resource Loading... {0}%", (int)progress);
 }
 
-// AI error CallBack
+// AI error Callback
 public void OnAIPlayerError(AIError error)
 {
     switch (error.ErrorCode)

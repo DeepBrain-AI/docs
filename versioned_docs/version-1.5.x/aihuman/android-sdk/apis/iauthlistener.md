@@ -2,7 +2,7 @@
 sidebar_position: 12
 ---
 
-# Interface AIModelInfoManager.IAuthListener
+# AIModelInfoManager.IAuthListener
 
 | Modifier and Type | Method and Description                                       |
 | :---------------- | :----------------------------------------------------------- |

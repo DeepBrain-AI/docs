@@ -8,12 +8,14 @@ sidebar_position: 6
 
 ### AI 크기(스케일) 변경
 
-: AI의 크기(스케일)을 설정할 수 있다. 설정값 범위는 소수 0.5 ~ 1.5 이다.
+: AI의 크기(스케일)을 설정할 수 있다. 설정값 범위는 소수 0.5 ~ 1.5 입니다.
 
 ```csharp
 // set Property
 _aiPlayer.Scale = value;
 ```
+
+<br/>
 
 ### 볼륨 조절하기
 

@@ -35,7 +35,7 @@ func didConnect() {
 }
 ```
 
-**CallBack**
+**Callback**
 
 You can check the connection states and errors of PlayChat, as well as messages received from the chatbot.
 

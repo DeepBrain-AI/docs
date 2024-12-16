@@ -4,13 +4,13 @@ sidebar_position: 1
 
 # 개요
 
-## Demo web page
+### Demo web page
 
-Demo web page에서는 AI Human Web SDK(js)'의 기능을 사용해볼수 있습니다. 여기[(Link)](https://aihuman.deepbrain.io/webdemo/demo1.html). 페이지의 오른쪽 상단에 아래와 같은 메뉴가 나오며, 이를 통해 SDK의 기능들을 둘러보십시오.
+Demo web page에서는 AI Human Web SDK(js)'의 기능을 사용해 볼 수 있습니다. 여기[(Link)](https://aihuman.aistudios.com/webdemo/demo1.html). 페이지의 오른쪽 상단에 아래와 같은 메뉴가 나오며, 이를 통해 SDK의 기능들을 둘러보십시오.
 
 <img src="/img/aihuman/web/demo_btn.png" />
 
-### Demo web page 메뉴
+#### Demo web page 메뉴
 
 각 메뉴의 구성은 아래와 같습니다.
 
@@ -19,11 +19,13 @@ Demo web page에서는 AI Human Web SDK(js)'의 기능을 사용해볼수 있습
 - STT Demo : AIPlayer + Chatbot(PlayChat) 예시 
 - AWS Demo : AIPlayer + AWS Transcbribe/Chatbot(Claud) example
 
-## 샘플 Project
+<br/>
+
+### 샘플 Project
 
 SDK 사이트에 제공된 샘플은 SDK의 기능을 보여주는 예입니다. 이를 통해 SDK가 실제로 어떻게 작동하는지 확인할 수 있습니다.
 
-여기[(link)](https://aihuman.deepbrain.io/aihuman/sdk)에서 다운로드하십시오.
+여기[(link)](https://aihuman.aistudios.com/aihuman/sdk)에서 다운로드하십시오.
 
 <img src="/img/aihuman/web/sdk_sample1.png" />
 
@@ -34,7 +36,7 @@ SDK 사이트에 제공된 샘플은 SDK의 기능을 보여주는 예입니다.
 
 샘플 프로젝트는 node-express와 nextjs로 두 가지를 제공합니다. 먼저 샘플의 내용을 확인합니다.
 
-### Contents
+#### Contents
 
 zip file의 압축을 풀면, 다음과 같은 폴더가 생성됩니다. 
 
@@ -89,7 +91,7 @@ $ npm run dev
 <br />
 <br />
 
-#### AWS demo 실행하기 
+### AWS demo 실행하기 
 
 **1. AWS SDK를 위한 key와 secret을 준비한다.** 
 
@@ -109,6 +111,8 @@ $ npm run dev
 **3. From Chrome browser, go to `http://localhost:3000/demo_aws_sdk.html`.**
 
 The AWS sdk demo will show.
+
+<br/>
 
 
 ### node-express 실행하기

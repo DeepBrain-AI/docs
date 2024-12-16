@@ -2,7 +2,7 @@
 sidebar_position: 11
 ---
 
-# Interface AIModelInfoManager.IAPIListener
+# AIModelInfoManager.IAPIListener
 
 | Modifier and Type | Method and Description                                       |
 | :---------------- | :----------------------------------------------------------- |

@@ -4,7 +4,7 @@ sidebar_position: 8
 
 # AIPlayerAlignment
 
-## AIPlayerVerticalAlignment
+### AIPlayerVerticalAlignment
 
 AIPlayer의 크기를 변경 할 때 수직 기준점을 정한다.
 
@@ -15,7 +15,7 @@ AIPlayer의 크기를 변경 할 때 수직 기준점을 정한다.
 | `bottom`               | 하단 기준점   |
 
 
-## AIPlayerHorizontalAlignment
+### AIPlayerHorizontalAlignment
 
 AIPlayer의 크기를 변경 할 때 수평 기준점을 정한다.
 

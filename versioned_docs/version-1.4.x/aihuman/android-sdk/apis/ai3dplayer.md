@@ -12,14 +12,14 @@ sidebar_position: 2
 | `IAIPlayer.AIPlayerType` | `getType()` get the type of the currently set ai (AILIVE, UNITY) |
 | `void`                   | `init(AIPlayerSettings config, IAIPlayerCallback callback)` init after creation. |
 | `void`                   | `pausePlay()`                                                |
-| `void`                   | `preload(java.lang.String requests)` not supprot             |
-| `void`                   | `preload(java.lang.String[] request)` not supprot            |
-| `void`                   | `preload(AIClipSet request)` not supprot                     |
-| `void`                   | `preload(AIClipSet[] requests)` not supprot                  |
+| `void`                   | `preload(java.lang.String requests)` not support             |
+| `void`                   | `preload(java.lang.String[] request)` not support            |
+| `void`                   | `preload(AIClipSet request)` not support                     |
+| `void`                   | `preload(AIClipSet[] requests)` not support                  |
 | `void`                   | `release()` release resource. should be called on 'onDestroy' etc. |
 | `void`                   | `resumePlay()`                                               |
 | `void`                   | `send(java.lang.String request)`                             |
-| `void`                   | `send(java.lang.String[] requests)` send speechs to speak    |
+| `void`                   | `send(java.lang.String[] requests)` send speeches to speak    |
 | `void`                   | `send(AIClipSet requests)` send speech or speech with gesture to speak |
 | `void`                   | `send(AIClipSet[] requests)` send speeches or speeches with gesture to speak |
 | `void`                   | `setScale(float scale)`                                      |

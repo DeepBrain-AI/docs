@@ -9,9 +9,13 @@ sidebar_position: 3
 
 :::
 
-이 페이지는 AIPlayer의 다양한 기능을 간단한 UI를 통해 보여줍니다. 다른 AI 모델을 선택하고, AI의 스케일을 변경하고, 음성 속도를 변경하고, AI가 여러 문장을 말하게 하고, 프리로드 등의 기능을 사용해볼 수 있습니다.
+이 페이지는 AIPlayer의 다양한 기능을 간단한 UI를 통해 보여줍니다. 다른 AI 모델을 선택하고, AI의 스케일을 변경하고, 음성 속도를 변경하고, AI가 여러 문장을 말하게 하고, 프리로드 등의 기능을 사용해 볼 수 있습니다.
 
-**1. 먼저 AIPlayer(AI_PLAYER)를 생성하고, 인증을 완료후 셋업을 진행합니다.**
+<br/>
+
+### 1. AIPlayer(AI_PLAYER) 생성 및 인증
+
+먼저 AIPlayer(AI_PLAYER)를 생성하고, 인증을 완료후 셋업을 진행합니다.
 
 ```javascript
 const wrapper = document.getElementById("AIPlayerWrapper");
@@ -31,8 +35,11 @@ async function generateVerifiedToken() {
   } else DATA.verifiedToken = "";
 }
 ```
+<br/>
 
-**2. 사용가능한 AI 리스트를 불러오고 UI를 만듭니다.**
+### 2. AI 리스트를 불러오기 및 UI 작업
+
+사용가능한 AI 리스트를 불러오고 UI를 만듭니다.
 
 ```javascript
 async function getAIList() {
@@ -55,7 +62,9 @@ async function getAIList() {
 }
 ```
 
-**3. 선택한 AI 이름으로 AIPlayer의 init 함수 호출**
+<br/>
+
+### 3. 선택한 AI 이름으로 AIPlayer의 init 함수 호출
 
 원하는 AI를 해당 the AI의 name, size, left, top and speech speed와 함께 초기화(init)합니다.
 
@@ -78,7 +87,9 @@ async function startAI(aiName, aiType) {
 }
 ```
 
-**4. AIPlayer의 콜백을 구현하여 이벤트와 에러를 모니터합니다.**
+<br/>
+
+### 4. AIPlayer의 콜백을 구현하여 이벤트와 에러를 모니터링
 
 AIPlayer는 3개의 callback 함수를 가지고 있습니다. 그것은 각각 onAIPlayerEvent, onAIPlayerLoadingProgressed 그리고 onAIPlayerErrorV2입니다. 더 자세한 사항은 여기 [Page](../apis/aiplayer-callback.md)와 여기 [Page](../apis/aiplayer-data.md)를 참조하여주십시오.
 
@@ -146,7 +157,7 @@ function initAIPlayerEvent() {
     // TODO: error handling
 
     if (aiError.code >= AIError.RESERVED_ERR) {
-      //You've got reserved error. Check up the error list!
+      //You've encountered a reserved error. Please check the error list!
       console.log("RESERVED_ERR :" , aiError.message);
     } else if (aiError.code >= AIErrorCode.AICLIPSET_PLAY_ERR) {
       console.log("AICLIPSET_PLAY_ERR :" , aiError.message);
@@ -175,7 +186,12 @@ function initAIPlayerEvent() {
 
 }
 ```
-**5. AI 발화 관련 함수들 (preload, send, pauses, resume, stop and release)을 구현합니다.**
+
+<br/>
+
+### 5. AI 발화 관련 함수들 구현
+
+AI 발화 관련 함수들 (preload, send, pauses, resume, stop and release)을 구현합니다.
 
 ```javascript
 async function preload(clipSet) {
@@ -211,13 +227,16 @@ function release() {
 }
 ```
 
-**6. 3D AI Model Application 예제**
+<br/>
+
+
+### 6. 3D AI Model Application 예제
 
  2D와는 달리, 3D AI model은 Unity Webgl build 결과물 (SDK zip 파일의 `build` 폴더와 그 파일들)이 필요합니다. 
 
 3D AI를 표시하기 위해서는, 
 - 'build' 폴더 및 파일을 원하는 위치(로컬 저장소, S3 등)에 저장합니다.(커스텀 저장소를 원한다면)
-  + 기본적으로 build 폴더는 루트 폴더에 존재해야합니다.(샘플을 확인)
+  + 기본적으로 build 폴더는 루트 폴더에 존재해야 합니다.(샘플을 확인)
 - AIPlayer 개체를 생성할 때,
   + AIPlayer가 그려질 UI 요소를 첫 번째 인수(wrapper)로 지정합니다.
   + 두번째 인수는 json으로, 'buildUrl' 키에 로컬 경로 또는 URL을 할당합니다.

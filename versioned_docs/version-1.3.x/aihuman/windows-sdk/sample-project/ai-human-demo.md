@@ -14,12 +14,12 @@ AI Human Demo is a page where you can try out various functionalities of AIPlaye
 
 <img src="/img/aihuman/windows/WPF_Sample_DemoPage.png" />
 
-**First, get a list of available AIs and set up the UI. The Constants.appid, userKey, uuid, and targetPlatform below are parameters entered when calling AuthStart in HomeView.**
+**First, get a list of available AIs and set up the UI. The Constants.appId, userKey, uuid, and targetPlatform below are parameters entered when calling AuthStart in HomeView.**
 
 ```csharp
 AIAPI.Instance.AuthStart(Constants.AppId, Constants.UserKey, Constants.Uuid, Constants.TargetPlatform, (aiList, error) =>
 {
-    // You can get a list of available AIs via CallBack.
+    // You can get a list of available AIs via Callback.
 	AIAPI.AIList apiAIlist = JsonConvert.DeserializeObject<AIAPI.AIList>(aiList.Root.ToString());
 	if (aiList == null)
 	{
@@ -136,7 +136,7 @@ public interface IAIPlayerCallback
 }
 ```
 
-Through onAIStateChanged implementation, you can receive CallBack of AI states shown below.
+Through onAIStateChanged implementation, you can receive Callback of AI states shown below.
 
 :::info AIState.Type
 

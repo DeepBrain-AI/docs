@@ -3,18 +3,18 @@ sidebar_position: 3
 ---
 
 # AI Human 데모
+
 :::note 관련 파일
 
 - AIPlayerDemo.java
 
 :::
 
-AIPlayerDemo 액티비티는 AIPlayer의 다양한 기능들을 UI를 통해 시연해볼수 있는 액티비티입니다. 여러 모델을 쓸수 있는 라이센스를 가지고 있다면, 다른 AI 모델로 변경해볼 수 있습니다. 또한 AI의 Scale을 변경하여 화면내에서 적절한 크기를 잡을수 있습니다. 말하기 속도 변경 및 여러 문장 발화시키기와 프리로드 기능도 사용해볼수 있습니다. 
+AIPlayerDemo 액티비티는 AIPlayer의 다양한 기능들을 UI를 통해 시연해 볼 수 있는 액티비티입니다. 여러 모델을 쓸 수 있는 라이센스를 가지고 있다면, 다른 AI 모델로 변경해 볼 수 있습니다. 또한 AI의 Scale을 변경하여 화면 내에서 적절한 크기를 잡을 수 있습니다. 말하기 속도 변경 및 여러 문장 발화시키기와 프리로드 기능도 사용해 볼 수 있습니다.
 
 <p align="center">
 <img src="/img/aihuman/android/sdk_demo_gesture_speak.jpg" style={{zoom: "25%"}} />
 </p>
-
 
 **먼저 사용 가능한 AI 리스트 가져온 후 하나의 AI를 초기화합니다. 필요한 경우 AIModelInfoManager.generateToken()을 먼저 호출합니다. Sample에서는 MainActivity에서 generateToken()을 먼저 호출하였습니다.**
 
@@ -23,7 +23,7 @@ AIPlayerDemo 액티비티는 AIPlayer의 다양한 기능들을 UI를 통해 시
      * aiPlayer creation. Gives AILIVE type to {@link AIPlayerFactory}
      */
     private void initThis() {
-        //AIPlayer.enableLog(true); Enable log.
+        // Enable logging for debugging: AIPlayer.enableLog(true);
 
         AIModelInfoManager.getAIList((aiError, resp) -> {
             /* resp
@@ -47,9 +47,9 @@ AIPlayerDemo 액티비티는 AIPlayer의 다양한 기능들을 UI를 통해 시
 **현재 AI를 변경하는 부분은 다음과 같습니다.**
 
 ```java
-// UI and AIPlayer's setup 
+// UI and AIPlayer's setup
 private void setUpUIWithAIPlayer() {
-		//...		
+		//...
     binding.aiSelectSpinner.setAdapter(new ArrayAdapter<>(AIPlayerDemo.this,
                 android.R.layout.simple_spinner_dropdown_item, getAIDispNames()));
         binding.aiSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -69,13 +69,13 @@ private void setUpUIWithAIPlayer() {
 }
 ```
 
-**현재 AI 에게 발화시키기 예제는 아래와 같습니다.** 
+**현재 AI 에게 발화시키기 예제는 아래와 같습니다.**
 
 ```java
-// UI and AIPlayer's setup 
+// UI and AIPlayer's setup
 private void setUpUIWithAIPlayer() {
 		//...
-		bbinding.sendTextBtn.setOnClickListener(view -> {
+		binding.sendTextBtn.setOnClickListener(view -> {
             testMode = TESTMODE_NORMAL;
 
             if (selectedSpeech != null) {
@@ -100,7 +100,7 @@ private void setUpUIWithAIPlayer() {
 }
 ```
 
-**AI 동작의 콜백 받기는 다음과 같습니다.** 
+**AI 동작의 콜백 받기는 다음과 같습니다.**
 
 ```java
 private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
@@ -140,7 +140,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
             Log.d(TAG, "onAIPlayerError: " + error);
 
             if (error.code >= AIError.RESERVED_ERR) {
-                //You've got reserved error. Check up the error list!
+                //You've encountered a reserved error. Please check the error list!
                 binding.aiStateTxt.setText("RESERVED_ERR :" + error.message);
             } else if (error.code >= AIError.AICLIPSET_PLAY_ERR) {
                 binding.aiStateTxt.setText("AICLIPSET_PLAY_ERR :" + error.message);
@@ -161,7 +161,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
                 if (error.code == 1402) { //refresh token
                     AIModelInfoManager.generateToken(AIPlayerDemo.this,
-                            getString(R.string.appid),
+                            getString(R.string.appId),
                             getString(R.string.userkey),
                             (aiError, resp) -> binding.aiStateTxt.setText("Token ref finished " + resp));
                 }

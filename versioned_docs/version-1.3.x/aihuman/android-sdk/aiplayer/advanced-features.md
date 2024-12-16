@@ -4,17 +4,18 @@ sidebar_position: 5
 
 # AIPlayer Advanced Speaking Features
 
+<br/>
 
-## Gestures
-As briefly mentioned above, speech may be performed using AIClipSet. AIClipSet refers to one utterance unit. The types of speech are basic speech, gesture speech including gesture and speech, and gestures that perform only certain actions. The available gestures differs according to AI model, and the list of available gestures can be obtained using the getGestures() function of AIPlayer.
+### Gestures
 
+As briefly mentioned above, speech may be performed using AIClipSet. AIClipSet refers to one utterance unit. The types of speech are basic speech, gesture speech including gesture and speech, and gestures that perform only certain actions. The available gestures differ according to AI model, and the list of available gestures can be obtained using the getGestures() function of AIPlayer.
 
-The following are ClipType 
+The following are ClipTypes
 
 - AIClipSet.ClipType
   - CLIP_SPEECH: normal speech without gesture
   - CLIP_GESTURE: only gesture
-  - CLIP_SPEECH_GESTURE: normal speech with gesture 
+  - CLIP_SPEECH_GESTURE: normal speech with gesture
 
 The AI jonathan is speaking with gesture called "hi"(waving hand).
 
@@ -22,11 +23,11 @@ The AI jonathan is speaking with gesture called "hi"(waving hand).
 <img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
 </p>
 
-AIClipSetFactory.CreateClip can create AIClipset with gesture like below. Only gesture will play if the gesture set witout speech text.
+AIClipSetFactory.CreateClip can create AIClipset with gesture like below. Only the gesture will play if the gesture is set without speech text.
 
 ```java
 if (selectedSpeech != null) {
-    
+
     if (selectedAIGesture != null) {
         aiPlayer.send(AIClipSetFactory.CreateClip(
                 selectedAIGesture.getName(), selectedSpeech, null));
@@ -38,11 +39,12 @@ if (selectedSpeech != null) {
 }
 ```
 
-### Monitor the gesture's event
-IAIPlayerCallback.onAIPlayerEvent(AIEvent) will be called like normal 'send' method. AIEvent'type valued will be like below so that we can check out. Also we can access the AIEvent.clipset.getClipType(), getGesture(), getSpeechText(). That means we can distinguish that it is a gesture or just speaking.
+#### Monitor the gesture's event
 
-- AIEvent.AICLIPSET_PLAY_PREPARE_STARTED 
-- AIEvent.AICLIPSET_PLAY_PREPARE_COMPLETED 
+IAIPlayerCallback.onAIPlayerEvent(AIEvent) will be called like normal `send` method. AIEvent's type value will be like below so that we can check out. Also we can access the AIEvent.clipset.getClipType(), getGesture(), getSpeechText(). That means we can distinguish that it is a gesture or just speaking.
+
+- AIEvent.AICLIPSET_PLAY_PREPARE_STARTED
+- AIEvent.AICLIPSET_PLAY_PREPARE_COMPLETED
 - AIEvent.AICLIPSET_PLAY_STARTED
 - AIEvent.AICLIPSET_PLAY_COMPLETED
 - AIEvent.AICLIPSET_PLAY_BUFFERING
@@ -50,42 +52,43 @@ IAIPlayerCallback.onAIPlayerEvent(AIEvent) will be called like normal 'send' met
 
 <br/>
 
-## Change the voice or language
-Some AIs can speak with other voices besides basic voices. To use other voices, you should call AIModelInfoManager.generateToken(...) or AIModelInfoManager.loadCustomVoices(...) method before using them. 
+### Change the voice or language
+
+Some AIs can speak with other voices besides basic voices. To use other voices, you should call AIModelInfoManager.generateToken(...) or AIModelInfoManager.loadCustomVoices(...) method before using them.
 
 <p align="center">
 <img src="/img/aihuman/android/Screenshot_20221107-120630_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
 </p>
 
-### Set the custom voice using AIPlayer's method
+#### Set the custom voice using AIPlayer's method
+
 First, the list of languages that AI can currently speak can be checked through the following method.
 
 ```java
 String[] languages = AIModelInfoManager.getSpeakableLanguages(aiPlayer.getGender());
-``` 
+```
 
 Next, the voice list suitable for the corresponding language and gender can be checked by the following method. CustomVoice has properties of id, name, language, and tag.
 
 ```java
 CustomVoice[] customVoices = AIModelInfoManager.getCustomVoicesWith(String language, String gender);
-``` 
+```
 
 If you know the id of the desired voice, you can find the desired voice using the following method. If there is none, return null.
 
 ```java
 CustomVoice myVoice = AIModelInfoManager.findCustomVoice(voiceId);
-``` 
+```
 
-Direct change to the desired voice on the aplayer is set as follows, and is set to the default voice when null is entered. Returns true when success.
-
+Directly change to the desired voice on the aplayer is set as follows, and is set to the default voice when null is entered. Returns true if successful.
 
 ```java
 CustomVoice[] customVoices = AIModelInfoManager.getCustomVoicesWith(String language, String gender);
-CustomVoice myVoice = customVoices[2]; 
+CustomVoice myVoice = customVoices[2];
 boolean isSuccess = aiPlayer.setCustomVoice(myVoice);
-``` 
+```
 
-Instead of using CustomVoice instance directly, you can set CustomVoice with language and gender. In this case, the first customVoice of the filtered list is set. 
+Instead of using CustomVoice instance directly, you can set CustomVoice with language and gender. In this case, the first customVoice of the filtered list is set.
 
 ```java
 boolean isSuccess = aiPlayer.setCustomVoiceForLanguage(language, gender);
@@ -97,20 +100,20 @@ Check current CustomVoice with following method. It returns null if customVoice 
 CustomVoice customVoice = aiPlayer.getCustomVoice();
 ```
 
-### Set the custom voice using AIClipSet
-In addition to the method of using the setCustomVoice method to set a voice other than the default voice, AIClipSet can be used to speak the desired voice as follows.
+#### Set the custom voice using AIClipSet
 
+In addition to the method of using the setCustomVoice method to set a voice other than the default voice, AIClipSet can be used to speak the desired voice as follows.
 
 ```java
 CustomVoice myVoice = AIModelInfoManager.getCustomVoicesWith(String language, String gender)[0];
 AIClipSet aiClipset = AIClipSetFactory.CreateClip(null, speech, null, myVoice);
 aiPlayer.send(aiClipSet);
-``` 
-
+```
 
 <br/>
 
-## Speak Multiple Sentences Consecutively
+#### Speak Multiple Sentences Consecutively
+
 You can send several sentences at once and the AI will speak sequentially. In the sample below, the corresponding action is performed when the Multi Speak button is pressed.
 
 <p align="center">
@@ -120,16 +123,17 @@ You can send several sentences at once and the AI will speak sequentially. In th
 ```java
 aiPlayer.send([texts]); //array
 
-//or 
+//or
 aiPlayer.send([aiClipSets]); //array
 ```
+
 <br/>
 
-## Preload
+### Preload
 
 Preload is used when you want to make the AI speak the next sentence without delay by loading sentences in advance. You could think of it as a caching process. Select a sentence and press the **PRELOAD SPEAK** button in the sample below to perform the corresponding action.
 
-**3D character does not support this.** 
+**3D character does not support this.**
 
 <p align="center">
 <img src="/img/aihuman/android/Screenshot_20221107-120334_AIHumanSDKDemo.jpg" style={{zoom: "25%"}} />
@@ -139,7 +143,7 @@ Preload is used when you want to make the AI speak the next sentence without del
 aiPlayer.preload([text]);
 ```
 
-### Monitor the preload function and utilize
+#### Monitor the preload function and utilize
 
 Like the send function, IAIPlayerCallback.onAIPlayerEvent(AIEvent) is called during the preload. The value of AIEvent can be called as follows.
 
@@ -164,11 +168,11 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
                 break;
             case AICLIPSET_PRELOAD_STARTED:
                 binding.aiStateTxt.setText(getString(R.string.ai_started_preparation_to_preload));
-                //preload process started 
+                //preload process started
                 break;
             case AICLIPSET_PRELOAD_COMPLETED:
                 binding.aiStateTxt.setText(getString(R.string.ai_finished_preparation_to_preload));
-                //preload process finished 
+                //preload process finished
                 break;
             case AICLIPSET_PLAY_COMPLETED:
                 binding.aiStateTxt.setText(getString(R.string.ai_finished_speaking));
@@ -198,7 +202,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
             if (error.code == 1402) { //refresh token
                 AIModelInfoManager.generateToken(AIPlayerDemo.this,
-                        getString(R.string.appid),
+                        getString(R.string.appId),
                         getString(R.string.userkey),
                         (aiError, resp) -> binding.aiStateTxt.setText("Token ref finished " + resp));
             }
@@ -209,11 +213,11 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 };
 ```
 
-<br/> 
+<br/>
 
-## Try reconnect
+### Try reconnect
 
-**Reconnect** might be used when network is not connected. When the network is not available, the AI_DISCONNECTED event will be fired and SDK try reconnect one time internally. You can call reconnect as you need and the result will be returned the registered callback(IAIReconnectCallback).
+**Reconnect** might be used when network is not connected. When the network is not available, the AI_DISCONNECTED event will be fired and SDK will try reconnect one time internally. You can call reconnect as you need and the result will be returned the registered callback(IAIReconnectCallback).
 
 ```java
 private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
@@ -237,7 +241,8 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
 <br/>
 
-## Check before send, 'isConnected'
+### Check before send, 'isConnected'
+
 Check if AI is connected. You can send if it is true. AIError.AICLIPSET_PLAY_ERR and AIEvent.AICLIPSET_PLAY_FAILED will be sent on onAIPlayerError and onAIPlayerEvent respectively if you send when it is false.
 
 ```java
@@ -246,7 +251,8 @@ boolean isConnected = aiPlayer.isConnected();
 
 <br/>
 
-## Check before preload, 'canPreload'
+### Check before preload, 'canPreload'
+
 Check if it is able to preload now. You can preload if it is true. AIError.AICLIPSET_PRELOAD_ERR and AIEvent.AICLIPSET_PRELOAD_FAILED will be sent on onAIPlayerError and onAIPlayerEvent respectively if you preload when it is false.
 
 ```java
@@ -255,8 +261,9 @@ boolean canPreload = aiPlayer.canPreload();
 
 <br/>
 
-## Change AI Speech Speed
-Change AI Speech speed between 0.5 and 1.5
+### Change AI Speech Speed
+
+Change AI speech speed between 0.5 and 1.5
 
 ```java
 aiPlayer.setSpeed(speed);

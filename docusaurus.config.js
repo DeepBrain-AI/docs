@@ -176,11 +176,11 @@ const config = {
             items: [
               {
                 label: 'AI Studios',
-                to: 'https://www.deepbrain.io/aistudios',
+                to: 'https://www.aistudios.com/aistudios',
               },
               {
                 label: 'AI Human',
-                to: 'https://www.deepbrain.io/aihuman',
+                to: 'https://www.aistudios.com/aihuman',
               },
             ],
           },
@@ -189,19 +189,19 @@ const config = {
             items: [
               {
                 label: 'Financial Services',
-                to: 'https://www.deepbrain.io/solutions/finance',
+                to: 'https://www.aistudios.com/solutions/finance',
               },
               {
                 label: 'Retail & Commerce',
-                to: 'https://www.deepbrain.io/solutions/retail',
+                to: 'https://www.aistudios.com/solutions/retail',
               },
               {
                 label: 'Education',
-                to: 'https://www.deepbrain.io/solutions/education',
+                to: 'https://www.aistudios.com/solutions/education',
               },
               {
                 label: 'Media',
-                to: 'https://www.deepbrain.io/solutions/news',
+                to: 'https://www.aistudios.com/solutions/news',
               },
             ],
           },
@@ -210,7 +210,7 @@ const config = {
             items: [
               {
                 label: 'Pricing',
-                to: 'https://www.deepbrain.io/pricing',
+                to: 'https://www.aistudios.com/pricing',
               },
             ],
           },
@@ -223,7 +223,7 @@ const config = {
               },
               {
                 label: 'Blog',
-                to: 'https://www.deepbrain.io/blog',
+                to: 'https://www.aistudios.com/blog',
               },
               {
                 label: 'Forum',
@@ -240,15 +240,15 @@ const config = {
             items: [
               {
                 label: 'About',
-                to: 'https://www.deepbrain.io/company/about',
+                to: 'https://www.aistudios.com/company/about',
               },
               {
                 label: 'Careers',
-                to: 'https://www.deepbrain.io/company/careers',
+                to: 'https://www.aistudios.com/company/careers',
               },
               {
                 label: 'Contact',
-                to: 'https://www.deepbrain.io/company/contact',
+                to: 'https://www.aistudios.com/company/contact',
               },
             ],
           },

@@ -8,36 +8,38 @@ sidebar_position: 4
 
 ### Make AI speak a sentence
 
-After the aiPlayer resource loading is completed(AIEvent.RES_LOAD_COMPLETED), call the **send method**. 
+After the aiPlayer resource loading is completed(AIEvent.RES_LOAD_COMPLETED), call the **send method**.
 
 You can input just string to make AI speak but AIClipSet is also able to do it. When using AIClipSet, you can make AI speak with some gestures. For example, you can order AI to wave and say "hello!" This is called gesture speech. Details are described in the [Gesture](advanced-features.md#gestures) part.
 
-If the text to speak is too long, it may not be possible to synthesize the resources required for the utterance. There are some models that can synthesize long sentences. Although it varies from ai to ai, it is generally recommended that sentences be cut to an appropriate length in Korean, usually within 30 to 40 characters, and at a similar level in English.
+If the text to speak is too long, it may not be possible to synthesize the resources required for the utterance. There are some models that can synthesize long sentences. Although it varies from AI to AI, it is generally recommended that sentences be cut to an appropriate length in Korean, usually within 30 to 40 characters, and at a similar level in English.
 
 ```java
 
 //using AIClipSet
 AIClipSet clip = AIClipSetFactory.CreateClip(null, "Nice to meet you", null)
-aiPlayer.send(clip); 
+aiPlayer.send(clip);
 
 //using text
-aiPlayer.send(new String[]{"Nice to meet you"}); 
+aiPlayer.send(new String[]{"Nice to meet you"});
 
 ```
 
+<br/>
+
 ### Monitoring of speaking behavior
 
-After calling the send method, you can check the feedback on the operation event in the registered listener. This feedback is returned by calling the event related method (onAIPlayerEvent) of the listener(IAIPlayerCallback). AIEvent received as an argument of onAIPlayerEvent is called with the following event values when called 'send' method. 
+After calling the send method, you can check the feedback on the operation event in the registered listener. This feedback is returned by calling the event related method (onAIPlayerEvent) of the listener(IAIPlayerCallback). AIEvent received as an argument of onAIPlayerEvent is called with the following event values when called `send` method.
 
-- AIEvent.AICLIPSET_PLAY_PREPARE_STARTED 
-- AIEvent.AICLIPSET_PLAY_PREPARE_COMPLETED 
+- AIEvent.AICLIPSET_PLAY_PREPARE_STARTED
+- AIEvent.AICLIPSET_PLAY_PREPARE_COMPLETED
 - AIEvent.AICLIPSET_PLAY_STARTED
 - AIEvent.AICLIPSET_PLAY_COMPLETED
-- AIEvent.AICLIPSET_PLAY_BUFFERING 
+- AIEvent.AICLIPSET_PLAY_BUFFERING
 - AIEvent.AICLIPSET_RESTART_FROM_BUFFERING
 - AIEvent.AICLIPSET_PLAY_FAILED
 
-If there are some errors while 'send', the 'onAIPlayerError' will be called with AIError that contains which error has occured. When AICLIPSET_PLAY_ERR or AI_SERVER_ERR occur, 'stopSpeaking()' will be called internally which means the speech queue will be cleared. 
+If there are some errors while `send`, the 'onAIPlayerError' will be called with AIError that contains which error has occured. When AICLIPSET_PLAY_ERR or AI_SERVER_ERR occur, 'stopSpeaking()' will be called internally which means the speech queue will be cleared.
 
 ```java
 private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
@@ -94,7 +96,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
             if (error.code == 1402) { //refresh token
                 AIModelInfoManager.generateToken(AIPlayerDemo.this,
-                        getString(R.string.appid),
+                        getString(R.string.appId),
                         getString(R.string.userkey),
                         (aiError, resp) -> binding.aiStateTxt.setText("Token ref finished " + resp));
             }
@@ -104,12 +106,14 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
     }
 };
 ```
+
 <br/>
 
-## Make resposive UI with AIPLAYER_STATE_CHANGED event 
-The AIPlayer has serveral states that a user can notice and response. When the state is changed, the 'onAIPlayerEvent' callback is called with AIEvent.AIPLAYER_STATE_CHANGED and AIPlayer.getState() method return the current state. 
+### Make resposive UI with AIPLAYER_STATE_CHANGED event
 
-Before an AI initialized, the state is AIPlayerState.NONE and it changes to INITIALIZE when the 'AIPlayer.init()' method called. If the AI initialization is done, IDLE state will come. In this state, one can send AIClipSet and the state will be 'PLAY'. Finally, if the AIPlayer is released by calling 'release', the state will be RELEASE state. 
+The AIPlayer has several states that a user can notice and respond to. When the state is changed, the 'onAIPlayerEvent' callback is called with AIEvent.AIPLAYER_STATE_CHANGED and AIPlayer.getState() method return the current state.
+
+Before an AI initialized, the state is AIPlayerState.NONE and it changes to INITIALIZE when the 'AIPlayer.init()' method called. If the AI initialization is done, The state will change to IDLE. In this state, one can send AIClipSet and the state will be 'PLAY'. Finally, if the AIPlayer is released by calling 'release', the state will be RELEASE state.
 
 ```java
 private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
@@ -158,28 +162,31 @@ private void onAIStateChanged() {
 
 <br/>
 
-## Pause Speaking
+### Pause Speaking
+
 AIPlayer's state will be changed to PAUSE.
 
 ```java
 aiPlayer.pause()
-// mAI3DPlayer.pausePlay() for 3d 
+// mAI3DPlayer.pausePlay() for 3d
 ```
 
 <br/>
 
-## Resume Speaking
+### Resume Speaking
+
 Resume from pause. AIPlayer's state will be changed to PLAY.
 
 ```java
 aiPlayer.resume()
-// mAI3DPlayer.resumePlay() for 3d 
+// mAI3DPlayer.resumePlay() for 3d
 ```
 
 <br/>
 
-## Stop Speaking
-Stop the speaking and also clear all data in the queue(Resume is not possible). AIPlayer's state will be changed to IDLE. 
+### Stop Speaking
+
+Stop the speaking and also clear all data in the queue(Resume is not possible). AIPlayer's state will be changed to IDLE.
 
 ```java
 aiPlayer.stopSpeaking();

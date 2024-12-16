@@ -10,6 +10,9 @@ When an `AIPlayer` object is created after authentication is completed, resource
 
 The SDK downloads the required resources of the AI you set to the path where the process is located.
 
+
+<br/>
+
 ### Implement callback with IAIPlayerCallback
 
 First, the class that wants to receive the callback (monitoring) must inherit the `IAIPlayerCallback`.
@@ -53,7 +56,7 @@ e.g.) 1402 error (value token expired): Token refresh required -> Call Authentic
 
 ```csharp
 string message;
-// AI resource related status CallBack
+// AI resource related status Callback
 public void OnAIPlayerEvent(AIEvent aiEvent)
 {
     switch (aiEvent.EventType)
@@ -70,14 +73,14 @@ public void OnAIPlayerEvent(AIEvent aiEvent)
     }
 }
 
-// AI resource loading progress CallBack
+// AI resource loading progress Callback
 public void OnAIPlayerResLoadingProgressed(int current, int total)
 {
     float progress = ((float) current / (float) total) * 100;
     message = "AI Resource Loading... {progress}%";
 }
 
-// AI error CallBack
+// AI error Callback
 public void OnAIPlayerError(AIError error)
 {
     switch (error.ErrorCode)

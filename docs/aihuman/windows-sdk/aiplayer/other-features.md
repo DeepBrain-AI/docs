@@ -7,7 +7,9 @@ The following are mainly AI setting-related features other than speech.
 
 Once the resource is loaded, you can change AIPlayer's settings; for example, you can adjust the **Scale, Margin, Volume**, etc.
 
-### Change AI Size(Scale)
+<br/>
+
+### Change AI Speech Rate
 <img src="/img/aihuman/windows/scale_1.4.x.png" />
 
 : You can change the size(scale) of AI. The possible value range is from 0.5 to 1.5.
@@ -16,6 +18,9 @@ Once the resource is loaded, you can change AIPlayer's settings; for example, yo
 // set Property
 _aiPlayer.Scale = value;
 ```
+
+
+<br/>
 
 ### Change AI Position(Margin)
 <img src="/img/aihuman/windows/margin_1.4.x.png" />
@@ -29,6 +34,9 @@ _aiMargin.Y = 8;
 // set Property
 _aiPlayer.Margin = _aiMargin;
 ```
+
+
+<br/>
 
 ### Volume Control
 
@@ -48,6 +56,9 @@ _aiPlayer.Volume = value;
 _aiPlayer.IsMute = value;
 ```
 
+
+<br/>
+
 ### Disconnect from AI
 
 <img src="/img/aihuman/windows/disconnect_1.5.x.png" />
@@ -62,6 +73,9 @@ _aiPlayer.Disconnect((result) => {
     MessageBox.Show($"Disconnect result: {result}");
 });
 ```
+
+
+<br/>
 
 ### Reconnect to AI
 

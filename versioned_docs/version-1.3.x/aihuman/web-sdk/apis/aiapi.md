@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # AIPlayer API Method
 
-## 1 AIPlayer.generateToken(json)
+### 1 AIPlayer.generateToken(json)
 
 Get JWT Verified Token
 
@@ -32,7 +32,10 @@ Get JWT Verified Token
   const result = await AI_PLAYER.generateToken({ appId: "...", token: "..." });
 ```
 
-## 2. AIPlayer.getAIList()
+
+<br/>
+
+### 2. AIPlayer.getAIList()
 
 Get a list of available AI models
 

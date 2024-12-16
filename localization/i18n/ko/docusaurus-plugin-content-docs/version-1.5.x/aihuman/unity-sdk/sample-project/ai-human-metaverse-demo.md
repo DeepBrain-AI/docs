@@ -15,6 +15,9 @@ sidebar_position: 8
 - **Built-in, URP 지원**
 - **TextMeshPro 패키지 필요**
 
+
+<br/>
+
 ### 3D 공간에서 AIPlayer 사용하기
 
 <p align="center">
@@ -37,6 +40,9 @@ sidebar_position: 8
 - MetaverseFrameImageProvider.cs
 :::
 
+
+<br/>
+
 ### 3D 공간에서 AI3DPlayer 사용하기
 
 <p align="center">
@@ -56,6 +62,9 @@ sidebar_position: 8
 - UIMetaverseChat.cs
 - ChatbotManager.cs
 :::
+
+
+<br/>
 
 ### 메타버스 구현을 위한 다른 기능들
 

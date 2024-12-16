@@ -6,9 +6,9 @@ sidebar_position: 5
 
 ### 1. Gesture
 
-As briefly mentioned before, speech may be performed using AIClipSet(json). AIClipSet refers to one utterance unit. The types of speech are basic speech, gesture speech including gesture and speech, and gestures that perform only certain actions. 
+As briefly mentioned before, speech may be performed using AIClipSet(json). AIClipSet refers to one utterance unit. The types of speech are basic speech, gesture speech including gesture and speech, and gestures that perform only certain actions.
 
-The available gestures differs according to AI model, and the list of available gestures can be obtained using the getGestures() function of AIPlayer.
+The available gestures differ according to AI model, and the list of available gestures can be obtained using the getGestures() function of AIPlayer.
 
 The followings are ClipTypes.
 
@@ -22,7 +22,7 @@ The screenshot below shows AI Model Jonathan opening his hands according to "two
 
 <br/>
 
-You can create AIClipset with gesture like below. Only gesture will play if the gesture set witout speech text. 
+You can create AIClipset with gesture like below. Only the gesture will play if the gesture is set without speech text.
 
 ```javascript
 function sendText() {
@@ -36,7 +36,7 @@ function sendText() {
 		   "enableSpeech": false
         }] */
   const AIClipSet = { text: "nice to meet you.", gst: gestures[0].gst }; //hi
-  AI_PLAYER.send(AIClipSet)
+  AI_PLAYER.send(AIClipSet);
 }
 ```
 
@@ -50,7 +50,7 @@ Check out the custom voice list that you can select on the Demo page.
 
 <img src="/img/aihuman/web/sdk_demo_04_r1.png" />
 
-#### Set the custom voice using AIPlayer's method
+##### Set the custom voice using AIPlayer's method
 
 First, the list of languages that AI can currently speak can be checked through the following method.
 
@@ -70,7 +70,7 @@ If you know the id of the desired voice, you can find the desired voice using th
 const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 ```
 
-Direct change to the desired voice on the AIPlayer is set as follows, and is set to the default voice when null is entered. Returns true when success.
+Direct change to the desired voice on the AIPlayer is set as follows, and is set to the default voice when null is entered. Returns true if successful.
 
 ```javascript
 const customVoice = AI_PLAYER.findCustomVoice(voiceId);
@@ -78,7 +78,7 @@ const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 const isSuccess = AI_PLAYER.setCustomVoice(customVoice);
 ```
 
-Instead of using CustomVoice instance directly, you can set CustomVoice with language and gender. In this case, the first customVoice of the filtered list is set. 
+Instead of using CustomVoice instance directly, you can set CustomVoice with language and gender. In this case, the first customVoice of the filtered list is set.
 
 ```javascript
 const isSuccess = AI_PLAYER.setCustomVoiceForLanguage(language, gender);
@@ -90,7 +90,7 @@ Check current CustomVoice with following method. It returns null if customVoice 
 const customVoice = AI_PLAYER.getCustomVoice();
 ```
 
-#### Set the custom voice using AIClipSet
+##### Set the custom voice using AIClipSet
 
 In addition to the method of using the setCustomVoice method to set a voice other than the default voice, AIClipSet can be used to speak the desired voice as follows.
 
@@ -99,7 +99,7 @@ const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 const AIClipSet = { text: "Nice to meet you", gst: "hi", voice: customVoice };
 
 AI_PLAYER.send(AIClipSet);
-``` 
+```
 
 <br/>
 
@@ -116,6 +116,8 @@ AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" 
 ```
 
 
+<br/>
+
 ### 4. Preload
 
 Preload is used when you want to make the AI speak the next sentence without delay by loading sentences in advance. You could think of it as a caching process. Select a sentence and press the Preload button in the sample below to perform the corresponding action.
@@ -130,7 +132,7 @@ AI_PLAYER.preload("Nice to meet you");
 
 <br/>
 
-### 5. Monitor the preload function and utilize
+#### Monitor the preload function and utilize
 
 Like the send function, onAIPlayerEvent(AIEvent) is called during the preload. The value of AIEvent can be called as follows.
 
@@ -142,62 +144,76 @@ The preload function can be utilized when there is a need to cache. When AI has 
 
 ```javascript
 AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
-    // TODO: event handling 
+  // TODO: event handling
 
-    //example
-    switch (aiEvent.type) {
-      case AIEventType.AICLIPSET_PRELOAD_STARTED:
-        console.log("AI AICLIPSET_PRELOAD_STARTED: ", aiEvent);
-        break;
-      case AIEventType.AICLIPSET_PRELOAD_COMPLETED:
-        console.log("AI AICLIPSET_PRELOAD_STARTED: ", aiEvent);
-        break;
-      case AIEventType.AICLIPSET_PRELOAD_FAILED:
-        console.log("AI AICLIPSET_PRELOAD_FAILED: ", aiEvent);
-        break;
-      //...
-      }
-  };
+  //example
+  switch (aiEvent.type) {
+    case AIEventType.AICLIPSET_PRELOAD_STARTED:
+      console.log("AI AICLIPSET_PRELOAD_STARTED: ", aiEvent);
+      break;
+    case AIEventType.AICLIPSET_PRELOAD_COMPLETED:
+      console.log("AI AICLIPSET_PRELOAD_STARTED: ", aiEvent);
+      break;
+    case AIEventType.AICLIPSET_PRELOAD_FAILED:
+      console.log("AI AICLIPSET_PRELOAD_FAILED: ", aiEvent);
+      break;
+    //...
+  }
+};
 ```
 
-### 6. Try reconnect
 
-Reconnect might be used when network is not connected. When the network is not available, the AI_DISCONNECTED event will be fired and SDK try reconnect one time internally. You can call reconnect as you need and the result will be returned the registered callback.
+<br/>
+
+### 5. Try reconnect
+
+Reconnect might be used when the network is not connected. When the network is not available, the AI_DISCONNECTED event will be fired and SDK will try reconnect one time internally. You can call reconnect as you need and the result will be returned the registered callback.
 
 ```javascript
 AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
-    // TODO: event handling 
+  // TODO: event handling
 
-    //example
-    switch (aiEvent.type) {
-      case AIEventType.AI_DISCONNECTED:
-        console.log("AI AI_DISCONNECTED: ", aiEvent);
-        //reconnect if you want 
-        callback = (isSuccess) => { /*...*/} 
-        AI_PLAYER.reconnect(callback)
-        break;
-      //...
-      }
-  };
+  //example
+  switch (aiEvent.type) {
+    case AIEventType.AI_DISCONNECTED:
+      console.log("AI AI_DISCONNECTED: ", aiEvent);
+      //reconnect if you want
+      callback = (isSuccess) => {
+        /*...*/
+      };
+      AI_PLAYER.reconnect(callback);
+      break;
+    //...
+  }
+};
 ```
 
-### 7. Check before send, 'isConnected'
 
-Check if AI is connected. You can send if it is true. 
+<br/>
+
+### 6. Check before send, 'isConnected'
+
+Check if AI is connected. You can send if it is true.
 
 ```javascript
 const isConnected = AI_PLAYER.isConnected();
 ```
 
-### 8. Check before preload, 'canPreload'
+
+<br/>
+
+### 7. Check before preload, 'canPreload'
 
 Check if it is able to preload now. You can preload if it is true.
 
 ```javascript
-const canPreload = AI_PLAYER.canPreload(callback = () => { });
+const canPreload = AI_PLAYER.canPreload((callback = () => {}));
 ```
 
-### 9. Adjust AI Speech Rate
+
+<br/>
+
+### 8. Adjust AI Speech Rate
 
 You can set AI's speech rate. The range of possible values are from 0.5 to 1.5 . The default is 1.0.
 

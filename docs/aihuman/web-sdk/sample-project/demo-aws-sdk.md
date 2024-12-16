@@ -14,6 +14,10 @@ This demo is a conversational AI service using AI Human and AWS SDKs. (Actual op
 
 <img src="/img/aihuman/web/aws_sdk_web.png" />
 
+<br/>
+<br/>
+<br/>
+
 ### Using AI Human with AWS Transcribe/LLM Chatbot
 
 You can build a conversational AI service with powerful AWS SDKs. We are going to use AWS Transcribe for STT and BedrockRuntime Claud SDK for LLM Chatbot. This demo referenced below sites. 
@@ -22,30 +26,39 @@ You can build a conversational AI service with powerful AWS SDKs. We are going t
 - Reference Sample: https://github.com/awsdocs/aws-doc-sdk-examples 
 
 
-## Set up the AWS SDK's environment 
-### 1. The Transcribe SDK 
+
+<br/>
+
+### Set up the AWS SDK's environment 
+#### 1. The Transcribe SDK 
 Please follow link below and fullfil the environment setup in AWS. This means you need to get authenticated and build aws resource for transcribe. The goal is to get the 'region' and 'Physical ID of the IDENTITY_POOL_ID' for transcribe. 
 - https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/cross-services/transcribe-streaming-app 
 
 Next, copy all the js files in the src/libs from the website and put them in the same dir in your project. Set the Region and IDENTITY_POOL_ID in awsID.js.
 
-### 2. The Anthropic Claude(Bedrock Runtime) SDK
+#### 2. The Anthropic Claude(Bedrock Runtime) SDK
 Please acquire the accessKeyId, secretAccessKey of your aws account. This is sample program so that the key and secret are here exposed. It is recommanded to use other proxy server to protect them. Check out the sample code for this.
 
 - https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/bedrock-runtime
 
 Next, choose your llm model. Here, we are going to use anthropicClaude.  
 
-- https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javascriptv3/example_code/bedrock-runtime/models/anthropicClaude/invoke_claude_2.js 
+- https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/javascriptv3/example_code/bedrock-runtime/models/anthropicClaude/invoke_claude_2.js
 
-## Setting up Webpack build 
+<br/>
+ 
+
+### Setting up Webpack build 
 Webpack is used in this aws sample. Please go over the 'package.json' file to check out the settings which is the 'webpack_aws.config.js' build (scripts.aws) for this demo. Also notice the 'type:module' for es style and dependencies as well including webpack-cli. 
 
 Then, in 'webpack_aws.config.js', find out the 'entry' and 'output' section from export default part. The entry is this demo's source file(aws_sdk_index.js) and output is the webpack build result of it. We implement all the functions  in this file with the corresponding html/css. Open the demo_aws_sdk.html in public dir, and see that it includes the demo_aws_sdk.js. 
 
 To build the 'demo_aws_sdk.js', type 'npm run aws' in terminal.
 
-## Integrate AIHuman with AWS SDK
+
+<br/>
+
+### Integrate AIHuman with AWS SDK
 In the entry file, we have 4 important Classes that are AppController, LLMChatbot, Transcriber and AIPlayer. The LLMChatbot has BedrockRuntimeClient and Transcriber has the transcribeClient. Set up the keys and secrets and build using the 'npm run build' and 'npm run dev' to check out how this demo works. 
 
 ```javascript

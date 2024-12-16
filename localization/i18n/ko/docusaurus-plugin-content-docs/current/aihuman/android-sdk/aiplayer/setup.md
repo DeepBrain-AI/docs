@@ -13,6 +13,9 @@ sidebar_position: 2
 
 :::
 
+
+<br/>
+
 ### 1단계. SDK 사용자 인증
 
 AIPlayer를 사용하기 위해서는 우선 권한을 가진 사용자인지 확인하는 과정(인증)이 필요합니다. 사용자 인증을 위한 첫번째 단계는 사용자 인증키를 획득하는 것입니다. 사용자키(userkey)는 [여기](../getting-started/first-aihuman.md)에 얻는 절차가 있습니다. 이 사용자 키는 DeepBrain AI에서 만든 특정 문자열(e.g. AAAAAAA7-BBB3-CCC3-DDD3-EEEEEEEEEEE11)로서 절대 외부에 노출해서는 안됩니다. 이 인증키를 이용하여 API를 호출하면 사용 가능한 기본 AI의 정보와 앞으로 사용할 토큰을 얻을수 있습니다.
@@ -46,6 +49,9 @@ AIPlayer를 사용하기 위해서는 우선 권한을 가진 사용자인지 �
 
 
 
+
+<br/>
+
 ### 2단계. 인증 후 사용할수 있는 AI 리스트 확인
 
 AIModelInfoManager는 인증을 하고, 그 인증 결과를 가지고 있습니다. 인증 후 어떤 AI를 사용할수 있는지 확인하려면 인증 과정을 거친 후 다음 메소드를 호출하면 됩니다. 사용할수 있는 AI가 없거나, 인증 이전에 이 값을 확인해보면 null을 반환합니다.
@@ -77,6 +83,9 @@ AIModelInfoManager.getAIList((aiError, resp) -> {
 //2D or 3D selection
 JSONArray arr = AIModelInfoManager.getReceivedAIWithType("2D");
 ```
+
+
+<br/>
 
 ### 3단계. AIPlayer 생성 및 반환 하기
 
@@ -115,9 +124,12 @@ protected void onDestroy() {
 
 
 
+
+<br/>
+
 ### 4단계. AIPlayer를 원하는 AI로 초기화하기
 
-AIPlayer 객체 생성 후 실제로 어떤 AI를 사용하려면 그 AI로 초기화가 필요합니다. 방법은 아래와 같이 AIPlayerSettings 클래스를 원하는 aiName을 주고 생성한후 AIPlayer의 init(..., ...) 메소드의 인자로 주고 호출하는 것입니다. 이렇게 하면 aiPlayer는 설정된 값에 따라 리소스를 다운받아 동작 가능한 상태로 바뀝니다. 또한 등록된 콜백으로 상황을 보고 받을 수 있습니다.  
+AIPlayer 객체 생성 후 실제로 어떤 AI를 사용하려면 그 AI로 초기화가 필요합니다. 방법은 아래와 같이 AIPlayerSettings 클래스를 원하는 aiName을 주고 생성한 후 AIPlayer의 init(..., ...) 메소드의 인자로 주고 호출하는 것입니다. 이렇게 하면 aiPlayer는 설정된 값에 따라 리소스를 다운받아 동작 가능한 상태로 바뀝니다. 또한 등록된 콜백으로 상황을 보고 받을 수 있습니다.  
 
 ```java
 //AIPlayer created 
@@ -138,6 +150,6 @@ aiPlayer.init(config, iAIPlayerCallback);
 // mAI3DPlayer.init(curAIPlayerSettings, iAiPlayerCallback);
 ```
 
-AIPlayer의 init 메소드에 config(AIPlyerSettings) 인자는 player의 설정입니다. AIPlyerSettings 클래스의 aiName은 사용할 AI를 결정합니다. aiScale은 기본 1.0이며 aiTopMargin은 상단으로부터 거리. aiSpeed는 말하기 속도(기본 1)를 말합니다. init 메소드에 callback인자는 AIPlayer의 이벤트, 로딩 상태, 에러 등을 모니터링하며 적절한 동작을 취할수 있는 리스너입니다.
+AIPlayer의 init 메소드에 config(AIPlyerSettings) 인자는 player의 설정입니다. AIPlyerSettings 클래스의 aiName은 사용할 AI를 결정합니다. aiScale은 기본 1.0이며 aiTopMargin은 상단으로부터 거리. aiSpeed는 말하기 속도(기본 1)를 말합니다. init 메소드에 callback인자는 AIPlayer의 이벤트, 로딩 상태, 에러 등을 모니터링하며 적절한 동작을 취할 수 있는 리스너입니다.
 
 **3D Character의 경우는 약간의 추가 셋업 과정이 필요합니다. [링크](../sample-project/with-3d-character.md) 참조**

@@ -15,6 +15,9 @@ The range of possible values are from 0 to 2.0 . The default size is 1.0.
 AI_PLAYER.setter({ size: 1.0 }); //float
 ```
 
+
+<br/>
+
 ### 2. Adjust AI Padding
 
 It can be adjusted based on both left and top.
@@ -28,6 +31,9 @@ AI_PLAYER.setter({ left: 0 });
 AI_PLAYER.setter({ top: 0 });
 ```
 
+
+<br/>
+
 ### 3. Volume Control
 
 You can control the volume. The possible value range is from 0.0 to 1.0.
@@ -37,6 +43,9 @@ AI_PLAYER.setVolume(volume);
 
 const curVolume = AI_PLAYER.getVolume();
 ```
+
+
+<br/>
 
 ### 4. Mute Control
 

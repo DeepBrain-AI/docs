@@ -4,9 +4,9 @@ sidebar_position: 1
 
 # Overview
 
-## Demo web page
+### Demo web page
 
-The demo web page allows you to experience the AI Human Web SDK(js)'s features. You can check out the page here[(Link)](https://aihuman.deepbrain.io/webdemo/demo1.html). On the page, the following menu appears at the top right. Check out the Demo page to look around the SDK's features.
+The demo web page allows you to experience the AI Human Web SDK(js)'s features. You can check out the page here[(Link)](https://aihuman.aistudios.com/webdemo/demo1.html). On the page, the following menu appears at the top right. Check out the Demo page to look around the SDK's features.
 
 <img src="/img/aihuman/web/demo_btn.png" />
 
@@ -17,11 +17,13 @@ The demo web page allows you to experience the AI Human Web SDK(js)'s features. 
 - STT Demo : AIPlayer + Google STT/Chatbot(PlayChat) example
 - AWS Demo : AIPlayer + AWS Transcbribe/Chatbot(Claud) example
 
-## Sample Project
+<br/>
+
+### Sample Project
 
 The sample provided on the SDK site is an example of the SDK, which demonstrates its functions. Through this, you can check out how the SDK actually works. 
 
-You can download it from here[(link)](https://aihuman.deepbrain.io/aihuman/sdk).
+You can download it from here[(link)](https://aihuman.aistudios.com/aihuman/sdk).
 
 <img src="/img/aihuman/web/sdk_sample1.png" />
 
@@ -32,7 +34,7 @@ You can download it from here[(link)](https://aihuman.deepbrain.io/aihuman/sdk).
 
 The sample project gives two examples which are based on node-express and nextjs respectively. Let's check out the contents first.
 
-#### Contents
+##### Contents
 
 When you extract the zip file, you will have the following folders. 
 
@@ -57,7 +59,7 @@ And files inside nextjs folder.
 
 <br />
 
-#### Run nextjs sample
+### Run nextjs sample
 
 Let's get into the nextjs folder from the sample.
 
@@ -87,7 +89,7 @@ The following web page(`SDK DEMO`) will be shown if everything goes well.
 <br />
 <br />
 
-#### Run AWS demo
+### Run AWS demo
 
 **1. Prepare the keys and secrets for the AWS sdk .** 
 
@@ -108,8 +110,10 @@ $ npm run dev
 
 The AWS sdk demo will show.
 
+<br/>
 
-#### Run node-express sample
+
+### Run node-express sample
 
 **1. Prepare appId and userKey through the [Project Setup](../getting-started/projectsetup) process.**
 

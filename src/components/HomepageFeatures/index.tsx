@@ -40,7 +40,7 @@ const FeatureList: FeatureItem[] = [
         Natural language understanding and processing with active conversation and 24/7/365 user support.
       </>
     ),
-    link: 'https://www.deepbrain.io/company/contact',
+    link: 'https://www.aistudios.com/company/contact',
   },
 ];
 

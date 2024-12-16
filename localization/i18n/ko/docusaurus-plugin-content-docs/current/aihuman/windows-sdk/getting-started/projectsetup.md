@@ -4,16 +4,20 @@ sidebar_position: 2
 
 # 프로젝트 셋업하기
 
-이번 장에서는 AI Human SDK 구동의 인증 절차에 필요한 App ID, User Key 등을 생성하고 설정하는 방법에 대해 알아봅니다.
+이번 장에서는 AI Human SDK 구동의 인증 절차에 필요한 App ID, userKey 등을 생성하고 설정하는 방법에 대해 알아봅니다.
 
-## 1. 사이트 진입하기
-**[AI Human 웹사이트](https://www.deepbrain.io/aihuman/)**에서 계정을 생성하고 로그인 합니다.
-- 우측 상단 > Login(Sign In) > Create account  
-- 로그인 이후에 [SDK](https://aihuman.deepbrain.io/aihuman/sdk) 카테고리에서 프로젝트를 생성할 수 있습니다.
-- [SDK](https://aihuman.deepbrain.io/aihuman/sdk) 카테고리 접근이 불가하다면 [고객센터](https://www.deepbrain.io/ko/company/contact)로 문의해 주세요.
+### 1. 사이트 진입하기
+**[AI Human 웹사이트](https://www.aistudios.com/aihuman/)**에서 계정을 생성하고 로그인 합니다.
 
-## 2. My Workspace에 Project 추가하기
-**[My Workspace](https://aihuman.deepbrain.io/aihuman/sdk)**에서 Project를 만들고, Windows App ID 부분에 SDK를 사용하는 Windows Application 이름을 입력하고 확인을 클릭합니다. (이때 App ID는 자동으로 중복체크를 수행합니다.)
+- 우측 상단 > Login(Sign In) > Create account
+- 로그인 이후에 [SDK](https://aihuman.aistudios.com/aihuman/sdk) 카테고리에서 프로젝트를 생성할 수 있습니다.
+- [SDK](https://aihuman.aistudios.com/aihuman/sdk) 카테고리 접근이 불가하다면 [고객센터](https://www.aistudios.com/ko/company/contact)로 문의해 주세요.
+
+
+<br/>
+
+### 2. My Workspace에 Project 추가하기
+**[My Workspace](https://aihuman.aistudios.com/aihuman/sdk)**에서 Project를 만들고, Windows App ID 부분에 SDK를 사용하는 Windows Application 이름을 입력하고 확인을 클릭합니다. (이때 App ID는 자동으로 중복체크를 수행합니다.)
 해당 App ID에서 사용할 수 있는 User Key가 발급됩니다.
 
 <img src="/img/aihuman/windows/SDK_WebPage_UserKey.png" />
@@ -23,26 +27,32 @@ sidebar_position: 2
 자세한 사항은 API 편람 혹은 Sample Project 내용을 참고하세요.
 
 :::info 정보
+
 - App ID는 해당 프로젝트에서 유일한(Unique) 값이어야 합니다. (예: "dev.aihuman.yourappname")
 - User Key는 AI Human 웹사이트에서 프로젝트를 생성하고 App ID를 입력하면 발급받을 수 있습니다.
 :::
 
-## 3. Visual Studio에서 새 프로젝트 생성하기
+<br/>
+
+### 3. Visual Studio에서 새 프로젝트 생성하기
 
 Visual Studio에서 솔루션 및 프로젝트를 생성하고 AI Human SDK를 사용합니다.
 
-#### 	: Create New Project > WPF Application > Target Framework > .NET 6.0 (혹은 .NET Framework 4.6.2 이상의 WPF 개발 가능 Target)
-####		여기서는 기본 프로젝트명인 WpfApp1를 사용하겠습니다.
+#### : Create New Project > WPF Application > Target Framework > .NET 6.0 (혹은 .NET Framework 4.6.2 이상의 WPF 개발 가능 Target)
 
-## 요구사항
+#### 여기서는 기본 프로젝트명인 WpfApp1를 사용하겠습니다.
+
+### 요구사항
 
 #### AIHuman.SDK.Core
+
 - [.NET Standard 2.0](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0) 이상
 
 #### AIHuman.SDK.WPF
+
 - 지원하는 프레임워크
-  + [.NET Framework 4.6.2](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net462) 이상
-  + [.NET 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) 이상
+  - [.NET Framework 4.6.2](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net462) 이상
+  - [.NET 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) 이상
 
 <img src="/img/aihuman/windows/projectsetup_frameworks_1.5.x.png" />
 
@@ -52,6 +62,7 @@ AIHuman.SDK.Core.dll만을 사용할 수도 있습니다. AIHuman.SDK.Core.dll�
 이 경우 View(UserControl 등)를 직접 구현해야 합니다. 개발 난이도가 높아질 수 있습니다.
 
 :::info 정보
+
 - WPF를 Target으로 개발하는 경우: AIHuman.SDK.Core와 AIHuman.SDK.WPF 참조 필요
 - .NET Standard 2.0을 지원하는 환경에서 다른 UI Framework 등을 사용하는 경우: AIHuman.SDK.Core만 참조 후 View 구현
 :::
@@ -63,7 +74,7 @@ SDK를 포함한 아래의 어셈블리들을 프로젝트에 참조 추가하�
 #### Nuget 패키지 (권장)
 
 - [AIHuman.SDK.WPF](https://www.nuget.org/packages/AIHuman.SDK.WPF)
-  + 종속성: [AIHuman.SDK.Core](https://www.nuget.org/packages/AIHuman.SDK.Core/)
+  - 종속성: [AIHuman.SDK.Core](https://www.nuget.org/packages/AIHuman.SDK.Core/)
 
 #### 어셈블리
 
@@ -80,15 +91,17 @@ SDK를 포함한 아래의 어셈블리들을 프로젝트에 참조 추가하�
 
 위의 Nuget 패키지 (권장) AIHuman.SDK.WPF를 설치(종속 패키지인 AIHuman.SDK.Core는 자동 설치)하면 여기서 프로젝트 셋업하기는 끝이 납니다.
 
-## 4. 프로젝트 셋업하기 (어셈블리 참조를 사용하는 경우)
+<br/>
+
+### 4. 프로젝트 셋업하기 (어셈블리 참조를 사용하는 경우)
 
 AIHuman.SDK.Core.dll 참조 등 프로젝트의 초기 설정을 수행합니다.
 
-#### 4-1. AI Human 웹사이트에서 Windows용 SDK를 다운로드 받습니다.
+#### 4.1. AI Human 웹사이트에서 Windows용 SDK를 다운로드 받습니다.
 
-#### 4-2. 앞서 만든 프로젝트 경로에 다운받은 SDK 및 관련 파일들을 위치시킵니다.
+#### 4.2. 앞서 만든 프로젝트 경로에 다운받은 SDK 및 관련 파일들을 위치시킵니다.
 
-#### 4-3. 솔루션 탐색기에서 프로젝트 > 우클릭 > 추가 > 새폴더 를 생성하고 적당한 이름을 부여합니다.
+#### 4.3. 솔루션 탐색기에서 프로젝트 > 우클릭 > 추가 > 새폴더 를 생성하고 적당한 이름을 부여합니다.
 
 생성한 폴더 > 우클릭 > 추가 > 기존항목을 통해 솔루션에서 참조할 라이브러리들을 구성할 수 있습니다.
 
@@ -100,7 +113,7 @@ AIHuman.SDK.Core.dll 참조 등 프로젝트의 초기 설정을 수행합니다
 
 <img src="/img/aihuman/windows/NewProject_Add_Sdk.png" />
 
-#### 4-4. 솔루션 항목에 다운로드 받은 AIHuman SDK 구동에 필요한 라이브러리들을 추가합니다.
+#### 4.4. 솔루션 항목에 다운로드 받은 AIHuman SDK 구동에 필요한 라이브러리들을 추가합니다.
 
 솔루션 탐색기에서 상단의 프로젝트를 우클릭 > 추가 > 프로젝트 참조 > 참조 관리자 > 찾아보기 > AIHuman.SDK.Core.dll과 Newtonsoft.Json.dll 등을 추가합니다. 프로젝트 트리의 종속성 > 어셈블리에 참조가 추가된 것을 확인할 수 있습니다.
 

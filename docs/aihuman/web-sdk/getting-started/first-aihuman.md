@@ -10,8 +10,9 @@ In this chapter, we will quickly go over AIHuman(AIPlayer) setup process and mak
 
 <br/>
 <br/>
+<br/>
 
-**1. Include the SDK and Ready the AIPlayer in the web page**
+### 1. Include the SDK and Ready the AIPlayer in the web page
 
 ```html
 <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.2.min.js"></script>
@@ -26,12 +27,15 @@ const AI_PLAYER = new AIPlayer(wrapper);
 
 <br/>
 
-**2. Authenticate the SDK**
+### 2. Authenticate the SDK
 
 **2.1. Enter appId and get userKey from SDK website**
 
-- Create a project in [SDK website](https://aihuman.deepbrain.io/)
-- Enter the appId for the web appId(recommend unique appId such as your web service’s domain). Then userkey will be issued. 
+Create an account on the **[AI Human SDK Website](https://www.aistudios.com/aihuman/)**.
+
+- Top right > Login(Sign In) > Create account
+- After you log in, you can create a project in the SDK category.
+- If you are not allowed access to SDK categories after logging in, please contact our customer center. [Contact](https://www.aistudios.com/company/contact)
 
 <img src="/img/aihuman/web/project.png" />
 
@@ -39,7 +43,6 @@ const AI_PLAYER = new AIPlayer(wrapper);
 
 - Next, for SDK authentication, clientToken is needed.
 - The clientToken generation api should be implemented on your server, so that the client can request when it needs.
-  
 - Below is how to install jsonwebtoken lib for JWT on your server.(Note: [JWT](https://jwt.io/))
 
 ```
@@ -49,56 +52,56 @@ npm install jsonwebtoken
 - Below is an example of creating clientToken from nodejs.
 
 ```javascript
-  // generateJWT.js(Server)
+// generateJWT.js(Server)
 
-  import jwt from "jsonwebtoken" 
+import jwt from "jsonwebtoken";
 
-  const userKey = "...";  // TODO: userKey input
-  const payload = {
-    appId: "...",  // TODO: appId input
-    platform: "web"
-  };
-  const options = {
-    header: { typ: "JWT", alg: "HS256" }, 
-    expiresIn: 60 * 5 // expire time: 5 mins
-  };
+const userKey = "..."; // TODO: userKey input
+const payload = {
+  appId: "...", // TODO: appId input
+  platform: "web",
+};
+const options = {
+  header: { typ: "JWT", alg: "HS256" },
+  expiresIn: 60 * 5, // expire time: 5 mins
+};
 
-  function generateJWT(req, res) {
-    try {
-      const clientToken = jwt.sign(payload, userKey, options);
+function generateJWT(req, res) {
+  try {
+    const clientToken = jwt.sign(payload, userKey, options);
 
-      res.json({ appId: payload.appId, token: clientToken });
-    } catch (e) {
-      console.log("jwt generate err ", e.name, e.message);
-    }
+    res.json({ appId: payload.appId, token: clientToken });
+  } catch (e) {
+    console.log("jwt generate err ", e.name, e.message);
   }
+}
 ```
 
 - Below is an example of routing the generateJWT function for next.js.
 
 ```javascript
-  // generateJWT.js(Server) append
-  export default (req, res) => {
-    if (req.method === "GET") return generateJWT(req, res);
+// generateJWT.js(Server) append
+export default (req, res) => {
+  if (req.method === "GET") return generateJWT(req, res);
 
-    // if (req.method === "POST") return generateJWT(req, res);
-  };
+  // if (req.method === "POST") return generateJWT(req, res);
+};
 ```
 
 - And Below is an example of routing the generateJWT function for express.
 
 ```javascript
-  // generateJWT.js(Server)
-  module.export = generateJWT;
+// generateJWT.js(Server)
+module.export = generateJWT;
 ```
 
 ```javascript
-  const express = require('express');
-  const app = express();
-  const generateJWT = require("..."); // TODO: generateJWT.js access path
+const express = require("express");
+const app = express();
+const generateJWT = require("..."); // TODO: generateJWT.js access path
 
-  app.get('/generateJWT', generateJWT);
-  // app.post('/generateJWT', generateJWT);
+app.get("/generateJWT", generateJWT);
+// app.post('/generateJWT', generateJWT);
 ```
 
 **2.3. Request generateJWT (requestClientToken) from Client to Server**
@@ -109,7 +112,7 @@ npm install jsonwebtoken
 async function requestClientToken() {
   // TODO: Server generateJWT request address input
   // for example : const result = await makeRequest("GET", "/api/generateJWT");
-  const result = await makeRequest("GET", "..."); 
+  const result = await makeRequest("GET", "...");
 
   // Success
   DATA.appId = result.appId;
@@ -120,25 +123,25 @@ async function requestClientToken() {
 
 **2.4. generateToken request**
 
-- After the 'requestClientToken' call is succeeded, then call AIPlayer's "generateToken" function with appId and clientToken. It responds with JSON containing information such as verifiedToken, tokenExpire, and defaultAI. The 'generateToken' call succeeds means the authication is completed. For more info, refer to [API](../apis/aiapi.md) section.
+- After the `requestClientToken` call is succeeded, then call AIPlayer's `generateToken` function with appId and clientToken. It responds with JSON containing information such as verifiedToken, tokenExpire, and defaultAI. The `generateToken` call succeeds means the authication is completed. For more info, refer to [API](../apis/aiapi.md) section.
 
 ```javascript
-  // quickStart.js(Client)
+// quickStart.js(Client)
 
-  async function generateVerifiedToken() {
-    const result = await AI_PLAYER.generateToken({ appId: DATA.appId, token: DATA.clientToken });
-    
-    if (result?.succeed) {
-      DATA.verifiedToken = result.token;
-      DATA.tokenExpire = result.tokenExpire;
-      DATA.defaultAI = result.defaultAI;
-    }
+async function generateVerifiedToken() {
+  const result = await AI_PLAYER.generateToken({ appId: DATA.appId, token: DATA.clientToken });
+
+  if (result?.succeed) {
+    DATA.verifiedToken = result.token;
+    DATA.tokenExpire = result.tokenExpire;
+    DATA.defaultAI = result.defaultAI;
   }
+}
 ```
 
 <br/>
 
-**3. Initialize AIPlayer**
+### 3. Initialize AIPlayer
 
 After successful authentication, the AIPlayer needs to be initialized using the `init` function. At this time, it can be set with defaultAI. If you want to use other AIs, you can get a list of available AIs through the getAIList function. For details, please refer to [AIPlayer](../apis/aiplayer.md) section.
 
@@ -146,50 +149,53 @@ After successful authentication, the AIPlayer needs to be initialized using the 
 // quickStart.js(Client)
 
 await AI_PLAYER.init({
-    aiName: DATA.defaultAI.ai_name, size: 1.0, left: 0, top: 0, speed: 1.0
+  aiName: DATA.defaultAI.ai_name,
+  size: 1.0,
+  left: 0,
+  top: 0,
+  speed: 1.0,
 });
 ```
 
 <br/>
 
-**4. Let's make AIPlayer's callback and monitor the event of AIPlayer**
+### 4. Let's make AIPlayer's callback and monitor the event of AIPlayer
 
-You can set AIPlayer's listener for AI events like below. And notice that you can call `send` function after the AI initialization has completed. 
+You can set AIPlayer's listener for AI events like below. And notice that you can call `send` function after the AI initialization has completed.
 
 ```javascript
 const AIPlayerState = Object.freeze({
-    NONE: 0,
-    INITIALIZE: 1,
-    IDLE: 2,
-    PLAY: 3,
-    PAUSE: 4,
-    RELEASE: 5
-})
+  NONE: 0,
+  INITIALIZE: 1,
+  IDLE: 2,
+  PLAY: 3,
+  PAUSE: 4,
+  RELEASE: 5,
+});
 
-let curAIState = AIPlayerState.NONE
+let curAIState = AIPlayerState.NONE;
 function initAIPlayerEvent() {
   AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
     switch (aiEvent.type) {
       //...
       case AIEventType.AIPLAYER_STATE_CHANGED:
-        let newAIState = AI_PLAYER.getState() 
+        let newAIState = AI_PLAYER.getState();
         if (curAIState == AIPlayerState.INITIALIZE && newAIState == AIPlayerState.IDLE) {
-          console.log('AI initialization completed.') 
-          // you can send now! 
+          console.log("AI initialization completed.");
+          // you can send now!
           // AI_PLAYER.send("Hello!")
         }
-        curAIState = newAIState
-        break
+        curAIState = newAIState;
+        break;
       //...
     }
-  }
+  };
 }
 ```
 
 <br/>
 
-
-**5. Full Client Sample Source Code**
+### 5. Full Client Sample Source Code
 
 ```html
 <!-- quickStart.html -->
@@ -237,14 +243,13 @@ function initAIPlayerEvent() {
   </style>
 
   <body style="height: 100%">
-    
     <div id="AIPlayerWrapper"></div>
 
     <div style="display: grid; position: fixed; top:2%; left:2%; width: fit-content" id="AIPlayerTexts">
       <button onclick="speak(this.innerHTML)">How are you?</button>
       <button onclick="speak(this.innerHTML)">Nice to see you!</button>
     </div>
-    
+
     <div class="RightLayout">
       <div class="InfoContainer">
         <div id="demoListInQuickstart" class="demoList">
@@ -254,14 +259,12 @@ function initAIPlayerEvent() {
         </div>
       </div>
     </div>
-    
   </body>
 
   <!-- add JavaScript SDK -->
   <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.2.min.js"></script>
   <script src="./quickStart.js"></script>
 </html>
-
 ```
 
 <br/>
@@ -295,7 +298,7 @@ async function generateClientToken() {
   // const result = await makeRequest("GET", "..."); // TODO: Server generateJWT request address input
   // TODO: response handling
   const result = await makeRequest("GET", "/api/generateJWT"); // TODO: e.g.
-  console.log('generateClientToken', result)
+  console.log("generateClientToken", result);
 
   // Success
   DATA.appId = result.appId;
@@ -308,7 +311,7 @@ async function generateVerifiedToken() {
     appId: DATA.appId,
     token: DATA.clientToken,
   });
-  console.log('generateVerifiedToken', result)
+  console.log("generateVerifiedToken", result);
 
   if (result?.succeed) {
     // TODO: response data handling
@@ -317,14 +320,14 @@ async function generateVerifiedToken() {
     DATA.defaultAI = result.defaultAI;
   } else {
     // TODO: error handling
-    console.log('generateVerifiedToken error', result)
-  } 
+    console.log("generateVerifiedToken error", result);
+  }
 }
 
 // =========================== AIPlayer Callback ================================ //
 
 function initAIPlayerEvent() {
-  //AIError & callback 
+  //AIError & callback
   const AIErrorCode = Object.freeze({
     AI_API_ERR: 10000,
     AI_SERVER_ERR: 11000,
@@ -335,39 +338,41 @@ function initAIPlayerEvent() {
     AICLIPSET_PLAY_ERR: 16000,
     RESERVED_ERR: 17000,
     UNKNOWN_ERR: -1,
-  })
+  });
 
   // TODO: AIPlayer error handling
-  AI_PLAYER.onAIPlayerErrorV2 = function(aiError) {
-    let codeName = 'UNKNOWN_ERR'
+  AI_PLAYER.onAIPlayerErrorV2 = function (aiError) {
+    let codeName = "UNKNOWN_ERR";
     if (aiError.code >= AIErrorCode.RESERVED_ERR) {
-      codeName = 'RESERVED_ERR'
+      codeName = "RESERVED_ERR";
     } else if (aiError.code >= AIErrorCode.AICLIPSET_PLAY_ERR) {
-      codeName = 'AICLIPSET_PLAY_ERR'
+      codeName = "AICLIPSET_PLAY_ERR";
     } else if (aiError.code >= AIErrorCode.AICLIPSET_PRELOAD_ERR) {
-      codeName = 'AICLIPSET_PRELOAD_ERR'
+      codeName = "AICLIPSET_PRELOAD_ERR";
     } else if (aiError.code >= AIErrorCode.INVALID_AICLIPSET_ERR) {
-      codeName = 'INVALID_AICLIPSET_ERR'
+      codeName = "INVALID_AICLIPSET_ERR";
     } else if (aiError.code >= AIErrorCode.AI_INIT_ERR) {
-      codeName = 'AI_INIT_ERR'
+      codeName = "AI_INIT_ERR";
     } else if (aiError.code >= AIErrorCode.AI_RES_ERR) {
-      codeName = 'AI_RES_ERR'
+      codeName = "AI_RES_ERR";
     } else if (aiError.code >= AIErrorCode.AI_SERVER_ERR) {
-      codeName = 'AI_SERVER_ERR'
+      codeName = "AI_SERVER_ERR";
     } else if (aiError.code >= AIErrorCode.AI_API_ERR) {
-      codeName = 'AI_API_ERR'
-    } else if (aiError.code > AIErrorCode.UNKNOWN_ERR) { //0 ~ 9999
-      codeName = 'BACKEND_ERR'
+      codeName = "AI_API_ERR";
+    } else if (aiError.code > AIErrorCode.UNKNOWN_ERR) {
+      //0 ~ 9999
+      codeName = "BACKEND_ERR";
 
-      if (aiError.code == 1402) { //invalid or token expired
-        refreshTokenIFExpired()
+      if (aiError.code == 1402) {
+        //invalid or token expired
+        refreshTokenIFExpired();
       }
     }
 
-    console.log('onAIPlayerErrorV2', aiError.code, codeName, aiError.message)
-  }
+    console.log("onAIPlayerErrorV2", aiError.code, codeName, aiError.message);
+  };
 
-  //AIEvent & callback 
+  //AIEvent & callback
   const AIEventType = Object.freeze({
     RES_LOAD_STARTED: 0,
     RES_LOAD_COMPLETED: 1,
@@ -387,7 +392,7 @@ function initAIPlayerEvent() {
     AI_RECONNECT_ATTEMPT: 15,
     AI_RECONNECT_FAILED: 16,
     UNKNOWN: -1,
-  })
+  });
 
   const AIPlayerState = Object.freeze({
     NONE: 0,
@@ -395,85 +400,85 @@ function initAIPlayerEvent() {
     IDLE: 2,
     PLAY: 3,
     PAUSE: 4,
-    RELEASE: 5
-  })
+    RELEASE: 5,
+  });
 
-  let curAIState = AIPlayerState.NONE
+  let curAIState = AIPlayerState.NONE;
   AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
-    let typeName = ""
+    let typeName = "";
     switch (aiEvent.type) {
       case AIEventType.AIPLAYER_STATE_CHANGED:
-        typeName = 'AIPLAYER_STATE_CHANGED';
+        typeName = "AIPLAYER_STATE_CHANGED";
 
-        let newAIState = AI_PLAYER.getState() 
+        let newAIState = AI_PLAYER.getState();
         if (curAIState == AIPlayerState.INITIALIZE && newAIState == AIPlayerState.IDLE) {
-          console.log('AI initialization completed.')
+          console.log("AI initialization completed.");
         }
-        curAIState = newAIState
-        break
+        curAIState = newAIState;
+        break;
       case AIEventType.AI_CONNECTED:
-        typeName = 'AI_CONNECTED';
-        break
+        typeName = "AI_CONNECTED";
+        break;
       case AIEventType.RES_LOAD_STARTED:
-        typeName = 'RES_LOAD_STARTED';
-        break
+        typeName = "RES_LOAD_STARTED";
+        break;
       case AIEventType.RES_LOAD_COMPLETED:
-        typeName = 'RES_LOAD_COMPLETED';
-        break
+        typeName = "RES_LOAD_COMPLETED";
+        break;
       case AIEventType.AICLIPSET_PLAY_PREPARE_STARTED:
-        typeName = 'AICLIPSET_PLAY_PREPARE_STARTED';
+        typeName = "AICLIPSET_PLAY_PREPARE_STARTED";
         // $('#AIPlayerStateText').text('AI started preparation to speak.');
-        break
+        break;
       case AIEventType.AICLIPSET_PLAY_PREPARE_COMPLETED:
-        typeName = 'AICLIPSET_PLAY_PREPARE_COMPLETED';
+        typeName = "AICLIPSET_PLAY_PREPARE_COMPLETED";
         // $("#AIPlayerStateText").text("AI finished preparation to speak.");
-        break
+        break;
       case AIEventType.AICLIPSET_PRELOAD_STARTED:
-        typeName = 'AICLIPSET_PRELOAD_STARTED';
+        typeName = "AICLIPSET_PRELOAD_STARTED";
         // $("#AIPlayerStateText").text("AI started preparation to preload.");
-        break
+        break;
       case AIEventType.AICLIPSET_PRELOAD_COMPLETED:
-        typeName = 'AICLIPSET_PRELOAD_COMPLETED';
+        typeName = "AICLIPSET_PRELOAD_COMPLETED";
         // $("#AIPlayerStateText").text("AI finished preparation to preload.");
-        break
+        break;
       case AIEventType.AICLIPSET_PLAY_STARTED:
-        typeName = 'AICLIPSET_PLAY_STARTED';
+        typeName = "AICLIPSET_PLAY_STARTED";
         // $("#AIPlayerStateText").text("AI started speaking.");
-        break
+        break;
       case AIEventType.AICLIPSET_PLAY_COMPLETED:
-        typeName = 'AICLIPSET_PLAY_COMPLETED';
+        typeName = "AICLIPSET_PLAY_COMPLETED";
         //$("#AIPlayerStateText").text("AI finished speaking.");
-        break
+        break;
       case AIEventType.AI_DISCONNECTED:
-        typeName = 'AI_DISCONNECTED';
+        typeName = "AI_DISCONNECTED";
         // $("#AIPlayerStateText").text("AI Disconnected. Please wait or reconnect");
-        break
+        break;
       case AIEventType.AICLIPSET_PRELOAD_FAILED:
-        typeName = 'AICLIPSET_PRELOAD_FAILED';
+        typeName = "AICLIPSET_PRELOAD_FAILED";
         // $("#AIPlayerStateText").text("AI preload failed.");
-        break
+        break;
       case AIEventType.AICLIPSET_PLAY_FAILED:
-        typeName = 'AICLIPSET_PLAY_FAILED';
+        typeName = "AICLIPSET_PLAY_FAILED";
         // $("#AIPlayerStateText").text("AI play failed.");
-        break
+        break;
       case AIEventType.AICLIPSET_PLAY_BUFFERING:
-        typeName = 'AICLIPSET_PLAY_BUFFERING';
+        typeName = "AICLIPSET_PLAY_BUFFERING";
         // $("#AIPlayerStateText").text("AI is buffering.");
-        break
+        break;
       case AIEventType.AICLIPSET_RESTART_FROM_BUFFERING:
-        typeName = 'AICLIPSET_RESTART_FROM_BUFFERING';
+        typeName = "AICLIPSET_RESTART_FROM_BUFFERING";
         // $("#AIPlayerStateText").text("AI is restarted from buffering.");
-        break
+        break;
       case AIEventType.UNKNOWN:
-        typeName = 'UNKNOWN';
-        break
+        typeName = "UNKNOWN";
+        break;
     }
 
-    console.log('onAIPlayerEvent:', aiEvent.type, typeName, 'clipSet:', aiEvent.clipSet)
-  }
+    console.log("onAIPlayerEvent:", aiEvent.type, typeName, "clipSet:", aiEvent.clipSet);
+  };
 
   AI_PLAYER.onAIPlayerLoadingProgressed = function (result) {
-    console.log(`AI Resource Loading... ${result.loading || 0}%`)
+    console.log(`AI Resource Loading... ${result.loading || 0}%`);
   };
 }
 
@@ -506,26 +511,25 @@ async function makeRequest(method, url, params) {
       return undefined;
     });
 }
-
 ```
 
 <br/>
 
-**6. Full Server Sample Source Code**
+### 6. Full Server Sample Source Code
 
 ```javascript
 // generateJWT.js(Server)
 
-import jwt from "jsonwebtoken" 
+import jwt from "jsonwebtoken";
 
 const userKey = "..."; // TODO: userKey input
-const payload = { 
+const payload = {
   appId: "...", // TODO: appId input
-  platform: "web"
+  platform: "web",
 };
 const options = {
   header: { typ: "JWT", alg: "HS256" },
-  expiresIn: 60 * 5 // expire time: 5 mins
+  expiresIn: 60 * 5, // expire time: 5 mins
 };
 
 function generateJWT(req, res) {

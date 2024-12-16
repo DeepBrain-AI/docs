@@ -28,7 +28,9 @@ public object AIPlayerObject	// View (UserControl) of AIPlayer to be used in xam
 }
 ```
 
-## 1단계. 레이아웃 구성하기
+<br/>
+
+### 1단계. 레이아웃 구성하기
 
 XAML 파일에 AI Human을 사용할 View(UI Element)를 구성합니다. AI를 배치할 위치를 결정하고 거기에 `AIPlayer`를 Binding시킬 `ContentControl`을 생성합니다. CS 파일에는 실제 Binding되는 객체의 `Properties`를 정의합니다.
 
@@ -53,7 +55,10 @@ public object AIPlayerObject
 ...
 ```
 
-## 2단계. 인증 관련 정보 준비하기
+
+<br/>
+
+### 2단계. 인증 관련 정보 준비하기
 
 인증 과정에는 appId, userKey, uuid, platrom 정보가 필요합니다.  
 현재 버전의 Authenticate 함수에서는 uuid와 platform 정보는 내부적으로 처리하고 있어 `appId`와 `userKey` 그리고 `callback` 3가지의 파라미터를 요구합니다.  
@@ -68,9 +73,11 @@ public object AIPlayerObject
 특히 `userKey`는 DeepBrain AI에서 만든 문자열 타입으로써, **외부에 노출되지 않도록 주의**해야 합니다. 이 인증키를 이용하여 API를 호출하면 사용 가능한 기본 AI 데이터와 앞으로 사용할 `토큰` 등을 내부적으로 획득하게 됩니다.  
 토큰 사용기간이 만료되어 토큰 리프레쉬가 필요한 경우는 `GenerateToken` 혹은 `Authenticate` 함수를 다시 호출하면 리프레쉬가 됩니다.  
 
-## 3단계. 인증 이후 사용가능한 AI 획득하기
+<br/>
 
-`AIHuam.AIAPI.Instance.Authenticate` 함수의 매개변수에 준비한 정보들을 입력하고 콜백 함수를 구현합니다. 인증에 성공하면 사용할 수 있는 AI 목록을 리턴합니다. 사용할 수 있는 AI가 없으면 aiList는 null이 반환됩니다.
+### 3단계. 인증 이후 사용가능한 AI 획득하기
+
+`AIHuman.AIAPI.Instance.Authenticate` 함수의 매개변수에 준비한 정보들을 입력하고 콜백 함수를 구현합니다. 인증에 성공하면 사용할 수 있는 AI 목록을 리턴합니다. 사용할 수 있는 AI가 없으면 aiList는 null이 반환됩니다.
 
 ```csharp
 public ObservableCollection<AIAPI.AI> AIs { get; private set; }
@@ -81,7 +88,7 @@ AIAPI.Instance.Authenticate("APPID", "USERKEY", (aiList, error) => {
     string message = string.Empty;
     if (error == null)
     {
-        message = $"Auth Complete, Avaliable Count : {aiList.ai.Length}";
+        message = $"Auth Complete, Available Count : {aiList.ai.Length}";
 
         /* e.g.)
         "ai":[{"aiName":"vida","aiDisplayName":"Vida","language":"en", ...},
@@ -123,7 +130,7 @@ AIAPI.Instance.GetAIList((aiList, error) => {
     string message = string.Empty;
     if (error == null)
     {
-        message = $"Auth Complete, Avaliable Count : {aiList.ai.Length}";
+        message = $"Auth Complete, Available Count : {aiList.ai.Length}";
 
         AIs = new ObservableCollection<AIAPI.AI>();
         foreach (AIAPI.AI item in aiList.ai)
@@ -140,11 +147,14 @@ AIAPI.Instance.GetAIList((aiList, error) => {
 });
 ```
 
-## 4단계. AIPlayer를 원하는 AI로 초기화하기
+
+<br/>
+
+### 4단계. AIPlayer를 원하는 AI로 초기화하기
 
 인증 및 사용할 수 있는 AI 목록을 확인 후 실제로 어떤 AI를 적용하려면 그 AI로 초기화가 필요합니다. 우선, 아래 예제 코드와 같이 원하는 `AIAPI.AI.aiName`으로 `AIPlayerOptions` 객체를 생성합니다. 기존에 사용하고 있던 `AIPlayer` 객체를 제거하고 싶다면 `Dispose` 함수를 이용하여 자원을 해제해 줍니다.
 
-### AIPlayerOptions 
+#### AIPlayerOptions 
 `AIPlayer` 객체를 생성하기 위한 매개변수로 사용됩니다. 초기화 시에만 유효하고 런타임 시 `AIPlayer` 객체의 프로퍼티 혹은 함수를 이용하도록 구현에 참고하세요.
 
 #### AIName

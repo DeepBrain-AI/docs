@@ -16,6 +16,8 @@ Sample Project에서 아래 파일들을 참고하세요.
 - QuickStartViewModel.cs
 :::
 
+<br/>
+
 ### 1. View Control 추가하기
 AIPlayer의 View 컨트롤을 바인딩할 Control을 MainWindow.xaml에 추가합니다.
 
@@ -25,6 +27,10 @@ AI Human 모델을 표시할 위치, 즉 Application에서 AIPlayerView를 배�
 <img src="/img/aihuman/windows/NewProject_Add_Layout.png"  />
 
 <img src="/img/aihuman/windows/NewProject_Add_AIPlayer.png" />
+
+<br/>
+<br/>
+<br/>
 
 ### 2. Authenticate 함수를 이용하여 인증하기
 아래 코드를 참고하여 Application 초기화 시 AI Human SDK 인증 관련 코드를 작성하세요.
@@ -57,7 +63,7 @@ namespace WpfApp1
             AIAPI.Instance.Authenticate(APPID, USERKEY, (aiLIst, error) => {
                 if (error == null && aiLIst != null)
                 {
-                    Log.Write($"Authenticate Completed, Avaliable Count: {aiLIst.ai.Length}", Log.Level.Info);
+                    Log.Write($"Authenticate Completed, Available Count: {aiLIst.ai.Length}", Log.Level.Info);
                 }
                 else
                 {
@@ -68,6 +74,8 @@ namespace WpfApp1
     }
 }
 ```
+
+<br/>
 
 ### 3. AIPlayer 객체 생성 및 콜백 구현하기
 
@@ -273,6 +281,8 @@ namespace WpfApp1
 :::info
 위의 설명에는 생략된 부분이 많습니다. Sample Project를 다운로드 받아서 솔루션 파일 실행 및 App.xaml와 QuickStartView.xaml, QuickStartViewModel.cs들을 참고하세요.
 :::
+
+<br/>
 
 ### 4. AI 발화 시키기
 

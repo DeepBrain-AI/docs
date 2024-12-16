@@ -147,7 +147,10 @@ function release() {
 }
 ```
 
-**6. 3D AI Model Application Example**
+<br/>
+
+
+### 6. 3D AI Model Application Example
 
 Unlike 2D, 3D requires Unity Webgl build results (`Build` folder). Store them in the desired location (local storage, S3, etc.) according to the needs of the user. When creating an AIPlayer object, put the UI element where the AIPlayer will be drawn as the first argument. The second argument is json, which assigns a local path or URL to the 'BuildUrl' key.
 

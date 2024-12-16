@@ -16,19 +16,27 @@ From the demo, you can learn more from the scene and code in the file below.
 - DemoFrameImageProvider.cs
 :::
 
+
+<br/>
+
 ### 1. Configures a scene for implementing AIPlayer functions.
 
-#### 1-1. Select Assets > Create > Scene from the Unity Editor menu to create a new scene.
-#### 1-2. Delete the Main Camera and Directional Light game objects that are created by default.
-#### 1-3. Select AIHumanSDK, AIPlayer, and AIPlayerUI prefabs in the Assets/DeepBrainAI/SDK/Prefabs path of the Project window and place them in the Hierarchy window with drag and drop.
-#### 1-4. After selecting the AIHumanSDK game object in the Hierarchy window, enter or set the authentication information issued by **[AI Human SDK Website](https://aihuman.deepbrain.io)** in the AppId, UserKey, and Platform items of the Inspector > AIHumanSDKManager component. 
-#### 1-5. In the Unity Editor menu, create a new game object through GameObject > Create Empty and set the name to QuickStart.
+#### 1.1. Select Assets > Create > Scene from the Unity Editor menu to create a new scene.
+#### 1.2.. Delete the Main Camera and Directional Light game objects that are created by default.
+#### 1.3. Select AIHumanSDK, AIPlayer, and AIPlayerUI prefabs in the Assets/DeepBrainAI/SDK/Prefabs path of the Project window and place them in the Hierarchy window with drag and drop.
+#### 1.4. After selecting the AIHumanSDK game object in the Hierarchy window, enter or set the authentication information issued by **[AI Human SDK Website](https://aihuman.aistudios.com)** in the AppId, UserKey, and Platform items of the Inspector > AIHumanSDKManager component. 
+#### 1.5. In the Unity Editor menu, create a new game object through GameObject > Create Empty and set the name to QuickStart.
 
 <img src="/img/aihuman/unity/quickstart_hierarchy.png" />
 
-#### 1-6. If you have created a Unity project in a URP or HDRP environment, select "Canvas/AIHumanView/RawImage - face" gameobject in the AIPlayerUI that you placed in the Hierarchy window, and replace the Material item in the Inspector window with "Chromakey - Built-in" to "Chromakey - URP" Material.
+#### 1.6.. If you have created a Unity project in a URP or HDRP environment, select "Canvas/AIHumanView/RawImage - face" gameobject in the AIPlayerUI that you placed in the Hierarchy window, and replace the Material item in the Inspector window with "Chromakey - Built-in" to "Chromakey - URP" Material.
 
-### 2. Write a script for implementing the AIPlayer function.
+
+<br/>
+<br/>
+<br/>
+
+### 2. Write a script for implementing the AIPlayer function
 Select Assets > Create > C# Script from the Unity Editor menu to create a script and write it as follows.
 
 - MyAIPlayerCallback.cs
@@ -235,12 +243,20 @@ public class QuickStart : MonoBehaviour
 ```
 
 
-### 3. Apply the script you created.
 
-#### 3-1. After selecting the QuickStart gameobject in the hierarchy window, register the scripts written in item 2 through the Add Component button in the Inspector window.
-#### 3-2. Each item in the Inspector window is registered through drag and drop after selecting the game object in the Hierarchy window as shown in the image below.
+<br/>
+
+### 3. Apply the script you created
+
+#### 3.1. After selecting the QuickStart gameobject in the hierarchy window, register the scripts written in item 2 through the Add Component button in the Inspector window.
+#### 3.2. Each item in the Inspector window is registered through drag and drop after selecting the game object in the Hierarchy window as shown in the image below.
 
 <img src="/img/aihuman/unity/quickstart_inspector.png" />
+
+
+<br/>
+<br/>
+<br/>
 
 ### 4. Command the AI to speak 
 

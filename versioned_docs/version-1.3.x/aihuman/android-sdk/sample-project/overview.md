@@ -10,7 +10,7 @@ The provided sample demonstrates the AIPlayer's functionalities by going through
 <img src="/img/aihuman/android/Screenshot_20220530-201302-3909315-3915724.png" style={{zoom: "25%"}} />
 </p>
 
-The main activity contains the **AI Human SDK authentication function ( generateToken(,) in the onStart() method)**. To launch the app, you should put appId and userkey on that function as shown in [Own your first AI Human](../getting-started/first-aihuman.md). 
+The main activity contains the **AI Human SDK authentication function (generateToken() in the onStart() method)**. To launch the app, you should put appId and userkey on that function as shown in [Own your first AI Human](../getting-started/first-aihuman.md).
 
 **MainActivity's menu**
 
@@ -19,5 +19,3 @@ The main activity contains the **AI Human SDK authentication function ( generate
 - AI Human + DialogFlow (AIPlayerWithDialogFlowDemo.java)
 - AI Human + PlayChat(AILiveWithMBPlayChatWithSTTDemo.java)
 - AI Human 3d Character (UnityActivity.java)
-
-

@@ -18,6 +18,9 @@ AIClipSet clip = AIAPI.CreateClipSet("this is sample sentence.");
 _aiPlayer.Send(new[] {clip});
 ```
 
+
+<br/>
+
 ### Speaking related Monitoring
 
 After the Send method is called, you can listen to the operation event feedback in the registered listener. This feedback is returned by calling the method (OnAIPlayerEvent) of the listener(AIPlayerCallback). OnAIPlayerEvent sequentially returns the following AIEvent values.
@@ -28,7 +31,7 @@ After the Send method is called, you can listen to the operation event feedback 
 - AICLIPSET_PLAY_COMPLETED
 
 ```csharp
-// Speaking related CallBack example
+// Speaking related Callback example
 public void OnAIPlayerEvent(AIEvent @event)
 {
     if (@event.EventType == AIEvent.Type.AICLIPSET_PLAY_PREPARE_STARTED)
@@ -49,7 +52,7 @@ public void OnAIPlayerEvent(AIEvent @event)
     }
 }
 
-// AI error CallBack example
+// AI error Callback example
 public void OnAIPlayerError(AIError error) 
 {
     if (error.ErrorCode == (int)AIError.Code.AI_API_ERR)
@@ -70,6 +73,9 @@ public void OnAIPlayerError(AIError error)
 
 The following are actions that can be performed while the AIPlayer is Speaking.
 
+
+<br/>
+
 ### Pause Speaking
 
 : Pause speaking.
@@ -78,6 +84,9 @@ The following are actions that can be performed while the AIPlayer is Speaking.
 _aiPlayer.Pause()
 ```
 
+
+<br/>
+
 ### Resume Speaking
 
 : Resume speaking. (resume from pause)
@@ -85,6 +94,9 @@ _aiPlayer.Pause()
 // resume method
 _aiPlayer.Resume()
 ```
+
+
+<br/>
 
 ### Stop Speaking
 

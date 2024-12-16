@@ -12,11 +12,16 @@ sidebar_position: 4
 
 이 페이지에서는 화면에서 AI와 대화를 나누는 예제를 제공합니다. 이와 같이 AIPlayer와 플레이챗을 결합함으로 대화형 AI 서비스를 만들 수 있습니다. 플레이챗(딥브레인 제공)은 봇과 문자 메시지를 통해 대화를 나눌 수 있는 챗봇 서비스입니다.
 
-여기에서 플레이챗은 AIPlayer와 통합되어 있으며, AI는 그 챗봇에서 나오는 문장을 말할 것입니다. 즉, 사용자가 인공지능과 대화를 할 수 있는 것입니다. 플레이챗은 딥브레인이 제공하는 챗봇서비스이며, 원하는 챗봇 서비스가 있다면 자유롭게 구현하셔도됩니다.
+여기에서 플레이챗은 AIPlayer와 통합되어 있으며, AI는 그 챗봇에서 나오는 문장을 말할 것입니다. 즉, 사용자가 인공지능과 대화를 할 수 있는 것입니다. 플레이챗은 딥브레인이 제공하는 챗봇서비스이며, 원하는 챗봇 서비스가 있다면 자유롭게 구현하셔도 됩니다.
 
 <img src="/img/aihuman/web/stt_demo_02.png" />
 
-## 1. Chatbot (Wrapper Class of PlayChat) 설정 
+
+<br/>
+<br/>
+<br/>
+
+### 1. Chatbot (Wrapper Class of PlayChat) 설정 
 
 **1.1. chatbot.js file을 web page에 추가**
 
@@ -24,7 +29,7 @@ sidebar_position: 4
 <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/chatbot.js"></script>
 ```
 
-**1.2. Deepbrain Chatbot 개체를 생성**
+**1.2. DeepBrain Chatbot 개체를 생성**
 
 ```javascript
 const CHATBOT = new DeepbrainChatbot();
@@ -78,7 +83,10 @@ function sendMessage(message) {
 }
 ```
 
-## 2. Google STT 셋업
+<br/>
+
+
+### 2. Google STT 셋업
 
 - 이 예에서는 AI와 대화할 때 음성 인식(Google STT)이 사용됩니다. STT는 내부의 웹 소켓을 통해 서버와 통신합니다. 설정은 다음과 같습니다.
 

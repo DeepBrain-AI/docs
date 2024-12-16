@@ -10,7 +10,7 @@ sidebar_position: 7
 
 :::
 
-This demonstration is an example of a Lipsync AI service linked to an external 3D model, The process of receiving sentences from the user to **speak(Lipsync)** is simply implemented. If you run this demo scene, you can see Unity chan character familiar to Unity users.
+This demonstration is an example of a Lipsync AI service linked to an external 3D model, The process of receiving sentences from the user to **perform Lipsync** is simply implemented. If you run this demo scene, you can see Unity chan character familiar to Unity users.
 
 **Supports built-in and URP.**
 
@@ -18,7 +18,7 @@ This demonstration is an example of a Lipsync AI service linked to an external 3
 <img src="/img/aihuman/unity/sampleproject_lipsync_tts.png" style={{zoom: "30%"}} />
 </p>
 
-### Using 3D Model, uLipsync and TTS (text to speak)
+### Using 3D Model, uLipsync and TTS (text-to-speech)
 
 To try the Lipsync AI service in the Demo, a preparation process is required as follows.
 
@@ -44,7 +44,7 @@ The following component configuration is required for lipsync.
 
 The main purpose of this demonstration is to implement lip sync using **AudioClip** delivered through voice synthesis. The content was implemented by implementing **OnClickSpeech**, a click event function of the Play TTS button of the demo. When you set up the AudioClip you received in the Clip item of AudioSource and call AudioSource.Play(), the lipsync is played automatically.
 
-**After requesting AudioClip, set up and play the AudioClip you received**
+**After receiving the AudioClip, configure and play it**
 
 - DemoTTSLipsync.cs
 

@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # 발화 관련 기본 기능
 
-### 1. Send  
+### 1. Send
 
 AIPlayer의 초기화가 완료된 후(`AIEventType.AIPLAYER_STATE_CHANGED`에서 State가 INITIALIZE에서 IDLE로 변화를 체크), send 함수를 호출할수 있습니다.
 
@@ -26,9 +26,11 @@ SDK demo page에서도 테스트해볼수 있습니다.
 <img src="/img/aihuman/web/sdk_demo_03_r1.png" />
 
 <br/>
+<br/>
+<br/>
 
 ### 2. 발화 동작의 모니터링
-'send' 함수를 호출한 후, 등록된 콜백에서 동작 이벤트에 대한 피드백을 확인할 수 있습니다. 이 피드백은 이벤트 관련 콜백 메서드('onAIPlayerEvent')를 호출하여 반환됩니다. 예를 들어 'send' 메서드를 호출하면 다음 이벤트가 'onAIPlayerEvent'로 순차적으로 호출됩니다. 
+`send` 함수를 호출한 후, 등록된 콜백에서 동작 이벤트에 대한 피드백을 확인할 수 있습니다. 이 피드백은 이벤트 관련 콜백 메서드('onAIPlayerEvent')를 호출하여 반환됩니다. 예를 들어 `send` 메서드를 호출하면 다음 이벤트가 'onAIPlayerEvent'로 순차적으로 호출됩니다. 
 
 - AIEventType.AICLIPSET_PLAY_PREARE_STARTED
 - AIEventType.AICLIPSET_PLAY_PREARE_COMPLETED
@@ -36,7 +38,7 @@ SDK demo page에서도 테스트해볼수 있습니다.
 - AIEventType.AICLIPSET_PLAY_COMPLETED
 - AIEventType.AICLIPSET_PLAY_FAILED //실패가 있는 경우,
 
-'send' 중에 오류가 발생하면 'onAIPlayerErrorV2'로 AIError와 함께 호출됩니다.
+`send` 중에 오류가 발생하면 'onAIPlayerErrorV2'로 AIError와 함께 호출됩니다.
 
 ```javascript
 AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
@@ -74,7 +76,7 @@ AI_PLAYER.onAIPlayerErrorV2 = function (aiError) {
     // TODO: error handling
 
     if (aiError.code >= AIError.RESERVED_ERR) {
-      //You've got reserved error. Check up the error list!
+      //You've encountered a reserved error. Please check the error list!
       console.log("RESERVED_ERR :" , aiError.message);
     } else if (aiError.code >= AIErrorCode.AICLIPSET_PLAY_ERR) {
       console.log("AICLIPSET_PLAY_ERR :" , aiError.message);
@@ -94,6 +96,9 @@ AI_PLAYER.onAIPlayerErrorV2 = function (aiError) {
   };
 ```
 
+
+
+<br/>
 
 ### 3. AIPLAYER_STATE_CHANGED 이벤트로 반응하는 UI 만들기
 
@@ -120,6 +125,9 @@ function onAIStateChange() {
    console.log('onAIStateChange state:', AI_PLAYER.getState())
 } 
 ``` 
+
+
+<br/>
 
 ### 4. Pause 
 

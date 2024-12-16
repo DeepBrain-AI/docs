@@ -10,7 +10,7 @@ If you want to create an image by importing information from an existing project
 
 ## 1. API key settings
 
-Authentication is required for all API communications within AISTUDIOS. The API key is used for this purpose. Sets the API key issued to the token variable. If you don't have the issued key yet, you can issue it through [Generate API key](https://www.deepbrain.io/pricing).
+Authentication is required for all API communications within AISTUDIOS. The API key is used for this purpose. Sets the API key issued to the token variable. If you don't have the issued key yet, you can issue it through [Generate API key](https://www.aistudios.com/pricing).
 ```js
 const token = '##JWT##'; // API KEY
 ```

@@ -52,11 +52,11 @@ function sendText() {
 
 ### 3. Change the Voice or Language
 
-Some AIs can speak with other voices besides basic voices. To use other voices, you should call AIModelInfoManager.generateToken(...) or AIModelInfoManager.loadCustomVoices(...) method before using them. 
+Some AIs can speak with other voices besides basic voices. To use other voices, you should call AIModelInfoManager.generateToken(...) or AIModelInfoManager.loadCustomVoices(...) method before using them.
 
 <img src="/img/aihuman/web/sdk_demo_04.png" />
 
-#### Set the custom voice using AIPlayer's method
+##### Set the custom voice using AIPlayer's method
 
 First, the list of languages that AI can currently speak can be checked through the following method.
 
@@ -76,7 +76,7 @@ If you know the id of the desired voice, you can find the desired voice using th
 const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 ```
 
-Direct change to the desired voice on the aplayer is set as follows, and is set to the default voice when null is entered. Returns true when success.
+Directly change to the desired voice on the aplayer is set as follows, and is set to the default voice when null is entered. Returns true if successful.
 
 ```javascript
 const customVoice = AI_PLAYER.findCustomVoice(voiceId);
@@ -84,7 +84,7 @@ const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 const isSuccess = AI_PLAYER.setCustomVoice(customVoice);
 ```
 
-Instead of using CustomVoice instance directly, you can set CustomVoice with language and gender. In this case, the first customVoice of the filtered list is set. 
+Instead of using CustomVoice instance directly, you can set CustomVoice with language and gender. In this case, the first customVoice of the filtered list is set.
 
 ```javascript
 const isSuccess = AI_PLAYER.setCustomVoiceForLanguage(language, gender);
@@ -96,7 +96,7 @@ Check current CustomVoice with following method. It returns null if customVoice 
 const isSuccess = AI_PLAYER.getCustomVoice();
 ```
 
-#### Set the custom voice using AIClipSet
+##### Set the custom voice using AIClipSet
 
 In addition to the method of using the setCustomVoice method to set a voice other than the default voice, AIClipSet can be used to speak the desired voice as follows.
 
@@ -105,7 +105,7 @@ const customVoice = AI_PLAYER.findCustomVoice(voiceId);
 const AIClipSet = { text: "Nice to meet you", gst: "hi", voice: customVoice };
 
 AI_PLAYER.send(AIClipSet);
-``` 
+```
 
 <br/>
 
@@ -137,7 +137,7 @@ AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" 
 
 `onAIPlayerStateChanged(state)` is called for each sentence. The possible state values are shown below.
 
-- `speakingStarted`:  on speech start
+- `speakingStarted`: on speech start
 - `speakingComplete`: on speech end
 
 If you send several sentences, it automatically preloads if possible. You can see that the delay between speaking is reduced if preload was successful.

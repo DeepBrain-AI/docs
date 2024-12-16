@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Own your first AI Human
 
-n this chapter, we will quickly set up AIPlayer with the Default AI and learn about AI speaking process. When setting up AIPlayer for the first time, it may take several minutes to load depending on the network condition. You can monitor the loading progress by implementing the onAIPlayerResLoadingProgressed function of AIPlayerCallback.
+In this chapter, we will quickly set up AIPlayer with the Default AI and learn about AI speaking process. When setting up AIPlayer for the first time, it may take several minutes to load depending on the network condition. You can monitor the loading progress by implementing the onAIPlayerResLoadingProgressed function of AIPlayerCallback.
 
 :::tip
 From the sample, you can learn more from the code in the file below.
@@ -31,7 +31,7 @@ class AIQuickSampleViewController {
 ### 3. Set appId and userKey in AIPlayer.
 
 You can add project for each platform here.
-**[https://aihuman.deepbrain.io](https://aihuman.deepbrain.io)**
+**[https://aihuman.aistudios.com](https://aihuman.aistudios.com)**
 
 <!-- <img src="images/aisample_regist_000.png" width="1191" height="301"> -->
 

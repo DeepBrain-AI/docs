@@ -8,7 +8,7 @@ namespace AIHuman.Core
 
 | Modifier and Type                | Method and Description                                       |
 | -------------------------------- | ------------------------------------------------------------ |
-| ` void`                          | `Authenticate(string appId, string userKey, Action<AIList, AIError> OnComplete)` Attempts to authenticate with the issued userKey. It passes the response to CallBack(onComplete) and if successful, you can get a usable AI model. |
+| ` void`                          | `Authenticate(string appId, string userKey, Action<AIList, AIError> OnComplete)` Attempts to authenticate with the issued userKey. It passes the response to Callback(onComplete) and if successful, you can get a usable AI model. |
 | `AIHuman.Common.AIError`         | `GenerateToken(string appId, string userKey)` Attempts to authenticate to the server with this information and returns true if successful. |
 | `void`   | `GetAIList(Action<AIList, AIError> OnComplete)` Get a list of available AI models.             |
 | `string`     | `DefaultAIName { get; }` Get the default AI information.         |

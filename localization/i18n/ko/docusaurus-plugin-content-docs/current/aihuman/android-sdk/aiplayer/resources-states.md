@@ -4,13 +4,16 @@ sidebar_position: 3
 
 # 이벤트 확인하기
 
-## AI Human 리소스 로딩 시작 
+###  AI Human 리소스 로딩 시작 
 
-AIPlayer 객체 생성 후 init(config, listener)을 호출하면 지시한 **aiName에** 따라, 리소스 로딩이 시작되고 등록된 listener(IAIPlayerCallback)에 리소스 로딩 상태가 보고됩니다. (최초에는 리소스 로드 완료까지 수분이 걸릴수 있습니다.)
+AIPlayer 객체 생성 후 init(config, listener)을 호출하면 지시한 **aiName에** 따라, 리소스 로딩이 시작되고 등록된 listener(IAIPlayerCallback)에 리소스 로딩 상태가 보고됩니다. (최초에는 리소스 로드 완료까지 수분이 걸릴 수 있습니다.)
 
-## IAIPlayerCallback으로 플레이어의 리소스 로딩 상태 모니터링
 
-먼저 listener의 onAIPlayerEvent(AIEvent event)메소드가 호출됩니다. AIEvent.type값은 어떤 이벤트가 발생했는지를 의미합니다(아래의 리스트를 확인). 또한 onAIPlayerResLoadingProgressed(int current, int total) 으로 로딩 프로그레스를 구현할수 있습니다.
+<br/>
+
+### IAIPlayerCallback으로 플레이어의 리소스 로딩 상태 모니터링
+
+먼저 listener의 onAIPlayerEvent(AIEvent event)메소드가 호출됩니다. AIEvent.type값은 어떤 이벤트가 발생했는지를 의미합니다(아래의 리스트를 확인). 또한 onAIPlayerResLoadingProgressed(int current, int total) 으로 로딩 프로그레스를 구현할 수 있습니다.
 
 - AIEvent.AIPLAYER_STATE_CHANGED : AIPlayer의 상태가 변할때. (AIPlayerState enum과 getState() 메소드 확인)
 - AIEvent.RES_LOAD_STARTED : 로딩 시작시 
@@ -18,11 +21,11 @@ AIPlayer 객체 생성 후 init(config, listener)을 호출하면 지시한 **ai
 - AIEvent.AI_DISCONNECTED : AI 연결이 끊어졌고 send 또는 preload를 할수 없을 때 
 - AIEvent.RES_LOAD_COMPLETED : AI가 로딩을 마치고 모든 준비가 끝났을 때
 
-이 과정에서 혹시 문제가 생기면 onAIPlayerError() 메소드가 호출됩니다. 예를 들면 인증 토큰의 만료등의 내용이 올수 있습니다. 상황에 따라 적절한 대응이 필요합니다. AIError.code 값은 범위로 카테고리화 할수 있습니다. 아래의 샘플 코드를 참조. 
+이 과정에서 혹시 문제가 생기면 onAIPlayerError() 메소드가 호출됩니다. 예를 들면 인증 토큰의 만료 등의 내용이 올 수 있습니다. 상황에 따라 적절한 대응이 필요합니다. AIError.code 값은 범위로 카테고리화 할 수 있습니다. 아래의 샘플 코드를 참조. 
 
 - AIError.AI_INIT_ERR : AI 로딩 및 초기화 오류 
 - AIError.AI_API_ERR : 인증과 같은 API 정보 받기 부분에서 오류 
-- AIError.AI_RES_ERR : AI 리소스를 다운받을때 오류 
+- AIError.AI_RES_ERR : AI 리소스를 다운 받을 때 오류 
   
   **Ex) 1402에러(값 token expired) : 토큰 리프레쉬 필요 -> AIModelInfoManager.generateToken 메소드 재호출**
 
@@ -66,7 +69,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
         enableAllUI(true); //reset ui
 
         if (error.code >= AIError.RESERVED_ERR) {
-            //You've got reserved error. Check up the error list!
+            //You've encountered a reserved error. Please check the error list!
             binding.aiStateTxt.setText("RESERVED_ERR :" + error.message);
         } else if (error.code >= AIError.AI_INIT_ERR) {
             binding.aiStateTxt.setText("AI_INIT_ERR :" + error.message);
@@ -81,7 +84,7 @@ private IAIPlayerCallback iAIPlayerCallback = new IAIPlayerCallback() {
 
             if (error.code == 1402) { //refresh token
                 AIModelInfoManager.generateToken(AIPlayerDemo.this,
-                        getString(R.string.appid),
+                        getString(R.string.appId),
                         getString(R.string.userkey),
                         (aiError, resp) -> binding.aiStateTxt.setText("Token ref finished " + resp));
             }
