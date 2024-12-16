@@ -8,6 +8,8 @@ The following describes advanced features related to AI speech.
 
 You can set or change **Gestures, Language and CustomVoice, Speed**, etc. in the IDLE state.
 
+<br/>
+
 ### Gestures
 
 Use a [AIClipSet](../../../aihuman/windows-sdk/apis/aiclipset) to send utterance commands to the AI. The AIClipSet refers to a series of AI action unit. There are three types of ClipSet: general speech, speech with gesture, and gesture only. The Gesture can be used depending on whether the AI model supports gestures, and the list of available gestures can be checked using the `GetGestures` function of AIPlayer. Even a model that does not support gestures can be operated using ClipSet.
@@ -109,6 +111,8 @@ CustomVoice myVoice = AIAPI.GetCustomVoices("en-US", "MALE")[0];
 AIClipSet aiClipSet = AIAPI.CreateClipSet("this is sample sentence.", null, myVoice);
 _aiPlayer.Send(new[] {aiClipSet});
 ```
+
+<br/>
 
 <br/>
 

@@ -134,7 +134,7 @@ AI_PLAYER.preload("Nice to meet you");
 
 <br/>
 
-### 5. Monitor the preload function and utilize
+#### Monitor the preload function and utilize
 
 Like the send function, onAIPlayerEvent(AIEvent) is called during the preload. The value of AIEvent can be called as follows.
 

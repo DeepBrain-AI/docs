@@ -308,7 +308,7 @@ async function makeRequest(method, url, params) {
 
 <br/>
 
-**6. Full Server Sample Source Code**
+### 6. Full Server Sample Source Code
 
 ```javascript
 // generateJWT.js(Server)

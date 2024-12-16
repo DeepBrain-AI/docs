@@ -8,6 +8,8 @@ All functions other than speaking(mostly related to AI settings) of AIPlayer are
 
 After the resource load required for AI operation is completed, some settings of AIPlayer can be adjusted. When the resource loading is completed (`RES_LOAD_COMPLETED`), the state changes such that actual operations can be performed(Idle). On right side of the panel, **Voice, Gesture, Speed**, etc. can be adjusted as shown below.
 
+<br/>
+
 ### Change AI Speech Rate
 
 : You can set the speech rate of AI. The possible value range is from 0.5 to 1.5.
@@ -16,6 +18,8 @@ After the resource load required for AI operation is completed, some settings of
 // set Property
 _aiPlayer.Speed = value;
 ```
+
+<br/>
 
 ### Gestures
 

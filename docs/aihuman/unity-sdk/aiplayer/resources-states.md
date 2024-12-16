@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # AIPlayer Callback
 
-#### Start loading resources 
+### Start loading resources 
 
 When `AIPlayer` is created after authentication is completed, resource loading starts according to the input **AIName**, and the resource loading status is reported to the `AIPlayerCallback` registered in the constructor. (The download time may initially depend on network conditions.)
 

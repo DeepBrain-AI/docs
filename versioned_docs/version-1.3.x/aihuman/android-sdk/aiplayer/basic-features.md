@@ -25,6 +25,8 @@ aiPlayer.send(new String[]{"Nice to meet you"});
 
 ```
 
+<br/>
+
 ### Monitoring of speaking behavior
 
 After calling the send method, you can check the feedback on the operation event in the registered listener. This feedback is returned by calling the event related method (onAIPlayerEvent) of the listener(IAIPlayerCallback). AIEvent received as an argument of onAIPlayerEvent is called with the following event values when called `send` method.

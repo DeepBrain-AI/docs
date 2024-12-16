@@ -31,6 +31,8 @@ Specify the location where you want the AI Human to appear, i.e. where you want 
 
 
 <br/>
+<br/>
+<br/>
 
 ### 2. Authenticate with AuthStart function
 Write a code related to authentication at the time of application initialization by referring to the code below.
@@ -284,6 +286,8 @@ There are many omitted parts in the above explanation. Please refer to App.xaml,
 :::
 
 
+<br/>
+<br/>
 <br/>
 
 ### 4. Command the AI to speak 

@@ -8,6 +8,8 @@ The following describes advanced features related to AI speech
 
 You can set or change **Gestures, Language and CustomVoice, Speed**, etc. in the IDLE state.
 
+<br/>
+
 ### Gestures
 
 Use a [AIClipSet](/aihuman/unity-sdk/apis/aiclipset) to send utterance commands to the AI. The AIClipSet refers to a series of AI action unit. There are three types of ClipSet: general speech, speech with gesture, and gesture only. The Gesture can be used depending on whether the AI model supports gestures, and the list of available gestures can be checked using the `GetGestures` function of AIPlayer. Even a model that does not support gestures can be operated using ClipSet.
@@ -180,6 +182,8 @@ AIPlayerCallback.OnAIPlayerEvent(AIEvent) is called for each sentence. The possi
 - `AICLIPSET_PLAY_PREPARE_COMPLETED`
 
 If you send several sentences, it automatically preloads if possible. In this case, you can see that the delay between utterances when the AI speaks is reduced.
+
+<br/>
 
 ### Change AI Speech Rate
 

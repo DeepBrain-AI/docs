@@ -33,6 +33,8 @@ From the demo, you can learn more from the scene and code in the file below.
 
 
 <br/>
+<br/>
+<br/>
 
 ### 2. Write a script for implementing the AIPlayer function
 Select Assets > Create > C# Script from the Unity Editor menu to create a script and write it as follows.
@@ -246,12 +248,14 @@ public class QuickStart : MonoBehaviour
 
 ### 3. Apply the script you created
 
-#### 3.1.. After selecting the QuickStart gameobject in the hierarchy window, register the scripts written in item 2 through the Add Component button in the Inspector window.
-#### 3.2.. Each item in the Inspector window is registered through drag and drop after selecting the game object in the Hierarchy window as shown in the image below.
+#### 3.1. After selecting the QuickStart gameobject in the hierarchy window, register the scripts written in item 2 through the Add Component button in the Inspector window.
+#### 3.2. Each item in the Inspector window is registered through drag and drop after selecting the game object in the Hierarchy window as shown in the image below.
 
 <img src="/img/aihuman/unity/quickstart_inspector.png" />
 
 
+<br/>
+<br/>
 <br/>
 
 ### 4. Command the AI to speak 

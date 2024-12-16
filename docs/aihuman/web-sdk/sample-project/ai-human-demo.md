@@ -14,7 +14,8 @@ This page demonstrates various functionalities of AIPlayer through simple UI. Yo
 <br/>
 
 
-**1. First, create the AIPlayer object(AI_PLAYER), complete authentication and set up the AIPlayer**
+### 1. Create the AIPlayer object(AI_PLAYER), complete authentication and set up the AIPlayer
+
 
 ```javascript
 const wrapper = document.getElementById("AIPlayerWrapper");
@@ -36,7 +37,7 @@ async function generateVerifiedToken() {
 ```
 <br/>
 
-**2. Get the list of available AI models and make UI for the list**
+### 2. Get the list of available AI models and make UI for the list
 
 ```javascript
 async function getAIList() {
@@ -61,7 +62,7 @@ async function getAIList() {
 
 <br/>
 
-**3. Call AIPlayer's init function with the selected AI name**
+### 3. Call AIPlayer's init function with the selected AI name
 
 Initialize the corresponding AI with the AI's name, size, left, top and speech speed.
 
@@ -86,7 +87,7 @@ async function startAI(aiName, aiType) {
 
 <br/>
 
-**4. Implement callback of AIPlayer to monitor the event and error**
+### 4. Implement callback of AIPlayer to monitor the event and error
 
 The AIPlayer has 3 callback functions. They are onAIPlayerEvent, onAIPlayerLoadingProgressed and onAIPlayerErrorV2. For detail info about the callback, please refer this [Page](../apis/aiplayer-callback.md) and [Page](../apis/aiplayer-data.md).
 
@@ -185,7 +186,9 @@ function initAIPlayerEvent() {
 
 <br/>
 
-**5. Implement AI utterance-related functions (preload, send, paces, resume, stop and release).**
+### 5. Implement AI utterance-related functions
+
+Implement AI utterance-related functions (preload, send, paces, resume, stop and release).
 
 ```javascript
 async function preload(clipSet) {
@@ -224,7 +227,7 @@ function release() {
 <br/>
 
 
-**6. 3D AI Model Application Example**
+### 6. 3D AI Model Application Example
 
 Unlike 2D, 3D AI model requires Unity Webgl build results (files in `build` folder of the SDK zip). 
 

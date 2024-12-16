@@ -15,6 +15,9 @@ In this page, you will be able to have conversation with the AI on screen. The c
 The Playchat is fully integrated with the AI Models here and the AI will speak sentences coming from the chatbot. In other words, users will be able to have conversation with an AI.
 
 <img src="/img/aihuman/web/stt_demo_02.png" />
+<br/>
+<br/>
+<br/>
 
 ### 1. Configure Chatbot (Wrapper Class of PlayChat)
 

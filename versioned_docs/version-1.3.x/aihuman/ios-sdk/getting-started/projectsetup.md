@@ -10,17 +10,21 @@ In this chapter, you will learn how to create and register UserKey and AppId, et
 
 You can download SDKs for each platform here. **[AI Human SDK Website](https://aihuman.aistudios.com)**.
 
+<br/>
+
 ### 2. Create an Xcode project and cocoapods
 
 Create project to use the AI Human SDK in the Xcode.
 
 Add the **AIPlayer.podspec file and the AIPlayer folder** to the Project folder.
 
+<br/>
+
 ### 3. Setup the project
 
 Changing the terminal path to the location of the project.
 
-#### 3.1.. Create Podfile
+#### 3.1. Create Podfile
 
 Create a cocoapods configuration file.
 
@@ -32,7 +36,7 @@ cd /project_path
 pod init
 ```
 
-#### 3.2.. Add and install `pod 'AIPlayerSDK'`
+#### 3.2. Add and install `pod 'AIPlayerSDK'`
 
 Open the generated podfile and add **AIPlayerSDK**. <br/>
 To use 3D characters, **`pod 'AIPlayerSDK/Include3D'`** must be added.

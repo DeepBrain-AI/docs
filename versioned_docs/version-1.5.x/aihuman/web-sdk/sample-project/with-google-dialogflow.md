@@ -14,6 +14,10 @@ This demo is a conversational AI service using AI Human and Google Dialogflow, a
 
 <img src="/img/aihuman/windows/GoogleDialogflowDemo.png" />
 
+<br/>
+<br/>
+<br/>
+
 ### Using AI Human and Google Chatbot
 
 If you want to use the conversational AI service mentioned in the demo, you need to prepare as follows.

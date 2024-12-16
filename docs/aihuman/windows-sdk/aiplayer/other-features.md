@@ -7,7 +7,9 @@ The following are mainly AI setting-related features other than speech.
 
 Once the resource is loaded, you can change AIPlayer's settings; for example, you can adjust the **Scale, Margin, Volume**, etc.
 
-### Change AI Size(Scale)
+<br/>
+
+### Change AI Speech Rate
 <img src="/img/aihuman/windows/scale_1.4.x.png" />
 
 : You can change the size(scale) of AI. The possible value range is from 0.5 to 1.5.

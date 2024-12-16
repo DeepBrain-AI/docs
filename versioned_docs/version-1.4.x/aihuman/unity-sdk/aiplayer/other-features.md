@@ -6,7 +6,9 @@ sidebar_position: 6
 
 The following are actions other than the utterance of the AIPlayer.
 
-### Change AI Size(Scale)
+<br/>
+
+### Change AI Speech Rate
 
 : You can change the size(scale) of AI. The possible value range is from 0.5 to 1.5.
 

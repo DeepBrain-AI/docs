@@ -7,7 +7,9 @@ sidebar_position: 6
 
 After the resource is loaded, some settings of aiPlayer can be changed while the actual operation is on. In the sample project screen below, you can see that **Scale, Margins**, etc. can be adjusted.
 
-### Change AI Size(Scale)
+<br/>
+
+### Change AI Speech Rate
 <img src="/img/aihuman/windows/YSB_Scale.png" />
 : You can change the size(scale) of AI. The possible value range is from 0.5 to 1.5.
 

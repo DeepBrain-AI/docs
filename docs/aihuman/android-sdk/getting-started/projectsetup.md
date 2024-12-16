@@ -29,6 +29,8 @@ Below is the project's setting.(It is a sample, not mandatory)
 
 
 <br/>
+<br/>
+<br/>
 
 ### 2. Add SDK (aar) to project
 
@@ -37,6 +39,8 @@ Add the 2 aar files(AIHumanSDK, AIHuman3DSDK) to your project's libs. The libs f
 <img src="/img/aihuman/android/screenshot_projectsetup_4.png"/>
 
 
+<br/>
+<br/>
 <br/>
 
 ### 3. App level build.gradle : (Check the sample's build.gradle)

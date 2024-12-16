@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # AIPlayer Resources and States
 
-#### Start loading resources 
+### Start loading resources 
 
 When AIPlayer is created after authentication is completed, resource loading starts according to the input **AIName**, and the resource loading status is reported to the listener (IAIPlayerCallback) registered in the constructor. (Initially, it may take a few minutes for the resource to complete loading.)
 

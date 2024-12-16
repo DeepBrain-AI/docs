@@ -8,6 +8,8 @@ sidebar_position: 3
 
 If init(config, listener) is called after AIPlayer instance creation, resource loading starts according to **aiName** indicated, and the resource loading status is reported to the registered listener (IAIPlayerCallback). (Initially, it may take several minutes for the resource to finish loading.)
 
+<br/>
+
 ### Monitor the player's resource loading status with IAIPlayerCallback
 
 After calling the 'init' method, the listener's onAIPlayerEvent(AIEvent event) method will be called with AIEvent. The AIEvent.type indicated which event are occurred(Check below list). You can also implement loading progress with onAIPlayerResLoadingProgressed(int current, int total) while loading.

@@ -20,6 +20,8 @@ After the greeting, if a voice input signal **Speak now** appears below , say 'w
 
 
 <br/>
+<br/>
+<br/>
 
 ### Using AI Human, Chatbot and MS Azure Speech Recognition
 

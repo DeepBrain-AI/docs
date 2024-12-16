@@ -10,8 +10,9 @@ In this chapter, we will quickly look at AIHuman(AIPlayer) setup process and mak
 
 <br/>
 <br/>
+<br/>
 
-**1. Include the SDK and Ready the AIPlayer in the web page**
+### 1. Include the SDK and Ready the AIPlayer in the web page
 
 ```html
 <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.4.1.min.js"></script>
@@ -26,7 +27,7 @@ const AI_PLAYER = new AIPlayer(wrapper);
 
 <br/>
 
-**2. Authenticate the SDK**
+### 2. Authenticate the SDK
 
 **2.1. Enter appId and get userKey from SDK website**
 
@@ -140,7 +141,7 @@ async function generateVerifiedToken() {
 
 <br/>
 
-**3. Initialize AIPlayer**
+### 3. Initialize AIPlayer
 
 After successful authentication, the AIPlayer needs to be initialized using the `init` function. At this time, it can be set with defaultAI. If you want to use other AIs, you can get a list of available AIs through the getAIList function. For details, please refer to [AIPlayer](../apis/aiplayer.md) section.
 
@@ -159,7 +160,7 @@ await AI_PLAYER.init({
 
 <br/>
 
-**4. Let's make AIPlayer's callback and monitor the event of AIPlayer**
+### 4. Let's make AIPlayer's callback and monitor the event of AIPlayer
 
 You can set AIPlayer's listener for AI events like below. And notice that you can call `send` function when resource-loading is completed(AIEventType.RES_LOAD_COMPLETED).
 
@@ -303,7 +304,7 @@ async function makeRequest(method, url, params) {
 
 <br/>
 
-**6. Full Server Sample Source Code**
+### 6. Full Server Sample Source Code
 
 ```javascript
 // generateJWT.js(Server)

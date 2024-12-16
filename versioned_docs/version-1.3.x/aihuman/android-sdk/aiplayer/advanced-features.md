@@ -4,6 +4,8 @@ sidebar_position: 5
 
 # AIPlayer Advanced Speaking Features
 
+<br/>
+
 ### Gestures
 
 As briefly mentioned above, speech may be performed using AIClipSet. AIClipSet refers to one utterance unit. The types of speech are basic speech, gesture speech including gesture and speech, and gestures that perform only certain actions. The available gestures differ according to AI model, and the list of available gestures can be obtained using the getGestures() function of AIPlayer.
@@ -127,7 +129,7 @@ aiPlayer.send([aiClipSets]); //array
 
 <br/>
 
-## Preload
+### Preload
 
 Preload is used when you want to make the AI speak the next sentence without delay by loading sentences in advance. You could think of it as a caching process. Select a sentence and press the **PRELOAD SPEAK** button in the sample below to perform the corresponding action.
 
@@ -141,7 +143,7 @@ Preload is used when you want to make the AI speak the next sentence without del
 aiPlayer.preload([text]);
 ```
 
-### Monitor the preload function and utilize
+#### Monitor the preload function and utilize
 
 Like the send function, IAIPlayerCallback.onAIPlayerEvent(AIEvent) is called during the preload. The value of AIEvent can be called as follows.
 
