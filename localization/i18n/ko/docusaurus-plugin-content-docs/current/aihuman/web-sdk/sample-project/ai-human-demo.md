@@ -10,8 +10,12 @@ sidebar_position: 3
 :::
 
 이 페이지는 AIPlayer의 다양한 기능을 간단한 UI를 통해 보여줍니다. 다른 AI 모델을 선택하고, AI의 스케일을 변경하고, 음성 속도를 변경하고, AI가 여러 문장을 말하게 하고, 프리로드 등의 기능을 사용해 볼 수 있습니다.
+ 
+<br/>
 
-**1. 먼저 AIPlayer(AI_PLAYER)를 생성하고, 인증을 완료후 셋업을 진행합니다.**
+### 1. AIPlayer(AI_PLAYER) 생성 및 인증
+
+먼저 AIPlayer(AI_PLAYER)를 생성하고, 인증을 완료후 셋업을 진행합니다.
 
 ```javascript
 const wrapper = document.getElementById("AIPlayerWrapper");
@@ -33,7 +37,9 @@ async function generateVerifiedToken() {
 ```
 <br/>
 
-**2. 사용가능한 AI 리스트를 불러오고 UI를 만듭니다.**
+### 2. AI 리스트를 불러오기 및 UI 작업
+
+사용가능한 AI 리스트를 불러오고 UI를 만듭니다.
 
 ```javascript
 async function getAIList() {
@@ -58,7 +64,7 @@ async function getAIList() {
 
 <br/>
 
-**3. 선택한 AI 이름으로 AIPlayer의 init 함수 호출**
+### 3. 선택한 AI 이름으로 AIPlayer의 init 함수 호출
 
 원하는 AI를 해당 the AI의 name, size, left, top and speech speed와 함께 초기화(init)합니다.
 
@@ -83,7 +89,7 @@ async function startAI(aiName, aiType) {
 
 <br/>
 
-**4. AIPlayer의 콜백을 구현하여 이벤트와 에러를 모니터합니다.**
+### 4. AIPlayer의 콜백을 구현하여 이벤트와 에러를 모니터링
 
 AIPlayer는 3개의 callback 함수를 가지고 있습니다. 그것은 각각 onAIPlayerEvent, onAIPlayerLoadingProgressed 그리고 onAIPlayerErrorV2입니다. 더 자세한 사항은 여기 [Page](../apis/aiplayer-callback.md)와 여기 [Page](../apis/aiplayer-data.md)를 참조하여주십시오.
 
@@ -183,7 +189,9 @@ function initAIPlayerEvent() {
 
 <br/>
 
-**5. AI 발화 관련 함수들 (preload, send, pauses, resume, stop and release)을 구현합니다.**
+### 5. AI 발화 관련 함수들 구현
+
+AI 발화 관련 함수들 (preload, send, pauses, resume, stop and release)을 구현합니다.
 
 ```javascript
 async function preload(clipSet) {
@@ -222,7 +230,7 @@ function release() {
 <br/>
 
 
-**6. 3D AI Model Application 예제**
+### 6. 3D AI Model Application 예제
 
  2D와는 달리, 3D AI model은 Unity Webgl build 결과물 (SDK zip 파일의 `build` 폴더와 그 파일들)이 필요합니다. 
 

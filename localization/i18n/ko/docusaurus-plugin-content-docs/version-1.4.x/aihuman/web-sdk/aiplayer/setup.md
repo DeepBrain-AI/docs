@@ -12,6 +12,8 @@ sidebar_position: 2
 - 4단계: 원하는 AI의 이름으로 AIPlayer 초기화
 
 
+<br/>
+
 ### 1. AIPlayer 객체를 만듭니다.
 
 해당 생성자를 사용하여 AIPlayer 개체를 생성합니다.

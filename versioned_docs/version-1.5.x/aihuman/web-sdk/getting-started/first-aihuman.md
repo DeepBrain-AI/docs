@@ -194,7 +194,7 @@ function initAIPlayerEvent() {
 
 <br/>
 
-**5. Full Client Sample Source Code**
+### 5. Full Client Sample Source Code
 
 ```html
 <!-- quickStart.html -->

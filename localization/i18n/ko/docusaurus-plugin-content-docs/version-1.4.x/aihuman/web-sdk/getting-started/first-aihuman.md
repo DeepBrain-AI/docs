@@ -11,7 +11,9 @@ sidebar_position: 3
 <br/>
 <br/>
 
-**1. 웹 페이지에 SDK 및 AIPlayer를 추가합니다.**
+<br/>
+
+### 1. 웹 페이지에 SDK 및 AIPlayer를 추가
 
 ```html
 <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.4.1.min.js"></script>
@@ -26,7 +28,8 @@ const AI_PLAYER = new AIPlayer(wrapper);
 
 <br/>
 
-**2. SDK 인증하기**
+
+### 2. SDK 인증하기
 
 **2.1. SDK 웹사이트에 appId를 입력하고 userKey를 발급받기**
 
@@ -140,7 +143,9 @@ async function generateVerifiedToken() {
 
 <br/>
 
-**3. AIPlayer 초기화**
+<br/>
+
+### 3. AIPlayer 초기화
 
 인증이 성공한 후에는 `init` 함수를 사용하여 AIPlayer를 초기화해야 합니다. 이때 기본AI로 설정할 수 있습니다. 다른 AI를 사용하고 싶다면, 당신은 `getAIList`를 통해 이용 가능한 AI의 목록을 얻을 수 있습니다. 자세한 설명은 [AIPlayer](../apis/aiplayer.md)를 참조해주십시오.
 
@@ -159,7 +164,7 @@ await AI_PLAYER.init({
 
 <br/>
 
-**4. AIPlayer의 콜백함수 & 이벤트 모니터링**
+### 4. AIPlayer의 콜백함수 & 이벤트 모니터링
 
 아래와 같이 AIPlayer의 callback(Listener)을 설정할 수 있습니다. 그리고 리소스 로딩이 완료되면 `send`를 호출할 수 있습니다(AIEventType.RES_LOAD_COMPLETED).
 
@@ -179,7 +184,7 @@ function initAIPlayerEvent() {
 
 <br/>
 
-**5. Full Client Sample Source Code**
+### 5. Full Client Sample Source Code
 
 ```html
 <!DOCTYPE html>
