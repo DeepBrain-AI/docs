@@ -38,6 +38,8 @@ appId, userKey, platform 정보는 인증 기능인 Authenticate() 함수의 전
 	</tr>
 </table>
 
+<br/>
+
 ### 4. Unity 프로젝트 셋업
 
 AI Human SDK의 Import Package 과정을 수행한다.

@@ -167,7 +167,7 @@ AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
 
 <br/>
 
-### 6. Try reconnect
+### 5. Try reconnect
 
 Reconnect might be used when the network is not connected. When the network is not available, the AI_DISCONNECTED event will be fired and SDK will try reconnect one time internally. You can call reconnect as you need and the result will be returned the registered callback.
 
@@ -193,7 +193,7 @@ AI_PLAYER.onAIPlayerEvent = function (aiEvent) {
 
 <br/>
 
-### 7. Check before send, 'isConnected'
+### 6. Check before send, 'isConnected'
 
 Check if AI is connected. You can send if it is true.
 
@@ -204,7 +204,7 @@ const isConnected = AI_PLAYER.isConnected();
 
 <br/>
 
-### 8. Check before preload, 'canPreload'
+### 7. Check before preload, 'canPreload'
 
 Check if it is able to preload now. You can preload if it is true.
 
@@ -215,7 +215,7 @@ const canPreload = AI_PLAYER.canPreload((callback = () => {}));
 
 <br/>
 
-### 9. Adjust AI Speech Rate
+### 8. Adjust AI Speech Rate
 
 You can set AI's speech rate. The range of possible values are from 0.5 to 1.5 . The default is 1.0.
 
