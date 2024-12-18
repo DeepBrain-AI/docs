@@ -100,9 +100,7 @@ const sidebars = {
             "aistudioV3/reference/get-projects",
             "aistudioV3/reference/create-project",
             "aistudioV3/reference/export-project",
-            "aistudioV3/reference/modify-project",
             "aistudioV3/reference/create-from-template",
-            "aistudioV3/reference/create-from-template-and-modify",
           ],
         },
         {
