@@ -25,6 +25,12 @@ https://app.aistudios.com/api/odin/v3/editor/project
 |dictionary|사용자 추가 발화 데이터|Json|false|-|
 |scenes|각 장면별 정보|Array(json)|true|-|
 |scenes[].sceneIdx|해당 장면의 순번|Int|true|-|
+|scenes[].scripts|발화할 대사 데이터 리스트<br />(* *추후, 기능의 확장성을 위해 배열로 되어 있지만 대사 데이터는 하나만 입력해야 합니다.*)|Json|true|-|
+|scenes[].scripts[].org|발화할 대사 텍스트<br />`<p />`, `<span />` 태그 등을 허용하지만 `plain text`만 입력하는 것을 권장합니다.|String|true|-|
+|scenes[].scripts[].isTTS|아바타의 목소리를 그대로 사용할 것인지, TTS로 합성된 목소리를 사용할 것인지 여부<br />아바타의 목소리를 사용할 경우 `false`, 다른 목소리를 사용할 경우 `true`|Boolean|true|-|
+|scenes[].scripts[].tts|아바타의 목소리가 아닌 TTS로 합성된 목소리를 사용하는 경우, 해당 목소리의 데이터<br />아바타의 목소리를 사용할 경우 `null`, 다른 목소리를 사용할 경우 `Json`|Json\|null|true|-|
+|scenes[].scripts[].modelId|아바타의 모델 아이디|String|true|-|
+|scenes[].scripts[].clothId|아바타의 복장 아이디|String|true|-|
 |scenes[].background|장면별 배경화면 정보|Json|true|-|
 |scenes[].clips|모델, 텍스트, 이미지 등 추가할 클립들의 정보|Array(json)|true|-|
 |scenes[].clips[].scaleX|클립의 크기 배율을 나타냅니다. 높이와 너비 입력을 기준으로 각각 x와 y의 크기 배율을 나타냅니다.|Float|false|1|
@@ -39,6 +45,46 @@ https://app.aistudios.com/api/odin/v3/editor/project
 |[webhookUrl](../reference/webhook)|합성 결과를 보내줄 주소|String|false|-|
 
 <br/>
+
+:::caution `scenes[].scripts[]` 데이터 포맷
+
+`scenes[].scripts[]`에는 발화할 대사(`org`) 이외에 몇가지 추가 정보를 필수로 지정해야 합니다. 잘못 지정된 경우 기능이 정상적으로 동작하지 않을 수 있습니다.
+
+> **`isTTS`, `tts`**  
+아바타의 목소리를 그대로 사용할 것인지, 아바타의 목소리가 아닌 TTS로 합성된 목소리를 사용할 것인지를 나타냅니다.  
+아바타의 목소리를 그대로 사용하는 경우 `isTTS`를 `false`, `tts`를 `null`로 지정합니다.  
+TTS로 합성된 목소리를 사용하는 경우 `isTTS`를 `true`, `tts`를 해당 TTS의 데이터로 지정합니다.  
+사용 가능한 TTS의 종류와 상테 데이터 포맷 등은 문의를 통한 확인이 필요합니다.
+
+> **`modelId`, `clothId`**  
+아바타의 모델 아이디와 복장 아이디를 나타냅니다.  
+이 값은 필수로 지정되어야 하고 해당 씬의 아바타 클립과 동일한 값이 지정되어야 합니다.  
+지정되지 않거나 아바타 클립과 다르게 지정된 경우 기능이 정상적으로 동작하지 않을 수 있습니다.
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>아바타 클립의 프로퍼티</th>
+      <th>스크립트의 프로퍼티</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>모델 아이디</td>
+      <td><code>model.ai_name</code></td>
+      <td><code>modelId</code></td>
+    </tr>
+    <tr>
+      <td>복장 아이디</td>
+      <td><code>model.emotion</code></td>
+      <td><code>clothId</code></td>
+    </tr>
+  </tbody>
+</table>  
+
+:::
+
+<br />
 
 ## 3. Response parameters
 
@@ -72,6 +118,15 @@ curl https://app.aistudios.com/api/odin/v3/editor/project  \
           "source_color": "rgb(54,188,37)"
         },
         "watermark": false,
+        "scripts": [
+          {
+            "org": "<p>Hello, this is test video.</p>",
+            "isTTS": false,
+            "tts": null,
+            "modelId": "M000045058",
+            "clothId": "BG00002320"
+          }
+        ],
         "clips": [
           {
             "id": "aiModel-1h4ij5h8e87",
@@ -79,10 +134,6 @@ curl https://app.aistudios.com/api/odin/v3/editor/project  \
             "layer": 1,
             "top": 146.74129135713008,
             "left": 630.2493927359487,
-            "script": {
-              "org": "<p>Hello, this is test video.</p>",
-              "tts": null
-            },
             "effects": [
               {
                 "type": "head-only"
@@ -207,6 +258,15 @@ axios.post('https://app.aistudios.com/api/odin/v3/editor/project',
         "source_color": "rgb(54,188,37)"
       },
       "watermark": false,
+      "scripts": [
+        {
+          "org": "<p>Hello, this is test video.</p>",
+          "isTTS": false,
+          "tts": null,
+          "modelId": "M000045058",
+          "clothId": "BG00002320"
+        }
+      ],
       "clips": [
         {
           "id": "aiModel-1h4ij5h8e87",
@@ -214,10 +274,6 @@ axios.post('https://app.aistudios.com/api/odin/v3/editor/project',
           "layer": 1,
           "top": 146.74129135713008,
           "left": 630.2493927359487,
-          "script": {
-            "org": "<p>Hello, this is test video.</p>",
-            "tts": null
-          },
           "effects": [
             {
               "type": "head-only"
@@ -354,6 +410,15 @@ body = {
       "source_color": "rgb(54,188,37)"
     },
     "watermark": false,
+    "scripts": [
+      {
+        "org": "<p>Hello, this is test video.</p>",
+        "isTTS": false,
+        "tts": null,
+        "modelId": "M000045058",
+        "clothId": "BG00002320"
+      }
+    ],
     "clips": [
       {
         "id": "aiModel-1h4ij5h8e87",
@@ -361,10 +426,6 @@ body = {
         "layer": 1,
         "top": 146.74129135713008,
         "left": 630.2493927359487,
-        "script": {
-          "org": "<p>Hello, this is test video.</p>",
-          "tts": null
-        },
         "effects": [
           {
             "type": "head-only"

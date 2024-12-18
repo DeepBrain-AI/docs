@@ -21,7 +21,6 @@ https://app.aistudios.com/api/odin/v3/editor/project/${key}
 |key|desc|type|required|default|
 |:---|:---|:---|:---|:---|
 |updates|Content to change in the existing template.|Json|true|-|
-|updates.backgroundAudio|Project Background Audio information.|Json|false|-|
 |updates.value|Changes by clip in the project.|Array(json)|true|-|
 |updates.value[].sceneIdx|The index of the scene to be changed|Int|true|-|
 |updates.value[].type|Type of clip to change|String enum<br/>(aiModel, shape, image, textImage, videoImage, audio, background)|true|-|
@@ -54,7 +53,41 @@ curl https://app.aistudios.com/api/odin/v3/editor/project/${project key}  \
 -H "Content-Type: application/json" \
 -X POST \
 -d '{
-      "updates": [
+      "updates": {
+        "value": [
+          {
+            "sceneIdx": 0,
+            "type": "aiModel",
+            "values": {
+              "script": "changed script"
+            }
+          },
+          {
+            "sceneIdx": 1,
+            "type": "textImage",
+            "values": {
+              "text": "change text",
+              "fontSize": 100
+            }
+          }
+        ]
+      },
+      "webhookUrl": ${webhook_delivery_address}
+    }'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios"; 
+const token = ${API KEY};
+const customWebhookUrl = ${webhook_delivery_address};
+
+axios.post(`https://app.aistudios.com/api/odin/v3/editor/project/${project key}`, 
+  {
+    "updates": {
+      "value": [
         {
           "sceneIdx": 0,
           "type": "aiModel",
@@ -70,38 +103,8 @@ curl https://app.aistudios.com/api/odin/v3/editor/project/${project key}  \
             "fontSize": 100
           }
         }
-      ],
-      "webhookUrl": ${webhook_delivery_address}
-    }'
-```
-
-</TabItem>
-<TabItem value="js" label="Node.js">
-
-```js
-import axios from "axios"; 
-const token = ${API KEY};
-const customWebhookUrl = ${webhook_delivery_address};
-
-axios.post(`https://app.aistudios.com/api/odin/v3/editor/project/${project key}`, 
-  {
-    "updates": [
-      {
-        "sceneIdx": 0,
-        "type": "aiModel",
-        "values": {
-          "script": "changed script"
-        }
-      },
-      {
-        "sceneIdx": 1,
-        "type": "textImage",
-        "values": {
-          "text": "change text",
-          "fontSize": 100
-        }
-      }
-    ],
+      ]
+    },
     "webhookUrl": `${ClientWebhookUrl}`
   },
   {
@@ -128,23 +131,25 @@ import json
 
 url = "https://app.aistudios.com/api/odin/v3/editor/project/${project key}"
 body = {
-  "updates": [
-    {
-      "sceneIdx": 0,
-      "type": "aiModel",
-      "values": {
-        "script": "changed script"
+  "updates": {
+    "value": [
+      {
+        "sceneIdx": 0,
+        "type": "aiModel",
+        "values": {
+          "script": "changed script"
+        }
+      },
+      {
+        "sceneIdx": 1,
+        "type": "textImage",
+        "values": {
+          "text": "change text",
+          "fontSize": 100
+        }
       }
-    },
-    {
-      "sceneIdx": 1,
-      "type": "textImage",
-      "values": {
-        "text": "change text",
-        "fontSize": 100
-      }
-    }
-  ],
+    ]
+  },
   "webhookUrl": ${webhook_delivery_address}
 }
 headers = {

@@ -25,6 +25,12 @@ https://app.aistudios.com/api/odin/v3/editor/project
 |dictionary|User additional speech learning data|Json|false|-|
 |scenes|Scene data|Array(json)|true|-|
 |scenes[].sceneIdx|Sequence of the scene|Int|true|-|
+|scenes[].scripts|List of speech data for the scene<br />(* *Although it is an array for future extensibility, only one speech data should be entered.*)|Json|true|-|
+|scenes[].scripts[].org|Text of the speech<br />`<p />`, `<span />` tags are allowed, but it is recommended to enter only `plain text`.|String|true|-|
+|scenes[].scripts[].isTTS|Whether to use the avatar's original voice or a TTS synthesized voice<br />Use `false` for the avatar's voice, and `true` for a different voice.|Boolean|true|-|
+|scenes[].scripts[].tts|Data of the TTS synthesized voice if not using the avatar's voice<br />Use `null` for the avatar's voice, and `Json` for a different voice.|Json\|null|true|-|
+|scenes[].scripts[].modelId|Avatar's model ID|String|true|-|
+|scenes[].scripts[].clothId|Avatar's clothing ID|String|true|-|
 |scenes[].background|Background image information.|Json|true|-|
 |scenes[].clips|Fields to add clips such as text, images, and background images.|Array(json)|true|-|
 |scenes[].clips[].scaleX|Represents the size magnification of the clip. Represents the size magnification of x and y, respectively, based on the height and width input.|Float|false|1|
@@ -39,6 +45,46 @@ https://app.aistudios.com/api/odin/v3/editor/project
 |[webhookUrl](../reference/webhook)|Url address where the synthesis result should be sent.|String|false|-|
 
 <br/>
+
+:::caution `scenes[].scripts[]` Data Format
+
+In `scenes[].scripts[]`, you must specify some additional information besides the speech (`org`). If incorrectly specified, the function may not work properly.
+
+> **`isTTS`, `tts`**  
+Indicates whether to use the avatar's original voice or a TTS synthesized voice.  
+To use the avatar's original voice, set `isTTS` to `false` and `tts` to `null`.  
+To use a TTS synthesized voice, set `isTTS` to `true` and `tts` to the corresponding TTS data.  
+The types of available TTS and the format of the data need to be confirmed through inquiry.
+
+> **`modelId`, `clothId`**  
+Indicates the avatar's model ID and clothing ID.  
+These values must be specified and must match the avatar clip of the scene.  
+If not specified or specified differently from the avatar clip, the function may not work properly.
+<table>
+  <thead>
+    <tr>
+      <th>-</th>
+      <th>Avatar Clip Property</th>
+      <th>Script Property</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Model ID</td>
+      <td><code>model.ai_name</code></td>
+      <td><code>modelId</code></td>
+    </tr>
+    <tr>
+      <td>Clothing ID</td>
+      <td><code>model.emotion</code></td>
+      <td><code>clothId</code></td>
+    </tr>
+  </tbody>
+</table>  
+
+:::
+
+<br />
 
 ## 3. Response parameters
 
@@ -72,6 +118,15 @@ curl https://app.aistudios.com/api/odin/v3/editor/project  \
           "source_color": "rgb(54,188,37)"
         },
         "watermark": false,
+        "scripts": [
+          {
+            "org": "<p>Hello, this is test video.</p>",
+            "isTTS": false,
+            "tts": null,
+            "modelId": "M000045058",
+            "clothId": "BG00002320"
+          }
+        ],
         "clips": [
           {
             "id": "aiModel-1h4ij5h8e87",
@@ -79,10 +134,6 @@ curl https://app.aistudios.com/api/odin/v3/editor/project  \
             "layer": 1,
             "top": 146.74129135713008,
             "left": 630.2493927359487,
-            "script": {
-              "org": "<p>Hello, this is test video.</p>",
-              "tts": null
-            },
             "effects": [
               {
                 "type": "head-only"
@@ -207,6 +258,15 @@ axios.post('https://app.aistudios.com/api/odin/v3/editor/project',
         "source_color": "rgb(54,188,37)"
       },
       "watermark": false,
+      "scripts": [
+        {
+          "org": "<p>Hello, this is test video.</p>",
+          "isTTS": false,
+          "tts": null,
+          "modelId": "M000045058",
+          "clothId": "BG00002320"
+        }
+      ],
       "clips": [
         {
           "id": "aiModel-1h4ij5h8e87",
@@ -214,10 +274,6 @@ axios.post('https://app.aistudios.com/api/odin/v3/editor/project',
           "layer": 1,
           "top": 146.74129135713008,
           "left": 630.2493927359487,
-          "script": {
-            "org": "<p>Hello, this is test video.</p>",
-            "tts": null
-          },
           "effects": [
             {
               "type": "head-only"
@@ -354,6 +410,15 @@ body = {
       "source_color": "rgb(54,188,37)"
     },
     "watermark": false,
+    "scripts": [
+      {
+        "org": "<p>Hello, this is test video.</p>",
+        "isTTS": false,
+        "tts": null,
+        "modelId": "M000045058",
+        "clothId": "BG00002320"
+      }
+    ],
     "clips": [
       {
         "id": "aiModel-1h4ij5h8e87",
@@ -361,10 +426,6 @@ body = {
         "layer": 1,
         "top": 146.74129135713008,
         "left": 630.2493927359487,
-        "script": {
-          "org": "<p>Hello, this is test video.</p>",
-          "tts": null
-        },
         "effects": [
           {
             "type": "head-only"
