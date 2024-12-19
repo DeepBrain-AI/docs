@@ -25,7 +25,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'ko'],
+    locales: ['en', 'ko', 'zh'],
     path: 'localization/i18n',
     localeConfigs: {
       en: {
@@ -40,6 +40,12 @@ const config = {
         htmlLang: 'ko-KR',
         calendar: 'gregory',
       },
+      zh: {
+        label: '中文',
+        direction: 'ltr',
+        htmlLang: 'zh-CN',
+        calendar: 'gregory',
+      }
     },
   },
 

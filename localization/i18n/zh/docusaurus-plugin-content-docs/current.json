@@ -1,7 +1,7 @@
 {
   "version.label": {
-    "message": "Latest",
-    "description": "The label for version 1.5.x"
+    "message": "Next",
+    "description": "The label for version current"
   },
   "sidebar.aistudiosSidebar.category.Tutorial": {
     "message": "Tutorial",
@@ -18,6 +18,10 @@
   "sidebar.aistudioV3Sidebar.category.API Reference": {
     "message": "API Reference",
     "description": "The label for category API Reference in sidebar aistudioV3Sidebar"
+  },
+  "sidebar.aistudioV3Sidebar.category.Auth": {
+    "message": "Auth",
+    "description": "The label for category Auth in sidebar aistudioV3Sidebar"
   },
   "sidebar.aihumanwebSidebar.category.Getting Started": {
     "message": "Getting Started",

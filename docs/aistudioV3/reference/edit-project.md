@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Edit project and export
 
-Edit existing project and export the video.
+Editing and exporting a project involves fetching the existing project information and modifying only certain data (such as scripts, images, etc.) to synthesize a new video.
 
 <br/>
 
@@ -33,7 +33,7 @@ https://app.aistudios.com/api/odin/v3/editor/project/${key}
 
 |key|desc|type|
 |:---|:---|:---|
-|projectId|Project Id - Fetching the Chroma-key video data that has been exported.|String|
+|projectId|ID of the requested project for synthesis|String|
 
 
 <br/>

@@ -1,0 +1,108 @@
+# Image Generation
+
+Enter a topic to generate an image related to that topic.
+
+<br/>
+
+## 1. API endpoint
+
+```
+POST https://app.aistudios.com/api/odin/v3/tools/image-generator
+```
+
+<br/>
+
+## 2. Request parameter
+
+|key|desc|type|required|default|
+|:---|:---|:---|:---|:---|
+|topic|Topic of the image to be generated|String|true|-|
+|style|Style of the image to be generated<br />(`PHOTOGRAPHIC` \| `VECTOR_IMAGE` \| `ILLUSTRATION` \| `3D`)|String|false|`PHOTOGRAPHIC`|
+|size|Aspect ratio of the image to be generated<br />(`LANDSCAPE` \| `PORTRAIT` \| `SQUARE`)|String|false|`LANDSCAPE`|
+
+<br/>
+
+## 3. Response parameters
+
+|key|desc|type|
+|:---|:---|:---|
+|downloadUrl|URL of the generated image data|String|
+
+:::info
+
+The generated image data can be deleted at any time, so you should download and use the image instead of using the generated URL directly.
+
+:::
+
+<br/>
+
+## 4. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://app.aistudios.com/api/odin/v3/tools/image-generator  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{
+  "topic": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  "style": "PHOTOGRAPHIC",
+  "size": "LANDSCAPE"
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios";
+
+axios.post("https://app.aistudios.com/api/odin/v3/tools/image-generator", 
+  {
+    "topic": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "style": "PHOTOGRAPHIC",
+    "size": "LANDSCAPE"
+  }, 
+  {
+    headers: {
+      "Authorization": ${API KEY},
+      "Content-Type": "application/json",
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data);
+})
+.catch((error) => {
+  console.error(error);
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://app.aistudios.com/api/odin/v3/tools/image-generator"
+body = {
+  "topic": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  "style": "PHOTOGRAPHIC",
+  "size": "LANDSCAPE"
+}
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": ${API KEY}
+}
+
+r = requests.post(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>

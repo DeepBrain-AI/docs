@@ -2,43 +2,44 @@
 sidebar_position: 5
 ---
 
-# 프로젝트 수정 후 내보내기
+# 导出有修改的项目
 
-프로젝트 수정 후 내보내기는 기존에 존재하는 프로젝트 정보를 가져와 일부 데이터(대사, 이미지 등)만 변경하여 새로운 동영상을 합성하는 방법을 다룹니다.
+在此文本主要解说如何调来已经存在的视频项目信息，进行修改（包括文本，图片等要素）后再次发起合成请求。
 
 <br/>
 
-## 1. API endpoint
+## 1. API端点
 
 ```http
-https://app.aistudios.com/api/odin/v3/editor/project/${key}
+https://app.aistudios.cn/api/odin/v3/editor/project/${key}
 ```
 
 <br/>
 
-## 2. Request parameter
+## 2. 请求参数
 
 |key|desc|type|required|default|
 |:---|:---|:---|:---|:---|
-|updates|프로젝트 속 변경 내용|Json|true|-|
-|updates.value|프로젝트 속 클립별 변경 내용|Array(json)|true|-|
-|updates.value[].sceneIdx|변경할 내용이 있는 장면의 Idx|Int|true|-|
-|updates.value[].type|변경할 내용이 있는 요소의 타입|String enum (aiModel, shape, image, textImage, videoImage, audio, background)|true|-|
-|updates.value[].values|변경 내용|Json|true|-|
-|[webhookUrl](../reference/webhook)|합성 결과를 보내줄 주소|String|false|-|
+|updates|项目中修改的内容|Json|true|-|
+|updates.value|项目中各场面修改的内容|Array(json)|true|-|
+|updates.value[].sceneIdx|修改内容的场景Idx|Int|true|-|
+|updates.value[].type|修改的内容类别|String enum<br/>(aiModel, shape, image, textImage, videoImage, audio, background)|true|-|
+|updates.value[].values|修改内容|Json|true|-|
+|[webhookUrl](../reference/webhook)|回馈合成结果的网址|String|false|-|
 
 <br/>
 
-## 3. Response parameters
+## 3. 响应参数
 
 |key|desc|type|
 |:---|:---|:---|
-|projectId|합성 요청된 프로젝트의 ID|String|
+|projectId|发出合成请求的项目ID|String|
+
 
 <br/>
 
 
-## 4. Sample Request
+## 4. 用例
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -47,7 +48,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.aistudios.com/api/odin/v3/editor/project/${project key}  \
+curl https://app.aistudios.cn/api/odin/v3/editor/project/${project key}  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -83,7 +84,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.post(`https://app.aistudios.com/api/odin/v3/editor/project/${project key}`, 
+axios.post(`https://app.aistudios.cn/api/odin/v3/editor/project/${project key}`, 
   {
     "updates": {
       "value": [
@@ -128,7 +129,7 @@ axios.post(`https://app.aistudios.com/api/odin/v3/editor/project/${project key}`
 import requests
 import json
 
-url = "https://app.aistudios.com/api/odin/v3/editor/project/${project key}"
+url = "https://app.aistudios.cn/api/odin/v3/editor/project/${project key}"
 body = {
   "updates": {
     "value": [

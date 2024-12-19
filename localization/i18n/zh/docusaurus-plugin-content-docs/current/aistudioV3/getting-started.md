@@ -4,37 +4,37 @@ sidebar_position: 1
 slug: /aistudioV3/getting-started
 ---
 
-# Get started with API
+# API 入门
 
 :::caution
 
-The domains for the global service and the China service are different. Please be careful to avoid errors.
+供中国国内用户使用的网址略有不同，请注意避免出错。
 
-- Global service domain - `https://app.aistudios.com`
-- China service domain - `https://app.aistudios.cn`
+- 国际用户 - `https://app.aistudios.com`
+- 中国用户 - `https://app.aistudios.cn`
 
 :::
 
-AI STUDIOS V3 discloses APIs for external developers, producers, and editors for quick and easy services. In general, video synthesis requires user data editing and conversion time. When a large amount of production is required in this synthesis process, API can be used to minimize user editing and automate repetitive processes to reduce working time and ensure efficient management. In order to use the API, you must have an AI Studios V3 account and subscribe to an Pro or higher plan.
+AI STUDIOS V3提供API功能，以提供给外部人员更加简单方便的产品服务。一般来说，视频合成需要用户的数据编辑和一定的合成时间。为了减轻需要大量制作视频的负担，我们可以通过使用API功能来尽量减少复杂的程序，更加合理高效地完成任务。想要使用API功能，我们需要一个AI STUDIOS V3的账户；需要购买Pro以上的套餐。
 
-[Subscribe to the API plan](https://app.aistudios.com)
-
-
-
-## 1. API key generation
-
-If your account subscribes to a plan that is Pro or higher, you must then issue an API key. When selecting the account name at the top right of the screen after logging in to Studio V3, go to the 'Profile' item of the account in the exposure menu and run the 'Issuing API Key' at the bottom of the screen to check the user key and app. Once activated, the generated 'userKey' can no longer be verified, so copy it separately and manage it safely.
-
-[Generate API key](./generate-api-key)
+[购买API套餐](https://app.aistudios.cn)
 
 
 
-## 2. Masking API videos.
+## 1. 生成API Key
 
-A test image is produced with the issued 'API Key' to check ther ID value of the generated image.
+如果您已经购买了Pro以上的套餐，可以直接生成API Key。登录Studio V3之后，点击画面右上方的账户，选择‘个人资料’进入画面。在‘我的主板’界面选择‘Api Key’即可确认user key和app id。激活成功后退出该界面将无法再次查看‘userKey’，请妥善保管。
+
+[获取API Key](./generate-api-key)
+
+
+
+## 2. 通过API制作视频
+
+使用获取的 'API Key' 生成视频，以确认视频的ID。
 
 ```bash
-curl https://app.aistudios.com/api/odin/v3/editor/project  \
+curl https://app.aistudios.cn/api/odin/v3/editor/project  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -161,24 +161,24 @@ curl https://app.aistudios.com/api/odin/v3/editor/project  \
     }'
 ```
 
-To create API images using templates, you can find out more about creating and editing projects to use as templates by referring to the "Start Image Synthesis" item.
+如要使用模板制作API视频，请参照‘开始视频合成’项目，生成、编辑视频模板。
 
 
 
-## 3. Checking progress of the video.
+## 3. 确认视频合成进程
 
-It takes about 1 to 10 minutes to produce a video depending on the size of the video being produced, the server status, and the waiting users who are ahead of your requests. When completed, the status will change to Complete. You can also check the progress being produced with the call example below, or receive a notification of the completion of video production through Webhook.
+视频合成时，会根据视频的长短和服务器的状态，排队人数等各种因素，需要大概1~10分钟。视频合成完毕后，状态将会变为‘Complete’，既可以通过下面的代码确认该合成任务的状态，也可以通过Webhook获得视频合成完毕的通知。
 
 
 ```css
-curl https://aistudios.com/api/odin/editor/progress/${key}
+curl https://aistudios.cn/api/odin/editor/progress/${key}
 -H "Authorization: ${API KEY}"
 -H "Content-Type: application/json"
 -X GET
 ```
 
-## 4. Other API documents
+## 4. 其他API文件
 
-[Detailed API reference document](reference/auth)
+[关于API](reference/auth)
 
-[Sample Code](https://github.com/DeepBrain-AI/studio-v3-api-sample)
+[示例代码](https://github.com/DeepBrain-AI/studio-v3-api-sample)
