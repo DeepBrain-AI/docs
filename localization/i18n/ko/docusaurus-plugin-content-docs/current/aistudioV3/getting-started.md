@@ -8,10 +8,10 @@ slug: /aistudioV3/getting-started
 
 :::caution
 
-도메인이 변경되었습니다. 오류가 발생하지 않도록 주의해 주세요.
+글로벌 서비스와 중국 서비스의 도메인이 다릅니다. 오류가 발생하지 않도록 주의해 주세요.
 
-- 이전 도메인 - `https://app.deepbrain.io`
-- 변경 도메인 - `https://app.aistudios.com`
+- 글로벌 서비스 도메인 - `https://app.aistudios.com`
+- 중국 서비스 도메인 - `https://app.aistudios.cn`
 
 :::
 

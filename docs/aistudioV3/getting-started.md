@@ -8,10 +8,10 @@ slug: /aistudioV3/getting-started
 
 :::caution
 
-The domain has been changed. Please be careful to avoid errors.
+The domains for the global service and the China service are different. Please be careful to avoid errors.
 
-- Previous domain - `https://app.deepbrain.io`
-- New domain - `https://app.aistudios.com`
+- Global service domain - `https://app.aistudios.com`
+- China service domain - `https://app.aistudios.cn`
 
 :::
 

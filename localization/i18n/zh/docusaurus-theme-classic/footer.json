@@ -1,0 +1,102 @@
+{
+  "link.title.Products": {
+    "message": "Products",
+    "description": "The title of the footer links column with title=Products in the footer"
+  },
+  "link.title.Solutions": {
+    "message": "Solutions",
+    "description": "The title of the footer links column with title=Solutions in the footer"
+  },
+  "link.title.Pricing": {
+    "message": "Pricing",
+    "description": "The title of the footer links column with title=Pricing in the footer"
+  },
+  "link.title.Resources": {
+    "message": "Resources",
+    "description": "The title of the footer links column with title=Resources in the footer"
+  },
+  "link.title.Company": {
+    "message": "Company",
+    "description": "The title of the footer links column with title=Company in the footer"
+  },
+  "link.title.SNS": {
+    "message": "SNS",
+    "description": "The title of the footer links column with title=SNS in the footer"
+  },
+  "link.item.label.AI Studios": {
+    "message": "AI Studios",
+    "description": "The label of footer link with label=AI Studios linking to https://www.aistudios.com/aistudios"
+  },
+  "link.item.label.AI Human": {
+    "message": "AI Human",
+    "description": "The label of footer link with label=AI Human linking to https://www.aistudios.com/aihuman"
+  },
+  "link.item.label.Financial Services": {
+    "message": "Financial Services",
+    "description": "The label of footer link with label=Financial Services linking to https://www.aistudios.com/solutions/finance"
+  },
+  "link.item.label.Retail & Commerce": {
+    "message": "Retail & Commerce",
+    "description": "The label of footer link with label=Retail & Commerce linking to https://www.aistudios.com/solutions/retail"
+  },
+  "link.item.label.Education": {
+    "message": "Education",
+    "description": "The label of footer link with label=Education linking to https://www.aistudios.com/solutions/education"
+  },
+  "link.item.label.Media": {
+    "message": "Media",
+    "description": "The label of footer link with label=Media linking to https://www.aistudios.com/solutions/news"
+  },
+  "link.item.label.Pricing": {
+    "message": "Pricing",
+    "description": "The label of footer link with label=Pricing linking to https://www.aistudios.com/pricing"
+  },
+  "link.item.label.Docs": {
+    "message": "Docs",
+    "description": "The label of footer link with label=Docs linking to /"
+  },
+  "link.item.label.Blog": {
+    "message": "Blog",
+    "description": "The label of footer link with label=Blog linking to https://www.aistudios.com/blog"
+  },
+  "link.item.label.Forum": {
+    "message": "Forum",
+    "description": "The label of footer link with label=Forum linking to https://forum.deepbrain.io/"
+  },
+  "link.item.label.Help": {
+    "message": "Help",
+    "description": "The label of footer link with label=Help linking to https://help.deepbrain.io/"
+  },
+  "link.item.label.About": {
+    "message": "About",
+    "description": "The label of footer link with label=About linking to https://www.aistudios.com/company/about"
+  },
+  "link.item.label.Careers": {
+    "message": "Careers",
+    "description": "The label of footer link with label=Careers linking to https://www.aistudios.com/company/careers"
+  },
+  "link.item.label.Contact": {
+    "message": "Contact",
+    "description": "The label of footer link with label=Contact linking to https://www.aistudios.com/company/contact"
+  },
+  "link.item.label.LinkedIn": {
+    "message": "LinkedIn",
+    "description": "The label of footer link with label=LinkedIn linking to https://www.linkedin.com/company/deepbrain-global/"
+  },
+  "link.item.label.YouTube": {
+    "message": "YouTube",
+    "description": "The label of footer link with label=YouTube linking to https://www.youtube.com/@deepbrainai/aihuman"
+  },
+  "link.item.label.Instagram": {
+    "message": "Instagram",
+    "description": "The label of footer link with label=Instagram linking to https://www.instagram.com/deepbrain_ai/"
+  },
+  "link.item.label.Facebook": {
+    "message": "Facebook",
+    "description": "The label of footer link with label=Facebook linking to https://www.facebook.com/DeepbrainAIGlobal"
+  },
+  "copyright": {
+    "message": "© 2024 DeepBrain AI. All Rights Reserved",
+    "description": "The footer copyright"
+  }
+}
