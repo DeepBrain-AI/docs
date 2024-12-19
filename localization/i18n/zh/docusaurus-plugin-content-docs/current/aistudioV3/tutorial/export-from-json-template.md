@@ -328,7 +328,7 @@ const sceneInfo = `{
 Request the set JSON data to the project export API. Meaning of 'export' is a request that creates a new video. You can read more about all kinds of data you can send when making the Export Project API request. [here](../reference/export-project). At this time, using POST method, the request body inclues the data of modeifed scenes in the form of a string. And set API key as Authorization value in the Header and Content-Type as 'application/json'. The project key value generated during subsequent successful communication is stored in the projectKey variable.
 
 ```js
-const projectKey = await fetch('https://app.aistudios.com/api/odin/v3/editor/project',
+const projectKey = await fetch('https://app.aistudios.cn/api/odin/v3/editor/project',
   {
     method: 'POST',
     body: sceneInfo,
@@ -359,7 +359,7 @@ while (true) {
   if (complete) {
     break;
   }
-  await fetch('https://app.aistudios.com/api/odin/v3/editor/progress/' + projectKey,
+  await fetch('https://app.aistudios.cn/api/odin/v3/editor/progress/' + projectKey,
     {
       method: 'GET',
       headers: {
@@ -710,7 +710,7 @@ const generateVideo = async () => {
 
 
   // #2. Request export
-  const projectKey = await fetch('https://app.aistudios.com/api/odin/v3/editor/project',
+  const projectKey = await fetch('https://app.aistudios.cn/api/odin/v3/editor/project',
     {
       method: 'POST',
       body: sceneInfo,
@@ -733,7 +733,7 @@ const generateVideo = async () => {
     if (complete) {
       break;
     }
-    await fetch('https://app.aistudios.com/api/odin/v3/editor/progress/' + projectKey,
+    await fetch('https://app.aistudios.cn/api/odin/v3/editor/progress/' + projectKey,
       {
         method: 'GET',
         headers: {

@@ -11,7 +11,7 @@ Retrieve the list of pre-setted project information (i.e. templates) that can be
 ## 1. API endpoint
 
 ```http
-https://app.aistudios.com/api/odin/v3/dropdown/templates_business
+https://app.aistudios.cn/api/odin/v3/dropdown/templates_business
 ```
 
 <br/>
@@ -35,7 +35,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.aistudios.com/api/odin/v3/dropdown/templates_business \
+curl https://app.aistudios.cn/api/odin/v3/dropdown/templates_business \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X GET 
@@ -49,7 +49,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.get('https://app.aistudios.com/api/odin/v3/dropdown/templates_business', 
+axios.get('https://app.aistudios.cn/api/odin/v3/dropdown/templates_business', 
   {
     headers: {
       'Authorization': ${token},
@@ -72,7 +72,7 @@ axios.get('https://app.aistudios.com/api/odin/v3/dropdown/templates_business',
 import requests
 import json
 
-url = "https://app.aistudios.com/api/odin/v3/dropdown/templates_business"
+url = "https://app.aistudios.cn/api/odin/v3/dropdown/templates_business"
 
 headers = {
   "Content-Type": "application/json",

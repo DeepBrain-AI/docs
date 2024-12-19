@@ -467,7 +467,7 @@ const main = async () => {
     scenes: project.scenes,
   })
   const generatedProjectId = await fetch(
-  `${API_HOST}${GENERATE_PROJECT_API_PATH}`
+    `${API_HOST}${GENERATE_PROJECT_API_PATH}`,
     {
       method: 'POST',
       headers: {

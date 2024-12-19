@@ -7,7 +7,7 @@ Create a dream avatar using an image.
 ## 1. API endpoint
 
 ```
-POST https://app.aistudios.com/api/odin/v3/avatars/dreamavatar
+POST https://app.aistudios.cn/api/odin/v3/avatars/dreamavatar
 ```
 
 <br/>
@@ -41,7 +41,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.aistudios.com/api/odin/v3/avatars/dreamavatar  \
+curl https://app.aistudios.cn/api/odin/v3/avatars/dreamavatar  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -59,7 +59,7 @@ curl https://app.aistudios.com/api/odin/v3/avatars/dreamavatar  \
 import axios from "axios";
 const token = ${API KEY};
 
-axios.post('https://app.aistudios.com/api/odin/v3/avatars/dreamavatar', 
+axios.post('https://app.aistudios.cn/api/odin/v3/avatars/dreamavatar', 
   {
     "url": "https://cdn.aistudios.com/uploads/models/en/M000351175_BG00001308.png",
     "name": "Ian",
@@ -87,7 +87,7 @@ axios.post('https://app.aistudios.com/api/odin/v3/avatars/dreamavatar',
 import requests
 import json
 
-url = "https://app.aistudios.com/api/odin/v3/avatars/dreamavatar"
+url = "https://app.aistudios.cn/api/odin/v3/avatars/dreamavatar"
 body = {
   "url": "https://cdn.aistudios.com/uploads/models/en/M000351175_BG00001308.png",
   "name": "Ian",

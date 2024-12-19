@@ -62,7 +62,7 @@ const token = '## API key ##'
 
 ## 3. Setting the Project ID
 
-Set the `projectId` variable to the ID of an existing project. You can find the project ID by clicking on a previously saved project on the [My Studio](https://app.aistudios.com/auth/signin) page and entering the edit screen via the URL. For example, in `app.aistudios.com/editor/abcdefg`, the project ID is `abcdefg`.
+Set the `projectId` variable to the ID of an existing project. You can find the project ID by clicking on a previously saved project on the [My Studio](https://app.aistudios.cn/auth/signin) page and entering the edit screen via the URL. For example, in `app.aistudios.cn/editor/abcdefg`, the project ID is `abcdefg`.
 
 ![Project Id](@site/static/img/aistudiosV3/basic-guide/export-from-exist-project/project-id.png)
 
@@ -86,7 +86,7 @@ Use the Project Import API to retrieve the project to be exported as a video. Us
 ### Example Code
 
 ```ts showLineNumbers
-const API_HOST = 'https://app.aistudios.com'
+const API_HOST = 'https://app.aistudios.cn'
 const GET_PROJECT_API_PATH = '/api/odin/v3/editor/project'
 
 const project = await fetch(
@@ -410,7 +410,7 @@ while (!isFinished) {
 ## Full Code
 
 ```ts showLineNumbers
-const API_HOST = 'https://app.aistudios.com'
+const API_HOST = 'https://app.aistudios.cn'
 const GET_PROJECT_API_PATH = '/api/odin/v3/editor/project'
 const GENERATE_PROJECT_API_PATH = '/api/odin/v3/editor/project'
 const GET_PROGRESS_API_PATH = '/api/odin/v3/editor/progress'
@@ -467,7 +467,7 @@ const main = async () => {
     scenes: project.scenes,
   })
   const generatedProjectId = await fetch(
-  `${API_HOST}${GENERATE_PROJECT_API_PATH}`
+    `${API_HOST}${GENERATE_PROJECT_API_PATH}`,
     {
       method: 'POST',
       headers: {

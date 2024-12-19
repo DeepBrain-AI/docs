@@ -11,7 +11,7 @@ Confirm authentication information by checking if your api key is valid.
 ## 1. API endpoint
 
 ```http
-https://app.aistudios.com/api/odin/v3/auth
+https://app.aistudios.cn/api/odin/v3/auth
 ```
 
 <br/>
@@ -34,7 +34,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.aistudios.com/api/odin/v3/auth  \
+curl https://app.aistudios.cn/api/odin/v3/auth  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X GET 
@@ -48,7 +48,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.get('https://app.aistudios.com/api/odin/v3/auth', 
+axios.get('https://app.aistudios.cn/api/odin/v3/auth', 
   {
     headers: {
       'Authorization': ${token},
@@ -71,7 +71,7 @@ axios.get('https://app.aistudios.com/api/odin/v3/auth',
 import requests
 import json
 
-url = "https://app.aistudios.com/api/odin/v3/auth"
+url = "https://app.aistudios.cn/api/odin/v3/auth"
 
 headers = {
   "Content-Type": "application/json",

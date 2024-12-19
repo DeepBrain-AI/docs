@@ -11,7 +11,7 @@ The audio export section shows you how to send an API request in JSON format to 
 ## 1. API endpoint
 
 ```http
-https://app.aistudios.com/api/odin/v3/simple/audio
+https://app.aistudios.cn/api/odin/v3/simple/audio
 ```
 
 <br/>
@@ -46,7 +46,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.aistudios.com/api/odin/v3/simple/audio  \
+curl https://app.aistudios.cn/api/odin/v3/simple/audio  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -64,7 +64,7 @@ curl https://app.aistudios.com/api/odin/v3/simple/audio  \
 import axios from "axios";
 const token = ${API KEY};
 
-axios.post('https://app.aistudios.com/api/odin/v3/simple/audio', 
+axios.post('https://app.aistudios.cn/api/odin/v3/simple/audio', 
   {
     "language": "en",
     "text": "Hello, this is test video",
@@ -92,7 +92,7 @@ axios.post('https://app.aistudios.com/api/odin/v3/simple/audio',
 import requests
 import json
 
-url = "https://app.aistudios.com/api/odin/v3/simple/audio"
+url = "https://app.aistudios.cn/api/odin/v3/simple/audio"
 body = {
   "language": "en",
   "text": "Hello, this is test video",

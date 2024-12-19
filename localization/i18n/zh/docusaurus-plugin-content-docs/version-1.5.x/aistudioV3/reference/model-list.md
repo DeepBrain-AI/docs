@@ -7,7 +7,7 @@ The get model list section demonstrates how to retrieve information about AI mod
 ## 1. API endpoint
 
 ```http
-https://app.aistudios.com/api/odin/v3/model
+https://app.aistudios.cn/api/odin/v3/model
 ```
 
 <br/>
@@ -41,7 +41,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.aistudios.com/api/odin/v3/model  \
+curl https://app.aistudios.cn/api/odin/v3/model  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X GET
@@ -54,7 +54,7 @@ curl https://app.aistudios.com/api/odin/v3/model  \
 import axios from "axios"; 
 const token = ${API KEY};
 
-axios.get(`https://app.aistudios.com/api/odin/v3/model`, 
+axios.get(`https://app.aistudios.cn/api/odin/v3/model`, 
   {
     headers: {
       'Authorization': `${token}`,
@@ -77,7 +77,7 @@ axios.get(`https://app.aistudios.com/api/odin/v3/model`,
 import requests
 import json
 
-url = "https://app.aistudios.com/api/odin/v3/model"
+url = "https://app.aistudios.cn/api/odin/v3/model"
 
 headers = {
   "Content-Type": "application/json",

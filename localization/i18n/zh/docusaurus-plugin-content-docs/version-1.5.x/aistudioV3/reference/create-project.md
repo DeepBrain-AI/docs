@@ -4,14 +4,14 @@ sidebar_position: 7
 
 # Create project and export
 
-Exporting projects describes how to synthesize new videos by sending api requests in JSON format. You can see & edit exported video at [AI Studio by Deepbrain AI](https://app.aistudios.com).
+Exporting projects describes how to synthesize new videos by sending api requests in JSON format. You can see & edit exported video at [AI Studio by Deepbrain AI](https://app.aistudios.cn).
 
 <br/>
 
 ## 1. API endpoint
 
 ```http
-https://app.aistudios.com/api/odin/v3/editor/project
+https://app.aistudios.cn/api/odin/v3/editor/project
 ```
 
 <br/>
@@ -104,7 +104,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.aistudios.com/api/odin/v3/editor/project  \
+curl https://app.aistudios.cn/api/odin/v3/editor/project  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -247,7 +247,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.post('https://app.aistudios.com/api/odin/v3/editor/project', 
+axios.post('https://app.aistudios.cn/api/odin/v3/editor/project', 
   {
     "scenes": [{
       "background": {
@@ -399,7 +399,7 @@ axios.post('https://app.aistudios.com/api/odin/v3/editor/project',
 import requests
 import json
 
-url = "https://app.aistudios.com/api/odin/v3/editor/project"
+url = "https://app.aistudios.cn/api/odin/v3/editor/project"
 body = {
   "scenes": [{
     "background": {

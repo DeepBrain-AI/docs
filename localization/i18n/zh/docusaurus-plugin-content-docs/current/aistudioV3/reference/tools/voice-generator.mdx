@@ -13,7 +13,7 @@ The types and availability of models that can be used need to be confirmed throu
 ## 1. API endpoint
 
 ```
-POST https://app.aistudios.com/api/odin/v3/tools/voice-generator
+POST https://app.aistudios.cn/api/odin/v3/tools/voice-generator
 ```
 
 <br/>
@@ -53,7 +53,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.aistudios.com/api/odin/v3/tools/voice-generator  \
+curl https://app.aistudios.cn/api/odin/v3/tools/voice-generator  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -71,7 +71,7 @@ curl https://app.aistudios.com/api/odin/v3/tools/voice-generator  \
 ```js
 import axios from "axios";
 
-axios.post("https://app.aistudios.com/api/odin/v3/tools/voice-generator", 
+axios.post("https://app.aistudios.cn/api/odin/v3/tools/voice-generator", 
   {
     "script": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     "model": "M000351175",
@@ -100,7 +100,7 @@ axios.post("https://app.aistudios.com/api/odin/v3/tools/voice-generator",
 import requests
 import json
 
-url = "https://app.aistudios.com/api/odin/v3/tools/voice-generator"
+url = "https://app.aistudios.cn/api/odin/v3/tools/voice-generator"
 body = {
   "script": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   "model": "M000351175",
