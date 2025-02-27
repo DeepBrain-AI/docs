@@ -1,0 +1,147 @@
+# Docs to video
+
+Convert your documents into videos using Deepbrain AI's advanced technology. To check the progress of the video generation, see [progress](../progress) endpoint.
+
+<br />
+
+## 1. API endpoint
+
+```
+POST https://app.aistudios.com/api/odin/v3/automation/docs-to-video
+```
+
+<br />
+
+## 2. Request parameter
+
+| key                    | desc                                                                                                                                                    | type                                             | required | default    |
+| :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------- | :------- | :--------- |
+| files                  | File uri retrieved from the [file-upload](./upload-files) api                                                                                                             | String[]                                         | true     | -          |
+| options                | The configuration to be used for the video generation                                                                                                   | Json                                             | false    | {}         |
+| options.goal           | The purpose of the video generation                                                                                                                     | 'auto' \| 'business' \| 'youtube' \| 'education' | false    | 'business' |
+| options.duration       | The expected duration of the generated video                                                                                                            | 'auto' \| Number                                 | false    | -          |
+| options.speed          | The video playback speed compared to the original speed                                                                                                 | 'auto' \| Number                                 | false    | -          |
+| options.language       | The language used in the video. Note that the language code follows the [ISO 639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) standard. | 'auto' \| String                                 | false    | -          |
+| options.media          | The source of the image assets used in the video generation (only valid if options.fileBackground is false)                                             | 'auto' \| 'search' \| 'free' \| 'generative'     | false    | -          |
+| options.style          | The style of the generative assets (only valid if options.media is 'generative')                                                                        | 'auto' \| 'business' \| 'youtube' \| 'education' | false    | -          |
+| options.fileBackground | Whether to use the file you have provided in the background of the video                                                                                | Boolean                                          | false    | true       |
+| options.orientation    | The screen orientation of the generated video                                                                                                           | 'web' \| 'mobile'                                | false    | 'web'      |
+| options.model          | The id of the AI model to be used for the video generation                                                                                              | String                                           | false    | -          |
+
+:::info File Types
+
+If any of the parameters in option object is not provided, default values will be used.
+
+:::
+
+<br />
+
+## 3. Response parameters
+
+| key       | desc                            | type   |
+| :-------- | :------------------------------ | :----- |
+| projectId | ID of the created video project | String |
+
+<br />
+
+## 4. Sample Request
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://app.aistudios.com/api/odin/v3/automation/docs-to-video  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{
+  "files":[
+    {
+      "uri": "39b247fd3a70d86b7849808fc1587c27.pptx",
+      "fileName": "sampleFile.pptx"
+    }
+  ],
+  "options": {
+    "duration": 30,
+    "speed": 1,
+    "language": "en",
+    "fileBackground": true,
+    "model":"M000351175"
+  }
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios";
+const token = ${API KEY};
+
+axios.post('https://app.aistudios.com/api/odin/v3/automation/docs-to-video',
+{
+  "files":[
+    {
+      "uri": "39b247fd3a70d86b7849808fc1587c27.pptx",
+      "fileName": "sampleFile.pptx"
+    }
+  ],
+  "options": {
+    "duration": 30,
+    "speed": 1,
+    "language": "en",
+    "fileBackground": true,
+    "model":"M000351175"
+  }
+},
+  {
+    headers: {
+      'Authorization': ${token},
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data);
+})
+.catch((error) => {
+  console.error(error);
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://app.aistudios.com/api/odin/v3/automation/docs-to-video"
+body = {
+  "files":[
+    {
+      "uri": "39b247fd3a70d86b7849808fc1587c27.pptx",
+      "fileName": "sampleFile.pptx"
+    }
+  ],
+  "options": {
+    "duration": 30,
+    "speed": 1,
+    "language": "en",
+    "fileBackground": true,
+    "model":"M000351175"
+  }
+}
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": ${API TOKEN}
+}
+
+r = requests.post(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>

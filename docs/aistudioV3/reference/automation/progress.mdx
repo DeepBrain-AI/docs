@@ -1,0 +1,76 @@
+# Progress
+
+Check the progress of the automated AI video generation. To see how to export the generated video and check out the download URL, see the [project export](../export-project) endpoint.
+
+<br />
+
+## **1. API Endpoint**
+
+```
+POST https://app.aistudios.com/api/odin/v3/automation/progress/${projectId}
+```
+
+<br />
+
+## **2. Response Parameters**
+
+The API responds with a JSON object containing the progress details of the video generation.
+
+| Key        | Description                                       | Type    |
+|------------|---------------------------------------------------|---------|
+| state | Current state of the automation process          | String  |
+| progress | Completion percentage of the video generation | Number  |
+
+<br />
+
+## **3. Sample Requests**
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl -X POST https://app.aistudios.com/api/odin/v3/automation/progress/${projectId} \
+-H "Authorization: ${API_KEY}" \
+-H "Content-Type: application/json"
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios";
+
+const projectId = "your_project_id";
+const token = "your_api_key";
+
+axios.post(`https://app.aistudios.com/api/odin/v3/automation/progress/${projectId}`, {}, {
+  headers: {
+    "Authorization": token,
+    "Content-Type": "application/json"
+  }
+})
+.then((res) => console.log(res.data))
+.catch((error) => console.error(error));
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = "https://app.aistudios.com/api/odin/v3/automation/progress/your_project_id"
+headers = {
+    "Authorization": "your_api_key",
+    "Content-Type": "application/json"
+}
+
+response = requests.post(url, headers=headers)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,99 @@
+# Upload Files
+
+Upload files to the server and retrieve their corresponding file URIs. These URIs can be used in subsequent requests, such as the [docs-to-video](./) API for video generation.
+
+<br />
+
+## **1. API Endpoint**
+
+```
+POST https://app.aistudios.com/api/odin/v3/automation/upload-files
+```
+
+<br />
+
+## **2. Request Parameters**
+
+This endpoint accepts a **multipart/form-data** request with the following parameters:
+
+| Key   | Description                      | Type       | Required | Default |
+|-------|----------------------------------|------------|----------|---------|
+| files | One or more files to be uploaded | File (Binary) | **true** | - |
+
+<br />
+
+:::info File Types
+
+Acceptable file extensions: `.txt`, `.pdf`, `.xls`, `.xlsx`, `.doc`, `.docs`, `.docx`, `.pptx`, `.ppt`, `.ppt`
+
+:::
+<br />
+
+## **3. Response Parameters**
+
+The API responds with a JSON object containing the uploaded file details.
+
+| Key      | Description                          | Type   |
+|----------|--------------------------------------|--------|
+| uploadResults    | List of uploaded file details       | Array  |
+| uploadResults[].uri | Unique identifier of the uploaded file | String |
+| uploadResults[].fileName | Original file name | String |
+
+<br />
+
+## **4. Sample Requests**
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl -X POST https://app.aistudios.com/api/odin/v3/automation/upload-files \
+-H "Authorization: ${API_KEY}" \
+-F "files=@sampleFile1.pptx" \
+-F "files=@sampleFile2.pdf"
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios";
+import FormData from "form-data";
+import fs from "fs";
+
+const formData = new FormData();
+formData.append("files", fs.createReadStream("sampleFile1.pptx"));
+formData.append("files", fs.createReadStream("sampleFile2.pdf"));
+
+axios.post("https://app.aistudios.com/api/odin/v3/automation/upload-files", formData, {
+  headers: {
+    "Authorization": `${API_KEY}`,
+    ...formData.getHeaders(),
+  },
+})
+.then((res) => console.log(res.data))
+.catch((error) => console.error(error));
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = "https://app.aistudios.com/api/odin/v3/automation/upload-files"
+files = [
+    ('files', open('sampleFile1.pptx', 'rb')),
+    ('files', open('sampleFile2.pdf', 'rb'))
+]
+headers = {"Authorization": f"{API_KEY}"}
+
+response = requests.post(url, files=files, headers=headers)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
