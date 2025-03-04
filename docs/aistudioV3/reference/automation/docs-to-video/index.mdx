@@ -16,10 +16,11 @@ POST https://app.aistudios.com/api/odin/v3/automation/docs-to-video
 
 | key                    | desc                                                                                                                                                    | type                                             | required | default    |
 | :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------- | :------- | :--------- |
-| files                  | File uri retrieved from the [file-upload](./upload-files) api                                                                                                             | String[]                                         | true     | -          |
-| options                | The configuration to be used for the video generation                                                                                                   | Json                                             | false    | {}         |
+| files                  | Files retrieved from the [file-upload](./upload-files) api                                                                                                             | Array                                        | true     | -          |
+| files[].uri | Unique identifier of the uploaded file | String |true|-|
+| files[].fileName | The original file name | String |true|-|
+| options               | The configuration to be used for the video generation                                                                                                   | Json                                             | false    | {}         |
 | options.goal           | The purpose of the video generation                                                                                                                     | 'auto' \| 'business' \| 'youtube' \| 'education' | false    | 'business' |
-| options.duration       | The expected duration of the generated video                                                                                                            | 'auto' \| Number                                 | false    | -          |
 | options.speed          | The video playback speed compared to the original speed                                                                                                 | 'auto' \| Number                                 | false    | -          |
 | options.language       | The language used in the video. Note that the language code follows the [ISO 639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) standard. | 'auto' \| String                                 | false    | -          |
 | options.media          | The source of the image assets used in the video generation (only valid if options.fileBackground is false)                                             | 'auto' \| 'search' \| 'free' \| 'generative'     | false    | -          |
@@ -28,9 +29,9 @@ POST https://app.aistudios.com/api/odin/v3/automation/docs-to-video
 | options.orientation    | The screen orientation of the generated video                                                                                                           | 'web' \| 'mobile'                                | false    | 'web'      |
 | options.model          | The id of the AI model to be used for the video generation                                                                                              | String                                           | false    | -          |
 
-:::info File Types
+:::info Options
 
-If any of the parameters in option object is not provided, default values will be used.
+If any of the parameters in option object is not provided, default values (that are considered 'optimal' for video generation under your other conditions) will be auto-selected.
 
 :::
 
@@ -65,11 +66,8 @@ curl https://app.aistudios.com/api/odin/v3/automation/docs-to-video  \
     }
   ],
   "options": {
-    "duration": 30,
-    "speed": 1,
-    "language": "en",
-    "fileBackground": true,
-    "model":"M000351175"
+    "goal": "business",
+    "fileBackground": true
   }
 }'
 ```
@@ -90,11 +88,8 @@ axios.post('https://app.aistudios.com/api/odin/v3/automation/docs-to-video',
     }
   ],
   "options": {
-    "duration": 30,
-    "speed": 1,
-    "language": "en",
-    "fileBackground": true,
-    "model":"M000351175"
+    "goal": "business",
+    "fileBackground": true
   }
 },
   {
@@ -128,11 +123,8 @@ body = {
     }
   ],
   "options": {
-    "duration": 30,
-    "speed": 1,
-    "language": "en",
-    "fileBackground": true,
-    "model":"M000351175"
+    "goal": "business",
+    "fileBackground": true
   }
 }
 headers = {

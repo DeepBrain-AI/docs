@@ -148,8 +148,8 @@ const sidebars = {
               "type": "category",
               "label": "Docs to Video",
               "items": [
+                "aistudioV3/reference/automation/docs-to-video/upload-files",
                 "aistudioV3/reference/automation/docs-to-video/index",
-                "aistudioV3/reference/automation/docs-to-video/upload-files"
               ]
             },
             'aistudioV3/reference/automation/progress',

@@ -7,14 +7,14 @@ Upload files to the server and retrieve their corresponding file URIs. These URI
 ## **1. API Endpoint**
 
 ```
-POST https://app.aistudios.com/api/odin/v3/automation/upload-files
+POST https://app.aistudios.com/api/odin/v3/automation/docs-to-video/upload-files
 ```
 
 <br />
 
 ## **2. Request Parameters**
 
-This endpoint accepts a **multipart/form-data** request with the following parameters:
+
 
 | Key   | Description                      | Type       | Required | Default |
 |-------|----------------------------------|------------|----------|---------|
@@ -24,7 +24,8 @@ This endpoint accepts a **multipart/form-data** request with the following param
 
 :::info File Types
 
-Acceptable file extensions: `.txt`, `.pdf`, `.xls`, `.xlsx`, `.doc`, `.docs`, `.docx`, `.pptx`, `.ppt`, `.ppt`
+- This endpoint accepts a **multipart/form-data** request with the following parameters:
+- Acceptable file extensions: `.txt`, `.pdf`, `.xls`, `.xlsx`, `.doc`, `.docs`, `.docx`, `.pptx`, `.ppt`, `.ppt`
 
 :::
 <br />
@@ -37,7 +38,7 @@ The API responds with a JSON object containing the uploaded file details.
 |----------|--------------------------------------|--------|
 | uploadResults    | List of uploaded file details       | Array  |
 | uploadResults[].uri | Unique identifier of the uploaded file | String |
-| uploadResults[].fileName | Original file name | String |
+| uploadResults[].fileName | The original file name | String |
 
 <br />
 
@@ -50,7 +51,7 @@ import TabItem from "@theme/TabItem";
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl -X POST https://app.aistudios.com/api/odin/v3/automation/upload-files \
+curl -X POST https://app.aistudios.com/api/odin/v3/automation/docs-to-video/upload-files \
 -H "Authorization: ${API_KEY}" \
 -F "files=@sampleFile1.pptx" \
 -F "files=@sampleFile2.pdf"
@@ -68,7 +69,7 @@ const formData = new FormData();
 formData.append("files", fs.createReadStream("sampleFile1.pptx"));
 formData.append("files", fs.createReadStream("sampleFile2.pdf"));
 
-axios.post("https://app.aistudios.com/api/odin/v3/automation/upload-files", formData, {
+axios.post("https://app.aistudios.com/api/odin/v3/automation/docs-to-video/upload-files", formData, {
   headers: {
     "Authorization": `${API_KEY}`,
     ...formData.getHeaders(),
@@ -84,7 +85,7 @@ axios.post("https://app.aistudios.com/api/odin/v3/automation/upload-files", form
 ```py
 import requests
 
-url = "https://app.aistudios.com/api/odin/v3/automation/upload-files"
+url = "https://app.aistudios.com/api/odin/v3/automation/docs-to-video/upload-files"
 files = [
     ('files', open('sampleFile1.pptx', 'rb')),
     ('files', open('sampleFile2.pdf', 'rb'))

@@ -7,7 +7,7 @@ Check the progress of the automated AI video generation. To see how to export th
 ## **1. API Endpoint**
 
 ```
-POST https://app.aistudios.com/api/odin/v3/automation/progress/${projectId}
+GET https://app.aistudios.com/api/odin/v3/automation/progress?projectId=${projectId}
 ```
 
 <br />
@@ -32,7 +32,7 @@ import TabItem from "@theme/TabItem";
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl -X POST https://app.aistudios.com/api/odin/v3/automation/progress/${projectId} \
+curl -X POST https://app.aistudios.com/api/odin/v3/automation/progress?projectId=${projectId} \
 -H "Authorization: ${API_KEY}" \
 -H "Content-Type: application/json"
 ```
@@ -46,7 +46,7 @@ import axios from "axios";
 const projectId = "your_project_id";
 const token = "your_api_key";
 
-axios.post(`https://app.aistudios.com/api/odin/v3/automation/progress/${projectId}`, {}, {
+axios.get(`https://app.aistudios.com/api/odin/v3/automation/progress/${projectId}`, {
   headers: {
     "Authorization": token,
     "Content-Type": "application/json"
@@ -62,7 +62,7 @@ axios.post(`https://app.aistudios.com/api/odin/v3/automation/progress/${projectI
 ```py
 import requests
 
-url = "https://app.aistudios.com/api/odin/v3/automation/progress/your_project_id"
+url = "https://app.aistudios.com/api/odin/v3/automation/progress?projectId=your_project_id"
 headers = {
     "Authorization": "your_api_key",
     "Content-Type": "application/json"

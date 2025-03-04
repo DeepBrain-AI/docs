@@ -67,7 +67,7 @@ const config = {
            * 
            * 로컬에서 작업할 때는 true로 설정하고 current 파일을 수정
            */
-          includeCurrentVersion: false,
+          includeCurrentVersion: true,
           lastVersion: '1.5.x',
           versions: {
             '1.3.x': {
