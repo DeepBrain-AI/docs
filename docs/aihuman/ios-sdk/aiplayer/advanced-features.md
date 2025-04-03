@@ -89,6 +89,8 @@ let customVoice = AIPlayer.getCustomVoicesWith()[0]
 let clipSet = AIClipSet.clipSet(text: speechText, customVoice: customVoice)
 ```
 
+<br/>
+
 ### Preload
 
 Preload is used when you want to make the AI speak the next sentence without delay by loading sentences in advance. You could think of it as a caching process. AI's speech requires large amount of video/audio data. Therefore preloading too many sentences could kill the app. 

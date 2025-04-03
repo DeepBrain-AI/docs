@@ -10,6 +10,8 @@ The demo web page allows you to experience the AI Human Web SDK(js)'s features. 
 
 <img src="/img/aihuman/web/demo_btn.png" />
 
+<br />
+
 #### Demo web page menu
 
 - QuickStart : Start AIPlayer quickly

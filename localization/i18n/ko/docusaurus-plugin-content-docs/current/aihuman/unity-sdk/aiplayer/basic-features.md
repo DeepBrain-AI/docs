@@ -80,6 +80,8 @@ public void OnAIPlayerError(AIError error)
 _aiPlayer.Pause()
 ```
 
+<br/>
+
 ### 발화 재시작
 
 : 발화 일시정지 상태에서 재개합니다.
@@ -87,6 +89,8 @@ _aiPlayer.Pause()
 // 재개 method
 _aiPlayer.Resume()
 ```
+
+<br/>
 
 ### 발화 정지
 

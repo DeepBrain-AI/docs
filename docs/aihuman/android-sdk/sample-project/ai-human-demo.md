@@ -23,7 +23,7 @@ AIPlayerDemo is an activity that demonstrates various functionalities of AIPlaye
      * aiPlayer creation. Gives AILIVE type to {@link AIPlayerFactory}
      */
     private void initThis() {
-        //Enable logging for debugging: AIPlayer.enableLog(true);
+        // Enable logging for debugging: AIPlayer.enableLog(true);
 
         AIModelInfoManager.getAIList((aiError, resp) -> {
             /* resp
@@ -47,7 +47,7 @@ AIPlayerDemo is an activity that demonstrates various functionalities of AIPlaye
 **Change AI**
 
 ```java
-// Set up the UI and initialize AIPlayer with the selected AI model.
+// UI and AIPlayer's setup 
 private void setUpUIWithAIPlayer() {
 		//...		
     binding.aiSelectSpinner.setAdapter(new ArrayAdapter<>(AIPlayerDemo.this,

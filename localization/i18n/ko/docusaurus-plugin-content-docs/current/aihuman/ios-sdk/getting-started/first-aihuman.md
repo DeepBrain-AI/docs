@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # 나의 AI Human 만들기
 
-이번 챕터에서는 기본 AI로 AIPlayer를 빠르게 설정하고 AI 발화 프로세스에 대해 알아봅니다. AIPlayer를 처음 설정할 때 네트워크 상태에 따라 로드하는 데 몇 분이 걸릴 수 있습니다. AIPlayerCallback의 on AIPlayerResloadingProgressed 함수를 구현하여 로딩 진행 상황을 모니터링할 수 있습니다.
+이번 챕터에서는 기본 AI로 AIPlayer를 빠르게 설정하고 AI 발화 프로세스에 대해 알아봅니다. AIPlayer를 처음 설정할 때 네트워크 상태에 따라 로드하는 데 몇 분이 걸릴 수 있습니다. AIPlayerCallback의 on AIPlayerResloadingProgressed 함수를 구현하여 로딩 진행 상황을 모니터링 할 수 있습니다.
 
 :::tip
 샘플에서 아래 파일의 코드를 통해 더 많은 것을 알 수 있습니다.
@@ -17,7 +17,7 @@ sidebar_position: 3
 
 ### 1. 프로젝트를 생성 및 설정
 
-프로젝트를 만들고 **프로젝트 설정**을 따라한다.
+프로젝트를 만들고 **프로젝트 설정**을 참고하여 설정하세요.
 
 <br/>
 
@@ -42,7 +42,7 @@ class AIQuickSampleViewController {
 
 <!-- <img src="images/aisample_regist_000.png" width="1191" height="301"> -->
 
-프로젝트 추가 시 플랫폼 별로 등록이 가능하며, 이때 등록한 플랫폼의 AppID와 UserKey가 필요합니다.
+프로젝트 추가 시 플랫폼별로 등록이 가능하며, 이때 등록한 플랫폼의 AppID와 UserKey가 필요합니다.
 
 <img src="/img/aihuman/ios/aisample_regist_001.png" />
 

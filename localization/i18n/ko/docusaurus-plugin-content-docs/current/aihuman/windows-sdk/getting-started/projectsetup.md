@@ -7,6 +7,7 @@ sidebar_position: 2
 이번 장에서는 AI Human SDK 구동의 인증 절차에 필요한 App ID, userKey 등을 생성하고 설정하는 방법에 대해 알아봅니다.
 
 ### 1. 사이트 진입하기
+
 **[AI Human 웹사이트](https://www.aistudios.com/aihuman/)**에서 계정을 생성하고 로그인 합니다.
 
 - 우측 상단 > Login(Sign In) > Create account
@@ -17,6 +18,7 @@ sidebar_position: 2
 <br/>
 
 ### 2. My Workspace에 Project 추가하기
+ 
 **[My Workspace](https://aihuman.aistudios.com/aihuman/sdk)**에서 Project를 만들고, Windows App ID 부분에 SDK를 사용하는 Windows Application 이름을 입력하고 확인을 클릭합니다. (이때 App ID는 자동으로 중복체크를 수행합니다.)
 해당 App ID에서 사용할 수 있는 User Key가 발급됩니다.
 

@@ -9,7 +9,7 @@ sidebar_position: 6
 
 <br/>
 
-### 제스처 발화
+### 스케일 조절하기
 
 <img src="/img/aihuman/windows/scale_1.5.x.png" />
 
