@@ -64,7 +64,7 @@ const config = {
 
           /**
            * 배포할 때는 현재 버전이 표시되지 않도록 false로 설정해야 함
-           * 
+           *
            * 로컬에서 작업할 때는 true로 설정하고 current 파일을 수정
            */
           includeCurrentVersion: false,

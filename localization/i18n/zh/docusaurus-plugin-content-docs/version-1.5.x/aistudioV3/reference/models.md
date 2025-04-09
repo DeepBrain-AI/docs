@@ -22,6 +22,7 @@ https://app.aistudios.cn/api/odin/v3/dropdown/models
 |:---|:---|:---|
 |id|Unique identifier of the AI model| String|
 |label|User-friendly label of the AI model|String|
+|avatarType|Type of AI Model|String|
 
 <br/>
 
@@ -38,7 +39,7 @@ import TabItem from '@theme/TabItem';
 curl https://app.aistudios.cn/api/odin/v3/dropdown/models  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
--X GET 
+-X GET
 ```
 
 </TabItem>
@@ -49,7 +50,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.get('https://app.aistudios.cn/api/odin/v3/dropdown/models', 
+axios.get('https://app.aistudios.cn/api/odin/v3/dropdown/models',
   {
     headers: {
       'Authorization': ${token},
