@@ -14,7 +14,6 @@ sidebar_position: 1
 | iOS                 | iPhone 6S or later                                                                                                                     |
 | Browser             | Chrome 109 or higher<br/>Safari 16 or higher                                                                                           |
 
-
 <br/>
 
 ### 1. Include the SDK

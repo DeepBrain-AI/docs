@@ -23,7 +23,8 @@ https://app.aistudios.cn/api/odin/v3/simple/audio
 |language|Langauge of the script is written in.|String|true|-|
 |text|Text for AI to read. It must match the langauge of your selected model.|String|true|-|
 |model|AI Model to be used.|String|true|-|
-|tts|External TTS information that is not the default voice of the model.|Json|false|-|
+
+<!-- |tts|External TTS information that is not the default voice of the model.|Json|false|-| -->
 
 <br/>
 

@@ -23,7 +23,8 @@ https://app.aistudios.com/api/odin/v3/simple/audio
 |language|작성한 스크립트의 언어|String|true|-|
 |text|모델이 발화할 스크립트. 모델의 언어와 일치해야함.|String|true|-|
 |model|사용할 모델의 ID|String|true|-|
-|tts|모델의 기본 음성이 아닌 외부 TTS 정보|Json|false|-|
+
+<!-- |tts|모델의 기본 음성이 아닌 외부 TTS 정보|Json|false|-| -->
 
 <br/>
 

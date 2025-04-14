@@ -38,6 +38,7 @@ import TabItem from '@theme/TabItem';
 curl https://app.aistudios.cn/api/odin/v3/editor/template/${templateId} \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
+-X POST \
 -G \
 -d '{ 
   "model": "M000045058", 
@@ -54,7 +55,7 @@ import axios from "axios";
 
 const token = ${API KEY};
 
-axios.get('https://app.aistudios.cn/api/odin/v3/editor/template/${templateId}', {
+axios.post('https://app.aistudios.cn/api/odin/v3/editor/template/${templateId}', {
   headers: {
     'Authorization': ${token},
     'Content-Type': 'application/json'
@@ -93,7 +94,7 @@ headers = {
     "Authorization": ${API TOKEN}
 }
 
-r = requests.get(url, params, headers=headers)
+r = requests.post(url, params, headers=headers)
 ```
 
 </TabItem>

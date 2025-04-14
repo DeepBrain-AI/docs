@@ -10,7 +10,6 @@ sidebar_position: 3
 
 <br/>
 <br/>
-
 <br/>
 
 ### 1. 웹 페이지에 SDK 및 AIPlayer를 추가
@@ -28,7 +27,6 @@ const AI_PLAYER = new AIPlayer(wrapper);
 
 <br/>
 
-<br/>
 
 ### 2. SDK 인증하기
 
@@ -141,8 +139,6 @@ async function generateVerifiedToken() {
   }
 }
 ```
-
-<br/>
 
 <br/>
 

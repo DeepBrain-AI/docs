@@ -16,7 +16,6 @@ This page demonstrates various functionalities of AIPlayer through simple UI. Yo
 
 ### 1. Create the AIPlayer object(AI_PLAYER), complete authentication and set up the AIPlayer
 
-
 ```javascript
 const wrapper = document.getElementById("AIPlayerWrapper");
 const AI_PLAYER = new AIPlayer(wrapper);

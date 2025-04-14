@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Project Setup
 
-In this chapter, you will learn how to create a project and register UserKey using android project's App ID. Userkey is required for authentication to use AI Human SDK.
+In this chapter, you will learn how to create a project and register UserKey using android project's AppId. Userkey is required for authentication to use AI Human SDK.
 
 ### 1. Create android project using Android Studio
 
@@ -119,7 +119,7 @@ permission : INTERNET is required
 ```
 
 application attribute setup
-**If the error "Namespace 'tools' is not bound" appears, click 'Create Namespace Declaration.'**
+**When"Namespace 'tools' is not bound" occurs, click 'Create Namespace declaration.'**
 
 ```xml
 <application

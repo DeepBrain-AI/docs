@@ -11,7 +11,7 @@ sidebar_position: 6
 ## 1. API Endpoint
 
 ```http
-http://app.aistudios.com/api/odin/v3/editor/projects
+http://app.aistudios.com/api/odin/v3/editor/project
 ```
 
 <br/>

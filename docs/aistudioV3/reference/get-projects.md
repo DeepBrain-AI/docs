@@ -50,7 +50,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.get('https://app.aistudios.com/api/odin/v3/editor/projects', 
+axios.get('https://app.aistudios.com/api/odin/v3/editor/project', 
   {
     headers: {
       'Authorization': ${token},
@@ -73,7 +73,7 @@ axios.get('https://app.aistudios.com/api/odin/v3/editor/projects',
 import requests
 import json
 
-url = "https://app.aistudios.com/api/odin/v3/editor/projects"
+url = "https://app.aistudios.com/api/odin/v3/editor/project"
 
 headers = {
   "Content-Type": "application/json",
