@@ -8,7 +8,7 @@ sidebar_position: 2
 
 Get your API Key now and automate your video export process.
 
-The AI Studios V3 API is available for customers on the Enterprise Plan and above.
+The AI Studio V3 API is available to customers who have been issued an API Key.
 
 ## 1. API endpoint
 

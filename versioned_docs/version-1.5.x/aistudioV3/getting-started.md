@@ -23,9 +23,9 @@ AI STUDIOS V3 discloses APIs for external developers, producers, and editors for
 
 ## 1. API key generation
 
-If your account subscribes to a plan that is Pro or higher, you must then issue an API key. When selecting the account name at the top right of the screen after logging in to Studio V3, go to the 'Profile' item of the account in the exposure menu and run the 'Issuing API Key' at the bottom of the screen to check the user key and app. Once activated, the generated 'userKey' can no longer be verified, so copy it separately and manage it safely.
+If you are subscribing to API pricing plan, you will need to get an API key issued after that. When you log in to Studio V3 and select the account name on the upper right side of the screen, go to the 'Appi Key' item of the account in the exposure menu and run 'Appi Key' at the bottom of the screen to check the appid and user key. Once the generated 'user Key' is activated, it can no longer be verified, so please copy it separately and manage it safely.
 
-[Generate API key](./generate-api-key)
+[Check AppId, UserKey](https://account.aistudios.com/user/api-key)
 
 
 

@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## 1. API Key generation
 
-If your account is subscribed to a Pro or higher plan, you are available for issuing an API key. When selecting the account name at the top right of the screen after logging in, go to the "Profile" tab from the menu, generate the API key by clicking the "Issuing API Key" at the bottom of the screen to create 'AppId' and 'UserKey'. Once activated, the generated 'AppId' and 'UserKey' can no longer be viewed. Thus, Please be sure to copy it separately and store it in a safe place.
+If you are subscribing to API pricing plan, you will then need to get an API key issued. If you select the account name on the upper right side of the screen after logging in, go to the 'Profile' item of the account in the exposure menu and run 'Issue API Key' at the bottom of the screen to generate 'AppId' and 'UserKey'. Once the generated AppId and UserKey are activated, they can no longer be verified, so please copy them separately and manage them safely.
 
 API Access Token can be issued through the issued AppId and UserKey. API communication is published through the access token, and the validity of the token is 1 day (24 hours from the time of issuance).
 

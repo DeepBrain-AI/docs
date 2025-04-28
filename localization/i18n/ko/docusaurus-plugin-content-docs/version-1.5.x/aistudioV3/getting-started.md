@@ -23,9 +23,9 @@ AI STUDIOS V3에서는 외부 개발자, 또는 제작자, 편집자들이 쉽�
 
 ## 1. API 키 생성
 
-계정이 Pro 이상의 요금제를 구독하고 있다면, 이후 API 키를 발급받아야 합니다. Studio V3 로그인 후 화면 오른쪽 위 계정명을 선택 시 노출 메뉴에서 계정의 '프로필' 항목으로 이동하여 화면 하단의 'API 키 발급'을 실행하여, user key와 app id를 확인합니다. 생성된 'userKey'는 한번 활성화되면 더는 확인이 불가하므로 별도로 복사하여 안전하게 관리하여 주세요.
+API 요금제를 구독하고 있다면, 이후 API 키를 발급받아야 합니다. Studio V3 로그인 후 화면 오른쪽 위 계정명을 선택 시 노출 메뉴에서 계정의 '프로필' 항목으로 이동하여 화면 하단의 'Api Key'을 실행하여, app id와 user key를 확인합니다. 생성된 'userKey'는 한번 활성화되면 더는 확인이 불가하므로 별도로 복사하여 안전하게 관리하여 주세요.
 
-[API 키 발급하기](./generate-api-key)
+[AppId, UserKey 확인하기](https://account.aistudios.com/user/api-key)
 
 
 
