@@ -111,6 +111,8 @@ const sidebars = {
             "aistudioV3/reference/templates-business",
             "aistudioV3/reference/simple-video",
             "aistudioV3/reference/simple-audio",
+            "aistudioV3/reference/simple-custom",
+            "aistudioV3/reference/translatevideos",
           ],
         },
         {
@@ -129,6 +131,10 @@ const sidebars = {
             'aistudioV3/reference/tools/image-generator',
             'aistudioV3/reference/tools/video-generator',
             'aistudioV3/reference/tools/text-generator',
+            'aistudioV3/reference/tools/docs-to-video',
+            'aistudioV3/reference/tools/topic-to-video',
+            'aistudioV3/reference/tools/url-to-video',
+            'aistudioV3/reference/tools/scripts-to-video',
           ],
         },
         {
