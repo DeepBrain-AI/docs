@@ -1,9 +1,10 @@
 # Scripts to Video
+Describe the process of creating video content based on a given sentence.
 
-This API describes the process of creating video content based on sentences set by the user.
 <br/>
 
 ## 1. Make a request
+Please request project creation by delivering sentences and options.
 
 ### 1. API endpoint
 ```http
@@ -27,7 +28,7 @@ https://app.aistudios.com/api/odin/v3/automation/scripts_to_video
 | options.orientation | Screen orientation of the created video | 'web', 'mobile' | false | 'web' |
 | options.model | ID of the AI model to use for video generation |  |  |  |
 
-### 2-3. Response Parameters
+### 1-3. Response Parameters
 | key | desc | type |
 | --- | --- | --- |
 | projectId | ID of the video project created | String |
@@ -116,7 +117,7 @@ r = requests.post(url, data=json.dumps(body), headers=headers)
 <br/>
 <br/>
 
-## 2. Check progression conditions
+## 2. Check the progress of project creation
 Create a video after request Check your current progress.
 
 ### 2-1. Api endpoint
@@ -154,4 +155,4 @@ axios.get(`https://app.aistudios.com/api/odin/v3/automation/progress/${projectId
 <br/>
 
 ## 3. Export
-Use [Export Project](/aistudioV3/reference/export-project) to export the converted video.
+Use Project [Export to Project](/aistudioV3/reference/export-project) a video of a created project.

@@ -1,9 +1,10 @@
 # URL to Video
+주어진 URL을 분석하여 동영상 콘텐츠를 생성하는 과정을 설명합니다.
 
-본 API는 사용자가 설정한 URL를 바탕으로 영상 콘텐츠를 생성하는 과정을 설명합니다.
 <br/>
 
-## 1. 요청하기
+## 1. 프로젝트생성 요청
+URL과 옵션을 전달하여 프로젝트생성 요청하세요.
 
 ### 1-1. API endpoint
 ```http
@@ -113,7 +114,7 @@ r = requests.post(url, data=json.dumps(body), headers=headers)
 <br/>
 <br/>
 
-## 2. 진행상황 확인
+## 2. 프로젝트생성 진행상황 확인
 요청후 동영상 생성 현재 진행 상황을 확인합니다.
 
 ### 2-1. Api endpoint
@@ -151,4 +152,4 @@ axios.get(`https://app.aistudios.com/api/odin/v3/automation/progress/${projectId
 <br/>
 
 ## 3. 내보내기
-변환이 완료된 동영상을 내보내려면 [프로젝트 내보내기](/aistudioV3/reference/export-project) 이용하세요.
+생성된 프로젝트를 동영상 내보내기 할려면 [프로젝트 내보내기](/aistudioV3/reference/export-project) 이용하세요.

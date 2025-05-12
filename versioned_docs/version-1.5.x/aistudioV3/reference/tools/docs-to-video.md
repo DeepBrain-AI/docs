@@ -1,11 +1,6 @@
 # Docs to Video
+To upload a document file and export a video, you must proceed to the following steps.
 
-Here is an API document developed for the Docs to Video feature in AI Studios. To create and download, you must complete the following steps.
-
-- File upload and URI verification
-- Send a document-video request
-- Check the progress of document-video creation
-- When finished, export the video using the export endpoint
 <br/>
 
 ## 1. Uploading Files and Verifying URIs
@@ -116,7 +111,7 @@ axios.post('https://app.aistudios.com/api/odin/v3/automation/docs-to-video',
 <br/>
 
 ## 3. Check progression conditions
-Create a video after request Check your current progress.
+Review the current progress of project creation.
 
 ### 3-1. Api endpoint
 ```http
@@ -153,4 +148,4 @@ axios.get(`https://app.aistudios.com/api/odin/v3/automation/progress/${projectId
 <br/>
 
 ## 4. Export
-Use [Export Project](/aistudioV3/reference/export-project) to export the converted video.
+Use Project [Export to Project](/aistudioV3/reference/export-project) a video of a created project.

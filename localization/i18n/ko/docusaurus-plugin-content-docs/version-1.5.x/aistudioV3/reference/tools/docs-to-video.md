@@ -1,11 +1,6 @@
 # Docs to Video
+문서파일을 업로드 하고 동영상 내보내기 할려면 다음 단계로 진행해야 합니다.
 
-다음은 AI 스튜디오의 Docs to Video 기능을 위해 개발된 API 문서입니다. 생성하고 다운로드하려면 다음 단계를 완료해야 합니다
-
-- 파일업로드 및 URI 확인
-- 문서-비디오 요청 전송
-- 문서-비디오 생성 진행 상황 확인
-- 완료되면 내보내기 끝점을 사용하여 동영상을 내보냅니다
 <br/>
 
 ## 1. 파일 업로드 및 URI 확인
@@ -50,7 +45,7 @@ axios.post("https://app.aistudios.com/api/odin/v3/automation/docs-to-video/uploa
 <br/>
 <br/>
 
-## 2. 동영상 생성요청
+## 2. 프로젝트생성 요청
 파일 업로드에서 가져온 URI 정보를 포함하여 요청하세요.
 
 ### 2-1. Api endpoint
@@ -115,8 +110,8 @@ axios.post('https://app.aistudios.com/api/odin/v3/automation/docs-to-video',
 <br/>
 <br/>
 
-## 3. 진행상황 확인
-요청후 동영상 생성 현재 진행 상황을 확인합니다.
+## 3. 프로젝트생성 진행상황 확인
+프로젝트생성 현재 진행상황을 확인합니다.
 
 ### 3-1. Api endpoint
 ```http
@@ -153,4 +148,4 @@ axios.get(`https://app.aistudios.com/api/odin/v3/automation/progress/${projectId
 <br/>
 
 ## 4. 내보내기
-변환이 완료된 동영상을 내보내려면 [프로젝트 내보내기](/aistudioV3/reference/export-project) 이용하세요.
+생성된 프로젝트를 동영상 내보내기 할려면 [프로젝트 내보내기](/aistudioV3/reference/export-project) 이용하세요.
