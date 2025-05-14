@@ -22,7 +22,6 @@ https://app.aistudios.com/api/odin/v3/editor/project
 |:---|:---|:---|:---|:---|
 |name|Project name|String|false|Default Template|
 |orientation|Project orientation|String|false|landscape|
-|dictionary|User additional speech learning data|Json|false|-|
 |scenes|Scene data|Array(json)|true|-|
 |scenes[].sceneIdx|Sequence of the scene|Int|true|-|
 |scenes[].scripts|List of speech data for the scene<br />(* *Although it is an array for future extensibility, only one speech data should be entered.*)|Json|true|-|
@@ -42,6 +41,7 @@ https://app.aistudios.com/api/odin/v3/editor/project
 |scenes[].clips[].layer|Alignment order of clips (the higher the number, the more exposed to the top)|Int|true|-|
 |scenes[].clips[].id|ID of the clip|String|true|-|
 |scenes[].clips[].type|Types of clips.  [Learn more](./clips)|String enum (aiModel, shape, image, textImage, videoImage, audio)|true|-|
+|isExport|Whether this project will be exported|Boolean|false|true|
 |[webhookUrl](../reference/webhook)|Url address where the synthesis result should be sent.|String|false|-|
 
 <br/>
