@@ -22,7 +22,6 @@ https://app.aistudios.com/api/odin/v3/editor/project
 |:---|:---|:---|:---|:---|
 |name|프로젝트 이름|String|false|Default Template|
 |orientation|프로젝트 형태 (가로 / 세로)|String|false|landscape|
-|dictionary|사용자 추가 발화 데이터|Json|false|-|
 |scenes|각 장면별 정보|Array(json)|true|-|
 |scenes[].sceneIdx|해당 장면의 순번|Int|true|-|
 |scenes[].scripts|발화할 대사 데이터 리스트<br />(* *추후, 기능의 확장성을 위해 배열로 되어 있지만 대사 데이터는 하나만 입력해야 합니다.*)|Json|true|-|
@@ -42,6 +41,7 @@ https://app.aistudios.com/api/odin/v3/editor/project
 |scenes[].clips[].layer|클립들의 정렬 순서 (번호가 높을수록 상단에 노출)|Int|true|-|
 |scenes[].clips[].id|클립의 Id|String|true|-|
 |scenes[].clips[].type|추가할 클립의 종류  [Learn more](./clips)|String enum (aiModel, shape, image, textImage, videoImage, audio)|true|-|
+|isExport|이 프로젝트 내보내질지 여부|Boolean|false|true|
 |[webhookUrl](../reference/webhook)|합성 결과를 보내줄 주소|String|false|-|
 
 <br/>

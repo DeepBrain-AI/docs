@@ -8,7 +8,7 @@ Upload the file that will be used to create the video in the document.
 
 ### 1-1. Api endpoint
 ```http
-POST https://app.aistudios.com/api/odin/v3/automation/docs-to-video/upload-files
+https://app.aistudios.com/api/odin/v3/automation/docs-to-video/upload-files
 ```
 
 ### 1-2. Request Parameters
