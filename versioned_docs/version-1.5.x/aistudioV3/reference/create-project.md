@@ -41,7 +41,7 @@ https://app.aistudios.com/api/odin/v3/editor/project
 |scenes[].clips[].layer|Alignment order of clips (the higher the number, the more exposed to the top)|Int|true|-|
 |scenes[].clips[].id|ID of the clip|String|true|-|
 |scenes[].clips[].type|Types of clips.  [Learn more](./clips)|String enum (aiModel, shape, image, textImage, videoImage, audio)|true|-|
-|isExport|Whether this project will be exported|Boolean|false|true|
+|isExport|Whether this project will be exported. Expose to the [project](https://app.aistudios.com/dashboard) if false|Boolean|false|true|
 |[webhookUrl](../reference/webhook)|Url address where the synthesis result should be sent.|String|false|-|
 
 <br/>

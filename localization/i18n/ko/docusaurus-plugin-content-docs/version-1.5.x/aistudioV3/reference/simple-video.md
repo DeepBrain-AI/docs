@@ -25,7 +25,7 @@ https://app.aistudios.com/api/odin/v3/simple/video
 |model|사용할 모델의 ID|String|true|-|
 |clothes|모델의 복장 ID|String|true|-|
 |ttsType|모델의 기본 음성이 아닌 외부 TTS 정보|Json|false|-|
-|isExport|이 프로젝트 내보내질지 여부|Boolean|false|false|
+|isExport|이 프로젝트 내보내질지 여부. false 인경우는 [프로젝트](https://app.aistudios.com/dashboard)에 노출|Boolean|false|false|
 |[webhookUrl](../reference/webhook)|합성 결과를 보내줄 주소|String|false|-|
 
 
