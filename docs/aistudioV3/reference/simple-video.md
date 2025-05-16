@@ -25,7 +25,7 @@ https://app.aistudios.com/api/odin/v3/simple/video
 |model|Ther AI Model to be used.|String|true|-|
 |clothes|Clothes that the AI Model will wear.|String|true|-|
 |ttsType|External TTS information that is not the default voice of the model.|Json|false|-|
-|isExport|Whether this project will be exported|Boolean|false|false|
+|isExport|Whether this project will be exported. Expose to the [project](https://app.aistudios.com/dashboard) if false|Boolean|false|false|
 |[webhookUrl](../reference/webhook)|Url address where the synthesis result should be sent.|String|false|-|
 
 

@@ -41,7 +41,7 @@ https://app.aistudios.com/api/odin/v3/editor/project
 |scenes[].clips[].layer|클립들의 정렬 순서 (번호가 높을수록 상단에 노출)|Int|true|-|
 |scenes[].clips[].id|클립의 Id|String|true|-|
 |scenes[].clips[].type|추가할 클립의 종류  [Learn more](./clips)|String enum (aiModel, shape, image, textImage, videoImage, audio)|true|-|
-|isExport|이 프로젝트 내보내질지 여부|Boolean|false|true|
+|isExport|이 프로젝트 내보내질지 여부. false 인경우는 [프로젝트](https://app.aistudios.com/dashboard)에 노출|Boolean|false|true|
 |[webhookUrl](../reference/webhook)|합성 결과를 보내줄 주소|String|false|-|
 
 <br/>

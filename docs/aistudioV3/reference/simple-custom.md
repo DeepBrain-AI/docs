@@ -19,7 +19,7 @@ https://app.aistudios.com/api/odin/v3/simple/custom
 |language|Language of the script you created|String|true|-|
 |text|The script that the model will utter|String|true|-|
 |model|ID of the custom avatar model to use|String|true|-|
-|isExport|Whether this project will be exported|Boolean|false|true|
+|isExport|Whether this project will be exported. Expose to the [project](https://app.aistudios.com/dashboard) if false|Boolean|false|true|
 |[webhookUrl](../reference/webhook)|Address to send composite results|String|false|-|
 
 
