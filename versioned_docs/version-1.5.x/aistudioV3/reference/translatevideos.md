@@ -1,7 +1,6 @@
 # Export AI Dubbing
 
-Transform Your Video into Your Language! When you upload a file, you'll get dubbing and precise lip-syncing that has been translated into your chosen language, and you'll be able to check your progress in real time.
-<br/>
+Convert the video to the language you want! When you upload the file, you'll get dubbing and precise lip sync translated into the language you choose, and you'll be able to check your progress in real time. (China will be available later)<br/>
 
 ## 1. File upload and dub request
 
@@ -24,7 +23,6 @@ https://app.aistudios.com/api/odin/v3/automation/translatevideos
 | isRemoveBGM | Remove the BGM | Boolean | false | false | 
 | isCaptionFile | Add Subtitle | Boolean | false | false | 
 | numberOfSpeakers | Number of speakers, up to 5 | String | false | auto | 
-
 
 ### 1-3. Language Code
 | Language | Code | 
