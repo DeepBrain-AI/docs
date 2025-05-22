@@ -60,12 +60,12 @@ POST https://app.aistudios.com/api/odin/v3/automation/docs-to-video
 | files[].uri | 업로드된 파일의 고유 식별자 | String | true | - |
 | files[].fileName | 원본 파일 이름 | String | true | - |
 | options | 비디오 생성에 사용할 구성 | Json | false | {} |
-| options.goal | 비디오 생성의 목적 | 'auto', 'business', 'youtube', 'education' | false | 'business' |
+| options.goal | 비디오 생성의 목적 | 'auto', 'business', 'education' | false | 'business' |
 | options.duration | 비디오 시간 | 'auto', '30', '60', '90', '120' | false | 'auto' |
 | options.speed | 원래 속도와 비교한 비디오 재생 속도 | 'auto', Number | false | - |
 | options.language | 비디오에 사용된 언어입니다. <br/>언어 코드는 [ISO 639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) 표준을 따릅니다. | 'auto', String | false | - |
 | options.media | 비디오 생성에 사용된 이미지 정보 (options.filebackground=false 경우에만 유효) | 'auto', 'search', 'free', 'generative' | false | - |
-| options.style | 스타일 정보 (options.media='generative' 경우에만 유효) | 'auto', 'business', 'youtube', 'education' | false | - |
+| options.style | 스타일 정보 (options.media='generative' 경우에만 유효) | 'auto', 'photo', 'illustration', 'vector', '3d' | false | - |
 | options.fileBackground | 동영상 배경에 제공한 파일을 사용할지 여부 | Boolean | false | true |
 | options.orientation | 생성된 비디오의 화면 방향 | 'web', 'mobile' | false | 'web' |
 | options.model | 비디오 생성에 사용할 AI 모델의 ID |  |  |  |

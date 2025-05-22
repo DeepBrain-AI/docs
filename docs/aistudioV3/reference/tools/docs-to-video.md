@@ -60,12 +60,12 @@ POST https://app.aistudios.com/api/odin/v3/automation/docs-to-video
 | files[].uri | Unique identifier of the uploaded file | String | true | - |
 | files[].fileName | Source File Name | String | true | - |
 | options | Configuration for video generation | Json | false | {} |
-| options.goal | Purpose of video generation | 'auto', 'business', 'youtube', 'education' | false | 'business' |
+| options.goal | Purpose of video generation | 'auto', 'business', 'education' | false | 'business' |
 | options.duration | Video Time | 'auto', '30', '60', '90', '120' | false | 'auto' |
 | options.speed | Video playback speed relative to original speed | 'auto', Number | false | - |
 | options.language | The language used in the video. <br/>The language code follows the [ISO 639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) standard. | 'auto', String | false | - |
 | options.media | Image information used to create video (valid only for options.filebackground=false) | 'auto', 'search', 'free', 'generative' | false | - |
-| options.style | Style information (valid only for options.media='generative') | 'auto', 'business', 'youtube', 'education' | false | - |
+| options.style | Style information (valid only for options.media='generative') | 'auto', 'photo', 'illustration', 'vector', '3d' | false | - |
 | options.fileBackground | Whether to use the file you provided in the background of the video | Boolean | false | true |
 | options.orientation | Screen orientation of the created video | 'web', 'mobile' | false | 'web' |
 | options.model | ID of the AI model to use for video generation |  |  |  |
