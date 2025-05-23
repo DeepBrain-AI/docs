@@ -15,7 +15,7 @@ The domain has been changed. Please be careful to avoid errors.
 
 :::
 
-AI STUDIOS discloses APIs for external developers, producers, and editors for quick and easy services. In general, video synthesis requires user data editing and conversion time. When a large amount of production is required in this synthesis process, API can be used to minimize user editing and automate repetitive processes to reduce working time and ensure efficient management. In order to use the API, you must have an AI Studio account created and subscribed to the API plan.
+AI STUDIOS discloses APIs for external developers, producers, and editors for quick and easy services. In general, video synthesis requires user data editing and conversion time. When a large amount of production is required in this synthesis process, API can be used to minimize user editing and automate repetitive processes to reduce working time and ensure efficient management. In order to use the API, you must have an AI Studios account created and subscribed to the API plan.
 
 [Subscribe to the API plan](https://www.aistudios.com)
 

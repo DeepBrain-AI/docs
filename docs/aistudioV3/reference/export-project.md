@@ -4,7 +4,7 @@ sidebar_position: 8
 
 # Export project
 
-Export existing video project. Exported project will be ready for download eventually. This API endpoint is intended to send export request to the backend server of the AI Studio backend server. To retrieve its download url, use the [get project endpoint](../reference/get-project.md) or the [get-projects endpoint](../reference/get-projects.md). Video export may take up to 10 minutes depend on its data size (e.g. number of scenes).
+Export existing video project. Exported project will be ready for download eventually. This API endpoint is intended to send export request to the backend server of the AI Studios backend server. To retrieve its download url, use the [get project endpoint](../reference/get-project.md) or the [get-projects endpoint](../reference/get-projects.md). Video export may take up to 10 minutes depend on its data size (e.g. number of scenes).
 
 <br/>
 

@@ -10,7 +10,7 @@ sidebar_position: 1
 
 ## 1. API 키 설정
 
-AI STUDIO V3 내 모든 API 통신 시에는 인증이 필요합니다. 이를 위해 사용되는 것이 API 키입니다. token 변수에 발급받은 API 키를 설정합니다. 아직 발급받은 키가 없다면 [API 키 발급하기](../generate-api-key)에서 발급하실 수 있습니다.
+AI STUDIOS V3 내 모든 API 통신 시에는 인증이 필요합니다. 이를 위해 사용되는 것이 API 키입니다. token 변수에 발급받은 API 키를 설정합니다. 아직 발급받은 키가 없다면 [API 키 발급하기](../generate-api-key)에서 발급하실 수 있습니다.
 
 ```js
 const token = '##JWT##'; // API KEY

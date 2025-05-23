@@ -4,11 +4,11 @@ sidebar_position: 2
 
 # API 키 발급하기
 
-**AI Studio V3 API를 사용하려면 API Key가 필요합니다.**  
+**AI Studios V3 API를 사용하려면 API Key가 필요합니다.**  
 
 API 키를 생성해서 비디오 내보내기 프로세스 자동화를 경험해 보세요.
 
-AI Studio V3 API는 Pro 이상의 구독 고객이 이용할 수 있습니다.
+AI Studios V3 API는 Pro 이상의 구독 고객이 이용할 수 있습니다.
 
 ## 1. API endpoint
 
