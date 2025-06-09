@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # Authentication
 
 ## 1. API Key generation

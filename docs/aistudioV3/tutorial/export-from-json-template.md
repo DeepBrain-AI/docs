@@ -1,7 +1,3 @@
----
-sidebar_position: 2
----
-
 # Exporting an JSON-based Template
 
 JSON-based template export is available if you want to create a single completed Scene template and then use it to make changes in only some data (such as scripts, images, etc.) to produce videos. The example uses a JSON template consisting of a total of two scenes, with information about the AI model and image information in the first scene, and outro image in the second scene.

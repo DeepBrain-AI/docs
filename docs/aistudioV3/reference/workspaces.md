@@ -1,22 +1,22 @@
-# Confirm authentication
+# Get Workspaces
 
-Confirm authentication information by checking if your api key is valid.
+Look up the list of tasks associated with the current account.
 
 <br/>
 
 ## 1. API endpoint
 
 ```http
-https://app.aistudios.cn/api/odin/v3/auth
+https://app.aistudios.com/api/odin/v3/dropdown/workspaces
 ```
 
 <br/>
 
 ## 2. Response parameters
-
-|key|desc|type|
-|:---|:---|:---|
-|isAuthenticated|Whether the API key is valid.|Boolean|
+| key | desc | type |
+| :--- | :--- | :--- |
+| workspaceId | workspace-specific identifier | String |
+| workspaceName | Name of the workspace | String |
 
 <br/>
 
@@ -30,7 +30,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.aistudios.cn/api/odin/v3/auth  \
+curl https://app.aistudios.com/api/odin/v3/dropdown/workspaces  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X GET 
@@ -44,7 +44,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.get('https://app.aistudios.cn/api/odin/v3/auth', 
+axios.get('https://app.aistudios.com/api/odin/v3/dropdown/workspaces', 
   {
     headers: {
       'Authorization': ${token},
@@ -67,7 +67,7 @@ axios.get('https://app.aistudios.cn/api/odin/v3/auth',
 import requests
 import json
 
-url = "https://app.aistudios.cn/api/odin/v3/auth"
+url = "https://app.aistudios.com/api/odin/v3/dropdown/workspaces"
 
 headers = {
   "Content-Type": "application/json",

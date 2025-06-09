@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # API 사용권한 인증
 
 ## 1. API 키 생성

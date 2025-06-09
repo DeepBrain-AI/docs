@@ -1,7 +1,3 @@
----
-sidebar_position: 3
----
-
 # Check the progress of the project.
 
 Progress describes how to check the composite progress through the project ID generated after the project export operation.

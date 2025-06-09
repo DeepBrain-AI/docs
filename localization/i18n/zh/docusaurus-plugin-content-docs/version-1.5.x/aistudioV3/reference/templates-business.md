@@ -1,7 +1,3 @@
----
-sidebar_position: 14
----
-
 # Retrieve business templates
 
 Retrieve the list of pre-setted project information (i.e. templates) that can be utilized to create videos with business purposes.

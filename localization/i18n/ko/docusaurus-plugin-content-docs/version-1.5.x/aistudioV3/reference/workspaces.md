@@ -1,22 +1,22 @@
-# Confirm authentication
+# 작업공간 조회
 
-Confirm authentication information by checking if your api key is valid.
+현재 계정과 연결된 작업 목록을 조회합니다.
 
 <br/>
 
-## 1. API endpoint
+## 1. API Endpoint
 
 ```http
-https://app.aistudios.cn/api/odin/v3/auth
+https://app.aistudios.com/api/odin/v3/dropdown/workspaces
 ```
 
 <br/>
 
-## 2. Response parameters
-
-|key|desc|type|
-|:---|:---|:---|
-|isAuthenticated|Whether the API key is valid.|Boolean|
+## 2. Response Parameters
+| key | desc | type |
+| :--- | :--- | :--- |
+| workspaceId | 작업공간 고유식별자 | String |
+| workspaceName | 작업공간 이름 | String |
 
 <br/>
 
@@ -30,7 +30,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.aistudios.cn/api/odin/v3/auth  \
+curl https://app.aistudios.com/api/odin/v3/dropdown/workspaces  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X GET 
@@ -44,7 +44,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.get('https://app.aistudios.cn/api/odin/v3/auth', 
+axios.get('https://app.aistudios.com/api/odin/v3/dropdown/workspaces', 
   {
     headers: {
       'Authorization': ${token},
@@ -67,7 +67,7 @@ axios.get('https://app.aistudios.cn/api/odin/v3/auth',
 import requests
 import json
 
-url = "https://app.aistudios.cn/api/odin/v3/auth"
+url = "https://app.aistudios.com/api/odin/v3/dropdown/workspaces"
 
 headers = {
   "Content-Type": "application/json",

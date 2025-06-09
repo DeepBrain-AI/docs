@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # Export multiple chroma key
 
 We'll produce multiple chroma-key videos by capturing subjects against a consistent green backdrop, providing a distinct color for future compositing with separate image resources with our AI models. In this scenario, we aim to generate three chroma-key videos. Each video allows customization of AI models, costumes, and dialogue lines to create unique compositions.

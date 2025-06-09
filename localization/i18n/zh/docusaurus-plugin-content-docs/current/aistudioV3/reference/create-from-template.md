@@ -1,7 +1,3 @@
----
-sidebar_position: 10
----
-
 # Create project from template
 Creating a project from a template covers how to create a new video project using an existing template. (It does not involve video composition.)
 <br/>

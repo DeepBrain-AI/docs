@@ -1,9 +1,3 @@
----
-displayed_sidebar: aistudioV3Sidebar
-sidebar_position: 1
-slug: /aistudioV3/getting-started
----
-
 # Get started with API
 
 :::caution

@@ -1,7 +1,3 @@
----
-sidebar_position: 5
----
-
 # Edit project and export
 
 Editing and exporting a project involves fetching the existing project information and modifying only certain data (such as scripts, images, etc.) to synthesize a new video.

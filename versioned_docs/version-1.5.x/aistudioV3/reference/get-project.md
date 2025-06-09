@@ -1,7 +1,3 @@
----
-sidebar_position: 4
----
-
 # Get project
 
 Get Project describes how to load a pre-existing project by sending api requests in a JSON format.

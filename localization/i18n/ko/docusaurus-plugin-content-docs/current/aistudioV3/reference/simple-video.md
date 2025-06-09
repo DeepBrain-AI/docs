@@ -1,7 +1,3 @@
----
-sidebar_position: 12
----
-
 # 크로마키 내보내기
 
 <br/>

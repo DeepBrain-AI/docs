@@ -1,7 +1,3 @@
----
-sidebar_position: 13
----
-
 # 오디오 내보내기
 
 <br/>

@@ -1,7 +1,3 @@
----
-sidebar_position: 2
----
-
 # Generate API Key
 
 **You need an API Key to use the AI Studios V3 API.**

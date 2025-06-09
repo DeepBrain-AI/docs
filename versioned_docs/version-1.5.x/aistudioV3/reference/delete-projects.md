@@ -1,10 +1,8 @@
-# Get projects
-
-Retrieve the list of video projects associated current account that have been already exported. Video project in the list are ready to be downloaded.
-
+# Delete project
+If you enter the project ID verified through the [Get projects](/aistudioV3/reference/get-projects) inquiry, you can safely delete the project.
 <br/>
 
-## 1. API endpoint
+## 1. API Endpoint
 
 ```http
 https://app.aistudios.com/api/odin/v3/editor/project
@@ -12,18 +10,23 @@ https://app.aistudios.com/api/odin/v3/editor/project
 
 <br/>
 
-## 2. Response parameters
-|key|desc|type|
-|:---|:---|:---|
-|id|Unique identifier of the video project|String|
-|name|Name of the project|String|
-|state|Export state of the project. This field should be "exported" to be ready for download|String|
-|download_url|Download path of the file created.|String|
+## 2. Request Parameters
+
+ | key | desc | type | required | default | 
+ | :--- | :--- | :--- | :--- | :--- | 
+ | ids | Array of unique identifiers for video projects to delete | Object | true | - | 
+
+<br/>
+
+## 3. Response Parameters
+ | key | desc | type | 
+ | :--- | :--- | :--- | 
+ | deletedCount | Deleted Count | Int  | 
 
 <br/>
 
 
-## 3. Sample Request
+## 4. Sample Request
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -35,7 +38,12 @@ import TabItem from '@theme/TabItem';
 curl https://app.aistudios.com/api/odin/v3/editor/project  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
--X GET 
+-X DELETE 
+-d '{
+    "ids": [
+        "${projectId}"
+    ]
+}'
 ```
 
 </TabItem>
@@ -46,7 +54,12 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.get('https://app.aistudios.com/api/odin/v3/editor/project', 
+axios.delete('https://app.aistudios.com/api/odin/v3/editor/project', 
+  {
+    "ids" : [
+        "${projectId}"
+    ]
+  },
   {
     headers: {
       'Authorization': ${token},
@@ -70,13 +83,17 @@ import requests
 import json
 
 url = "https://app.aistudios.com/api/odin/v3/editor/project"
-
+body =   {
+  "ids" : [
+    "${projectId}"
+  ]
+}
 headers = {
   "Content-Type": "application/json",
   "Authorization": ${API TOKEN}
 }
 
-r = requests.get(url, data=json.dumps(body), headers=headers)
+r = requests.delete(url, data=json.dumps(body), headers=headers)
 ```
 
 </TabItem>

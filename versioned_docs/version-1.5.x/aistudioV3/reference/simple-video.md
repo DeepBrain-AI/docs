@@ -1,7 +1,3 @@
----
-sidebar_position: 12
----
-
 # Export Chroma key Video
 
 <br/>

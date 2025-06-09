@@ -1,7 +1,3 @@
----
-sidebar_position: 2
----
-
 # Confirm authentication
 
 Confirm authentication information by checking if your api key is valid.

@@ -1,7 +1,3 @@
----
-sidebar_position: 6
----
-
 # Get projects
 
 Retrieve the list of video projects associated current account that have been already exported. Video project in the list are ready to be downloaded.

@@ -1,7 +1,3 @@
----
-sidebar_position: 12
----
-
 # 导出绿幕视频
 
 <br/>

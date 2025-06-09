@@ -1,7 +1,3 @@
----
-sidebar_position: 10
----
-
 # 템플릿에서 프로젝트 생성
 템플릿에서 프로젝트를 생성하는 것은 기존 템플릿을 사용하여 새로운 비디오 프로젝트를 생성하는 방법을 다룹니다. (비디오 합성은 포함하지 않습니다.)
 <br/>
@@ -41,7 +37,7 @@ curl https://app.aistudios.com/api/odin/v3/editor/template/${templateId} \
 -X POST \
 -G \
 -d '{
-  "model": "M000045058",
+  "aiName": "M000045058",
   "clothes": "BG00002320",
   "name" : "새 프로젝트 이름"
 }'
@@ -60,7 +56,7 @@ axios.post('https://app.aistudios.com/api/odin/v3/editor/template/${templateId}'
     'Content-Type': 'application/json'
   },
   params: {
-    "model": "M000045058",
+    "aiName": "M000045058",
     "clothes": "BG00002320",
     "name" : "새 프로젝트 이름"
   },
@@ -82,7 +78,7 @@ import json
 
 url = "https://app.aistudios.com/api/odin/v3/editor/template/${templateId}"
 params = {
-  "model": "M000045058",
+  "aiName": "M000045058",
   "clothes": "BG00002320",
   "name" : "새 프로젝트 이름"
 }

@@ -1,7 +1,3 @@
----
-sidebar_position: 15
----
-
 # Retrieve models
 
 Retrieve the list of valid AI models that can appear video projects.

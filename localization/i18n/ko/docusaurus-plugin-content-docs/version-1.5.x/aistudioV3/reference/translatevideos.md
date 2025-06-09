@@ -15,7 +15,8 @@ https://app.aistudios.com/api/odin/v3/automation/translatevideos
 ### 1-2. Request parameter
 | key | desc | type | required | default | 
 | :--- | :--- | :--- | :--- | :--- | 
-| file | 번역할 영상 | File | true | - | 
+| file | 영상 파일 (file 또는 url 중 하나는 필수) | File | false | - | 
+| url | YouTube url (file 또는 url 중 하나는 필수) | String | false | - | 
 | original | 번역할 영상의 원어 | String | false | auto | 
 | originalSrt | 번역할 영상의 원어 자막파일 | File | false | - | 
 | target_[0, …, 9] | 대상 언어 코드, 최대 10개 허용 | String | true | - | 
@@ -24,6 +25,10 @@ https://app.aistudios.com/api/odin/v3/automation/translatevideos
 | isRemoveBGM | BGM제거 | Boolean | false | false | 
 | isCaptionFile | Add Subtitle | Boolean | false | false | 
 | numberOfSpeakers | 발언자수, 최대 5 | String | false | auto | 
+
+:::caution
+- `file`과 `url` 중 **최소 하나는 반드시 지정해야 합니다.**
+:::
 
 ### 1-3. Language Code
 | Language | Code | 

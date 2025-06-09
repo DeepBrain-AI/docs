@@ -1,7 +1,3 @@
----
-sidebar_position: 8
----
-
 # 프로젝트 내보내기
 
 기존 비디오 프로젝트를 내보냅니다. 내보내기된 프로젝트는 결국 다운로드할 수 있게 됩니다. 이 API 엔드포인트는 AI Studios 백엔드 서버의 백엔드 서버로 내보내기 요청을 보내기 위한 것입니다. 다운로드 URL을 조회하려면 [get project 엔드포인트](../reference/get-project.md) 또는 [get-projects 엔드포인트](../reference/get-projects.md)를 사용하세요. 비디오 내보내기는 데이터 크기(예: 장면 수)에 따라 최대 10분이 소요될 수 있습니다.

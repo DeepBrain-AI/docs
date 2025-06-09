@@ -99,6 +99,7 @@ const sidebars = {
             "aistudioV3/reference/edit-project",
             "aistudioV3/reference/get-projects",
             "aistudioV3/reference/create-project",
+            'aistudioV3/reference/delete-projects',
             "aistudioV3/reference/export-project",
             "aistudioV3/reference/create-from-template",
           ],
@@ -109,6 +110,7 @@ const sidebars = {
           items: [
             "aistudioV3/reference/models",
             "aistudioV3/reference/templates-business",
+            "aistudioV3/reference/workspaces",
             "aistudioV3/reference/simple-video",
             "aistudioV3/reference/simple-audio",
             "aistudioV3/reference/simple-custom",

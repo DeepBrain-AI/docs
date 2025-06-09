@@ -14,7 +14,8 @@ https://app.aistudios.com/api/odin/v3/automation/translatevideos
 ### 1-2. Request parameter
 | key | desc | type | required | default | 
 | :--- | :--- | :--- | :--- | :--- | 
-| file | Video to be translated | File | true | - | 
+| file | Video file (Either file or url is required) | File | false | - | 
+| url | YouTube url (Either file or url is required) | String | false | - | 
 | original | the original language of the video to be translated | String | false | auto | 
 | originalSrt | Original subtitle file of the video to be translated | File | false | - | 
 | target_[0, …, 9] | Target language code, up to 10 allowed | String | true | - | 
@@ -23,6 +24,10 @@ https://app.aistudios.com/api/odin/v3/automation/translatevideos
 | isRemoveBGM | Remove the BGM | Boolean | false | false | 
 | isCaptionFile | Add Subtitle | Boolean | false | false | 
 | numberOfSpeakers | Number of speakers, up to 5 | String | false | auto | 
+
+:::caution
+- At least one of 'file' and 'url' ** must be specified.**
+:::
 
 ### 1-3. Language Code
 | Language | Code | 

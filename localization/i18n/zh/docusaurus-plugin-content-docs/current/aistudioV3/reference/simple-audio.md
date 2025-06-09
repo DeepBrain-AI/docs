@@ -1,7 +1,3 @@
----
-sidebar_position: 13
----
-
 # Export AI Audio
 
 <br/>

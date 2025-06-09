@@ -1,7 +1,3 @@
----
-sidebar_position: 2
----
-
 # API 키 발급하기
 
 **AI Studios V3 API를 사용하려면 API Key가 필요합니다.**  
