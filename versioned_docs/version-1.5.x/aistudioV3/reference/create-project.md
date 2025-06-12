@@ -14,31 +14,32 @@ https://app.aistudios.com/api/odin/v3/editor/project
 
 ## 2. Request parameter
 
-|key|desc|type|required|default|
-|:---|:---|:---|:---|:---|
-|name|Project name|String|false|Default Template|
-|orientation|Project orientation|String|false|landscape|
-|scenes|Scene data|Array(json)|true|-|
-|scenes[].sceneIdx|Sequence of the scene|Int|true|-|
-|scenes[].scripts|List of speech data for the scene<br />(* *Although it is an array for future extensibility, only one speech data should be entered.*)|Json|true|-|
-|scenes[].scripts[].org|Text of the speech<br />`<p />`, `<span />` tags are allowed, but it is recommended to enter only `plain text`.|String|true|-|
-|scenes[].scripts[].isTTS|Whether to use the avatar's original voice or a TTS synthesized voice<br />Use `false` for the avatar's voice, and `true` for a different voice.|Boolean|true|-|
-|scenes[].scripts[].tts|Data of the TTS synthesized voice if not using the avatar's voice<br />Use `null` for the avatar's voice, and `Json` for a different voice.|Json\|null|true|-|
-|scenes[].scripts[].modelId|Avatar's model ID|String|true|-|
-|scenes[].scripts[].clothId|Avatar's clothing ID|String|true|-|
-|scenes[].background|Background image information.|Json|true|-|
-|scenes[].clips|Fields to add clips such as text, images, and background images.|Array(json)|true|-|
-|scenes[].clips[].scaleX|Represents the size magnification of the clip. Represents the size magnification of x and y, respectively, based on the height and width input.|Float|false|1|
-|scenes[].clips[].scaleY|Represents the size magnification of the clip. Represents the size magnification of x and y, respectively, based on the height and width input.|Float|false|1|
-|scenes[].clips[].height|The height of the clip.|Float|true|-|
-|scenes[].clips[].width|The width of the clip.|Float|true|-|
-|scenes[].clips[].left|The position of the clip relative to the left side of the scene.|Float|true|-|
-|scenes[].clips[].top|The position of the clip based on the top of the scene.|Float|true|-|
-|scenes[].clips[].layer|Alignment order of clips (the higher the number, the more exposed to the top)|Int|true|-|
-|scenes[].clips[].id|ID of the clip|String|true|-|
-|scenes[].clips[].type|Types of clips.  [Learn more](./clips)|String enum (aiModel, shape, image, textImage, videoImage, audio)|true|-|
-|isExport|Whether this project will be exported. Expose to the [project](https://app.aistudios.com/dashboard) if false|Boolean|false|true|
-|[webhookUrl](../reference/webhook)|Url address where the synthesis result should be sent.|String|false|-|
+| key | desc | type | required | default |
+| :--- | :--- | :--- | :--- | :--- |
+| name | Project name | String | false | Default Template |
+| orientation | Project orientation | String | false | landscape |
+| scenes | Scene data | Array(json) | true | - |
+| scenes[].sceneIdx | Sequence of the scene | Int | true | - |
+| scenes[].scripts | List of speech data for the scene<br />(* *Although it is an array for future extensibility, only one speech data should be entered.*) | Json | true | - |
+| scenes[].scripts[].org | Text of the speech<br />`<p />`, `<span />` tags are allowed, but it is recommended to enter only `plain text`. | String | true | - |
+| scenes[].scripts[].isTTS | Whether to use the avatar's original voice or a TTS synthesized voice<br />Use `false` for the avatar's voice, and `true` for a different voice. | Boolean | true | - |
+| scenes[].scripts[].tts | Data of the TTS synthesized voice if not using the avatar's voice<br />Use `null` for the avatar's voice, and `Json` for a different voice. | Json\ | null | true | - |
+| scenes[].scripts[].modelId | Avatar's model ID | String | true | - |
+| scenes[].scripts[].clothId | Avatar's clothing ID | String | true | - |
+| scenes[].background | Background image information. | Json | true | - |
+| scenes[].clips | Fields to add clips such as text, images, and background images. | Array(json) | true | - |
+| scenes[].clips[].scaleX | Represents the size magnification of the clip. Represents the size magnification of x and y, respectively, based on the height and width input. | Float | false | 1 |
+| scenes[].clips[].scaleY | Represents the size magnification of the clip. Represents the size magnification of x and y, respectively, based on the height and width input. | Float | false | 1 |
+| scenes[].clips[].height | The height of the clip. | Float | true | - |
+| scenes[].clips[].width | The width of the clip. | Float | true | - |
+| scenes[].clips[].left | The position of the clip relative to the left side of the scene. | Float | true | - |
+| scenes[].clips[].top | The position of the clip based on the top of the scene. | Float | true | - |
+| scenes[].clips[].layer | Alignment order of clips (the higher the number, the more exposed to the top) | Int | true | - |
+| scenes[].clips[].id | ID of the clip | String | true | - |
+| scenes[].clips[].type | Types of clips.  [Learn more](./clips) | String enum (aiModel, shape, image, textImage, videoImage, audio) | true | - |
+| isExport | Whether this project will be exported. Expose to the [project](https://app.aistudios.com/dashboard) if false | Boolean | false | true |
+| workspaceId | [Workspace](./workspaces) Unique identifier ID | String | false | - |
+| [webhookUrl](../reference/webhook) | Url address where the synthesis result should be sent. | String | false | - |
 
 <br/>
 
@@ -84,9 +85,9 @@ If not specified or specified differently from the avatar clip, the function may
 
 ## 3. Response parameters
 
-|key|desc|type|
-|:---|:---|:---|
-|projectId|Project Id - Fetching the Chroma-key video data that has been exported.|String|
+| key | desc | type |
+| :--- | :--- | :--- |
+| projectId | Project Id - Fetching the Chroma-key video data that has been exported. | String |
 
 <br/>
 

@@ -9,18 +9,19 @@ https://app.aistudios.com/api/odin/v3/editor/template/${templateId}
 <br/>
 
 ## 2. Request parameters
-|key|desc|type|required|default|
-|:---|:---|:---|:---|:---|
-|templateId|사용할 템플릿의 고유 ObjectId|String|true|-|
-|aiName|변경할 모델의 ID|String|false|-|
-|clothId|변경할 모델의 복장 ID|String|false|-|
-|name|생성된 프로젝트의 이름|String|false|-|
+| key | desc | type | required | default |
+| :--- | :--- | :--- | :--- | :--- |
+| templateId | 사용할 템플릿의 고유 ObjectId | String | true | - |
+| aiName | 변경할 모델의 ID | String | false | - |
+| clothId | 변경할 모델의 복장 ID | String | false | - |
+| name | 생성된 프로젝트의 이름 | String | false | - |
+| workspaceId | [작업공간](./workspaces) 고유식별자 ID | String | false | - |
 <br/>
 
 ## 3. Response parameters
-|key|desc|type|
-|:---|:---|:---|
-|projectId|생성된 프로젝트의 ID|String|
+| key | desc | type |
+| :--- | :--- | :--- |
+| projectId | 생성된 프로젝트의 ID | String |
 <br/>
 
 ## 4. Sample Request

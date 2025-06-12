@@ -9,18 +9,19 @@ https://app.aistudios.com/api/odin/v3/editor/template/${templateId}
 <br/>
 
 ## 2. Request parameters
-|key|desc|type|required|default|
-|:---|:---|:---|:---|:---|
-|templateId|Unique ObjectId of the template to be used|String|true|-|
-|aiName|ID of the model to be changed|String|false|-|
-|clothId|Clothing ID of the model to be changed|String|false|-|
-|name|Name of the created project|String|false|-|
+| key | desc | type | required | default |
+| :--- | :--- | :--- | :--- | :--- |
+| templateId | Unique ObjectId of the template to be used | String | true | - |
+| aiName | ID of the model to be changed | String | false | - |
+| clothId | Clothing ID of the model to be changed | String | false | - |
+| name | Name of the created project | String | false | - |
+| workspaceId | [Workspace](./workspaces) Unique identifier ID | String | false | - |
 <br/>
 
 ## 3. Response parameters
-|key|desc|type|
-|:---|:---|:---|
-|projectId|ID of the created project|String|
+| key | desc | type |
+| :--- | :--- | :--- |
+| projectId | ID of the created project | String |
 <br/>
 
 ## 4. Sample Request

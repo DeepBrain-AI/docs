@@ -14,23 +14,24 @@ https://app.aistudios.com/api/odin/v3/editor/project/${key}
 
 ## 2. Request parameter
 
-|key|desc|type|required|default|
-|:---|:---|:---|:---|:---|
-|updates|프로젝트 속 변경 내용|Json|true|-|
-|updates.value|프로젝트 속 클립별 변경 내용|Array(json)|true|-|
-|updates.value[].sceneIdx|변경할 내용이 있는 장면의 Idx|Int|true|-|
-|updates.value[].type|변경할 내용이 있는 요소의 타입|String enum (aiModel, shape, image, textImage, videoImage, audio, background)|true|-|
-|updates.value[].values|변경 내용|Json|true|-|
-|isExport|이 프로젝트 내보내질지 여부. false 인경우는 [프로젝트](https://app.aistudios.com/dashboard)에 노출|Boolean|false|true|
-|[webhookUrl](../reference/webhook)|합성 결과를 보내줄 주소|String|false|-|
+| key | desc | type | required | default |
+| :--- | :--- | :--- | :--- | :--- |
+| updates | 프로젝트 속 변경 내용 | Json | true | - |
+| updates.value | 프로젝트 속 클립별 변경 내용 | Array(json) | true | - |
+| updates.value[].sceneIdx | 변경할 내용이 있는 장면의 Idx | Int | true | - |
+| updates.value[].type | 변경할 내용이 있는 요소의 타입 | String enum (aiModel, shape, image, textImage, videoImage, audio, background) | true | - |
+| updates.value[].values | 변경 내용 | Json | true | - |
+| isExport | 이 프로젝트 내보내질지 여부. false 인경우는 [프로젝트](https://app.aistudios.com/dashboard)에 노출 | Boolean | false | true |
+| workspaceId | [작업공간](./workspaces) 고유식별자 ID | String | false | - |
+| [webhookUrl](../reference/webhook) | 합성 결과를 보내줄 주소 | String | false | - |
 
 <br/>
 
 ## 3. Response parameters
 
-|key|desc|type|
-|:---|:---|:---|
-|projectId|합성 요청된 프로젝트의 ID|String|
+| key | desc | type |
+| :--- | :--- | :--- |
+| projectId | 합성 요청된 프로젝트의 ID | String |
 
 <br/>
 

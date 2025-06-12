@@ -14,23 +14,24 @@ https://app.aistudios.com/api/odin/v3/simple/custom
 
 ## 2. Request parameter
 
-|key|desc|type|required|default|
-|:---|:---|:---|:---|:---|
-|language|작성한 스크립트의 언어|String|true|-|
-|text|모델이 발화할 스크립트|String|true|-|
-|model|사용할 커스텀아바타 모델의 ID|String|true|-|
-|isExport|이 프로젝트 내보내질지 여부. false 인경우는 [프로젝트](https://app.aistudios.com/dashboard)에 노출|Boolean|false|true|
-|[webhookUrl](../reference/webhook)|합성 결과를 보내줄 주소|String|false|-|
+| key | desc | type | required | default |
+| :--- | :--- | :--- | :--- | :--- |
+| language | 작성한 스크립트의 언어 | String | true | - |
+| text | 모델이 발화할 스크립트 | String | true | - |
+| model | 사용할 커스텀아바타 모델의 ID | String | true | - |
+| isExport | 이 프로젝트 내보내질지 여부. false 인경우는 [프로젝트](https://app.aistudios.com/dashboard)에 노출 | Boolean | false | true |
+| workspaceId | [작업공간](./workspaces) 고유식별자 ID | String | false | - |
+| [webhookUrl](../reference/webhook) | 합성 결과를 보내줄 주소 | String | false | - |
 
 
 <br/>
 
 ## 3. Response parameters
 
-|key|desc|type|
-|:---|:---|:---|
-|projectId|내보내기 요청을 한 크로마키의 프로젝트 ID|String|
-|taskId|내보내기 요청을 한 태스크ID|String|
+| key | desc | type |
+| :--- | :--- | :--- |
+| projectId | 내보내기 요청을 한 크로마키의 프로젝트 ID | String |
+| taskId | 내보내기 요청을 한 태스크ID | String |
 
 <br/>
 

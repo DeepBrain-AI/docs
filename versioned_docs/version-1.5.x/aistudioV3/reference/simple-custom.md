@@ -14,23 +14,24 @@ https://app.aistudios.com/api/odin/v3/simple/custom
 
 ## 2. Request parameter
 
-|key|desc|type|required|default|
-|:---|:---|:---|:---|:---|
-|language|Language of the script you created|String|true|-|
-|text|The script that the model will utter|String|true|-|
-|model|ID of the custom avatar model to use|String|true|-|
-|isExport|Whether this project will be exported. Expose to the [project](https://app.aistudios.com/dashboard) if false|Boolean|false|true|
-|[webhookUrl](../reference/webhook)|Address to send composite results|String|false|-|
+| key | desc | type | required | default |
+| :--- | :--- | :--- | :--- | :--- |
+| language | Language of the script you created | String | true | - |
+| text | The script that the model will utter | String | true | - |
+| model | ID of the custom avatar model to use | String | true | - |
+| isExport | Whether this project will be exported. Expose to the [project](https://app.aistudios.com/dashboard) if false | Boolean | false | true |
+| workspaceId | [Workspace](./workspaces) Unique identifier ID | String | false | - |
+| [webhookUrl](../reference/webhook) | Address to send composite results | String | false | - |
 
 
 <br/>
 
 ## 3. Response parameters
 
-|key|desc|type|
-|:---|:---|:---|
-|projectId|Project ID of the chroma key that made the export request|String|
-|taskId|Task ID that made the export request|String|
+| key | desc | type |
+| :--- | :--- | :--- |
+| projectId | Project ID of the chroma key that made the export request | String |
+| taskId | Task ID that made the export request | String |
 
 <br/>
 
