@@ -95,6 +95,8 @@ headers = {
 }
 
 r = requests.post(url, data=json.dumps(body), headers=headers)
+
+print(f"Status Code: {r.status_code}")
 ```
 
 </TabItem>
