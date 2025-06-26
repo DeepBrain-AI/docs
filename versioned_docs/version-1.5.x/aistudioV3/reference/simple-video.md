@@ -20,11 +20,12 @@ https://app.aistudios.com/api/odin/v3/simple/video
 | text | Text for AI to read. It must match the langauge of your selected model. | String | true | - |
 | model | Ther AI Model to be used. | String | true | - |
 | clothes | Clothes that the AI Model will wear. | String | true | - |
-| ttsType | External TTS information that is not the default voice of the model. | Json | false | - |
-| isExport | Whether this project will be exported. Expose to the [project](https://app.aistudios.com/dashboard) if false | Boolean | false | false |
+| isExport | Whether this project will be exported. <br />(Expose to the [project dashboard](https://app.aistudios.com/dashboard) if false) | Boolean | false | false |
 | workspaceId | [Workspace](./workspaces) Unique identifier ID | String | false | - |
+| resolution | Video Quality <br />(`4k` \| `1080` \| `720` \| `480`) | String | false | 1080 |
 | [webhookUrl](../reference/webhook) | Url address where the synthesis result should be sent. | String | false | - |
 
+<!-- | ttsType | External TTS information that is not the default voice of the model. | Json | false | - | -->
 
 <br/>
 

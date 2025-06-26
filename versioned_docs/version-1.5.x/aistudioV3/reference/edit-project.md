@@ -19,10 +19,11 @@ https://app.aistudios.com/api/odin/v3/editor/project/${key}
 | updates | Content to change in the existing template. | Json | true | - |
 | updates.value | Changes by clip in the project. | Array(json) | true | - |
 | updates.value[].sceneIdx | The index of the scene to be changed | Int | true | - |
-| updates.value[].type | Type of clip to change | String enum<br/>(aiModel, shape, image, textImage, videoImage, audio, background) | true | - |
+| updates.value[].type | Type of clip to change <br />(`aiModel` \| `shape` \| `image` \| `textImage` \| `videoImage` \| `audio` \| `background`) | String | true | - |
 | updates.value[].values | Content to change. | Json | true | - |
-| isExport | Whether this project will be exported. Expose to the [project](https://app.aistudios.com/dashboard) if false | Boolean | false | true |
+| isExport | Whether this project will be exported <br />(Expose to the [project dashboard](https://app.aistudios.com/dashboard) if false) | Boolean | false | true |
 | workspaceId | [Workspace](./workspaces) Unique identifier ID | String | false | - |
+| resolution | Video Quality <br />(`4k` \| `1080` \| `720` \| `480`) | String | false | 1080 |
 | [webhookUrl](../reference/webhook) | Url address where the synthesis result should be sent. | String | false | - |
 
 <br/>
