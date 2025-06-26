@@ -20,11 +20,12 @@ https://app.aistudios.com/api/odin/v3/simple/video
 | text | 모델이 발화할 스크립트. 모델의 언어와 일치해야함. | String | true | - |
 | model | 사용할 모델의 ID | String | true | - |
 | clothes | 모델의 복장 ID | String | true | - |
-| ttsType | 모델의 기본 음성이 아닌 외부 TTS 정보 | Json | false | - |
-| isExport | 이 프로젝트 내보내질지 여부. false 인경우는 [프로젝트](https://app.aistudios.com/dashboard)에 노출 | Boolean | false | false |
+| isExport | 이 프로젝트 내보내질지 여부. <br />(false 일경우 [프로젝트 대시보드](https://app.aistudios.com/dashboard)에 노출) | Boolean | false | false |
 | workspaceId | [작업공간](./workspaces) 고유식별자 ID | String | false | - |
+| resolution | 비디오 품질 <br />(`4k` \| `1080` \| `720` \| `480`) | String | false | 1080 |
 | [webhookUrl](../reference/webhook) | 합성 결과를 보내줄 주소 | String | false | - |
 
+<!-- | ttsType | 모델의 기본 음성이 아닌 외부 TTS 정보 | Json | false | - | -->
 
 <br/>
 

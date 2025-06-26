@@ -17,13 +17,13 @@ https://app.aistudios.com/api/odin/v3/editor/project
 | key | desc | type | required | default |
 | :--- | :--- | :--- | :--- | :--- |
 | name | 프로젝트 이름 | String | false | Default Template |
-| orientation | 프로젝트 형태 (가로 / 세로) | String | false | landscape |
+| orientation | 프로젝트 형태 <br />(`landscape` \| `portrait`) | String | false | landscape |
 | scenes | 각 장면별 정보 | Array(json) | true | - |
 | scenes[].sceneIdx | 해당 장면의 순번 | Int | true | - |
 | scenes[].scripts | 발화할 대사 데이터 리스트<br />(* *추후, 기능의 확장성을 위해 배열로 되어 있지만 대사 데이터는 하나만 입력해야 합니다.*) | Json | true | - |
 | scenes[].scripts[].org | 발화할 대사 텍스트<br />`<p />`, `<span />` 태그 등을 허용하지만 `plain text`만 입력하는 것을 권장합니다. | String | true | - |
 | scenes[].scripts[].isTTS | 아바타의 목소리를 그대로 사용할 것인지, TTS로 합성된 목소리를 사용할 것인지 여부<br />아바타의 목소리를 사용할 경우 `false`, 다른 목소리를 사용할 경우 `true` | Boolean | true | - |
-| scenes[].scripts[].tts | 아바타의 목소리가 아닌 TTS로 합성된 목소리를 사용하는 경우, 해당 목소리의 데이터<br />아바타의 목소리를 사용할 경우 `null`, 다른 목소리를 사용할 경우 `Json` | Json\ | null | true | - |
+| scenes[].scripts[].tts | 아바타의 목소리가 아닌 TTS로 합성된 목소리를 사용하는 경우, 해당 목소리의 데이터<br />아바타의 목소리를 사용할 경우 `null`, 다른 목소리를 사용할 경우 `Json` | Json | null | true | - |
 | scenes[].scripts[].modelId | 아바타의 모델 아이디 | String | true | - |
 | scenes[].scripts[].clothId | 아바타의 복장 아이디 | String | true | - |
 | scenes[].background | 장면별 배경화면 정보 | Json | true | - |
@@ -36,9 +36,10 @@ https://app.aistudios.com/api/odin/v3/editor/project
 | scenes[].clips[].top | 장면의 상단을 기준으로 클립의 위치를 나타냅니다. | Float | true | - |
 | scenes[].clips[].layer | 클립들의 정렬 순서 (번호가 높을수록 상단에 노출) | Int | true | - |
 | scenes[].clips[].id | 클립의 Id | String | true | - |
-| scenes[].clips[].type | 추가할 클립의 종류  [Learn more](./clips) | String enum (aiModel, shape, image, textImage, videoImage, audio) | true | - |
-| isExport | 이 프로젝트 내보내질지 여부. false 인경우는 [프로젝트](https://app.aistudios.com/dashboard)에 노출 | Boolean | false | true |
+| scenes[].clips[].type | [추가할 클립의 종류](./clips) <br />(`aiModel` \| `shape` \| `image` \| `textImage` \| `videoImage` \| `audio`) | String | true | - |
+| isExport | 이 프로젝트 내보내질지 여부 <br />(false 일경우 [프로젝트 대시보드](https://app.aistudios.com/dashboard)에 노출) | Boolean | false | true |
 | workspaceId | [작업공간](./workspaces) 고유식별자 ID | String | false | - |
+| resolution | 비디오 품질 <br />(`4k` \| `1080` \| `720` \| `480`) | String | false | 1080 |
 | [webhookUrl](../reference/webhook) | 합성 결과를 보내줄 주소 | String | false | - |
 
 <br/>

@@ -19,8 +19,9 @@ https://app.aistudios.com/api/odin/v3/simple/custom
 | language | Language of the script you created | String | true | - |
 | text | The script that the model will utter | String | true | - |
 | model | ID of the custom avatar model to use | String | true | - |
-| isExport | Whether this project will be exported. Expose to the [project](https://app.aistudios.com/dashboard) if false | Boolean | false | true |
+| isExport | Whether this project will be exported. <br />(Expose to the [project dashboard](https://app.aistudios.com/dashboard) if false) | Boolean | false | true |
 | workspaceId | [Workspace](./workspaces) Unique identifier ID | String | false | - |
+| resolution | Video Quality <br />(`4k` \| `1080` \| `720` \| `480`) | String | false | 1080 |
 | [webhookUrl](../reference/webhook) | Address to send composite results | String | false | - |
 
 
