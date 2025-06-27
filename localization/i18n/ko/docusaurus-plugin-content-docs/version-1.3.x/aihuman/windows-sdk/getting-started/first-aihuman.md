@@ -52,7 +52,7 @@ namespace WpfApp1
     public partial class App : Application
     {
         /// TODO: You must assign APPID and USERKEY.
-        /// DOCS: https://aistudios.com/aihuman/windows-sdk/getting-started/projectsetup
+        /// DOCS: https://docs.aistudios.com/aihuman/windows-sdk/getting-started/projectsetup
         /// <see cref="APPID"/> is a unique ID of the project(application ID).
         /// <see cref="USERKEY"/> can be obtained by creating a project on the AIHuman Website and registering the App ID.
         private string APPID = "";
