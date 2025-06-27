@@ -11,7 +11,7 @@ Template-based Export utlilizes preseted project informations(i.e tamplates) and
 ## 1. API endpoint
 
 ```http
-https://app.deepbrain.io/api/odin/v3/editor/project/${key}
+https://app.aistudios.com/api/odin/v3/editor/project/${key}
 ```
 
 <br/>
@@ -49,7 +49,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.deepbrain.io/api/odin/v3/editor/project/${project key}  \
+curl https://app.aistudios.com/api/odin/v3/editor/project/${project key}  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -83,7 +83,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.post(`https://app.deepbrain.io/api/odin/v3/editor/project/${project key}`, 
+axios.post(`https://app.aistudios.com/api/odin/v3/editor/project/${project key}`, 
   {
     "updates": [
       {
@@ -126,7 +126,7 @@ axios.post(`https://app.deepbrain.io/api/odin/v3/editor/project/${project key}`,
 import requests
 import json
 
-url = "https://app.deepbrain.io/api/odin/v3/editor/project/${project key}"
+url = "https://app.aistudios.com/api/odin/v3/editor/project/${project key}"
 body = {
   "updates": [
     {

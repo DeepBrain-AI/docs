@@ -13,7 +13,7 @@ AI Studios V3 API는 Pro 이상의 구독 고객이 이용할 수 있습니다.
 ## 1. API endpoint
 
 ```http
-https://app.deepbrain.io/api/odin/v3/auth/token
+https://app.aistudios.com/api/odin/v3/auth/token
 ```
 
 <br/>
@@ -25,7 +25,7 @@ https://app.deepbrain.io/api/odin/v3/auth/token
 |appId|Api Token 발급에 필요한 AppId. Profile에서 확인이 가능합니다.|String|true|-|
 |userKey|Api Token 발급에 필요한 userKey. Profile에서 확인이 가능합니다.|String|true|-|
 
-[AppId, UserKey 확인하기](https://account.deepbrain.io/user/api-key)
+[AppId, UserKey 확인하기](https://account.aistudios.com/user/api-key)
 
 <br/>
 
@@ -47,7 +47,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.deepbrain.io/api/odin/v3/auth/token  \
+curl https://app.aistudios.com/api/odin/v3/auth/token  \
 -H "Content-Type: application/json" \
 -X POST \
 -d '{
@@ -62,7 +62,7 @@ curl https://app.deepbrain.io/api/odin/v3/auth/token  \
 ```js
 import axios from "axios"; 
 
-axios.post(`https://app.deepbrain.io/api/odin/v3/auth/token`, 
+axios.post(`https://app.aistudios.com/api/odin/v3/auth/token`, 
   {
     "appId": "##YOUR_APP_ID##",
     "userKey": "##YOUR_USER_KEY##"
@@ -88,7 +88,7 @@ axios.post(`https://app.deepbrain.io/api/odin/v3/auth/token`,
 import requests
 import json
 
-url = "https://app.deepbrain.io/api/odin/v3/auth/token"
+url = "https://app.aistudios.com/api/odin/v3/auth/token"
 body = {
   "appId": "##YOUR_APP_ID##",
   "userKey": "##YOUR_USER_KEY##"

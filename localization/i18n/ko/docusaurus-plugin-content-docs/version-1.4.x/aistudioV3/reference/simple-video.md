@@ -11,7 +11,7 @@ sidebar_position: 6
 ## 1. API endpoint
 
 ```http
-https://app.deepbrain.io/api/odin/v3/simple/video
+https://app.aistudios.com/api/odin/v3/simple/video
 ```
 
 <br/>
@@ -48,7 +48,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.deepbrain.io/api/odin/v3/simple/video  \
+curl https://app.aistudios.com/api/odin/v3/simple/video  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -69,7 +69,7 @@ import axios from "axios";
 const token = ${API KEY};
 const customWebhookUrl = ${webhook_delivery_address};
 
-axios.post('https://app.deepbrain.io/api/odin/v3/simple/video', 
+axios.post('https://app.aistudios.com/api/odin/v3/simple/video', 
   {
     "language": "en",
     "text": "Sample Script",
@@ -99,7 +99,7 @@ axios.post('https://app.deepbrain.io/api/odin/v3/simple/video',
 import requests
 import json
 
-url = "https://app.deepbrain.io/api/odin/v3/simple/video"
+url = "https://app.aistudios.com/api/odin/v3/simple/video"
 body = {
   "language": "en",
   "text": "Sample Script",

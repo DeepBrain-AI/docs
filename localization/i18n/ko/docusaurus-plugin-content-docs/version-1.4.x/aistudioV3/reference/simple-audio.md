@@ -11,7 +11,7 @@ sidebar_position: 6
 ## 1. API endpoint
 
 ```http
-https://app.deepbrain.io/api/odin/v3/simple/audio
+https://app.aistudios.com/api/odin/v3/simple/audio
 ```
 
 <br/>
@@ -47,7 +47,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://app.deepbrain.io/api/odin/v3/simple/audio  \
+curl https://app.aistudios.com/api/odin/v3/simple/audio  \
 -H "Authorization: ${API KEY}" \
 -H "Content-Type: application/json" \
 -X POST \
@@ -65,7 +65,7 @@ curl https://app.deepbrain.io/api/odin/v3/simple/audio  \
 import axios from "axios";
 const token = ${API KEY};
 
-axios.post('https://app.deepbrain.io/api/odin/v3/simple/audio', 
+axios.post('https://app.aistudios.com/api/odin/v3/simple/audio', 
   {
     "language": "en",
     "text": "Hello, this is test vidoe",
@@ -93,7 +93,7 @@ axios.post('https://app.deepbrain.io/api/odin/v3/simple/audio',
 import requests
 import json
 
-url = "https://app.deepbrain.io/api/odin/v3/simple/audio"
+url = "https://app.aistudios.com/api/odin/v3/simple/audio"
 body = {
   "language": "en",
   "text": "Hello, this is test vidoe",

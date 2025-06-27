@@ -20,7 +20,7 @@ const token = '##JWT##'; // API KEY
 
 ## 2. Set Project ID
 
-Set the previously created project ID in a projectId variable. The project ID can be found through the URL when entering the editing page by generating new project or clicking on the previously saved project on the [My Studio](https://app.deepbrain.io/auth/signin) page. For example, If you are on `app.deepbrain.io/editor/abcdefg`, its projectId is `abcedfg`.
+Set the previously created project ID in a projectId variable. The project ID can be found through the URL when entering the editing page by generating new project or clicking on the previously saved project on the [My Studio](https://app.aistudios.com/auth/signin) page. For example, If you are on `app.aistudios.com/editor/abcdefg`, its projectId is `abcedfg`.
 
 ```js
 const projectId = '##PROJECT_ID##';
@@ -33,7 +33,7 @@ const projectId = '##PROJECT_ID##';
 The saved projectId is used for requesting the Import Project API. The Import Project API is used to import the project name, scene information, etc. of a saved project. In this example, the method is GET, and you can pass the projectId into the URL without any body data. And set API key as Authorization value in header and Content-Type as 'application/json'. If subsequent communication is successful, the information will be stored in the projectInfo variable.
 
 ```js
-const projectInfo = await fetch('https://app.deepbrain.io/api/odin/v3/editor/project/' + projectId,
+const projectInfo = await fetch('https://app.aistudios.com/api/odin/v3/editor/project/' + projectId,
   {
     method: 'GET',
     headers: {
@@ -78,7 +78,7 @@ project.scenes[0].clips[modelIdx].script.org = "This is overriding old script";
 Previous modified scene data are used to send a request to the Export Project API. Meaning of 'export' is a request that creates a new video. You can read more about all kinds of data you can send when making the Export Project API request. [here](../reference/export-project). At this time, using POST method, the request body inclues the data of modeifed scenes in the form of a string. And set API key as Authorization value in the Header and Content-Type as 'application/json'. The project key value generated during subsequent successful communication is stored in the projectKey variable.
 
 ```js
-const projectKey = await fetch('https://app.deepbrain.io/api/odin/v3/editor/project',
+const projectKey = await fetch('https://app.aistudios.com/api/odin/v3/editor/project',
   {
     method: 'POST',
     body: JSON.stringify({ scenes }),
@@ -109,7 +109,7 @@ while (true) {
   if (complete) {
     break;
   }
-  await fetch('https://app.deepbrain.io/api/odin/v3/editor/progress/' + projectKey,
+  await fetch('https://app.aistudios.com/api/odin/v3/editor/progress/' + projectKey,
     {
       method: 'GET',
       headers: {
@@ -164,7 +164,7 @@ const projectId = '##YOUR_PROJECT_ID##';
 
 const generateVideo = async () => {
   // #1. Get project info
-  const projectInfo = await fetch('https://app.deepbrain.io/api/odin/v3/editor/project/' + projectId,
+  const projectInfo = await fetch('https://app.aistudios.com/api/odin/v3/editor/project/' + projectId,
     {
       method: 'GET',
       headers: {
@@ -196,7 +196,7 @@ const generateVideo = async () => {
   // project.scenes[0].clips[imageIdx].source_url = "##NEW_IMAGE_URL##";
 
   // #3. Request export
-  const projectKey = await fetch('https://app.deepbrain.io/api/odin/v3/editor/project',
+  const projectKey = await fetch('https://app.aistudios.com/api/odin/v3/editor/project',
     {
       method: 'POST',
       body: JSON.stringify({ scenes }),
@@ -219,7 +219,7 @@ const generateVideo = async () => {
     if (complete) {
       break;
     }
-    await fetch('https://app.deepbrain.io/api/odin/v3/editor/progress/' + projectKey,
+    await fetch('https://app.aistudios.com/api/odin/v3/editor/progress/' + projectKey,
       {
         method: 'GET',
         headers: {

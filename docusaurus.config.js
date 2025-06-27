@@ -164,7 +164,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://deepbrain.io',
+            href: 'https://aistudios.com',
             label: 'Go to DeepBrain AI',
             position: 'right',
           },
@@ -238,7 +238,7 @@ const config = {
               },
               {
                 label: 'Forum',
-                to: 'https://forum.deepbrain.io/',
+                to: 'https://forum.aistudios.com/',
               },
               {
                 label: 'Help',

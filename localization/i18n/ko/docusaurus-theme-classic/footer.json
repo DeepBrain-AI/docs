@@ -61,7 +61,7 @@
   },
   "link.item.label.Forum": {
     "message": "Forum",
-    "description": "The label of footer link with label=Forum linking to https://forum.deepbrain.io/"
+    "description": "The label of footer link with label=Forum linking to https://forum.aistudios.com/"
   },
   "link.item.label.Help": {
     "message": "Help",
