@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'DeepBrain AI DOCS',
   tagline: 'Welcome! Here you can read the documentation for the AI Human.',
-  url: 'https://docs.deepbrain.io/',
+  url: 'https://docs.aistudios.com/',
   baseUrl: '/',
   // onBrokenLinks: 'throw',
   onBrokenLinks: 'warn',
