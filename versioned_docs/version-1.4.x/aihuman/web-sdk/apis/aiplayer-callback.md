@@ -6,7 +6,7 @@ sidebar_position: 3
 
 ### 1. onAIPlayerError
 
-This [Callback function](https://aistudios.com/1.3.x/aihuman/web-sdk/apis/aiplayer-callback) is obsolete.
+This [Callback function](https://docs.aistudios.com/1.3.x/aihuman/web-sdk/apis/aiplayer-callback) is obsolete.
 Recommend to use a onAIPlayerErrorV2.
 
 
@@ -40,7 +40,7 @@ Callback for Errors during AIPlayer operation. Check out the AIError details [he
 
 ### 3. onAIPlayerStateChanged
 
-This [Callback function](https://aistudios.com/1.3.x/aihuman/web-sdk/apis/aiplayer-callback) is obsolete.
+This [Callback function](https://docs.aistudios.com/1.3.x/aihuman/web-sdk/apis/aiplayer-callback) is obsolete.
 Recommend to use a onAIPlayerEvent.
 
 
