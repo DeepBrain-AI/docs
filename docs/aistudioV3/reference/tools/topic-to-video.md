@@ -16,15 +16,20 @@ https://app.aistudios.com/api/odin/v3/automation/topic_to_video
 | :--- | :--- | :--- | :--- | :--- | 
 | topic | Topic for creating videos| String | true | - | 
 | options | Configuration for video generation | Json | false | {} |
-| options.goal | Purpose of video generation | 'auto', 'business', 'youtube', 'education' | false | 'business' |
-| options.duration | Video Time | 'auto', '30', '60', '90', '120' | false | 'auto' |
-| options.speed | Video playback speed relative to original speed | 'auto', Number | false | - |
-| options.language | The language used in the video. <br/>The language code follows the [ISO 639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) standard. | 'auto', String | false | - |
-| options.media | Image information used to create video (valid only for options.filebackground=false) | 'auto', 'search', 'free', 'generative' | false | - |
-| options.style | Style information (valid only for options.media='generative') | 'auto', 'business', 'youtube', 'education' | false | - |
-| options.fileBackground | Whether to use the file you provided in the background of the video | Boolean | false | true |
-| options.orientation | Screen orientation of the created video | 'web', 'mobile' | false | 'web' |
-| options.model | ID of the AI model to use for video generation |  |  |  |
+| options.language | The language used in the video<br />The language code follows the [ISO 639-1](https://www.loc.gov/standards/iso639-2/php/code_list.php) standard. | String | false | - |
+| options.duration | Video Time<br />(`30` \| `60` \| `90` \| `120` \| `150` \| `180`) | Number | false | - |
+| options.objective | Objectives of video footage (e.g. publicity, education, explanation) | String | false | - |
+| options.audience | Target audience for video footage (e.g. marketers, students) | String | false | - |
+| options.tone | The tone of a video video (e.g. clearly, formally) | String | false | - |
+| options.speed | Video playback speed relative to original speed<br />(`0.5 ~ 1.5`) | Number | false | 1 |
+| options.media | Image information used to create video<br />(`search` \| `free` \| `premium` \| `generative`) | String | false | - |
+| options.useGenerativeHighQuality | Enabling High-Definition AI Media<br />(valid only for options.media='generative')<br />(`true` \| `false`) | Boolean | false | false |
+| options.style | Style information<br />(valid only for options.media='generative')<br />(`realistic` \| `digitalPainting` \| `sketch` \| `oilPainting` \| `pixelArt` \| `watercolor` \| `lowPoly` \| `cyberpunk` \| `fantasy` \| `anime`) | String | false | realistic |
+| options.templateId | [template id](./reference/templates-automation) to use for video creation | String | false | - |
+| options.model | [model id](../models) to use for video generation | String | false | - |
+| options.voiceOnly | Only the voice of the model used to create the video<br />(`true` \| `false`) | Boolean | false | false |
+
+<!-- | options.goal | Purpose of video generation<br />(`business` \| `youtube` \| `education`) | String | false | auto | -->
 
 ### 1-3. Response Parameters
 | key | desc | type |
@@ -48,8 +53,14 @@ curl https://app.aistudios.com/api/odin/v3/automation/topic_to_video  \
 -d '{
     "topic" : "What is K-culture?",
     "options" : {
-        "goal" : "youtube",
-        "duration" : 30, 
+        "language": "en",
+        "speed": 1,
+        "media": "generative",
+        "useGenerativeHighQuality": true,
+        "style": "digitalPainting",
+        "templateId": "## template id ##",
+        "model": "## model id ##",
+        "voiceOnly": false
     }
 }'
 ```
@@ -66,8 +77,14 @@ axios.post('https://app.aistudios.com/api/odin/v3/automation/topic_to_video',
     {
         "topic" : "What is K-culture?",
         "options" : {
-            "goal" : "youtube",
-            "duration" : 30, 
+            "language": "en",
+            "speed": 1,
+            "media": "generative",
+            "useGenerativeHighQuality": true,
+            "style": "digitalPainting",
+            "templateId": "## template id ##",
+            "model": "## model id ##",
+            "voiceOnly": false
         }
     }, 
     {
@@ -96,8 +113,14 @@ url = "https://app.aistudios.com/api/odin/v3/automation/topic_to_video"
 body = {
     "topic" : "What is K-culture?",
     "options" : {
-        "goal" : "youtube",
-        "duration" : 30, 
+        "language": "en",
+        "speed": 1,
+        "media": "generative",
+        "useGenerativeHighQuality": true,
+        "style": "digitalPainting",
+        "templateId": "## template id ##",
+        "model": "## model id ##",
+        "voiceOnly": false
     }
 }
     
@@ -154,3 +177,208 @@ axios.get(`https://app.aistudios.com/api/odin/v3/automation/progress/${projectId
 
 ## 3. Export
 Use Project [Export to Project](/aistudioV3/reference/export-project) a video of a created project.
+<br/>
+<br/>
+
+
+## 4. Full Code
+```javascript
+const API_HOST = 'https://app.aistudios.com'
+
+const GET_TOKEN_API_PATH = '/api/odin/v3/auth/token'
+const CREATE_API_PATH = '/api/odin/v3/automation/topic_to_video'
+const CREATE_PROGRESS_API_PATH = '/api/odin/v3/automation/progress'
+const EXPORT_API_PATH = '/api/odin/v3/editor/project/export'
+const EXPORT_PROGRESS_API_PATH = '/api/odin/v3/editor/progress'
+
+const appId = '## your appId ##'
+const userKey = '## your userKey ##'
+
+const topic = "What is K-culture?";
+const options = {
+    "language": "en",
+    // "duration": 60,
+    // "objective": "education",
+    // "audience": "students",
+    // "tone": "clearly",
+    "speed": 1,
+    // "media": "generative",
+    // "useGenerativeHighQuality": true,
+    // "style": "digitalPainting",
+    "templateId": "## template id ##",
+    "model": "## model id ##", // Michael
+    "voiceOnly": false,
+};
+
+const delay = async (ms = 1000 * 60) => {
+    await new Promise(r => setTimeout(r, ms))
+}
+
+const main = async () => {
+    try {
+        /**
+         * get api token
+         */
+        const token = await fetch(
+            `${API_HOST}${GET_TOKEN_API_PATH}`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    appId,
+                    userKey
+                })
+            }
+        )
+            .then((response) => response.json())
+            .then((response) => {
+                if (response.success == true) {
+                    return response.data.token
+                } else {
+                    console.error(`import authentication token error, code:`, response.error.code, `, msg:`, response.error.msg);
+                    throw Error(response);
+                }
+            });
+
+        console.log('token : ', token);
+
+        /**
+         * create project
+         */
+        const projectId = await fetch(
+            `${API_HOST}${CREATE_API_PATH}`,
+            {
+                method: 'POST',
+                headers: {
+                    Authorization: token,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "topic": topic,
+                    "options": options
+                })
+            }
+        )
+            .then((response) => response.json())
+            .then((response) => {
+                if (response.success == true) {
+                    return response.data.projectId
+                } else {
+                    console.error(`create project error, code:`, response.error.code, `, msg:`, response.error.msg);
+                    throw Error(response);
+                }
+            });
+
+        console.log('request create project, projectId : ', projectId);
+
+        /**
+         * project progress
+         */
+        let isCreateProjectFinish = false
+
+        while (!isCreateProjectFinish) {
+            const progressData = await fetch(
+                `${API_HOST}${CREATE_PROGRESS_API_PATH}/?projectId=${projectId}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        Authorization: token,
+                    },
+                },
+            )
+                .then((response) => response.json())
+                .then((response) => {
+                    if (response.success === true) {
+                        return response.data
+                    } else {
+                        console.error(`project progress error, code:`, response.error.code, `, msg:`, response.error.msg);
+                        throw Error(response);
+                    }
+                })
+
+            console.log('project creation progress, state: ', progressData.state, ', progress : ', progressData.progress);
+
+            if (progressData.state === "finish" && progressData.progress === 100) {
+                isCreateProjectFinish = true
+            } else {
+                await delay()
+            }
+        }
+
+        /**
+         * export project
+         */
+        await fetch(
+            `${API_HOST}${EXPORT_API_PATH}`,
+            {
+                method: 'POST',
+                headers: {
+                    Authorization: token,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "projectId": projectId
+                })
+            }
+        )
+            .then((response) => response.json())
+            .then((response) => {
+                if (response.success == true) {
+                    return response.data.projectId
+                } else {
+                    console.error(`export project error, code:`, response.error.code, `, msg:`, response.error.msg);
+                    throw Error(response);
+                }
+            });
+
+        console.log('request export project');
+
+
+        /**
+         * export progress
+         */
+        let isExportFinish = false
+        let videoUrl = ''
+
+        while (!isExportFinish) {
+            const progressData = await fetch(
+                `${API_HOST}${EXPORT_PROGRESS_API_PATH}/${projectId}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        Authorization: token,
+                    }
+                },
+            )
+                .then((response) => response.json())
+                .then((response) => {
+                    if (response.success === true) {
+                        return response.data
+                    } else {
+                        console.error(`export progress error, code:`, response.error.code, `, msg:`, response.error.msg);
+                        throw Error(response);
+                    }
+                })
+
+            console.log(`export `, progressData.state, `, progress : `, progressData.progress)
+
+            if (progressData.progress < 100) {
+                await delay()
+            } else {
+                videoUrl = progressData.downloadUrl
+                isExportFinish = true
+            }
+        }
+
+        console.log('videoUrl :', videoUrl);
+    } catch (error) {
+        // ...
+    }
+
+    console.log('finish');
+}
+
+main()
+```

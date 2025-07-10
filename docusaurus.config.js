@@ -242,7 +242,7 @@ const config = {
               },
               {
                 label: 'Help',
-                to: 'https://help.deepbrain.io/',
+                to: 'https://help.aistudios.com/',
               },
             ],
           },

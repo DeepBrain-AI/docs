@@ -65,7 +65,7 @@
   },
   "link.item.label.Help": {
     "message": "Help",
-    "description": "The label of footer link with label=Help linking to https://help.deepbrain.io/"
+    "description": "The label of footer link with label=Help linking to https://help.aistudios.com/"
   },
   "link.item.label.About": {
     "message": "About",

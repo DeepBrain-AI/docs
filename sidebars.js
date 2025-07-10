@@ -109,7 +109,8 @@ const sidebars = {
           label: 'Utilities',
           items: [
             "aistudioV3/reference/models",
-            "aistudioV3/reference/templates-business",
+            // "aistudioV3/reference/templates-business",
+            "aistudioV3/reference/templates-automation",
             "aistudioV3/reference/workspaces",
             "aistudioV3/reference/simple-video",
             "aistudioV3/reference/simple-audio",
