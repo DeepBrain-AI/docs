@@ -102,6 +102,7 @@ const sidebars = {
             'aistudioV3/reference/delete-projects',
             "aistudioV3/reference/export-project",
             "aistudioV3/reference/create-from-template",
+            "aistudioV3/reference/create-from-pdfppt",
           ],
         },
         {
