@@ -117,12 +117,6 @@ const config = {
             label: 'AI Studios V3'
           },
           {
-            type: 'doc',
-            docId: 'aistudios/getting-started',
-            position: 'left',
-            label: 'AI Studios',
-          },
-          {
             type: 'dropdown',
             //docId: 'aihuman/intro',
             position: 'left',

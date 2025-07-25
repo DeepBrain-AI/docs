@@ -1,8 +1,4 @@
----
-displayed_sidebar: aistudiosSidebar
-sidebar_position: 1
-slug: /aistudios/getting-started
----
+
 
 # Get started with API
 

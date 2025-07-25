@@ -19,7 +19,7 @@ const FeatureList: FeatureItem[] = [
         Fully licensed models ready to be deployed.
       </>
     ),
-    link: 'aistudios/getting-started',
+    link: 'aistudioV3/getting-started',
   },
   {
     title: 'Omnichannel Experience',
