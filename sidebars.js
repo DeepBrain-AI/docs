@@ -27,7 +27,6 @@ const sidebars = {
       items: ['tutorial-basics/create-a-document'],
     },
   ],
-   */
   aistudiosSidebar: [
     'aistudios/getting-started',
     'aistudios/generate-api-key',
@@ -63,6 +62,7 @@ const sidebars = {
       ],
     },
   ],
+   */
   aistudioV3Sidebar: [
     'aistudioV3/getting-started',
     'aistudioV3/generate-api-key',
