@@ -9,15 +9,15 @@ sidebar_position: 1
 | `init(json)`      | Initializing the AIPlayer object |
 | `setter(json)`    | Set AI object information |
 | `getter(string)`  | Get AI object information |
-| `preload(json)`   | Pre-load for AI Speaking (Four Parameter Types [Reference](#14-aiplayerpreload))) |               
-| `send(json)`      | Command AI Speaking (Four Parameter Types [Reference](#15-aiplayersend))  |   
+| `preload(json)`   | Pre-load for AI Speaking (Four Parameter Types [Reference](../aiplayer/advanced-features#4-preload))) |               
+| `send(json)`      | Command AI Speaking (Four Parameter Types [Reference](../aiplayer/basic-features#1-send-speaking))  |   
 | `pause()`         | Pause speaking  |
 | `resume()`        | Resume speaking |
 | `stopSpeak()`     | Stop speaking and reset all data. (cannot resume) |
 | `release()`       | Release resource (terminate AIPlayer) |
 | `generateToken()` | Generate authentication token |
 | `getAIList()`     | Get a list of available AI models |
-| `getGesture()`    | Get a list of available AI [gestures](#43-aigesture) |
+| `getGesture()`    | Get a list of available AI [gestures](../apis/aiplayer-data#3-aigesture) |
 
 
 <br/>
@@ -185,7 +185,7 @@ Used to release system resources in use. (Not reusable)
 
 ## 10. AIPlayer.getGestures()
 
-Get a list of available [gestures](#43-aigesture)
+Get a list of available [gestures](../apis/aiplayer-data#3-aigesture)
 
 - Return Parameter: `Array<AIGesture\>`
 

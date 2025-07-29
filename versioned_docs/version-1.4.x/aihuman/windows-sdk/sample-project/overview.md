@@ -10,7 +10,7 @@ You can open AIHuman_WPF_Sample.sln from the sample received from the path where
 
 :::info
 1. Open the solution with AIHuman_WPF_Sample.sln double-click or IDE (Visual Studio).
-2. Enter the appId and userKey prepared by [AIHuman Quick Start](#aihuman-quick-start) as the AIAPI.Instance.AuthStart function argument in the App.xaml.cs file.
+2. Enter the appId and userKey prepared by [Project Setup](../getting-started/projectsetup#2-add-a-project-to-my-workspace) as the AIAPI.Instance.AuthStart function argument in the App.xaml.cs file.
 3. Click [Build] - [Solution Build] on the top menu bar of IDE (Visual Studio) to perform the build.
 4. Click [Debug] - [Start Without Debugging] on the top menu bar of IDE (Visual Studio) to launch the Sample App.
 :::

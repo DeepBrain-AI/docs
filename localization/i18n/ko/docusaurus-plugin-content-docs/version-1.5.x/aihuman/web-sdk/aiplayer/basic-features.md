@@ -8,7 +8,7 @@ sidebar_position: 4
 
 AIPlayer의 초기화가 완료된 후(`AIEventType.AIPLAYER_STATE_CHANGED`에서 State가 INITIALIZE에서 IDLE로 변화를 체크), send 함수를 호출할수 있습니다.
 
-문자열을 입력하면 AI가 발화할 수 있지만 json 형식(AIClipSet 객체)도 사용할 수 있습니다. AIClipSet을 사용하면 AI가 제스처와 함께 말하도록 할 수 있습니다. 예를 들어, 당신은 AI에게 손을 흔들며 "안녕하세요!"라고 말할 수 있습니다. 이것을 제스처 스피치라고 합니다. 자세한 내용은 [Gesture](../aiplayer/advanced-features.md#1-제스처) 파트에 설명되어 있습니다.
+문자열을 입력하면 AI가 발화할 수 있지만 json 형식(AIClipSet 객체)도 사용할 수 있습니다. AIClipSet을 사용하면 AI가 제스처와 함께 말하도록 할 수 있습니다. 예를 들어, 당신은 AI에게 손을 흔들며 "안녕하세요!"라고 말할 수 있습니다. 이것을 제스처 스피치라고 합니다. 자세한 내용은 [Gesture](../aiplayer/advanced-features) 파트에 설명되어 있습니다.
 
 말하는 텍스트가 너무 길면 말하는 데 필요한 리소스를 합성하지 못할 수 있습니다. 긴 문장을 합성할 수 있는 모델이 있습니다. AI마다 합성할수 있는 길이는 다르지만 일반적으로 문장은 한국어로 보통 100자 이내, 영어도 비슷한 수준으로 자르는 것이 좋습니다.
 

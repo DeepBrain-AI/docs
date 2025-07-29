@@ -8,7 +8,7 @@ sidebar_position: 4
 
 AIPlayer 리소스 로딩 완료 후 `Send`함수를 이용해 발화 요청을 할 수 있습니다. AIHuman 데모 Scene에서는 Dropdown UI에서 발화 문장을 선택한 후 `SPEAK` 버튼을 누르면 해당 기능의 동작을 볼 수 있습니다.  
 
-일반적으로 순수 텍스트로 발화를 시킬 수 있지만, [AIClipSet](/aihuman/unity-sdk/apis/aiclipset)를 이용하여 발화를 수행할 수도 있습니다. 또한 특정 제스처와 함께 발화를 수행할 수도 있습니다. 예를 들어 AI에게 손을 흔들며 "안녕하세요!"라고 인사말을 하도록 명령할 수 있습니다. 이를 제스처 발화라고 합니다. 자세한 내용은 [제스처 발화 관련 파트](/aihuman/unity-sdk/aiplayer/advanced-features#gestures)에서 설명합니다.
+일반적으로 순수 텍스트로 발화를 시킬 수 있지만, [AIClipSet](../apis/aiclipset)를 이용하여 발화를 수행할 수도 있습니다. 또한 특정 제스처와 함께 발화를 수행할 수도 있습니다. 예를 들어 AI에게 손을 흔들며 "안녕하세요!"라고 인사말을 하도록 명령할 수 있습니다. 이를 제스처 발화라고 합니다. 자세한 내용은 [제스처 발화 관련 파트](../aiplayer/advanced-features)에서 설명합니다.
 
 ```csharp
 // using pure-text

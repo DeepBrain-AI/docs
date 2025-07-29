@@ -122,27 +122,27 @@ Assigns the `AIList.AI.aiName` value acquired by the `AIHuman.Core.AIAPI.Authent
 If you assign any value, the AIPlayer may not initialize normally.
 
 #### AIScale
-Set the [Scale](../../../aihuman/windows-sdk/aiplayer/other-features#change-ai-sizescale) of the AI at the initialization.  
+Set the [Scale](../aiplayer/other-features) of the AI at the initialization.  
 The default is `1.0f`.
 
 #### AIMargin
-Set the [Margin](../../../aihuman/windows-sdk/aiplayer/other-features#change-ai-positionmargin) of the AI at initialization.  
+Set the [Margin](../aiplayer/other-features) of the AI at initialization.  
 The default is `null`.
 
 #### AISpeed
-Set the [Speed](../../../aihuman/windows-sdk/aiplayer/advanced-features#change-ai-speech-rate) of the AI at initialization.  
+Set the [Speed](../aiplayer/advanced-features#change-ai-speech-rate) of the AI at initialization.  
 The default is `1.0f`.
 
 #### AIDisconnection
-Set the [Disconnection](../../../aihuman/windows-sdk/aiplayer/other-features#disconnect-from-ai) of the AI at initialization.  
+Set the [Disconnection](../aiplayer/other-features#disconnect-from-ai) of the AI at initialization.  
 The default is `false`.
 
 #### AICachingStrategy
-Set the local [Caching Strategy](../../../aihuman/windows-sdk/aiplayer/basic-features#local-caching) of the AIPlayer at initialization.  
+Set the local [Caching Strategy](../aiplayer/basic-features#local-caching) of the AIPlayer at initialization.  
 The default is `AIHuman.Interface.AIPlayerCachingStrategy.V1`.
 
 #### CacheLimit
-Set the [Maximum Local Caching Count](../../../aihuman/windows-sdk/aiplayer/basic-features#local-caching) of the AIPlayer at initialization.  
+Set the Maximum Local Caching Count of the AIPlayer at initialization.  
 The default is `2000` units. The unit is `AIClipSet`.
 
 ```csharp

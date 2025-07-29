@@ -23,7 +23,7 @@ _aiPlayer.Speed = value;
 
 ### Gestures
 
-As briefly mentioned above, speech can also be performed using [ClipSet](#main-class-apis). The ClipSet here refers to one action unit in a series of AI actions. There are three types of ClipSet: general speech that performs only speaking, speech with gesture, and gesture only. The Gesture can be used depending on whether the AI model supports [Gestures](#main-class-apis), and the list of available gestures can be checked using the [GetGestures](#main-class-apis) function of AIPlayer. Even a model that does not support gestures can be operated using ClipSet.
+As briefly mentioned above, speech can also be performed using [ClipSet](../apis/aiclipset). The ClipSet here refers to one action unit in a series of AI actions. There are three types of ClipSet: general speech that performs only speaking, speech with gesture, and gesture only. The Gesture can be used depending on whether the AI model supports [Gestures](../aiplayer/advanced-features#gestures), and the list of available gestures can be checked using the [GetGestures](../apis/aiplayer) function of AIPlayer. Even a model that does not support gestures can be operated using ClipSet.
 
 AIClipSet types are as follows.
 
