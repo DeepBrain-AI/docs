@@ -21,6 +21,21 @@ const config = {
   organizationName: 'DeepBrain-AI', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
 
+  plugins: [
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        language: ['en', 'ko'/*, 'zh'*/], // SyntaxError: Invalid regular expression
+        docsRouteBasePath: '/',
+        docsDir: 'versioned_docs/version-1.5.x',
+        indexBlog: false, 
+        highlightSearchTermsOnTargetPage: true,
+        searchResultLimits: 10,
+      },
+    ],
+  ],
+
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
@@ -124,25 +139,25 @@ const config = {
             label: 'AI Human',
             items: [
               {
-                label: 'JavaScript',
+                label: 'JS (Web)',
                 to: 'aihuman/web-sdk',
               },
               {
-                label: 'Android',
-                to: 'aihuman/android-sdk',
+                label: '.NET (Windows)',
+                to: 'aihuman/windows-sdk',
               },
               {
-                label: 'iOS',
-                to: 'aihuman/ios-sdk',
-              },
-              {
-                label: 'Unity',
+                label: 'Unity (3D)',
                 to: 'aihuman/unity-sdk',
               },
               {
-                label: '.NET',
-                to: 'aihuman/windows-sdk',
+                label: 'Android (Native)',
+                to: 'aihuman/android-sdk',
               },
+              {
+                label: 'iOS (Native)',
+                to: 'aihuman/ios-sdk',
+              },             
             ],
           },
           {
