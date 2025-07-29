@@ -22,7 +22,7 @@ Get JWT Verified Token
   | -------------------- | --------- | -------------------------------- |
   | `return`             | `Object`  | generateToken return             |
   | `return.succeed`     | `Boolean` | true: Success, false: Fail       |
-  | `return.defaultAI`   | `Object`  | default AI({ "ai_name": "..." }) |
+  | `return.defaultAI`   | `Object`  | default AI(`{ "ai_name": "..." }`) |
   | `return.token`       | `String`  | JWT Verified Token               |
   | `return.tokenExpire` | `Number`  | JWT Verified Token Expire        |
 
