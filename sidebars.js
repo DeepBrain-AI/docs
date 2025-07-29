@@ -186,6 +186,7 @@ const sidebars = {
     },
     {
       type: 'category',
+      collapsed: false,
       label: 'AIPlayer Description',
       link: {
         "type": "generated-index",
@@ -319,6 +320,7 @@ const sidebars = {
     },
     {
       type: 'category',
+      collapsed: false,
       label: 'AIPlayer Description',
       link: {
         "type": "generated-index",
@@ -393,6 +395,7 @@ const sidebars = {
     },
     {
       type: 'category',
+      collapsed: false,
       label: 'AIPlayer Description',
       link: {
         "type": "generated-index",
@@ -466,6 +469,7 @@ const sidebars = {
     },
     {
       type: "category",
+      collapsed: false,
       label: "AIPlayer Description",
       link: {
         type: "generated-index",

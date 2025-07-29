@@ -25,9 +25,9 @@ AI_PLAYER.setter({ speed: 1.0 }); // float
 
 ### 2. Gesture
 
-As briefly mentioned earlier, you can use [Clipset](#42-aiclipset) to make the AI speak. Clipset represents a single speech which can be played with a gesture.
+As briefly mentioned earlier, you can use [Clipset](../apis/aiplayer-data#2-aiclipset) to make the AI speak. Clipset represents a single speech which can be played with a gesture.
 
-This feature is available for AI models that have [Gesture](#43-aigesture) features. getGestures() returns available list of gestures that the AI can use. AI models without gestures can also be run with the Clipsets.
+This feature is available for AI models that have [Gesture](../apis/aiplayer-data#3-aigesture) features. getGestures() returns available list of gestures that the AI can use. AI models without gestures can also be run with the Clipsets.
 
 The screenshot below shows AI Model Yoonsubin opening its arms according to "twohand" gesture command.
 

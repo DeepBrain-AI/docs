@@ -24,7 +24,7 @@ sidebar_position: 1
 | ----------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `json`      | `Object` | AIClipset json object used for GesturePlay
 | `json.text` | `String` | A sentence to be synthesized
-| `json.gst`  | `String` | Gesture name can be obtained from [AIPlayer.getGestures()](#110-aiplayergetgestures), If there is no gst value, the function performs like normal speech
+| `json.gst`  | `String` | Gesture name can be obtained from [AIPlayer.getGestures()](../apis/aiplayer#10-aiplayergetgestures), If there is no gst value, the function performs like normal speech
 
 
 <br/>

@@ -121,6 +121,7 @@
     },
     {
       "type": "category",
+      "collapsed": false,
       "label": "AIPlayer Description",
       "link": {
         "type": "generated-index",
@@ -254,6 +255,7 @@
     },
     {
       "type": "category",
+      "collapsed": false,
       "label": "AIPlayer Description",
       "link": {
         "type": "generated-index",
@@ -328,6 +330,7 @@
     },
     {
       "type": "category",
+      "collapsed": false,
       "label": "AIPlayer Description",
       "link": {
         "type": "generated-index",
@@ -400,6 +403,7 @@
     },
     {
       "type": "category",
+      "collapsed": false,
       "label": "AIPlayer Description",
       "link": {
         "type": "generated-index",

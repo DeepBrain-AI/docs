@@ -1,8 +1,9 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const {themes} = require('prism-react-renderer');
+const lightTheme = themes.github;
+const darkTheme = themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -19,6 +20,21 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'DeepBrain-AI', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
+
+  plugins: [
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        language: ['en', 'ko'/*, 'zh'*/], // SyntaxError: Invalid regular expression
+        docsRouteBasePath: '/',
+        docsDir: 'versioned_docs/version-1.5.x',
+        indexBlog: false, 
+        highlightSearchTermsOnTargetPage: true,
+        searchResultLimits: 10,
+      },
+    ],
+  ],
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -123,8 +139,16 @@ const config = {
             label: 'AI Human',
             items: [
               {
-                label: 'JavaScript',
+                label: 'JS (Web)',
                 to: 'aihuman/web-sdk',
+              },
+              {
+                label: '.NET (Windows)',
+                to: 'aihuman/windows-sdk',
+              },
+              {
+                label: 'Unity',
+                to: 'aihuman/unity-sdk',
               },
               {
                 label: 'Android',
@@ -133,15 +157,7 @@ const config = {
               {
                 label: 'iOS',
                 to: 'aihuman/ios-sdk',
-              },
-              {
-                label: 'Unity',
-                to: 'aihuman/unity-sdk',
-              },
-              {
-                label: '.NET',
-                to: 'aihuman/windows-sdk',
-              },
+              },             
             ],
           },
           {
@@ -279,12 +295,18 @@ const config = {
             ],
           },
         ],
-        copyright: `© 2024 DeepBrain AI. All Rights Reserved`,
+        logo: {
+          alt: 'DeepBrain AI Logo',
+          src: 'img/ci_horizontal_white_RGB.png',
+          href: 'https://aistudios.com',
+          width: 368,
+        },
+        copyright: `Copyright © ${new Date().getFullYear()} DeepBrain AI. Built with Docusaurus.`,
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-        additionalLanguages: ['csharp', 'java', 'swift', 'groovy'],
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        additionalLanguages: ['csharp', 'java', 'swift', 'groovy','bash', 'diff', 'json'],
       },
     }),
 };

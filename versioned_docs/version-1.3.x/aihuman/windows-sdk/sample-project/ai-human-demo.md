@@ -10,7 +10,7 @@ Please refer to the files below in Sample Project.
 
 :::
 
-AI Human Demo is a page where you can try out various functionalities of AIPlayer. You can try changing to another approved AI model through [AI Select]. For other details, please refer to [AIPlayer Description](#aiplayer-description).
+AI Human Demo is a page where you can try out various functionalities of AIPlayer. You can try changing to another approved AI model through [AI Select]. For other details, please refer to AIPlayer Description chapter.
 
 <img src="/img/aihuman/windows/WPF_Sample_DemoPage.png" />
 
@@ -68,7 +68,7 @@ private void UpdateSelectedAI()
 
 AIHuman.Core.RelayCommand is used for View and Command Binding. This implementation is only an example and it is not necessary to use AIHuman.Core.RelayCommand.
 
-Please refer to the [AIPlayer description](#aiplayer-description) that follows below.
+Please refer to the AIPlayer Description chapter that follows below.
 
 ```csharp
 private void Speak_Command(object args)

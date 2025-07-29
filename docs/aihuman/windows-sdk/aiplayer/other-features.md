@@ -9,7 +9,7 @@ Once the resource is loaded, you can change AIPlayer's settings; for example, yo
 
 <br/>
 
-### Change AI Speech Rate
+### Change AI Size (Scale)
 <img src="/img/aihuman/windows/scale_1.4.x.png" />
 
 : You can change the size(scale) of AI. The possible value range is from 0.5 to 1.5.
@@ -22,7 +22,7 @@ _aiPlayer.Scale = value;
 
 <br/>
 
-### Change AI Position(Margin)
+### Change AI Position (Margin)
 <img src="/img/aihuman/windows/margin_1.4.x.png" />
 
 : You can change the position(margins) of AI. It can be adjusted based on the X-axis(Horizontal) and the Y-axis(Vertical).

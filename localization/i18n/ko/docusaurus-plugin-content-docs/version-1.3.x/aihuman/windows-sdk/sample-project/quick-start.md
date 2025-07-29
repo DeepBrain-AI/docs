@@ -11,7 +11,7 @@ Sample Project에서 아래 파일들을 참고하세요.
 
 :::
 
-AI Human QuickStart에서는 SDK 인증과 리소스 로딩 등의 사전 작업이 완료되면 AIPlayer를 통해 기본(default) AI 모델이 다음과 같이 화면에 등장하게 됩니다. 처음 실행에는 기본 로드 시간이 있기 때문에 네트워크 조건에 따라 AI가 최종 발화하기까지 몇 분이 소요될 수도 있습니다. 첫번째 인사 발화 후 화면 하단의 텍스트 박스에 입력한 문장을 발화 시켜볼 수 있습니다. 현재 기본 AI 모델은 Jonathan입니다. (AI 모델은 기본 설정된 언어 코드에 해당하는 언어를 구사합니다. 추가로 음성 또는 구사하는 언어를 변경할 수 있는 [언어 및 음성 변경](../aiplayer/advanced-features#change-the-voice-or-language)기능을 이용하여 다국어 서비스를 구현할 수도 있습니다.)
+AI Human QuickStart에서는 SDK 인증과 리소스 로딩 등의 사전 작업이 완료되면 AIPlayer를 통해 기본(default) AI 모델이 다음과 같이 화면에 등장하게 됩니다. 처음 실행에는 기본 로드 시간이 있기 때문에 네트워크 조건에 따라 AI가 최종 발화하기까지 몇 분이 소요될 수도 있습니다. 첫번째 인사 발화 후 화면 하단의 텍스트 박스에 입력한 문장을 발화 시켜볼 수 있습니다. 현재 기본 AI 모델은 Jonathan입니다. (AI 모델은 기본 설정된 언어 코드에 해당하는 언어를 구사합니다. 추가로 음성 또는 구사하는 언어를 변경할 수 있는 [언어 및 음성 변경](../aiplayer/advanced-features)기능을 이용하여 다국어 서비스를 구현할 수도 있습니다.)
 
 <img src="/img/aihuman/windows/Jonathan_demo.png" />
 

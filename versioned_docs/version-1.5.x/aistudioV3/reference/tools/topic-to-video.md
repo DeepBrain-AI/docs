@@ -25,7 +25,7 @@ https://app.aistudios.com/api/odin/v3/automation/topic_to_video
 | options.media | Image information used to create video<br />(`search` \| `free` \| `premium` \| `generative`) | String | false | - |
 | options.useGenerativeHighQuality | Enabling High-Definition AI Media<br />(valid only for options.media='generative')<br />(`true` \| `false`) | Boolean | false | false |
 | options.style | Style information<br />(valid only for options.media='generative')<br />(`realistic` \| `digitalPainting` \| `sketch` \| `oilPainting` \| `pixelArt` \| `watercolor` \| `lowPoly` \| `cyberpunk` \| `fantasy` \| `anime`) | String | false | realistic |
-| options.templateId | [template id](./reference/templates-automation) to use for video creation | String | false | - |
+| options.templateId | [template id](../templates-automation) to use for video creation | String | false | - |
 | options.model | [model id](../models) to use for video generation | String | false | - |
 | options.voiceOnly | Only the voice of the model used to create the video<br />(`true` \| `false`) | Boolean | false | false |
 

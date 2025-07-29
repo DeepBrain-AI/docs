@@ -12,7 +12,7 @@ You can set or change **Gestures, Language and CustomVoice, Speed**, etc. in the
 
 ### Gestures
 
-Use a [AIClipSet](/aihuman/unity-sdk/apis/aiclipset) to send utterance commands to the AI. The AIClipSet refers to a series of AI action unit. There are three types of ClipSet: general speech, speech with gesture, and gesture only. The Gesture can be used depending on whether the AI model supports gestures, and the list of available gestures can be checked using the `GetGestures` function of AIPlayer. Even a model that does not support gestures can be operated using ClipSet.
+Use a [AIClipSet](../apis/aiclipset) to send utterance commands to the AI. The AIClipSet refers to a series of AI action unit. There are three types of ClipSet: general speech, speech with gesture, and gesture only. The Gesture can be used depending on whether the AI model supports gestures, and the list of available gestures can be checked using the `GetGestures` function of AIPlayer. Even a model that does not support gestures can be operated using ClipSet.
 
 AIClipSet types are as follows.
 

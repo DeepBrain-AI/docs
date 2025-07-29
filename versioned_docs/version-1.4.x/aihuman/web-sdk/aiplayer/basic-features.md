@@ -8,7 +8,7 @@ sidebar_position: 4
 
 After the aiPlayer resource loading is completed(`AIEventType.RES_LOAD_COMPLETED`), call the send method.
 
-You can input just string to make AI speak but json format (AIClipSet object)is also available. When using AIClipSet, you can make AI speak with some gestures. For example, you can order AI to wave and say "hello!" This is called gesture speech. Details are described in the [Gesture](../aiplayer/advanced-features#2-gesture) part.
+You can input just string to make AI speak but json format (AIClipSet object)is also available. When using AIClipSet, you can make AI speak with some gestures. For example, you can order AI to wave and say "hello!" This is called gesture speech. Details are described in the [Gesture](../aiplayer/advanced-features) part.
 
 If the text to speak is too long, it may not be possible to synthesize the resources required for the speaking. There are some models that can synthesize long sentences. Although it varies from AI to AI, it is generally recommended that sentences be cut to an appropriate length in Korean, usually within 30 to 40 characters, and at a similar level in English.
 

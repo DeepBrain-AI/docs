@@ -156,7 +156,7 @@ async function requestClientToken() {
 
 **5. Initializing AIPlayer**
 
-After successful authentication, it is initialized using the `init` function. At this time, the appId (domain), verifiedToken obtained in the authentication process, and ai_name of defaultAI are used as parameters. If you want to use other AIs, you can get a list of available AIs through the getAIList function. For details, please refer to [Main Class API Handbook](#main-class-api-handbook).
+After successful authentication, it is initialized using the `init` function. At this time, the appId (domain), verifiedToken obtained in the authentication process, and ai_name of defaultAI are used as parameters. If you want to use other AIs, you can get a list of available AIs through the getAIList function. For details, please refer to [Main Class API Handbook](../apis/aiplayer).
 
 ```javascript
 // quickStart.js(Client)
