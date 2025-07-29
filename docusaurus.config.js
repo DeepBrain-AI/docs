@@ -280,12 +280,18 @@ const config = {
             ],
           },
         ],
-        copyright: `© 2024 DeepBrain AI. All Rights Reserved`,
+        logo: {
+          alt: 'DeepBrain AI Logo',
+          src: 'img/ci_horizontal_white_RGB.png',
+          href: 'https://aistudios.com',
+          width: 368,
+        },
+        copyright: `Copyright © ${new Date().getFullYear()} DeepBrain AI. Built with Docusaurus.`,
       },
       prism: {
         theme: lightTheme,
         darkTheme: darkTheme,
-        additionalLanguages: ['csharp', 'java', 'swift', 'groovy'],
+        additionalLanguages: ['csharp', 'java', 'swift', 'groovy','bash', 'diff', 'json'],
       },
     }),
 };

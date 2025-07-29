@@ -96,7 +96,7 @@
     "description": "The label of footer link with label=Facebook linking to https://www.facebook.com/DeepbrainAIGlobal"
   },
   "copyright": {
-    "message": "© 2024 DeepBrain AI. All Rights Reserved",
+    "message": "Copyright © 2025 DeepBrain AI. Built with Docusaurus.",
     "description": "The footer copyright"
   }
 }
