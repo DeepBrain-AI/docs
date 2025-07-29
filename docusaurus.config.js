@@ -147,15 +147,15 @@ const config = {
                 to: 'aihuman/windows-sdk',
               },
               {
-                label: 'Unity (3D)',
+                label: 'Unity',
                 to: 'aihuman/unity-sdk',
               },
               {
-                label: 'Android (Native)',
+                label: 'Android',
                 to: 'aihuman/android-sdk',
               },
               {
-                label: 'iOS (Native)',
+                label: 'iOS',
                 to: 'aihuman/ios-sdk',
               },             
             ],
