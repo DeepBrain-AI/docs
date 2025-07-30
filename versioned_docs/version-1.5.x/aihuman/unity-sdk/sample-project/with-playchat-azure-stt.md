@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# with Playchat & Azure STT
+# with Playchat & MS Azure STT
 
 :::note related files
 

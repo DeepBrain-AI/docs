@@ -161,6 +161,10 @@ const config = {
             ],
           },
           {
+            type: 'search',
+            position: 'right',
+          },
+          {
             type: 'docsVersionDropdown',
             position: 'right',
             // dropdownItemsBefore: [

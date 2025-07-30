@@ -324,7 +324,7 @@ const sidebars = {
       label: 'AIPlayer Description',
       link: {
         "type": "generated-index",
-        "description": "Learn how to set up and use AIPlayer and AI3DPlayer."
+        "description": "Learn how to setup and use AIPlayer and AI3DPlayer."
       },
       items: [
         'aihuman/android-sdk/aiplayer/overview',

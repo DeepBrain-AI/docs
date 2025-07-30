@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# with Playchat and Google STT
+# with Playchat & Google STT
 
 :::note related files
 

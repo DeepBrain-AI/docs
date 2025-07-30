@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# AIPlayer Set up
+# AIPlayer Setup
 
 The setup process consists of next four steps.
 
