@@ -15,11 +15,11 @@
     {
       "type": "category",
       "label": "API Reference",
+      "collapsed": false,
       "items": [
         {
           "type": "category",
           "label": "Authentication",
-          "collapsed": false,
           "items": [
             "aistudioV3/reference/auth",
             "aistudioV3/reference/auth-confirm"
@@ -28,7 +28,6 @@
         {
           "type": "category",
           "label": "Project",
-          "collapsed": true,
           "items": [
             "aistudioV3/reference/progress",
             "aistudioV3/reference/get-project",
