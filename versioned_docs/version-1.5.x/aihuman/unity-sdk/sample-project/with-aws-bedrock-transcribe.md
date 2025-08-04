@@ -2,7 +2,7 @@
 sidebar_position: 6
 ---
 
-# with AWS Bedrock Claude & AWS Transcribe
+# with AWS Claude & Transcribe
 
 :::note related scene
 

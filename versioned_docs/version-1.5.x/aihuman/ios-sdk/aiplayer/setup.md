@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# AIPlayer Set up
+# AIPlayer Setup
 
 :::info Full setup process (4 steps)
 

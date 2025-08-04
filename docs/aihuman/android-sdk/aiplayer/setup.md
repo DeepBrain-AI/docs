@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# AIPlayer(AI3DPlayer) Set up
+# AIPlayer(AI3DPlayer) Setup
 
 :::info AIPlayer(AI3DPlayer) Full setup process (4 steps)
 
