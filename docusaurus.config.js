@@ -134,29 +134,48 @@ const config = {
           },
           {
             type: 'dropdown',
-            //docId: 'aihuman/intro',
             position: 'left',
             label: 'AI Human',
             items: [
               {
-                label: 'JS (Web)',
-                to: 'aihuman/web-sdk',
+                label: 'Web',
+                to: '/aihuman/web-sdk',
+                customProps: {
+                  icon: '/img/JS_symbol.svg',
+                  iconAlt: 'JavaScript'
+                },
               },
               {
-                label: '.NET (Windows)',
-                to: 'aihuman/windows-sdk',
+                label: 'Windows',
+                to: '/aihuman/windows-sdk',
+                customProps: {
+                  icon: '/img/Microsoft.NET_symbol.svg',
+                  iconAlt: 'Microsoft .NET'
+                },
               },
               {
                 label: 'Unity',
-                to: 'aihuman/unity-sdk',
+                to: '/aihuman/unity-sdk',
+                customProps: {
+                  icon: '/img/Unity_symbol.svg',
+                  iconAlt: 'Unity 3D'
+                },
               },
               {
                 label: 'Android',
-                to: 'aihuman/android-sdk',
+                to: '/aihuman/android-sdk',
+                customProps: {
+                  icon: '/img/Android_symbol.svg',
+                  iconAlt: 'Android'
+                },
               },
               {
                 label: 'iOS',
-                to: 'aihuman/ios-sdk',
+                to: '/aihuman/ios-sdk',
+                customProps: {
+                  icon: '/img/iOS_symbol.svg',
+                  iconAlt: 'iOS'
+                },
               },             
             ],
           },
@@ -183,7 +202,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://github.com/DeepBrain-AI',
+            href: 'https://github.com/DeepBrain-AI/docs',
             label: 'GitHub',
             position: 'right',
           },
