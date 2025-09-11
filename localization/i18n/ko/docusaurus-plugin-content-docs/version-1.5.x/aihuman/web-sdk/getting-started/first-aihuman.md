@@ -15,7 +15,7 @@ sidebar_position: 3
 ### 1. 웹 페이지에 SDK 및 AIPlayer를 추가
 
 ```html
-<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.2.min.js"></script>
+<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.6.0.min.js"></script>
 
 <div id="AIPlayerWrapper"></div>
 ```
@@ -263,7 +263,7 @@ function initAIPlayerEvent() {
   </body>
 
   <!-- 웹 페이지에 JavaScript SDK 포함하기 -->
-  <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.2.min.js"></script>
+  <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.6.0.min.js"></script>
   <script src="./quickStart.js"></script>
 </html>
 ```

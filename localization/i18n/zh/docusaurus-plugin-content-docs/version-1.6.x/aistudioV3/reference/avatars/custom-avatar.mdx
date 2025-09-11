@@ -1,0 +1,117 @@
+# Create Custom Avatar
+
+Create a custom avatar and voice clone using a video.
+
+<br/>
+
+## 1. API endpoint
+
+```
+POST https://app.aistudios.cn/api/odin/v3/avatars/customavatar
+```
+
+<br/>
+
+## 2. Request parameter
+
+|key|desc|type|required|default|
+|:---|:---|:---|:---|:---|
+|url|Video URL|String|true|-|
+|name|Name of the custom avatar and voice clone|String|true|-|
+|gender|Gender of the custom avatar and voice clone|String enum (MALE, FEMALE)|true|-|
+|locale|Language of the voice clone sample voice|String enum (en, ko, zh)|false|en|
+|perFrame|Whether the video has person movements|Boolean|false|true|
+|isWebcam|Whether the video is recorded with a webcam|Boolean|false|false|
+
+<br/>
+
+## 3. Response parameters
+
+|key|desc|type|
+|:---|:---|:---|
+|avatarId|ID of the created custom avatar|String|
+|voiceId|ID of the created voice clone|String|
+
+<br/>
+
+
+## 4. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://app.aistudios.cn/api/odin/v3/avatars/customavatar  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{
+    "url": "https://cdn.aistudios.com/uploads/models/en/M000351175_BG00001308.mp4",
+    "name": "Ian",
+    "gender": "MALE",
+    "locale": "en",
+    "perFrame": false,
+    "isWebcam": true
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios";
+const token = ${API KEY};
+
+axios.post('https://app.aistudios.cn/api/odin/v3/avatars/customavatar', 
+  {
+    "url": "https://cdn.aistudios.com/uploads/models/en/M000351175_BG00001308.mp4",
+    "name": "Ian",
+    "gender": "MALE",
+    "locale": "en",
+    "perFrame": false,
+    "isWebcam": true
+  }, 
+  {
+    headers: {
+      'Authorization': ${token},
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data);
+})
+.catch((error) => {
+  console.error(error);
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://app.aistudios.cn/api/odin/v3/avatars/customavatar"
+body = {
+  "url": "https://cdn.aistudios.com/uploads/models/en/M000351175_BG00001308.mp4",
+  "name": "Ian",
+  "gender": "MALE",
+  "locale": "en",
+  "perFrame": false,
+  "isWebcam": true
+}
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": ${API TOKEN}
+}
+
+r = requests.post(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>

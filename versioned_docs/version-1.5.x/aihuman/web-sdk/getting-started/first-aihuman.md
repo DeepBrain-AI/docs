@@ -15,7 +15,7 @@ In this chapter, we will quickly go over AIHuman(AIPlayer) setup process and mak
 ### 1. Include the SDK and Ready the AIPlayer in the web page
 
 ```html
-<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.2.min.js"></script>
+<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.9.min.js"></script>
 
 <div id="AIPlayerWrapper"></div>
 ```
@@ -262,7 +262,7 @@ function initAIPlayerEvent() {
   </body>
 
   <!-- add JavaScript SDK -->
-  <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.2.min.js"></script>
+  <script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.9.min.js"></script>
   <script src="./quickStart.js"></script>
 </html>
 ```

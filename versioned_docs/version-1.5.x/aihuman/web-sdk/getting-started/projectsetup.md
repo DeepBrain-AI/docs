@@ -21,7 +21,7 @@ sidebar_position: 1
 Include the JavaScript SDK in the web page as shown below.
 
 ```html
-<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.2.min.js"></script>
+<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.9.min.js"></script>
 ```
 
 <br/>

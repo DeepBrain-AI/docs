@@ -28,7 +28,7 @@ const config = {
         hashed: true,
         language: ['en', 'ko'/*, 'zh'*/], // SyntaxError: Invalid regular expression
         docsRouteBasePath: '/',
-        docsDir: 'versioned_docs/version-1.5.x',
+        docsDir: 'versioned_docs/version-1.6.x',
         indexBlog: false, 
         highlightSearchTermsOnTargetPage: true,
         searchResultLimits: 10,
@@ -84,7 +84,7 @@ const config = {
            * 로컬에서 작업할 때는 true로 설정하고 current 파일을 수정
            */
           includeCurrentVersion: false,
-          lastVersion: '1.5.x',
+          lastVersion: '1.6.x',
           versions: {
             '1.3.x': {
               label: '1.3.x',
@@ -95,6 +95,10 @@ const config = {
               path: '1.4.x',
             },
             '1.5.x': {
+              label: '1.5.x',
+              path: '1.5.x',
+            },
+            '1.6.x': {
               label: 'Latest',
               path: '/',
             },
@@ -186,11 +190,6 @@ const config = {
           {
             type: 'docsVersionDropdown',
             position: 'right',
-            // dropdownItemsBefore: [
-            //   { to: 'version-1.4.x', label: '1.4.x' },
-            //   { to: 'version-1.3.x', label: '1.3.x' },
-            // ],
-            // dropdownActiveClassDisabled: true,
           },
           {
             type: 'localeDropdown',

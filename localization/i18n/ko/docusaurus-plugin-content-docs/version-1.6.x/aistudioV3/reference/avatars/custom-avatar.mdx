@@ -1,0 +1,117 @@
+# 커스텀 아바타 생성
+
+비디오를 사용하여 커스텀 아바타와 보이스 클론을 생성합니다.
+
+<br/>
+
+## 1. API endpoint
+
+```
+POST https://app.aistudios.com/api/odin/v3/avatars/customavatar
+```
+
+<br/>
+
+## 2. Request parameter
+
+|key|desc|type|required|default|
+|:---|:---|:---|:---|:---|
+|url|비디오 URL|String|true|-|
+|name|커스텀 아바타와 보이스 클론의 이름|String|true|-|
+|gender|커스텀 아바타와 보이스 클론의 성별|String enum (MALE, FEMALE)|true|-|
+|locale|보이스 클론 샘플 보이스의 언어|String enum (en, ko, zh)|false|en|
+|perFrame|비디오의 인물 움직임 여부|Boolean|false|true|
+|isWebcam|비디오가 웹캠으로 촬영한 인물 비디오일 경우|Boolean|false|false|
+
+<br/>
+
+## 3. Response parameters
+
+|key|desc|type|
+|:---|:---|:---|
+|avatarId|생성된 커스텀 아바타의 아이디|String|
+|voiceId|생성된 보이스 클론의 아이디|String|
+
+<br/>
+
+
+## 4. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://app.aistudios.com/api/odin/v3/avatars/customavatar  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{
+    "url": "https://cdn.aistudios.com/uploads/models/en/M000351175_BG00001308.mp4",
+    "name": "이안",
+    "gender": "MALE",
+    "locale": "ko",
+    "perFrame": false,
+    "isWebcam": true
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios";
+const token = ${API KEY};
+
+axios.post('https://app.aistudios.com/api/odin/v3/avatars/customavatar', 
+  {
+    "url": "https://cdn.aistudios.com/uploads/models/en/M000351175_BG00001308.mp4",
+    "name": "이안",
+    "gender": "MALE",
+    "locale": "ko",
+    "perFrame": false,
+    "isWebcam": true
+  }, 
+  {
+    headers: {
+      'Authorization': ${token},
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data);
+})
+.catch((error) => {
+  console.error(error);
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://app.aistudios.com/api/odin/v3/avatars/customavatar"
+body = {
+  "url": "https://cdn.aistudios.com/uploads/models/en/M000351175_BG00001308.mp4",
+  "name": "이안",
+  "gender": "MALE",
+  "locale": "ko",
+  "perFrame": false,
+  "isWebcam": true
+}
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": ${API TOKEN}
+}
+
+r = requests.post(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>

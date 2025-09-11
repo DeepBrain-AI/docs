@@ -56,7 +56,7 @@ Visual Studio에서 솔루션 및 프로젝트를 생성하고 AI Human SDK를 �
   - [.NET Framework 4.6.2](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net462) 이상
   - [.NET 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) 이상
 
-<img src="/img/aihuman/windows/projectsetup_frameworks_1.5.x.png" />
+<img src="/img/aihuman/windows/projectsetup_frameworks_1.6.x.png" />
 
 AIHuman.SDK.WPF.dll을 사용하여 Application을 개발하거나 실행하려면 .NET Framework 4.6.2 혹은 .NET 6.0 이상 버전을 설치해야 합니다.
 

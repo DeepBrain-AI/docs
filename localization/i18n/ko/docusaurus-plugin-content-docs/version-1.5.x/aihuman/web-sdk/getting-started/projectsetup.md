@@ -23,7 +23,7 @@ sidebar_position: 1
 아래와 같이 Javascript SDK를 웹페이지에 추가하십시오.
 
 ```html
-<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.2.min.js"></script>
+<script src="https://cdn-aihuman.deepbrainai.io/sdk/web/aiPlayer-1.5.9.min.js"></script>
 ```
 
 <br/>

@@ -1,0 +1,51 @@
+---
+displayed_sidebar: aihumanwebSidebar
+sidebar_position: 1
+slug: /aihuman/web-sdk
+---
+
+# 介绍
+
+export const Highlight = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '4px',
+      color: '#fff',
+      padding: '0.1rem',
+    }}>
+    {children}
+  </span>
+);
+
+**AI Human SDK** 是一款功能强大的开发者工具包，通过深度学习训练的 AI 模型，以 **TTV（Text to Video）** 形式提供服务，实现像真人一样的自然语音交互。  
+
+### 与 AI Human 对话
+这是一个聊天风格的演示，用于体验 **对话式 AI 虚拟人** 的概念。  
+<iframe
+  src="https://ai.deepbrain.io/docs/aihumansdk/68b689c199b642df1adb98fb"
+  width="100%"
+  height="600"
+  style={{ border: "1px solid #ccc", borderRadius: "8px" }}
+/>
+
+SDK 的核心组件 <Highlight color="#5548FF">**AIPlayer**</Highlight> 能够实时在屏幕上渲染 AI 虚拟人，并作为一个可自由放置在应用中的视图组件使用。  
+这些 AI 虚拟人通过学习真实人类的 **声音和表情** 打造而成，相较于传统、机械化的 TTS（Text to Speech）系统，带来更加 **逼真且沉浸式的体验**。
+
+### 核心功能
+- **实时交互**  
+  就像视频通话一样，AI 可以进行流畅、自然的对话，并实时展示丰富的 **手势和面部表情**。
+
+- **自动状态管理**  
+  初始化后，AI 会进入 **Idle（空闲）** 状态，执行如眨眼、点头等细微动作，营造出 **逼真的人类存在感**。
+
+- **灵活定制**
+  + 选择不同的 AI 虚拟人
+  + 控制语音和动作
+  + 调整大小、位置和语速
+  + 支持暂停、继续和停止功能
+
+- **多语言支持**  
+  提供 **韩语、英语、日语、中文** 等多语言虚拟人，方便在 **全球化服务** 中无缝部署。
+
+**AI Human SDK** 旨在帮助开发者轻松地将 **交互式、类人化的 AI 虚拟人** 集成到 Web 应用中。只需最少的设置，即可提供沉浸式的下一代 AI 体验。

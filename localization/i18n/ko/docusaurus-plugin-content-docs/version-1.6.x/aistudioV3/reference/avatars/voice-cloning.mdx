@@ -1,0 +1,105 @@
+# 보이스 클론 생성
+
+오디오를 사용하여 보이스 클론을 생성합니다.
+
+<br/>
+
+## 1. API endpoint
+
+```
+POST https://app.aistudios.com/api/odin/v3/avatars/voiceclone
+```
+
+<br/>
+
+## 2. Request parameter
+
+|key|desc|type|required|default|
+|:---|:---|:---|:---|:---|
+|url|오디오 URL|String|true|-|
+|name|보이스 클론의 이름|String|true|-|
+|gender|보이스 클론의 성별|String enum (MALE, FEMALE)|true|-|
+|locale|보이스 클론 샘플 보이스의 언어|String enum (en, ko, zh)|false|en|
+
+<br/>
+
+## 3. Response parameters
+
+|key|desc|type|
+|:---|:---|:---|
+|voiceId|생성된 보이스 클론의 아이디|String|
+
+<br/>
+
+
+## 4. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://app.aistudios.com/api/odin/v3/avatars/voiceclone  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{
+    "url": "https://cdn-studio.aistudios.com/sample/tts/deepbrainai/en/M000351175.mp3",
+    "name": "이안",
+    "gender": "MALE"
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios";
+const token = ${API KEY};
+
+axios.post('https://app.aistudios.com/api/odin/v3/avatars/voiceclone', 
+  {
+    "url": "https://cdn-studio.aistudios.com/sample/tts/deepbrainai/en/M000351175.mp3",
+    "name": "이안",
+    "gender": "MALE"
+  }, 
+  {
+    headers: {
+      'Authorization': ${token},
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data);
+})
+.catch((error) => {
+  console.error(error);
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://app.aistudios.com/api/odin/v3/avatars/voiceclone"
+body = {
+  "url": "https://cdn-studio.aistudios.com/sample/tts/deepbrainai/en/M000351175.mp3",
+  "name": "이안",
+  "gender": "MALE"
+}
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": ${API TOKEN}
+}
+
+r = requests.post(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>

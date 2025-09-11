@@ -1,0 +1,51 @@
+---
+displayed_sidebar: aihumanwebSidebar
+sidebar_position: 1
+slug: /aihuman/web-sdk
+---
+
+# Introduction
+
+export const Highlight = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '4px',
+      color: '#fff',
+      padding: '0.1rem',
+    }}>
+    {children}
+  </span>
+);
+
+**AI Human SDK** is a powerful developer toolkit that enables you to build services using AI models trained via deep learning, delivered in **TTV (Text to Video)** format, and capable of natural voice-based interaction, just like a real human.
+
+### Chat with AI Human
+This is a chat-style demo to experience the Conversational AI Avatar concept.
+<iframe
+  src="https://ai.deepbrain.io/docs/aihumansdk/68b6619099b642df1adb978d"
+  width="100%"
+  height="600"
+  style={{ border: "1px solid #ccc", borderRadius: "8px" }}
+/>
+
+The core component of the SDK, <Highlight color="#5548FF">**AIPlayer**</Highlight>, renders an AI avatar on screen in real time and provides it as a view component that can be freely positioned within your application. 
+These AI Avatars are built by learning actual human **voices and facial expressions**, resulting in a **much more lifelike and engaging experience** compared to traditional, robotic TTS (Text to Speech) systems.
+
+### Key Features
+- **Real-Time Interaction**  
+Like a video call, the AI can engage in smooth, natural conversations and display a wide range of **gestures and facial expressions** in real time.
+
+- **Automatic State Management**  
+Once initialized, the AI enters an **Idle** state, performing subtle actions such as blinking or nodding—creating a **realistic human-like presence**.
+
+- **Flexible Customization**
+  + Select different AI Avatars
+  + Control speech and gestures
+  + Adjust size, position, and speaking speed
+  + Support for pause, resume, and stop functions
+
+- **Multilingual Support**  
+Offers AI Avatars in **Korean, English, Japanese, Chinese**, and more—enabling seamless deployment of **multilingual, global services**.
+
+**AI Human SDK** is designed to help developers effortlessly integrate **interactive, human-like AI Avatars** into web applications. With minimal setup, you can deliver an immersive, next-generation AI experience.

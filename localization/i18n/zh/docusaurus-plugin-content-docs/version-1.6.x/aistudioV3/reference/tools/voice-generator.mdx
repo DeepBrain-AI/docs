@@ -1,0 +1,119 @@
+# Voice Generation
+
+Generates voice data by inputting text and using the desired model's voice.
+
+:::info
+
+The types and availability of models that can be used need to be confirmed through inquiry.
+
+:::
+
+<br/>
+
+## 1. API endpoint
+
+```
+POST https://app.aistudios.cn/api/odin/v3/tools/voice-generator
+```
+
+<br/>
+
+## 2. Request parameter
+
+|key|desc|type|required|default|
+|:---|:---|:---|:---|:---|
+|script|Script to be spoken|String|true|-|
+|model|Voice ID|String|true|-|
+|type|Type of voice<br />(`deepbrainai` \| `elevenlabs` \| `google` \| ...) |String|true|-|
+|language|Language of the voice<br />(`en` \| `ko` \| `ja` \| ...)|String|true|-|
+
+<br/>
+
+## 3. Response parameters
+
+|key|desc|type|
+|:---|:---|:---|
+|downloadUrl|URL of the generated voice data|String|
+
+:::info
+
+The generated voice data can be deleted at any time, so you should download and use the data instead of using the generated URL directly.
+
+:::
+
+<br/>
+
+
+## 4. Sample Request
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://app.aistudios.cn/api/odin/v3/tools/voice-generator  \
+-H "Authorization: ${API KEY}" \
+-H "Content-Type: application/json" \
+-X POST \
+-d '{
+  "script": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  "model": "M000351175",
+  "type": "deepbrainai",
+  "language": "en"
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios";
+
+axios.post("https://app.aistudios.cn/api/odin/v3/tools/voice-generator", 
+  {
+    "script": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "model": "M000351175",
+    "type": "deepbrainai",
+    "language": "en",
+  }, 
+  {
+    headers: {
+      "Authorization": ${API KEY},
+      "Content-Type": "application/json",
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data);
+})
+.catch((error) => {
+  console.error(error);
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+import json
+
+url = "https://app.aistudios.cn/api/odin/v3/tools/voice-generator"
+body = {
+  "script": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.\nLorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  "model": "M000351175",
+  "type": "deepbrainai",
+  "language": "en"
+}
+headers = {
+  "Content-Type": "application/json",
+  "Authorization": ${API KEY}
+}
+
+r = requests.post(url, data=json.dumps(body), headers=headers)
+```
+
+</TabItem>
+</Tabs>

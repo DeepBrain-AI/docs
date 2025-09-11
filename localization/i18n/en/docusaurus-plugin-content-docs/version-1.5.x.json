@@ -1,6 +1,6 @@
 {
   "version.label": {
-    "message": "Latest",
+    "message": "1.5.x",
     "description": "The label for version 1.5.x"
   },
   "sidebar.aistudiosSidebar.category.Tutorial": {
