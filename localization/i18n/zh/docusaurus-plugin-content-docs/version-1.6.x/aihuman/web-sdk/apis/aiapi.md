@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # AIPlayer method using API
 
-### 1 AIPlayer.generateToken(json)
+### 1. AIPlayer.generateToken(json)
 
 Get JWT Verified Token
 

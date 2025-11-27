@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # API 기반 AIPlayer 메소드
 
-### 1 AIPlayer.generateToken(json)
+### 1. AIPlayer.generateToken(json)
 
 발급받은 userKey로 인증을 시도합니다(JWT Verified Token). 성공하면 기본 AI 모델 정보가 셋팅됩니다.
 

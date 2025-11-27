@@ -6,7 +6,7 @@ sidebar_position: 1
 
 | Method            | Description                                       |
 | ----------------- | ------------------------------------------------- |
-| `init(json)`      | Initialize the AIPlayer with desired ai(async) |
+| `init(json)`      | Initialize the AIPlayer with desired AI (async) |
 | `getState()`      | Get AIPlayer's current State (AIPlayerState) |
 | `setter(json)`    | Set AIPlayer's settings |
 | `getter(string)`  | Get AIPlayer's AIsettings  |
@@ -31,16 +31,17 @@ sidebar_position: 1
 | `getVolme()`   | Get Current Volume. |
 | `setMute(isMute)`   | Mute Control. 3D model not supported|
 | `getMute()`   | Get Mute state. 3D model not supported|
-| `generateToken()` | AIAPI - Generate authentication token using clientToken(async)|
-| `getAIList()`     | AIAPI - Get the list of available AI models(async) |
-| `getSampleTextList()` | AIAPI - Get the list of sample text(async) |
+| `generateToken()` | AIAPI - Generate authentication token using clientToken (async)|
+| `getAIList()`     | AIAPI - Get the list of available AI models (async) |
+| `getSampleTextList()` | AIAPI - Get the list of sample text (async) |
+| `setConfig(json)` | AIAPI - Set configurations on AIPlayer |
 
 
 <br/>
 
 ### 1. AIPlayer.init(json)
 
-Initialize AI Player object with the given AI model parameters
+Initialize AI Player object with the given AI model parameters ([getAIList](../apis/aiapi#2-AIPlayer.getAIList))
 
 - Parameter
 
@@ -376,4 +377,38 @@ const curVolume = AI_PLAYER.getVolume();
 AI_PLAYER.setMute(true)
 
 const isMuted = AI_PLAYER.getMute();
+```
+
+<br/>
+
+### 23. AI_PLAYER.setConfig(json)
+Config AIPlayer object with the given parameters
+
+- Parameter
+
+  | Param           | Type     | Description |
+  | --------------- | -------- | ----------- |
+  | `json`          | `Object` | parameters of the function |
+  | `json.useCustomVoice` | `Boolean` | Query custom voices and use them (default: true) |
+  | `json.logLevel` | `Number` | Console log's level (0 ~ 5, 0 min logs and 5 is full) |
+  | `json.enableSpeechSplit`  | `Boolean` | Split the user input text with ".!?" then send them. And it processes them as if it is one sentence (default: false) |
+  | `json.splitAPITimeout` | `Number` | Split API's timeout. If the split request failes, it just send the input text without split. (default: 4000, ms) |
+  | `json.enableBGImgDB` | `Boolean`  | If enabled, the backgroud image resource is saved in the DB and will check the DB first when next time it needs. (default: false) |
+  | `json.enableSpeechCache` | `Boolean`  | If enabled, when send text to speak it checks the browser cache DB first. When disabled, it request to server without checking the browser DB. (default: true) |
+  | `json.enablePersistantSpeechCache` | `Boolean`  | If enabled, it does not initialize or delete the browser cache DB when the AIPlayer 'init' call. So that you can reduce the network traffic if the cache exists. But it can not be updated or renewed while the cache exists (default: false) |
+  | `json.enableSkipErrorSpeech` | `Boolean`  | If enabled, it does not stop speaking even though there is an error occured from server(ex. "error: synth server is busy"). Also, if AIPlayer has speeches left in the  queue, it just send the next speech (default: false) |
+
+- Example
+
+```javascript
+AI_PLAYER.setConfig({
+  useCustomVoice: true, 
+  logLevel: 0
+  enableSpeechSplit: false,
+  splitAPITimeout: 4000,
+  enableBGImgDB: false,
+  enableSpeechCache: true,
+  enablePersistantSpeechCache: false,
+  enableSkipErrorSpeech: false
+})
 ```

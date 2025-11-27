@@ -2,378 +2,313 @@
 sidebar_position: 1
 ---
 
-# AIPlayer Method
+# AIPlayer 方法
 
-| Method            | Description                                       |
-| ----------------- | ------------------------------------------------- |
-| `init(json)`      | Initialize the AIPlayer with desired ai(async) |
-| `getState()`      | Get AIPlayer's current State (AIPlayerState) |
-| `setter(json)`    | Set AIPlayer's settings |
-| `getter(string)`  | Get AIPlayer's AIsettings  |
-| `preload(json)`   | Pre-load for AI Speaking. Check example below section |               
-| `send(json)`      | Make AI Speak. Check example below section|
-| `pause()`         | Pause speaking while speaking |
-| `resume()`        | Resume speaking from pause |
-| `stopSpeak()`     | Stop speaking and reset all data. (cannot resume) |
-| `release()`       | Release resource (terminate AIPlayer, async) |
-| `getGestures()`   | Get the list of available AI |
-| `getGender()`     | Get the current ai's gender|
-| `getSpeakableLanguages(gender)` | Get the current ai's speakable language with gender |
-| `getCustomVoice()`   | Get the current customVoice of set ai|
-| `getCustomVoicesWith(language, gender)` | Get the current customVoice of set ai with language and gender |
-| `findCustomVoice(voiceId) `   | Get the CustomVoice object corresponding to id |
-| `setCustomVoice(customVoice) `   | Set the voice of AI with specific customVoice|
-| `setCustomVoiceForLanguage(language, gender)`   | Set the voice of AI by language and gender |
-| `reconnect(callback)`   | Try reconnect when AI_DISCNNECTED |
-| `isConnected()`   | Can send to speak if true |
-| `canPreload(callback)`   | Check if preload is possible |
-| `setVolme(volume)`   | Volume Control. |
-| `getVolme()`   | Get Current Volume. |
-| `setMute(isMute)`   | Mute Control. 3D model not supported|
-| `getMute()`   | Get Mute state. 3D model not supported|
-| `generateToken()` | AIAPI - Generate authentication token using clientToken(async)|
-| `getAIList()`     | AIAPI - Get the list of available AI models(async) |
-| `getSampleTextList()` | AIAPI - Get the list of sample text(async) |
-
+| 方法 | 描述 |
+| --- | --- |
+| `init(json)` | 使用指定 AI 初始化 AIPlayer（异步） |
+| `getState()` | 获取 AIPlayer 当前状态（AIPlayerState） |
+| `setter(json)` | 设置 AIPlayer 参数 |
+| `getter(string)` | 获取 AIPlayer 设置 |
+| `preload(json)` | 预加载语音（参见下方示例） |
+| `send(json)` | 让 AI 说话或执行手势（参见下方示例） |
+| `pause()` | 在讲话过程中暂停 |
+| `resume()` | 从暂停状态恢复讲话 |
+| `stopSpeak()` | 停止讲话并重置所有数据（不可恢复） |
+| `release()` | 释放资源（终止 AIPlayer，异步） |
+| `getGestures()` | 获取可用手势列表 |
+| `getGender()` | 获取当前 AI 性别 |
+| `getSpeakableLanguages(gender)` | 获取当前 AI 可说语言（按性别） |
+| `getCustomVoice()` | 获取当前自定义语音 |
+| `getCustomVoicesWith(language, gender)` | 获取指定语言和性别的自定义语音 |
+| `findCustomVoice(voiceId)` | 根据 ID 获取 CustomVoice |
+| `setCustomVoice(customVoice)` | 为 AI 设置指定 customVoice |
+| `setCustomVoiceForLanguage(language, gender)` | 按语言和性别设置 AI 语音 |
+| `reconnect(callback)` | AI 断开后尝试重连 |
+| `isConnected()` | 若可发送语音返回 true |
+| `canPreload(callback)` | 检查是否可预加载 |
+| `setVolme(volume)` | 设置音量 |
+| `getVolme()` | 获取当前音量 |
+| `setMute(isMute)` | 静音（3D 模型不支持） |
+| `getMute()` | 获取静音状态（3D 模型不支持） |
+| `generateToken()` | AIAPI - 使用 clientToken 生成认证 token（异步） |
+| `getAIList()` | AIAPI - 获取可用 AI 列表（异步） |
+| `getSampleTextList()` | AIAPI - 获取示例文本列表（异步） |
+| `setConfig(json)` | AIAPI - 设置 AIPlayer 配置 |
 
 <br/>
 
 ### 1. AIPlayer.init(json)
 
-Initialize AI Player object with the given AI model parameters
+根据指定 AI 模型参数初始化 AI Player 对象 ([getAIList](../apis/aiapi#2-AIPlayer.getAIList))
 
-- Parameter
+- 参数
 
-  | Param          | Type     | Description                                                       |
-  | -------------- | -------- | ----------------------------------------------------------------- |
-  | `json`         | `Object` | parameters of the init function |
-  | `json.ai_name` | `String` | AI model name |
-  | `json.size`    | `Float`  | AI model size (optional, default: 1.0) |
-  | `json.left`    | `Number` | AI model left (optional, default: 0, pixel) |
-  | `json.top`     | `Number` | AI model top (optional, default: 0, pixel) |
-  | `json.speed`   | `Float`  | AI model speed (optional, step, 0.1, range : 0.5~1.5, default: 1) |
+  | 参数 | 类型 | 描述 |
+  | --- | --- | --- |
+  | `json` | `Object` | init 参数对象 |
+  | `json.ai_name` | `String` | AI 模型名称 |
+  | `json.size` | `Float` | AI 模型大小（默认 1.0） |
+  | `json.left` | `Number` | 左边距（默认 0，像素） |
+  | `json.top` | `Number` | 上边距（默认 0，像素） |
+  | `json.speed` | `Float` | 语速（范围 0.5~1.5，默认 1） |
 
-- Example
+- 示例
 
 ```javascript
-  const result = await AI_PLAYER.init({
-    aiName: "...", size: 1.0, left: 0, top: 0, speed: 1.0
-  });
+const result = await AI_PLAYER.init({
+  aiName: "...", size: 1.0, left: 0, top: 0, speed: 1.0
+});
 ```
-
 
 <br/>
 
 ### 2. AIPlayer.getState()
 
-Get the AIPlayer's state. Check out [AIPlayerState](../apis/aiplayer-data#5-aiplayerstate)
+获取 AIPlayer 状态（参考 AIPlayerState）
 
-- Return Parameter: `AIPlayerState`
- 
-- Example
+- 返回：`AIPlayerState`
 
 ```javascript
-  const state = AI_PLAYER.getState());
+const state = AI_PLAYER.getState();
 ```
-  
-
 
 <br/>
 
 ### 3. AIPlayer.setter(json)
 
-Set AI object information
+设置 AI 信息
 
-- Parameter
+- 参数
 
-  | Param         | Type     | Description                                                               |
-  | --------------| -------- | ------------------------------------------------------------------------- |
-  | `json`        | `Object` | parameters of the setter function |
-  | `json.size`   | `Float`  | AI model size (optional, range: 0 ~ 2.0, default: 1.0) |
-  | `json.top`    | `Number` | AI model top (optional, default: 0) |
-  | `json.left`   | `Number` | AI model left (optional, default: 0) |
-  | `json.speed`  | `Float`  | AI model speech rate (optional, step, 0.1, range : 0.5 ~ 1.5, default: 1) |
+  | 参数 | 类型 | 描述 |
+  | --- | --- | --- |
+  | `json` | `Object` | setter 参数 |
+  | `json.size` | `Float` | AI 大小（0~2.0） |
+  | `json.top` | `Number` | 上方位置 |
+  | `json.left` | `Number` | 左侧位置 |
+  | `json.speed` | `Float` | 语速，0.5~1.5 |
 
-- Example
+- 示例
 
 ```javascript
-AI_PLAYER.setter({size: 1.2, top: 20, left: 20, speed: 1.2});
+AI_PLAYER.setter({ size: 1.2, top: 20, left: 20, speed: 1.2 });
 ```
-
 
 <br/>
 
 ### 4. AIPlayer.getter(key)
 
-Get AI object information
+获取 AI 参数
 
-- Return Parameter: AI model or AIPlayer information
-
-  | Param | Type     | Value                                                                             | Description           |
-  | ----- | -------- | --------------------------------------------------------------------------------- | --------------------- |
-  | `key` | `String` | `'maxTextLength'` \| `'long_speech'` \| `'language'` \| `'size'` \| `'top'` \| `'left'` \| `'speed'` | AI model or AIPlayer information
-
-- Example
+- 可用 key：`maxTextLength`、`long_speech`、`language`、`size`、`top`、`left`、`speed`
 
 ```javascript
-  AI_PLAYER.getter("key");
+AI_PLAYER.getter("size");
 ```
-
 
 <br/>
 
 ### 5. AIPlayer.send(...)
 
-Command used for making the AI speak or perform gesture actions. (If there exists a preloaded data, this data is reused)
-To make the AI speak multiple sentences, send an Array of String or AIClipSet Object.
+使 AI 说话或执行手势（使用预加载数据时复用）
 
-- You may choose from four parameter types depending on use case.
+- 参数类型：
 
-  | Param        | Type             | Description                                                     |
-  | ------------ | ---------------- | --------------------------------------------------------------- |
-  | `text`       | `String`         | A single sentence. Used for single sentence speaking. |
-  | `texts`      | `Array<String>` | A list of sentences.. Used for multiple sentences speaking. |
-  | `AIClipSet`  | `Object`         | A gesture sentence. Used for single gesture action. |
-  | `AIClipSets` | `Array<Object>` | A list of gesture sentences. Used for multiple gesture actions. |
+  | 参数 | 类型 | 描述 |
+  | --- | --- | --- |
+  | `text` | `String` | 单句文本 |
+  | `texts` | `Array<String>` | 多句文本 |
+  | `AIClipSet` | `Object` | 单个手势句 |
+  | `AIClipSets` | `Array<Object>` | 多个手势句 |
 
-- Example
+- 示例
 
 ```javascript
-//Case1. One Sentence Speak (text)
 AI_PLAYER.send("Nice to meet you");
-//Case2. Multi Sentences Speak (String Array)
 AI_PLAYER.send(["Nice to meet you", "How are you?"]);
-//Case3. One Gesture Speak (json)
 AI_PLAYER.send({ text: "Nice to meet you", gst: "hi" });
-//Case4. Multi Gestures Speak (json Array)
 AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
-
 
 <br/>
 
 ### 6. AIPlayer.preload(...)
 
-Pre-load function for AI Speech
-
-- You may choose from four parameter types depending on use case.
-
-  | Param        | Type             | Description                                                                  |
-  | ------------ | ---------------- | ---------------------------------------------------------------------------- |
-  | `text`       | `String`         | A sentence to preload. Used for preloading a single sentence. |
-  | `texts`      | `Array<String>` | A list of sentences to preload. Used for preloading multiple sentences. |
-  | `AIClipSet`  | `Object`         | A gesture sentence. Used for preloading a single gesture. |
-  | `AIClipSets` | `Array<Object>` | A list of gesture sentences. Used for preloading multiple gesture sentences |
-
-- Example
+预加载语音内容（语音或手势同 send 类型）
 
 ```javascript
-// Case1. One Sentence Preload (text)
 AI_PLAYER.preload("Nice to meet you");
-// Case2. Multi Sentence Preload (String Array)
 AI_PLAYER.preload(["Nice to meet you", "How are you?"]);
-// Case3. One Gesture Preload (json)
 AI_PLAYER.preload({ text: "Nice to meet you", gst: "hi" });
-// Case4. Multi Gesture Preload (json Array)
 AI_PLAYER.preload([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
-
 
 <br/>
 
 ### 7. AIPlayer.pause()
 
-Temporarily pause AI speech.
-
+暂停讲话。
 
 <br/>
 
 ### 8. AIPlayer.resume()
 
-Resume speech if the AI state was paused previously.
-
+恢复讲话。
 
 <br/>
 
 ### 9. AIPlayer.stopSpeak()
 
-Stop AI speech and reset all data on queue. (cannot resume)
-
+停止讲话并清除队列数据（不能恢复）。
 
 <br/>
 
 ### 10. AIPlayer.release()
 
-Release system resources in use. (AIPlayer will not work properly after calling this method.)
-- Examples
+释放系统资源。
 
 ```javascript
-  await AI_PLAYER.release();
+await AI_PLAYER.release();
 ```
-
 
 <br/>
 
 ### 11. AIPlayer.getGestures()
 
-Get a list of available gestures.
-
-- Return Parameter: `Array<AIGesture>`
-
-- Examples
+获取手势列表。
 
 ```javascript
-  const gestures = AI_PLAYER.getGestures();
+const gestures = AI_PLAYER.getGestures();
 ```
-
 
 <br/>
 
 ### 12. AIPlayer.getGender()
 
-Gets the current AI gender ('MALE', 'FEMALE', 'UNI') and returns null if there is no value.
-
-- Return Parameter: `MALE` || `FEMALE` || `UNI` || `null`
-
-- Examples
+获取 AI 性别（MALE/FEMALE/UNI/null）。
 
 ```javascript
-  const gender = AI_PLAYER.getGender();
+const gender = AI_PLAYER.getGender();
 ```
-
 
 <br/>
 
 ### 13. AIPlayer.getSpeakableLanguages(gender)
 
-Gets the language list of currently loaded voices, valid after loadCustomVoice() or generateToken() method calls.
-
-- Return Parameter: `Array<String>`
-
-- Examples
+获取当前可用语言列表。
 
 ```javascript
-  const languages = AI_PLAYER.getSpeakableLanguages(gender);
+const languages = AI_PLAYER.getSpeakableLanguages(gender);
 ```
-
 
 <br/>
 
 ### 14. AIPlayer.getCustomVoice()
 
-Gets the currently set voice and returns null if there is no set value or default voice.
-
-- Return Parameter: `CustomVoice` || `null`
-
-- Examples
+获取当前设置的语音。
 
 ```javascript
-  const customVoice = AI_PLAYER.getCustomVoice();
+const customVoice = AI_PLAYER.getCustomVoice();
 ```
-
 
 <br/>
 
 ### 15. AIPlayer.getCustomVoicesWith(language, gender)
 
-Gets the list of custom voices that correspond to the language and gender of the input among the loaded voices
-If you type null in language, you get all languages, and if you type null in gender, you get values that correspond to all genders.  
-Valid after calling loadCustomVoice() or generateToken() methods.
-
-- Return Parameter: `Array<CustomVoice>`
-
-- Examples
+根据语言与性别过滤自定义语音。
 
 ```javascript
-  const customVoices = AI_PLAYER.getCustomVoicesWith(language, gender);
+const voices = AI_PLAYER.getCustomVoicesWith(language, gender);
 ```
-
 
 <br/>
 
 ### 16. AIPlayer.findCustomVoice(voiceId)
 
-Gets the CustomVoice object corresponding to id in the voice list, and returns null if there is no value.
-
-- Return Parameter: `CustomVoice` || `null`
-
-- Examples
+根据 ID 找到对应语音。
 
 ```javascript
-  const customVoice = AI_PLAYER.findCustomVoice(voiceId);
+const voice = AI_PLAYER.findCustomVoice(voiceId);
 ```
-
 
 <br/>
 
 ### 17. AIPlayer.setCustomVoice(customVoice)
 
-It sets the voice of AI and returns true on success and false on failure. Also, when null is entered, it is set to the original voice.
-
-- Return Parameter: `true` || `false`
-
-- Examples
+设置自定义语音。
 
 ```javascript
-  const isSuccess = AI_PLAYER.setCustomVoice(customVoice);
+AI_PLAYER.setCustomVoice(customVoice);
 ```
-
 
 <br/>
 
 ### 18. AIPlayer.setCustomVoiceForLanguage(language, gender)
 
-Voice is set by desired language and gender, and when null is entered in language, it is set as the original voice.  
-If you enter the language value and enter null in the gender, it is set as the first voice in the voice list of the language.
-
-- Return Parameter: `true` || `false`
-
-- Examples
+按语言与性别设置语音。
 
 ```javascript
-  const isSuccess = AI_PLAYER.setCustomVoiceForLanguage(language, gender);
+AI_PLAYER.setCustomVoiceForLanguage(language, gender);
 ```
-
 
 <br/>
 
 ### 19. AIPlayer.reconnect(callback)
-```javascript
-AIPlayer.reconnect(callback = () => { })
-```
 
+```javascript
+AI_PLAYER.reconnect(() => {});
+```
 
 <br/>
 
 ### 20. AIPlayer.isConnected()
-```javascript
-const isConnected = AI_PLAYER.isConnected();
-```
 
+```javascript
+const ok = AI_PLAYER.isConnected();
+```
 
 <br/>
 
 ### 21. AIPlayer.canPreload()
-```javascript
-const canPreload = AI_PLAYER.canPreload(callback = () => { });
-```
 
+```javascript
+const can = AI_PLAYER.canPreload(() => {});
+```
 
 <br/>
 
 ### 22. AI_PLAYER.setVolume(volume)
+
 ```javascript
 AI_PLAYER.setVolume(volume);
-
-const curVolume = AI_PLAYER.getVolume();
+AI_PLAYER.getVolume();
 ```
-
 
 <br/>
 
 ### 23. AI_PLAYER.setMute(isMute)
-```javascript
-AI_PLAYER.setMute(true)
 
-const isMuted = AI_PLAYER.getMute();
+```javascript
+AI_PLAYER.setMute(true);
+AI_PLAYER.getMute();
+```
+
+<br/>
+
+### 23. AI_PLAYER.setConfig(json)
+
+配置 AIPlayer。
+
+```javascript
+AI_PLAYER.setConfig({
+  useCustomVoice: true,
+  logLevel: 0,
+  enableSpeechSplit: false,
+  splitAPITimeout: 4000,
+  enableBGImgDB: false,
+  enableSpeechCache: true,
+  enablePersistantSpeechCache: false,
+  enableSkipErrorSpeech: false
+});
 ```
