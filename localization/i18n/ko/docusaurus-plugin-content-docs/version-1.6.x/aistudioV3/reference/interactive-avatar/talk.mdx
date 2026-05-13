@@ -1,0 +1,105 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Talk
+
+활성 세션에 텍스트 메시지를 전달하여 아바타가 해당 내용을 발화하도록 요청합니다.
+※ 본 API는 LLM을 포함하지 않으며, 외부 LLM(OpenAI 등)을 통해 생성된 텍스트를 전달해야 합니다.
+
+<span className="http-method http-method--post">POST</span>/api/v2/sessions/\{sessionId\}/talk
+
+## Headers
+|헤더|값|
+|:---|:---|
+|Authorization|Bearer \{session_token\}|
+|Content-Type|application/json|
+
+## Body
+|파라미터|타입|필수 여부|설명|
+|:---|:---|:---|:---|
+|message|string|required|아바타가 발화할 텍스트|
+|type|string|optional|향후 확장용 (기본값 사용, 별도 설정 불필요)|
+
+<br />
+참고
+- 세션은 생성된 appId에 종속됩니다.
+- 다른 appId로 생성된 sessionId에는 접근할 수 없습니다.
+
+## 예시
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/${SESSION_ID}/talk \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer ${SESSION_TOKEN}" \
+-X POST \
+-d '{
+  "message": "Hello."
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from 'axios'
+const sessionId = '${SESSION_ID}'
+const sessionToken = '${SESSION_TOKEN}'
+
+axios.post(
+  `https://ai-streamer.deepbrain.io/api/v2/sessions/${sessionId}/talk`,
+  {
+    message: 'Hello.'
+  },
+  {
+    headers: {
+      'Authorization': `Bearer ${sessionToken}`,
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data)
+})
+.catch((error) => {
+  console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+session_id = '${SESSION_ID}'
+session_token = '${SESSION_TOKEN}'
+url = f'https://ai-streamer.deepbrain.io/api/v2/sessions/{session_id}/talk'
+
+headers = {
+    'Authorization': f'Bearer {session_token}',
+    'Content-Type': 'application/json'
+}
+body = {
+    'message': 'Hello.'
+}
+
+response = requests.post(url, headers=headers, json=body)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## 성공 (`code: 1000`)
+```json
+{
+  "code": 1000,
+  "data": null,
+  "message": "메시지가 전송되었습니다"
+}
+```
+
+## Next Step
+사용자와의 대화를 계속하려면 이 API를 반복 호출합니다. 필요시 List Sessions나 Get Session Detail로 세션을 관리하고, 대화를 끝내려면 Stop Session을 호출하세요.

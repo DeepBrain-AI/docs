@@ -1,0 +1,105 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Stop Session
+
+Ends an active session and releases server resources. **You should always call this** when the user finishes the conversation or closes the browser so usage is billed correctly. This is the final step in the overall flow.
+
+<span className="http-method http-method--post">POST</span>/api/v2/sessions/stop
+
+## Headers
+
+| Header | Value |
+|:---|:---|
+| STUDIO-API-KEY | \{userKey\} |
+| Content-Type | application/json |
+
+## Body
+
+| Parameter | Type | Required | Description |
+|:---|:---|:---|:---|
+| session_id | string | required | Session to stop. Use `data.session_id` from the Start Session response |
+| reason | enum | required | Close reason: `USER_CLOSED`, `TIMEOUT`, `ERROR` |
+
+## Examples
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/stop \
+-H "Content-Type: application/json" \
+-H "STUDIO-API-KEY: ${userKey}" \
+-X POST \
+-d '{
+  "session_id": "${SESSION_ID}",
+  "reason": "USER_CLOSED"
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from 'axios'
+const userKey = '${userKey}'
+
+axios.post(
+  'https://ai-streamer.deepbrain.io/api/v2/sessions/stop',
+  {
+    session_id: '${SESSION_ID}',
+    reason: 'USER_CLOSED'
+  },
+  {
+    headers: {
+      'STUDIO-API-KEY': userKey,
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data)
+})
+.catch((error) => {
+  console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = 'https://ai-streamer.deepbrain.io/api/v2/sessions/stop'
+user_key = '${userKey}'
+
+headers = {
+    'STUDIO-API-KEY': user_key,
+    'Content-Type': 'application/json'
+}
+body = {
+    'session_id': '${SESSION_ID}',
+    'reason': 'USER_CLOSED'
+}
+
+response = requests.post(url, headers=headers, json=body)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## Success (`code: 1000`)
+
+```json
+{
+  "code": 1000,
+  "data": null,
+  "message": "Session has been stopped"
+}
+```
+
+## Next step
+
+After a successful stop, billing stops and all resources for the session are released.

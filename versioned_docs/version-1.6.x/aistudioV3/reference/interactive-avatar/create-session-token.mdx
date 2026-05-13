@@ -1,0 +1,103 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Create Session Token
+
+Issues an authentication token to start a streaming session. The returned `session_token` is used in the `Authorization: Bearer` header for all subsequent session APIs, including Start Session and Talk.
+
+<span className="http-method http-method--post">POST</span>/api/v2/sessions/token
+
+## Body
+
+| Parameter | Type | Required | Description |
+|:---|:---|:---|:---|
+| appId | string | required | App identifier linked to your AI Studios account |
+| userKey | string | required | API authentication key. `userKey` is an account-level API key—do not expose it publicly (use only on the server when possible) |
+
+## Response
+
+| Field | Type | Description | Required |
+|:---|:---|:---|:---|
+| code | integer | API response code; `1000` means success | required |
+| data | object | Response data object | required |
+| data.session_token | string | Session auth token (JWT). Use as the `Authorization` header for Start / Talk APIs | required |
+| message | string | Response message | required |
+
+## Examples
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/odin/v3/avatars/customavatar\
+-H "Content-Type: application/json"\
+-X POST\
+-d '{   
+  "appId": "studiov3.user@example.com",    
+  "userKey": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from 'axios'
+
+axios.post(
+  'https://ai-streamer.deepbrain.io/api/odin/v3/avatars/customavatar',
+  {
+    appId: 'studiov3.user@example.com',
+    userKey: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+  },
+  {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data)
+})
+.catch((error) => {
+  console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = 'https://ai-streamer.deepbrain.io/api/odin/v3/avatars/customavatar'
+headers = {
+    'Content-Type': 'application/json'
+}
+body = {
+    'appId': 'studiov3.user@example.com',
+    'userKey': 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+}
+
+response = requests.post(url, headers=headers, json=body)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## Success (`code: 1000`)
+
+```json
+{
+  "code": 1000,
+  "data": {
+    "session_token": "${SESSION_TOKEN}"
+  },
+  "message": "Session token has been created"
+}
+```
+
+## Next step
+
+Call the **Start Session** API using the returned `session_token`.

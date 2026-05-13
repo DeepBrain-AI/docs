@@ -1,0 +1,134 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Start Session
+세션 토큰으로 인터랙티브 아바타 세션을 시작합니다. 응답으로 받은 `livekit.url`과 `livekit.token`으로 실시간 영상 스트리밍에 연결합니다.
+
+### LiveKit 이란?
+LiveKit은 WebRTC 기반의 실시간 영상 스트리밍 인프라입니다. Start Session API의 응답으로 livekit.url, livekit.token, room_name을 받은 후, 클라이언트 측에서 room.connect(url, token) 메서드를 호출하여 LiveKit 서버에 연결합니다. 연결이 성공하면 아바타의 영상, 음성, 데이터 채널이 실시간으로 스트리밍되어 사용자가 대화형 경험을 할 수 있습니다.
+
+<span className="http-method http-method--post">POST</span>/api/v2/sessions/start
+
+## Headers
+|헤더|값|
+|:---|:---|
+|Authorization|Bearer \{session_token\}|
+|Content-Type|application/json|
+
+## Body
+아바타의 음성, LLM, 배경 등을 커스터마이징할 때 사용합니다. 생략 시 서버 기본값이 적용됩니다.
+|필드|타입|필수 여부|설명|
+|:---|:---|:---|:---|
+|avatar_id|string|required|사용할 아바타 ID|
+|avatar_persona|[V2StartSessionDto](#v2startsessiondto)|optional|persona 및 LLM 설정|
+|max_session_duration|integer|optional|세션 최대 길이|
+|lip_audio_mode|string|optional|설정 시 자동으로 greeting message 를 보내지 않습니다.|
+|greeting_text|string|optional|아바타 로드시 인사말<br/>start 직후 서버가 내부적으로 자동으로 greeting message 발화를 수행합니다. (type: `first_message`)|
+
+## V2StartSessionDto
+|이름|타입|설명|필수|
+|:---|:---|:---|:---|
+|language|string|en, ko, en-US|No|
+|llm_configurations|[V2LlmConfigurationsDto](#v2llmconfigurationsdto)|LLM provider/model 설정 (생략 시 기본값 적용)|No|
+
+## V2LlmConfigurationsDto
+|이름|타입|설명|필수|
+|:---|:---|:---|:---|
+|provider|string|예: `openai`, `anthropic`, `google`, `custom` (OpenAI-compatible SSE/HTTP)|No|
+|model|string|LLM provider/model 설정 (생략 시 기본값 적용)|No|
+|temperature|number|temperature (설정 시 Runpod `llm.temperature` 전달)|No|
+|custom_settings|[V2LlmCustomSettingsDto](#v2llmcustomsettingsdto)|-|No|
+
+## V2LlmCustomSettingsDto
+|이름|타입|설명|필수|
+|:---|:---|:---|:---|
+|greeting_text|string|설정되어 있으면 start 직후 서버가 내부적으로 자동으로 greeting message 발화를 수행|No|
+|system_prompt|string|-|No|
+
+## 예시
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/start  \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer ${SESSION_TOKEN}"
+-X POST \
+-d '{
+  "avatar_id": "${YOUR_AVATAR_ID}"
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from 'axios'
+const sessionToken = '${SESSION_TOKEN}'
+
+axios.post(
+  'https://ai-streamer.deepbrain.io/api/v2/sessions/start',
+  {
+    avatar_id: '${YOUR_AVATAR_ID}'
+  },
+  {
+    headers: {
+      'Authorization': `Bearer ${sessionToken}`,
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data)
+})
+.catch((error) => {
+  console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = 'https://ai-streamer.deepbrain.io/api/v2/sessions/start'
+session_token = '${SESSION_TOKEN}'
+
+headers = {
+    'Authorization': f'Bearer {session_token}',
+    'Content-Type': 'application/json'
+}
+body = {
+    'avatar_id': '${YOUR_AVATAR_ID}'
+}
+
+response = requests.post(url, headers=headers, json=body)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## 성공 (`code: 1000`)
+```json
+{
+  "code": 1000,
+  "data": {
+    "session_id": "${SESSION_ID}",
+    "voice_id": "${VOICE_ID}",
+    "max_session_duration": 20,
+    "max_session_numbers": 10,
+    "livekit": {
+      "url": "wss://your-livekit-host",
+      "room_name": "room-…",
+      "token": "${LIVEKIT_ACCESS_TOKEN}"
+    }
+  },
+  "message": "세션이 시작되었습니다"
+}
+```
+
+## Next Step
+
+Start Session 호출 후, `livekit.url` 와 `livekit.token` 을 사용하여 LiveKit에 연결하면, 아바타의 영상과 음성이 실시간으로 스트리밍됩니다.

@@ -1,0 +1,144 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Start Session
+
+使用会话令牌启动交互式头像会话。通过响应中的 `livekit.url` 与 `livekit.token` 连接实时视频流。
+
+### 什么是 LiveKit？
+
+LiveKit 是基于 WebRTC 的实时视频流基础设施。Start Session 返回 `livekit.url`、`livekit.token` 与 `room_name` 后，客户端可调用 `room.connect(url, token)` 等方法连接 LiveKit 服务器。连接成功后，头像的视频、音频与数据通道将实时传输，实现对话式体验。
+
+<span className="http-method http-method--post">POST</span>/api/v2/sessions/start
+
+## Headers
+
+| 请求头 | 值 |
+|:---|:---|
+| Authorization | Bearer \{session_token\} |
+| Content-Type | application/json |
+
+## Body
+
+用于自定义头像语音、LLM、背景等行为。若省略，则使用服务端默认值。
+
+| 字段 | 类型 | 必填 | 说明 |
+|:---|:---|:---|:---|
+| avatar_id | string | 必填 | 要使用的头像 ID |
+| avatar_persona | [V2StartSessionDto](#v2startsessiondto) | 可选 | 人设与 LLM 配置 |
+| max_session_duration | integer | 可选 | 会话最大时长 |
+| lip_audio_mode | string | 可选 | 设置后，服务端不会自动发送问候消息 |
+| greeting_text | string | 可选 | 头像加载时的问候语<br/>在 start 之后，服务端可能会自动朗读问候消息（类型：`first_message`） |
+
+## V2StartSessionDto
+
+| 名称 | 类型 | 说明 | 必填 |
+|:---|:---|:---|:---|
+| language | string | 如 `en`、`ko`、`en-US` | 否 |
+| llm_configurations | [V2LlmConfigurationsDto](#v2llmconfigurationsdto) | LLM 提供商/模型配置（省略则默认） | 否 |
+
+## V2LlmConfigurationsDto
+
+| 名称 | 类型 | 说明 | 必填 |
+|:---|:---|:---|:---|
+| provider | string | 如 `openai`、`anthropic`、`google`、`custom`（OpenAI 兼容 SSE/HTTP） | 否 |
+| model | string | LLM 提供商/模型（省略则默认） | 否 |
+| temperature | number | 温度；设置后将作为 Runpod `llm.temperature` 传递 | 否 |
+| custom_settings | [V2LlmCustomSettingsDto](#v2llmcustomsettingsdto) | — | 否 |
+
+## V2LlmCustomSettingsDto
+
+| 名称 | 类型 | 说明 | 必填 |
+|:---|:---|:---|:---|
+| greeting_text | string | 若设置，start 后服务端可能会自动朗读问候 | 否 |
+| system_prompt | string | — | 否 |
+
+## 示例
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/start  \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer ${SESSION_TOKEN}"
+-X POST \
+-d '{
+  "avatar_id": "${YOUR_AVATAR_ID}"
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from 'axios'
+const sessionToken = '${SESSION_TOKEN}'
+
+axios.post(
+  'https://ai-streamer.deepbrain.io/api/v2/sessions/start',
+  {
+    avatar_id: '${YOUR_AVATAR_ID}'
+  },
+  {
+    headers: {
+      'Authorization': `Bearer ${sessionToken}`,
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data)
+})
+.catch((error) => {
+  console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = 'https://ai-streamer.deepbrain.io/api/v2/sessions/start'
+session_token = '${SESSION_TOKEN}'
+
+headers = {
+    'Authorization': f'Bearer {session_token}',
+    'Content-Type': 'application/json'
+}
+body = {
+    'avatar_id': '${YOUR_AVATAR_ID}'
+}
+
+response = requests.post(url, headers=headers, json=body)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## 成功（`code: 1000`）
+
+```json
+{
+  "code": 1000,
+  "data": {
+    "session_id": "${SESSION_ID}",
+    "voice_id": "${VOICE_ID}",
+    "max_session_duration": 20,
+    "max_session_numbers": 10,
+    "livekit": {
+      "url": "wss://your-livekit-host",
+      "room_name": "room-…",
+      "token": "${LIVEKIT_ACCESS_TOKEN}"
+    }
+  },
+  "message": "会话已开始"
+}
+```
+
+## 下一步
+
+调用 Start Session 后，使用 `livekit.url` 与 `livekit.token` 连接 LiveKit，即可实时流式传输头像的音视频。

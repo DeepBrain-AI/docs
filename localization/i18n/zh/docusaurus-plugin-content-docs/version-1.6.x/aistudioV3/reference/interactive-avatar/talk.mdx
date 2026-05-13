@@ -1,0 +1,113 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Talk
+
+向活跃会话发送文本消息，请求头像朗读该内容。
+
+本 API **不包含** LLM。须传入由外部 LLM（如 OpenAI）生成的文本。
+
+<span className="http-method http-method--post">POST</span>/api/v2/sessions/\{sessionId\}/talk
+
+## Headers
+
+| 请求头 | 值 |
+|:---|:---|
+| Authorization | Bearer \{session_token\} |
+| Content-Type | application/json |
+
+## Body
+
+| 参数 | 类型 | 必填 | 说明 |
+|:---|:---|:---|:---|
+| message | string | 必填 | 头像要朗读的文本 |
+| type | string | 可选 | 预留扩展（使用默认值即可，无需设置） |
+
+<br />
+
+说明
+
+- 会话绑定于创建时使用的 `appId`。
+- 无法访问属于其他 `appId` 的 `sessionId`。
+
+## 示例
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/${SESSION_ID}/talk \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer ${SESSION_TOKEN}" \
+-X POST \
+-d '{
+  "message": "Hello."
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from 'axios'
+const sessionId = '${SESSION_ID}'
+const sessionToken = '${SESSION_TOKEN}'
+
+axios.post(
+  `https://ai-streamer.deepbrain.io/api/v2/sessions/${sessionId}/talk`,
+  {
+    message: 'Hello.'
+  },
+  {
+    headers: {
+      'Authorization': `Bearer ${sessionToken}`,
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data)
+})
+.catch((error) => {
+  console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+session_id = '${SESSION_ID}'
+session_token = '${SESSION_TOKEN}'
+url = f'https://ai-streamer.deepbrain.io/api/v2/sessions/{session_id}/talk'
+
+headers = {
+    'Authorization': f'Bearer {session_token}',
+    'Content-Type': 'application/json'
+}
+body = {
+    'message': 'Hello.'
+}
+
+response = requests.post(url, headers=headers, json=body)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## 成功（`code: 1000`）
+
+```json
+{
+  "code": 1000,
+  "data": null,
+  "message": "消息已发送"
+}
+```
+
+## 下一步
+
+持续对话可重复调用本 API。需要时可使用 List Sessions 或 Get Session Detail 管理会话，结束对话请调用 Stop Session。
