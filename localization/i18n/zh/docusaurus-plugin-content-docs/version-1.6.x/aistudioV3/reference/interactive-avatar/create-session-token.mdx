@@ -1,0 +1,103 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Create Session Token
+
+签发用于启动流媒体会话的认证令牌。返回的 `session_token` 将作为 `Authorization: Bearer` 请求头，用于后续所有会话相关 API（包括 Start Session、Talk 等）。
+
+<span className="http-method http-method--post">POST</span>/api/v2/sessions/token
+
+## Body
+
+| 参数 | 类型 | 必填 | 说明 |
+|:---|:---|:---|:---|
+| appId | string | 必填 | 与 AI Studios 账户关联的应用标识 |
+| userKey | string | 必填 | API 认证密钥。`userKey` 为账户级密钥，请勿对外暴露（建议仅在服务端使用） |
+
+## Response
+
+| 字段 | 类型 | 说明 | 必填 |
+|:---|:---|:---|:---|
+| code | integer | API 响应码；`1000` 表示成功 | 必填 |
+| data | object | 响应数据对象 | 必填 |
+| data.session_token | string | 会话认证令牌（JWT）。在 Start / Talk 等 API 的 `Authorization` 头中使用 | 必填 |
+| message | string | 响应消息 | 必填 |
+
+## 示例
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/odin/v3/avatars/customavatar\
+-H "Content-Type: application/json"\
+-X POST\
+-d '{   
+  "appId": "studiov3.user@example.com",    
+  "userKey": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from 'axios'
+
+axios.post(
+  'https://ai-streamer.deepbrain.io/api/odin/v3/avatars/customavatar',
+  {
+    appId: 'studiov3.user@example.com',
+    userKey: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+  },
+  {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data)
+})
+.catch((error) => {
+  console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = 'https://ai-streamer.deepbrain.io/api/odin/v3/avatars/customavatar'
+headers = {
+    'Content-Type': 'application/json'
+}
+body = {
+    'appId': 'studiov3.user@example.com',
+    'userKey': 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+}
+
+response = requests.post(url, headers=headers, json=body)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## 成功（`code: 1000`）
+
+```json
+{
+  "code": 1000,
+  "data": {
+    "session_token": "${SESSION_TOKEN}"
+  },
+  "message": "会话令牌已创建"
+}
+```
+
+## 下一步
+
+使用返回的 `session_token` 调用 **Start Session** API。

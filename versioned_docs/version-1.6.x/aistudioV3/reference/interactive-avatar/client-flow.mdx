@@ -1,0 +1,64 @@
+# Client Flow
+
+The full flow for starting and managing a conversational avatar session is as follows.
+
+## Prerequisites
+
+Create an avatar under **Interactive Avatar > Avatars**, then copy the avatar ID. This ID is used with the Start Session API.
+
+## Core Session Flow
+
+1. **Create Session Token**: `POST /api/v2/sessions/token`
+   - Send `appId` and `userKey`
+   - Receive `session_token`
+2. **Start Session**: `POST /api/v2/sessions/start`
+   - Authenticate with the Bearer token
+   - Receive `session_id` and LiveKit details
+3. **Connect to LiveKit**
+   - Connect over WebRTC using `livekit.url` and `livekit.token`
+   - Start receiving the avatar’s video and audio streams
+4. **Talk**: `POST /api/v2/sessions/{sessionId}/talk`
+   - Send the user’s message
+   - The avatar speaks the message
+   - If `greeting_text` is set, the first message may be sent automatically
+5. **Stop Session**: `POST /api/v2/sessions/stop`
+   - Use the `STUDIO-API-KEY` header
+   - End the session and stop billing
+
+## Optional APIs
+
+- **List Sessions**: `GET /api/v2/sessions` — list active or ended sessions (e.g. for dashboards)
+- **Get Session Detail**: `GET /api/v2/sessions/{sessionId}` — fetch details for a specific session
+
+## Response Format
+
+Every API response includes a status code, data payload, and message. Success and error responses share the same shape.
+
+```bash
+{
+  "code": 1000,
+  "data": {},
+  "message": "Human-readable message"
+}
+```
+
+| Name | Type | Description |
+|:---|:---|:---|
+| code | number | Application status code |
+| data | Object \| null | Payload on success |
+| message | string | Message for logs or UI |
+
+## Error Codes
+
+Regardless of success or failure, each API indicates the outcome with the HTTP status and the `code` field in the response body. Common error codes:
+
+| code | HTTP | Meaning |
+|:---|:---|:---|
+| 4000 | 400 / 422 | Validation failed / invalid input |
+| 4010 | 401 | Token or credential error |
+| 4030 | 403 | Forbidden |
+| 4040 | 404 | Resource not found |
+| 4290 | 429 | Rate limited |
+| 5000 | 500 | Internal or service error |
+
+<br />

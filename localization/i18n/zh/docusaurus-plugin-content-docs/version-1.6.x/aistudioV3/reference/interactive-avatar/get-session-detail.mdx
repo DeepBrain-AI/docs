@@ -1,0 +1,98 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Get Session Detail
+
+查询指定 `sessionId` 的详细信息。
+
+**注意：** 即使会话存在，若不属于当前 `appId`，仍将返回 **404**。
+
+<span className="http-method http-method--get">GET</span>/api/v2/sessions/\{sessionId\}
+
+## Headers
+
+| 请求头 | 值 |
+|:---|:---|
+| STUDIO-API-KEY | \{userKey\} |
+
+## 示例
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/${SESSION_ID} \
+-H "Content-Type: application/json" \
+-H "STUDIO-API-KEY: ${userKey}" \
+-X GET
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from 'axios'
+const sessionId = '${SESSION_ID}'
+const userKey = '${userKey}'
+
+axios.get(
+  `https://ai-streamer.deepbrain.io/api/v2/sessions/${sessionId}`,
+  {
+    headers: {
+      'STUDIO-API-KEY': userKey,
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data)
+})
+.catch((error) => {
+  console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+session_id = '${SESSION_ID}'
+user_key = '${userKey}'
+url = f'https://ai-streamer.deepbrain.io/api/v2/sessions/{session_id}'
+
+headers = {
+    'STUDIO-API-KEY': user_key,
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## 成功（`code: 1000`）
+
+```json
+{
+  "code": 1000,
+  "data": {
+    "sessionId": "${SESSION_ID}",
+    "created_at": "2026-04-07T02:37:50.000Z",
+    "updated_at": "2026-04-07T05:38:26.000Z",
+    "duration": 123,
+    "source": "API",
+    "credits_consumed": 123.45,
+    "end_at": "2026-04-07T05:38:26.000Z",
+    "end_reason": "USER_CLOSED"
+  },
+  "message": null
+}
+```
+
+## 下一步
+
+结束会话请使用 **Stop Session** API。

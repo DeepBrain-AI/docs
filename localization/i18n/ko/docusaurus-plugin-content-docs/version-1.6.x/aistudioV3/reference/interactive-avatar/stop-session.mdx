@@ -1,0 +1,101 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Stop Session
+
+활성 세션을 종료하고 서버 리소스를 해제합니다. 사용자가 대화를 끝내거나 브라우저를 닫을 때 반드시 호출해야 과금이 정확히 집계됩니다. 전체 흐름에서 마지막 단계입니다.
+
+<span className="http-method http-method--post">POST</span>/api/v2/sessions/stop
+
+## Headers
+|헤더|값|
+|:---|:---|
+|STUDIO-API-KEY|\{userKey\}|
+|Content-Type|application/json|
+
+## Body
+|파라미터|타입|필수 여부|설명|
+|:---|:---|:---|:---|
+|session_id|string|required|종료할 세션 ID. Start Session 응답의 `data.session_id`|
+|reason|enum|required|종료 사유: `USER_CLOSED`, `TIMEOUT`, `ERROR`|
+
+## 예시
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/stop \
+-H "Content-Type: application/json" \
+-H "STUDIO-API-KEY: ${userKey}" \
+-X POST \
+-d '{
+  "session_id": "${SESSION_ID}",
+  "reason": "USER_CLOSED"
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from 'axios'
+const userKey = '${userKey}'
+
+axios.post(
+  'https://ai-streamer.deepbrain.io/api/v2/sessions/stop',
+  {
+    session_id: '${SESSION_ID}',
+    reason: 'USER_CLOSED'
+  },
+  {
+    headers: {
+      'STUDIO-API-KEY': userKey,
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data)
+})
+.catch((error) => {
+  console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = 'https://ai-streamer.deepbrain.io/api/v2/sessions/stop'
+user_key = '${userKey}'
+
+headers = {
+    'STUDIO-API-KEY': user_key,
+    'Content-Type': 'application/json'
+}
+body = {
+    'session_id': '${SESSION_ID}',
+    'reason': 'USER_CLOSED'
+}
+
+response = requests.post(url, headers=headers, json=body)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## 성공(`code: 1000`)
+```json
+{
+  "code": 1000,
+  "data": null,
+  "message": "세션이 종료되었습니다"
+}
+```
+
+## Next Step
+
+세션이 성공적으로 종료되면 과금이 정지되고 모든 리소스가 해제됩니다.

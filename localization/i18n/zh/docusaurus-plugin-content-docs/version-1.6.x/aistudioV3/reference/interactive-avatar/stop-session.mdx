@@ -1,0 +1,105 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Stop Session
+
+结束活跃会话并释放服务端资源。用户结束对话或关闭浏览器时**务必调用**，以便准确计费。这是整体流程的最后一步。
+
+<span className="http-method http-method--post">POST</span>/api/v2/sessions/stop
+
+## Headers
+
+| 请求头 | 值 |
+|:---|:---|
+| STUDIO-API-KEY | \{userKey\} |
+| Content-Type | application/json |
+
+## Body
+
+| 参数 | 类型 | 必填 | 说明 |
+|:---|:---|:---|:---|
+| session_id | string | 必填 | 要结束的会话 ID。使用 Start Session 响应中的 `data.session_id` |
+| reason | enum | 必填 | 结束原因：`USER_CLOSED`、`TIMEOUT`、`ERROR` |
+
+## 示例
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/stop \
+-H "Content-Type: application/json" \
+-H "STUDIO-API-KEY: ${userKey}" \
+-X POST \
+-d '{
+  "session_id": "${SESSION_ID}",
+  "reason": "USER_CLOSED"
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from 'axios'
+const userKey = '${userKey}'
+
+axios.post(
+  'https://ai-streamer.deepbrain.io/api/v2/sessions/stop',
+  {
+    session_id: '${SESSION_ID}',
+    reason: 'USER_CLOSED'
+  },
+  {
+    headers: {
+      'STUDIO-API-KEY': userKey,
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data)
+})
+.catch((error) => {
+  console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = 'https://ai-streamer.deepbrain.io/api/v2/sessions/stop'
+user_key = '${userKey}'
+
+headers = {
+    'STUDIO-API-KEY': user_key,
+    'Content-Type': 'application/json'
+}
+body = {
+    'session_id': '${SESSION_ID}',
+    'reason': 'USER_CLOSED'
+}
+
+response = requests.post(url, headers=headers, json=body)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## 成功（`code: 1000`）
+
+```json
+{
+  "code": 1000,
+  "data": null,
+  "message": "会话已结束"
+}
+```
+
+## 下一步
+
+成功结束后，计费停止，会话相关资源将全部释放。

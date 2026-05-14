@@ -1,0 +1,113 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Talk
+
+Sends a text message to an active session so the avatar speaks that content.
+
+This API does **not** include an LLM. You must supply text produced by an external LLM (OpenAI, etc.).
+
+<span className="http-method http-method--post">POST</span>/api/v2/sessions/\{sessionId\}/talk
+
+## Headers
+
+| Header | Value |
+|:---|:---|
+| Authorization | Bearer \{session_token\} |
+| Content-Type | application/json |
+
+## Body
+
+| Parameter | Type | Required | Description |
+|:---|:---|:---|:---|
+| message | string | required | Text for the avatar to speak |
+| type | string | optional | Reserved for future use (defaults are fine; no need to set) |
+
+<br />
+
+Notes
+
+- Sessions are scoped to the `appId` they were created with.
+- You cannot access a `sessionId` that belongs to a different `appId`.
+
+## Examples
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/${SESSION_ID}/talk \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer ${SESSION_TOKEN}" \
+-X POST \
+-d '{
+  "message": "Hello."
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from 'axios'
+const sessionId = '${SESSION_ID}'
+const sessionToken = '${SESSION_TOKEN}'
+
+axios.post(
+  `https://ai-streamer.deepbrain.io/api/v2/sessions/${sessionId}/talk`,
+  {
+    message: 'Hello.'
+  },
+  {
+    headers: {
+      'Authorization': `Bearer ${sessionToken}`,
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data)
+})
+.catch((error) => {
+  console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+session_id = '${SESSION_ID}'
+session_token = '${SESSION_TOKEN}'
+url = f'https://ai-streamer.deepbrain.io/api/v2/sessions/{session_id}/talk'
+
+headers = {
+    'Authorization': f'Bearer {session_token}',
+    'Content-Type': 'application/json'
+}
+body = {
+    'message': 'Hello.'
+}
+
+response = requests.post(url, headers=headers, json=body)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## Success (`code: 1000`)
+
+```json
+{
+  "code": 1000,
+  "data": null,
+  "message": "Message has been sent"
+}
+```
+
+## Next step
+
+Call this API repeatedly to continue the conversation. Use List Sessions or Get Session Detail to manage sessions when needed, and call Stop Session to end the conversation.

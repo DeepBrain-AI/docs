@@ -1,0 +1,107 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# List Sessions
+
+Returns a list of all sessions created under your `userKey`. You can filter active vs. ended sessions. Results are scoped to the `STUDIO-API-KEY` (only sessions for the `appId` mapped to that key). The `next` and `previous` URLs are based on the request host—if you deploy behind a reverse proxy, configure `X-Forwarded-*` headers accordingly.
+
+<span className="http-method http-method--get">GET</span>/api/v2/sessions
+
+## Headers
+
+| Header | Value |
+|:---|:---|
+| STUDIO-API-KEY | \{userKey\} |
+
+## Query parameters
+
+| Parameter | Type | Default | Description |
+|:---|:---|:---|:---|
+| page | integer | 1 | Page number (≥ 1) |
+| page_size | integer | 20 | Items per page (1–100) |
+| type | string | — | `active`: active sessions<br/>`historic`: ended sessions (optional) |
+
+## Examples
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions \
+-H "Content-Type: application/json" \
+-H "STUDIO-API-KEY: ${userKey}" \
+-X GET
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from 'axios'
+const userKey = '${userKey}'
+
+axios.get(
+  'https://ai-streamer.deepbrain.io/api/v2/sessions',
+  {
+    headers: {
+      'STUDIO-API-KEY': userKey,
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data)
+})
+.catch((error) => {
+  console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = 'https://ai-streamer.deepbrain.io/api/v2/sessions'
+user_key = '${userKey}'
+
+headers = {
+    'STUDIO-API-KEY': user_key,
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## Success (`code: 1000`)
+
+```json
+{
+  "code": 1000,
+  "data": {
+    "count": 2,
+    "next": "<https://dev-streamer.example.com/api/v2/sessions?page=2&page_size=20&type=active>",
+    "previous": null,
+    "results": [
+      {
+        "sessionId": "${SESSION_ID}",
+        "created_at": "2026-04-07T02:37:50.000Z",
+        "updated_at": "2026-04-07T02:37:50.000Z",
+        "duration": 0,
+        "source": "API",
+        "credits_consumed": 0
+      }
+    ]
+  },
+  "message": null
+}
+```
+
+## Next step
+
+Use the **Get Session Detail** API to fetch details for a specific session.

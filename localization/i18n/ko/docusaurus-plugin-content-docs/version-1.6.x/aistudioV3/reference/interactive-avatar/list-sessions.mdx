@@ -1,0 +1,103 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# List Sessions
+
+발급한 userKey 기준으로 생성된 모든 세션의 목록을 조회합니다. 활성 세션과 종료된 세션을 구분하여 조회할 수 있으며, 결과는 `STUDIO-API-KEY` 기준으로 스코프됩니다 (해당 키에 매핑된 `appId`로 생성된 세션만 반환). `next` / `previous` URL은 요청 host 기반이므로, 리버스 프록시 뒤에 둘 경우 `X-Forwarded-*` 설정을 고려하세요.
+
+<span className="http-method http-method--get">GET</span>/api/v2/sessions
+
+## Headers
+|헤더|값|
+|:---|:---|
+|STUDIO-API-KEY|\{userKey\}|
+
+## Query Parameters
+|파라미터|타입|기본값|설명|
+|:---|:---|:---|:---|
+|page|integer|1|페이지 번호 (≥ 1)|
+|page_size|integer|20|페이지당 항목 수 (1–100)|
+|type|string|-|`active` : 활성 세션<br/>`historic` : 종료된 세션 (선택)|
+
+## 예시
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions \
+-H "Content-Type: application/json" \
+-H "STUDIO-API-KEY: ${userKey}" \
+-X GET
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from 'axios'
+const userKey = '${userKey}'
+
+axios.get(
+  'https://ai-streamer.deepbrain.io/api/v2/sessions',
+  {
+    headers: {
+      'STUDIO-API-KEY': userKey,
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data)
+})
+.catch((error) => {
+  console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = 'https://ai-streamer.deepbrain.io/api/v2/sessions'
+user_key = '${userKey}'
+
+headers = {
+    'STUDIO-API-KEY': user_key,
+    'Content-Type': 'application/json'
+}
+
+response = requests.get(url, headers=headers)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## 성공 (`code: 1000`)
+```json
+{
+  "code": 1000,
+  "data": {
+    "count": 2,
+    "next": "<https://dev-streamer.example.com/api/v2/sessions?page=2&page_size=20&type=active>",
+    "previous": null,
+    "results": [
+      {
+        "sessionId": "${SESSION_ID}",
+        "created_at": "2026-04-07T02:37:50.000Z",
+        "updated_at": "2026-04-07T02:37:50.000Z",
+        "duration": 0,
+        "source": "API",
+        "credits_consumed": 0
+      }
+    ]
+  },
+  "message": null
+}
+```
+
+## Next Step
+
+특정 세션의 상세 정보를 조회하려면 Get Session Detail API를 사용합니다.

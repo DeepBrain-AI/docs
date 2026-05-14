@@ -83,6 +83,19 @@
             "aistudioV3/reference/avatars/voice-cloning",
             "aistudioV3/reference/avatars/dream-avatar"
           ]
+        },
+        {
+          "type": "category",
+          "label": "Interactive Avatar",
+          "items": [
+            "aistudioV3/reference/interactive-avatar/client-flow",
+            "aistudioV3/reference/interactive-avatar/create-session-token",
+            "aistudioV3/reference/interactive-avatar/start-session",
+            "aistudioV3/reference/interactive-avatar/talk",
+            "aistudioV3/reference/interactive-avatar/list-sessions",
+            "aistudioV3/reference/interactive-avatar/get-session-detail",
+            "aistudioV3/reference/interactive-avatar/stop-session"
+          ]
         }
       ]
     }

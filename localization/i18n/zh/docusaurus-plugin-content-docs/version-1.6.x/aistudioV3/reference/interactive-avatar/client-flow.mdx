@@ -1,0 +1,64 @@
+# 客户端流程
+
+启动并管理对话式头像会话的完整流程如下。
+
+## 前提条件
+
+在 **Interactive Avatar > Avatars** 中创建头像，并复制头像 ID。该 ID 用于 **Start Session** API。
+
+## 核心会话流程
+
+1. **Create Session Token**：`POST /api/v2/sessions/token`
+   - 发送 `appId` 与 `userKey`
+   - 接收 `session_token`
+2. **Start Session**：`POST /api/v2/sessions/start`
+   - 使用 Bearer 令牌认证
+   - 接收 `session_id` 与 LiveKit 信息
+3. **连接 LiveKit**
+   - 使用 `livekit.url` 与 `livekit.token` 通过 WebRTC 连接
+   - 开始接收头像的音视频流
+4. **Talk**：`POST /api/v2/sessions/{sessionId}/talk`
+   - 发送用户消息
+   - 头像朗读该内容
+   - 若设置了 `greeting_text`，可能会自动发送首条问候
+5. **Stop Session**：`POST /api/v2/sessions/stop`
+   - 使用 `STUDIO-API-KEY` 请求头
+   - 结束会话并停止计费
+
+## 可选 API
+
+- **List Sessions**：`GET /api/v2/sessions` — 查询活跃/已结束会话列表（如用于控制台）
+- **Get Session Detail**：`GET /api/v2/sessions/{sessionId}` — 查询指定会话详情
+
+## 响应格式
+
+所有 API 响应均包含状态码、数据与消息字段；成功与失败使用相同结构。
+
+```bash
+{
+  "code": 1000,
+  "data": {},
+  "message": "人类可读的消息"
+}
+```
+
+| 名称 | 类型 | 说明 |
+|:---|:---|:---|
+| code | number | 应用状态码 |
+| data | Object \| null | 成功时的负载 |
+| message | string | 日志或 UI 用消息 |
+
+## 错误码
+
+无论成功与否，均通过 HTTP 状态码与响应体中的 `code` 表示结果。常见错误码如下：
+
+| code | HTTP | 含义 |
+|:---|:---|:---|
+| 4000 | 400 / 422 | 校验失败 / 参数无效 |
+| 4010 | 401 | 令牌或凭证错误 |
+| 4030 | 403 | 无权限 |
+| 4040 | 404 | 资源不存在 |
+| 4290 | 429 | 触发限流 |
+| 5000 | 500 | 内部或服务错误 |
+
+<br />

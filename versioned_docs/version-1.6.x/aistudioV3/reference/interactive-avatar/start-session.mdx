@@ -1,0 +1,144 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Start Session
+
+Starts an interactive avatar session with a session token. Use `livekit.url` and `livekit.token` from the response to connect to real-time video streaming.
+
+### What is LiveKit?
+
+LiveKit is a WebRTC-based real-time video streaming stack. After Start Session returns `livekit.url`, `livekit.token`, and `room_name`, the client calls something like `room.connect(url, token)` to join the LiveKit server. Once connected, the avatar’s video, audio, and data channels stream in real time for a conversational experience.
+
+<span className="http-method http-method--post">POST</span>/api/v2/sessions/start
+
+## Headers
+
+| Header | Value |
+|:---|:---|
+| Authorization | Bearer \{session_token\} |
+| Content-Type | application/json |
+
+## Body
+
+Use these fields when customizing the avatar’s voice, LLM, background, and related behavior. If omitted, server defaults apply.
+
+| Field | Type | Required | Description |
+|:---|:---|:---|:---|
+| avatar_id | string | required | Avatar ID to use |
+| avatar_persona | [V2StartSessionDto](#v2startsessiondto) | optional | Persona and LLM settings |
+| max_session_duration | integer | optional | Maximum session length |
+| lip_audio_mode | string | optional | When set, the server does not automatically send a greeting message |
+| greeting_text | string | optional | Greeting when the avatar loads<br/>Right after start, the server may automatically speak a greeting message (type: `first_message`) |
+
+## V2StartSessionDto
+
+| Name | Type | Description | Required |
+|:---|:---|:---|:---|
+| language | string | e.g. `en`, `ko`, `en-US` | No |
+| llm_configurations | [V2LlmConfigurationsDto](#v2llmconfigurationsdto) | LLM provider/model settings (defaults if omitted) | No |
+
+## V2LlmConfigurationsDto
+
+| Name | Type | Description | Required |
+|:---|:---|:---|:---|
+| provider | string | e.g. `openai`, `anthropic`, `google`, `custom` (OpenAI-compatible SSE/HTTP) | No |
+| model | string | LLM provider/model (defaults if omitted) | No |
+| temperature | number | Temperature (when set, forwarded as Runpod `llm.temperature`) | No |
+| custom_settings | [V2LlmCustomSettingsDto](#v2llmcustomsettingsdto) | — | No |
+
+## V2LlmCustomSettingsDto
+
+| Name | Type | Description | Required |
+|:---|:---|:---|:---|
+| greeting_text | string | If set, the server may automatically speak a greeting right after start | No |
+| system_prompt | string | — | No |
+
+## Examples
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/start  \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer ${SESSION_TOKEN}"
+-X POST \
+-d '{
+  "avatar_id": "${YOUR_AVATAR_ID}"
+}'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from 'axios'
+const sessionToken = '${SESSION_TOKEN}'
+
+axios.post(
+  'https://ai-streamer.deepbrain.io/api/v2/sessions/start',
+  {
+    avatar_id: '${YOUR_AVATAR_ID}'
+  },
+  {
+    headers: {
+      'Authorization': `Bearer ${sessionToken}`,
+      'Content-Type': 'application/json'
+    }
+  }
+)
+.then((res) => {
+  console.log(res.data)
+})
+.catch((error) => {
+  console.error(error)
+})
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = 'https://ai-streamer.deepbrain.io/api/v2/sessions/start'
+session_token = '${SESSION_TOKEN}'
+
+headers = {
+    'Authorization': f'Bearer {session_token}',
+    'Content-Type': 'application/json'
+}
+body = {
+    'avatar_id': '${YOUR_AVATAR_ID}'
+}
+
+response = requests.post(url, headers=headers, json=body)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## Success (`code: 1000`)
+
+```json
+{
+  "code": 1000,
+  "data": {
+    "session_id": "${SESSION_ID}",
+    "voice_id": "${VOICE_ID}",
+    "max_session_duration": 20,
+    "max_session_numbers": 10,
+    "livekit": {
+      "url": "wss://your-livekit-host",
+      "room_name": "room-…",
+      "token": "${LIVEKIT_ACCESS_TOKEN}"
+    }
+  },
+  "message": "Session has been started"
+}
+```
+
+## Next step
+
+After Start Session, connect to LiveKit with `livekit.url` and `livekit.token` to stream the avatar’s video and audio in real time.
