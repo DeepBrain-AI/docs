@@ -3,9 +3,9 @@ import TabItem from '@theme/TabItem';
 
 # Talk
 
-向活跃会话发送文本消息，请求头像朗读该内容。
+向活跃会话发送文本消息，使头像将该问题传递给 LLM，并朗读生成的回答。
 
-本 API **不包含** LLM。须传入由外部 LLM（如 OpenAI）生成的文本。
+本 API 不包含 LLM。必须传入由外部 LLM（如 OpenAI 等）生成的文本。
 
 <span className="http-method http-method--post">POST</span>/api/v2/sessions/\{sessionId\}/talk
 

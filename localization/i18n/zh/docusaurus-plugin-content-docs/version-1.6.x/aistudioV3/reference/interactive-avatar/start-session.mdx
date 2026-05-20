@@ -27,7 +27,6 @@ LiveKit 是基于 WebRTC 的实时视频流基础设施。Start Session 返回 `
 | avatar_id | string | 必填 | 要使用的头像 ID |
 | avatar_persona | [V2StartSessionDto](#v2startsessiondto) | 可选 | 人设与 LLM 配置 |
 | max_session_duration | integer | 可选 | 会话最大时长 |
-| lip_audio_mode | string | 可选 | 设置后，服务端不会自动发送问候消息 |
 | greeting_text | string | 可选 | 头像加载时的问候语<br/>在 start 之后，服务端可能会自动朗读问候消息（类型：`first_message`） |
 
 ## V2StartSessionDto
@@ -41,7 +40,7 @@ LiveKit 是基于 WebRTC 的实时视频流基础设施。Start Session 返回 `
 
 | 名称 | 类型 | 说明 | 必填 |
 |:---|:---|:---|:---|
-| provider | string | 如 `openai`、`anthropic`、`google`、`custom`（OpenAI 兼容 SSE/HTTP） | 否 |
+| provider | string | 如 `openai`、`anthropic`、`google` （OpenAI 兼容 SSE/HTTP） | 否 |
 | model | string | LLM 提供商/模型（省略则默认） | 否 |
 | temperature | number | 温度；设置后将作为 Runpod `llm.temperature` 传递 | 否 |
 | custom_settings | [V2LlmCustomSettingsDto](#v2llmcustomsettingsdto) | — | 否 |

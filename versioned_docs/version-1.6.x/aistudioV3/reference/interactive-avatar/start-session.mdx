@@ -26,8 +26,7 @@ Use these fields when customizing the avatar’s voice, LLM, background, and rel
 |:---|:---|:---|:---|
 | avatar_id | string | required | Avatar ID to use |
 | avatar_persona | [V2StartSessionDto](#v2startsessiondto) | optional | Persona and LLM settings |
-| max_session_duration | integer | optional | Maximum session length |
-| lip_audio_mode | string | optional | When set, the server does not automatically send a greeting message |
+| max_session_duration | integer | optional | Maximum session length (minutes) |
 | greeting_text | string | optional | Greeting when the avatar loads<br/>Right after start, the server may automatically speak a greeting message (type: `first_message`) |
 
 ## V2StartSessionDto
@@ -41,7 +40,7 @@ Use these fields when customizing the avatar’s voice, LLM, background, and rel
 
 | Name | Type | Description | Required |
 |:---|:---|:---|:---|
-| provider | string | e.g. `openai`, `anthropic`, `google`, `custom` (OpenAI-compatible SSE/HTTP) | No |
+| provider | string | e.g. `openai`, `anthropic`, `google` | No |
 | model | string | LLM provider/model (defaults if omitted) | No |
 | temperature | number | Temperature (when set, forwarded as Runpod `llm.temperature`) | No |
 | custom_settings | [V2LlmCustomSettingsDto](#v2llmcustomsettingsdto) | — | No |

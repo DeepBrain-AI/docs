@@ -21,8 +21,7 @@ LiveKit은 WebRTC 기반의 실시간 영상 스트리밍 인프라입니다. St
 |:---|:---|:---|:---|
 |avatar_id|string|required|사용할 아바타 ID|
 |avatar_persona|[V2StartSessionDto](#v2startsessiondto)|optional|persona 및 LLM 설정|
-|max_session_duration|integer|optional|세션 최대 길이|
-|lip_audio_mode|string|optional|설정 시 자동으로 greeting message 를 보내지 않습니다.|
+|max_session_duration|integer|optional|세션 최대 길이 (분)|
 |greeting_text|string|optional|아바타 로드시 인사말<br/>start 직후 서버가 내부적으로 자동으로 greeting message 발화를 수행합니다. (type: `first_message`)|
 
 ## V2StartSessionDto
@@ -34,7 +33,7 @@ LiveKit은 WebRTC 기반의 실시간 영상 스트리밍 인프라입니다. St
 ## V2LlmConfigurationsDto
 |이름|타입|설명|필수|
 |:---|:---|:---|:---|
-|provider|string|예: `openai`, `anthropic`, `google`, `custom` (OpenAI-compatible SSE/HTTP)|No|
+|provider|string|예: `openai`, `anthropic`, `google` (OpenAI-compatible SSE/HTTP)|No|
 |model|string|LLM provider/model 설정 (생략 시 기본값 적용)|No|
 |temperature|number|temperature (설정 시 Runpod `llm.temperature` 전달)|No|
 |custom_settings|[V2LlmCustomSettingsDto](#v2llmcustomsettingsdto)|-|No|
