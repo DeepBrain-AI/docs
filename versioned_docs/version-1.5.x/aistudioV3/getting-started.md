@@ -25,7 +25,7 @@ If you are subscribing to API pricing plan, you will need to get an API key issu
 
 ## 2. Masking API videos.
 
-A test image is produced with the issued 'API Key' to check ther ID value of the generated image.
+A test image is produced with the issued 'API Key' to check the ID value of the generated image.
 
 ```bash
 curl https://app.aistudios.com/api/odin/v3/editor/project  \

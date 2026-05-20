@@ -12,7 +12,7 @@ API Access Token can be issued through the issued AppId and UserKey. API communi
 
 ## 2. Making API videos.
 
-A test image is produced with the issued 'API Key' to check ther ID value of the generated image.
+A test image is produced with the issued 'API Key' to check the ID value of the generated image.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

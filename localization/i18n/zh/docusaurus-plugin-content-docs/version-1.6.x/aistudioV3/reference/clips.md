@@ -5,7 +5,7 @@
 |:---|:---|:---|:---|:---|
 |model|Model Information|Json|true|-|
 |model.ai_name|The AI Model to be used.|String|true|-|
-|model.emotion|The clothes that ther AI Model will wear.|String|true|-|
+|model.emotion|The clothes that the AI Model will wear.|String|true|-|
 |tag|Tag to identify the clip|String|false|-|
 
 If you don't have an issued key yet, you can issue it through [Generate API key](../generate-api-key).

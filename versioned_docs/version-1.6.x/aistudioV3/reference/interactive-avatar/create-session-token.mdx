@@ -29,7 +29,7 @@ Issues an authentication token to start a streaming session. The returned `sessi
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://ai-streamer.deepbrain.io/api/odin/v3/avatars/customavatar\
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/token\
 -H "Content-Type: application/json"\
 -X POST\
 -d '{   
@@ -45,7 +45,7 @@ curl https://ai-streamer.deepbrain.io/api/odin/v3/avatars/customavatar\
 import axios from 'axios'
 
 axios.post(
-  'https://ai-streamer.deepbrain.io/api/odin/v3/avatars/customavatar',
+  'https://ai-streamer.deepbrain.io/api/v2/sessions/token',
   {
     appId: 'studiov3.user@example.com',
     userKey: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
@@ -70,7 +70,7 @@ axios.post(
 ```py
 import requests
 
-url = 'https://ai-streamer.deepbrain.io/api/odin/v3/avatars/customavatar'
+url = 'https://ai-streamer.deepbrain.io/api/v2/sessions/token'
 headers = {
     'Content-Type': 'application/json'
 }
