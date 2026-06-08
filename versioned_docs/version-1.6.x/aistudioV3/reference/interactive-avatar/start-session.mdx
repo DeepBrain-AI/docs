@@ -1,5 +1,5 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # Start Session
 
@@ -9,89 +9,75 @@ Starts an interactive avatar session with a session token. Use `livekit.url` and
 
 LiveKit is a WebRTC-based real-time video streaming stack. After Start Session returns `livekit.url`, `livekit.token`, and `room_name`, the client calls something like `room.connect(url, token)` to join the LiveKit server. Once connected, the avatar’s video, audio, and data channels stream in real time for a conversational experience.
 
-<span className="http-method http-method--post">POST</span>/api/v2/sessions/start
+<span className="http-method http-method--post">POST</span>
+/api/v2/sessions/start
 
 ## Headers
 
-| Header | Value |
-|:---|:---|
+| Header        | Value                    |
+| :------------ | :----------------------- |
 | Authorization | Bearer \{session_token\} |
-| Content-Type | application/json |
+| Content-Type  | application/json         |
 
 ## Body
 
-Use these fields when customizing the avatar’s voice, LLM, background, and related behavior. If omitted, server defaults apply.
-
-| Field | Type | Required | Description |
-|:---|:---|:---|:---|
-| avatar_id | string | required | Avatar ID to use |
-| avatar_persona | [V2StartSessionDto](#v2startsessiondto) | optional | Persona and LLM settings |
-| max_session_duration | integer | optional | Maximum session length (minutes) |
-| greeting_text | string | optional | Greeting when the avatar loads<br/>Right after start, the server may automatically speak a greeting message (type: `first_message`) |
-
-## V2StartSessionDto
-
-| Name | Type | Description | Required |
-|:---|:---|:---|:---|
-| language | string | e.g. `en`, `ko`, `en-US` | No |
-| llm_configurations | [V2LlmConfigurationsDto](#v2llmconfigurationsdto) | LLM provider/model settings (defaults if omitted) | No |
-
-## V2LlmConfigurationsDto
-
-| Name | Type | Description | Required |
-|:---|:---|:---|:---|
-| provider | string | e.g. `openai`, `anthropic`, `google` | No |
-| model | string | LLM provider/model (defaults if omitted) | No |
-| temperature | number | Temperature (when set, forwarded as Runpod `llm.temperature`) | No |
-| custom_settings | [V2LlmCustomSettingsDto](#v2llmcustomsettingsdto) | — | No |
-
-## V2LlmCustomSettingsDto
-
-| Name | Type | Description | Required |
-|:---|:---|:---|:---|
-| greeting_text | string | If set, the server may automatically speak a greeting right after start | No |
-| system_prompt | string | — | No |
+| Field                                             | Type    | Required | Description                                                                                                           |
+| :------------------------------------------------ | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------- |
+| avatar_id                                         | string  | required | Avatar ID to use                                                                                                      |
+| max_session_duration                              | integer | optional | Maximum session length (minutes)                                                                                      |
+| avatar_persona                                    | object  | optional | Persona and LLM overrides. Server defaults apply if omitted.                                                          |
+| avatar_persona.language                           | string  | optional | e.g. `en`, `ko`, `en-US`                                                                                              |
+| avatar_persona.voice_id                           | string  | optional | TTS voice ID override (e.g. an ElevenLabs voice ID). If omitted, the voice set in AI Studio project settings is used. |
+| avatar_persona.llm_configurations                 | object  | optional | LLM provider/model settings. Server defaults apply if omitted.                                                        |
+| avatar_persona.llm_configurations.provider        | string  | optional | e.g. `openai`, `anthropic`, `google`, `custom`                                                                        |
+| avatar_persona.llm_configurations.model           | string  | optional | Model ID                                                                                                              |
+| avatar_persona.llm_configurations.temperature     | number  | optional | Temperature forwarded to the LLM                                                                                      |
+| avatar_persona.llm_configurations.custom_settings | object  | optional | `greeting_text`, `system_prompt` overrides                                                                            |
+| avatar_persona.llm_configurations.custom_http     | object  | optional | Used only when `provider` is `"custom"`. Pass your LLM endpoint config here. Requires `endpoint` (or `url`).          |
 
 ## Examples
+
+### Basic session
 
 <Tabs>
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://ai-streamer.deepbrain.io/api/v2/sessions/start  \
--H "Content-Type: application/json" \
--H "Authorization: Bearer ${SESSION_TOKEN}"
--X POST \
--d '{
-  "avatar_id": "${YOUR_AVATAR_ID}"
-}'
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/start \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${SESSION_TOKEN}" \
+  -d '{
+    "avatar_id": "${YOUR_AVATAR_ID}"
+  }'
 ```
 
 </TabItem>
 <TabItem value="js" label="Node.js">
 
 ```js
-import axios from 'axios'
-const sessionToken = '${SESSION_TOKEN}'
+import axios from "axios";
+const sessionToken = "${SESSION_TOKEN}";
 
-axios.post(
-  'https://ai-streamer.deepbrain.io/api/v2/sessions/start',
-  {
-    avatar_id: '${YOUR_AVATAR_ID}'
-  },
-  {
-    headers: {
-      'Authorization': `Bearer ${sessionToken}`,
-      'Content-Type': 'application/json'
-    }
-  }
-)
-.then((res) => {
-  console.log(res.data)
-})
-.catch((error) => {
-  console.error(error)
-})
+axios
+  .post(
+    "https://ai-streamer.deepbrain.io/api/v2/sessions/start",
+    {
+      avatar_id: "${YOUR_AVATAR_ID}",
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${sessionToken}`,
+        "Content-Type": "application/json",
+      },
+    },
+  )
+  .then((res) => {
+    console.log(res.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 ```
 
 </TabItem>
@@ -109,6 +95,132 @@ headers = {
 }
 body = {
     'avatar_id': '${YOUR_AVATAR_ID}'
+}
+
+response = requests.post(url, headers=headers, json=body)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+### With voice override and custom LLM
+
+Override the TTS voice and connect a custom HTTP LLM endpoint.
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/start \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${SESSION_TOKEN}" \
+  -d '{
+    "avatar_id": "${YOUR_AVATAR_ID}",
+    "avatar_persona": {
+      "language": "en",
+      "voice_id": "${ELEVENLABS_VOICE_ID}",
+      "llm_configurations": {
+        "provider": "custom",
+        "custom_settings": {
+          "system_prompt": "You are a helpful assistant.",
+          "greeting_text": "Hello! How can I help you today?"
+        },
+        "custom_http": {
+          "endpoint": "https://your-llm-backend.example.com/v1/chat",
+          "api_preset": "openai_compatible",
+          "stream": true,
+          "headers": {
+            "Authorization": "Bearer ${YOUR_LLM_API_KEY}"
+          }
+        }
+      }
+    }
+  }'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios";
+const sessionToken = "${SESSION_TOKEN}";
+
+axios
+  .post(
+    "https://ai-streamer.deepbrain.io/api/v2/sessions/start",
+    {
+      avatar_id: "${YOUR_AVATAR_ID}",
+      avatar_persona: {
+        language: "en",
+        voice_id: "${ELEVENLABS_VOICE_ID}",
+        llm_configurations: {
+          provider: "custom",
+          custom_settings: {
+            system_prompt: "You are a helpful assistant.",
+            greeting_text: "Hello! How can I help you today?",
+          },
+          custom_http: {
+            endpoint: "https://your-llm-backend.example.com/v1/chat",
+            api_preset: "openai_compatible",
+            stream: true,
+            headers: {
+              Authorization: "Bearer ${YOUR_LLM_API_KEY}",
+            },
+          },
+        },
+      },
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${sessionToken}`,
+        "Content-Type": "application/json",
+      },
+    },
+  )
+  .then((res) => {
+    console.log(res.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = 'https://ai-streamer.deepbrain.io/api/v2/sessions/start'
+session_token = '${SESSION_TOKEN}'
+
+headers = {
+    'Authorization': f'Bearer {session_token}',
+    'Content-Type': 'application/json'
+}
+body = {
+    'avatar_id': '${YOUR_AVATAR_ID}',
+    'avatar_persona': {
+        'language': 'en',
+        'voice_id': '${ELEVENLABS_VOICE_ID}',
+        'llm_configurations': {
+            'provider': 'custom',
+            'custom_settings': {
+                'system_prompt': 'You are a helpful assistant.',
+                'greeting_text': 'Hello! How can I help you today?',
+            },
+            'custom_http': {
+                'endpoint': 'https://your-llm-backend.example.com/v1/chat',
+                'api_preset': 'openai_compatible',
+                'stream': True,
+                'headers': {
+                    'Authorization': 'Bearer ${YOUR_LLM_API_KEY}',
+                },
+            },
+        },
+    },
 }
 
 response = requests.post(url, headers=headers, json=body)
