@@ -49,7 +49,7 @@ const jobs = [
 
 ## 3. Chroma Key Export API Reqeust
 
-Now let us loop through the data that we set up in Step 2 above, and send chroma key export request to our API endpoint. As you can see in tehr code snippet below, the POST request must have our request data in the form of a stringified JSON object. THer request header must contain 'Content-Type': 'application/json' and your unique API Key as the value for the 'Authorization' key. Once ther request is successful, we can save ther project id value in our projectKey variable.
+Now let us loop through the data that we set up in Step 2 above, and send chroma key export request to our API endpoint. As you can see in the code snippet below, the POST request must have our request data in the form of a stringified JSON object. The request header must contain 'Content-Type': 'application/json' and your unique API Key as the value for the 'Authorization' key. Once the request is successful, we can save the project id value in our projectKey variable.
 
 ```js
 for (const i in jobs) {

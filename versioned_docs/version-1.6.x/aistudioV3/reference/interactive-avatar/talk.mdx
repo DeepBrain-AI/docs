@@ -3,9 +3,7 @@ import TabItem from '@theme/TabItem';
 
 # Talk
 
-Sends a text message to an active session so the avatar speaks that content.
-
-This API does **not** include an LLM. You must supply text produced by an external LLM (OpenAI, etc.).
+Sends a text message to an active session, allowing the avatar to forward the query to an LLM and speak the generated response.
 
 <span className="http-method http-method--post">POST</span>/api/v2/sessions/\{sessionId\}/talk
 

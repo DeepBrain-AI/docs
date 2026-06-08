@@ -22,7 +22,7 @@ If your account subscribes to a plan that is Pro or higher, you must then issue 
 
 ## 2. Masking API videos.
 
-A test image is produced with the issued 'API Key' to check ther ID value of the generated image.
+A test image is produced with the issued 'API Key' to check the ID value of the generated image.
 
 ```bash
 curl https://app.aistudios.com/api/odin/v3/editor/project  \
