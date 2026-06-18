@@ -17,11 +17,14 @@
 3. **连接 LiveKit**
    - 使用 `livekit.url` 与 `livekit.token` 通过 WebRTC 连接
    - 开始接收头像的音视频流
-4. **Talk**：`POST /api/v2/sessions/{sessionId}/talk`
+4. **空闲时 Keep-Alive**：`POST /api/v2/sessions/{sessionId}/keep-alive`
+   - 用户空闲时刷新会话活动
+   - 约每 `next_ping_recommended_sec` 秒调用一次（默认 120）
+5. **Talk**：`POST /api/v2/sessions/{sessionId}/talk`
    - 发送用户消息
    - 头像朗读该内容
    - 若设置了 `greeting_text`，可能会自动发送首条问候
-5. **Stop Session**：`POST /api/v2/sessions/stop`
+6. **Stop Session**：`POST /api/v2/sessions/stop`
    - 使用 `STUDIO-API-KEY` 请求头
    - 结束会话并停止计费
 
@@ -42,23 +45,23 @@
 }
 ```
 
-| 名称 | 类型 | 说明 |
-|:---|:---|:---|
-| code | number | 应用状态码 |
-| data | Object \| null | 成功时的负载 |
-| message | string | 日志或 UI 用消息 |
+| 名称    | 类型           | 说明             |
+| :------ | :------------- | :--------------- |
+| code    | number         | 应用状态码       |
+| data    | Object \| null | 成功时的负载     |
+| message | string         | 日志或 UI 用消息 |
 
 ## 错误码
 
 无论成功与否，均通过 HTTP 状态码与响应体中的 `code` 表示结果。常见错误码如下：
 
-| code | HTTP | 含义 |
-|:---|:---|:---|
+| code | HTTP      | 含义                |
+| :--- | :-------- | :------------------ |
 | 4000 | 400 / 422 | 校验失败 / 参数无效 |
-| 4010 | 401 | 令牌或凭证错误 |
-| 4030 | 403 | 无权限 |
-| 4040 | 404 | 资源不存在 |
-| 4290 | 429 | 触发限流 |
-| 5000 | 500 | 内部或服务错误 |
+| 4010 | 401       | 令牌或凭证错误      |
+| 4030 | 403       | 无权限              |
+| 4040 | 404       | 资源不存在          |
+| 4290 | 429       | 触发限流            |
+| 5000 | 500       | 内部或服务错误      |
 
 <br />
