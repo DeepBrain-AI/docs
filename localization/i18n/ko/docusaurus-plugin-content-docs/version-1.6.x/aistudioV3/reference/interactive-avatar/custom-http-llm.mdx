@@ -1,0 +1,128 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Custom HTTP LLM
+
+Custom HTTP LLM은 Interactive Avatar session이 사용자의 HTTP LLM endpoint를 호출하도록 하는 기능입니다. 서비스는 사용자의 endpoint로 `POST` 요청을 보내고, endpoint가 반환한 text를 읽어 아바타가 발화하도록 전달합니다.
+
+이 기능은 HTTP endpoint용입니다. `stream: true`는 WebSocket이 아니라 HTTP response streaming 방식인 SSE(`text/event-stream`)를 의미합니다. LLM backend가 socket 또는 WebSocket만 제공한다면, 그 앞에 HTTP endpoint를 두어야 합니다.
+
+## 커스터마이징 가능한 것
+
+| 영역      | 지원 옵션                                                                          |
+| :-------- | :--------------------------------------------------------------------------------- |
+| Endpoint  | 전체 HTTPS POST URL인 `endpoint` 또는 `url`                                        |
+| 요청 형식 | `api_preset`: `openai_compatible`, `anthropic_messages`, `gemini_generate_content` |
+| 모델 설정 | `model`, `temperature`                                                             |
+| Header    | `headers`, `extra_headers`, `auth_plugins`                                         |
+| Timeout   | `connect_timeout_sec`, `read_timeout_sec`, `timeout_sec`                           |
+| 대화 제한 | `max_messages`, `max_chars`, `max_buffer_chars`                                    |
+| 응답 모드 | SSE용 `stream: true` 또는 단일 JSON용 `stream: false`                              |
+
+## 직접 할 수 없는 것
+
+- Raw TCP socket server를 custom LLM endpoint로 직접 연결할 수 없습니다.
+- WebSocket만 제공하는 server를 custom LLM endpoint로 직접 연결할 수 없습니다.
+- 임의의 JSON을 반환할 수 없습니다. 응답은 선택한 `api_preset`의 parser가 기대하는 형식과 일치해야 합니다.
+- Provider별 고급 기능은 provider가 지원한다고 해서 자동으로 사용할 수 있는 것이 아닙니다. 고급 provider 옵션이 필요하다면 사용자의 HTTP endpoint 또는 gateway 안에서 처리하고, 지원되는 응답 형식으로 반환해야 합니다.
+
+## 보안 참고
+
+신뢰할 수 없는 브라우저 client에서 raw API key를 직접 보내는 방식은 권장하지 않습니다. Server-side gateway 또는 server-managed auth headers를 사용하는 방식을 권장합니다.
+
+## Preset 비교
+
+| Preset                    | 요청 계열                          | 사용 시점                                                                      | 필수 응답 형식                                                                                                |
+| :------------------------ | :--------------------------------- | :----------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------ |
+| `openai_compatible`       | OpenAI-compatible Chat Completions | endpoint가 일반적인 Chat Completions gateway 규칙을 따를 때                    | Streaming: `choices[0].delta.content`가 포함된 SSE `data:` chunk. Non-streaming: `choices[0].message.content` |
+| `anthropic_messages`      | Anthropic Messages API             | endpoint가 Anthropic Messages payload와 event를 따를 때. `model`은 필수입니다. | Streaming: text delta가 포함된 SSE event. Non-streaming: `content` 안의 text block                            |
+| `gemini_generate_content` | Gemini GenerateContent API         | endpoint가 Gemini `generateContent` / `streamGenerateContent`를 따를 때        | Streaming: `streamGenerateContent`의 SSE chunk. Non-streaming: `generateContent` candidates의 text            |
+
+`api_preset`은 format preset입니다. 요청 body 형식과 응답 parser를 선택합니다. Provider의 공식 API에 있는 모든 field가 전달된다는 보장은 아닙니다.
+
+## Stream 모드
+
+| 설정            | 의미                                                                                  | 사용자의 endpoint가 반환해야 하는 것                  |
+| :-------------- | :------------------------------------------------------------------------------------ | :---------------------------------------------------- |
+| `stream: true`  | 기본값입니다. Text가 점진적으로 도착하는 동안 HTTP response가 열린 상태로 유지됩니다. | Server-Sent Events(`Content-Type: text/event-stream`) |
+| `stream: false` | 하나의 완성된 response body를 기다립니다.                                             | 선택한 preset과 일치하는 단일 JSON response           |
+
+`stream: true`는 socket 연결도 WebSocket 연결도 아닙니다. 여전히 하나의 HTTP `POST` 요청입니다. Response body가 SSE line으로 streaming되어 반환됩니다.
+
+시스템 내부에서 이미 WebSocket을 사용하고 있다면, 작은 HTTP gateway를 추가하세요.
+
+1. HTTP `POST` 요청을 받습니다.
+2. 내부 WebSocket backend와 통신합니다.
+3. SSE chunk 또는 지원되는 단일 JSON body를 이 API로 반환합니다.
+
+## 예시
+
+### OpenAI-compatible streaming
+
+```json
+{
+  "avatar_id": "${YOUR_AVATAR_ID}",
+  "avatar_persona": {
+    "llm_configurations": {
+      "provider": "custom",
+      "model": "my-gateway-model",
+      "custom_http": {
+        "endpoint": "https://your-llm-backend.example.com/v1/chat/completions",
+        "api_preset": "openai_compatible",
+        "stream": true,
+        "headers": {
+          "Authorization": "Bearer ${YOUR_LLM_API_KEY}"
+        }
+      }
+    }
+  }
+}
+```
+
+`stream: true`를 사용하면, 사용자의 endpoint는 다음과 같은 SSE line으로 응답해야 합니다.
+
+```text
+data: {"choices":[{"delta":{"content":"Hello"}}]}
+data: {"choices":[{"delta":{"content":" there!"}}]}
+data: [DONE]
+```
+
+### OpenAI-compatible non-streaming
+
+```json
+{
+  "avatar_id": "${YOUR_AVATAR_ID}",
+  "avatar_persona": {
+    "llm_configurations": {
+      "provider": "custom",
+      "model": "my-gateway-model",
+      "custom_http": {
+        "endpoint": "https://your-llm-backend.example.com/v1/chat/completions",
+        "api_preset": "openai_compatible",
+        "stream": false
+      }
+    }
+  }
+}
+```
+
+`stream: false`를 사용하면, 사용자의 endpoint는 하나의 JSON body를 반환해야 합니다.
+
+```json
+{
+  "choices": [
+    {
+      "message": {
+        "content": "Hello there!"
+      }
+    }
+  ]
+}
+```
+
+## Preset 선택 가이드
+
+- 단순한 gateway를 만들고 있거나 이미 Chat Completions 스타일 response를 지원한다면 `openai_compatible`을 선택하세요.
+- Endpoint가 Anthropic Messages request와 response 형식을 따른다면 `anthropic_messages`를 선택하세요. `model`은 필수입니다.
+- Endpoint가 Gemini GenerateContent를 따른다면 `gemini_generate_content`를 선택하세요. Streaming의 경우 streaming-compatible endpoint 형식을 사용하세요.
+- 공개 형식에 포함되지 않은 provider-specific parameter가 필요하다면, 실제 provider 앞에 custom gateway를 두세요.

@@ -1,0 +1,128 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Custom HTTP LLM
+
+Custom HTTP LLM lets an Interactive Avatar session call your own HTTP LLM endpoint. The service sends a `POST` request to your endpoint, reads the returned text, and passes that text to the avatar to speak.
+
+This feature is for HTTP endpoints. `stream: true` means HTTP response streaming with SSE (`text/event-stream`), not WebSocket. If your LLM backend only exposes a socket or WebSocket interface, place an HTTP endpoint in front of it.
+
+## What you can customize
+
+| Area                | Supported options                                                                  |
+| :------------------ | :--------------------------------------------------------------------------------- |
+| Endpoint            | `endpoint` or `url` as a full HTTPS POST URL                                       |
+| Request format      | `api_preset`: `openai_compatible`, `anthropic_messages`, `gemini_generate_content` |
+| Model settings      | `model`, `temperature`                                                             |
+| Headers             | `headers`, `extra_headers`, `auth_plugins`                                         |
+| Timeouts            | `connect_timeout_sec`, `read_timeout_sec`, `timeout_sec`                           |
+| Conversation limits | `max_messages`, `max_chars`, `max_buffer_chars`                                    |
+| Response mode       | `stream: true` for SSE or `stream: false` for one JSON response                    |
+
+## What you cannot do directly
+
+- You cannot connect a raw TCP socket server as the custom LLM endpoint.
+- You cannot connect a WebSocket-only server as the custom LLM endpoint.
+- You cannot return arbitrary JSON. The response must match the parser for the selected `api_preset`.
+- Provider-specific features are not automatically supported just because a provider has them. If you need advanced provider options, handle them inside your own HTTP endpoint and return a supported response shape.
+
+## Security note
+
+Do not send raw API keys from an untrusted browser client. Prefer a server-side gateway or server-managed auth headers.
+
+## Preset comparison
+
+| Preset                    | Request family                     | Use when                                                                          | Required response shape                                                                                    |
+| :------------------------ | :--------------------------------- | :-------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------- |
+| `openai_compatible`       | OpenAI-compatible Chat Completions | Your endpoint follows common Chat Completions gateway conventions                 | Streaming: SSE `data:` chunks with `choices[0].delta.content`. Non-streaming: `choices[0].message.content` |
+| `anthropic_messages`      | Anthropic Messages API             | Your endpoint follows Anthropic Messages payloads and events; `model` is required | Streaming: SSE events with text deltas. Non-streaming: text blocks inside `content`                        |
+| `gemini_generate_content` | Gemini GenerateContent API         | Your endpoint follows Gemini `generateContent` / `streamGenerateContent`          | Streaming: SSE chunks from `streamGenerateContent`. Non-streaming: text from `generateContent` candidates  |
+
+`api_preset` is a format preset. It chooses the request body shape and the response parser. It is not a guarantee that every field from the provider's official API is forwarded.
+
+## Stream mode
+
+| Setting         | Meaning                                                                     | Your endpoint should return                            |
+| :-------------- | :-------------------------------------------------------------------------- | :----------------------------------------------------- |
+| `stream: true`  | The default. The HTTP response stays open while text arrives incrementally. | Server-Sent Events (`Content-Type: text/event-stream`) |
+| `stream: false` | The service waits for one complete response body.                           | One JSON response matching the selected preset         |
+
+`stream: true` is not a socket connection and not a WebSocket connection. It is still one HTTP `POST` request. The response body is streamed back as SSE lines.
+
+If your system already uses WebSockets internally, add a small HTTP gateway:
+
+1. Receive the HTTP `POST` request.
+2. Talk to your WebSocket backend internally.
+3. Return either SSE chunks or one supported JSON body to this API.
+
+## Examples
+
+### OpenAI-compatible streaming
+
+```json
+{
+  "avatar_id": "${YOUR_AVATAR_ID}",
+  "avatar_persona": {
+    "llm_configurations": {
+      "provider": "custom",
+      "model": "my-gateway-model",
+      "custom_http": {
+        "endpoint": "https://your-llm-backend.example.com/v1/chat/completions",
+        "api_preset": "openai_compatible",
+        "stream": true,
+        "headers": {
+          "Authorization": "Bearer ${YOUR_LLM_API_KEY}"
+        }
+      }
+    }
+  }
+}
+```
+
+With `stream: true`, your endpoint should respond with SSE lines like:
+
+```text
+data: {"choices":[{"delta":{"content":"Hello"}}]}
+data: {"choices":[{"delta":{"content":" there!"}}]}
+data: [DONE]
+```
+
+### OpenAI-compatible non-streaming
+
+```json
+{
+  "avatar_id": "${YOUR_AVATAR_ID}",
+  "avatar_persona": {
+    "llm_configurations": {
+      "provider": "custom",
+      "model": "my-gateway-model",
+      "custom_http": {
+        "endpoint": "https://your-llm-backend.example.com/v1/chat/completions",
+        "api_preset": "openai_compatible",
+        "stream": false
+      }
+    }
+  }
+}
+```
+
+With `stream: false`, your endpoint should return one JSON body:
+
+```json
+{
+  "choices": [
+    {
+      "message": {
+        "content": "Hello there!"
+      }
+    }
+  ]
+}
+```
+
+## Choosing a preset
+
+- Choose `openai_compatible` if you are building a simple gateway or already support Chat Completions-style responses.
+- Choose `anthropic_messages` if your endpoint follows Anthropic Messages request and response formats. `model` is required.
+- Choose `gemini_generate_content` if your endpoint follows Gemini GenerateContent. For streaming, use a streaming-compatible endpoint shape.
+- Choose a custom gateway in front of your actual provider if you need provider-specific parameters that are not part of the public shape.
