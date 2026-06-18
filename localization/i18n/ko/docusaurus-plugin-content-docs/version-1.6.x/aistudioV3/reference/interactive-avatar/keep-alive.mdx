@@ -3,27 +3,27 @@ import TabItem from "@theme/TabItem";
 
 # Session Keep-Alive
 
-Refreshes session activity without sending chat or generating a response. Use this while the client remains connected but the user is idle, so the session is not stopped by the 3-minute inactivity timer.
+Chat을 보내거나 응답을 생성하지 않고 session activity를 갱신합니다. Client는 연결되어 있지만 사용자가 idle 상태일 때, 3분 inactivity timer로 session이 중지되지 않도록 사용합니다.
 
-This API does not extend your Account `max_session_duration`; that limit still applies.
+이 API는 Account `max_session_duration`을 연장하지 않습니다. 해당 limit은 계속 적용됩니다.
 
-<span className="http-method http-method--post">POST</span>/api/v2/sessions/\{sessionId\}/ping
+<span className="http-method http-method--post">POST</span>/api/v2/sessions/\{sessionId\}/keep-alive
 
 ## Headers
 
-| Header        | Value                    |
+| 헤더          | 값                       |
 | :------------ | :----------------------- |
 | Authorization | Bearer \{session_token\} |
 
-No request body is required.
+Request body는 필요 없습니다.
 
-## Examples
+## 예시
 
 <Tabs>
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://ai-streamer.deepbrain.io/api/v2/sessions/${SESSION_ID}/ping \
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/${SESSION_ID}/keep-alive \
 -H "Authorization: Bearer ${SESSION_TOKEN}" \
 -X POST
 ```
@@ -38,7 +38,7 @@ const sessionToken = "${SESSION_TOKEN}";
 
 axios
   .post(
-    `https://ai-streamer.deepbrain.io/api/v2/sessions/${sessionId}/ping`,
+    `https://ai-streamer.deepbrain.io/api/v2/sessions/${sessionId}/keep-alive`,
     null,
     {
       headers: {
@@ -62,7 +62,7 @@ import requests
 
 session_id = '${SESSION_ID}'
 session_token = '${SESSION_TOKEN}'
-url = f'https://ai-streamer.deepbrain.io/api/v2/sessions/{session_id}/ping'
+url = f'https://ai-streamer.deepbrain.io/api/v2/sessions/{session_id}/keep-alive'
 
 headers = {
     'Authorization': f'Bearer {session_token}'
@@ -75,7 +75,7 @@ print(response.json())
 </TabItem>
 </Tabs>
 
-## Success (`code: 1000`)
+## 성공 (`code: 1000`)
 
 ```json
 {
@@ -89,4 +89,4 @@ print(response.json())
 }
 ```
 
-Call this API about every `next_ping_recommended_sec` seconds while the session should stay open. Auth and error behavior are the same as Talk (`4030`, `4040`, `4090`). If the LiveKit room is already gone, the API maps `SESSION_ROOM_NOT_FOUND` to `5000`.
+Session을 유지해야 하는 동안 `next_ping_recommended_sec`초 간격으로 호출하세요. Auth와 error 동작은 Talk와 같습니다(`4030`, `4040`, `4090`). LiveKit room이 이미 사라진 경우 `SESSION_ROOM_NOT_FOUND`는 `5000`으로 mapping됩니다.

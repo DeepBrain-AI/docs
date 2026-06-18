@@ -19,7 +19,7 @@ Interactive Avatar > Avatars 에서 아바타를 생성한 후 아바타 ID를 �
 3. **LiveKit 연결**
    - livekit.url + livekit.token으로 WebRTC 연결
    - 아바타의 영상/음성 스트리밍 수신 시작
-4. **Idle 중 Ping**: `POST /api/v2/sessions/{sessionId}/ping`
+4. **Idle 중 Keep-Alive**: `POST /api/v2/sessions/{sessionId}/keep-alive`
    - 사용자가 idle 상태일 때 session activity 갱신
    - `next_ping_recommended_sec`초 간격으로 호출 (기본값: 120)
 5. **Talk**: `POST /api/v2/sessions/{sessionId}/talk`
