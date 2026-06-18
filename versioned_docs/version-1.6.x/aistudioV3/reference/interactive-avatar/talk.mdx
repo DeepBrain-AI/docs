@@ -1,5 +1,5 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # Talk
 
@@ -9,17 +9,17 @@ Sends a text message to an active session, allowing the avatar to forward the qu
 
 ## Headers
 
-| Header | Value |
-|:---|:---|
+| Header        | Value                    |
+| :------------ | :----------------------- |
 | Authorization | Bearer \{session_token\} |
-| Content-Type | application/json |
+| Content-Type  | application/json         |
 
 ## Body
 
-| Parameter | Type | Required | Description |
-|:---|:---|:---|:---|
-| message | string | required | Text for the avatar to speak |
-| type | string | optional | Reserved for future use (defaults are fine; no need to set) |
+| Parameter | Type   | Required | Description                                                 |
+| :-------- | :----- | :------- | :---------------------------------------------------------- |
+| message   | string | required | User text (server-side max length enforced)                 |
+| type      | string | optional | Reserved for future use (defaults are fine; no need to set) |
 
 <br />
 
@@ -47,28 +47,29 @@ curl https://ai-streamer.deepbrain.io/api/v2/sessions/${SESSION_ID}/talk \
 <TabItem value="js" label="Node.js">
 
 ```js
-import axios from 'axios'
-const sessionId = '${SESSION_ID}'
-const sessionToken = '${SESSION_TOKEN}'
+import axios from "axios";
+const sessionId = "${SESSION_ID}";
+const sessionToken = "${SESSION_TOKEN}";
 
-axios.post(
-  `https://ai-streamer.deepbrain.io/api/v2/sessions/${sessionId}/talk`,
-  {
-    message: 'Hello.'
-  },
-  {
-    headers: {
-      'Authorization': `Bearer ${sessionToken}`,
-      'Content-Type': 'application/json'
-    }
-  }
-)
-.then((res) => {
-  console.log(res.data)
-})
-.catch((error) => {
-  console.error(error)
-})
+axios
+  .post(
+    `https://ai-streamer.deepbrain.io/api/v2/sessions/${sessionId}/talk`,
+    {
+      message: "Hello.",
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${sessionToken}`,
+        "Content-Type": "application/json",
+      },
+    },
+  )
+  .then((res) => {
+    console.log(res.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 ```
 
 </TabItem>
@@ -102,7 +103,7 @@ print(response.json())
 {
   "code": 1000,
   "data": null,
-  "message": "Message has been sent"
+  "message": "Message sent successfully"
 }
 ```
 

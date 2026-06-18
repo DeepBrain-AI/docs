@@ -1,0 +1,92 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Session Keep-Alive
+
+Refreshes session activity without sending chat or generating a response. Use this while the client remains connected but the user is idle, so the session is not stopped by the 3-minute inactivity timer.
+
+This API does not extend your Account `max_session_duration`; that limit still applies.
+
+<span className="http-method http-method--post">POST</span>/api/v2/sessions/\{sessionId\}/ping
+
+## Headers
+
+| Header        | Value                    |
+| :------------ | :----------------------- |
+| Authorization | Bearer \{session_token\} |
+
+No request body is required.
+
+## Examples
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/${SESSION_ID}/ping \
+-H "Authorization: Bearer ${SESSION_TOKEN}" \
+-X POST
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios";
+const sessionId = "${SESSION_ID}";
+const sessionToken = "${SESSION_TOKEN}";
+
+axios
+  .post(
+    `https://ai-streamer.deepbrain.io/api/v2/sessions/${sessionId}/ping`,
+    null,
+    {
+      headers: {
+        Authorization: `Bearer ${sessionToken}`,
+      },
+    },
+  )
+  .then((res) => {
+    console.log(res.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+session_id = '${SESSION_ID}'
+session_token = '${SESSION_TOKEN}'
+url = f'https://ai-streamer.deepbrain.io/api/v2/sessions/{session_id}/ping'
+
+headers = {
+    'Authorization': f'Bearer {session_token}'
+}
+
+response = requests.post(url, headers=headers)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## Success (`code: 1000`)
+
+```json
+{
+  "code": 1000,
+  "data": {
+    "session_id": "${SESSION_ID}",
+    "idle_timeout_sec": 180,
+    "next_ping_recommended_sec": 120
+  },
+  "message": "Session activity refreshed"
+}
+```
+
+Call this API about every `next_ping_recommended_sec` seconds while the session should stay open. Auth and error behavior are the same as Talk (`4030`, `4040`, `4090`). If the LiveKit room is already gone, the API maps `SESSION_ROOM_NOT_FOUND` to `5000`.

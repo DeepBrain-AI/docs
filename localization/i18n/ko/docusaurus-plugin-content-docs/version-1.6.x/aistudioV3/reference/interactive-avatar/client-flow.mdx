@@ -7,27 +7,33 @@
 Interactive Avatar > Avatars 에서 아바타를 생성한 후 아바타 ID를 복사합니다. 이 ID는 Start Session API에서 사용됩니다.
 
 ## Core Session Flow
-1. **Create Session Token**:  `POST /api/v2/sessions/token`
+
+1. **Create Session Token**: `POST /api/v2/sessions/token`
+
 - appId + userKey 전달
 - session_token 수신
 
-2. **Start Session**  `POST /api/v2/sessions/start`
-    - Bearer token으로 인증
-    - session_id, livekit 정보 수신
+2. **Start Session** `POST /api/v2/sessions/start`
+   - Bearer token으로 인증
+   - session_id, livekit 정보 수신
 3. **LiveKit 연결**
-    - livekit.url + livekit.token으로 WebRTC 연결
-    - 아바타의 영상/음성 스트리밍 수신 시작
-4. **Talk**: `POST /api/v2/sessions/{sessionId}/talk`
-    - 사용자 메시지 전송
-    - 아바타가 메시지를 발화
-    - greeting_text를 설정했으면 자동으로 첫 메시지 전송
-5. **Stop Session**: `POST /api/v2/sessions/stop`
-    - STUDIO-API-KEY 헤더 사용
-    - 세션 종료 및 과금 정지
+   - livekit.url + livekit.token으로 WebRTC 연결
+   - 아바타의 영상/음성 스트리밍 수신 시작
+4. **Idle 중 Ping**: `POST /api/v2/sessions/{sessionId}/ping`
+   - 사용자가 idle 상태일 때 session activity 갱신
+   - `next_ping_recommended_sec`초 간격으로 호출 (기본값: 120)
+5. **Talk**: `POST /api/v2/sessions/{sessionId}/talk`
+   - 사용자 메시지 전송
+   - 아바타가 메시지를 발화
+   - greeting_text를 설정했으면 자동으로 첫 메시지 전송
+6. **Stop Session**: `POST /api/v2/sessions/stop`
+   - STUDIO-API-KEY 헤더 사용
+   - 세션 종료 및 과금 정지
 
 ## Optional APIs
-- **List Sessions**: `GET /api/v2/sessions`  활성/종료된 세션 목록 조회 (대시보드용)
-- **Get Session Detail**: `GET /api/v2/sessions/{sessionId}`  특정 세션의 상세 정보 조회
+
+- **List Sessions**: `GET /api/v2/sessions` 활성/종료된 세션 목록 조회 (대시보드용)
+- **Get Session Detail**: `GET /api/v2/sessions/{sessionId}` 특정 세션의 상세 정보 조회
 
 ## Response Format
 
@@ -41,24 +47,26 @@ API 요청에 대한 응답코드와 데이터, 메세지의 형태를 가집니
   "message": "사람이 읽을 수 있는 메시지"
 }
 ```
-|이름|타입|설명|
-|:---|:---|:---|
-|code|number|애플리케이션의 상태코드|
-|data|Object \| null|성공시 payload|
-|message|string|로그/UI용 메시지|
 
+| 이름    | 타입           | 설명                    |
+| :------ | :------------- | :---------------------- |
+| code    | number         | 애플리케이션의 상태코드 |
+| data    | Object \| null | 성공시 payload          |
+| message | string         | 로그/UI용 메시지        |
 
 ## Error Codes
 
 모든 API 응답은 성공 여부와 상관없이 HTTP 상태 코드와 응답 본문의 `code` 값으로 결과를 나타냅니다. 다음은 API에서 사용되는 공통 에러 코드입니다.
 
-|code|HTTP|의미|
-|:---|:---|:---|
-|4000|400 / 422|검증 실패 / 잘못된 입력|
-|4010|401|토큰 또는 자격증명 오류|
-|4030|403|권한 없음|
-|4040|404|리소스 없음|
-|4290|429|레이트 리밋|
-|5000|500|내부/서비스 오류|
+| code | HTTP      | 의미                          |
+| :--- | :-------- | :---------------------------- |
+| 4000 | 400 / 422 | 검증 실패 / 잘못된 입력       |
+| 4010 | 401       | 토큰 또는 자격증명 오류       |
+| 4020 | 402       | 과금 / 인터랙티브 크레딧 부족 |
+| 4030 | 403       | 권한 없음                     |
+| 4040 | 404       | 리소스 없음                   |
+| 4090 | 409       | 충돌, 예: 이미 종료된 session |
+| 4290 | 429       | 레이트 리밋                   |
+| 5000 | 500       | 내부/서비스 오류              |
 
 <br />

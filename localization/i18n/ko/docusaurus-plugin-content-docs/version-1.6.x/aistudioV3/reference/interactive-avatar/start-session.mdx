@@ -1,88 +1,122 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # Start Session
-세션 토큰으로 인터랙티브 아바타 세션을 시작합니다. 응답으로 받은 `livekit.url`과 `livekit.token`으로 실시간 영상 스트리밍에 연결합니다.
+
+세션 토큰으로 인터랙티브 아바타 세션을 시작합니다. 응답으로 받은 `livekit.url`과 `livekit.token`으로 실시간 영상 스트리밍에 연결합니다.
 
 ### LiveKit 이란?
-LiveKit은 WebRTC 기반의 실시간 영상 스트리밍 인프라입니다. Start Session API의 응답으로 livekit.url, livekit.token, room_name을 받은 후, 클라이언트 측에서 room.connect(url, token) 메서드를 호출하여 LiveKit 서버에 연결합니다. 연결이 성공하면 아바타의 영상, 음성, 데이터 채널이 실시간으로 스트리밍되어 사용자가 대화형 경험을 할 수 있습니다.
 
-<span className="http-method http-method--post">POST</span>/api/v2/sessions/start
+LiveKit은 WebRTC 기반의 실시간 영상 스트리밍 인프라입니다. Start Session API 응답으로 `livekit.url`, `livekit.token`, `room_name`을 받은 뒤 client에서 `room.connect(url, token)`과 같은 메서드로 LiveKit server에 연결합니다. 연결이 성공하면 아바타의 영상, 음성, 데이터 채널이 실시간으로 스트리밍됩니다.
+
+<span className="http-method http-method--post">POST</span>
+/api/v2/sessions/start
 
 ## Headers
-|헤더|값|
-|:---|:---|
-|Authorization|Bearer \{session_token\}|
-|Content-Type|application/json|
+
+| 헤더          | 값                       |
+| :------------ | :----------------------- |
+| Authorization | Bearer \{session_token\} |
+| Content-Type  | application/json         |
 
 ## Body
-아바타의 음성, LLM, 배경 등을 커스터마이징할 때 사용합니다. 생략 시 서버 기본값이 적용됩니다.
-|필드|타입|필수 여부|설명|
-|:---|:---|:---|:---|
-|avatar_id|string|required|사용할 아바타 ID|
-|avatar_persona|[V2StartSessionDto](#v2startsessiondto)|optional|persona 및 LLM 설정|
-|max_session_duration|integer|optional|세션 최대 길이 (분)|
-|greeting_text|string|optional|아바타 로드시 인사말<br/>start 직후 서버가 내부적으로 자동으로 greeting message 발화를 수행합니다. (type: `first_message`)|
 
-## V2StartSessionDto
-|이름|타입|설명|필수|
-|:---|:---|:---|:---|
-|language|string|en, ko, en-US|No|
-|llm_configurations|[V2LlmConfigurationsDto](#v2llmconfigurationsdto)|LLM provider/model 설정 (생략 시 기본값 적용)|No|
+| 필드                                              | 타입    | 필수 여부 | 설명                                                                                                 |
+| :------------------------------------------------ | :------ | :-------- | :--------------------------------------------------------------------------------------------------- |
+| avatar_id                                         | string  | required  | 사용할 Avatar / model ID                                                                             |
+| avatar_persona                                    | object  | optional  | Persona 및 LLM override. 생략 시 server default가 적용됩니다: English(`en`), OpenAI, `gpt-4.1-nano`. |
+| avatar_persona.language                           | string  | optional  | 예: `en`, `ko`, `en-US`                                                                              |
+| avatar_persona.llm_configurations                 | object  | optional  | LLM provider/model 설정. 생략 시 server default가 적용됩니다.                                        |
+| avatar_persona.llm_configurations.provider        | string  | optional  | 예: `openai`, `anthropic`, `google`, `custom`                                                        |
+| avatar_persona.llm_configurations.model           | string  | optional  | Model ID                                                                                             |
+| avatar_persona.llm_configurations.temperature     | number  | optional  | LLM으로 전달되는 temperature                                                                         |
+| avatar_persona.llm_configurations.custom_settings | object  | optional  | `greeting_text`, `system_prompt` override                                                            |
+| avatar_persona.llm_configurations.custom_http     | object  | optional  | `provider`가 `"custom"`일 때 사용합니다. `endpoint` 또는 `url`이 필요합니다.                         |
+| max_session_duration                              | integer | optional  | 세션 최대 길이(분). Plan limit 이하여야 합니다.                                                      |
+| lip_audio_mode                                    | string  | optional  | `llm_tts` 또는 `external_pcm`. 생략 시 기본 audio 동작이 적용됩니다.                                 |
 
-## V2LlmConfigurationsDto
-|이름|타입|설명|필수|
-|:---|:---|:---|:---|
-|provider|string|예: `openai`, `anthropic`, `google` (OpenAI-compatible SSE/HTTP)|No|
-|model|string|LLM provider/model 설정 (생략 시 기본값 적용)|No|
-|temperature|number|temperature (설정 시 Runpod `llm.temperature` 전달)|No|
-|custom_settings|[V2LlmCustomSettingsDto](#v2llmcustomsettingsdto)|-|No|
+`max_session_duration`을 생략하면 Account subscription limit이 적용됩니다. `max_session_numbers`는 request body에서 받지 않으며 내부 billing validation에서 가져옵니다.
 
-## V2LlmCustomSettingsDto
-|이름|타입|설명|필수|
-|:---|:---|:---|:---|
-|greeting_text|string|설정되어 있으면 start 직후 서버가 내부적으로 자동으로 greeting message 발화를 수행|No|
-|system_prompt|string|-|No|
+## Custom HTTP LLM
+
+자체 HTTP LLM endpoint를 session에서 사용하려면 `avatar_persona.llm_configurations.provider: "custom"`과 `custom_http`를 사용합니다.
+
+| 필드                                                   | 타입    | 설명                                                                            |
+| :----------------------------------------------------- | :------ | :------------------------------------------------------------------------------ |
+| endpoint                                               | string  | Custom LLM server의 전체 POST URL                                               |
+| url                                                    | string  | `endpoint` alias. `endpoint`가 없으면 `endpoint`로 mapping됩니다.               |
+| connect_timeout_sec, read_timeout_sec, timeout_sec     | number  | 연결/읽기 timeout(초)                                                           |
+| max_messages, max_chars, max_buffer_chars              | number  | 대화 trim 및 text flush 제한                                                    |
+| http_error_message                                     | string  | Upstream HTTP 4xx/5xx 발생 시 반환할 message prefix                             |
+| stream_connect_retries, stream_connect_retry_delay_sec | number  | 첫 SSE line 또는 response body를 받기 전 retry 설정                             |
+| headers, extra_headers                                 | object  | 정적 header. 둘 중 하나 사용을 권장합니다. 둘 다 있으면 `headers`를 사용합니다. |
+| auth_plugins                                           | array   | Auth plugin objects                                                             |
+| stream                                                 | boolean | 기본값은 SSE용 `true`. 단일 JSON 응답이면 `false`를 사용합니다.                 |
+| api_preset                                             | string  | `openai_compatible`(기본), `anthropic_messages`, `gemini_generate_content`      |
+
+동작 메모:
+
+- `api_preset` 기본값은 `openai_compatible`입니다. Anthropic Messages API payload에는 `anthropic_messages`, Gemini GenerateContent payload에는 `gemini_generate_content`를 사용합니다.
+- `api_preset`이 `anthropic_messages`이면 `model`이 필수입니다.
+- `stream` 기본값은 `true`이며 SSE를 기대합니다. Upstream이 단일 JSON 응답을 반환할 때만 `stream: false`를 설정하세요. `openai_compatible`에서는 `choices[0].message.content`에서 text를 읽습니다.
+- Header merge 순서는 default headers(`Content-Type`, `Accept`) → `headers` / `extra_headers` → `auth_plugins`입니다. 뒤 값이 앞 값을 덮어씁니다.
+- 기본 timing 값은 `connect_timeout_sec: 10`, `read_timeout_sec: 120`, `stream_connect_retries: 1`, `stream_connect_retry_delay_sec: 0.4`입니다.
+- Production에서는 신뢰할 수 없는 client가 raw API key를 보내게 하기보다 `auth_plugins` 또는 environment-backed header로 server-side에서 secret을 조합하는 방식을 권장합니다.
+
+## Greeting / first utterance
+
+`custom_settings.greeting_text`가 있고 trim 후 빈 문자열이 아니면, 서비스는 Start Session 성공 직후 server-side chat message를 자동으로 한 번 보냅니다.
+
+- Message: `[FIRST_MESSAGE]` + trimmed `greeting_text`
+- Internal talk `type`: `first_message`
+
+팁: `[FIRST_MESSAGE]` 뒤에 붙은 텍스트는 그대로 아바타가 발화하므로, `greeting_text`를 초기 안내/인사 발화로 활용할 수 있습니다.
+
+`lip_audio_mode`가 `external_pcm`이면 서비스는 자동 첫 message를 보내지 않습니다.
 
 ## 예시
+
+### 기본 session
+
 <Tabs>
 <TabItem value="curl" label="cURL">
 
 ```bash
-curl https://ai-streamer.deepbrain.io/api/v2/sessions/start  \
--H "Content-Type: application/json" \
--H "Authorization: Bearer ${SESSION_TOKEN}"
--X POST \
--d '{
-  "avatar_id": "${YOUR_AVATAR_ID}"
-}'
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/start \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${SESSION_TOKEN}" \
+  -d '{
+    "avatar_id": "${YOUR_AVATAR_ID}"
+  }'
 ```
 
 </TabItem>
 <TabItem value="js" label="Node.js">
 
 ```js
-import axios from 'axios'
-const sessionToken = '${SESSION_TOKEN}'
+import axios from "axios";
+const sessionToken = "${SESSION_TOKEN}";
 
-axios.post(
-  'https://ai-streamer.deepbrain.io/api/v2/sessions/start',
-  {
-    avatar_id: '${YOUR_AVATAR_ID}'
-  },
-  {
-    headers: {
-      'Authorization': `Bearer ${sessionToken}`,
-      'Content-Type': 'application/json'
-    }
-  }
-)
-.then((res) => {
-  console.log(res.data)
-})
-.catch((error) => {
-  console.error(error)
-})
+axios
+  .post(
+    "https://ai-streamer.deepbrain.io/api/v2/sessions/start",
+    {
+      avatar_id: "${YOUR_AVATAR_ID}",
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${sessionToken}`,
+        "Content-Type": "application/json",
+      },
+    },
+  )
+  .then((res) => {
+    console.log(res.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 ```
 
 </TabItem>
@@ -109,25 +143,160 @@ print(response.json())
 </TabItem>
 </Tabs>
 
-## 성공 (`code: 1000`)
+### Custom LLM 사용
+
+Custom HTTP LLM endpoint에 연결합니다.
+
+<Tabs>
+<TabItem value="curl" label="cURL">
+
+```bash
+curl https://ai-streamer.deepbrain.io/api/v2/sessions/start \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer ${SESSION_TOKEN}" \
+  -d '{
+    "avatar_id": "${YOUR_AVATAR_ID}",
+    "avatar_persona": {
+      "language": "en",
+      "llm_configurations": {
+        "provider": "custom",
+        "model": "my-llm-model",
+        "custom_settings": {
+          "system_prompt": "You are a helpful assistant.",
+          "greeting_text": "Hello! How can I help you today?"
+        },
+        "custom_http": {
+          "endpoint": "https://your-llm-backend.example.com/v1/chat/completions",
+          "api_preset": "openai_compatible",
+          "stream": true,
+          "read_timeout_sec": 180,
+          "headers": {
+            "Authorization": "Bearer ${YOUR_LLM_API_KEY}"
+          }
+        }
+      }
+    }
+  }'
+```
+
+</TabItem>
+<TabItem value="js" label="Node.js">
+
+```js
+import axios from "axios";
+const sessionToken = "${SESSION_TOKEN}";
+
+axios
+  .post(
+    "https://ai-streamer.deepbrain.io/api/v2/sessions/start",
+    {
+      avatar_id: "${YOUR_AVATAR_ID}",
+      avatar_persona: {
+        language: "en",
+        llm_configurations: {
+          provider: "custom",
+          model: "my-llm-model",
+          custom_settings: {
+            system_prompt: "You are a helpful assistant.",
+            greeting_text: "Hello! How can I help you today?",
+          },
+          custom_http: {
+            endpoint:
+              "https://your-llm-backend.example.com/v1/chat/completions",
+            api_preset: "openai_compatible",
+            stream: true,
+            read_timeout_sec: 180,
+            headers: {
+              Authorization: "Bearer ${YOUR_LLM_API_KEY}",
+            },
+          },
+        },
+      },
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${sessionToken}`,
+        "Content-Type": "application/json",
+      },
+    },
+  )
+  .then((res) => {
+    console.log(res.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+</TabItem>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = 'https://ai-streamer.deepbrain.io/api/v2/sessions/start'
+session_token = '${SESSION_TOKEN}'
+
+headers = {
+    'Authorization': f'Bearer {session_token}',
+    'Content-Type': 'application/json'
+}
+body = {
+    'avatar_id': '${YOUR_AVATAR_ID}',
+    'avatar_persona': {
+        'language': 'en',
+        'llm_configurations': {
+            'provider': 'custom',
+            'model': 'my-llm-model',
+            'custom_settings': {
+                'system_prompt': 'You are a helpful assistant.',
+                'greeting_text': 'Hello! How can I help you today?',
+            },
+            'custom_http': {
+                'endpoint': 'https://your-llm-backend.example.com/v1/chat/completions',
+                'api_preset': 'openai_compatible',
+                'stream': True,
+                'read_timeout_sec': 180,
+                'headers': {
+                    'Authorization': 'Bearer ${YOUR_LLM_API_KEY}',
+                },
+            },
+        },
+    },
+}
+
+response = requests.post(url, headers=headers, json=body)
+print(response.json())
+```
+
+</TabItem>
+</Tabs>
+
+## 성공 (`201`, `code: 1000`)
+
 ```json
 {
   "code": 1000,
   "data": {
     "session_id": "${SESSION_ID}",
-    "voice_id": "${VOICE_ID}",
     "max_session_duration": 20,
     "max_session_numbers": 10,
+    "use_server_ready": true,
     "livekit": {
       "url": "wss://your-livekit-host",
       "room_name": "room-…",
       "token": "${LIVEKIT_ACCESS_TOKEN}"
     }
   },
-  "message": "세션이 시작되었습니다"
+  "message": "Session created successfully"
 }
 ```
 
+요청에 `lip_audio_mode: "external_pcm"`이 포함되면 응답 `data`에 LiveKit byte stream topic, PCM format, segment 동작을 설명하는 `lip_audio`가 추가됩니다. `lip_audio_mode`가 생략되었거나 `llm_tts`이면 `lip_audio`는 생략됩니다.
+
+`use_server_ready`는 LiveKit server-side readiness를 위한 client coordination flag입니다. 현재 V2 start에서는 `true`로 반환됩니다.
+
 ## Next Step
 
-Start Session 호출 후, `livekit.url` 와 `livekit.token` 을 사용하여 LiveKit에 연결하면, 아바타의 영상과 음성이 실시간으로 스트리밍됩니다.
+Start Session 호출 후 `livekit.url`과 `livekit.token`을 사용하여 LiveKit에 연결하면 아바타의 영상과 음성이 실시간으로 스트리밍됩니다. 사용자 message 없이 session을 유지해야 하면 **Session Keep-Alive** API를 주기적으로 호출하세요.

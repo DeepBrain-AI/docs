@@ -1,31 +1,32 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # Talk
 
-활성 세션에 텍스트 메시지를 전달하여 아바타가 해당 질문을 LLM으로 전달하고, 이에 대한 답변을 발화하도록 요청합니다.
-※ 본 API는 LLM을 포함하지 않으며, 외부 LLM(OpenAI 등)을 통해 생성된 텍스트를 전달해야 합니다.
+활성 세션에 사용자 텍스트 메시지를 전달하여 아바타가 응답을 생성하고 발화하도록 요청합니다.
 
 <span className="http-method http-method--post">POST</span>/api/v2/sessions/\{sessionId\}/talk
 
 ## Headers
-|헤더|값|
-|:---|:---|
-|Authorization|Bearer \{session_token\}|
-|Content-Type|application/json|
+
+| 헤더          | 값                       |
+| :------------ | :----------------------- |
+| Authorization | Bearer \{session_token\} |
+| Content-Type  | application/json         |
 
 ## Body
-|파라미터|타입|필수 여부|설명|
-|:---|:---|:---|:---|
-|message|string|required|아바타가 발화할 텍스트|
-|type|string|optional|향후 확장용 (기본값 사용, 별도 설정 불필요)|
+
+| 파라미터 | 타입   | 필수 여부 | 설명                                        |
+| :------- | :----- | :-------- | :------------------------------------------ |
+| message  | string | required  | 사용자 텍스트 (server-side max length 적용) |
+| type     | string | optional  | 향후 확장용 (기본값 사용, 별도 설정 불필요) |
 
 <br />
-참고
-- 세션은 생성된 appId에 종속됩니다.
-- 다른 appId로 생성된 sessionId에는 접근할 수 없습니다.
+참고 - 세션은 생성된 appId에 종속됩니다. - 다른 appId로 생성된 sessionId에는
+접근할 수 없습니다.
 
 ## 예시
+
 <Tabs>
 <TabItem value="curl" label="cURL">
 
@@ -43,28 +44,29 @@ curl https://ai-streamer.deepbrain.io/api/v2/sessions/${SESSION_ID}/talk \
 <TabItem value="js" label="Node.js">
 
 ```js
-import axios from 'axios'
-const sessionId = '${SESSION_ID}'
-const sessionToken = '${SESSION_TOKEN}'
+import axios from "axios";
+const sessionId = "${SESSION_ID}";
+const sessionToken = "${SESSION_TOKEN}";
 
-axios.post(
-  `https://ai-streamer.deepbrain.io/api/v2/sessions/${sessionId}/talk`,
-  {
-    message: 'Hello.'
-  },
-  {
-    headers: {
-      'Authorization': `Bearer ${sessionToken}`,
-      'Content-Type': 'application/json'
-    }
-  }
-)
-.then((res) => {
-  console.log(res.data)
-})
-.catch((error) => {
-  console.error(error)
-})
+axios
+  .post(
+    `https://ai-streamer.deepbrain.io/api/v2/sessions/${sessionId}/talk`,
+    {
+      message: "Hello.",
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${sessionToken}`,
+        "Content-Type": "application/json",
+      },
+    },
+  )
+  .then((res) => {
+    console.log(res.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 ```
 
 </TabItem>
@@ -93,13 +95,15 @@ print(response.json())
 </Tabs>
 
 ## 성공 (`code: 1000`)
+
 ```json
 {
   "code": 1000,
   "data": null,
-  "message": "메시지가 전송되었습니다"
+  "message": "Message sent successfully"
 }
 ```
 
 ## Next Step
+
 사용자와의 대화를 계속하려면 이 API를 반복 호출합니다. 필요시 List Sessions나 Get Session Detail로 세션을 관리하고, 대화를 끝내려면 Stop Session을 호출하세요.
