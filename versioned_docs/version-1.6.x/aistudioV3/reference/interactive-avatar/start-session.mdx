@@ -21,19 +21,58 @@ LiveKit is a WebRTC-based real-time video streaming stack. After Start Session r
 
 ## Body
 
-| Field                                             | Type    | Required | Description                                                                                                           |
-| :------------------------------------------------ | :------ | :------- | :-------------------------------------------------------------------------------------------------------------------- |
-| avatar_id                                         | string  | required | Avatar ID to use                                                                                                      |
-| max_session_duration                              | integer | optional | Maximum session length (minutes)                                                                                      |
-| avatar_persona                                    | object  | optional | Persona and LLM overrides. Server defaults apply if omitted.                                                          |
-| avatar_persona.language                           | string  | optional | e.g. `en`, `ko`, `en-US`                                                                                              |
-| avatar_persona.voice_id                           | string  | optional | TTS voice ID override (e.g. an ElevenLabs voice ID). If omitted, the voice set in AI Studio project settings is used. |
-| avatar_persona.llm_configurations                 | object  | optional | LLM provider/model settings. Server defaults apply if omitted.                                                        |
-| avatar_persona.llm_configurations.provider        | string  | optional | e.g. `openai`, `anthropic`, `google`, `custom`                                                                        |
-| avatar_persona.llm_configurations.model           | string  | optional | Model ID                                                                                                              |
-| avatar_persona.llm_configurations.temperature     | number  | optional | Temperature forwarded to the LLM                                                                                      |
-| avatar_persona.llm_configurations.custom_settings | object  | optional | `greeting_text`, `system_prompt` overrides                                                                            |
-| avatar_persona.llm_configurations.custom_http     | object  | optional | Used only when `provider` is `"custom"`. Pass your LLM endpoint config here. Requires `endpoint` (or `url`).          |
+| Field                                             | Type    | Required | Description                                                                                           |
+| :------------------------------------------------ | :------ | :------- | :---------------------------------------------------------------------------------------------------- |
+| avatar_id                                         | string  | required | Avatar / model ID                                                                                     |
+| avatar_persona                                    | object  | optional | Persona and LLM overrides. If omitted, server defaults apply: English (`en`), OpenAI, `gpt-4.1-nano`. |
+| avatar_persona.language                           | string  | optional | e.g. `en`, `ko`, `en-US`                                                                              |
+| avatar_persona.llm_configurations                 | object  | optional | LLM provider/model settings. Server defaults apply if omitted.                                        |
+| avatar_persona.llm_configurations.provider        | string  | optional | e.g. `openai`, `anthropic`, `google`, `custom`                                                        |
+| avatar_persona.llm_configurations.model           | string  | optional | Model ID                                                                                              |
+| avatar_persona.llm_configurations.temperature     | number  | optional | Temperature forwarded to the LLM                                                                      |
+| avatar_persona.llm_configurations.custom_settings | object  | optional | `greeting_text`, `system_prompt` overrides                                                            |
+| avatar_persona.llm_configurations.custom_http     | object  | optional | Used only when `provider` is `"custom"`. Requires `endpoint` or `url`.                                |
+| max_session_duration                              | integer | optional | Maximum session length in minutes. Must be within your Plan limit.                                    |
+| lip_audio_mode                                    | string  | optional | `llm_tts` or `external_pcm`. If omitted, the default audio behavior applies.                          |
+
+If `max_session_duration` is omitted, your Account subscription limit applies. `max_session_numbers` is not accepted in the request body; it is taken from internal billing validation.
+
+## Custom HTTP LLM
+
+Use `avatar_persona.llm_configurations.provider: "custom"` with `custom_http` when you want the session to use your own HTTP LLM endpoint.
+
+| Field                                                  | Type    | Description                                                                       |
+| :----------------------------------------------------- | :------ | :-------------------------------------------------------------------------------- |
+| endpoint                                               | string  | Full POST URL for your custom LLM server                                          |
+| url                                                    | string  | Alias for `endpoint`; mapped to `endpoint` if `endpoint` is omitted               |
+| connect_timeout_sec, read_timeout_sec, timeout_sec     | number  | Connection/read timeouts in seconds                                               |
+| max_messages, max_chars, max_buffer_chars              | number  | Conversation trimming and text flush limits                                       |
+| http_error_message                                     | string  | Message prefix yielded when the upstream returns HTTP 4xx/5xx                     |
+| stream_connect_retries, stream_connect_retry_delay_sec | number  | Retry settings before the first SSE line or response body                         |
+| headers, extra_headers                                 | object  | Static headers. Prefer one; if both are present, `headers` is used.               |
+| auth_plugins                                           | array   | Auth plugin objects                                                               |
+| stream                                                 | boolean | Defaults to `true` for SSE. Use `false` for a single JSON response.               |
+| api_preset                                             | string  | `openai_compatible` (default), `anthropic_messages`, or `gemini_generate_content` |
+
+Behavior notes:
+
+- `api_preset` defaults to `openai_compatible`. Use `anthropic_messages` for Anthropic Messages API payloads and `gemini_generate_content` for Gemini GenerateContent payloads.
+- When `api_preset` is `anthropic_messages`, `model` is required.
+- `stream` defaults to `true` and expects SSE. Set `stream: false` only when the upstream returns one JSON response; for `openai_compatible`, text is read from `choices[0].message.content`.
+- Header merge order is default headers (`Content-Type`, `Accept`) → `headers` / `extra_headers` → `auth_plugins`; later values override earlier values.
+- Default timing values are `connect_timeout_sec: 10`, `read_timeout_sec: 120`, `stream_connect_retries: 1`, and `stream_connect_retry_delay_sec: 0.4`.
+- For production, prefer server-side secret assembly with `auth_plugins` or environment-backed headers instead of accepting raw API keys from untrusted clients.
+
+## Greeting / first utterance
+
+If `custom_settings.greeting_text` is present and non-empty after trim, the service automatically sends one server-side chat message immediately after Start Session succeeds.
+
+- Message: `[FIRST_MESSAGE]` + trimmed `greeting_text`
+- Internal talk `type`: `first_message`
+
+Tip: The text appended after `[FIRST_MESSAGE]` is spoken by the avatar as-is, so you can use `greeting_text` as an initial scripted utterance.
+
+When `lip_audio_mode` is `external_pcm`, the service does not send this automatic first message.
 
 ## Examples
 
@@ -104,9 +143,9 @@ print(response.json())
 </TabItem>
 </Tabs>
 
-### With voice override and custom LLM
+### With custom LLM
 
-Override the TTS voice and connect a custom HTTP LLM endpoint.
+Connect a custom HTTP LLM endpoint.
 
 <Tabs>
 <TabItem value="curl" label="cURL">
@@ -120,17 +159,18 @@ curl https://ai-streamer.deepbrain.io/api/v2/sessions/start \
     "avatar_id": "${YOUR_AVATAR_ID}",
     "avatar_persona": {
       "language": "en",
-      "voice_id": "${ELEVENLABS_VOICE_ID}",
       "llm_configurations": {
         "provider": "custom",
+        "model": "my-llm-model",
         "custom_settings": {
           "system_prompt": "You are a helpful assistant.",
           "greeting_text": "Hello! How can I help you today?"
         },
         "custom_http": {
-          "endpoint": "https://your-llm-backend.example.com/v1/chat",
+          "endpoint": "https://your-llm-backend.example.com/v1/chat/completions",
           "api_preset": "openai_compatible",
           "stream": true,
+          "read_timeout_sec": 180,
           "headers": {
             "Authorization": "Bearer ${YOUR_LLM_API_KEY}"
           }
@@ -154,17 +194,19 @@ axios
       avatar_id: "${YOUR_AVATAR_ID}",
       avatar_persona: {
         language: "en",
-        voice_id: "${ELEVENLABS_VOICE_ID}",
         llm_configurations: {
           provider: "custom",
+          model: "my-llm-model",
           custom_settings: {
             system_prompt: "You are a helpful assistant.",
             greeting_text: "Hello! How can I help you today?",
           },
           custom_http: {
-            endpoint: "https://your-llm-backend.example.com/v1/chat",
+            endpoint:
+              "https://your-llm-backend.example.com/v1/chat/completions",
             api_preset: "openai_compatible",
             stream: true,
+            read_timeout_sec: 180,
             headers: {
               Authorization: "Bearer ${YOUR_LLM_API_KEY}",
             },
@@ -204,17 +246,18 @@ body = {
     'avatar_id': '${YOUR_AVATAR_ID}',
     'avatar_persona': {
         'language': 'en',
-        'voice_id': '${ELEVENLABS_VOICE_ID}',
         'llm_configurations': {
             'provider': 'custom',
+            'model': 'my-llm-model',
             'custom_settings': {
                 'system_prompt': 'You are a helpful assistant.',
                 'greeting_text': 'Hello! How can I help you today?',
             },
             'custom_http': {
-                'endpoint': 'https://your-llm-backend.example.com/v1/chat',
+                'endpoint': 'https://your-llm-backend.example.com/v1/chat/completions',
                 'api_preset': 'openai_compatible',
                 'stream': True,
+                'read_timeout_sec': 180,
                 'headers': {
                     'Authorization': 'Bearer ${YOUR_LLM_API_KEY}',
                 },
@@ -230,26 +273,30 @@ print(response.json())
 </TabItem>
 </Tabs>
 
-## Success (`code: 1000`)
+## Success (`201`, `code: 1000`)
 
 ```json
 {
   "code": 1000,
   "data": {
     "session_id": "${SESSION_ID}",
-    "voice_id": "${VOICE_ID}",
     "max_session_duration": 20,
     "max_session_numbers": 10,
+    "use_server_ready": true,
     "livekit": {
       "url": "wss://your-livekit-host",
       "room_name": "room-…",
       "token": "${LIVEKIT_ACCESS_TOKEN}"
     }
   },
-  "message": "Session has been started"
+  "message": "Session created successfully"
 }
 ```
 
+When the request includes `lip_audio_mode: "external_pcm"`, the response `data` also includes `lip_audio` for the LiveKit byte stream topic, PCM format, and segment behavior. If `lip_audio_mode` is omitted or `llm_tts`, `lip_audio` is omitted.
+
+`use_server_ready` is a client coordination flag for LiveKit server-side readiness; it is currently returned as `true` for V2 starts.
+
 ## Next step
 
-After Start Session, connect to LiveKit with `livekit.url` and `livekit.token` to stream the avatar’s video and audio in real time.
+After Start Session, connect to LiveKit with `livekit.url` and `livekit.token` to stream the avatar’s video and audio in real time. If the session stays idle without user messages, call the **Session Keep-Alive** API periodically.

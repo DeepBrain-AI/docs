@@ -17,11 +17,14 @@ Create an avatar under **Interactive Avatar > Avatars**, then copy the avatar ID
 3. **Connect to LiveKit**
    - Connect over WebRTC using `livekit.url` and `livekit.token`
    - Start receiving the avatar’s video and audio streams
-4. **Talk**: `POST /api/v2/sessions/{sessionId}/talk`
+4. **Ping while idle**: `POST /api/v2/sessions/{sessionId}/ping`
+   - Refresh session activity when the user is idle
+   - Call about every `next_ping_recommended_sec` seconds (default: 120)
+5. **Talk**: `POST /api/v2/sessions/{sessionId}/talk`
    - Send the user’s message
    - The avatar speaks the message
    - If `greeting_text` is set, the first message may be sent automatically
-5. **Stop Session**: `POST /api/v2/sessions/stop`
+6. **Stop Session**: `POST /api/v2/sessions/stop`
    - Use the `STUDIO-API-KEY` header
    - End the session and stop billing
 
@@ -42,23 +45,25 @@ Every API response includes a status code, data payload, and message. Success an
 }
 ```
 
-| Name | Type | Description |
-|:---|:---|:---|
-| code | number | Application status code |
-| data | Object \| null | Payload on success |
-| message | string | Message for logs or UI |
+| Name    | Type           | Description             |
+| :------ | :------------- | :---------------------- |
+| code    | number         | Application status code |
+| data    | Object \| null | Payload on success      |
+| message | string         | Message for logs or UI  |
 
 ## Error Codes
 
 Regardless of success or failure, each API indicates the outcome with the HTTP status and the `code` field in the response body. Common error codes:
 
-| code | HTTP | Meaning |
-|:---|:---|:---|
-| 4000 | 400 / 422 | Validation failed / invalid input |
-| 4010 | 401 | Token or credential error |
-| 4030 | 403 | Forbidden |
-| 4040 | 404 | Resource not found |
-| 4290 | 429 | Rate limited |
-| 5000 | 500 | Internal or service error |
+| code | HTTP      | Meaning                                   |
+| :--- | :-------- | :---------------------------------------- |
+| 4000 | 400 / 422 | Validation failed / invalid input         |
+| 4010 | 401       | Token or credential error                 |
+| 4020 | 402       | Billing / interactive credit insufficient |
+| 4030 | 403       | Forbidden                                 |
+| 4040 | 404       | Resource not found                        |
+| 4090 | 409       | Conflict, e.g. session already ended      |
+| 4290 | 429       | Rate limited                              |
+| 5000 | 500       | Internal or service error                 |
 
 <br />

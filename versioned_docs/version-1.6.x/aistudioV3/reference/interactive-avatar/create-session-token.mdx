@@ -1,27 +1,28 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 # Create Session Token
 
 Issues an authentication token to start a streaming session. The returned `session_token` is used in the `Authorization: Bearer` header for all subsequent session APIs, including Start Session and Talk.
 
-<span className="http-method http-method--post">POST</span>/api/v2/sessions/token
+<span className="http-method http-method--post">POST</span>
+/api/v2/sessions/token
 
 ## Body
 
-| Parameter | Type | Required | Description |
-|:---|:---|:---|:---|
-| appId | string | required | App identifier linked to your AI Studios account |
-| userKey | string | required | API authentication key. `userKey` is an account-level API key—do not expose it publicly (use only on the server when possible) |
+| Parameter | Type   | Required | Description                                                                                                                    |
+| :-------- | :----- | :------- | :----------------------------------------------------------------------------------------------------------------------------- |
+| appId     | string | required | App identifier linked to your AI Studios account                                                                               |
+| userKey   | string | required | API authentication key. `userKey` is an account-level API key—do not expose it publicly (use only on the server when possible) |
 
 ## Response
 
-| Field | Type | Description | Required |
-|:---|:---|:---|:---|
-| code | integer | API response code; `1000` means success | required |
-| data | object | Response data object | required |
-| data.session_token | string | Session auth token (JWT). Use as the `Authorization` header for Start / Talk APIs | required |
-| message | string | Response message | required |
+| Field              | Type    | Description                                                                       | Required |
+| :----------------- | :------ | :-------------------------------------------------------------------------------- | :------- |
+| code               | integer | API response code; `1000` means success                                           | required |
+| data               | object  | Response data object                                                              | required |
+| data.session_token | string  | Session auth token (JWT). Use as the `Authorization` header for Start / Talk APIs | required |
+| message            | string  | Response message                                                                  | required |
 
 ## Examples
 
@@ -32,8 +33,8 @@ Issues an authentication token to start a streaming session. The returned `sessi
 curl https://ai-streamer.deepbrain.io/api/v2/sessions/token\
 -H "Content-Type: application/json"\
 -X POST\
--d '{   
-  "appId": "studiov3.user@example.com",    
+-d '{
+  "appId": "studiov3.user@example.com",
   "userKey": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 }'
 ```
@@ -42,26 +43,27 @@ curl https://ai-streamer.deepbrain.io/api/v2/sessions/token\
 <TabItem value="js" label="Node.js">
 
 ```js
-import axios from 'axios'
+import axios from "axios";
 
-axios.post(
-  'https://ai-streamer.deepbrain.io/api/v2/sessions/token',
-  {
-    appId: 'studiov3.user@example.com',
-    userKey: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-  },
-  {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }
-)
-.then((res) => {
-  console.log(res.data)
-})
-.catch((error) => {
-  console.error(error)
-})
+axios
+  .post(
+    "https://ai-streamer.deepbrain.io/api/v2/sessions/token",
+    {
+      appId: "studiov3.user@example.com",
+      userKey: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  )
+  .then((res) => {
+    console.log(res.data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 ```
 
 </TabItem>
@@ -94,7 +96,7 @@ print(response.json())
   "data": {
     "session_token": "${SESSION_TOKEN}"
   },
-  "message": "Session token has been created"
+  "message": "Session token created successfully"
 }
 ```
 
