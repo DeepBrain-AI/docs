@@ -35,7 +35,7 @@ LiveKit은 WebRTC 기반의 실시간 영상 스트리밍 인프라입니다. St
 | max_session_duration                              | integer | optional  | 세션 최대 길이(분). Plan limit 이하여야 합니다.                                                      |
 | lip_audio_mode                                    | string  | optional  | `llm_tts` 또는 `external_pcm`. 생략 시 기본 audio 동작이 적용됩니다.                                 |
 
-`max_session_duration`을 생략하면 Account subscription limit이 적용됩니다. `max_session_numbers`는 request body에서 받지 않으며 내부 billing validation에서 가져옵니다.
+`max_session_duration`을 생략하면 Account subscription limit이 적용됩니다. `max_session_numbers`는 request body에서 받지 않으며 subscription plan에 따라 결정됩니다.
 
 ## Custom HTTP LLM
 
@@ -54,6 +54,16 @@ LiveKit은 WebRTC 기반의 실시간 영상 스트리밍 인프라입니다. St
 | stream                                                 | boolean | 기본값은 SSE용 `true`. 단일 JSON 응답이면 `false`를 사용합니다.                 |
 | api_preset                                             | string  | `openai_compatible`(기본), `anthropic_messages`, `gemini_generate_content`      |
 
+`api_preset`은 custom endpoint로 보낼 HTTP payload 형식과 응답 parser를 선택하는 값입니다. Provider 공식 API의 모든 옵션을 그대로 지원한다는 의미는 아닙니다. 더 복잡한 provider-specific 옵션이 필요하면, 자체 HTTP gateway에서 해당 옵션을 처리하고 이 API가 지원하는 응답 형식으로 반환하세요.
+
+| Preset                    | 적합한 경우                                                           | Streaming 응답                        | Non-streaming 응답                                        |
+| :------------------------ | :-------------------------------------------------------------------- | :------------------------------------ | :-------------------------------------------------------- |
+| `openai_compatible`       | OpenAI-compatible Chat Completions endpoint 또는 일반적인 LLM gateway | Text delta가 들어 있는 SSE chunk      | `choices[0].message.content`에 text가 들어 있는 단일 JSON |
+| `anthropic_messages`      | Anthropic Messages 형식을 따르는 endpoint                             | Text delta가 들어 있는 SSE event      | `content` text block이 들어 있는 단일 JSON                |
+| `gemini_generate_content` | Gemini GenerateContent 형식을 따르는 endpoint                         | `streamGenerateContent` 기반 SSE 응답 | `generateContent` 기반 단일 JSON                          |
+
+Protocol 세부사항, 지원되는 커스터마이징 범위, socket/WebSocket 제한은 [Custom HTTP LLM](./custom-http-llm)을 참고하세요.
+
 동작 메모:
 
 - `api_preset` 기본값은 `openai_compatible`입니다. Anthropic Messages API payload에는 `anthropic_messages`, Gemini GenerateContent payload에는 `gemini_generate_content`를 사용합니다.
@@ -68,9 +78,9 @@ LiveKit은 WebRTC 기반의 실시간 영상 스트리밍 인프라입니다. St
 `custom_settings.greeting_text`가 있고 trim 후 빈 문자열이 아니면, 서비스는 Start Session 성공 직후 server-side chat message를 자동으로 한 번 보냅니다.
 
 - Message: `[FIRST_MESSAGE]` + trimmed `greeting_text`
-- Internal talk `type`: `first_message`
+- Server-sent Talk message type: `first_message`
 
-팁: `[FIRST_MESSAGE]` 뒤에 붙은 텍스트는 그대로 아바타가 발화하므로, `greeting_text`를 초기 안내/인사 발화로 활용할 수 있습니다.
+팁: `[FIRST_MESSAGE]` 뒤에 붙은 텍스트는 그대로 아바타가 발화합니다. 아바타가 말해야 할 최종 발화문이 이미 준비되어 있을 때, 해당 응답을 직접 주입하는 용도로 활용할 수 있습니다.
 
 `lip_audio_mode`가 `external_pcm`이면 서비스는 자동 첫 message를 보내지 않습니다.
 

@@ -17,7 +17,7 @@ Create an avatar under **Interactive Avatar > Avatars**, then copy the avatar ID
 3. **Connect to LiveKit**
    - Connect over WebRTC using `livekit.url` and `livekit.token`
    - Start receiving the avatar’s video and audio streams
-4. **Ping while idle**: `POST /api/v2/sessions/{sessionId}/ping`
+4. **Keep-Alive while idle**: `POST /api/v2/sessions/{sessionId}/keep-alive`
    - Refresh session activity when the user is idle
    - Call about every `next_ping_recommended_sec` seconds (default: 120)
 5. **Talk**: `POST /api/v2/sessions/{sessionId}/talk`

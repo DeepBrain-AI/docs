@@ -34,6 +34,7 @@ yarn start
 or
 ``` bash
 npm run start
+npm run start -- --locale ko
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.

@@ -35,7 +35,7 @@ LiveKit is a WebRTC-based real-time video streaming stack. After Start Session r
 | max_session_duration                              | integer | optional | Maximum session length in minutes. Must be within your Plan limit.                                    |
 | lip_audio_mode                                    | string  | optional | `llm_tts` or `external_pcm`. If omitted, the default audio behavior applies.                          |
 
-If `max_session_duration` is omitted, your Account subscription limit applies. `max_session_numbers` is not accepted in the request body; it is taken from internal billing validation.
+If `max_session_duration` is omitted, your Account subscription limit applies. `max_session_numbers` is not accepted in the request body; it is determined by your subscription plan.
 
 ## Custom HTTP LLM
 
@@ -54,6 +54,22 @@ Use `avatar_persona.llm_configurations.provider: "custom"` with `custom_http` wh
 | stream                                                 | boolean | Defaults to `true` for SSE. Use `false` for a single JSON response.               |
 | api_preset                                             | string  | `openai_compatible` (default), `anthropic_messages`, or `gemini_generate_content` |
 
+`api_preset` reference formats:
+
+- `openai_compatible`: [OpenAI-compatible Chat Completions format](https://platform.openai.com/docs/api-reference/chat/create)
+- `anthropic_messages`: [Anthropic Messages API format](https://platform.claude.com/docs/en/api/messages/create)
+- `gemini_generate_content`: [Gemini GenerateContent format](https://ai.google.dev/gemini-api/docs/text-generation#rest)
+
+`api_preset` selects the HTTP payload shape and response parser used for your custom endpoint. It does not mean every option in the provider's official API is supported. If you need provider-specific features beyond the supported shape, put them behind your own HTTP gateway and return one of the supported response formats.
+
+| Preset                    | Best for                                                           | Streaming response                        | Non-streaming response                                  |
+| :------------------------ | :----------------------------------------------------------------- | :---------------------------------------- | :------------------------------------------------------ |
+| `openai_compatible`       | OpenAI-compatible Chat Completions endpoints and most LLM gateways | SSE chunks with text deltas               | One JSON body with text in `choices[0].message.content` |
+| `anthropic_messages`      | Anthropic Messages-compatible endpoints                            | SSE events with text deltas               | One JSON body with text blocks in `content`             |
+| `gemini_generate_content` | Gemini GenerateContent-compatible endpoints                        | SSE response from `streamGenerateContent` | One JSON body from `generateContent`                    |
+
+For protocol details, supported customization, and socket/WebSocket limitations, see [Custom HTTP LLM](./custom-http-llm).
+
 Behavior notes:
 
 - `api_preset` defaults to `openai_compatible`. Use `anthropic_messages` for Anthropic Messages API payloads and `gemini_generate_content` for Gemini GenerateContent payloads.
@@ -68,9 +84,9 @@ Behavior notes:
 If `custom_settings.greeting_text` is present and non-empty after trim, the service automatically sends one server-side chat message immediately after Start Session succeeds.
 
 - Message: `[FIRST_MESSAGE]` + trimmed `greeting_text`
-- Internal talk `type`: `first_message`
+- Server-sent Talk message type: `first_message`
 
-Tip: The text appended after `[FIRST_MESSAGE]` is spoken by the avatar as-is, so you can use `greeting_text` as an initial scripted utterance.
+Tip: The text appended after `[FIRST_MESSAGE]` is spoken by the avatar as-is. You can use this when you already have the exact text the avatar should say and want to inject that response directly.
 
 When `lip_audio_mode` is `external_pcm`, the service does not send this automatic first message.
 
