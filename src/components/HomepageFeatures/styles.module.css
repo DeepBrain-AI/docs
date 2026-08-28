@@ -1,11 +1,84 @@
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding: 4rem 0 5rem;
   width: 100%;
 }
 
+.featureCol {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+/* 각 기능을 카드로 */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 2rem 1.75rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 16px;
+  background: var(--ifm-background-surface-color);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.card:hover {
+  text-decoration: none;
+  color: inherit;
+  transform: translateY(-4px);
+  border-color: var(--ifm-color-primary-lighter);
+  box-shadow: 0 14px 34px rgba(85, 72, 255, 0.14);
+}
+
+/* 심볼 전용 아이콘을 칩 가운데 배치 */
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  background: rgba(85, 72, 255, 0.08);
+}
+
 .featureSvg {
-  height: 200px;
-  width: 200px;
+  height: 30px;
+  width: auto;
+}
+
+.cardLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  margin-bottom: 0.35rem;
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5rem;
+}
+
+.cardDesc {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0 0 1.25rem;
+}
+
+.learnMore {
+  margin-top: auto;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ifm-color-primary);
+  transition: transform 0.15s ease;
+}
+.card:hover .learnMore {
+  transform: translateX(3px);
 }

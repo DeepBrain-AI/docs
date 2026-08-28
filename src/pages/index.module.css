@@ -4,21 +4,80 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
+  padding: 6rem 0 6.5rem;
   text-align: center;
   position: relative;
   overflow: hidden;
-  background-color: #5548FF;
+  color: #fff;
+  background: radial-gradient(1200px 500px at 50% -10%, #7a6fff 0%, #5548ff 42%, #2f20f7 100%);
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+/* 은은한 그리드/글로우 오버레이 */
+.heroBanner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(600px 260px at 85% 0%, rgba(255, 255, 255, 0.18), transparent 70%),
+    radial-gradient(500px 240px at 10% 100%, rgba(255, 255, 255, 0.10), transparent 70%);
+  pointer-events: none;
+}
+
+.heroTitle {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 400;
+  opacity: 0.92;
+  max-width: 900px;
+  margin: 0 auto 2.2rem;
+  line-height: 1.5;
 }
 
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ctaPrimary {
+  background: #fff;
+  color: #3b2dff;
+  border: 0;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.ctaPrimary:hover {
+  color: #2418cb;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.24);
+}
+
+.ctaSecondary {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.ctaSecondary:hover {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 3.5rem 1.5rem 4rem;
+  }
 }
