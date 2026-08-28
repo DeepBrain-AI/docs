@@ -18,9 +18,9 @@ Web SDK v2는 **beta**입니다. 핵심 API는 안정적이며 v1 `AIPlayer` 클
 직접 해보세요 — 메시지를 입력하면 아바타가 실시간 립싱크로 말합니다. 이 데모는 실제 연동과 동일하게
 배포된 SDK로 동작합니다.
 
-{/* 로컬은 localhost:3000, 라이브 문서에선 공개 ai-poc 데모 URL로 교체 */}
+{/* 데모는 배포된 ai-poc(dev). prod 문서 배포 시 prod ai-poc URL로 교체 */}
 <iframe
-  src="http://localhost:3000/sdk/v2/test?embed=1&modelId=sample-sage-v2"
+  src="https://devai-poc.deepbrainai.io/sdk/v2/test?embed=1&modelId=sample-sage-v2"
   width="100%"
   height="620"
   allow="autoplay"

@@ -19,9 +19,9 @@ Web SDK v2 is in **beta**. The core API is stable and mirrors the v1 `AIPlayer` 
 Try it live — type a message and the avatar speaks it back with real‑time lip‑sync. This demo runs on
 the published SDK exactly as you would integrate it.
 
-{/* 로컬은 localhost:3000, 라이브 문서에선 공개 ai-poc 데모 URL로 교체 */}
+{/* 데모는 배포된 ai-poc(dev). prod 문서 배포 시 prod ai-poc URL로 교체 */}
 <iframe
-  src="http://localhost:3000/sdk/v2/test?embed=1&modelId=sample-sage-v2"
+  src="https://devai-poc.deepbrainai.io/sdk/v2/test?embed=1&modelId=sample-sage-v2"
   width="100%"
   height="620"
   allow="autoplay"
