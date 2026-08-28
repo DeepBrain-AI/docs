@@ -166,6 +166,26 @@
       ]
     }
   ],
+  "aihumanwebv2Sidebar": [
+    "aihuman/web-sdk-v2/overview",
+    "aihuman/web-sdk-v2/getting-started",
+    "aihuman/web-sdk-v2/configuration",
+    {
+      "type": "category",
+      "label": "API Reference",
+      "link": {
+        "type": "generated-index",
+        "description": "AIPlayer class, callbacks, and data types for Web SDK v2."
+      },
+      "items": [
+        "aihuman/web-sdk-v2/apis/aiplayer",
+        "aihuman/web-sdk-v2/apis/aiapi",
+        "aihuman/web-sdk-v2/apis/aiplayer-callback",
+        "aihuman/web-sdk-v2/apis/aiplayer-data"
+      ]
+    },
+    "aihuman/web-sdk-v2/troubleshooting"
+  ],
   "aihumanwindowsSidebar": [
     "aihuman/windows-sdk/intro",
     {

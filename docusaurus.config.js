@@ -7,6 +7,8 @@ const darkTheme = themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
+  markdown: { mermaid: true },
+  themes: ['@docusaurus/theme-mermaid'],
   title: 'DeepBrain AI DOCS',
   tagline: 'Welcome! Here you can read the documentation for the AI Human.',
   url: 'https://docs.aistudios.com/',
@@ -142,8 +144,16 @@ const config = {
             label: 'AI Human',
             items: [
               {
-                label: 'Web',
+                label: 'Web (v1)',
                 to: '/aihuman/web-sdk',
+                customProps: {
+                  icon: '/img/JS_symbol.svg',
+                  iconAlt: 'JavaScript'
+                },
+              },
+              {
+                label: 'Web (v2 · Beta)',
+                to: '/aihuman/web-sdk-v2/overview',
                 customProps: {
                   icon: '/img/JS_symbol.svg',
                   iconAlt: 'JavaScript'
