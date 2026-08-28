@@ -61,3 +61,16 @@ AI_PLAYER.onAIPlayerErrorV2 = (err) => console.error(err?.code, err?.message);
 ```
 
 Still stuck? Contact DeepBrain AI support with the console output and your `aiName`.
+
+## Next steps
+
+<div className="doc-cards">
+  <a className="doc-card" href="./getting-started">
+    <div className="doc-card__title">Getting Started <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">Revisit the full setup flow.</div>
+  </a>
+  <a className="doc-card" href="./apis/aiplayer">
+    <div className="doc-card__title">AIPlayer API <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">The full method and callback reference.</div>
+  </a>
+</div>

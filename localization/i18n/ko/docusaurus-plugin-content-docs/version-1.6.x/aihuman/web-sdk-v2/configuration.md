@@ -32,3 +32,16 @@ AI_PLAYER.setConfig({
 `continuousBackground`와 `enableEarlyStart`는 **beta**이며 기본값은 꺼짐입니다. 연동별로 테스트 후
 활성화하세요.
 :::
+
+## 다음 단계
+
+<div className="doc-cards">
+  <a className="doc-card" href="./apis/aiplayer">
+    <div className="doc-card__title">AIPlayer API <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">전체 메서드·콜백 레퍼런스.</div>
+  </a>
+  <a className="doc-card" href="./troubleshooting">
+    <div className="doc-card__title">문제 해결 <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">재생·설정 관련 흔한 문제 해결.</div>
+  </a>
+</div>

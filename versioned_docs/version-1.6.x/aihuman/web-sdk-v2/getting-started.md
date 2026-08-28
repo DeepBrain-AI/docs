@@ -112,8 +112,8 @@ await AI_PLAYER.init({ aiName: "<ai_name>" }); // resolves when the avatar is re
 ### 5. Speak
 
 ```javascript
-AI_PLAYER.send("Nice to meet you");                 // plain text
-AI_PLAYER.send({ text: "Nice to meet you", gst: "hi" }); // with a gesture
+AI_PLAYER.send("Nice to meet you");                     // one sentence
+AI_PLAYER.send(["Nice to meet you", "How are you?"]);   // multiple sentences
 ```
 
 ## Handle events (optional)
@@ -132,5 +132,13 @@ AI_PLAYER.onAIPlayerErrorV2 = (err) => console.error(err?.code, err?.message);
 
 ## Next steps
 
-- **[Configuration](./configuration)** — tune playback, including v2‑only options.
-- **[AIPlayer API](./apis/aiplayer)** — the full method and callback reference.
+<div className="doc-cards">
+  <a className="doc-card" href="./configuration">
+    <div className="doc-card__title">Configuration <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">Tune playback, including v2‑only options.</div>
+  </a>
+  <a className="doc-card" href="./apis/aiplayer">
+    <div className="doc-card__title">AIPlayer API <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">The full method and callback reference.</div>
+  </a>
+</div>

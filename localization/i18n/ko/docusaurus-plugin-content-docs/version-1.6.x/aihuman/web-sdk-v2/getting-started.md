@@ -109,8 +109,8 @@ await AI_PLAYER.init({ aiName: "<ai_name>" }); // 아바타 준비 완료 시 re
 ### 5. 발화
 
 ```javascript
-AI_PLAYER.send("만나서 반갑습니다");                 // 일반 텍스트
-AI_PLAYER.send({ text: "만나서 반갑습니다", gst: "hi" }); // 제스처 포함
+AI_PLAYER.send("만나서 반갑습니다");                       // 한 문장
+AI_PLAYER.send(["만나서 반갑습니다", "잘 지내세요?"]);      // 여러 문장
 ```
 
 ## 이벤트 수신 (선택)
@@ -129,5 +129,13 @@ AI_PLAYER.onAIPlayerErrorV2 = (err) => console.error(err?.code, err?.message);
 
 ## 다음 단계
 
-- **[설정](./configuration)** — v2 전용 옵션을 포함한 재생 튜닝.
-- **[AIPlayer API](./apis/aiplayer)** — 전체 메서드·콜백 레퍼런스.
+<div className="doc-cards">
+  <a className="doc-card" href="./configuration">
+    <div className="doc-card__title">설정 <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">v2 전용 옵션을 포함한 재생 튜닝.</div>
+  </a>
+  <a className="doc-card" href="./apis/aiplayer">
+    <div className="doc-card__title">AIPlayer API <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">전체 메서드·콜백 레퍼런스.</div>
+  </a>
+</div>

@@ -33,3 +33,16 @@ is no option to set. Desktop behavior is unchanged.
 `continuousBackground` and `enableEarlyStart` are in **beta** and disabled by default. Enable them
 per integration after testing.
 :::
+
+## Next steps
+
+<div className="doc-cards">
+  <a className="doc-card" href="./apis/aiplayer">
+    <div className="doc-card__title">AIPlayer API <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">The full method and callback reference.</div>
+  </a>
+  <a className="doc-card" href="./troubleshooting">
+    <div className="doc-card__title">Troubleshooting <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">Fix common playback and setup issues.</div>
+  </a>
+</div>

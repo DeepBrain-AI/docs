@@ -11,19 +11,13 @@ sidebar_position: 1
 | `setter(json)` | AIPlayer를 설정합니다 |
 | `getter(string)` | AIPlayer 설정 정보를 확인합니다. |
 | `preload(json)` | AI에게 할말을 프리로드 시킵니다.    |
-| `send(json)` | AI에게 발화 또는 제스처 포함 발화를 시킵니다. |
+| `send(json)` | AI에게 발화를 시킵니다. |
 | `pause()` | 하던 말이 있으면 영상과 음성을 잠시 중단합니다. |
 | `resume()` | 플레이 중이었으면 멈춘 곳에서 부터 다시 시작합니다. |
 | `stopSpeak()` | 현재 하고 있는 말을 멈추고 할말 큐에 있는 내용도 삭제합니다. |
 | `release()` | 리소스 해제(async) |
 | `getGestures()` | 제스처 콜렉션(사용가능한 제스처)을 가져옵니다. |
 | `getGender()` | 현재 설정된 AI의 성별을 가져옵니다. MALE, FEMALE, UNI 값을 가질수 있으며 AI가 설정되지 않았으면 null을 리턴합니다. |
-| `getSpeakableLanguages(gender)` | 현재 로드된 음성의 언어 리스트를 확인합니다. loadCustomVoice() 또는 generateToken() 메소드 호출 이후에 유효합니다. |
-| `getCustomVoice()` | 현재 설정된 음성을 확인합니다. 설정된 값이 없으면 null을 리턴합니다. |
-| `getCustomVoicesWith(language, gender)`       | 로드된 음성 중에 입력 값에 해당하는 언어와 성별에 해당하는 음성의 리스트를 가져옵니다. language에 null을 입력하면 모든 언어, gender에 null을 입력하면 모든 성별에 해당하는 값을 가져옵니다. loadCustomVoice() 또는 generateToken() 메소드 호출 이후에 유효합니다. |
-| `findCustomVoice(voiceId) ` | 음성의 id로 CustomVoice를 검색합니다. 없으면 null 값을 리턴합니다. |
-| `setCustomVoice(customVoice) ` | 원하는 음성으로 음성을 변경합니다. 성공시 true 리턴하고 null 인풋시 본래의 목소리로 셋팅됩니다. |
-| `setCustomVoiceForLanguage(language, gender)` | 원하는 언어와 성별로 음성을 설정합니다. language에 null 또는 빈 값 입력시 AI의 기본언어로 설정되고 true를 리턴합니다. language에 유효하지 않은 값 입력시 AI의 기본 언어로 보이스가 설정되고 false를 리턴합니다. gender에 null을 입력 시 해당 AI의 성별로 검색되고, 그 중 첫번째 음성으로 설정됩니다. 성공 시 true를 리턴하고 찾지 못하면 기본 음성으로 셋팅됩니다. |
 | `reconnect(callback)` | AI가 연결되지 않았을때 재연결을 시도합니다. 연결이 이미 되어있거나 연결시도 할 수 없는 상황인 경우 false 리턴합니다. |
 | `isConnected()` | 현재 AI가 연결된 상태인지 확인합니다. |
 | `canPreload(callback)` | 프리로드 가능한지 확인합니다. |
@@ -128,17 +122,15 @@ AI_PLAYER.getter("key");
 
 ### 5. AIPlayer.send(...)
 
-AI에게 발화 또는 제스처 포함 발화를 시킵니다. (프리로드된 데이터가 있으면, 이를 사용합니다)
+AI에게 발화를 시킵니다. (프리로드된 데이터가 있으면, 이를 사용합니다)
 여러 문장을 발화시키려면 Array 타입을 사용하십시오.
 
-- 4가지 타입으로 전달 가능합니다.
+- 2가지 타입으로 전달 가능합니다.
 
   | Param        | Type            | Description |
   | ------------ | --------------- | ----------- |
   | `text`       | `String`        | 하나의 보통 문장 형태           |
   | `texts`      | `Array<String>` | 여러개의 문장 형태     |
-  | `AIClipSet`  | `Object`        | 하나의 제스처 포함 문장 형태             |
-  | `AIClipSets` | `Array<Object>` | 제스처 포함이 가능한 여러개의 문장 형태 |
 
 - Example
 
@@ -147,10 +139,6 @@ AI에게 발화 또는 제스처 포함 발화를 시킵니다. (프리로드된
 AI_PLAYER.send("Nice to meet you");
 //Case2. Multi Sentences Speak (String Array)
 AI_PLAYER.send(["Nice to meet you", "How are you?"]);
-//Case3. One Gesture Speak (json)
-AI_PLAYER.send({ text: "Nice to meet you", gst: "hi" });
-//Case4. Multi Gestures Speak (json Array)
-AI_PLAYER.send([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you?" }]);
 ```
 
 
@@ -247,97 +235,7 @@ const gender = AI_PLAYER.getGender();
 
 <br/>
 
-### 13. AIPlayer.getSpeakableLanguages(gender)
-
-발화할 수 있는 언어 중 해당 성별인 언어 리스트를 가져옵니다.
-
-- Return Parameter: `Array<String>`
-
-- Examples
-
-```javascript
-const languages = AI_PLAYER.getSpeakableLanguages(gender);
-```
-
-
-<br/>
-
-### 14. AIPlayer.getCustomVoice()
-
-현재 설정된 customVoice를 가져옵니다.
-
-- Return Parameter: `CustomVoice` || `null`
-
-- Examples
-
-```javascript
-const customVoice = AI_PLAYER.getCustomVoice();
-```
-
-
-<br/>
-
-### 15. AIPlayer.getCustomVoicesWith(language, gender)
-
-해당 언어와 성별에 해당하는 customVoice리스트를 가져옵니다.
-
-- Return Parameter: `Array<CustomVoice>`
-
-- Examples
-
-```javascript
-const customVoices = AI_PLAYER.getCustomVoicesWith(language, gender);
-```
-
-
-<br/>
-
-### 16. AIPlayer.findCustomVoice(voiceId)
-
-전달된 id에 해당하는 customVoice 개체를 가져옵니다.
-
-- Return Parameter: `CustomVoice` || `null`
-
-- Examples
-
-```javascript
-const customVoice = AI_PLAYER.findCustomVoice(voiceId);
-```
-
-
-<br/>
-
-### 17. AIPlayer.setCustomVoice(customVoice)
-
-전달된 customVoice로 현재 AI의 목소리를 셋팅합니다. null을 입력하면 본래 목소리로 셋팅됩니다.
-
-- Return Parameter: `true` || `false`
-
-- Examples
-
-```javascript
-const isSuccess = AI_PLAYER.setCustomVoice(customVoice);
-```
-
-
-<br/>
-
-### 18. AIPlayer.setCustomVoiceForLanguage(language, gender)
-
-전달된 language와 gender에 해당하는 customVoice로 현재 AI의 목소리를 설정합니다.
-
-- Return Parameter: `true` || `false`
-
-- Examples
-
-```javascript
-const isSuccess = AI_PLAYER.setCustomVoiceForLanguage(language, gender);
-```
-
-
-<br/>
-
-### 19. AIPlayer.reconnect(callback)
+### 13. AIPlayer.reconnect(callback)
 
 ```javascript
 AIPlayer.reconnect((callback = () => {}));
@@ -346,7 +244,7 @@ AIPlayer.reconnect((callback = () => {}));
 
 <br/>
 
-### 20. AIPlayer.isConnected()
+### 14. AIPlayer.isConnected()
 
 ```javascript
 const isConnected = AI_PLAYER.isConnected();
@@ -355,7 +253,7 @@ const isConnected = AI_PLAYER.isConnected();
 
 <br/>
 
-### 21. AIPlayer.canPreload()
+### 15. AIPlayer.canPreload()
 
 ```javascript
 const canPreload = AI_PLAYER.canPreload((callback = () => {}));
@@ -364,7 +262,7 @@ const canPreload = AI_PLAYER.canPreload((callback = () => {}));
 
 <br/>
 
-### 22. AI_PLAYER.setVolume(volume)
+### 16. AI_PLAYER.setVolume(volume)
 
 ```javascript
 AI_PLAYER.setVolume(volume);
@@ -375,7 +273,7 @@ const curVolume = AI_PLAYER.getVolume();
 
 <br/>
 
-### 23. AI_PLAYER.setMute(isMute)
+### 17. AI_PLAYER.setMute(isMute)
 
 ```javascript
 AI_PLAYER.setMute(true);
@@ -386,7 +284,7 @@ const isMuted = AI_PLAYER.getMute();
 <br/>
 
 
-### 23. AI_PLAYER.setConfig(json)
+### 18. AI_PLAYER.setConfig(json)
 AIPlayer의 속성을 다양하게 설정합니다.
 
 - Parameter

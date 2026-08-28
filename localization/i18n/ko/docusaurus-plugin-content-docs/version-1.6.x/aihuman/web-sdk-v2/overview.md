@@ -10,8 +10,22 @@ sidebar_position: 1
 
 :::info Beta
 Web SDK v2는 **beta**입니다. 핵심 API는 안정적이며 v1 `AIPlayer` 클래스와 동일하고, 새 옵션
-([설정](./configuration))은 아직 확정 중입니다.
+([설정](./configuration))은 아직 확정 중입니다. 안정 버전은 **[Web SDK v1](/aihuman/web-sdk)**을 참고하세요.
 :::
+
+## Talk to AI Human
+
+직접 해보세요 — 메시지를 입력하면 아바타가 실시간 립싱크로 말합니다. 이 데모는 실제 연동과 동일하게
+배포된 SDK로 동작합니다.
+
+{/* 로컬은 localhost:3000, 라이브 문서에선 공개 ai-poc 데모 URL로 교체 */}
+<iframe
+  src="http://localhost:3000/sdk/v2/test?embed=1&modelId=sample-sage-v2"
+  width="100%"
+  height="620"
+  allow="autoplay"
+  style={{ border: "1px solid var(--ifm-color-emphasis-200)", borderRadius: "12px" }}
+/>
 
 ## 왜 v2인가
 
@@ -21,7 +35,8 @@ Web SDK v2는 **beta**입니다. 핵심 API는 안정적이며 v1 `AIPlayer` 클
   더 빨리 표시.
 - **모바일 자동 최적화.** 모바일에서는 idle 배경 다운로드를 자동으로 줄여 아바타가 더 빨리 나타납니다 —
   코드 변경 불필요.
-- **v1과 동일 API.** v1 Web SDK를 연동했다면 호출 방식이 그대로 이어집니다.
+- **익숙한 API.** 핵심 `AIPlayer` 클래스는 v1과 동일해 대부분의 호출이 그대로 이어집니다. (3D와
+  custom‑voice API는 제거됨 — 아래 비교 표 참고.)
 
 ## 동작 방식
 
@@ -55,6 +70,17 @@ sequenceDiagram
 
 ## 다음 단계
 
-- **[시작하기](./getting-started)** — 빈 HTML에서 첫 발화까지.
-- **[설정](./configuration)** — 옵션과 튜닝.
-- **[AIPlayer API](./apis/aiplayer)** — 전체 메서드·콜백 레퍼런스.
+<div className="doc-cards">
+  <a className="doc-card" href="./getting-started">
+    <div className="doc-card__title">시작하기 <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">빈 HTML에서 첫 발화까지.</div>
+  </a>
+  <a className="doc-card" href="./configuration">
+    <div className="doc-card__title">설정 <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">옵션과 튜닝.</div>
+  </a>
+  <a className="doc-card" href="./apis/aiplayer">
+    <div className="doc-card__title">AIPlayer API <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">전체 메서드·콜백 레퍼런스.</div>
+  </a>
+</div>

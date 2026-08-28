@@ -144,16 +144,8 @@ const config = {
             label: 'AI Human',
             items: [
               {
-                label: 'Web (v1)',
+                label: 'Web',
                 to: '/aihuman/web-sdk',
-                customProps: {
-                  icon: '/img/JS_symbol.svg',
-                  iconAlt: 'JavaScript'
-                },
-              },
-              {
-                label: 'Web (v2 · Beta)',
-                to: '/aihuman/web-sdk-v2/overview',
                 customProps: {
                   icon: '/img/JS_symbol.svg',
                   iconAlt: 'JavaScript'

@@ -61,3 +61,16 @@ AI_PLAYER.onAIPlayerErrorV2 = (err) => console.error(err?.code, err?.message);
 ```
 
 그래도 안 되면 콘솔 출력과 `aiName`을 첨부해 DeepBrain AI 지원팀에 문의하세요.
+
+## 다음 단계
+
+<div className="doc-cards">
+  <a className="doc-card" href="./getting-started">
+    <div className="doc-card__title">시작하기 <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">전체 설정 흐름 다시 보기.</div>
+  </a>
+  <a className="doc-card" href="./apis/aiplayer">
+    <div className="doc-card__title">AIPlayer API <span className="doc-card__arrow">→</span></div>
+    <div className="doc-card__desc">전체 메서드·콜백 레퍼런스.</div>
+  </a>
+</div>
