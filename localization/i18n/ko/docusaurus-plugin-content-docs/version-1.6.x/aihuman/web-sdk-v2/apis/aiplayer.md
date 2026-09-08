@@ -11,21 +11,21 @@ sidebar_position: 1
 | `setter(json)` | AIPlayer를 설정합니다 |
 | `getter(string)` | AIPlayer 설정 정보를 확인합니다. |
 | `preload(json)` | AI에게 할말을 프리로드 시킵니다.    |
-| `send(json)` | AI에게 발화를 시킵니다. |
+| `send(text)` | AI에게 발화를 시킵니다. |
 | `pause()` | 하던 말이 있으면 영상과 음성을 잠시 중단합니다. |
 | `resume()` | 플레이 중이었으면 멈춘 곳에서 부터 다시 시작합니다. |
 | `stopSpeak()` | 현재 하고 있는 말을 멈추고 할말 큐에 있는 내용도 삭제합니다. |
 | `release()` | 리소스 해제(async) |
 | `getGestures()` | 제스처 콜렉션(사용가능한 제스처)을 가져옵니다. |
 | `getGender()` | 현재 설정된 AI의 성별을 가져옵니다. MALE, FEMALE, UNI 값을 가질수 있으며 AI가 설정되지 않았으면 null을 리턴합니다. |
-| `reconnect(callback)` | AI가 연결되지 않았을때 재연결을 시도합니다. 연결이 이미 되어있거나 연결시도 할 수 없는 상황인 경우 false 리턴합니다. |
+| `reconnect(callback)` | 연결이 끊겼거나 handshake 인증 실패 후 재연결합니다. 새 `generateToken()` 뒤에만 호출하세요. |
 | `isConnected()` | 현재 AI가 연결된 상태인지 확인합니다. |
 | `canPreload(callback)` | 프리로드 가능한지 확인합니다. |
 | `setVolume(volume)` | 볼륨 조절. |
 | `getVolume()` | 현재 볼륨값을 확인합니다. |
 | `setMute(isMute)` | 음소거를 제어합니다. |
 | `getMute()` | 음소거 상태를 확인합니다. |
-| `generateToken()` | AIAPI - 발급받은 userKey로 인증을 시도합니다. 콜백으로 응답이 오며 성공하면 기본 AI 모델 정보가 셋팅됩니다. (async) |
+| `generateToken()` | AIAPI - ClientToken을 세션 JWT로 교환합니다. (async) |
 | `getAIList()` | AIAPI - SDK 인증 성공한 상태에서 사용가능한 AI 리스트를 콜백을 제공합니다. (async) |
 | `getSampleTextList()` | AIAPI - 해당 언어의 샘플 문장을 불러 와서 콜백으로 전달합니다. (async) |
 | `setConfig(json)` | AIAPI - Set configurations on AIPlayer |
@@ -42,7 +42,7 @@ sidebar_position: 1
   | Param          | Type     | Description                                                       |
   | -------------- | -------- | ----------------------------------------------------------------- |
   | `json`         | `Object` | init 함수의 파라미터들                            |
-  | `json.aiName` | `String` | AI 아바타 이름 (ID)                                               |
+  | `json.aiName` | `String` | `getAIList()` 의 `data.ai[].ai_name` (`model_id` 아님) |
   | `json.size`    | `Float`  | AI 아바타 크기 (optional, default: 1.0)                            |
   | `json.left`    | `Number` | AI 아바타 가로축 위치 (optional, default: 0, pixel)                       |
   | `json.top`     | `Number` | AI 아바타 세로축 위치 (optional, default: 0, pixel)                        |
@@ -52,7 +52,7 @@ sidebar_position: 1
 
 ```javascript
 const result = await AI_PLAYER.init({
-  aiName: "...",
+  aiName: list.data.ai[0].ai_name,
   size: 1.0,
   left: 0,
   top: 0,
@@ -72,7 +72,7 @@ AIPlayer의 상태를 가져옵니다. 여기[AIPlayerState](../apis/aiplayer-da
 - Example
 
 ```javascript
-  const state = AI_PLAYER.getState());
+  const state = AI_PLAYER.getState();
 ```
 
 
@@ -114,7 +114,7 @@ AIPlayer의 셋팅값을 가져옵니다.
 - Example
 
 ```javascript
-AI_PLAYER.getter("key");
+AI_PLAYER.getter("size");
 ```
 
 
@@ -197,6 +197,11 @@ AI_PLAYER.preload([{ text: "Nice to meet you", gst: "hi" }, { text: "How are you
 ### 10. AIPlayer.release()
 
 AIPlayer의 자원을 해제합니다. 더이상 사용치 않을때 호출합니다.
+
+사용자가 아바타를 **끌 때**만 호출하세요. 잠깐 끊기거나 토큰 에러 `1402`에서 호출하면 세션이
+끝납니다. `release()` 없이 reconnect하면 같은 세션이 이어집니다. `release()` 후 다음 `init()`은
+새 세션입니다.
+
 - Examples
 
 ```javascript
@@ -240,6 +245,13 @@ const gender = AI_PLAYER.getGender();
 ```javascript
 AIPlayer.reconnect((callback = () => {}));
 ```
+
+소켓을 다시 붙입니다. 화면의 플레이어는 유지한 채 `onAIPlayerErrorV2`가 `1402`(JWT 만료)를 보고한
+뒤, 또는 disconnect 뒤에 `generateToken()`을 한 다음 호출하세요.
+
+handshake 인증 실패는 `connect` / `AI_DISCONNECTED`가 없을 수 있습니다. 새 토큰 교환 후에는
+그래도 `reconnect()`를 호출하면 됩니다. 만료된 JWT로 다시 붙이지 마세요(`1402` 루프). `1407`은
+재시도하지 마세요. [트러블슈팅](../troubleshooting)을 참고하세요.
 
 
 <br/>
@@ -293,27 +305,19 @@ AIPlayer의 속성을 다양하게 설정합니다.
   | --------------- | -------- | ----------- |
   | `json`          | `Object` | 설정 json object |
   | `json.logLevel` | `Number` | Console log의 표출 레벨 설정 (0 ~ 5, 0 최소, 5 최대) |
-  | `json.enableSpeechSplit`  | `Boolean` | 사용자의 문장을 ".!?"로 나누어 발화 요청하며 내부적으로 하나의 문장처럼 처리한다 (default: false) |
-  | `json.splitAPITimeout` | `Number` | Split API의 타임아웃. 시간내에 성공하지 못하면 원문장을 요청한다 (default: 4000, ms) |
-  | `json.enableBGImgDB` | `Boolean`  | true이면 백그라운드 리소스 이미지를 브라우저 DB에 저장하고 다음에 필요할 때 DB를 먼저 체크하여 가져온다 (default: false) |
   | `json.enableSpeechCache` | `Boolean`  | true이면 발화 요청시 먼저 브라우저 db에 데이터가 있는지 검색한다. false이면 브라우저 db를 검색하지 않고 서버에 먼저 요청한다 (default: true) |
   | `json.enablePersistantSpeechCache` | `Boolean`  | true이면 AIPlayer 'init' 호출시에 브라우저 발화 cache db를 초기화하거나 데이터를 지우지 않는다. 따라서 브라우저 캐시가 존재한다면 이를 이용하여 네트워크 요청을 줄일수 있다. 하지만 해당 캐시가 존재하는 동안에는 갱신이나 업데이트가 되지 않는다 (default: false) |
   | `json.enableSkipErrorSpeech` | `Boolean`  | true이면 서버에서 발화 요청에 대해 에러가 발생해도 발화가 멈추지 않는다.(ex. "error: synth server is busy"). 또한 발화할 문장이 큐에 쌓여있다면 다음 문장을 이어 발화한다 (default: false) |
-  | `json.continuousBackground` | `Boolean`  | **(Beta)** true이면 AI가 발화를 시작할 때 배경이 첫 프레임부터 다시 시작하지 않고 idle 모션에서 자연스럽게 이어진다. 발화가 시작되는 순간 배경이 튀는 현상이 없어진다. (default: false) |
-  | `json.enableEarlyStart` | `Boolean`  | **(Beta)** idle 배경의 앞부분을 먼저 로드해 더 일찍 렌더링을 시작한다. 첫 화면까지의 시간을 줄인다. (default: false) |
+  | `json.enableEarlyStart` | `Boolean`  | idle 배경의 앞부분을 먼저 로드해 더 일찍 렌더링을 시작한다. 첫 화면까지의 시간을 줄인다. (default: false) |
 
 - Example
 
 ```javascript
 AI_PLAYER.setConfig({
-  logLevel: 0
-  enableSpeechSplit: false,
-  splitAPITimeout: 4000,
-  enableBGImgDB: false,
+  logLevel: 0,
   enableSpeechCache: true,
   enablePersistantSpeechCache: false,
   enableSkipErrorSpeech: false,
-  continuousBackground: false,
   enableEarlyStart: false
 })
 ```

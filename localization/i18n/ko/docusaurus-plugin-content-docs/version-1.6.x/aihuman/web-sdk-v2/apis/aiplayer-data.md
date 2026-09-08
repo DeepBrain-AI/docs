@@ -6,14 +6,17 @@ sidebar_position: 1
 
 ### 1. AIModel
 
-| Param                | Type     | Description                                   |
-| -------------------- | -------- | --------------------------------------------- |
-| `json`               | `Object` | getAiList return
-| `json.aiName`        | `String` | AI name
-| `json.aiDisplayName` | `String` | AI display name
-| `json.aiType`        | `String` | AI type(`'2D'`)
-| `json.language`      | `String` | AI available Language(`'kr'`, `'en'`, `'zh'`)
-| `json.thumbUrl`      | `String` | AI thumbnail image url
+`getAIList()` → `data.ai[]` 항목입니다. 키는 snake_case입니다. **`ai_name`** 을 `init({ aiName })`에
+넣습니다.
+
+| Param               | Type     | Description |
+| ------------------- | -------- | ----------- |
+| `ai_name`           | `String` | 필수. `init({ aiName })`에 넣는 값 |
+| `ai_type`           | `String` | 필수. `'2D'` |
+| `ai_display_name`   | `String` | 선택. UI 라벨 전용 |
+| `model_id`          | `String` | 선택. 카탈로그 id — `init` 인자가 아님 |
+| `language`          | `String` | 선택. 예: `'ko'`, `'en'` |
+| `thumb_url`         | `String` | 선택. 썸네일 URL |
 
 
 <br/>
@@ -58,7 +61,7 @@ sidebar_position: 1
 #### 5.1. AIErrorCode
 | Param               | Type              | Description                            |
 | ------------------- | ------------------| -------------------------------------- |
-| `code`              | `Number`          | AIErrorCode(`AI_API_ERR: 10000`, `AI_SERVER_ERR: 11000`, `AI_RES_ERR: 12000`, `AI_INIT_ERR: 13000`, `INVALID_AICLIPSET_ERR: 14000`, `AICLIPSET_PRELOAD_ERR: 15000`, `AICLIPSET_PLAY_ERR: 16000`, `RESERVED_ERR: 17000`, `UNKNOWN_ERR:-1`,)
+| `code`              | `Number`          | SDK 대역: `AI_API_ERR: 10000`, `AI_SERVER_ERR: 11000`, `AI_RES_ERR: 12000`, `AI_INIT_ERR: 13000`, `INVALID_AICLIPSET_ERR: 14000`, `AICLIPSET_PRELOAD_ERR: 15000`, `AICLIPSET_PLAY_ERR: 16000`, `RESERVED_ERR: 17000`, `UNKNOWN_ERR: -1`. 서버 코드는 **0–9999**이며 위 SDK 대역이 아닙니다. 자주 쓰는 값: `1402` 토큰 만료, `1407` 토큰 무효. `1402`는 `INVALID_AICLIPSET_ERR`(`14000`)가 아닙니다. [트러블슈팅](../troubleshooting)을 참고하세요. |
 
 
 <br/>

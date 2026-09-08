@@ -11,14 +11,14 @@ sidebar_position: 1
 | `setter(json)`    | Set AIPlayer's settings |
 | `getter(string)`  | Get AIPlayer's AIsettings  |
 | `preload(json)`   | Pre-load for AI Speaking. Check example below section |               
-| `send(json)`      | Make AI Speak. Check example below section|
+| `send(text)`      | Make AI Speak. Check example below section|
 | `pause()`         | Pause speaking while speaking |
 | `resume()`        | Resume speaking from pause |
 | `stopSpeak()`     | Stop speaking and reset all data. (cannot resume) |
 | `release()`       | Release resource (terminate AIPlayer, async) |
 | `getGestures()`   | Get the list of available gestures |
 | `getGender()`     | Get the current ai's gender|
-| `reconnect(callback)`   | Try reconnect when AI_DISCNNECTED |
+| `reconnect(callback)`   | Reconnect after disconnect or a handshake auth failure. Call only after a new `generateToken()`. |
 | `isConnected()`   | Can send to speak if true |
 | `canPreload(callback)`   | Check if preload is possible |
 | `setVolume(volume)`   | Volume Control. |
@@ -42,7 +42,7 @@ Initialize AI Player object with the given AI model parameters ([getAIList](../a
   | Param          | Type     | Description                                                       |
   | -------------- | -------- | ----------------------------------------------------------------- |
   | `json`         | `Object` | parameters of the init function |
-  | `json.aiName` | `String` | AI model name |
+  | `json.aiName` | `String` | `getAIList()` `data.ai[].ai_name` — not `model_id` |
   | `json.size`    | `Float`  | AI model size (optional, default: 1.0) |
   | `json.left`    | `Number` | AI model left (optional, default: 0, pixel) |
   | `json.top`     | `Number` | AI model top (optional, default: 0, pixel) |
@@ -52,7 +52,7 @@ Initialize AI Player object with the given AI model parameters ([getAIList](../a
 
 ```javascript
   const result = await AI_PLAYER.init({
-    aiName: "...", size: 1.0, left: 0, top: 0, speed: 1.0
+    aiName: list.data.ai[0].ai_name, size: 1.0, left: 0, top: 0, speed: 1.0
   });
 ```
 
@@ -68,7 +68,7 @@ Get the AIPlayer's state. Check out [AIPlayerState](../apis/aiplayer-data#5-aipl
 - Example
 
 ```javascript
-  const state = AI_PLAYER.getState());
+  const state = AI_PLAYER.getState();
 ```
   
 
@@ -111,7 +111,7 @@ Get AI object information
 - Example
 
 ```javascript
-  AI_PLAYER.getter("key");
+  AI_PLAYER.getter("size");
 ```
 
 
@@ -194,6 +194,11 @@ Stop AI speech and reset all data on queue. (cannot resume)
 ### 10. AIPlayer.release()
 
 Release system resources in use. (AIPlayer will not work properly after calling this method.)
+
+Call this when the user **closes** the avatar. Do **not** call it on a brief network drop or on
+token error `1402` — that ends the session. Reconnect without `release()` to continue the same
+session. After `release()`, the next `init()` starts a new session.
+
 - Examples
 
 ```javascript
@@ -237,6 +242,13 @@ Gets the current AI gender ('MALE', 'FEMALE', 'UNI') and returns null if there i
 ```javascript
 AIPlayer.reconnect(callback = () => { })
 ```
+
+Reconnects the socket. Use this after `generateToken()` when `onAIPlayerErrorV2` reports `1402`
+(expired JWT), or after a disconnect while the player is still on screen.
+
+Handshake auth failure may never fire `connect` / `AI_DISCONNECTED`. You can still call
+`reconnect()` after exchanging a new token. Do not reconnect with the expired JWT (that loops
+`1402`). Do not retry on `1407`. See [Troubleshooting](../troubleshooting).
 
 
 <br/>
@@ -285,27 +297,19 @@ Config AIPlayer object with the given parameters
   | --------------- | -------- | ----------- |
   | `json`          | `Object` | parameters of the function |
   | `json.logLevel` | `Number` | Console log's level (0 ~ 5, 0 min logs and 5 is full) |
-  | `json.enableSpeechSplit`  | `Boolean` | Split the user input text with ".!?" then send them. And it processes them as if it is one sentence (default: false) |
-  | `json.splitAPITimeout` | `Number` | Split API's timeout. If the split request failes, it just send the input text without split. (default: 4000, ms) |
-  | `json.enableBGImgDB` | `Boolean`  | If enabled, the backgroud image resource is saved in the DB and will check the DB first when next time it needs. (default: false) |
   | `json.enableSpeechCache` | `Boolean`  | If enabled, when send text to speak it checks the browser cache DB first. When disabled, it request to server without checking the browser DB. (default: true) |
   | `json.enablePersistantSpeechCache` | `Boolean`  | If enabled, it does not initialize or delete the browser cache DB when the AIPlayer 'init' call. So that you can reduce the network traffic if the cache exists. But it can not be updated or renewed while the cache exists (default: false) |
   | `json.enableSkipErrorSpeech` | `Boolean`  | If enabled, it does not stop speaking even though there is an error occured from server(ex. "error: synth server is busy"). Also, if AIPlayer has speeches left in the  queue, it just send the next speech (default: false) |
-  | `json.continuousBackground` | `Boolean`  | **(Beta)** If enabled, when the AI starts speaking, the background continues seamlessly from the idle motion instead of restarting from the first frame, so there is no visible jump at the moment speech begins. (default: false) |
-  | `json.enableEarlyStart` | `Boolean`  | **(Beta)** Loads the first part of the idle background first and starts rendering earlier, reducing time-to-first-render. (default: false) |
+  | `json.enableEarlyStart` | `Boolean`  | Loads the first part of the idle background first and starts rendering earlier, reducing time-to-first-render. (default: false) |
 
 - Example
 
 ```javascript
 AI_PLAYER.setConfig({
-  logLevel: 0
-  enableSpeechSplit: false,
-  splitAPITimeout: 4000,
-  enableBGImgDB: false,
+  logLevel: 0,
   enableSpeechCache: true,
   enablePersistantSpeechCache: false,
   enableSkipErrorSpeech: false,
-  continuousBackground: false,
   enableEarlyStart: false
 })
 ```

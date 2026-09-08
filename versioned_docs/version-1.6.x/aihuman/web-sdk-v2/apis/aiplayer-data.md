@@ -6,14 +6,16 @@ sidebar_position: 1
 
 ### 1. AIModel
 
-| Param                | Type     | Description                                   |
-| -------------------- | -------- | --------------------------------------------- |
-| `json`               | `Object` | getAiList return
-| `json.aiName`        | `String` | AI name
-| `json.aiDisplayName` | `String` | AI display name
-| `json.aiType`        | `String` | AI type(`'2D'`)
-| `json.language`      | `String` | AI available Language(`'kr'`, `'en'`, `'zh'`)
-| `json.thumbUrl`      | `String` | AI thumbnail image url
+Item in `getAIList()` → `data.ai[]`. Keys are snake_case. Pass **`ai_name`** to `init({ aiName })`.
+
+| Param               | Type     | Description |
+| ------------------- | -------- | ----------- |
+| `ai_name`           | `String` | Required. Value for `init({ aiName })` |
+| `ai_type`           | `String` | Required. `'2D'` |
+| `ai_display_name`   | `String` | Optional. UI label only |
+| `model_id`          | `String` | Optional. Catalog id — not the `init` argument |
+| `language`          | `String` | Optional. e.g. `'ko'`, `'en'` |
+| `thumb_url`         | `String` | Optional. Thumbnail URL |
 
 
 <br/>
@@ -58,7 +60,7 @@ sidebar_position: 1
 #### 5.1. AIErrorCode
 | Param               | Type              | Description                            |
 | ------------------- | ------------------| -------------------------------------- |
-| `code`              | `Number`          | AIErrorCode(`AI_API_ERR: 10000`, `AI_SERVER_ERR: 11000`, `AI_RES_ERR: 12000`, `AI_INIT_ERR: 13000`, `INVALID_AICLIPSET_ERR: 14000`, `AICLIPSET_PRELOAD_ERR: 15000`, `AICLIPSET_PLAY_ERR: 16000`, `RESERVED_ERR: 17000`, `UNKNOWN_ERR:-1`,)
+| `code`              | `Number`          | SDK band: `AI_API_ERR: 10000`, `AI_SERVER_ERR: 11000`, `AI_RES_ERR: 12000`, `AI_INIT_ERR: 13000`, `INVALID_AICLIPSET_ERR: 14000`, `AICLIPSET_PRELOAD_ERR: 15000`, `AICLIPSET_PLAY_ERR: 16000`, `RESERVED_ERR: 17000`, `UNKNOWN_ERR: -1`. Server codes are **0–9999** and are not those SDK bands. Common values: `1402` token expired, `1407` invalid token. `1402` is **not** `INVALID_AICLIPSET_ERR` (`14000`). See [Troubleshooting](../troubleshooting). |
 
 
 <br/>

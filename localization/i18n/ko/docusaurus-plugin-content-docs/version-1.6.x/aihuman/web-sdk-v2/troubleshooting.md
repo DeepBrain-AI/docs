@@ -42,10 +42,49 @@ ClientToken을 브라우저에서 생성하지 마세요 — 장기 시크릿인
 단명 ClientToken만 클라이언트로 전달하세요.
 :::
 
+## 토큰 만료(`1402`) / 무효(`1407`)
+
+SDK는 이 코드를 `onAIPlayerErrorV2`로 올립니다. 토큰을 재발급하거나 `release()`를 호출하지 않습니다.
+아바타는 화면에 두고 앱에서 코드를 처리하세요.
+
+최신 v2 SDK는 `1402` / `1407`을 그 숫자 그대로 전달합니다. 구빌드는 같은 실패를 `13000`(init)으로
+감쌀 수 있습니다.
+
+| 코드 | 의미 | 할 일 |
+| --- | --- | --- |
+| `1402` | 세션 JWT 만료 | **고객사 서버**에서 ClientToken을 재발급하고 `generateToken()` 후 `reconnect()`. `release()` 하지 마세요. 옛 JWT로 reconnect만 반복하지 마세요. |
+| `1407` | 토큰 무효(시크릿 불일치, 위조 JWT, ClientToken을 세션 JWT로 사용) | 재시도 루프에 넣지 마세요. 발급·전달 방식을 고치세요. |
+
+```javascript
+AI_PLAYER.onAIPlayerErrorV2 = async (err) => {
+  if (err?.code === 1402) {
+    const { appId, token: clientToken } = await getClientToken();
+    await AI_PLAYER.generateToken({ appId, token: clientToken });
+    AI_PLAYER.reconnect();
+    return;
+  }
+  if (err?.code === 1407) {
+    console.error(err.code, err.message);
+    return;
+  }
+  console.error(err?.code, err?.message);
+};
+```
+
+잠깐 끊기거나 `1402`에서 `release()`하면 세션이 끝납니다. `release()` 없이 reconnect하면 같은
+세션이 이어집니다. `release()` 후 다음 `init()`은 새 세션입니다.
+
 ## `init`에서 "아바타를 찾을 수 없음"
 
-- `AI_PLAYER.getAIList()` 결과에 해당 `aiName`이 있는지 확인하세요.
+- `AI_PLAYER.getAIList()` 결과의 `result.data.ai[].ai_name`에 해당 값이 있는지 확인하세요. UI
+  라벨은 `ai_display_name`이고, `init({ aiName })`에는 `ai_name`이 필요합니다.
 - 해당 아바타에 대한 계정 접근 권한이 있는지 확인하세요.
+
+## `12000` — "The source image could not be decoded"
+
+SDK가 이미지가 아닌 응답(대개 HTML/XML 404)을 이미지로 디코드하려다 난 오류입니다. 공개 npm 패키지
+(`npm install @deepbrainai/aihuman-web-sdk`, latest)를 쓰는지, 폐기된 호스트로 `resourceServer`를
+덮어쓰지 않았는지 확인하세요. 기본 리소스 호스트는 `https://media.aistudios.com/sdk`입니다.
 
 ## 발화가 시작됐다가 멈추거나 끊깁니다
 

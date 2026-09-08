@@ -4,116 +4,171 @@ sidebar_position: 2
 
 # Getting Started
 
-Get a talking AI avatar running in your web page in a few minutes. This guide walks you from an
-empty HTML file to your first spoken sentence.
+Get a talking AI avatar running in your web app in a few minutes.
 
 :::info Prerequisites
-- An **`appId`** and **`userKey`** issued by DeepBrain AI. The `userKey` is a long‑lived secret —
-  keep it on **your server**, never in the browser.
+- An **`appId`** and **`userKey`** issued from the
+  [API Key page](https://account.aistudios.com/user/api-key?service=aistudios)
+  (see [Get appId and userKey](#get-appid-and-userkey)). Keep `userKey` on **your server**, never in
+  the browser.
+- Node.js and a bundler (Vite, webpack, Next.js, …) so you can install the SDK from npm.
 - A modern browser (latest Chrome, Edge, or Safari).
-- The DeepBrain AI Web SDK v2 file (`aiPlayer-2.x.obf.js`) — provided for your deployment.
 :::
+
+## Install the SDK
+
+```bash
+npm install @deepbrainai/aihuman-web-sdk
+```
+
+```javascript
+import AIPlayer from "@deepbrainai/aihuman-web-sdk";
+```
+
+The package is a browser bundle. `AIPlayer` is the same class used in the rest of this guide.
+
+## Get appId and userKey
+
+:::warning Use the Interactive Avatar API key
+The API Key page has two tabs, and they issue **different keys**. The Web SDK works only with the
+**Interactive Avatar API** key. The **AI Video API** key on the other tab is for video generation and
+will fail authentication here.
+:::
+
+1. Open the **[API Key page](https://account.aistudios.com/user/api-key?service=aistudios)** and sign
+   in (or create an account: top right → Login / Sign in).
+2. Select the **Interactive Avatar API** tab — not **AI Video API**, which is selected by default.
+3. Click **Issue key** on that tab. A dialog shows **App ID (Client ID)** and **User Key (Secret)** —
+   these are the `appId` and `userKey` used below.
+4. Copy the **User Key** before closing the dialog. It is shown only once and cannot be retrieved
+   later (the table **Copy** button copies App ID only). If you lose the User Key, issue a new key.
+5. If **Issue key** is disabled and the page says key issuance is being prepared, ask
+   [support](https://www.aistudios.com/company/contact) to enable it for your account.
+
+`userKey` is a long‑lived secret. Only your backend should read it.
+
+## Mint a ClientToken on your server
+
+The browser must not see `userKey`. Your server signs a short‑lived JWT (**ClientToken**) and the
+page exchanges it with `generateToken()`.
+
+```bash
+npm install jsonwebtoken
+```
+
+```javascript title="server (Node.js)"
+import jwt from "jsonwebtoken";
+
+const userKey = process.env.AIHUMAN_USER_KEY; // never ship this to the client
+const payload = {
+  appId: process.env.AIHUMAN_APP_ID,
+  platform: "web",
+};
+const options = {
+  header: { typ: "JWT", alg: "HS256" },
+  expiresIn: 60 * 5, // 5 minutes
+};
+
+export function generateJWT(req, res) {
+  const token = jwt.sign(payload, userKey, options);
+  res.json({ appId: payload.appId, token });
+}
+```
+
+Expose that as `GET` (or `POST`) `/api/generateJWT`. The page calls it when it needs a ClientToken
+(including after error `1402`).
 
 ## Complete example
 
-Copy this into a single `index.html`, replace the `<script src>` and the token step, and open it in
-a browser. Each part is explained in [Step by step](#step-by-step) below.
+Put a wrapper and a button in the page, then run this after install. Replace `getClientToken()` with
+a `fetch` to your `/api/generateJWT`.
 
-```html title="index.html"
-<!doctype html>
-<html>
-  <body>
-    <!-- 1. A container for the avatar -->
-    <div id="AIPlayerWrapper" style="width: 480px; height: 720px;"></div>
+```html
+<div id="AIPlayerWrapper" style="width: 480px; height: 720px;"></div>
+<button id="speakBtn">Speak</button>
+```
 
-    <!-- 2. A button — the first speech must start from a user action (see note below) -->
-    <button id="speakBtn">Speak</button>
+```javascript
+import AIPlayer from "@deepbrainai/aihuman-web-sdk";
 
-    <!-- 3. Load the SDK (use the file/URL provided for your deployment) -->
-    <script src="aiPlayer-2.1.0.obf.js"></script>
-    <script>
-      async function main() {
-        const AI_PLAYER = new AIPlayer(document.getElementById("AIPlayerWrapper"));
+async function main() {
+  const AI_PLAYER = new AIPlayer(document.getElementById("AIPlayerWrapper"));
 
-        // Exchange a ClientToken (issued by YOUR server) for a session token.
-        const clientToken = await getClientToken(); // <- your backend call
-        await AI_PLAYER.generateToken({ appId: "<your-appId>", token: clientToken });
+  const { appId, token: clientToken } = await getClientToken();
+  const auth = await AI_PLAYER.generateToken({ appId, token: clientToken });
+  if (auth.status !== "success") throw new Error(auth.message);
 
-        // Load the AI model you want to render.
-        await AI_PLAYER.getAIList();
-        await AI_PLAYER.init({ aiName: "<ai_name>" });
+  const list = await AI_PLAYER.getAIList();
+  const aiName = list.data.ai[0].ai_name; // not model_id
+  await AI_PLAYER.init({ aiName });
 
-        // Speak — triggered by a click so the browser allows audio.
-        document.getElementById("speakBtn").onclick = () =>
-          AI_PLAYER.send("Hello! Nice to meet you.");
-      }
-      main();
-    </script>
-  </body>
-</html>
+  document.getElementById("speakBtn").onclick = () =>
+    AI_PLAYER.send("Hello! Nice to meet you.");
+}
+main();
 ```
 
 :::warning Audio needs a user gesture
 Browsers block audio until the user interacts with the page. Trigger the **first** `send()` from a
-click (or tap) — as in the example above. Calling `send()` on page load will render the avatar but
-stay silent.
+click (or tap). Calling `send()` on page load will render the avatar but stay silent.
 :::
 
 ## Step by step
 
-### 1. Include the SDK
-
-```html
-<script src="aiPlayer-2.1.0.obf.js"></script>
-```
-
-Once loaded, the `AIPlayer` class is available globally.
-
-:::note
-Use the exact file or CDN URL provided for your deployment in place of the relative path shown here.
-:::
-
-### 2. Create the player
+### 1. Create the player
 
 ```javascript
 const wrapper = document.getElementById("AIPlayerWrapper");
 const AI_PLAYER = new AIPlayer(wrapper);
 ```
 
-The avatar is drawn to fill the container element — size and position it with CSS.
+The avatar fills the container — size it with CSS.
 
-### 3. Authenticate
+### 2. Authenticate
 
-Authentication is a two‑step flow:
-
-1. **On your server**, create a JWT **ClientToken** from your `appId` and `userKey`.
+1. **On your server**, mint a ClientToken (`appId` + `userKey`, `platform: "web"`).
 2. **In the browser**, exchange it with `generateToken()`.
 
 ```javascript
-const clientToken = await getClientToken(); // your backend endpoint
-const result = await AI_PLAYER.generateToken({ appId: appId, token: clientToken });
-// result: { status: "success", data: { token_expire, ... } }
+const { appId, token: clientToken } = await getClientToken();
+const result = await AI_PLAYER.generateToken({ appId, token: clientToken });
+// result.status === "success"
+// result.data.token / result.data.token_expire — JWT is stored inside the SDK
+// there is no defaultAI; pick ai_name from getAIList()
 ```
 
 :::danger Never expose your userKey
-The `userKey` is a long‑lived secret. Generate the ClientToken on your server and send only the
-short‑lived ClientToken to the browser.
+Generate the ClientToken on your server. Send only the short‑lived ClientToken to the client.
 :::
 
-### 4. Load an AI
+### 3. Look up `aiName` and load
+
+There is no separate “search avatar by display name” API. After `generateToken()`, call
+**`getAIList()`**. v2 returns the human API envelope as-is (no camelCase remap):
 
 ```javascript
-await AI_PLAYER.getAIList();               // available AI models
-await AI_PLAYER.init({ aiName: "<ai_name>" }); // resolves when the avatar is ready
+const list = await AI_PLAYER.getAIList();
+// list.status === "success"
+// list.data.ai = [{ ai_name, ai_type, ai_display_name?, model_id?, language?, thumb_url? }, ...]
+
+const aiName =
+  list.data.ai.find((m) => m.ai_display_name === "My Avatar")?.ai_name ??
+  list.data.ai[0].ai_name;
+
+await AI_PLAYER.init({ aiName });
 ```
 
-`init()` resolves once the avatar has loaded. After it resolves, the avatar is ready to speak.
+`init({ aiName })` needs **`ai_name`**. Do not pass `model_id`. `ai_display_name` is UI-only.
+`language` and `thumb_url` may be omitted. `init()` resolves when the avatar is ready to speak.
 
-### 5. Speak
+New accounts typically see **`sample-sage-v2`** in this list. That is the sample avatar used in
+the rest of these docs.
+
+### 4. Speak
 
 ```javascript
-AI_PLAYER.send("Nice to meet you");                     // one sentence
-AI_PLAYER.send(["Nice to meet you", "How are you?"]);   // multiple sentences
+AI_PLAYER.send("Nice to meet you");
+AI_PLAYER.send(["Nice to meet you", "How are you?"]);
 ```
 
 ## Handle events (optional)
@@ -121,7 +176,19 @@ AI_PLAYER.send(["Nice to meet you", "How are you?"]);   // multiple sentences
 ```javascript
 AI_PLAYER.onAIPlayerLoadingProgressed = (r) => console.log("loading", r?.loading);
 AI_PLAYER.onAIPlayerEvent = (e) => console.log("event", e?.type);
-AI_PLAYER.onAIPlayerErrorV2 = (err) => console.error(err?.code, err?.message);
+AI_PLAYER.onAIPlayerErrorV2 = async (err) => {
+  if (err?.code === 1402) {
+    const { appId, token: clientToken } = await getClientToken();
+    await AI_PLAYER.generateToken({ appId, token: clientToken });
+    AI_PLAYER.reconnect();
+    return;
+  }
+  if (err?.code === 1407) {
+    console.error(err.code, err.message);
+    return;
+  }
+  console.error(err?.code, err?.message);
+};
 ```
 
 | Event | Fires when |
@@ -129,6 +196,9 @@ AI_PLAYER.onAIPlayerErrorV2 = (err) => console.error(err?.code, err?.message);
 | `LOADING_PROGRESS` | Resources are downloading (`r.loading` = %) |
 | `LOAD_COMPLETED` | The avatar is ready |
 | `SPEECH_STARTED` / `SPEECH_COMPLETED` | A `send()` begins / finishes playing |
+
+See [Troubleshooting](./troubleshooting) for `1402` / `1407`. Do not call `release()` on those
+errors — reconnect after `generateToken()` to keep the same session.
 
 ## Next steps
 

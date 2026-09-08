@@ -4,15 +4,11 @@ sidebar_position: 1
 
 # AI Human Web SDK v2
 
-Add a **real‑time, talking AI avatar** to any web page with a single script. The v2 SDK streams a
-2D avatar that speaks your text (or LLM responses) with natural lip‑sync — no video pipeline, no
-plugins.
+Add a **real‑time, talking AI avatar** to any web page. The v2 SDK streams a 2D avatar that speaks
+your text (or LLM responses) with natural lip‑sync — no video pipeline, no plugins.
 
-:::info Beta
-Web SDK v2 is in **beta**. The core API is stable and mirrors the v1 `AIPlayer` class; newer options
-(see [Configuration](./configuration)) are still being finalized. For the current stable release, see
-**[Web SDK v1](/aihuman/web-sdk)**.
-:::
+Install with npm (`@deepbrainai/aihuman-web-sdk`). The `AIPlayer` API matches v1 for the calls you
+need day to day. Existing v1 integrations can stay on **[Web SDK v1](/aihuman/web-sdk)**.
 
 ## Talk to AI Human
 
@@ -30,10 +26,9 @@ the published SDK exactly as you would integrate it.
 
 ## Why v2
 
-- **Drop‑in.** One `<script>` tag exposes the `AIPlayer` class — `new AIPlayer(el)` and go.
+- **npm.** `npm install @deepbrainai/aihuman-web-sdk`, then `new AIPlayer(el)`.
 - **Real‑time speech.** Send text and the avatar speaks it back with lip‑sync, streaming.
-- **Smoother playback.** Optional `continuousBackground` removes the background jump when speech
-  starts; `enableEarlyStart` shows the avatar sooner.
+- **Faster first render.** Optional `enableEarlyStart` shows the avatar sooner.
 - **Mobile‑optimized automatically.** On phones the SDK trims the idle background download so the
   avatar appears faster — no code change required.
 - **Familiar API.** The core `AIPlayer` class mirrors v1 — most calls carry over. (3D and
@@ -49,6 +44,7 @@ sequenceDiagram
     App->>SDK: new AIPlayer(el)
     App->>SDK: generateToken(clientToken)
     SDK->>Cloud: authenticate
+    App->>SDK: getAIList()
     App->>SDK: init(aiName)
     SDK->>Cloud: load avatar
     Cloud-->>SDK: ready
@@ -58,14 +54,18 @@ sequenceDiagram
     SDK-->>App: avatar speaks
 ```
 
+If the session JWT expires, keep the player on screen, call `generateToken()` with a new ClientToken,
+then `reconnect()`. The SDK continues the same session. Call `release()` only when the user closes
+the avatar — the next `init()` starts a new session.
+
 ## What's different from v1
 
 | | Web SDK v1 | Web SDK v2 |
 | --- | --- | --- |
 | Rendering | 2D / 3D | **2D only** |
-| Distribution | `aiPlayer-1.6.x.min.js` | `aiPlayer-2.x.obf.js` |
-| Background continuity | — | `continuousBackground` (beta) |
-| Faster first render | — | `enableEarlyStart` (beta) |
+| Distribution | CDN `aiPlayer-1.6.x.min.js` | npm `@deepbrainai/aihuman-web-sdk` |
+| Custom voice | yes | **removed** |
+| Faster first render | — | `enableEarlyStart` |
 | Mobile idle download | full | **auto‑trimmed** |
 | API surface | `AIPlayer` class | same `AIPlayer` class |
 
@@ -74,7 +74,7 @@ sequenceDiagram
 <div className="doc-cards">
   <a className="doc-card" href="./getting-started">
     <div className="doc-card__title">Getting Started <span className="doc-card__arrow">→</span></div>
-    <div className="doc-card__desc">From empty HTML to first speech.</div>
+    <div className="doc-card__desc">Install from npm to first speech.</div>
   </a>
   <a className="doc-card" href="./configuration">
     <div className="doc-card__title">Configuration <span className="doc-card__arrow">→</span></div>
