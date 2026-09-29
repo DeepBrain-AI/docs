@@ -304,20 +304,12 @@ AIPlayer의 속성을 다양하게 설정합니다.
   | Param           | Type     | Description |
   | --------------- | -------- | ----------- |
   | `json`          | `Object` | 설정 json object |
-  | `json.logLevel` | `Number` | Console log의 표출 레벨 설정 (0 ~ 5, 0 최소, 5 최대) |
-  | `json.enableSpeechCache` | `Boolean`  | true이면 발화 요청시 먼저 브라우저 db에 데이터가 있는지 검색한다. false이면 브라우저 db를 검색하지 않고 서버에 먼저 요청한다 (default: true) |
-  | `json.enablePersistantSpeechCache` | `Boolean`  | true이면 AIPlayer 'init' 호출시에 브라우저 발화 cache db를 초기화하거나 데이터를 지우지 않는다. 따라서 브라우저 캐시가 존재한다면 이를 이용하여 네트워크 요청을 줄일수 있다. 하지만 해당 캐시가 존재하는 동안에는 갱신이나 업데이트가 되지 않는다 (default: false) |
-  | `json.enableSkipErrorSpeech` | `Boolean`  | true이면 서버에서 발화 요청에 대해 에러가 발생해도 발화가 멈추지 않는다.(ex. "error: synth server is busy"). 또한 발화할 문장이 큐에 쌓여있다면 다음 문장을 이어 발화한다 (default: false) |
   | `json.enableEarlyStart` | `Boolean`  | idle 배경의 앞부분을 먼저 로드해 더 일찍 렌더링을 시작한다. 첫 화면까지의 시간을 줄인다. (default: false) |
 
 - Example
 
 ```javascript
 AI_PLAYER.setConfig({
-  logLevel: 0,
-  enableSpeechCache: true,
-  enablePersistantSpeechCache: false,
-  enableSkipErrorSpeech: false,
   enableEarlyStart: false
 })
 ```

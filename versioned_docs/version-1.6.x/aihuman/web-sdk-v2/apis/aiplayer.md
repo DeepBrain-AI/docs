@@ -296,20 +296,12 @@ Config AIPlayer object with the given parameters
   | Param           | Type     | Description |
   | --------------- | -------- | ----------- |
   | `json`          | `Object` | parameters of the function |
-  | `json.logLevel` | `Number` | Console log's level (0 ~ 5, 0 min logs and 5 is full) |
-  | `json.enableSpeechCache` | `Boolean`  | If enabled, when send text to speak it checks the browser cache DB first. When disabled, it request to server without checking the browser DB. (default: true) |
-  | `json.enablePersistantSpeechCache` | `Boolean`  | If enabled, it does not initialize or delete the browser cache DB when the AIPlayer 'init' call. So that you can reduce the network traffic if the cache exists. But it can not be updated or renewed while the cache exists (default: false) |
-  | `json.enableSkipErrorSpeech` | `Boolean`  | If enabled, it does not stop speaking even though there is an error occured from server(ex. "error: synth server is busy"). Also, if AIPlayer has speeches left in the  queue, it just send the next speech (default: false) |
   | `json.enableEarlyStart` | `Boolean`  | Loads the first part of the idle background first and starts rendering earlier, reducing time-to-first-render. (default: false) |
 
 - Example
 
 ```javascript
 AI_PLAYER.setConfig({
-  logLevel: 0,
-  enableSpeechCache: true,
-  enablePersistantSpeechCache: false,
-  enableSkipErrorSpeech: false,
   enableEarlyStart: false
 })
 ```
